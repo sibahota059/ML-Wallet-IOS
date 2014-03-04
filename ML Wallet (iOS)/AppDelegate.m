@@ -7,14 +7,32 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+
+#define UIColorFromR(rbValue) [UIColor colorWithRed:((float)((rbValue & 0xFF0000) >> 16))/255.0 green:((float)((rbValue & 0xFF00) >> 8))/255.0 blue:((float)(rbValue & 0xFF))/255.0 alpha:2.0]
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    self.navigationController=[[UINavigationController alloc] initWithRootViewController:self.viewController];
+
+    //Shadow for title
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = UIColorFromR(0x323232);
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:UIColorFromR(0xe5e5e5), NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Helvetica-Bold" size:16.0], NSFontAttributeName, nil];
+    self.navigationController.navigationBar.titleTextAttributes = dic;
+    
+    
+    //Background and Buttons
+    [[UINavigationBar appearance] setTintColor:UIColorFromR(0xFFFFFF)];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header_navi.png"] forBarMetrics:UIBarMetricsDefault];
+    
+    self.window.rootViewController =self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }

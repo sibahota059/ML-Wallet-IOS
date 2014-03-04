@@ -17,7 +17,7 @@
                BlueprintIdentifier = "3BA7CC9618B1D6B900B9FC4B"
                BuildableName = "ML Wallet (iOS).app"
                BlueprintName = "ML Wallet (iOS)"
-               ReferencedContainer = "container:ML Wallet (iOS).xcodeproj">
+               ReferencedContainer = "container:ML Wallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "3BA7CCB118B1D6B900B9FC4B"
                BuildableName = "ML Wallet (iOS)Tests.xctest"
                BlueprintName = "ML Wallet (iOS)Tests"
-               ReferencedContainer = "container:ML Wallet (iOS).xcodeproj">
+               ReferencedContainer = "container:ML Wallet.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "3BA7CC9618B1D6B900B9FC4B"
             BuildableName = "ML Wallet (iOS).app"
             BlueprintName = "ML Wallet (iOS)"
-            ReferencedContainer = "container:ML Wallet (iOS).xcodeproj">
+            ReferencedContainer = "container:ML Wallet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "3BA7CC9618B1D6B900B9FC4B"
             BuildableName = "ML Wallet (iOS).app"
             BlueprintName = "ML Wallet (iOS)"
-            ReferencedContainer = "container:ML Wallet (iOS).xcodeproj">
+            ReferencedContainer = "container:ML Wallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -82,7 +82,7 @@
             BlueprintIdentifier = "3BA7CC9618B1D6B900B9FC4B"
             BuildableName = "ML Wallet (iOS).app"
             BlueprintName = "ML Wallet (iOS)"
-            ReferencedContainer = "container:ML Wallet (iOS).xcodeproj">
+            ReferencedContainer = "container:ML Wallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
