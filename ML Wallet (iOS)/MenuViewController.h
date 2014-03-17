@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuViewController : UIViewController <UIAlertViewDelegate>
-
+@property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *imgPopup;
 

@@ -13,12 +13,18 @@
 #import "ReceiverMenuListViewController.h"
 #import "TopupViewController.h"
 #import "InfoViewController.h"
+#import "MLSendMoneyViewController.h"
+#import "MLRatesTableViewController.h"
+#import "MLUI.h"
+
 
 #define  VIEW_HIDDEN -320
 
 
 @interface MenuViewController ()
-
+{
+        MLUI *getUI;
+}
 @end
 
 @implementation MenuViewController
@@ -254,6 +260,29 @@
     [UIAlertView myCostumeAlert:@"Send money" alertMessage:@"To do.." delegate:nil cancelButton:@"Cancel" otherButtons:@"ok"];
 }
 
+- (IBAction)btn_SendMoney:(id)sender {
+    UIViewController *viewController1 = [[MLSendMoneyViewController alloc] initWithNibName:@"MLSendMoneyViewController" bundle:nil];
+    UITableViewController *viewController2 = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
+    
+    [getUI navigationAppearance];
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = @[viewController1, viewController2];
+    
+    //object to customize tabBar
+    [getUI customTabBar:self.tabBarController];
+    
+    
+    
+    self.kycLayer.hidden = YES;
+//    ReceiverMenuListViewController *nxtpage = [[ReceiverMenuListViewController alloc] initWithNibName:@"ReceiverMenuListViewController" bundle:[NSBundle mainBundle]];
+//    [self.navigationController pushViewController:nxtpage animated:YES];
+    
+    [self.navigationController pushViewController:self.tabBarController animated:YES];
+//    [[self navigationController] pushViewController:self.tabBarController animated:YES];
+    
+
+}
 
 
 @end

@@ -51,6 +51,7 @@
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
     }
 }
+
 - (void)viewDidUnload
 {
     [self setNameLabel:nil];

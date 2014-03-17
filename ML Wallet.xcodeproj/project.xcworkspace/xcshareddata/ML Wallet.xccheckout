@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>862556D7-E2D7-4DA1-BCE3-DBAD11D48D72</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ML Wallet</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E6227F28-01D4-45CA-8E2B-02117591AC62</key>
+		<string>https://github.com/ybanezmarjune/ML-Wallet--iOS-.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ML Wallet.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E6227F28-01D4-45CA-8E2B-02117591AC62</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ybanezmarjune/ML-Wallet--iOS-.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E6227F28-01D4-45CA-8E2B-02117591AC62</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E6227F28-01D4-45CA-8E2B-02117591AC62</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ML Wallet (iOS)</string>
+		</dict>
+	</array>
+</dict>
+</plist>
