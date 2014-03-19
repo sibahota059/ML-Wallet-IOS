@@ -125,10 +125,8 @@
 		708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708327E818D93AFB0033856C /* EnterCustomerID.xib */; };
 		7083282718D962650033856C /* account_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282018D962650033856C /* account_profile.png */; };
 		7083282818D962650033856C /* back_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282118D962650033856C /* back_profile.png */; };
-		7083282918D962650033856C /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282218D962650033856C /* edit_profile.png */; };
 		7083282A18D962650033856C /* lock_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282318D962650033856C /* lock_profile.png */; };
 		7083282B18D962650033856C /* profile_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282418D962650033856C /* profile_profile.png */; };
-		7083282C18D962650033856C /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282518D962650033856C /* question_profile.png */; };
 		7083282D18D962650033856C /* submit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282618D962650033856C /* submit_profile.png */; };
 		7083283218D962FC0033856C /* RegistrationInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7083283118D962FC0033856C /* RegistrationInformation.xib */; };
 		70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */; };
@@ -144,6 +142,8 @@
 		70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA18B18D9C56300719BF7 /* ProfileLabel.m */; };
 		70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA18D18D9C64C00719BF7 /* ProfileTextField.m */; };
 		70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA19318D9C6E800719BF7 /* ProfileButton.m */; };
+		70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19918D9CA4900719BF7 /* edit_profile.png */; };
+		70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19B18D9CA7800719BF7 /* question_profile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -350,6 +350,8 @@
 		70EEA18E18D9C64C00719BF7 /* ProfileTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTextField.h; sourceTree = "<group>"; };
 		70EEA19318D9C6E800719BF7 /* ProfileButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileButton.m; sourceTree = "<group>"; };
 		70EEA19418D9C6E800719BF7 /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileButton.h; sourceTree = "<group>"; };
+		70EEA19918D9CA4900719BF7 /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_profile.png; sourceTree = "<group>"; };
+		70EEA19B18D9CA7800719BF7 /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_profile.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -533,6 +535,8 @@
 		3BA7CCD118B1D96D00B9FC4B /* images */ = {
 			isa = PBXGroup;
 			children = (
+				70EEA19B18D9CA7800719BF7 /* question_profile.png */,
+				70EEA19918D9CA4900719BF7 /* edit_profile.png */,
 				3BB42DA618D6B0D50011792E /* ic_seal_pending.png */,
 				3BB42DA718D6B0D50011792E /* right.png */,
 				3BB42DA818D6B0D50011792E /* navbar_bg.png */,
@@ -932,8 +936,6 @@
 			files = (
 				3BB42E0D18D6B6C60011792E /* sendmoney_default.png in Resources */,
 				3BA7CCE118B1E13200B9FC4B /* headerbackground.png in Resources */,
-				7083282918D962650033856C /* edit_profile.png in Resources */,
-				7083282C18D962650033856C /* question_profile.png in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
 				3BC3828C18C0958900270567 /* InfoViewController.xib in Resources */,
 				3BC3828118C0330A00270567 /* mlcard.png in Resources */,
@@ -959,6 +961,7 @@
 				3BB42E0F18D6B6C60011792E /* tabbar_bg.png in Resources */,
 				3BB42E0618D6B6C60011792E /* payment_bg.png in Resources */,
 				3BA7CCFB18B213BE00B9FC4B /* line.png in Resources */,
+				70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */,
 				3BB42D8218D6B0180011792E /* MLSendMoneyViewController.xib in Resources */,
 				3BB42D8418D6B0180011792E /* MLPreviewViewController.xib in Resources */,
 				3BB42E1118D6B6C60011792E /* view_bg.png in Resources */,
@@ -967,6 +970,7 @@
 				3BB42E0318D6B6C60011792E /* next.png in Resources */,
 				3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */,
 				3BA7CCF018B1E9BA00B9FC4B /* ic_launcher2.png in Resources */,
+				70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */,
 				7083282818D962650033856C /* back_profile.png in Resources */,
 				3B17585518B35BA3005A7805 /* no_image.png in Resources */,
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
