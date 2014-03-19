@@ -123,12 +123,12 @@
 		3BC3829218C095D200270567 /* ic_about.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3829118C095D200270567 /* ic_about.9.png */; };
 		707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */; };
 		707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B618D9CD8100EC1B12 /* lock_profile.png */; };
+		707C03B918D9CFD500EC1B12 /* profile_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B818D9CFD500EC1B12 /* profile_profile.png */; };
+		707C03BB18D9CFE100EC1B12 /* account_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03BA18D9CFE100EC1B12 /* account_profile.png */; };
+		707C03BD18D9D00900EC1B12 /* submit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03BC18D9D00900EC1B12 /* submit_profile.png */; };
 		708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327E618D93AEB0033856C /* EnterCustomerID.m */; };
 		708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708327E818D93AFB0033856C /* EnterCustomerID.xib */; };
-		7083282718D962650033856C /* account_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282018D962650033856C /* account_profile.png */; };
 		7083282818D962650033856C /* back_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282118D962650033856C /* back_profile.png */; };
-		7083282B18D962650033856C /* profile_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282418D962650033856C /* profile_profile.png */; };
-		7083282D18D962650033856C /* submit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282618D962650033856C /* submit_profile.png */; };
 		70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */; };
 		70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA17018D9C44200719BF7 /* AccountLogin.xib */; };
 		70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA17318D9C46000719BF7 /* AccountLogin.m */; };
@@ -317,6 +317,9 @@
 		3BC3829118C095D200270567 /* ic_about.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_about.9.png; sourceTree = "<group>"; };
 		707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationInformation.xib; sourceTree = "<group>"; };
 		707C03B618D9CD8100EC1B12 /* lock_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_profile.png; sourceTree = "<group>"; };
+		707C03B818D9CFD500EC1B12 /* profile_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_profile.png; sourceTree = "<group>"; };
+		707C03BA18D9CFE100EC1B12 /* account_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account_profile.png; sourceTree = "<group>"; };
+		707C03BC18D9D00900EC1B12 /* submit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit_profile.png; sourceTree = "<group>"; };
 		708327E518D93AEB0033856C /* EnterCustomerID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCustomerID.h; sourceTree = "<group>"; };
 		708327E618D93AEB0033856C /* EnterCustomerID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCustomerID.m; sourceTree = "<group>"; };
 		708327E818D93AFB0033856C /* EnterCustomerID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterCustomerID.xib; sourceTree = "<group>"; };
@@ -709,6 +712,9 @@
 		3BB42DE618D6B6C60011792E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				707C03BC18D9D00900EC1B12 /* submit_profile.png */,
+				707C03BA18D9CFE100EC1B12 /* account_profile.png */,
+				707C03B818D9CFD500EC1B12 /* profile_profile.png */,
 				7083282018D962650033856C /* account_profile.png */,
 				7083282118D962650033856C /* back_profile.png */,
 				7083282218D962650033856C /* edit_profile.png */,
@@ -965,7 +971,7 @@
 				3BB42D8218D6B0180011792E /* MLSendMoneyViewController.xib in Resources */,
 				3BB42D8418D6B0180011792E /* MLPreviewViewController.xib in Resources */,
 				3BB42E1118D6B6C60011792E /* view_bg.png in Resources */,
-				7083282B18D962650033856C /* profile_profile.png in Resources */,
+				707C03BD18D9D00900EC1B12 /* submit_profile.png in Resources */,
 				3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */,
 				3BB42E0318D6B6C60011792E /* next.png in Resources */,
 				3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */,
@@ -975,11 +981,12 @@
 				7083282818D962650033856C /* back_profile.png in Resources */,
 				3B17585518B35BA3005A7805 /* no_image.png in Resources */,
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
-				7083282718D962650033856C /* account_profile.png in Resources */,
 				3BB42DE218D6B25F0011792E /* MLHistoryViewController.xib in Resources */,
 				707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */,
+				707C03BB18D9CFE100EC1B12 /* account_profile.png in Resources */,
 				70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */,
 				3B1B36C018B445C3006DA5BB /* btn2.png in Resources */,
+				707C03B918D9CFD500EC1B12 /* profile_profile.png in Resources */,
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
 				3BA7CCDD18B1DF6000B9FC4B /* new_key.png in Resources */,
 				3BA7CCF118B1E9BA00B9FC4B /* ic_launcher3.png in Resources */,
@@ -1024,7 +1031,6 @@
 				3BB42E0C18D6B6C60011792E /* right.png in Resources */,
 				3B17584D18B2FC09005A7805 /* popup_img.png in Resources */,
 				3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */,
-				7083282D18D962650033856C /* submit_profile.png in Resources */,
 				3BA7CD0618B22C2000B9FC4B /* MenuViewController.xib in Resources */,
 				3B1B36C418B4AD70006DA5BB /* icon_my_account.jpg in Resources */,
 				3BB42DE318D6B25F0011792E /* MLHistoryTableViewCell.xib in Resources */,
