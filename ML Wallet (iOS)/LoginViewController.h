@@ -11,6 +11,9 @@
 @interface LoginViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, assign) BOOL navigationBar;
+- (IBAction)btnRegister:(id)sender;
 - (IBAction)btnLogin:(id)sender;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil navigationHidden:(BOOL) navigationHidden;
 @end

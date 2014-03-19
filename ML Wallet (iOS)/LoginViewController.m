@@ -9,12 +9,15 @@
 #import "LoginViewController.h"
 #import "MenuViewController.h"
 #import "InfoViewController.h"
+#import "EnterCustomerID.h"
 
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
+
+@synthesize navigationBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,10 +28,23 @@
     return self;
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil navigationHidden:(BOOL) navigationHidden
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        navigationBar = navigationHidden;
+
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden =YES;
+    
+    
+    self.navigationController.navigationBarHidden = navigationBar;
+
     
     if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
     {
@@ -56,6 +72,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+
+- (IBAction)btnRegister:(id)sender {
+    
+    
+    EnterCustomerID *enterCustomer = [[EnterCustomerID alloc] initWithNibName:@"EnterCustomerID" bundle:nil];
+    
+    [self.navigationController pushViewController:enterCustomer animated:YES];
+
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message!" message:@"OK" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//    
+//    [alert show];
 }
 
 - (IBAction)btnLogin:(id)sender {

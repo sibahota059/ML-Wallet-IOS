@@ -207,7 +207,9 @@
 #pragma Start Delegate On Click #Logout Button
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+//        LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        
+        LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil navigationHidden:YES ];
         
         [self.navigationController pushViewController:loginPage animated:YES];
     }
@@ -281,8 +283,17 @@
     [self.navigationController pushViewController:self.tabBarController animated:YES];
 //    [[self navigationController] pushViewController:self.tabBarController animated:YES];
     
-
 }
+
+- (IBAction)btn_Myprofile:(id)sender {
+    //toDO
+    
+    
+    
+    
+}
+
+
 
 
 @end

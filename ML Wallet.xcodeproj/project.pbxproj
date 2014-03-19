@@ -121,6 +121,29 @@
 		3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828D18C095B500270567 /* ic_faq.9.png */; };
 		3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828F18C095BB00270567 /* ic_contact.9.png */; };
 		3BC3829218C095D200270567 /* ic_about.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3829118C095D200270567 /* ic_about.9.png */; };
+		708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327E618D93AEB0033856C /* EnterCustomerID.m */; };
+		708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708327E818D93AFB0033856C /* EnterCustomerID.xib */; };
+		708327FC18D93BCB0033856C /* SelectQuestionDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327FB18D93BCB0033856C /* SelectQuestionDialog.m */; };
+		7083280B18D93BE40033856C /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327FE18D93BE40033856C /* ProfileButton.m */; };
+		7083280C18D93BE40033856C /* ProfileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280018D93BE40033856C /* ProfileHeader.m */; };
+		7083280D18D93BE40033856C /* ProfileLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280218D93BE40033856C /* ProfileLabel.m */; };
+		7083280E18D93BE40033856C /* ProfileTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280418D93BE40033856C /* ProfileTextField.m */; };
+		7083280F18D93BE40033856C /* ProfileOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280618D93BE40033856C /* ProfileOutline.m */; };
+		7083281018D93BE40033856C /* MLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280818D93BE40033856C /* MLViewController.m */; };
+		7083281118D93BE40033856C /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280A18D93BE40033856C /* Customer.m */; };
+		7083282718D962650033856C /* account_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282018D962650033856C /* account_profile.png */; };
+		7083282818D962650033856C /* back_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282118D962650033856C /* back_profile.png */; };
+		7083282918D962650033856C /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282218D962650033856C /* edit_profile.png */; };
+		7083282A18D962650033856C /* lock_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282318D962650033856C /* lock_profile.png */; };
+		7083282B18D962650033856C /* profile_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282418D962650033856C /* profile_profile.png */; };
+		7083282C18D962650033856C /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282518D962650033856C /* question_profile.png */; };
+		7083282D18D962650033856C /* submit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282618D962650033856C /* submit_profile.png */; };
+		7083283018D962E90033856C /* RegistrationInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083282F18D962E90033856C /* RegistrationInformation.m */; };
+		7083283218D962FC0033856C /* RegistrationInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7083283118D962FC0033856C /* RegistrationInformation.xib */; };
+		7083283418D992C30033856C /* QuestionsActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7083283318D992C30033856C /* QuestionsActivity.xib */; };
+		7083283718D992D40033856C /* QuestionsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083283618D992D40033856C /* QuestionsActivity.m */; };
+		7083283918D992E10033856C /* AccountLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7083283818D992E10033856C /* AccountLogin.xib */; };
+		7083283C18D992F00033856C /* AccountLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083283B18D992F00033856C /* AccountLogin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -292,6 +315,41 @@
 		3BC3828D18C095B500270567 /* ic_faq.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_faq.9.png; sourceTree = "<group>"; };
 		3BC3828F18C095BB00270567 /* ic_contact.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_contact.9.png; sourceTree = "<group>"; };
 		3BC3829118C095D200270567 /* ic_about.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_about.9.png; sourceTree = "<group>"; };
+		708327E518D93AEB0033856C /* EnterCustomerID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCustomerID.h; sourceTree = "<group>"; };
+		708327E618D93AEB0033856C /* EnterCustomerID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCustomerID.m; sourceTree = "<group>"; };
+		708327E818D93AFB0033856C /* EnterCustomerID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterCustomerID.xib; sourceTree = "<group>"; };
+		708327FA18D93BCB0033856C /* SelectQuestionDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectQuestionDialog.h; path = ../../xcode5_Projects/Account/Account/SelectQuestionDialog.h; sourceTree = "<group>"; };
+		708327FB18D93BCB0033856C /* SelectQuestionDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectQuestionDialog.m; path = ../../xcode5_Projects/Account/Account/SelectQuestionDialog.m; sourceTree = "<group>"; };
+		708327FD18D93BE40033856C /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileButton.h; path = ../../xcode5_Projects/Account/Account/ProfileButton.h; sourceTree = "<group>"; };
+		708327FE18D93BE40033856C /* ProfileButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileButton.m; path = ../../xcode5_Projects/Account/Account/ProfileButton.m; sourceTree = "<group>"; };
+		708327FF18D93BE40033856C /* ProfileHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileHeader.h; path = ../../xcode5_Projects/Account/Account/ProfileHeader.h; sourceTree = "<group>"; };
+		7083280018D93BE40033856C /* ProfileHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileHeader.m; path = ../../xcode5_Projects/Account/Account/ProfileHeader.m; sourceTree = "<group>"; };
+		7083280118D93BE40033856C /* ProfileLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileLabel.h; path = ../../xcode5_Projects/Account/Account/ProfileLabel.h; sourceTree = "<group>"; };
+		7083280218D93BE40033856C /* ProfileLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileLabel.m; path = ../../xcode5_Projects/Account/Account/ProfileLabel.m; sourceTree = "<group>"; };
+		7083280318D93BE40033856C /* ProfileTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTextField.h; path = ../../xcode5_Projects/Account/Account/ProfileTextField.h; sourceTree = "<group>"; };
+		7083280418D93BE40033856C /* ProfileTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileTextField.m; path = ../../xcode5_Projects/Account/Account/ProfileTextField.m; sourceTree = "<group>"; };
+		7083280518D93BE40033856C /* ProfileOutline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileOutline.h; path = ../../xcode5_Projects/Account/Account/ProfileOutline.h; sourceTree = "<group>"; };
+		7083280618D93BE40033856C /* ProfileOutline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileOutline.m; path = ../../xcode5_Projects/Account/Account/ProfileOutline.m; sourceTree = "<group>"; };
+		7083280718D93BE40033856C /* MLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLViewController.h; path = ../../xcode5_Projects/Registration/Registration/MLViewController.h; sourceTree = "<group>"; };
+		7083280818D93BE40033856C /* MLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MLViewController.m; path = ../../xcode5_Projects/Registration/Registration/MLViewController.m; sourceTree = "<group>"; };
+		7083280918D93BE40033856C /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Customer.h; path = ../../xcode5_Projects/Registration/Registration/Customer.h; sourceTree = "<group>"; };
+		7083280A18D93BE40033856C /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Customer.m; path = ../../xcode5_Projects/Registration/Registration/Customer.m; sourceTree = "<group>"; };
+		7083282018D962650033856C /* account_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = account_profile.png; path = ../../../mlwallet_image/account_profile.png; sourceTree = "<group>"; };
+		7083282118D962650033856C /* back_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_profile.png; path = ../../../mlwallet_image/back_profile.png; sourceTree = "<group>"; };
+		7083282218D962650033856C /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit_profile.png; path = ../../../mlwallet_image/edit_profile.png; sourceTree = "<group>"; };
+		7083282318D962650033856C /* lock_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock_profile.png; path = ../../../mlwallet_image/lock_profile.png; sourceTree = "<group>"; };
+		7083282418D962650033856C /* profile_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profile_profile.png; path = ../../../mlwallet_image/profile_profile.png; sourceTree = "<group>"; };
+		7083282518D962650033856C /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = question_profile.png; path = ../../../mlwallet_image/question_profile.png; sourceTree = "<group>"; };
+		7083282618D962650033856C /* submit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = submit_profile.png; path = ../../../mlwallet_image/submit_profile.png; sourceTree = "<group>"; };
+		7083282E18D962E90033856C /* RegistrationInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationInformation.h; path = ../../xcode5_Projects/Registration/Registration/RegistrationInformation.h; sourceTree = "<group>"; };
+		7083282F18D962E90033856C /* RegistrationInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationInformation.m; path = ../../xcode5_Projects/Registration/Registration/RegistrationInformation.m; sourceTree = "<group>"; };
+		7083283118D962FC0033856C /* RegistrationInformation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegistrationInformation.xib; path = ../../xcode5_Projects/Registration/Registration/RegistrationInformation.xib; sourceTree = "<group>"; };
+		7083283318D992C30033856C /* QuestionsActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionsActivity.xib; path = ../../xcode5_Projects/Registration/Registration/QuestionsActivity.xib; sourceTree = "<group>"; };
+		7083283518D992D40033856C /* QuestionsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionsActivity.h; path = ../../xcode5_Projects/Registration/Registration/QuestionsActivity.h; sourceTree = "<group>"; };
+		7083283618D992D40033856C /* QuestionsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsActivity.m; path = ../../xcode5_Projects/Registration/Registration/QuestionsActivity.m; sourceTree = "<group>"; };
+		7083283818D992E10033856C /* AccountLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountLogin.xib; path = ../../xcode5_Projects/Registration/Registration/AccountLogin.xib; sourceTree = "<group>"; };
+		7083283A18D992F00033856C /* AccountLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountLogin.h; path = ../../xcode5_Projects/Registration/Registration/AccountLogin.h; sourceTree = "<group>"; };
+		7083283B18D992F00033856C /* AccountLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountLogin.m; path = ../../xcode5_Projects/Registration/Registration/AccountLogin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +454,7 @@
 		3BA7CCA018B1D6B900B9FC4B /* ML Wallet (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				708327DF18D938E40033856C /* com.mlkptogo.account */,
 				3BB42DD618D6B22A0011792E /* com.mlkpwallet.history */,
 				3BB42D7518D6AFCE0011792E /* com.mlkpwallet.sendmoney */,
 				3BC3828418C0951200270567 /* com.mlkpwallet.info */,
@@ -413,6 +472,7 @@
 		3BA7CCA118B1D6B900B9FC4B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3BB42DE618D6B6C60011792E /* Images */,
 				3BA7CCD118B1D96D00B9FC4B /* images */,
 				3BA7CCA218B1D6B900B9FC4B /* ML Wallet (iOS)-Info.plist */,
 				3BA7CCA318B1D6B900B9FC4B /* InfoPlist.strings */,
@@ -473,7 +533,6 @@
 		3BA7CCD118B1D96D00B9FC4B /* images */ = {
 			isa = PBXGroup;
 			children = (
-				3BB42DE618D6B6C60011792E /* Images */,
 				3BB42DA618D6B0D50011792E /* ic_seal_pending.png */,
 				3BB42DA718D6B0D50011792E /* right.png */,
 				3BB42DA818D6B0D50011792E /* navbar_bg.png */,
@@ -644,6 +703,13 @@
 		3BB42DE618D6B6C60011792E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7083282018D962650033856C /* account_profile.png */,
+				7083282118D962650033856C /* back_profile.png */,
+				7083282218D962650033856C /* edit_profile.png */,
+				7083282318D962650033856C /* lock_profile.png */,
+				7083282418D962650033856C /* profile_profile.png */,
+				7083282518D962650033856C /* question_profile.png */,
+				7083282618D962650033856C /* submit_profile.png */,
 				3BB42DE718D6B6C60011792E /* back.png */,
 				3BB42DE818D6B6C60011792E /* bradpit.jpg */,
 				3BB42DE918D6B6C60011792E /* btnReceiver_bg.png */,
@@ -738,6 +804,81 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		708327DF18D938E40033856C /* com.mlkptogo.account */ = {
+			isa = PBXGroup;
+			children = (
+				708327E418D939C30033856C /* Views */,
+				708327E318D939570033856C /* Controllers */,
+				708327E218D939460033856C /* Models */,
+			);
+			name = com.mlkptogo.account;
+			sourceTree = "<group>";
+		};
+		708327E218D939460033856C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				708327F818D93B860033856C /* ProfileDialogs */,
+				708327F918D93BAA0033856C /* ProfileObjects */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		708327E318D939570033856C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				708327E518D93AEB0033856C /* EnterCustomerID.h */,
+				708327E618D93AEB0033856C /* EnterCustomerID.m */,
+				7083282E18D962E90033856C /* RegistrationInformation.h */,
+				7083282F18D962E90033856C /* RegistrationInformation.m */,
+				7083283518D992D40033856C /* QuestionsActivity.h */,
+				7083283618D992D40033856C /* QuestionsActivity.m */,
+				7083283A18D992F00033856C /* AccountLogin.h */,
+				7083283B18D992F00033856C /* AccountLogin.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		708327E418D939C30033856C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				708327E818D93AFB0033856C /* EnterCustomerID.xib */,
+				7083283118D962FC0033856C /* RegistrationInformation.xib */,
+				7083283318D992C30033856C /* QuestionsActivity.xib */,
+				7083283818D992E10033856C /* AccountLogin.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		708327F818D93B860033856C /* ProfileDialogs */ = {
+			isa = PBXGroup;
+			children = (
+				708327FA18D93BCB0033856C /* SelectQuestionDialog.h */,
+				708327FB18D93BCB0033856C /* SelectQuestionDialog.m */,
+			);
+			name = ProfileDialogs;
+			sourceTree = "<group>";
+		};
+		708327F918D93BAA0033856C /* ProfileObjects */ = {
+			isa = PBXGroup;
+			children = (
+				708327FD18D93BE40033856C /* ProfileButton.h */,
+				708327FE18D93BE40033856C /* ProfileButton.m */,
+				708327FF18D93BE40033856C /* ProfileHeader.h */,
+				7083280018D93BE40033856C /* ProfileHeader.m */,
+				7083280118D93BE40033856C /* ProfileLabel.h */,
+				7083280218D93BE40033856C /* ProfileLabel.m */,
+				7083280318D93BE40033856C /* ProfileTextField.h */,
+				7083280418D93BE40033856C /* ProfileTextField.m */,
+				7083280518D93BE40033856C /* ProfileOutline.h */,
+				7083280618D93BE40033856C /* ProfileOutline.m */,
+				7083280718D93BE40033856C /* MLViewController.h */,
+				7083280818D93BE40033856C /* MLViewController.m */,
+				7083280918D93BE40033856C /* Customer.h */,
+				7083280A18D93BE40033856C /* Customer.m */,
+			);
+			name = ProfileObjects;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -791,6 +932,8 @@
 			files = (
 				3BB42E0D18D6B6C60011792E /* sendmoney_default.png in Resources */,
 				3BA7CCE118B1E13200B9FC4B /* headerbackground.png in Resources */,
+				7083282918D962650033856C /* edit_profile.png in Resources */,
+				7083282C18D962650033856C /* question_profile.png in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
 				3BC3828C18C0958900270567 /* InfoViewController.xib in Resources */,
 				3BC3828118C0330A00270567 /* mlcard.png in Resources */,
@@ -800,6 +943,7 @@
 				3B17585718B35CDB005A7805 /* peso_signr.png in Resources */,
 				3B1B36BE18B43181006DA5BB /* transparent.png in Resources */,
 				3BB42D8318D6B0180011792E /* MLRatesTableViewController.xib in Resources */,
+				7083283218D962FC0033856C /* RegistrationInformation.xib in Resources */,
 				3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */,
 				3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */,
 				3B8090C018B6106F00A11CB8 /* navigation_image.png in Resources */,
@@ -808,6 +952,8 @@
 				3B19518E18B6F5260061969F /* MLBackground2.png in Resources */,
 				3B19519E18B732030061969F /* textbox.png in Resources */,
 				3BB42D8818D6B0180011792E /* MLTermsConditionViewController.xib in Resources */,
+				7083282A18D962650033856C /* lock_profile.png in Resources */,
+				7083283918D992E10033856C /* AccountLogin.xib in Resources */,
 				3BA7CCEF18B1E9BA00B9FC4B /* ic_launcher1.png in Resources */,
 				3BC3828318C0359B00270567 /* ban.png in Resources */,
 				3BB42E0018D6B6C60011792E /* content_bg.png in Resources */,
@@ -817,12 +963,15 @@
 				3BB42D8218D6B0180011792E /* MLSendMoneyViewController.xib in Resources */,
 				3BB42D8418D6B0180011792E /* MLPreviewViewController.xib in Resources */,
 				3BB42E1118D6B6C60011792E /* view_bg.png in Resources */,
+				7083282B18D962650033856C /* profile_profile.png in Resources */,
 				3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */,
 				3BB42E0318D6B6C60011792E /* next.png in Resources */,
 				3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */,
 				3BA7CCF018B1E9BA00B9FC4B /* ic_launcher2.png in Resources */,
+				7083282818D962650033856C /* back_profile.png in Resources */,
 				3B17585518B35BA3005A7805 /* no_image.png in Resources */,
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
+				7083282718D962650033856C /* account_profile.png in Resources */,
 				3BB42DE218D6B25F0011792E /* MLHistoryViewController.xib in Resources */,
 				3B1B36C018B445C3006DA5BB /* btn2.png in Resources */,
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
@@ -831,6 +980,7 @@
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController.xib in Resources */,
 				3BB42E0B18D6B6C60011792E /* rates_selected.png in Resources */,
 				3B71BBB518BD8B5C0094543C /* edit_image.png in Resources */,
+				7083283418D992C30033856C /* QuestionsActivity.xib in Resources */,
 				3BB42D8718D6B0180011792E /* MLReceiverTableViewController.xib in Resources */,
 				3BB42E0218D6B6C60011792E /* navibar_bg.png in Resources */,
 				3BB42E0A18D6B6C60011792E /* rates_default.png in Resources */,
@@ -846,6 +996,7 @@
 				3B19518F18B6F5260061969F /* MLBackground3.png in Resources */,
 				3BB42DFE18D6B6C60011792E /* bradpit.jpg in Resources */,
 				3BB42DFD18D6B6C60011792E /* back.png in Resources */,
+				708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */,
 				3BB42E0418D6B6C60011792E /* noImage.png in Resources */,
 				3BB42E0718D6B6C60011792E /* pin_bg.png in Resources */,
 				3BC3829218C095D200270567 /* ic_about.9.png in Resources */,
@@ -867,6 +1018,7 @@
 				3BB42E0C18D6B6C60011792E /* right.png in Resources */,
 				3B17584D18B2FC09005A7805 /* popup_img.png in Resources */,
 				3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */,
+				7083282D18D962650033856C /* submit_profile.png in Resources */,
 				3BA7CD0618B22C2000B9FC4B /* MenuViewController.xib in Resources */,
 				3B1B36C418B4AD70006DA5BB /* icon_my_account.jpg in Resources */,
 				3BB42DE318D6B25F0011792E /* MLHistoryTableViewCell.xib in Resources */,
@@ -891,24 +1043,36 @@
 				3BB42DA118D6B02E0011792E /* MLMenuViewController.m in Sources */,
 				3BA7CCA718B1D6B900B9FC4B /* main.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
+				7083281018D93BE40033856C /* MLViewController.m in Sources */,
 				3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */,
 				3BA7CCCD18B1D73B00B9FC4B /* LoginViewController.m in Sources */,
 				3BB42DA018D6B02E0011792E /* MLTermsConditionViewController.m in Sources */,
 				3BB42D9B18D6B02E0011792E /* MLRatesTableViewController.m in Sources */,
+				7083280B18D93BE40033856C /* ProfileButton.m in Sources */,
 				3BB42DDF18D6B2520011792E /* MLHistoryTableViewCell.m in Sources */,
 				3BB42D9F18D6B02E0011792E /* MLReceiverTableViewController.m in Sources */,
+				7083280C18D93BE40033856C /* ProfileHeader.m in Sources */,
 				3B8090B218B5970900A11CB8 /* ReceiverMenuListViewController.m in Sources */,
 				3B5F848118BC68E9001C1B29 /* ReceiverCell.m in Sources */,
 				3BC3828B18C0958900270567 /* InfoViewController.m in Sources */,
 				3BB42D9A18D6B02E0011792E /* MLSendMoneyViewController.m in Sources */,
+				7083280F18D93BE40033856C /* ProfileOutline.m in Sources */,
+				7083283018D962E90033856C /* RegistrationInformation.m in Sources */,
 				3BC3827B18C02C6C00270567 /* TopupViewController.m in Sources */,
 				3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */,
 				3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */,
+				7083283C18D992F00033856C /* AccountLogin.m in Sources */,
+				7083281118D93BE40033856C /* Customer.m in Sources */,
 				3BB42DDE18D6B2520011792E /* MLHistoryViewController.m in Sources */,
 				3BB42D9D18D6B02E0011792E /* MLReceiverTableViewCell.m in Sources */,
+				7083280D18D93BE40033856C /* ProfileLabel.m in Sources */,
 				3BB42DA418D6B03D0011792E /* MLUI.m in Sources */,
+				708327FC18D93BCB0033856C /* SelectQuestionDialog.m in Sources */,
 				3BB5268918BCB8F600D0A5EA /* ReceiverObject.m in Sources */,
+				708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */,
+				7083280E18D93BE40033856C /* ProfileTextField.m in Sources */,
 				3BB42D9C18D6B02E0011792E /* MLPreviewViewController.m in Sources */,
+				7083283718D992D40033856C /* QuestionsActivity.m in Sources */,
 				3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
