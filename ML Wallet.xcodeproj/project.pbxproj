@@ -126,9 +126,9 @@
 		707C03B918D9CFD500EC1B12 /* profile_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B818D9CFD500EC1B12 /* profile_profile.png */; };
 		707C03BB18D9CFE100EC1B12 /* account_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03BA18D9CFE100EC1B12 /* account_profile.png */; };
 		707C03BD18D9D00900EC1B12 /* submit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03BC18D9D00900EC1B12 /* submit_profile.png */; };
+		707C03BF18D9D40F00EC1B12 /* back_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03BE18D9D40F00EC1B12 /* back_profile.png */; };
 		708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327E618D93AEB0033856C /* EnterCustomerID.m */; };
 		708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708327E818D93AFB0033856C /* EnterCustomerID.xib */; };
-		7083282818D962650033856C /* back_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282118D962650033856C /* back_profile.png */; };
 		70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */; };
 		70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA17018D9C44200719BF7 /* AccountLogin.xib */; };
 		70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA17318D9C46000719BF7 /* AccountLogin.m */; };
@@ -320,6 +320,7 @@
 		707C03B818D9CFD500EC1B12 /* profile_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_profile.png; sourceTree = "<group>"; };
 		707C03BA18D9CFE100EC1B12 /* account_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account_profile.png; sourceTree = "<group>"; };
 		707C03BC18D9D00900EC1B12 /* submit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit_profile.png; sourceTree = "<group>"; };
+		707C03BE18D9D40F00EC1B12 /* back_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_profile.png; sourceTree = "<group>"; };
 		708327E518D93AEB0033856C /* EnterCustomerID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCustomerID.h; sourceTree = "<group>"; };
 		708327E618D93AEB0033856C /* EnterCustomerID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCustomerID.m; sourceTree = "<group>"; };
 		708327E818D93AFB0033856C /* EnterCustomerID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterCustomerID.xib; sourceTree = "<group>"; };
@@ -712,6 +713,7 @@
 		3BB42DE618D6B6C60011792E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				707C03BE18D9D40F00EC1B12 /* back_profile.png */,
 				707C03BC18D9D00900EC1B12 /* submit_profile.png */,
 				707C03BA18D9CFE100EC1B12 /* account_profile.png */,
 				707C03B818D9CFD500EC1B12 /* profile_profile.png */,
@@ -956,6 +958,7 @@
 				3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */,
 				3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */,
 				3B8090C018B6106F00A11CB8 /* navigation_image.png in Resources */,
+				707C03BF18D9D40F00EC1B12 /* back_profile.png in Resources */,
 				3BB42E0E18D6B6C60011792E /* sendmoney_selected.png in Resources */,
 				3BB42D8618D6B0180011792E /* MLRatesTableViewCell.xib in Resources */,
 				3B19518E18B6F5260061969F /* MLBackground2.png in Resources */,
@@ -978,7 +981,6 @@
 				3BA7CCF018B1E9BA00B9FC4B /* ic_launcher2.png in Resources */,
 				707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */,
 				70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */,
-				7083282818D962650033856C /* back_profile.png in Resources */,
 				3B17585518B35BA3005A7805 /* no_image.png in Resources */,
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
 				3BB42DE218D6B25F0011792E /* MLHistoryViewController.xib in Resources */,
