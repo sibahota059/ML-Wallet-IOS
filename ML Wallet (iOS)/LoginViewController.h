@@ -15,5 +15,7 @@
 - (IBAction)btnRegister:(id)sender;
 - (IBAction)btnLogin:(id)sender;
 
+
+//Harry added
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil navigationHidden:(BOOL) navigationHidden;
 @end

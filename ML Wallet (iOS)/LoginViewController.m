@@ -28,6 +28,7 @@
     return self;
 }
 
+//Harry added
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil navigationHidden:(BOOL) navigationHidden
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
