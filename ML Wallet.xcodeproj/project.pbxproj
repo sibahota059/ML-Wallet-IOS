@@ -123,14 +123,6 @@
 		3BC3829218C095D200270567 /* ic_about.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3829118C095D200270567 /* ic_about.9.png */; };
 		708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327E618D93AEB0033856C /* EnterCustomerID.m */; };
 		708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708327E818D93AFB0033856C /* EnterCustomerID.xib */; };
-		708327FC18D93BCB0033856C /* SelectQuestionDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327FB18D93BCB0033856C /* SelectQuestionDialog.m */; };
-		7083280B18D93BE40033856C /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327FE18D93BE40033856C /* ProfileButton.m */; };
-		7083280C18D93BE40033856C /* ProfileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280018D93BE40033856C /* ProfileHeader.m */; };
-		7083280D18D93BE40033856C /* ProfileLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280218D93BE40033856C /* ProfileLabel.m */; };
-		7083280E18D93BE40033856C /* ProfileTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280418D93BE40033856C /* ProfileTextField.m */; };
-		7083280F18D93BE40033856C /* ProfileOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280618D93BE40033856C /* ProfileOutline.m */; };
-		7083281018D93BE40033856C /* MLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280818D93BE40033856C /* MLViewController.m */; };
-		7083281118D93BE40033856C /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083280A18D93BE40033856C /* Customer.m */; };
 		7083282718D962650033856C /* account_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282018D962650033856C /* account_profile.png */; };
 		7083282818D962650033856C /* back_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282118D962650033856C /* back_profile.png */; };
 		7083282918D962650033856C /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282218D962650033856C /* edit_profile.png */; };
@@ -138,12 +130,20 @@
 		7083282B18D962650033856C /* profile_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282418D962650033856C /* profile_profile.png */; };
 		7083282C18D962650033856C /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282518D962650033856C /* question_profile.png */; };
 		7083282D18D962650033856C /* submit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 7083282618D962650033856C /* submit_profile.png */; };
-		7083283018D962E90033856C /* RegistrationInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083282F18D962E90033856C /* RegistrationInformation.m */; };
 		7083283218D962FC0033856C /* RegistrationInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7083283118D962FC0033856C /* RegistrationInformation.xib */; };
-		7083283418D992C30033856C /* QuestionsActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7083283318D992C30033856C /* QuestionsActivity.xib */; };
-		7083283718D992D40033856C /* QuestionsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083283618D992D40033856C /* QuestionsActivity.m */; };
-		7083283918D992E10033856C /* AccountLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7083283818D992E10033856C /* AccountLogin.xib */; };
-		7083283C18D992F00033856C /* AccountLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7083283B18D992F00033856C /* AccountLogin.m */; };
+		70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */; };
+		70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA17018D9C44200719BF7 /* AccountLogin.xib */; };
+		70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA17318D9C46000719BF7 /* AccountLogin.m */; };
+		70EEA17918D9C46000719BF7 /* QuestionsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA17518D9C46000719BF7 /* QuestionsActivity.m */; };
+		70EEA17A18D9C46000719BF7 /* RegistrationInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA17718D9C46000719BF7 /* RegistrationInformation.m */; };
+		70EEA17D18D9C47800719BF7 /* SelectQuestionDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA17C18D9C47800719BF7 /* SelectQuestionDialog.m */; };
+		70EEA18218D9C48A00719BF7 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA17F18D9C48A00719BF7 /* Customer.m */; };
+		70EEA18318D9C48A00719BF7 /* MLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA18118D9C48A00719BF7 /* MLViewController.m */; };
+		70EEA18618D9C53200719BF7 /* ProfileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA18418D9C53200719BF7 /* ProfileHeader.m */; };
+		70EEA18918D9C54900719BF7 /* ProfileOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA18818D9C54900719BF7 /* ProfileOutline.m */; };
+		70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA18B18D9C56300719BF7 /* ProfileLabel.m */; };
+		70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA18D18D9C64C00719BF7 /* ProfileTextField.m */; };
+		70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA19318D9C6E800719BF7 /* ProfileButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -318,22 +318,6 @@
 		708327E518D93AEB0033856C /* EnterCustomerID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCustomerID.h; sourceTree = "<group>"; };
 		708327E618D93AEB0033856C /* EnterCustomerID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCustomerID.m; sourceTree = "<group>"; };
 		708327E818D93AFB0033856C /* EnterCustomerID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterCustomerID.xib; sourceTree = "<group>"; };
-		708327FA18D93BCB0033856C /* SelectQuestionDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectQuestionDialog.h; path = ../../xcode5_Projects/Account/Account/SelectQuestionDialog.h; sourceTree = "<group>"; };
-		708327FB18D93BCB0033856C /* SelectQuestionDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectQuestionDialog.m; path = ../../xcode5_Projects/Account/Account/SelectQuestionDialog.m; sourceTree = "<group>"; };
-		708327FD18D93BE40033856C /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileButton.h; path = ../../xcode5_Projects/Account/Account/ProfileButton.h; sourceTree = "<group>"; };
-		708327FE18D93BE40033856C /* ProfileButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileButton.m; path = ../../xcode5_Projects/Account/Account/ProfileButton.m; sourceTree = "<group>"; };
-		708327FF18D93BE40033856C /* ProfileHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileHeader.h; path = ../../xcode5_Projects/Account/Account/ProfileHeader.h; sourceTree = "<group>"; };
-		7083280018D93BE40033856C /* ProfileHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileHeader.m; path = ../../xcode5_Projects/Account/Account/ProfileHeader.m; sourceTree = "<group>"; };
-		7083280118D93BE40033856C /* ProfileLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileLabel.h; path = ../../xcode5_Projects/Account/Account/ProfileLabel.h; sourceTree = "<group>"; };
-		7083280218D93BE40033856C /* ProfileLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileLabel.m; path = ../../xcode5_Projects/Account/Account/ProfileLabel.m; sourceTree = "<group>"; };
-		7083280318D93BE40033856C /* ProfileTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTextField.h; path = ../../xcode5_Projects/Account/Account/ProfileTextField.h; sourceTree = "<group>"; };
-		7083280418D93BE40033856C /* ProfileTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileTextField.m; path = ../../xcode5_Projects/Account/Account/ProfileTextField.m; sourceTree = "<group>"; };
-		7083280518D93BE40033856C /* ProfileOutline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileOutline.h; path = ../../xcode5_Projects/Account/Account/ProfileOutline.h; sourceTree = "<group>"; };
-		7083280618D93BE40033856C /* ProfileOutline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileOutline.m; path = ../../xcode5_Projects/Account/Account/ProfileOutline.m; sourceTree = "<group>"; };
-		7083280718D93BE40033856C /* MLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLViewController.h; path = ../../xcode5_Projects/Registration/Registration/MLViewController.h; sourceTree = "<group>"; };
-		7083280818D93BE40033856C /* MLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MLViewController.m; path = ../../xcode5_Projects/Registration/Registration/MLViewController.m; sourceTree = "<group>"; };
-		7083280918D93BE40033856C /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Customer.h; path = ../../xcode5_Projects/Registration/Registration/Customer.h; sourceTree = "<group>"; };
-		7083280A18D93BE40033856C /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Customer.m; path = ../../xcode5_Projects/Registration/Registration/Customer.m; sourceTree = "<group>"; };
 		7083282018D962650033856C /* account_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = account_profile.png; path = ../../../mlwallet_image/account_profile.png; sourceTree = "<group>"; };
 		7083282118D962650033856C /* back_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_profile.png; path = ../../../mlwallet_image/back_profile.png; sourceTree = "<group>"; };
 		7083282218D962650033856C /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit_profile.png; path = ../../../mlwallet_image/edit_profile.png; sourceTree = "<group>"; };
@@ -341,15 +325,31 @@
 		7083282418D962650033856C /* profile_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profile_profile.png; path = ../../../mlwallet_image/profile_profile.png; sourceTree = "<group>"; };
 		7083282518D962650033856C /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = question_profile.png; path = ../../../mlwallet_image/question_profile.png; sourceTree = "<group>"; };
 		7083282618D962650033856C /* submit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = submit_profile.png; path = ../../../mlwallet_image/submit_profile.png; sourceTree = "<group>"; };
-		7083282E18D962E90033856C /* RegistrationInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationInformation.h; path = ../../xcode5_Projects/Registration/Registration/RegistrationInformation.h; sourceTree = "<group>"; };
-		7083282F18D962E90033856C /* RegistrationInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationInformation.m; path = ../../xcode5_Projects/Registration/Registration/RegistrationInformation.m; sourceTree = "<group>"; };
 		7083283118D962FC0033856C /* RegistrationInformation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegistrationInformation.xib; path = ../../xcode5_Projects/Registration/Registration/RegistrationInformation.xib; sourceTree = "<group>"; };
-		7083283318D992C30033856C /* QuestionsActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionsActivity.xib; path = ../../xcode5_Projects/Registration/Registration/QuestionsActivity.xib; sourceTree = "<group>"; };
-		7083283518D992D40033856C /* QuestionsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionsActivity.h; path = ../../xcode5_Projects/Registration/Registration/QuestionsActivity.h; sourceTree = "<group>"; };
-		7083283618D992D40033856C /* QuestionsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionsActivity.m; path = ../../xcode5_Projects/Registration/Registration/QuestionsActivity.m; sourceTree = "<group>"; };
-		7083283818D992E10033856C /* AccountLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountLogin.xib; path = ../../xcode5_Projects/Registration/Registration/AccountLogin.xib; sourceTree = "<group>"; };
-		7083283A18D992F00033856C /* AccountLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountLogin.h; path = ../../xcode5_Projects/Registration/Registration/AccountLogin.h; sourceTree = "<group>"; };
-		7083283B18D992F00033856C /* AccountLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountLogin.m; path = ../../xcode5_Projects/Registration/Registration/AccountLogin.m; sourceTree = "<group>"; };
+		70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionsActivity.xib; sourceTree = "<group>"; };
+		70EEA17018D9C44200719BF7 /* AccountLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountLogin.xib; sourceTree = "<group>"; };
+		70EEA17218D9C46000719BF7 /* AccountLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountLogin.h; sourceTree = "<group>"; };
+		70EEA17318D9C46000719BF7 /* AccountLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountLogin.m; sourceTree = "<group>"; };
+		70EEA17418D9C46000719BF7 /* QuestionsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionsActivity.h; sourceTree = "<group>"; };
+		70EEA17518D9C46000719BF7 /* QuestionsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionsActivity.m; sourceTree = "<group>"; };
+		70EEA17618D9C46000719BF7 /* RegistrationInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationInformation.h; sourceTree = "<group>"; };
+		70EEA17718D9C46000719BF7 /* RegistrationInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationInformation.m; sourceTree = "<group>"; };
+		70EEA17B18D9C47800719BF7 /* SelectQuestionDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectQuestionDialog.h; sourceTree = "<group>"; };
+		70EEA17C18D9C47800719BF7 /* SelectQuestionDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectQuestionDialog.m; sourceTree = "<group>"; };
+		70EEA17E18D9C48A00719BF7 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
+		70EEA17F18D9C48A00719BF7 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
+		70EEA18018D9C48A00719BF7 /* MLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLViewController.h; sourceTree = "<group>"; };
+		70EEA18118D9C48A00719BF7 /* MLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLViewController.m; sourceTree = "<group>"; };
+		70EEA18418D9C53200719BF7 /* ProfileHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeader.m; sourceTree = "<group>"; };
+		70EEA18518D9C53200719BF7 /* ProfileHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeader.h; sourceTree = "<group>"; };
+		70EEA18718D9C54900719BF7 /* ProfileOutline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileOutline.h; sourceTree = "<group>"; };
+		70EEA18818D9C54900719BF7 /* ProfileOutline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileOutline.m; sourceTree = "<group>"; };
+		70EEA18A18D9C56300719BF7 /* ProfileLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileLabel.h; sourceTree = "<group>"; };
+		70EEA18B18D9C56300719BF7 /* ProfileLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileLabel.m; sourceTree = "<group>"; };
+		70EEA18D18D9C64C00719BF7 /* ProfileTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTextField.m; sourceTree = "<group>"; };
+		70EEA18E18D9C64C00719BF7 /* ProfileTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTextField.h; sourceTree = "<group>"; };
+		70EEA19318D9C6E800719BF7 /* ProfileButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileButton.m; sourceTree = "<group>"; };
+		70EEA19418D9C6E800719BF7 /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileButton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -826,14 +826,14 @@
 		708327E318D939570033856C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				70EEA17218D9C46000719BF7 /* AccountLogin.h */,
+				70EEA17318D9C46000719BF7 /* AccountLogin.m */,
+				70EEA17418D9C46000719BF7 /* QuestionsActivity.h */,
+				70EEA17518D9C46000719BF7 /* QuestionsActivity.m */,
+				70EEA17618D9C46000719BF7 /* RegistrationInformation.h */,
+				70EEA17718D9C46000719BF7 /* RegistrationInformation.m */,
 				708327E518D93AEB0033856C /* EnterCustomerID.h */,
 				708327E618D93AEB0033856C /* EnterCustomerID.m */,
-				7083282E18D962E90033856C /* RegistrationInformation.h */,
-				7083282F18D962E90033856C /* RegistrationInformation.m */,
-				7083283518D992D40033856C /* QuestionsActivity.h */,
-				7083283618D992D40033856C /* QuestionsActivity.m */,
-				7083283A18D992F00033856C /* AccountLogin.h */,
-				7083283B18D992F00033856C /* AccountLogin.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -841,10 +841,10 @@
 		708327E418D939C30033856C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				70EEA17018D9C44200719BF7 /* AccountLogin.xib */,
+				70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */,
 				708327E818D93AFB0033856C /* EnterCustomerID.xib */,
 				7083283118D962FC0033856C /* RegistrationInformation.xib */,
-				7083283318D992C30033856C /* QuestionsActivity.xib */,
-				7083283818D992E10033856C /* AccountLogin.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -852,8 +852,8 @@
 		708327F818D93B860033856C /* ProfileDialogs */ = {
 			isa = PBXGroup;
 			children = (
-				708327FA18D93BCB0033856C /* SelectQuestionDialog.h */,
-				708327FB18D93BCB0033856C /* SelectQuestionDialog.m */,
+				70EEA17B18D9C47800719BF7 /* SelectQuestionDialog.h */,
+				70EEA17C18D9C47800719BF7 /* SelectQuestionDialog.m */,
 			);
 			name = ProfileDialogs;
 			sourceTree = "<group>";
@@ -861,20 +861,20 @@
 		708327F918D93BAA0033856C /* ProfileObjects */ = {
 			isa = PBXGroup;
 			children = (
-				708327FD18D93BE40033856C /* ProfileButton.h */,
-				708327FE18D93BE40033856C /* ProfileButton.m */,
-				708327FF18D93BE40033856C /* ProfileHeader.h */,
-				7083280018D93BE40033856C /* ProfileHeader.m */,
-				7083280118D93BE40033856C /* ProfileLabel.h */,
-				7083280218D93BE40033856C /* ProfileLabel.m */,
-				7083280318D93BE40033856C /* ProfileTextField.h */,
-				7083280418D93BE40033856C /* ProfileTextField.m */,
-				7083280518D93BE40033856C /* ProfileOutline.h */,
-				7083280618D93BE40033856C /* ProfileOutline.m */,
-				7083280718D93BE40033856C /* MLViewController.h */,
-				7083280818D93BE40033856C /* MLViewController.m */,
-				7083280918D93BE40033856C /* Customer.h */,
-				7083280A18D93BE40033856C /* Customer.m */,
+				70EEA19318D9C6E800719BF7 /* ProfileButton.m */,
+				70EEA19418D9C6E800719BF7 /* ProfileButton.h */,
+				70EEA18D18D9C64C00719BF7 /* ProfileTextField.m */,
+				70EEA18E18D9C64C00719BF7 /* ProfileTextField.h */,
+				70EEA18A18D9C56300719BF7 /* ProfileLabel.h */,
+				70EEA18B18D9C56300719BF7 /* ProfileLabel.m */,
+				70EEA18718D9C54900719BF7 /* ProfileOutline.h */,
+				70EEA18818D9C54900719BF7 /* ProfileOutline.m */,
+				70EEA18418D9C53200719BF7 /* ProfileHeader.m */,
+				70EEA18518D9C53200719BF7 /* ProfileHeader.h */,
+				70EEA17E18D9C48A00719BF7 /* Customer.h */,
+				70EEA17F18D9C48A00719BF7 /* Customer.m */,
+				70EEA18018D9C48A00719BF7 /* MLViewController.h */,
+				70EEA18118D9C48A00719BF7 /* MLViewController.m */,
 			);
 			name = ProfileObjects;
 			sourceTree = "<group>";
@@ -953,7 +953,6 @@
 				3B19519E18B732030061969F /* textbox.png in Resources */,
 				3BB42D8818D6B0180011792E /* MLTermsConditionViewController.xib in Resources */,
 				7083282A18D962650033856C /* lock_profile.png in Resources */,
-				7083283918D992E10033856C /* AccountLogin.xib in Resources */,
 				3BA7CCEF18B1E9BA00B9FC4B /* ic_launcher1.png in Resources */,
 				3BC3828318C0359B00270567 /* ban.png in Resources */,
 				3BB42E0018D6B6C60011792E /* content_bg.png in Resources */,
@@ -973,6 +972,7 @@
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
 				7083282718D962650033856C /* account_profile.png in Resources */,
 				3BB42DE218D6B25F0011792E /* MLHistoryViewController.xib in Resources */,
+				70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */,
 				3B1B36C018B445C3006DA5BB /* btn2.png in Resources */,
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
 				3BA7CCDD18B1DF6000B9FC4B /* new_key.png in Resources */,
@@ -980,7 +980,6 @@
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController.xib in Resources */,
 				3BB42E0B18D6B6C60011792E /* rates_selected.png in Resources */,
 				3B71BBB518BD8B5C0094543C /* edit_image.png in Resources */,
-				7083283418D992C30033856C /* QuestionsActivity.xib in Resources */,
 				3BB42D8718D6B0180011792E /* MLReceiverTableViewController.xib in Resources */,
 				3BB42E0218D6B6C60011792E /* navibar_bg.png in Resources */,
 				3BB42E0A18D6B6C60011792E /* rates_default.png in Resources */,
@@ -990,6 +989,7 @@
 				3BB42D8918D6B0180011792E /* MLMenuViewController.xib in Resources */,
 				3BA7CD1318B23A7000B9FC4B /* reload.9.png in Resources */,
 				3BA7CCF718B1EBDC00B9FC4B /* background2.png in Resources */,
+				70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */,
 				3BA7CCA518B1D6B900B9FC4B /* InfoPlist.strings in Resources */,
 				3BC3827C18C02C6C00270567 /* TopupViewController.xib in Resources */,
 				3BB42D8518D6B0180011792E /* MLReceiverTableViewCell.xib in Resources */,
@@ -1039,40 +1039,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BB42D9E18D6B02E0011792E /* MLRatesTableViewCell.m in Sources */,
+				70EEA17A18D9C46000719BF7 /* RegistrationInformation.m in Sources */,
 				3BA7CCAB18B1D6B900B9FC4B /* AppDelegate.m in Sources */,
 				3BB42DA118D6B02E0011792E /* MLMenuViewController.m in Sources */,
+				70EEA18618D9C53200719BF7 /* ProfileHeader.m in Sources */,
+				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
 				3BA7CCA718B1D6B900B9FC4B /* main.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
-				7083281018D93BE40033856C /* MLViewController.m in Sources */,
 				3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */,
 				3BA7CCCD18B1D73B00B9FC4B /* LoginViewController.m in Sources */,
 				3BB42DA018D6B02E0011792E /* MLTermsConditionViewController.m in Sources */,
+				70EEA18918D9C54900719BF7 /* ProfileOutline.m in Sources */,
 				3BB42D9B18D6B02E0011792E /* MLRatesTableViewController.m in Sources */,
-				7083280B18D93BE40033856C /* ProfileButton.m in Sources */,
 				3BB42DDF18D6B2520011792E /* MLHistoryTableViewCell.m in Sources */,
 				3BB42D9F18D6B02E0011792E /* MLReceiverTableViewController.m in Sources */,
-				7083280C18D93BE40033856C /* ProfileHeader.m in Sources */,
 				3B8090B218B5970900A11CB8 /* ReceiverMenuListViewController.m in Sources */,
 				3B5F848118BC68E9001C1B29 /* ReceiverCell.m in Sources */,
 				3BC3828B18C0958900270567 /* InfoViewController.m in Sources */,
 				3BB42D9A18D6B02E0011792E /* MLSendMoneyViewController.m in Sources */,
-				7083280F18D93BE40033856C /* ProfileOutline.m in Sources */,
-				7083283018D962E90033856C /* RegistrationInformation.m in Sources */,
 				3BC3827B18C02C6C00270567 /* TopupViewController.m in Sources */,
 				3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */,
+				70EEA18218D9C48A00719BF7 /* Customer.m in Sources */,
+				70EEA18318D9C48A00719BF7 /* MLViewController.m in Sources */,
+				70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */,
 				3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */,
-				7083283C18D992F00033856C /* AccountLogin.m in Sources */,
-				7083281118D93BE40033856C /* Customer.m in Sources */,
 				3BB42DDE18D6B2520011792E /* MLHistoryViewController.m in Sources */,
 				3BB42D9D18D6B02E0011792E /* MLReceiverTableViewCell.m in Sources */,
-				7083280D18D93BE40033856C /* ProfileLabel.m in Sources */,
+				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
+				70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */,
 				3BB42DA418D6B03D0011792E /* MLUI.m in Sources */,
-				708327FC18D93BCB0033856C /* SelectQuestionDialog.m in Sources */,
 				3BB5268918BCB8F600D0A5EA /* ReceiverObject.m in Sources */,
 				708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */,
-				7083280E18D93BE40033856C /* ProfileTextField.m in Sources */,
 				3BB42D9C18D6B02E0011792E /* MLPreviewViewController.m in Sources */,
-				7083283718D992D40033856C /* QuestionsActivity.m in Sources */,
+				70EEA17D18D9C47800719BF7 /* SelectQuestionDialog.m in Sources */,
+				70EEA17918D9C46000719BF7 /* QuestionsActivity.m in Sources */,
 				3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
