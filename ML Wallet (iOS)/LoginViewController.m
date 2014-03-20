@@ -83,11 +83,11 @@
     
     EnterCustomerID *enterCustomer = [[EnterCustomerID alloc] initWithNibName:@"EnterCustomerID" bundle:nil];
     
+    
     [self.navigationController pushViewController:enterCustomer animated:YES];
+    self.navigationController.navigationBarHidden = NO;
 
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message!" message:@"OK" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//    
-//    [alert show];
+
 }
 
 - (IBAction)btnLogin:(id)sender {

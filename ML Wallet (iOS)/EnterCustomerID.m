@@ -147,14 +147,8 @@ ProfileTextField *firstNumberTF, *secondNumberTF, *thirdNumberTF, *phoneNumberTF
 
 -(void) backPressed{
     
-    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil navigationHidden:YES ];
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionMoveIn;
-    [self.navigationController.view.layer addAnimation:transition forKey:nil];
-    [[self navigationController]pushViewController:loginViewController animated:NO];
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 

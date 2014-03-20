@@ -16,6 +16,7 @@
 #import "MLSendMoneyViewController.h"
 #import "MLRatesTableViewController.h"
 #import "MLUI.h"
+#import "AccountMain.h"
 
 
 #define  VIEW_HIDDEN -320
@@ -286,7 +287,9 @@
 }
 
 - (IBAction)btn_Myprofile:(id)sender {
-    //toDO
+    AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
+    
+    [self.navigationController pushViewController:accountMain animated:YES];
     
     
     
