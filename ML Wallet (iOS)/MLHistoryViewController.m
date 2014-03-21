@@ -35,7 +35,7 @@
     getUI = [MLUI new];
     
     self.navigationController.navigationBarHidden = NO;
-    back = [getUI navBarButtonHistory:self navLink:@selector(btn_back:) imageNamed:@"ic_home.png"];
+    back = [getUI navBarButtonHistory:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
     right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_preview.png"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
