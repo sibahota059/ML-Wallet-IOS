@@ -472,7 +472,9 @@ int textFieldHeight = 30;
 
 
 
-
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 
 

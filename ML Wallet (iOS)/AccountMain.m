@@ -45,7 +45,7 @@
     UIImageView *designButtomRight = [[UIImageView alloc] initWithFrame:CGRectMake(265, 360, 50, 50)];
     [designButtomRight setImage:[UIImage imageNamed:@"design_buttom_right.png"]];
 
-
+   
     
     //IMAGE
     UIImageView *imageFrameView = [[UIImageView alloc] initWithFrame:CGRectMake(95, 60, 130, 130)];
@@ -94,6 +94,11 @@
     self.navigationController.navigationBarHidden = NO;
     [self addNavigationBarButton];
 }
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
