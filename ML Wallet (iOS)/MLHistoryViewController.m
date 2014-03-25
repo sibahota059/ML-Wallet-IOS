@@ -33,13 +33,16 @@
 {
     [super viewDidLoad];
     getUI = [MLUI new];
-    back = [getUI navBarButtonHistory:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
-    right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"home.png"];
+    
+    self.navigationController.navigationBarHidden = NO;
+    back = [getUI navBarButtonHistory:self navLink:@selector(btn_back:) imageNamed:@"ic_home.png"];
+    right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_preview.png"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
     [self.navigationItem setLeftBarButtonItem:back];
     [self.navigationItem setRightBarButtonItem:right];
-    self.navigationItem.titleView = [getUI navTitle:@"History"];
+    //self.navigationItem.titleView = [getUI navTitle:@"History"];
+    self.title = @"History";
     
     // Do any additional setup after loading the view from its nib.
     date = [NSArray arrayWithObjects:@"January 01, 2014", @"February 01, 2014", @"March 01, 2014", @"April 01, 2014", @"May 01, 2014", @"June 01, 2014", @"July 01, 2014", @"August 01, 2014", @"September 01, 2014", @"October 01, 2014", @"November 01, 2014", @"December 01, 2014", nil];
@@ -54,11 +57,16 @@
 }
 
 - (IBAction)btn_back:(id)sender {
+    self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)btn_sendPreview:(id)sender {
     [getUI displayAlert:@"Message" message:@"This will send preview of transaction to email and function it later."];
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

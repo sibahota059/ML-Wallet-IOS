@@ -65,27 +65,6 @@
 		3BA7CD1318B23A7000B9FC4B /* reload.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CD1118B23A7000B9FC4B /* reload.9.png */; };
 		3BA7CD1418B23A7000B9FC4B /* so.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CD1218B23A7000B9FC4B /* so.9.png */; };
 		3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CD1518B23A9900B9FC4B /* trx.9.png */; };
-		3BB42D8218D6B0180011792E /* MLSendMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42D7A18D6B0180011792E /* MLSendMoneyViewController.xib */; };
-		3BB42D8318D6B0180011792E /* MLRatesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42D7B18D6B0180011792E /* MLRatesTableViewController.xib */; };
-		3BB42D8418D6B0180011792E /* MLPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42D7C18D6B0180011792E /* MLPreviewViewController.xib */; };
-		3BB42D8518D6B0180011792E /* MLReceiverTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42D7D18D6B0180011792E /* MLReceiverTableViewCell.xib */; };
-		3BB42D8618D6B0180011792E /* MLRatesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42D7E18D6B0180011792E /* MLRatesTableViewCell.xib */; };
-		3BB42D8718D6B0180011792E /* MLReceiverTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42D7F18D6B0180011792E /* MLReceiverTableViewController.xib */; };
-		3BB42D8818D6B0180011792E /* MLTermsConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42D8018D6B0180011792E /* MLTermsConditionViewController.xib */; };
-		3BB42D8918D6B0180011792E /* MLMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42D8118D6B0180011792E /* MLMenuViewController.xib */; };
-		3BB42D9A18D6B02E0011792E /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42D8B18D6B02E0011792E /* MLSendMoneyViewController.m */; };
-		3BB42D9B18D6B02E0011792E /* MLRatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42D8D18D6B02E0011792E /* MLRatesTableViewController.m */; };
-		3BB42D9C18D6B02E0011792E /* MLPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42D8F18D6B02E0011792E /* MLPreviewViewController.m */; };
-		3BB42D9D18D6B02E0011792E /* MLReceiverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42D9118D6B02E0011792E /* MLReceiverTableViewCell.m */; };
-		3BB42D9E18D6B02E0011792E /* MLRatesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42D9318D6B02E0011792E /* MLRatesTableViewCell.m */; };
-		3BB42D9F18D6B02E0011792E /* MLReceiverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42D9518D6B02E0011792E /* MLReceiverTableViewController.m */; };
-		3BB42DA018D6B02E0011792E /* MLTermsConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42D9718D6B02E0011792E /* MLTermsConditionViewController.m */; };
-		3BB42DA118D6B02E0011792E /* MLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42D9918D6B02E0011792E /* MLMenuViewController.m */; };
-		3BB42DA418D6B03D0011792E /* MLUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42DA318D6B03D0011792E /* MLUI.m */; };
-		3BB42DDE18D6B2520011792E /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42DDB18D6B2520011792E /* MLHistoryViewController.m */; };
-		3BB42DDF18D6B2520011792E /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB42DDD18D6B2520011792E /* MLHistoryTableViewCell.m */; };
-		3BB42DE218D6B25F0011792E /* MLHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DE018D6B25F0011792E /* MLHistoryViewController.xib */; };
-		3BB42DE318D6B25F0011792E /* MLHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DE118D6B25F0011792E /* MLHistoryTableViewCell.xib */; };
 		3BB42DE518D6B2CD0011792E /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DE418D6B2CD0011792E /* home.png */; };
 		3BB42DFD18D6B6C60011792E /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DE718D6B6C60011792E /* back.png */; };
 		3BB42DFE18D6B6C60011792E /* bradpit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DE818D6B6C60011792E /* bradpit.jpg */; };
@@ -167,6 +146,34 @@
 		70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA19318D9C6E800719BF7 /* ProfileButton.m */; };
 		70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19918D9CA4900719BF7 /* edit_profile.png */; };
 		70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19B18D9CA7800719BF7 /* question_profile.png */; };
+		F05C5F0518E12B8A002F2EE1 /* MLHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController.xib */; };
+		F05C5F0618E12B8A002F2EE1 /* MLHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell.xib */; };
+		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
+		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
+		F05C5F1518E12BE8002F2EE1 /* MLSendMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController.xib */; };
+		F05C5F1618E12BE8002F2EE1 /* MLRatesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController.xib */; };
+		F05C5F1718E12BE8002F2EE1 /* MLPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController.xib */; };
+		F05C5F1818E12BE8002F2EE1 /* MLReceiverTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1018E12BE8002F2EE1 /* MLReceiverTableViewCell.xib */; };
+		F05C5F1918E12BE8002F2EE1 /* MLRatesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell.xib */; };
+		F05C5F1A18E12BE8002F2EE1 /* MLReceiverTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1218E12BE8002F2EE1 /* MLReceiverTableViewController.xib */; };
+		F05C5F1B18E12BE8002F2EE1 /* MLTermsConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController.xib */; };
+		F05C5F1C18E12BE8002F2EE1 /* MLMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1418E12BE8002F2EE1 /* MLMenuViewController.xib */; };
+		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
+		F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2018E12C0D002F2EE1 /* MLRatesTableViewController.m */; };
+		F05C5F2F18E12C0D002F2EE1 /* MLPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2218E12C0D002F2EE1 /* MLPreviewViewController.m */; };
+		F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2418E12C0D002F2EE1 /* MLReceiverTableViewCell.m */; };
+		F05C5F3118E12C0D002F2EE1 /* MLRatesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2618E12C0D002F2EE1 /* MLRatesTableViewCell.m */; };
+		F05C5F3218E12C0D002F2EE1 /* MLReceiverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2818E12C0D002F2EE1 /* MLReceiverTableViewController.m */; };
+		F05C5F3318E12C0D002F2EE1 /* MLTermsConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2A18E12C0D002F2EE1 /* MLTermsConditionViewController.m */; };
+		F05C5F3418E12C0D002F2EE1 /* MLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2C18E12C0D002F2EE1 /* MLMenuViewController.m */; };
+		F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F3618E12C30002F2EE1 /* MLUI.m */; };
+		F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F3818E12C30002F2EE1 /* UINavigationBar+customNav.m */; };
+		F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F3D18E12C62002F2EE1 /* ic_preview.png */; };
+		F05C5F4218E12C62002F2EE1 /* header_bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F3E18E12C62002F2EE1 /* header_bg2.png */; };
+		F05C5F4418E12C70002F2EE1 /* ic_home.png in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F4318E12C70002F2EE1 /* ic_home.png */; };
+		F05C5F4618E137AF002F2EE1 /* ic_seal_pending.png in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F4518E137AF002F2EE1 /* ic_seal_pending.png */; };
+		F05C5F5018E13C6C002F2EE1 /* send_default.png in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F4F18E13C6C002F2EE1 /* send_default.png */; };
+		F05C5F5218E13CA1002F2EE1 /* send_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F5118E13CA1002F2EE1 /* send_selected.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -244,61 +251,6 @@
 		3BA7CD1118B23A7000B9FC4B /* reload.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.9.png; sourceTree = "<group>"; };
 		3BA7CD1218B23A7000B9FC4B /* so.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = so.9.png; sourceTree = "<group>"; };
 		3BA7CD1518B23A9900B9FC4B /* trx.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trx.9.png; sourceTree = "<group>"; };
-		3BB42D7A18D6B0180011792E /* MLSendMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLSendMoneyViewController.xib; sourceTree = "<group>"; };
-		3BB42D7B18D6B0180011792E /* MLRatesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLRatesTableViewController.xib; sourceTree = "<group>"; };
-		3BB42D7C18D6B0180011792E /* MLPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPreviewViewController.xib; sourceTree = "<group>"; };
-		3BB42D7D18D6B0180011792E /* MLReceiverTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLReceiverTableViewCell.xib; sourceTree = "<group>"; };
-		3BB42D7E18D6B0180011792E /* MLRatesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLRatesTableViewCell.xib; sourceTree = "<group>"; };
-		3BB42D7F18D6B0180011792E /* MLReceiverTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLReceiverTableViewController.xib; sourceTree = "<group>"; };
-		3BB42D8018D6B0180011792E /* MLTermsConditionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLTermsConditionViewController.xib; sourceTree = "<group>"; };
-		3BB42D8118D6B0180011792E /* MLMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLMenuViewController.xib; sourceTree = "<group>"; };
-		3BB42D8A18D6B02E0011792E /* MLSendMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSendMoneyViewController.h; sourceTree = "<group>"; };
-		3BB42D8B18D6B02E0011792E /* MLSendMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSendMoneyViewController.m; sourceTree = "<group>"; };
-		3BB42D8C18D6B02E0011792E /* MLRatesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRatesTableViewController.h; sourceTree = "<group>"; };
-		3BB42D8D18D6B02E0011792E /* MLRatesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRatesTableViewController.m; sourceTree = "<group>"; };
-		3BB42D8E18D6B02E0011792E /* MLPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPreviewViewController.h; sourceTree = "<group>"; };
-		3BB42D8F18D6B02E0011792E /* MLPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPreviewViewController.m; sourceTree = "<group>"; };
-		3BB42D9018D6B02E0011792E /* MLReceiverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLReceiverTableViewCell.h; sourceTree = "<group>"; };
-		3BB42D9118D6B02E0011792E /* MLReceiverTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLReceiverTableViewCell.m; sourceTree = "<group>"; };
-		3BB42D9218D6B02E0011792E /* MLRatesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRatesTableViewCell.h; sourceTree = "<group>"; };
-		3BB42D9318D6B02E0011792E /* MLRatesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRatesTableViewCell.m; sourceTree = "<group>"; };
-		3BB42D9418D6B02E0011792E /* MLReceiverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLReceiverTableViewController.h; sourceTree = "<group>"; };
-		3BB42D9518D6B02E0011792E /* MLReceiverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLReceiverTableViewController.m; sourceTree = "<group>"; };
-		3BB42D9618D6B02E0011792E /* MLTermsConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLTermsConditionViewController.h; sourceTree = "<group>"; };
-		3BB42D9718D6B02E0011792E /* MLTermsConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLTermsConditionViewController.m; sourceTree = "<group>"; };
-		3BB42D9818D6B02E0011792E /* MLMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLMenuViewController.h; sourceTree = "<group>"; };
-		3BB42D9918D6B02E0011792E /* MLMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLMenuViewController.m; sourceTree = "<group>"; };
-		3BB42DA218D6B03D0011792E /* MLUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLUI.h; sourceTree = "<group>"; };
-		3BB42DA318D6B03D0011792E /* MLUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLUI.m; sourceTree = "<group>"; };
-		3BB42DA618D6B0D50011792E /* ic_seal_pending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_seal_pending.png; path = "../../../../Downloads/SendMoney-master/SendMoney/ic_seal_pending.png"; sourceTree = "<group>"; };
-		3BB42DA718D6B0D50011792E /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = "../../../../Downloads/SendMoney-master/SendMoney/right.png"; sourceTree = "<group>"; };
-		3BB42DA818D6B0D50011792E /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navbar_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/navbar_bg.png"; sourceTree = "<group>"; };
-		3BB42DA918D6B0D50011792E /* pad_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pad_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/pad_bg.png"; sourceTree = "<group>"; };
-		3BB42DAA18D6B0D50011792E /* pin_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/pin_bg.png"; sourceTree = "<group>"; };
-		3BB42DAB18D6B0D50011792E /* preview_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preview_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/preview_bg.png"; sourceTree = "<group>"; };
-		3BB42DAC18D6B0D60011792E /* btnReceiver_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btnReceiver_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/btnReceiver_bg.png"; sourceTree = "<group>"; };
-		3BB42DAD18D6B0D60011792E /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = "../../../../Downloads/SendMoney-master/SendMoney/back.png"; sourceTree = "<group>"; };
-		3BB42DAE18D6B0D60011792E /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noImage.png; path = "../../../../Downloads/SendMoney-master/SendMoney/noImage.png"; sourceTree = "<group>"; };
-		3BB42DAF18D6B0D60011792E /* wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wrong.png; path = "../../../../Downloads/SendMoney-master/SendMoney/wrong.png"; sourceTree = "<group>"; };
-		3BB42DB018D6B0D60011792E /* bradpit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bradpit.jpg; path = "../../../../Downloads/SendMoney-master/SendMoney/bradpit.jpg"; sourceTree = "<group>"; };
-		3BB42DB118D6B0D60011792E /* profile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = profile.jpg; path = "../../../../Downloads/SendMoney-master/SendMoney/profile.jpg"; sourceTree = "<group>"; };
-		3BB42DB218D6B0D60011792E /* payment_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = payment_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/payment_bg.png"; sourceTree = "<group>"; };
-		3BB42DB318D6B0D60011792E /* content_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = content_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/content_bg.png"; sourceTree = "<group>"; };
-		3BB42DB518D6B0D60011792E /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = "../../../../Downloads/SendMoney-master/SendMoney/next.png"; sourceTree = "<group>"; };
-		3BB42DB618D6B0D60011792E /* view_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = view_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/view_bg.png"; sourceTree = "<group>"; };
-		3BB42DB718D6B0D60011792E /* tabbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabbar_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/tabbar_bg.png"; sourceTree = "<group>"; };
-		3BB42DB818D6B0D60011792E /* rates_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rates_default.png; path = "../../../../Downloads/SendMoney-master/SendMoney/rates_default.png"; sourceTree = "<group>"; };
-		3BB42DB918D6B0D60011792E /* rates_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rates_selected.png; path = "../../../../Downloads/SendMoney-master/SendMoney/rates_selected.png"; sourceTree = "<group>"; };
-		3BB42DBA18D6B0D60011792E /* sendmoney_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sendmoney_selected.png; path = "../../../../Downloads/SendMoney-master/SendMoney/sendmoney_selected.png"; sourceTree = "<group>"; };
-		3BB42DBB18D6B0D60011792E /* sendmoney_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sendmoney_default.png; path = "../../../../Downloads/SendMoney-master/SendMoney/sendmoney_default.png"; sourceTree = "<group>"; };
-		3BB42DBC18D6B0D60011792E /* tabbar_item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabbar_item.png; path = "../../../../Downloads/SendMoney-master/SendMoney/tabbar_item.png"; sourceTree = "<group>"; };
-		3BB42DBD18D6B0D60011792E /* navibar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navibar_bg.png; path = "../../../../Downloads/SendMoney-master/SendMoney/navibar_bg.png"; sourceTree = "<group>"; };
-		3BB42DDA18D6B2520011792E /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
-		3BB42DDB18D6B2520011792E /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
-		3BB42DDC18D6B2520011792E /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
-		3BB42DDD18D6B2520011792E /* MLHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryTableViewCell.m; sourceTree = "<group>"; };
-		3BB42DE018D6B25F0011792E /* MLHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLHistoryViewController.xib; sourceTree = "<group>"; };
-		3BB42DE118D6B25F0011792E /* MLHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		3BB42DE418D6B2CD0011792E /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3BB42DE718D6B6C60011792E /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		3BB42DE818D6B6C60011792E /* bradpit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bradpit.jpg; sourceTree = "<group>"; };
@@ -374,13 +326,6 @@
 		708327E518D93AEB0033856C /* EnterCustomerID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCustomerID.h; sourceTree = "<group>"; };
 		708327E618D93AEB0033856C /* EnterCustomerID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCustomerID.m; sourceTree = "<group>"; };
 		708327E818D93AFB0033856C /* EnterCustomerID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterCustomerID.xib; sourceTree = "<group>"; };
-		7083282018D962650033856C /* account_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = account_profile.png; path = ../../../mlwallet_image/account_profile.png; sourceTree = "<group>"; };
-		7083282118D962650033856C /* back_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_profile.png; path = ../../../mlwallet_image/back_profile.png; sourceTree = "<group>"; };
-		7083282218D962650033856C /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit_profile.png; path = ../../../mlwallet_image/edit_profile.png; sourceTree = "<group>"; };
-		7083282318D962650033856C /* lock_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock_profile.png; path = ../../../mlwallet_image/lock_profile.png; sourceTree = "<group>"; };
-		7083282418D962650033856C /* profile_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profile_profile.png; path = ../../../mlwallet_image/profile_profile.png; sourceTree = "<group>"; };
-		7083282518D962650033856C /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = question_profile.png; path = ../../../mlwallet_image/question_profile.png; sourceTree = "<group>"; };
-		7083282618D962650033856C /* submit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = submit_profile.png; path = ../../../mlwallet_image/submit_profile.png; sourceTree = "<group>"; };
 		70AD601F18DBC6EA00E392BF /* QuestionVerificationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionVerificationDialog.m; sourceTree = "<group>"; };
 		70AD602118DBC70500E392BF /* QuestionVerificationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionVerificationDialog.h; sourceTree = "<group>"; };
 		70AD602218DBC74F00E392BF /* UICreationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICreationMethods.h; sourceTree = "<group>"; };
@@ -411,6 +356,46 @@
 		70EEA19418D9C6E800719BF7 /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileButton.h; sourceTree = "<group>"; };
 		70EEA19918D9CA4900719BF7 /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_profile.png; sourceTree = "<group>"; };
 		70EEA19B18D9CA7800719BF7 /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_profile.png; sourceTree = "<group>"; };
+		F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLHistoryViewController.xib; sourceTree = "<group>"; };
+		F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
+		F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
+		F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
+		F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryTableViewCell.m; sourceTree = "<group>"; };
+		F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLSendMoneyViewController.xib; sourceTree = "<group>"; };
+		F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLRatesTableViewController.xib; sourceTree = "<group>"; };
+		F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPreviewViewController.xib; sourceTree = "<group>"; };
+		F05C5F1018E12BE8002F2EE1 /* MLReceiverTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLReceiverTableViewCell.xib; sourceTree = "<group>"; };
+		F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLRatesTableViewCell.xib; sourceTree = "<group>"; };
+		F05C5F1218E12BE8002F2EE1 /* MLReceiverTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLReceiverTableViewController.xib; sourceTree = "<group>"; };
+		F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLTermsConditionViewController.xib; sourceTree = "<group>"; };
+		F05C5F1418E12BE8002F2EE1 /* MLMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLMenuViewController.xib; sourceTree = "<group>"; };
+		F05C5F1D18E12C0D002F2EE1 /* MLSendMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSendMoneyViewController.h; sourceTree = "<group>"; };
+		F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSendMoneyViewController.m; sourceTree = "<group>"; };
+		F05C5F1F18E12C0D002F2EE1 /* MLRatesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRatesTableViewController.h; sourceTree = "<group>"; };
+		F05C5F2018E12C0D002F2EE1 /* MLRatesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRatesTableViewController.m; sourceTree = "<group>"; };
+		F05C5F2118E12C0D002F2EE1 /* MLPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPreviewViewController.h; sourceTree = "<group>"; };
+		F05C5F2218E12C0D002F2EE1 /* MLPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPreviewViewController.m; sourceTree = "<group>"; };
+		F05C5F2318E12C0D002F2EE1 /* MLReceiverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLReceiverTableViewCell.h; sourceTree = "<group>"; };
+		F05C5F2418E12C0D002F2EE1 /* MLReceiverTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLReceiverTableViewCell.m; sourceTree = "<group>"; };
+		F05C5F2518E12C0D002F2EE1 /* MLRatesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRatesTableViewCell.h; sourceTree = "<group>"; };
+		F05C5F2618E12C0D002F2EE1 /* MLRatesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRatesTableViewCell.m; sourceTree = "<group>"; };
+		F05C5F2718E12C0D002F2EE1 /* MLReceiverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLReceiverTableViewController.h; sourceTree = "<group>"; };
+		F05C5F2818E12C0D002F2EE1 /* MLReceiverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLReceiverTableViewController.m; sourceTree = "<group>"; };
+		F05C5F2918E12C0D002F2EE1 /* MLTermsConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLTermsConditionViewController.h; sourceTree = "<group>"; };
+		F05C5F2A18E12C0D002F2EE1 /* MLTermsConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLTermsConditionViewController.m; sourceTree = "<group>"; };
+		F05C5F2B18E12C0D002F2EE1 /* MLMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLMenuViewController.h; sourceTree = "<group>"; };
+		F05C5F2C18E12C0D002F2EE1 /* MLMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLMenuViewController.m; sourceTree = "<group>"; };
+		F05C5F3518E12C30002F2EE1 /* MLUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLUI.h; sourceTree = "<group>"; };
+		F05C5F3618E12C30002F2EE1 /* MLUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLUI.m; sourceTree = "<group>"; };
+		F05C5F3718E12C30002F2EE1 /* UINavigationBar+customNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+customNav.h"; sourceTree = "<group>"; };
+		F05C5F3818E12C30002F2EE1 /* UINavigationBar+customNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+customNav.m"; sourceTree = "<group>"; };
+		F05C5F3D18E12C62002F2EE1 /* ic_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_preview.png; sourceTree = "<group>"; };
+		F05C5F3E18E12C62002F2EE1 /* header_bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_bg2.png; sourceTree = "<group>"; };
+		F05C5F4318E12C70002F2EE1 /* ic_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_home.png; sourceTree = "<group>"; };
+		F05C5F4518E137AF002F2EE1 /* ic_seal_pending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_seal_pending.png; sourceTree = "<group>"; };
+		F05C5F4F18E13C6C002F2EE1 /* send_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_default.png; sourceTree = "<group>"; };
+		F05C5F5118E13CA1002F2EE1 /* send_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_selected.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -598,30 +583,7 @@
 				707C03B618D9CD8100EC1B12 /* lock_profile.png */,
 				70EEA19B18D9CA7800719BF7 /* question_profile.png */,
 				70EEA19918D9CA4900719BF7 /* edit_profile.png */,
-				3BB42DA618D6B0D50011792E /* ic_seal_pending.png */,
-				3BB42DA718D6B0D50011792E /* right.png */,
-				3BB42DA818D6B0D50011792E /* navbar_bg.png */,
-				3BB42DA918D6B0D50011792E /* pad_bg.png */,
-				3BB42DAA18D6B0D50011792E /* pin_bg.png */,
-				3BB42DAB18D6B0D50011792E /* preview_bg.png */,
-				3BB42DAC18D6B0D60011792E /* btnReceiver_bg.png */,
-				3BB42DAD18D6B0D60011792E /* back.png */,
-				3BB42DAE18D6B0D60011792E /* noImage.png */,
 				3BB42DE418D6B2CD0011792E /* home.png */,
-				3BB42DAF18D6B0D60011792E /* wrong.png */,
-				3BB42DB018D6B0D60011792E /* bradpit.jpg */,
-				3BB42DB118D6B0D60011792E /* profile.jpg */,
-				3BB42DB218D6B0D60011792E /* payment_bg.png */,
-				3BB42DB318D6B0D60011792E /* content_bg.png */,
-				3BB42DB518D6B0D60011792E /* next.png */,
-				3BB42DB618D6B0D60011792E /* view_bg.png */,
-				3BB42DB718D6B0D60011792E /* tabbar_bg.png */,
-				3BB42DB818D6B0D60011792E /* rates_default.png */,
-				3BB42DB918D6B0D60011792E /* rates_selected.png */,
-				3BB42DBA18D6B0D60011792E /* sendmoney_selected.png */,
-				3BB42DBB18D6B0D60011792E /* sendmoney_default.png */,
-				3BB42DBC18D6B0D60011792E /* tabbar_item.png */,
-				3BB42DBD18D6B0D60011792E /* navibar_bg.png */,
 				3BC3829118C095D200270567 /* ic_about.9.png */,
 				3BC3828F18C095BB00270567 /* ic_contact.9.png */,
 				3BC3828D18C095B500270567 /* ic_faq.9.png */,
@@ -684,14 +646,14 @@
 		3BB42D7618D6AFDC0011792E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3BB42D7A18D6B0180011792E /* MLSendMoneyViewController.xib */,
-				3BB42D7B18D6B0180011792E /* MLRatesTableViewController.xib */,
-				3BB42D7C18D6B0180011792E /* MLPreviewViewController.xib */,
-				3BB42D7D18D6B0180011792E /* MLReceiverTableViewCell.xib */,
-				3BB42D7E18D6B0180011792E /* MLRatesTableViewCell.xib */,
-				3BB42D7F18D6B0180011792E /* MLReceiverTableViewController.xib */,
-				3BB42D8018D6B0180011792E /* MLTermsConditionViewController.xib */,
-				3BB42D8118D6B0180011792E /* MLMenuViewController.xib */,
+				F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController.xib */,
+				F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController.xib */,
+				F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController.xib */,
+				F05C5F1018E12BE8002F2EE1 /* MLReceiverTableViewCell.xib */,
+				F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell.xib */,
+				F05C5F1218E12BE8002F2EE1 /* MLReceiverTableViewController.xib */,
+				F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController.xib */,
+				F05C5F1418E12BE8002F2EE1 /* MLMenuViewController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -699,22 +661,22 @@
 		3BB42D7718D6AFEB0011792E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3BB42D8A18D6B02E0011792E /* MLSendMoneyViewController.h */,
-				3BB42D8B18D6B02E0011792E /* MLSendMoneyViewController.m */,
-				3BB42D8C18D6B02E0011792E /* MLRatesTableViewController.h */,
-				3BB42D8D18D6B02E0011792E /* MLRatesTableViewController.m */,
-				3BB42D8E18D6B02E0011792E /* MLPreviewViewController.h */,
-				3BB42D8F18D6B02E0011792E /* MLPreviewViewController.m */,
-				3BB42D9018D6B02E0011792E /* MLReceiverTableViewCell.h */,
-				3BB42D9118D6B02E0011792E /* MLReceiverTableViewCell.m */,
-				3BB42D9218D6B02E0011792E /* MLRatesTableViewCell.h */,
-				3BB42D9318D6B02E0011792E /* MLRatesTableViewCell.m */,
-				3BB42D9418D6B02E0011792E /* MLReceiverTableViewController.h */,
-				3BB42D9518D6B02E0011792E /* MLReceiverTableViewController.m */,
-				3BB42D9618D6B02E0011792E /* MLTermsConditionViewController.h */,
-				3BB42D9718D6B02E0011792E /* MLTermsConditionViewController.m */,
-				3BB42D9818D6B02E0011792E /* MLMenuViewController.h */,
-				3BB42D9918D6B02E0011792E /* MLMenuViewController.m */,
+				F05C5F1D18E12C0D002F2EE1 /* MLSendMoneyViewController.h */,
+				F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */,
+				F05C5F1F18E12C0D002F2EE1 /* MLRatesTableViewController.h */,
+				F05C5F2018E12C0D002F2EE1 /* MLRatesTableViewController.m */,
+				F05C5F2118E12C0D002F2EE1 /* MLPreviewViewController.h */,
+				F05C5F2218E12C0D002F2EE1 /* MLPreviewViewController.m */,
+				F05C5F2318E12C0D002F2EE1 /* MLReceiverTableViewCell.h */,
+				F05C5F2418E12C0D002F2EE1 /* MLReceiverTableViewCell.m */,
+				F05C5F2518E12C0D002F2EE1 /* MLRatesTableViewCell.h */,
+				F05C5F2618E12C0D002F2EE1 /* MLRatesTableViewCell.m */,
+				F05C5F2718E12C0D002F2EE1 /* MLReceiverTableViewController.h */,
+				F05C5F2818E12C0D002F2EE1 /* MLReceiverTableViewController.m */,
+				F05C5F2918E12C0D002F2EE1 /* MLTermsConditionViewController.h */,
+				F05C5F2A18E12C0D002F2EE1 /* MLTermsConditionViewController.m */,
+				F05C5F2B18E12C0D002F2EE1 /* MLMenuViewController.h */,
+				F05C5F2C18E12C0D002F2EE1 /* MLMenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -722,8 +684,10 @@
 		3BB42D7818D6AFF60011792E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3BB42DA218D6B03D0011792E /* MLUI.h */,
-				3BB42DA318D6B03D0011792E /* MLUI.m */,
+				F05C5F3518E12C30002F2EE1 /* MLUI.h */,
+				F05C5F3618E12C30002F2EE1 /* MLUI.m */,
+				F05C5F3718E12C30002F2EE1 /* UINavigationBar+customNav.h */,
+				F05C5F3818E12C30002F2EE1 /* UINavigationBar+customNav.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -741,8 +705,8 @@
 		3BB42DD718D6B2360011792E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3BB42DE018D6B25F0011792E /* MLHistoryViewController.xib */,
-				3BB42DE118D6B25F0011792E /* MLHistoryTableViewCell.xib */,
+				F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController.xib */,
+				F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -750,10 +714,10 @@
 		3BB42DD818D6B2410011792E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3BB42DDA18D6B2520011792E /* MLHistoryViewController.h */,
-				3BB42DDB18D6B2520011792E /* MLHistoryViewController.m */,
-				3BB42DDC18D6B2520011792E /* MLHistoryTableViewCell.h */,
-				3BB42DDD18D6B2520011792E /* MLHistoryTableViewCell.m */,
+				F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */,
+				F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */,
+				F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */,
+				F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -776,19 +740,17 @@
 				707C03BC18D9D00900EC1B12 /* submit_profile.png */,
 				700661C118DA766800A0F05C /* design_buttom_left.png */,
 				700661E018DA766800A0F05C /* rene.jpg */,
+				F05C5F4F18E13C6C002F2EE1 /* send_default.png */,
+				F05C5F5118E13CA1002F2EE1 /* send_selected.png */,
 				700661C218DA766800A0F05C /* design_buttom_right.png */,
 				700661C318DA766800A0F05C /* design_top_left.png */,
 				700661C418DA766800A0F05C /* design_top_right.png */,
 				707C03BA18D9CFE100EC1B12 /* account_profile.png */,
 				7006620518DA77E900A0F05C /* profile_frame.jpg */,
 				707C03B818D9CFD500EC1B12 /* profile_profile.png */,
-				7083282018D962650033856C /* account_profile.png */,
-				7083282118D962650033856C /* back_profile.png */,
-				7083282218D962650033856C /* edit_profile.png */,
-				7083282318D962650033856C /* lock_profile.png */,
-				7083282418D962650033856C /* profile_profile.png */,
-				7083282518D962650033856C /* question_profile.png */,
-				7083282618D962650033856C /* submit_profile.png */,
+				F05C5F4318E12C70002F2EE1 /* ic_home.png */,
+				F05C5F3D18E12C62002F2EE1 /* ic_preview.png */,
+				F05C5F3E18E12C62002F2EE1 /* header_bg2.png */,
 				3BB42DE718D6B6C60011792E /* back.png */,
 				3BB42DE818D6B6C60011792E /* bradpit.jpg */,
 				3BB42DE918D6B6C60011792E /* btnReceiver_bg.png */,
@@ -802,6 +764,7 @@
 				3BB42DF118D6B6C60011792E /* pin_bg.png */,
 				3BB42DF218D6B6C60011792E /* preview_bg.png */,
 				3BB42DF318D6B6C60011792E /* profile.jpg */,
+				F05C5F4518E137AF002F2EE1 /* ic_seal_pending.png */,
 				3BB42DF418D6B6C60011792E /* rates_default.png */,
 				3BB42DF518D6B6C60011792E /* rates_selected.png */,
 				3BB42DF618D6B6C60011792E /* right.png */,
@@ -1080,18 +1043,17 @@
 				3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */,
 				3B17585718B35CDB005A7805 /* peso_signr.png in Resources */,
 				3B1B36BE18B43181006DA5BB /* transparent.png in Resources */,
-				3BB42D8318D6B0180011792E /* MLRatesTableViewController.xib in Resources */,
+				F05C5F4218E12C62002F2EE1 /* header_bg2.png in Resources */,
 				3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */,
+				F05C5F1918E12BE8002F2EE1 /* MLRatesTableViewCell.xib in Resources */,
 				3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */,
 				3B8090C018B6106F00A11CB8 /* navigation_image.png in Resources */,
 				707C03BF18D9D40F00EC1B12 /* back_profile.png in Resources */,
 				3BB42E0E18D6B6C60011792E /* sendmoney_selected.png in Resources */,
 				7006620618DA77E900A0F05C /* profile_frame.jpg in Resources */,
-				3BB42D8618D6B0180011792E /* MLRatesTableViewCell.xib in Resources */,
 				3B19518E18B6F5260061969F /* MLBackground2.png in Resources */,
 				3B19519E18B732030061969F /* textbox.png in Resources */,
 				7006622418DA823D00A0F05C /* black_check_credentials.png in Resources */,
-				3BB42D8818D6B0180011792E /* MLTermsConditionViewController.xib in Resources */,
 				3BA7CCEF18B1E9BA00B9FC4B /* ic_launcher1.png in Resources */,
 				700661E818DA766800A0F05C /* design_top_left.png in Resources */,
 				3BC3828318C0359B00270567 /* ban.png in Resources */,
@@ -1101,9 +1063,7 @@
 				3BB42E0618D6B6C60011792E /* payment_bg.png in Resources */,
 				3BA7CCFB18B213BE00B9FC4B /* line.png in Resources */,
 				70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */,
-				3BB42D8218D6B0180011792E /* MLSendMoneyViewController.xib in Resources */,
 				700661E618DA766800A0F05C /* design_buttom_left.png in Resources */,
-				3BB42D8418D6B0180011792E /* MLPreviewViewController.xib in Resources */,
 				3BB42E1118D6B6C60011792E /* view_bg.png in Resources */,
 				707C03BD18D9D00900EC1B12 /* submit_profile.png in Resources */,
 				3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */,
@@ -1116,43 +1076,51 @@
 				700661E918DA766800A0F05C /* design_top_right.png in Resources */,
 				3B17585518B35BA3005A7805 /* no_image.png in Resources */,
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
-				3BB42DE218D6B25F0011792E /* MLHistoryViewController.xib in Resources */,
 				707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */,
 				7006622518DA823D00A0F05C /* black_credentials.png in Resources */,
+				F05C5F1518E12BE8002F2EE1 /* MLSendMoneyViewController.xib in Resources */,
 				707C03BB18D9CFE100EC1B12 /* account_profile.png in Resources */,
 				70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */,
 				3B1B36C018B445C3006DA5BB /* btn2.png in Resources */,
 				707C03B918D9CFD500EC1B12 /* profile_profile.png in Resources */,
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
+				F05C5F4418E12C70002F2EE1 /* ic_home.png in Resources */,
 				3BA7CCDD18B1DF6000B9FC4B /* new_key.png in Resources */,
 				3BA7CCF118B1E9BA00B9FC4B /* ic_launcher3.png in Resources */,
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController.xib in Resources */,
+				F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */,
 				3BB42E0B18D6B6C60011792E /* rates_selected.png in Resources */,
 				3B71BBB518BD8B5C0094543C /* edit_image.png in Resources */,
-				3BB42D8718D6B0180011792E /* MLReceiverTableViewController.xib in Resources */,
 				3BB42E0218D6B6C60011792E /* navibar_bg.png in Resources */,
 				3BB42E0A18D6B6C60011792E /* rates_default.png in Resources */,
 				3BB42DE518D6B2CD0011792E /* home.png in Resources */,
 				3BA7CCD518B1DAC800B9FC4B /* login_img.png in Resources */,
 				3BB42E1018D6B6C60011792E /* tabbar_item.png in Resources */,
-				3BB42D8918D6B0180011792E /* MLMenuViewController.xib in Resources */,
 				7006621318DA797C00A0F05C /* UpdateInformation.xib in Resources */,
+				F05C5F0618E12B8A002F2EE1 /* MLHistoryTableViewCell.xib in Resources */,
 				3BA7CD1318B23A7000B9FC4B /* reload.9.png in Resources */,
 				3BA7CCF718B1EBDC00B9FC4B /* background2.png in Resources */,
+				F05C5F1818E12BE8002F2EE1 /* MLReceiverTableViewCell.xib in Resources */,
 				7006621418DA797C00A0F05C /* AccountQuestion.xib in Resources */,
 				700661E718DA766800A0F05C /* design_buttom_right.png in Resources */,
+				F05C5F1718E12BE8002F2EE1 /* MLPreviewViewController.xib in Resources */,
 				70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */,
+				F05C5F1C18E12BE8002F2EE1 /* MLMenuViewController.xib in Resources */,
 				3BA7CCA518B1D6B900B9FC4B /* InfoPlist.strings in Resources */,
 				3BC3827C18C02C6C00270567 /* TopupViewController.xib in Resources */,
-				3BB42D8518D6B0180011792E /* MLReceiverTableViewCell.xib in Resources */,
 				3B19518F18B6F5260061969F /* MLBackground3.png in Resources */,
 				3BB42DFE18D6B6C60011792E /* bradpit.jpg in Resources */,
+				F05C5F5018E13C6C002F2EE1 /* send_default.png in Resources */,
 				3BB42DFD18D6B6C60011792E /* back.png in Resources */,
 				708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */,
+				F05C5F4618E137AF002F2EE1 /* ic_seal_pending.png in Resources */,
+				F05C5F1A18E12BE8002F2EE1 /* MLReceiverTableViewController.xib in Resources */,
 				3BB42E0418D6B6C60011792E /* noImage.png in Resources */,
 				3BB42E0718D6B6C60011792E /* pin_bg.png in Resources */,
 				3BC3829218C095D200270567 /* ic_about.9.png in Resources */,
+				F05C5F5218E13CA1002F2EE1 /* send_selected.png in Resources */,
 				3B17585318B34EE3005A7805 /* bg_header.png in Resources */,
+				F05C5F1B18E12BE8002F2EE1 /* MLTermsConditionViewController.xib in Resources */,
 				3BA7CCE718B1E29100B9FC4B /* new_info.png in Resources */,
 				7006620918DA78EF00A0F05C /* ProfileInformation.xib in Resources */,
 				3BA7CCF318B1EB0500B9FC4B /* background.png in Resources */,
@@ -1172,15 +1140,16 @@
 				3BB42E0C18D6B6C60011792E /* right.png in Resources */,
 				3B17584D18B2FC09005A7805 /* popup_img.png in Resources */,
 				3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */,
+				F05C5F0518E12B8A002F2EE1 /* MLHistoryViewController.xib in Resources */,
 				3BA7CD0618B22C2000B9FC4B /* MenuViewController.xib in Resources */,
 				3B1B36C418B4AD70006DA5BB /* icon_my_account.jpg in Resources */,
-				3BB42DE318D6B25F0011792E /* MLHistoryTableViewCell.xib in Resources */,
 				700661B818DA74CF00A0F05C /* AccountMain.xib in Resources */,
 				3BA7CCE318B1E27F00B9FC4B /* new_kprate.png in Resources */,
 				3BA7CD1418B23A7000B9FC4B /* so.9.png in Resources */,
 				3BA7CCE518B1E28400B9FC4B /* new_locator.png in Resources */,
 				3BB42E0118D6B6C60011792E /* navbar_bg.png in Resources */,
 				3BB42DFF18D6B6C60011792E /* btnReceiver_bg.png in Resources */,
+				F05C5F1618E12BE8002F2EE1 /* MLRatesTableViewController.xib in Resources */,
 				3B8B9EF518BC341400639142 /* textbox2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1193,47 +1162,48 @@
 			buildActionMask = 2147483647;
 			files = (
 				7006621A18DA813800A0F05C /* AccountQuestion.m in Sources */,
-				3BB42D9E18D6B02E0011792E /* MLRatesTableViewCell.m in Sources */,
 				70EEA17A18D9C46000719BF7 /* RegistrationInformation.m in Sources */,
 				7006620F18DA791600A0F05C /* ProfileInformation.m in Sources */,
 				3BA7CCAB18B1D6B900B9FC4B /* AppDelegate.m in Sources */,
-				3BB42DA118D6B02E0011792E /* MLMenuViewController.m in Sources */,
 				70EEA18618D9C53200719BF7 /* ProfileHeader.m in Sources */,
+				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
 				7006621918DA813800A0F05C /* UpdateInformation.m in Sources */,
 				3BA7CCA718B1D6B900B9FC4B /* main.m in Sources */,
+				F05C5F3218E12C0D002F2EE1 /* MLReceiverTableViewController.m in Sources */,
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
 				3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */,
 				70AD602418DBC74F00E392BF /* UICreationMethods.m in Sources */,
 				3BA7CCCD18B1D73B00B9FC4B /* LoginViewController.m in Sources */,
-				3BB42DA018D6B02E0011792E /* MLTermsConditionViewController.m in Sources */,
 				70EEA18918D9C54900719BF7 /* ProfileOutline.m in Sources */,
-				3BB42D9B18D6B02E0011792E /* MLRatesTableViewController.m in Sources */,
-				3BB42DDF18D6B2520011792E /* MLHistoryTableViewCell.m in Sources */,
-				3BB42D9F18D6B02E0011792E /* MLReceiverTableViewController.m in Sources */,
 				3B8090B218B5970900A11CB8 /* ReceiverMenuListViewController.m in Sources */,
 				3B5F848118BC68E9001C1B29 /* ReceiverCell.m in Sources */,
+				F05C5F3118E12C0D002F2EE1 /* MLRatesTableViewCell.m in Sources */,
 				3BC3828B18C0958900270567 /* InfoViewController.m in Sources */,
-				3BB42D9A18D6B02E0011792E /* MLSendMoneyViewController.m in Sources */,
 				3BC3827B18C02C6C00270567 /* TopupViewController.m in Sources */,
 				3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */,
+				F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */,
 				70EEA18218D9C48A00719BF7 /* Customer.m in Sources */,
 				7006621018DA791600A0F05C /* AccountInformation.m in Sources */,
 				70EEA18318D9C48A00719BF7 /* MLViewController.m in Sources */,
 				70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */,
 				3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */,
-				3BB42DDE18D6B2520011792E /* MLHistoryViewController.m in Sources */,
-				3BB42D9D18D6B02E0011792E /* MLReceiverTableViewCell.m in Sources */,
+				F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */,
 				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
 				70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */,
-				3BB42DA418D6B03D0011792E /* MLUI.m in Sources */,
+				F05C5F3318E12C0D002F2EE1 /* MLTermsConditionViewController.m in Sources */,
 				3BB5268918BCB8F600D0A5EA /* ReceiverObject.m in Sources */,
 				708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */,
 				700661BB18DA74DD00A0F05C /* AccountMain.m in Sources */,
-				3BB42D9C18D6B02E0011792E /* MLPreviewViewController.m in Sources */,
+				F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */,
+				F05C5F2F18E12C0D002F2EE1 /* MLPreviewViewController.m in Sources */,
+				F05C5F3418E12C0D002F2EE1 /* MLMenuViewController.m in Sources */,
+				F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */,
 				70EEA17D18D9C47800719BF7 /* SelectQuestionDialog.m in Sources */,
 				70EEA17918D9C46000719BF7 /* QuestionsActivity.m in Sources */,
+				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
+				F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */,
 				3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */,
 				7006621D18DA817900A0F05C /* ProfileImage.m in Sources */,
 			);

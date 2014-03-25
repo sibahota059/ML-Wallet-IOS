@@ -17,9 +17,9 @@
     UITabBar *tabBar = tabController.tabBar;
     UITabBarItem *item1, *item2;
     
-    UIImage *sendmoneyDefault = [[UIImage imageNamed:@"sendmoney_default.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *sendmoneyDefault = [[UIImage imageNamed:@"send_default.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    UIImage *sendmoneySelected = [[UIImage imageNamed:@"sendmoney_selected.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *sendmoneySelected = [[UIImage imageNamed:@"send_selected.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UIImage *ratesDefault = [[UIImage imageNamed:@"rates_default.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
@@ -39,11 +39,7 @@
 - (void)navigationAppearance{
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navibar_bg.png"] forBarMetrics:UIBarMetricsDefault];
-    
-    //UIImage *backButtonImage = [UIImage imageNamed:@"back"];
-    //[[UINavigationBar appearance] setBackIndicatorImage:backButtonImage];
-    //[[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:backButtonImage];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header_bg2.png"] forBarMetrics:UIBarMetricsDefault];
   
 }
 

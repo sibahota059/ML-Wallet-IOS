@@ -32,6 +32,10 @@
 }
 
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 #pragma Start #Navigation Items
 - (void)navigationView
 {

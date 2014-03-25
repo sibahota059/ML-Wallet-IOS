@@ -11,6 +11,7 @@
 #import "MLSendMoneyViewController.h"
 #import "MLRatesTableViewController.h"
 #import "MLMenuViewController.h"
+#import "MenuViewController.h"
 
 @interface MLTermsConditionViewController (){
     MLUI *getUI;
@@ -36,7 +37,8 @@
     // Do any additional setup after loading the view from its nib.
     menu = [MLMenuViewController new];
     getUI = [MLUI new];
-    self.navigationItem.titleView = [getUI navTitle:@"Terms & Conditions"];
+    //self.navigationItem.titleView = [getUI navTitle:@"Terms & Conditions"];
+    self.title = @"Terms & Conditions";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
     _tv_termsCondition.text = [getUI termsConditions];
@@ -58,11 +60,15 @@
 
 - (IBAction)btnDecline:(id)sender {
 
-    MLMenuViewController *smv = (MLMenuViewController *)[self.navigationController.viewControllers objectAtIndex:0];
+    MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
     
     [self.navigationController popToViewController:smv.tabBarController animated:YES];
     
     
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 - (IBAction)btn_back:(id)sender {
@@ -77,13 +83,14 @@
     _btnDecline.enabled = NO;
     _btnAgree.enabled = NO;
     [getUI shadowView:_view_successOption];
-    self.navigationItem.titleView = [getUI navTitle:@"Done"];
+    //self.navigationItem.titleView = [getUI navTitle:@"Done"];
+    self.title = @"Done";
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.leftBarButtonItem = nil;
 }
 - (IBAction)btnClose:(id)sender {
 
-    MLMenuViewController *smv = (MLMenuViewController *)[self.navigationController.viewControllers objectAtIndex:0];
+    MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
 
     [self.navigationController popToViewController:smv.tabBarController animated:YES];
 }

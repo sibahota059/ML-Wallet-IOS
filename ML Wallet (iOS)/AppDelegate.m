@@ -27,13 +27,13 @@
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = UIColorFromR(0x323232);
     shadow.shadowOffset = CGSizeMake(0, 1);
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:UIColorFromR(0xe5e5e5), NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Helvetica-Bold" size:16.0], NSFontAttributeName, nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Helvetica-Bold" size:22.0], NSFontAttributeName, nil];
     self.navigationController.navigationBar.titleTextAttributes = dic;
     
     
     //Background and Buttons
-    [[UINavigationBar appearance] setTintColor:UIColorFromR(0xFFFFFF)];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header_navi.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTintColor:UIColorFromR(0xFFFFFF)]; //header_navi.png
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header_bg2.png"] forBarMetrics:UIBarMetricsDefault];
     
     self.window.rootViewController =self.navigationController;
     [self.window makeKeyAndVisible];

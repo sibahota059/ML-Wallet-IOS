@@ -17,6 +17,7 @@
     NSArray *checkdot;
     UIImage *right, *wrong;
     MLUI *getUI;
+    UIBarButtonItem *next, *home;
 }
 
 @end
@@ -36,19 +37,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self navigator];
-    
     // Do any additional setup after loading the view from its nib.
     getUI = [MLUI new];
-    self.tabBarController.navigationItem.titleView = [getUI navTitle:@"Send Money"];
+    
+
+    self.tabBarController.navigationItem.title = @"Send Money";
+    //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"Send Money"];
     
     wrong = [UIImage imageNamed:@"wrong.png"];
     right = [UIImage imageNamed:@"right.png"];
     
     //create a bar button
-    UIBarButtonItem *next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
-    UIBarButtonItem *home = [getUI navBarButton:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
+    next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
+    home = [getUI navBarButton:self navLink:@selector(btn_back:) imageNamed:@"ic_home.png"];
     
     [self.tabBarController.navigationItem setRightBarButtonItem:next];
     [self.tabBarController.navigationItem setLeftBarButtonItem:home];
@@ -71,23 +72,12 @@
     
     [self swipe];
     [self keyboardNotification];
-
     
-    //Set Background
-    if ([UIScreen mainScreen].bounds.size.height >= 568) //4 inch
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
-    }
-    else //4 inc below
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
-    }
+
 }
 
-#pragma Start #Navigator
-- (void)navigator
-{
-   self.navigationController.navigationBarHidden = NO;
+- (BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 - (void)keyboardNotification{
@@ -144,6 +134,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self registerForKeyboardNotifications];
+    self.tabBarController.navigationItem.title = @"Send Money";
+    self.tabBarController.navigationItem.title = @"Send Money";
+    [self.tabBarController.navigationItem setRightBarButtonItem:next];
+    [self.tabBarController.navigationItem setLeftBarButtonItem:home];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -159,7 +153,7 @@
     CGRect visibleRect = self.view.frame;
     visibleRect.size.height -= keyboardSize.height;
     
-    if(!CGRectContainsPoint(visibleRect, viewOrigin)){
+    if(CGRectContainsPoint(visibleRect, viewOrigin)){
         CGPoint scrollPoint = CGPointMake(0.0, viewOrigin.y - visibleRect.size.height + viewHeight-40);
         [self.scroll_main setContentOffset:scrollPoint animated:YES];
     }
@@ -176,6 +170,7 @@
 }
 
 - (IBAction)btn_back:(id)sender {
+    self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

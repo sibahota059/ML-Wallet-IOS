@@ -41,6 +41,7 @@
 - (IBAction)btnLogout:(id)sender;
 - (IBAction)btnOthers:(id)sender;
 - (IBAction)btnReload:(id)sender;
+- (IBAction)btnHistory:(id)sender;
 
 
 @end

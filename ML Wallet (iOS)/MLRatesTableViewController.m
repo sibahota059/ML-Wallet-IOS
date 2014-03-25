@@ -13,6 +13,7 @@
 @interface MLRatesTableViewController (){
 
     NSArray *amount, *rates;
+    MLUI *getUI;
 
 }
 @end
@@ -33,8 +34,14 @@
 {
     [super viewDidLoad];
     
-    MLUI *getUI = [MLUI new];
-    self.navigationItem.titleView = [getUI navTitle:@"MLKP Rates"];
+    getUI = [MLUI new];
+
+    self.tabBarController.navigationItem.title = @"MLKP Rates";
+    //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"MLKP Rates"];
+    self.tabBarController.navigationItem.hidesBackButton = YES;
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+
 
     amount = [NSArray arrayWithObjects:@"0.01 - 100.00", @"100.01 - 200.00", @"200.01 - 300.00", @"300.01 - 400.00", @"400.01 - 500.00", @"500.01 - 600.00", @"600.01 - 800.00", @"800.01 - 900.00", @"900.01 - 1,000.00", @"1,000.01 - 1,500.00", @"1,500.01 - 2,000.00", @"2,000.01 - 2,500.00", @"2,500.01 - 3,000.00", @"3,000.01 - 4,000.00", @"4,000.01 - 9,500.00", @"9,500.01 - 14,000.00", @"14,000.01 - 30,000.00", @"30,000.01 - 40,000.00", @"40,000.01 - 50,000.00", nil];
     rates = [NSArray arrayWithObjects:@"7.00", @"13.00", @"18.00", @"25.00", @"30.00", @"35.00", @"40.00", @"45.00", @"50.00", @"80.00", @"100.00", @"130.00", @"150.00", @"180.00", @"220.00", @"240.00", @"300.00", @"350.00", @"400.00", nil];
@@ -58,6 +65,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Hide Status Bar
+- (BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 #pragma mark - Table view data source
@@ -92,5 +104,14 @@
     return cell;
 }
 
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tabBarController.navigationItem.title = @"MLKP Rates";
+    //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"MLKP Rates"];
+    self.tabBarController.navigationItem.hidesBackButton = YES;
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+}
 
 @end

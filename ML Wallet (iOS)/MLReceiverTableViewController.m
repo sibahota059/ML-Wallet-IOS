@@ -33,8 +33,9 @@
 {
     [super viewDidLoad];
     
-    MLUI *getUI = [MLUI new];
-    self.navigationItem.titleView = [getUI navTitle:@"Choose Receiver"];
+    //MLUI *getUI = [MLUI new];
+    //self.navigationItem.titleView = [getUI navTitle:@"Choose Receiver"];
+    self.title = @"Choose Receiver";
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
     receiverImage = [NSArray arrayWithObjects:@"bradpit.jpg", @"profile.jpg", @"bradpit.jpg", @"profile.jpg", nil];
@@ -95,7 +96,9 @@
     return 78;
 }
 
-
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 #pragma mark - Table view delegate
 

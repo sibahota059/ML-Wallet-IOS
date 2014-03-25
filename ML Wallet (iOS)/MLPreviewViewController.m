@@ -41,7 +41,8 @@
     self.view_content.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview_bg"]];
     //self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     getUI = [MLUI new];
-    self.navigationItem.titleView = [getUI navTitle:@"Preview"];
+    //self.navigationItem.titleView = [getUI navTitle:@"Preview"];
+    self.title = @"Preview";
     
     //next = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"next.png"] style:UIBarButtonItemStylePlain target:self action:@selector(btn_pin)];
     
@@ -127,7 +128,8 @@
     }];
     
     [_view_content setAlpha:1];
-    self.navigationItem.titleView = [getUI navTitle:@"Preview"];
+    //self.navigationItem.titleView = [getUI navTitle:@"Preview"];
+    self.title = @"Preview";
     [self.navigationItem setRightBarButtonItem:nil];
 }
 
@@ -146,7 +148,8 @@
     }];
     
     [_view_content setAlpha:0.1f];
-    self.navigationItem.titleView = [getUI navTitle:@"Enter Your Pin"];
+    self.title = @"Enter Your Pin";
+    //self.navigationItem.titleView = [getUI navTitle:@"Enter Your Pin"];
     next = [getUI navBarButtonPreview:self navLink:@selector(btn_pin) imageNamed:@"next.png"];
     [self.navigationItem setRightBarButtonItem:next];
     _view_pinInput.hidden = NO;
@@ -223,6 +226,9 @@
     [self setText:[self nextField]];
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 - (IBAction)btnClear:(id)sender {
     [self reset];

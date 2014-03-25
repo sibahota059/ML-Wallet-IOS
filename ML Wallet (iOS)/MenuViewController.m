@@ -17,6 +17,7 @@
 #import "MLRatesTableViewController.h"
 #import "MLUI.h"
 #import "AccountMain.h"
+#import "MLHistoryViewController.h"
 
 
 #define  VIEW_HIDDEN -320
@@ -67,6 +68,8 @@
     self.lblMain.textAlignment = NSTextAlignmentCenter;
     self.lblUserName.textAlignment = NSTextAlignmentCenter;
     self.layerPosition = self.topLayer.frame.origin.x;
+    
+    getUI = [MLUI new];
     
 }
 
@@ -231,6 +234,8 @@
     [self.navigationController pushViewController:reloadController animated:YES];
 }
 
+
+
 - (void) onClickOthers
 {
     [UIView AnimationPopUp:self.imgPopup];
@@ -275,19 +280,24 @@
     //object to customize tabBar
     [getUI customTabBar:self.tabBarController];
     
-    
-    
-    self.kycLayer.hidden = YES;
-//    ReceiverMenuListViewController *nxtpage = [[ReceiverMenuListViewController alloc] initWithNibName:@"ReceiverMenuListViewController" bundle:[NSBundle mainBundle]];
-//    [self.navigationController pushViewController:nxtpage animated:YES];
-    
     [self.navigationController pushViewController:self.tabBarController animated:YES];
-//    [[self navigationController] pushViewController:self.tabBarController animated:YES];
+    self.tabBarController.navigationController.navigationBarHidden = NO;
     
 }
 
+- (IBAction)btnHistory:(id)sender {
+    MLHistoryViewController *htr = [[MLHistoryViewController alloc] initWithNibName:@"MLHistoryViewController" bundle:nil];
+    
+    [getUI navigationAppearance];
+    
+    [self.navigationController pushViewController:htr animated:YES];
+    self.navigationController.navigationBarHidden = NO;
+}
+
+
 - (IBAction)btn_Myprofile:(id)sender {
     AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
+
     
     [self.navigationController pushViewController:accountMain animated:YES];
     
