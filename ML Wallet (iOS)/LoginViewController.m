@@ -61,7 +61,7 @@
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(320, 600)];
     
-    
+    //test
 }
 - (IBAction)btnInfo:(id)sender {
     
