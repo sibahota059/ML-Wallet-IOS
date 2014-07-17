@@ -33,7 +33,7 @@
     
     //Background and Buttons
     [[UINavigationBar appearance] setTintColor:UIColorFromR(0xFFFFFF)]; //header_navi.png
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header_bg2.png"] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header_bg2.png"] forBarMetrics:UIBarMetricsDefault];
     
     self.window.rootViewController =self.navigationController;
     [self.window makeKeyAndVisible];
