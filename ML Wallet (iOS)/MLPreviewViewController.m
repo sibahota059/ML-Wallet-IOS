@@ -38,14 +38,14 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.view_keyboard.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.preview_main.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
-    self.view_content.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview_bg"]];
+    
     //self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     getUI = [MLUI new];
     //self.navigationItem.titleView = [getUI navTitle:@"Preview"];
     self.title = @"Preview";
     
     //next = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"next.png"] style:UIBarButtonItemStylePlain target:self action:@selector(btn_pin)];
-    
+    NSLog(@"%@",[self str]);
     
     
     UIBarButtonItem *home = [getUI navBarButtonPreview:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
@@ -56,10 +56,24 @@
     
     [self shadowView];
     
-    _image_mine.layer.cornerRadius = 20;
-    _image_mine.clipsToBounds = YES;
-    _image_receiver.layer.cornerRadius = 20;
-    _image_receiver.clipsToBounds = YES;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        _image_mine.layer.cornerRadius = 20;
+        _image_mine.clipsToBounds = YES;
+        _image_receiver.layer.cornerRadius = 20;
+        _image_receiver.clipsToBounds = YES;
+        self.view_content.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview_bg"]];
+    }
+    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        _image_mine.layer.cornerRadius = 30;
+        _image_mine.clipsToBounds = YES;
+        _image_receiver.layer.cornerRadius = 30;
+        _image_receiver.clipsToBounds = YES;
+        self.view_content.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview_bg_ipad"]];
+    }
+    
+    
     _view_keyboard.hidden = YES;
     
     [self setText:_tf_pin1];
@@ -86,7 +100,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)btn_pin{
+- (void)btnPin{
     
     MLTermsConditionViewController *tc = [[MLTermsConditionViewController alloc]initWithNibName:@"MLTermsConditionViewController" bundle:nil];
     
@@ -102,7 +116,7 @@
 - (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender {
     
     if(sender.direction == UISwipeGestureRecognizerDirectionLeft){
-        [self btn_pin];
+        [self btnPin];
     }
     if(sender.direction == UISwipeGestureRecognizerDirectionRight){
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -116,12 +130,15 @@
     self.view_pinInput.alpha = 1.0;
     self.view_keyboard.alpha = 1.0;
     self.view_content.alpha = 0.0;
+    self.btn_pin.hidden = NO;
+    self.btn_pin.alpha = 0.0;
     [self reset];
     
     [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
         _view_keyboard.hidden = NO;
         self.view_pinInput.alpha = 0.0;
         self.view_keyboard.alpha = 0.0;
+        self.btn_pin.alpha = 1.0;
         self.view_content.alpha = 1;
     }completion:^(BOOL finished) {
         
@@ -138,6 +155,7 @@
     [self.preview_scroll setContentSize:CGSizeMake(320, 400)];
     self.view_pinInput.alpha = 0.0;
     self.view_keyboard.alpha = 0.0;
+    self.btn_pin.hidden = YES;
     
     [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
         _view_keyboard.hidden = NO;
@@ -150,7 +168,7 @@
     [_view_content setAlpha:0.1f];
     self.title = @"Enter Your Pin";
     //self.navigationItem.titleView = [getUI navTitle:@"Enter Your Pin"];
-    next = [getUI navBarButtonPreview:self navLink:@selector(btn_pin) imageNamed:@"next.png"];
+    next = [getUI navBarButtonPreview:self navLink:@selector(btnPin) imageNamed:@"next.png"];
     [self.navigationItem setRightBarButtonItem:next];
     _view_pinInput.hidden = NO;
 }

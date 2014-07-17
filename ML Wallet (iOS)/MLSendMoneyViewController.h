@@ -8,10 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "MLReceiverTableViewController.h"
+#import "SendoutMobile.h"
+#import "KpRates.h"
+#import "GetReceiver.h"
 
-@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate>
+@class MLSendMoneyViewController;
+@protocol GetKptnDelegate <NSObject>
+
+@required
+- (NSString *)getKptn:(NSString *)kptn;
+
+@end
+@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, SendoutMobileDelegate, KpRatesDelegate, GetReceiverDelegate>
+
+@property (weak, nonatomic) id<GetKptnDelegate>delegate;
 
 //outlet
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll_main;
 @property (weak, nonatomic) IBOutlet UIView *view_main;
 @property (weak, nonatomic) IBOutlet UIView *view_sender;

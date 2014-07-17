@@ -12,8 +12,11 @@
 
 
 @interface MLReceiverTableViewController (){
-    NSArray *receiverImage, *receiverFname, *receiverMname, *receiverLname, *receiverAddress, *receiverRelation;
+    //NSArray *receiverImage, *receiverFname, *receiverMname, *receiverLname, *receiverAddress, *receiverRelation;
     int counter;
+    GetReceiver *getReceiver;
+    NSMutableArray *receiverImage, *receiverFname, *receiverMname, *receiverLname, *receiverAddress, *receiverRelation, *receiverNo, *getValueReceiver;
+    UIImage *recImage;
 }
 
 @end
@@ -33,23 +36,60 @@
 {
     [super viewDidLoad];
     
+    getReceiver = [GetReceiver new];
+    getReceiver.delegate = self;
+    
     //MLUI *getUI = [MLUI new];
     //self.navigationItem.titleView = [getUI navTitle:@"Choose Receiver"];
     self.title = @"Choose Receiver";
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
-    receiverImage = [NSArray arrayWithObjects:@"bradpit.jpg", @"profile.jpg", @"bradpit.jpg", @"profile.jpg", nil];
-    receiverFname = [NSArray arrayWithObjects:@"Harry", @"Jae Marv", @"Christopher", @"Ronald Mark", nil];
-    receiverMname = [NSArray arrayWithObjects:@"Lingad", @"Parba asdfasdf", @"Mejares asdfsdf", @"Pardo", nil];
-    receiverLname = [NSArray arrayWithObjects:@"Lingad", @"Parba", @"Pardo", @"Mejares", nil];
-    receiverAddress = [NSArray arrayWithObjects:@"Tejero, Cebu City", @"1097 MJ Cuenco Ave. Brgy. Barili, Cebu City", @"1097 MJ Cuenco Ave. Brgy. Tejero, Danao City", @"1097 MJ Cuenco Ave. Brgy. Talamban, Cebu City", nil];
-    receiverRelation = [NSArray arrayWithObjects:@"Friends", @"Friends", @"Friends", @"Friends", nil];
+//    receiverImage = [NSArray arrayWithObjects:@"bradpit.jpg", @"profile.jpg", @"bradpit.jpg", @"profile.jpg", nil];
+//    receiverFname = [NSArray arrayWithObjects:@"Harry", @"Jae Marv", @"Christopher", @"Ronald Mark", nil];
+//    receiverMname = [NSArray arrayWithObjects:@"Lingad", @"Parba asdfasdf", @"Mejares asdfsdf", @"Pardo", nil];
+//    receiverLname = [NSArray arrayWithObjects:@"Lingad", @"Parba", @"Pardo", @"Mejares", nil];
+//    receiverAddress = [NSArray arrayWithObjects:@"Tejero, Cebu City", @"1097 MJ Cuenco Ave. Brgy. Barili, Cebu City", @"1097 MJ Cuenco Ave. Brgy. Tejero, Danao City", @"1097 MJ Cuenco Ave. Brgy. Talamban, Cebu City", nil];
+//    receiverRelation = [NSArray arrayWithObjects:@"Friends", @"Friends", @"Friends", @"Friends", nil];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [getReceiver getReceiverWalletNo:@"14050000000135"];
+}
+
+- (void)didFinishLoadingReceiver{
+    //NSLog(@"Receiver: %@", getReceiver.getReceiver);
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
+    getValueReceiver = [receiver valueForKey:@"<receiverList>k__BackingField"];
+    
+    receiverImage = [NSMutableArray new];
+    receiverFname = [NSMutableArray new];
+    receiverMname = [NSMutableArray new];
+    receiverLname = [NSMutableArray new];
+    receiverAddress = [NSMutableArray new];
+    receiverRelation = [NSMutableArray new];
+    receiverNo = [NSMutableArray new];
+    
+    for (NSDictionary *items in getValueReceiver) {
+        
+        NSString *rImage  = [items valueForKey:@"photo"];
+        NSString *fName  = [items valueForKey:@"fname"];
+        NSString *mName  = [items valueForKey:@"mname"];
+        NSString *lName  = [items valueForKey:@"lname"];
+        NSString *address  = [items valueForKey:@"address"];
+        NSString *rNumber  = [items valueForKey:@"receiverNo"];
+        NSString *relation  = [items valueForKey:@"relation"];
+        
+        
+        [receiverImage addObject:rImage];
+        [receiverFname addObject:fName];
+        [receiverMname addObject:mName];
+        [receiverLname addObject:lName];
+        [receiverAddress addObject:address];
+        [receiverNo addObject:rNumber];
+        [receiverRelation addObject:relation];
+        
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,11 +124,26 @@
         cell = [nib objectAtIndex:0];
     }
     
-    NSString *receiverName = [NSString stringWithFormat:@"%@, %@ %@", [receiverFname objectAtIndex:indexPath.row], [receiverLname objectAtIndex:indexPath.row], [receiverMname objectAtIndex:indexPath.row]];
-    cell.receiverImage.image = [UIImage imageNamed:[receiverImage objectAtIndex:indexPath.row]];
+    NSString *rImage = [receiverImage objectAtIndex:[indexPath row]];
+    NSString *rFname = [receiverFname objectAtIndex:[indexPath row]];
+    NSString *rMname = [receiverMname objectAtIndex:[indexPath row]];
+    NSString *rLname = [receiverLname objectAtIndex:[indexPath row]];
+    NSString *rAddress = [receiverAddress objectAtIndex:[indexPath row]];
+    //NSString *rNumber = [receiverNo objectAtIndex:[indexPath row]];
+    NSString *rRelation = [receiverRelation objectAtIndex:[indexPath row]];
+    
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:rImage options: NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSString *receiverName = [NSString stringWithFormat:@"%@, %@ %@", rLname, rFname, rMname];
+
+    if ([UIImage imageWithData:data] == nil) {
+        cell.receiverImage.image = [UIImage imageNamed:@"noImage.png"];
+    }else{
+        cell.receiverImage.image = [UIImage imageWithData:data];
+    }
+    
     cell.receiverName.text= receiverName;
-    cell.receiverAddress.text = [receiverAddress objectAtIndex:indexPath.row];
-    cell.receiverRelation.text = [receiverRelation objectAtIndex:indexPath.row];
+    cell.receiverAddress.text = rAddress;
+    cell.receiverRelation.text = rRelation;
     return cell;
 }
 
@@ -107,7 +162,7 @@
 {
   
     counter = (int)[receiverFname count];
-    [self.delegate didSelectReceiver:self receiverFname:[receiverFname objectAtIndex:indexPath.row] receiverMname:[receiverMname objectAtIndex:indexPath.row] receiverLname:[receiverLname objectAtIndex:indexPath.row] receiverImage:[UIImage imageNamed:[receiverImage objectAtIndex:indexPath.row]] receiverAddress:[receiverAddress objectAtIndex:indexPath.row] receiverRelation:[receiverRelation objectAtIndex:indexPath.row] rcount:counter];
+    [self.delegate didSelectReceiver:self receiverFname:[receiverFname objectAtIndex:indexPath.row] receiverMname:[receiverMname objectAtIndex:indexPath.row] receiverLname:[receiverLname objectAtIndex:indexPath.row] receiverImage:[receiverImage objectAtIndex:indexPath.row] receiverAddress:[receiverAddress objectAtIndex:indexPath.row] receiverRelation:[receiverRelation objectAtIndex:indexPath.row] rcount:counter];
 }
 
 

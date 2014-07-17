@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *preview_scroll;
 @property (weak, nonatomic) IBOutlet UIView *view_pinInput;
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_pin;
 @property (weak, nonatomic) IBOutlet UITextField *tf_pin1;
 @property (weak, nonatomic) IBOutlet UITextField *tf_pin2;
 @property (weak, nonatomic) IBOutlet UITextField *tf_pin3;
@@ -37,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnNine;
 @property (weak, nonatomic) IBOutlet UIButton *btnZero;
 @property (weak, nonatomic) IBOutlet UIButton *btnClear;
+@property (strong, nonatomic)NSString *str;
 
 - (IBAction)btnOne:(id)sender;
 - (IBAction)btnTwo:(id)sender;
