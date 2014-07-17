@@ -43,7 +43,6 @@
 		3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FC061196CC2970035446F /* MBProgressHUD.m */; };
 		3B9FC06D196D40750035446F /* LoginViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */; };
 		3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06E196D446E0035446F /* LoginViewController~ipad.xib */; };
-		3B9FC100196D72A30035446F /* ml_logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC0FF196D72A30035446F /* ml_logo2.png */; };
 		3B9FC104196E4D3E0035446F /* MenuViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC103196E4D3E0035446F /* MenuViewController~ipad.xib */; };
 		3BA7CC9B18B1D6B900B9FC4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA7CC9A18B1D6B900B9FC4B /* Foundation.framework */; };
 		3BA7CC9D18B1D6B900B9FC4B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA7CC9C18B1D6B900B9FC4B /* CoreGraphics.framework */; };
@@ -59,11 +58,6 @@
 		3BA7CCE318B1E27F00B9FC4B /* new_kprate.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCE218B1E27F00B9FC4B /* new_kprate.png */; };
 		3BA7CCE518B1E28400B9FC4B /* new_locator.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCE418B1E28400B9FC4B /* new_locator.png */; };
 		3BA7CCE718B1E29100B9FC4B /* new_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCE618B1E29100B9FC4B /* new_info.png */; };
-		3BA7CCEF18B1E9BA00B9FC4B /* ic_launcher1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCEC18B1E9BA00B9FC4B /* ic_launcher1.png */; };
-		3BA7CCF018B1E9BA00B9FC4B /* ic_launcher2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCED18B1E9BA00B9FC4B /* ic_launcher2.png */; };
-		3BA7CCF118B1E9BA00B9FC4B /* ic_launcher3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCEE18B1E9BA00B9FC4B /* ic_launcher3.png */; };
-		3BA7CCF318B1EB0500B9FC4B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCF218B1EB0500B9FC4B /* background.png */; };
-		3BA7CCF718B1EBDC00B9FC4B /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCF618B1EBDC00B9FC4B /* background2.png */; };
 		3BA7CCF918B2124400B9FC4B /* banner1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCF818B2124400B9FC4B /* banner1.png */; };
 		3BA7CCFB18B213BE00B9FC4B /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA7CCFA18B213BE00B9FC4B /* line.png */; };
 		3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA7CD0318B22C2000B9FC4B /* MenuViewController.m */; };
@@ -183,7 +177,6 @@
 		F081A03619776CEA004568EF /* GetReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = F081A03519776CEA004568EF /* GetReceiver.m */; };
 		F081A03819776D57004568EF /* content_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F081A03719776D57004568EF /* content_bg_ipad.png */; };
 		F081A03A19776D64004568EF /* preview_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F081A03919776D64004568EF /* preview_bg_ipad.png */; };
-		F081A03C19776D72004568EF /* ml_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F081A03B19776D72004568EF /* ml_logo.png */; };
 		F081A03E19776DFE004568EF /* MLSendMoneyViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F081A03D19776DFE004568EF /* MLSendMoneyViewController~iphone.xib */; };
 		F081A04B19776E55004568EF /* MLSendMoneyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F081A03F19776E55004568EF /* MLSendMoneyViewController~ipad.xib */; };
 		F081A04C19776E55004568EF /* MLRatesTableViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F081A04019776E55004568EF /* MLRatesTableViewController~iphone.xib */; };
@@ -251,7 +244,6 @@
 		3B9FC061196CC2970035446F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~iphone.xib"; sourceTree = "<group>"; };
 		3B9FC06E196D446E0035446F /* LoginViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~ipad.xib"; sourceTree = "<group>"; };
-		3B9FC0FF196D72A30035446F /* ml_logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo2.png; sourceTree = "<group>"; };
 		3B9FC103196E4D3E0035446F /* MenuViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuViewController~ipad.xib"; sourceTree = "<group>"; };
 		3BA7CC9718B1D6B900B9FC4B /* ML Wallet (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ML Wallet (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA7CC9A18B1D6B900B9FC4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -276,11 +268,6 @@
 		3BA7CCE218B1E27F00B9FC4B /* new_kprate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_kprate.png; sourceTree = "<group>"; };
 		3BA7CCE418B1E28400B9FC4B /* new_locator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_locator.png; sourceTree = "<group>"; };
 		3BA7CCE618B1E29100B9FC4B /* new_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_info.png; sourceTree = "<group>"; };
-		3BA7CCEC18B1E9BA00B9FC4B /* ic_launcher1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher1.png; sourceTree = "<group>"; };
-		3BA7CCED18B1E9BA00B9FC4B /* ic_launcher2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher2.png; sourceTree = "<group>"; };
-		3BA7CCEE18B1E9BA00B9FC4B /* ic_launcher3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher3.png; sourceTree = "<group>"; };
-		3BA7CCF218B1EB0500B9FC4B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		3BA7CCF618B1EBDC00B9FC4B /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 		3BA7CCF818B2124400B9FC4B /* banner1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner1.png; sourceTree = "<group>"; };
 		3BA7CCFA18B213BE00B9FC4B /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
 		3BA7CD0218B22C2000B9FC4B /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -294,6 +281,15 @@
 		3BA8A22D197516580052FA2F /* UIImage+DecodeStringToImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DecodeStringToImage.m"; sourceTree = "<group>"; };
 		3BA8A22F19756F810052FA2F /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		3BA8A231197570DF0052FA2F /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		3BB09D3719780FEC003CD45E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = "../../icon set/icon.png"; sourceTree = "<group>"; };
+		3BB09D3819781022003CD45E /* icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2.png; path = "../../icon set/icon2.png"; sourceTree = "<group>"; };
+		3BB09D391978107B003CD45E /* icon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon3.png; path = "../../icon set/icon3.png"; sourceTree = "<group>"; };
+		3BB09D3A197810B1003CD45E /* icon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon4.png; path = "../../icon set/icon4.png"; sourceTree = "<group>"; };
+		3BB09D3B197810EA003CD45E /* icon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon5.png; path = "../../icon set/icon5.png"; sourceTree = "<group>"; };
+		3BB09D3C19781125003CD45E /* icon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon6.png; path = "../../icon set/icon6.png"; sourceTree = "<group>"; };
+		3BB09D3D19781146003CD45E /* icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon7.png; path = "../../icon set/icon7.png"; sourceTree = "<group>"; };
+		3BB09D3E1978116E003CD45E /* icon8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon8.png; path = "../../icon set/icon8.png"; sourceTree = "<group>"; };
+		3BB09D3F19781186003CD45E /* icon9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon9.png; path = "../../icon set/icon9.png"; sourceTree = "<group>"; };
 		3BB42DE418D6B2CD0011792E /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3BB42DE718D6B6C60011792E /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		3BB42DE818D6B6C60011792E /* bradpit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bradpit.jpg; sourceTree = "<group>"; };
@@ -441,7 +437,6 @@
 		F081A03519776CEA004568EF /* GetReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetReceiver.m; sourceTree = "<group>"; };
 		F081A03719776D57004568EF /* content_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = content_bg_ipad.png; sourceTree = "<group>"; };
 		F081A03919776D64004568EF /* preview_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_bg_ipad.png; sourceTree = "<group>"; };
-		F081A03B19776D72004568EF /* ml_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo.png; sourceTree = "<group>"; };
 		F081A03D19776DFE004568EF /* MLSendMoneyViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLSendMoneyViewController~iphone.xib"; sourceTree = "<group>"; };
 		F081A03F19776E55004568EF /* MLSendMoneyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLSendMoneyViewController~ipad.xib"; sourceTree = "<group>"; };
 		F081A04019776E55004568EF /* MLRatesTableViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesTableViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -706,11 +701,6 @@
 				3BA7CD0D18B2365800B9FC4B /* kyc.9.png */,
 				3BA7CCFA18B213BE00B9FC4B /* line.png */,
 				3BA7CCF818B2124400B9FC4B /* banner1.png */,
-				3BA7CCF618B1EBDC00B9FC4B /* background2.png */,
-				3BA7CCF218B1EB0500B9FC4B /* background.png */,
-				3BA7CCEC18B1E9BA00B9FC4B /* ic_launcher1.png */,
-				3BA7CCED18B1E9BA00B9FC4B /* ic_launcher2.png */,
-				3BA7CCEE18B1E9BA00B9FC4B /* ic_launcher3.png */,
 				3BA7CCE618B1E29100B9FC4B /* new_info.png */,
 				3BA7CCE418B1E28400B9FC4B /* new_locator.png */,
 				3BA7CCE218B1E27F00B9FC4B /* new_kprate.png */,
@@ -833,12 +823,19 @@
 		3BB42DE618D6B6C60011792E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3BB09D3F19781186003CD45E /* icon9.png */,
+				3BB09D3E1978116E003CD45E /* icon8.png */,
+				3BB09D3D19781146003CD45E /* icon7.png */,
+				3BB09D3C19781125003CD45E /* icon6.png */,
+				3BB09D3B197810EA003CD45E /* icon5.png */,
+				3BB09D3A197810B1003CD45E /* icon4.png */,
+				3BB09D391978107B003CD45E /* icon3.png */,
+				3BB09D3819781022003CD45E /* icon2.png */,
+				3BB09D3719780FEC003CD45E /* icon.png */,
 				F081A05F19777613004568EF /* payment_bg_ipad.png */,
-				F081A03B19776D72004568EF /* ml_logo.png */,
 				F05C5F3E18E12C62002F2EE1 /* header_bg2.png */,
 				F081A03919776D64004568EF /* preview_bg_ipad.png */,
 				F081A03719776D57004568EF /* content_bg_ipad.png */,
-				3B9FC0FF196D72A30035446F /* ml_logo2.png */,
 				7006622218DA823D00A0F05C /* black_check_credentials.png */,
 				7006622318DA823D00A0F05C /* black_credentials.png */,
 				7006621E18DA81DD00A0F05C /* radio_button_selected.png */,
@@ -1127,7 +1124,7 @@
 		3BA7CC8F18B1D6B900B9FC4B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "ML Lhuillier";
 			};
 			buildConfigurationList = 3BA7CC9218B1D6B900B9FC4B /* Build configuration list for PBXProject "ML Wallet" */;
@@ -1163,7 +1160,6 @@
 				3BC3828118C0330A00270567 /* mlcard.png in Resources */,
 				3BA7CCF918B2124400B9FC4B /* banner1.png in Resources */,
 				3BB42E1218D6B6C60011792E /* wrong.png in Resources */,
-				F081A03C19776D72004568EF /* ml_logo.png in Resources */,
 				3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */,
 				3BB924EE196FEBE7007E76A5 /* ReceiverMenuListViewController~ipad.xib in Resources */,
 				3B17585718B35CDB005A7805 /* peso_signr.png in Resources */,
@@ -1185,7 +1181,6 @@
 				3B19519E18B732030061969F /* textbox.png in Resources */,
 				7006622418DA823D00A0F05C /* black_check_credentials.png in Resources */,
 				F081A03E19776DFE004568EF /* MLSendMoneyViewController~iphone.xib in Resources */,
-				3BA7CCEF18B1E9BA00B9FC4B /* ic_launcher1.png in Resources */,
 				700661E818DA766800A0F05C /* design_top_left.png in Resources */,
 				3BC3828318C0359B00270567 /* ban.png in Resources */,
 				3BB42E0018D6B6C60011792E /* content_bg.png in Resources */,
@@ -1205,7 +1200,6 @@
 				3BB42E0318D6B6C60011792E /* next.png in Resources */,
 				3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */,
 				F081A03819776D57004568EF /* content_bg_ipad.png in Resources */,
-				3BA7CCF018B1E9BA00B9FC4B /* ic_launcher2.png in Resources */,
 				7006622118DA81DD00A0F05C /* radio_button.png in Resources */,
 				707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */,
 				F081A05D19776F89004568EF /* MLHistoryViewController~ipad.xib in Resources */,
@@ -1226,11 +1220,9 @@
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
 				F05C5F4418E12C70002F2EE1 /* ic_home.png in Resources */,
 				3BA7CCDD18B1DF6000B9FC4B /* new_key.png in Resources */,
-				3BA7CCF118B1E9BA00B9FC4B /* ic_launcher3.png in Resources */,
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController~iphone.xib in Resources */,
 				F081A05619776E55004568EF /* MLRatesTableViewController~ipad.xib in Resources */,
 				F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */,
-				3B9FC100196D72A30035446F /* ml_logo2.png in Resources */,
 				3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */,
 				3BB42E0B18D6B6C60011792E /* rates_selected.png in Resources */,
 				3B71BBB518BD8B5C0094543C /* edit_image.png in Resources */,
@@ -1241,7 +1233,6 @@
 				3BB42E1018D6B6C60011792E /* tabbar_item.png in Resources */,
 				7006621318DA797C00A0F05C /* UpdateInformation.xib in Resources */,
 				3BA7CD1318B23A7000B9FC4B /* reload.9.png in Resources */,
-				3BA7CCF718B1EBDC00B9FC4B /* background2.png in Resources */,
 				F081A04E19776E55004568EF /* MLPreviewViewController~ipad.xib in Resources */,
 				7006621418DA797C00A0F05C /* AccountQuestion.xib in Resources */,
 				700661E718DA766800A0F05C /* design_buttom_right.png in Resources */,
@@ -1264,7 +1255,6 @@
 				3B17585318B34EE3005A7805 /* bg_header.png in Resources */,
 				3BA7CCE718B1E29100B9FC4B /* new_info.png in Resources */,
 				7006620918DA78EF00A0F05C /* ProfileInformation.xib in Resources */,
-				3BA7CCF318B1EB0500B9FC4B /* background.png in Resources */,
 				3B19518718B6EA630061969F /* receiver_add_person.png in Resources */,
 				3BB5268618BCB66100D0A5EA /* ReceiverAvatarViewController~iphone.xib in Resources */,
 				3B1B36C718B4ADA1006DA5BB /* icon_my_receiver_press.jpg in Resources */,
@@ -1383,7 +1373,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1422,7 +1411,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1454,7 +1442,7 @@
 		3BA7CCC418B1D6B900B9FC4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
@@ -1469,7 +1457,7 @@
 		3BA7CCC518B1D6B900B9FC4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
