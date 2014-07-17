@@ -81,7 +81,6 @@
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setContentSize:CGSizeMake(320, 600)];
     
-<<<<<<< HEAD
     
     //Set UP Location
     locationManager = [[CLLocationManager alloc] init];
@@ -90,9 +89,6 @@
     [locationManager startUpdatingLocation];
  
 //    }
-=======
-    //test
->>>>>>> FETCH_HEAD
 }
 - (IBAction)btnInfo:(id)sender {
     

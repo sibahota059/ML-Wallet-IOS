@@ -161,33 +161,17 @@
 		70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA19318D9C6E800719BF7 /* ProfileButton.m */; };
 		70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19918D9CA4900719BF7 /* edit_profile.png */; };
 		70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19B18D9CA7800719BF7 /* question_profile.png */; };
-		F00842FE19736332006BE732 /* MLHistoryViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00842FD19736332006BE732 /* MLHistoryViewController~ipad.xib */; };
-		F008430019736E3D006BE732 /* MLHistoryTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00842FF19736E3D006BE732 /* MLHistoryTableViewCell~ipad.xib */; };
-		F00843031973A142006BE732 /* SendoutMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = F00843021973A142006BE732 /* SendoutMobile.m */; };
-		F009205B1977598B0002BF73 /* MLSendMoneyViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F009205A1977598B0002BF73 /* MLSendMoneyViewController~ipad.xib */; };
-		F009BBB21947E0AC00AE5D38 /* JsonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F009BBB11947E0AC00AE5D38 /* JsonHelper.m */; };
-		F00B0F9A1970BFD800B00153 /* MLTermsConditionViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00B0F991970BFD800B00153 /* MLTermsConditionViewController~ipad.xib */; };
-		F00B0F9C1970F8EF00B00153 /* MLRatesTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00B0F9B1970F8EF00B00153 /* MLRatesTableViewCell~ipad.xib */; };
-		F00B0F9E1971207700B00153 /* MLRatesTableViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00B0F9D1971207700B00153 /* MLRatesTableViewController~ipad.xib */; };
-		F00D69E1196F996900D06497 /* content_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D69E0196F996900D06497 /* content_bg_ipad.png */; };
-		F00D69E3196FB22400D06497 /* payment_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D69E2196FB22400D06497 /* payment_bg_ipad.png */; };
-		F00D69E5196FB5C600D06497 /* ml_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D69E4196FB5C600D06497 /* ml_logo.png */; };
-		F00D69E7196FB74900D06497 /* MLPreviewViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00D69E6196FB74900D06497 /* MLPreviewViewController~ipad.xib */; };
-		F00D69E9196FF64500D06497 /* preview_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D69E8196FF64500D06497 /* preview_bg_ipad.png */; };
-		F01271F9196E72DA00F39FFD /* ml_logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = F01271F8196E72DA00F39FFD /* ml_logo2.png */; };
-		F015203819763BC300F82AAB /* KpRates.m in Sources */ = {isa = PBXBuildFile; fileRef = F015203719763BC300F82AAB /* KpRates.m */; };
-		F015203B197668E100F82AAB /* GetReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = F015203A197668E100F82AAB /* GetReceiver.m */; };
-		F05C5F0518E12B8A002F2EE1 /* MLHistoryViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController~iphone.xib */; };
-		F05C5F0618E12B8A002F2EE1 /* MLHistoryTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell~iphone.xib */; };
+		F05C5F0518E12B8A002F2EE1 /* MLHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController.xib */; };
+		F05C5F0618E12B8A002F2EE1 /* MLHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell.xib */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
 		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
-		F05C5F1518E12BE8002F2EE1 /* MLSendMoneyViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController~iphone.xib */; };
-		F05C5F1618E12BE8002F2EE1 /* MLRatesTableViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController~iphone.xib */; };
-		F05C5F1718E12BE8002F2EE1 /* MLPreviewViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController~iphone.xib */; };
+		F05C5F1518E12BE8002F2EE1 /* MLSendMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController.xib */; };
+		F05C5F1618E12BE8002F2EE1 /* MLRatesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController.xib */; };
+		F05C5F1718E12BE8002F2EE1 /* MLPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController.xib */; };
 		F05C5F1818E12BE8002F2EE1 /* MLReceiverTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1018E12BE8002F2EE1 /* MLReceiverTableViewCell.xib */; };
-		F05C5F1918E12BE8002F2EE1 /* MLRatesTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell~iphone.xib */; };
+		F05C5F1918E12BE8002F2EE1 /* MLRatesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell.xib */; };
 		F05C5F1A18E12BE8002F2EE1 /* MLReceiverTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1218E12BE8002F2EE1 /* MLReceiverTableViewController.xib */; };
-		F05C5F1B18E12BE8002F2EE1 /* MLTermsConditionViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController~iphone.xib */; };
+		F05C5F1B18E12BE8002F2EE1 /* MLTermsConditionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController.xib */; };
 		F05C5F1C18E12BE8002F2EE1 /* MLMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F1418E12BE8002F2EE1 /* MLMenuViewController.xib */; };
 		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
 		F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2018E12C0D002F2EE1 /* MLRatesTableViewController.m */; };
@@ -407,39 +391,19 @@
 		70EEA19418D9C6E800719BF7 /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileButton.h; sourceTree = "<group>"; };
 		70EEA19918D9CA4900719BF7 /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_profile.png; sourceTree = "<group>"; };
 		70EEA19B18D9CA7800719BF7 /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_profile.png; sourceTree = "<group>"; };
-		F00842FD19736332006BE732 /* MLHistoryViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLHistoryViewController~ipad.xib"; sourceTree = "<group>"; };
-		F00842FF19736E3D006BE732 /* MLHistoryTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLHistoryTableViewCell~ipad.xib"; sourceTree = "<group>"; };
-		F00843011973A142006BE732 /* SendoutMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendoutMobile.h; sourceTree = "<group>"; };
-		F00843021973A142006BE732 /* SendoutMobile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendoutMobile.m; sourceTree = "<group>"; };
-		F009205A1977598B0002BF73 /* MLSendMoneyViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLSendMoneyViewController~ipad.xib"; sourceTree = "<group>"; };
-		F009BBB01947E0AC00AE5D38 /* JsonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonHelper.h; sourceTree = "<group>"; };
-		F009BBB11947E0AC00AE5D38 /* JsonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonHelper.m; sourceTree = "<group>"; };
-		F00B0F991970BFD800B00153 /* MLTermsConditionViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLTermsConditionViewController~ipad.xib"; sourceTree = "<group>"; };
-		F00B0F9B1970F8EF00B00153 /* MLRatesTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesTableViewCell~ipad.xib"; sourceTree = "<group>"; };
-		F00B0F9D1971207700B00153 /* MLRatesTableViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesTableViewController~ipad.xib"; sourceTree = "<group>"; };
-		F00D69E0196F996900D06497 /* content_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = content_bg_ipad.png; sourceTree = "<group>"; };
-		F00D69E2196FB22400D06497 /* payment_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg_ipad.png; sourceTree = "<group>"; };
-		F00D69E4196FB5C600D06497 /* ml_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo.png; sourceTree = "<group>"; };
-		F00D69E6196FB74900D06497 /* MLPreviewViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLPreviewViewController~ipad.xib"; sourceTree = "<group>"; };
-		F00D69E8196FF64500D06497 /* preview_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_bg_ipad.png; sourceTree = "<group>"; };
-		F01271F8196E72DA00F39FFD /* ml_logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo2.png; sourceTree = "<group>"; };
-		F015203619763BC300F82AAB /* KpRates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KpRates.h; sourceTree = "<group>"; };
-		F015203719763BC300F82AAB /* KpRates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KpRates.m; sourceTree = "<group>"; };
-		F0152039197668E100F82AAB /* GetReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetReceiver.h; sourceTree = "<group>"; };
-		F015203A197668E100F82AAB /* GetReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetReceiver.m; sourceTree = "<group>"; };
-		F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLHistoryViewController~iphone.xib"; sourceTree = "<group>"; };
-		F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLHistoryTableViewCell~iphone.xib"; sourceTree = "<group>"; };
+		F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLHistoryViewController.xib; sourceTree = "<group>"; };
+		F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
 		F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
 		F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
 		F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryTableViewCell.m; sourceTree = "<group>"; };
-		F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLSendMoneyViewController~iphone.xib"; sourceTree = "<group>"; };
-		F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesTableViewController~iphone.xib"; sourceTree = "<group>"; };
-		F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLPreviewViewController~iphone.xib"; sourceTree = "<group>"; };
+		F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLSendMoneyViewController.xib; sourceTree = "<group>"; };
+		F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLRatesTableViewController.xib; sourceTree = "<group>"; };
+		F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPreviewViewController.xib; sourceTree = "<group>"; };
 		F05C5F1018E12BE8002F2EE1 /* MLReceiverTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLReceiverTableViewCell.xib; sourceTree = "<group>"; };
-		F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesTableViewCell~iphone.xib"; sourceTree = "<group>"; };
+		F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLRatesTableViewCell.xib; sourceTree = "<group>"; };
 		F05C5F1218E12BE8002F2EE1 /* MLReceiverTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLReceiverTableViewController.xib; sourceTree = "<group>"; };
-		F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLTermsConditionViewController~iphone.xib"; sourceTree = "<group>"; };
+		F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLTermsConditionViewController.xib; sourceTree = "<group>"; };
 		F05C5F1418E12BE8002F2EE1 /* MLMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLMenuViewController.xib; sourceTree = "<group>"; };
 		F05C5F1D18E12C0D002F2EE1 /* MLSendMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSendMoneyViewController.h; sourceTree = "<group>"; };
 		F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSendMoneyViewController.m; sourceTree = "<group>"; };
@@ -739,19 +703,14 @@
 		3BB42D7618D6AFDC0011792E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F009205A1977598B0002BF73 /* MLSendMoneyViewController~ipad.xib */,
-				F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController~iphone.xib */,
-				F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController~iphone.xib */,
-				F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController~iphone.xib */,
-				F00D69E6196FB74900D06497 /* MLPreviewViewController~ipad.xib */,
+				F05C5F0D18E12BE8002F2EE1 /* MLSendMoneyViewController.xib */,
+				F05C5F0E18E12BE8002F2EE1 /* MLRatesTableViewController.xib */,
+				F05C5F0F18E12BE8002F2EE1 /* MLPreviewViewController.xib */,
 				F05C5F1018E12BE8002F2EE1 /* MLReceiverTableViewCell.xib */,
-				F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell~iphone.xib */,
+				F05C5F1118E12BE8002F2EE1 /* MLRatesTableViewCell.xib */,
 				F05C5F1218E12BE8002F2EE1 /* MLReceiverTableViewController.xib */,
-				F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController~iphone.xib */,
-				F00B0F991970BFD800B00153 /* MLTermsConditionViewController~ipad.xib */,
+				F05C5F1318E12BE8002F2EE1 /* MLTermsConditionViewController.xib */,
 				F05C5F1418E12BE8002F2EE1 /* MLMenuViewController.xib */,
-				F00B0F9B1970F8EF00B00153 /* MLRatesTableViewCell~ipad.xib */,
-				F00B0F9D1971207700B00153 /* MLRatesTableViewController~ipad.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -775,8 +734,6 @@
 				F05C5F2A18E12C0D002F2EE1 /* MLTermsConditionViewController.m */,
 				F05C5F2B18E12C0D002F2EE1 /* MLMenuViewController.h */,
 				F05C5F2C18E12C0D002F2EE1 /* MLMenuViewController.m */,
-				F009BBB01947E0AC00AE5D38 /* JsonHelper.h */,
-				F009BBB11947E0AC00AE5D38 /* JsonHelper.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -788,12 +745,6 @@
 				F05C5F3618E12C30002F2EE1 /* MLUI.m */,
 				F05C5F3718E12C30002F2EE1 /* UINavigationBar+customNav.h */,
 				F05C5F3818E12C30002F2EE1 /* UINavigationBar+customNav.m */,
-				F00843011973A142006BE732 /* SendoutMobile.h */,
-				F00843021973A142006BE732 /* SendoutMobile.m */,
-				F015203619763BC300F82AAB /* KpRates.h */,
-				F015203719763BC300F82AAB /* KpRates.m */,
-				F0152039197668E100F82AAB /* GetReceiver.h */,
-				F015203A197668E100F82AAB /* GetReceiver.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -811,10 +762,8 @@
 		3BB42DD718D6B2360011792E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController~iphone.xib */,
-				F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell~iphone.xib */,
-				F00842FD19736332006BE732 /* MLHistoryViewController~ipad.xib */,
-				F00842FF19736E3D006BE732 /* MLHistoryTableViewCell~ipad.xib */,
+				F05C5F0318E12B8A002F2EE1 /* MLHistoryViewController.xib */,
+				F05C5F0418E12B8A002F2EE1 /* MLHistoryTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -847,15 +796,11 @@
 				7006621F18DA81DD00A0F05C /* radio_button.png */,
 				707C03BE18D9D40F00EC1B12 /* back_profile.png */,
 				707C03BC18D9D00900EC1B12 /* submit_profile.png */,
-				F00D69E2196FB22400D06497 /* payment_bg_ipad.png */,
-				F00D69E0196F996900D06497 /* content_bg_ipad.png */,
 				700661C118DA766800A0F05C /* design_buttom_left.png */,
 				700661E018DA766800A0F05C /* rene.jpg */,
 				F05C5F4F18E13C6C002F2EE1 /* send_default.png */,
 				F05C5F5118E13CA1002F2EE1 /* send_selected.png */,
-				F00D69E8196FF64500D06497 /* preview_bg_ipad.png */,
 				700661C218DA766800A0F05C /* design_buttom_right.png */,
-				F00D69E4196FB5C600D06497 /* ml_logo.png */,
 				700661C318DA766800A0F05C /* design_top_left.png */,
 				700661C418DA766800A0F05C /* design_top_right.png */,
 				707C03BA18D9CFE100EC1B12 /* account_profile.png */,
@@ -866,7 +811,6 @@
 				F05C5F3E18E12C62002F2EE1 /* header_bg2.png */,
 				3BB42DE718D6B6C60011792E /* back.png */,
 				3BB42DE818D6B6C60011792E /* bradpit.jpg */,
-				F01271F8196E72DA00F39FFD /* ml_logo2.png */,
 				3BB42DE918D6B6C60011792E /* btnReceiver_bg.png */,
 				3BB42DEA18D6B6C60011792E /* content_bg.png */,
 				3BB42DEB18D6B6C60011792E /* navbar_bg.png */,
@@ -1175,10 +1119,8 @@
 				3B1B36BE18B43181006DA5BB /* transparent.png in Resources */,
 				F05C5F4218E12C62002F2EE1 /* header_bg2.png in Resources */,
 				3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */,
-				F05C5F1918E12BE8002F2EE1 /* MLRatesTableViewCell~iphone.xib in Resources */,
-				F00B0F9E1971207700B00153 /* MLRatesTableViewController~ipad.xib in Resources */,
+				F05C5F1918E12BE8002F2EE1 /* MLRatesTableViewCell.xib in Resources */,
 				3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */,
-				F00D69E1196F996900D06497 /* content_bg_ipad.png in Resources */,
 				3B8090C018B6106F00A11CB8 /* navigation_image.png in Resources */,
 				707C03BF18D9D40F00EC1B12 /* back_profile.png in Resources */,
 				3BB42E0E18D6B6C60011792E /* sendmoney_selected.png in Resources */,
@@ -1209,17 +1151,12 @@
 				707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */,
 				70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */,
 				700661E918DA766800A0F05C /* design_top_right.png in Resources */,
-				F01271F9196E72DA00F39FFD /* ml_logo2.png in Resources */,
 				3B17585518B35BA3005A7805 /* no_image.png in Resources */,
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
 				707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */,
-<<<<<<< HEAD
 				3BA8A232197570DF0052FA2F /* down.png in Resources */,
-=======
-				F00D69E5196FB5C600D06497 /* ml_logo.png in Resources */,
->>>>>>> FETCH_HEAD
 				7006622518DA823D00A0F05C /* black_credentials.png in Resources */,
-				F05C5F1518E12BE8002F2EE1 /* MLSendMoneyViewController~iphone.xib in Resources */,
+				F05C5F1518E12BE8002F2EE1 /* MLSendMoneyViewController.xib in Resources */,
 				707C03BB18D9CFE100EC1B12 /* account_profile.png in Resources */,
 				70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */,
 				3B1B36C018B445C3006DA5BB /* btn2.png in Resources */,
@@ -1240,20 +1177,14 @@
 				3BA7CCD518B1DAC800B9FC4B /* login_img.png in Resources */,
 				3BB42E1018D6B6C60011792E /* tabbar_item.png in Resources */,
 				7006621318DA797C00A0F05C /* UpdateInformation.xib in Resources */,
-				F00B0F9C1970F8EF00B00153 /* MLRatesTableViewCell~ipad.xib in Resources */,
-				F05C5F0618E12B8A002F2EE1 /* MLHistoryTableViewCell~iphone.xib in Resources */,
+				F05C5F0618E12B8A002F2EE1 /* MLHistoryTableViewCell.xib in Resources */,
 				3BA7CD1318B23A7000B9FC4B /* reload.9.png in Resources */,
-				F00D69E9196FF64500D06497 /* preview_bg_ipad.png in Resources */,
-				F009205B1977598B0002BF73 /* MLSendMoneyViewController~ipad.xib in Resources */,
 				3BA7CCF718B1EBDC00B9FC4B /* background2.png in Resources */,
 				F05C5F1818E12BE8002F2EE1 /* MLReceiverTableViewCell.xib in Resources */,
 				7006621418DA797C00A0F05C /* AccountQuestion.xib in Resources */,
 				700661E718DA766800A0F05C /* design_buttom_right.png in Resources */,
-				F008430019736E3D006BE732 /* MLHistoryTableViewCell~ipad.xib in Resources */,
-				F00842FE19736332006BE732 /* MLHistoryViewController~ipad.xib in Resources */,
-				F05C5F1718E12BE8002F2EE1 /* MLPreviewViewController~iphone.xib in Resources */,
+				F05C5F1718E12BE8002F2EE1 /* MLPreviewViewController.xib in Resources */,
 				70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */,
-				F00D69E7196FB74900D06497 /* MLPreviewViewController~ipad.xib in Resources */,
 				F05C5F1C18E12BE8002F2EE1 /* MLMenuViewController.xib in Resources */,
 				3BA7CCA518B1D6B900B9FC4B /* InfoPlist.strings in Resources */,
 				3BC3827C18C02C6C00270567 /* TopupViewController~iphone.xib in Resources */,
@@ -1263,14 +1194,13 @@
 				3BB42DFD18D6B6C60011792E /* back.png in Resources */,
 				708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */,
 				F05C5F4618E137AF002F2EE1 /* ic_seal_pending.png in Resources */,
-				F00D69E3196FB22400D06497 /* payment_bg_ipad.png in Resources */,
 				F05C5F1A18E12BE8002F2EE1 /* MLReceiverTableViewController.xib in Resources */,
 				3BB42E0418D6B6C60011792E /* noImage.png in Resources */,
 				3BB42E0718D6B6C60011792E /* pin_bg.png in Resources */,
 				3BC3829218C095D200270567 /* ic_about.9.png in Resources */,
 				F05C5F5218E13CA1002F2EE1 /* send_selected.png in Resources */,
 				3B17585318B34EE3005A7805 /* bg_header.png in Resources */,
-				F05C5F1B18E12BE8002F2EE1 /* MLTermsConditionViewController~iphone.xib in Resources */,
+				F05C5F1B18E12BE8002F2EE1 /* MLTermsConditionViewController.xib in Resources */,
 				3BA7CCE718B1E29100B9FC4B /* new_info.png in Resources */,
 				7006620918DA78EF00A0F05C /* ProfileInformation.xib in Resources */,
 				3BA7CCF318B1EB0500B9FC4B /* background.png in Resources */,
@@ -1290,24 +1220,17 @@
 				3B17584D18B2FC09005A7805 /* popup_img.png in Resources */,
 				3BA8A23019756F810052FA2F /* button_back.png in Resources */,
 				3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */,
-<<<<<<< HEAD
 				F05C5F0518E12B8A002F2EE1 /* MLHistoryViewController.xib in Resources */,
 				3BA7CD0618B22C2000B9FC4B /* MenuViewController~iphone.xib in Resources */,
 				3B1B36C418B4AD70006DA5BB /* icon_my_account.jpg in Resources */,
 				3B9FC06D196D40750035446F /* LoginViewController~iphone.xib in Resources */,
-=======
-				F05C5F0518E12B8A002F2EE1 /* MLHistoryViewController~iphone.xib in Resources */,
-				3BA7CD0618B22C2000B9FC4B /* MenuViewController.xib in Resources */,
-				3B1B36C418B4AD70006DA5BB /* icon_my_account.jpg in Resources */,
-				F00B0F9A1970BFD800B00153 /* MLTermsConditionViewController~ipad.xib in Resources */,
->>>>>>> FETCH_HEAD
 				700661B818DA74CF00A0F05C /* AccountMain.xib in Resources */,
 				3BA7CCE318B1E27F00B9FC4B /* new_kprate.png in Resources */,
 				3BA7CD1418B23A7000B9FC4B /* so.9.png in Resources */,
 				3BA7CCE518B1E28400B9FC4B /* new_locator.png in Resources */,
 				3BB42E0118D6B6C60011792E /* navbar_bg.png in Resources */,
 				3BB42DFF18D6B6C60011792E /* btnReceiver_bg.png in Resources */,
-				F05C5F1618E12BE8002F2EE1 /* MLRatesTableViewController~iphone.xib in Resources */,
+				F05C5F1618E12BE8002F2EE1 /* MLRatesTableViewController.xib in Resources */,
 				3B8B9EF518BC341400639142 /* textbox2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1333,10 +1256,7 @@
 				3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */,
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
-				F015203B197668E100F82AAB /* GetReceiver.m in Sources */,
 				3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */,
-				F009BBB21947E0AC00AE5D38 /* JsonHelper.m in Sources */,
-				F015203819763BC300F82AAB /* KpRates.m in Sources */,
 				70AD602418DBC74F00E392BF /* UICreationMethods.m in Sources */,
 				3BA7CCCD18B1D73B00B9FC4B /* LoginViewController.m in Sources */,
 				70EEA18918D9C54900719BF7 /* ProfileOutline.m in Sources */,
@@ -1355,11 +1275,7 @@
 				F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */,
 				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
 				70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */,
-<<<<<<< HEAD
 				3BA8A22E197516580052FA2F /* UIImage+DecodeStringToImage.m in Sources */,
-=======
-				F00843031973A142006BE732 /* SendoutMobile.m in Sources */,
->>>>>>> FETCH_HEAD
 				F05C5F3318E12C0D002F2EE1 /* MLTermsConditionViewController.m in Sources */,
 				3BB5268918BCB8F600D0A5EA /* ReceiverObject.m in Sources */,
 				3B38F7751952CE0600EC3948 /* ServiceConnection.m in Sources */,
@@ -1481,11 +1397,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
-<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-=======
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
->>>>>>> FETCH_HEAD
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1500,11 +1412,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
-<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-=======
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
->>>>>>> FETCH_HEAD
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

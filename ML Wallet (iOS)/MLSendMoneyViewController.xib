@@ -18,7 +18,6 @@
                 <outlet property="senderAddress" destination="fyy-lK-tzQ" id="hcD-cv-Rsz"/>
                 <outlet property="senderImage" destination="Vk8-7D-CUc" id="yvB-mx-bzK"/>
                 <outlet property="senderName" destination="wTH-fP-9Hr" id="IRs-is-Lgz"/>
-                <outlet property="spinner" destination="5bp-KO-iLM" id="Yeh-VK-Y8j"/>
                 <outlet property="tf_amount" destination="df6-5G-nEs" id="FFd-f9-NJU"/>
                 <outlet property="totalValue" destination="KIo-KB-kr0" id="WaG-cl-3oX"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -34,11 +33,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQd-9y-aoL">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQd-9y-aoL">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5s-sv-6Kr">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5s-sv-6Kr">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="432"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -198,10 +197,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5bp-KO-iLM">
-                                    <rect key="frame" x="149" y="9" width="20" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>

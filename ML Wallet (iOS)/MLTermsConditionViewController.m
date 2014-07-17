@@ -44,7 +44,7 @@
     _tv_termsCondition.text = [getUI termsConditions];
     _tv_termsCondition.editable = NO;
     [getUI shadowView:_view_tc];
-//    self.view_dialogHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navbar_bg.png"]];
+    self.view_dialogHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navbar_bg.png"]];
     
     UIBarButtonItem *home = [getUI navBarButtonTc:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
     

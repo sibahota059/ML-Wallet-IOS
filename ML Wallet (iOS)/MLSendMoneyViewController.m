@@ -9,9 +9,6 @@
 #import "MLSendMoneyViewController.h"
 #import "MLPreviewViewController.h"
 #import "MLUI.h"
-#import "JsonHelper.h"
-
-#define TRUSTED_HOST @"192.168.12.204"
 
 @interface MLSendMoneyViewController (){
     UITapGestureRecognizer *tapRecognizer;
@@ -21,14 +18,6 @@
     UIImage *right, *wrong;
     MLUI *getUI;
     UIBarButtonItem *next, *home;
-    UIImage *image, *payment;
-    SendoutMobile *sendout;
-    NSMutableData *contentData;
-    NSURLConnection *conn;
-    KpRates *rates;
-    GetReceiver *getReceiver;
-    NSMutableArray *getValueRates;
-    NSDictionary *getCharges;
 }
 
 @end
@@ -50,9 +39,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     getUI = [MLUI new];
-    rates = [KpRates new];
-    getReceiver = [GetReceiver new];
     
+
     self.tabBarController.navigationItem.title = @"Send Money";
     //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"Send Money"];
     
@@ -74,19 +62,8 @@
     _chargeValue.font = [UIFont boldSystemFontOfSize:24.0f];
     _totalValue.font = [UIFont boldSystemFontOfSize:24.0f];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        image = [UIImage imageNamed:@"content_bg"];
-        payment = [UIImage imageNamed:@"payment_bg"];
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        image = [UIImage imageNamed:@"content_bg_ipad"];
-        payment = [UIImage imageNamed:@"payment_bg_ipad"];
-    }
-    
-    
-    
+    UIImage *image = [UIImage imageNamed:@"content_bg"];
+    UIImage *payment = [UIImage imageNamed:@"payment_bg"];
     
     self.view_sender.backgroundColor = [UIColor colorWithPatternImage:image];
     self.view_receiver.backgroundColor = [UIColor colorWithPatternImage:image];
@@ -95,39 +72,8 @@
     
     [self swipe];
     [self keyboardNotification];
-
-    _spinner.hidesWhenStopped = YES;
     
 
-    sendout = [[SendoutMobile alloc]initWithWalletNo:@"14050000000135" senderFname:@"ALBERT" senderMname:@"" senderLname:@"GAUDICOS" receiverFname:@"Arthur" receiverMname:@"A" receiverLname:@"Tarrayo" receiverNo:@"690" principal:@"1.0" latitude:@"-0.3234234" longitude:@"3.234343" location:@"Bohol, Philippines" deviceId:@"2342343423"];
-    
-    sendout.delegate = self;
-    rates.delegate = self;
-    getReceiver.delegate = self;
-    
-    //[_spinner startAnimating];
-    
-    //[sendout postDataToUrl];
-    [rates loadRates];
-    //[getReceiver getReceiverWalletNo:@"14050000000135"];
-
-}
-
-- (void)didFinishLoading{
-    [_spinner stopAnimating];
-    NSLog(@"KPTN: %@", sendout.getKptn);
-}
-
-- (void)didFinishLoadingRates{
-    getCharges = rates.getRates;
-    [_spinner stopAnimating];
-    
-}
-
-
-- (void)didFinishLoadingReceiver{
-    [_spinner stopAnimating];
-    NSLog(@"Receiver: %@", getReceiver.getReceiver);
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -189,6 +135,7 @@
     [super viewWillAppear:animated];
     [self registerForKeyboardNotifications];
     self.tabBarController.navigationItem.title = @"Send Money";
+    self.tabBarController.navigationItem.title = @"Send Money";
     [self.tabBarController.navigationItem setRightBarButtonItem:next];
     [self.tabBarController.navigationItem setLeftBarButtonItem:home];
 }
@@ -218,7 +165,6 @@
 
 - (IBAction)btn_preview:(id)sender {
     MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
-    preview.str = @"GGGG";
     preview.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:preview animated:YES];
 }
@@ -236,20 +182,12 @@
     [self.navigationController pushViewController:view_receiver animated:YES];
 }
 
-- (void)didSelectReceiver:(MLReceiverTableViewController *)controller receiverFname:(NSString *)rfname receiverMname:(NSString *)rmname receiverLname:(NSString *)rlname receiverImage:(NSString *)rimage receiverAddress:(NSString *)raddress receiverRelation:(NSString *)rrelation rcount:(int)count{
+- (void)didSelectReceiver:(MLReceiverTableViewController *)controller receiverFname:(NSString *)rfname receiverMname:(NSString *)rmname receiverLname:(NSString *)rlname receiverImage:(UIImage *)rimage receiverAddress:(NSString *)raddress receiverRelation:(NSString *)rrelation rcount:(int)count{
     
     //[self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
 
-    NSData *data = [[NSData alloc] initWithBase64EncodedString:rimage options: NSDataBase64DecodingIgnoreUnknownCharacters];
-    
-    if ([UIImage imageWithData:data] == nil) {
-        _receiverImage.image = [UIImage imageNamed:@"noImage.png"];
-    }else{
-        _receiverImage.image = [UIImage imageWithData:data];
-    }
-    
-
+    _receiverImage.image = rimage;
     _receiverName.text = [NSString stringWithFormat:@"%@, %@ %@", rlname, rfname, rmname];
     _receiverAddress.text = raddress;
     _countReceiver.text =[NSString stringWithFormat:@"You have %d receivers.", count];
@@ -259,117 +197,89 @@
 
 -(void)setAmount:(double)input{
     
-    NSArray *ratess = [getCharges objectForKey:@"getChargeValuesResult"];
-    getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
-    
-    
-    for (NSDictionary *items in getValueRates) {
-        
-        NSString *minAmount  = [items valueForKey:@"minAmount"];
-        NSString *maxAmount  = [items valueForKey:@"maxAmount"];
-        NSString *ch  = [items valueForKey:@"chargeValue"];
-        int charge = [ch integerValue];
-        int min = [minAmount integerValue];
-        int max = [maxAmount integerValue];
-
-        if (input >= min && input <= max) {
-            string1 = [NSString stringWithFormat:@"%@", ch];
-            inputPrint = input + charge;
-            [self display:inputPrint charge:string1];
-            break;
-        }else{
-            string1 = @"0.00";
-            inputPrint = 0.00;
-            [self display:inputPrint charge:string1];
-            _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
-            
-        }
+    if (input >= 0.01 && input <= 100.00) {
+        string1 = @"7.00";
+        inputPrint = input + 7.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 100.01 && input <= 200.00) {
+        string1 = @"13.00";
+        inputPrint = input + 13.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 200.02 && input <= 300.00) {
+        string1 = @"18.00";
+        inputPrint = input + 18.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 300.01 && input <= 400.00) {
+        string1 = @"25.00";
+        inputPrint = input + 25.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 400.01 && input <= 500.00) {
+        string1 = @"30.00";
+        inputPrint = input + 30.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 500.01 && input <= 600.00) {
+        string1 = @"35.00";
+        inputPrint = input + 35.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 600.01 && input <= 800.00) {
+        string1 = @"40.00";
+        inputPrint = input + 40.00;
+        [self display:inputPrint charge:string1];;
+    }else if(input >= 800.01 && input <= 900.00) {
+        string1 = @"45.00";
+        inputPrint = input + 45.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 900.01 && input <= 1000.00) {
+        string1 = @"50.00";
+        inputPrint = input + 50.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 1000.01 && input <= 1500.00) {
+        string1 = @"80.00";
+        inputPrint = input + 80.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 1500.01 && input <= 2000.00) {
+        string1 = @"100.00";
+        inputPrint = input + 100.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 2000.01 && input <= 2500.00) {
+        string1 = @"130.00";
+        inputPrint = input + 130.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 2500.01 && input <= 3000.00) {
+        string1 = @"150.00";
+        inputPrint = input + 150.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 3000.01 && input <= 4000.00) {
+        string1 = @"180.00";
+        inputPrint = input + 180.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 4000.01 && input <= 9500.00) {
+        string1 = @"220.00";
+        inputPrint = input + 220.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 9500.01 && input <= 14000.00) {
+        string1 = @"240.00";
+        inputPrint = input + 240.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 14000.01 && input <= 30000.00) {
+        string1 = @"300.00";
+        inputPrint = input + 300.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 30000.01 && input <= 40000.00) {
+        string1 = @"350.00";
+        inputPrint = input + 350.00;
+        [self display:inputPrint charge:string1];
+    }else if(input >= 40000.01 && input <= 50000.00) {
+        string1 = @"400.00";
+        inputPrint = input + 400.00;
+        [self display:inputPrint charge:string1];
+    }else{
+        string1 = @"0.00";
+        inputPrint = 0.00;
+        [self display:inputPrint charge:string1];
+        _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
         
     }
-    
-//    if (input >= 0.01 && input <= 100.00) {
-//        string1 = @"7.00";
-//        inputPrint = input + 7.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 100.01 && input <= 200.00) {
-//        string1 = @"13.00";
-//        inputPrint = input + 13.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 200.02 && input <= 300.00) {
-//        string1 = @"18.00";
-//        inputPrint = input + 18.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 300.01 && input <= 400.00) {
-//        string1 = @"25.00";
-//        inputPrint = input + 25.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 400.01 && input <= 500.00) {
-//        string1 = @"30.00";
-//        inputPrint = input + 30.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 500.01 && input <= 600.00) {
-//        string1 = @"35.00";
-//        inputPrint = input + 35.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 600.01 && input <= 800.00) {
-//        string1 = @"40.00";
-//        inputPrint = input + 40.00;
-//        [self display:inputPrint charge:string1];;
-//    }else if(input >= 800.01 && input <= 900.00) {
-//        string1 = @"45.00";
-//        inputPrint = input + 45.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 900.01 && input <= 1000.00) {
-//        string1 = @"50.00";
-//        inputPrint = input + 50.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 1000.01 && input <= 1500.00) {
-//        string1 = @"80.00";
-//        inputPrint = input + 80.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 1500.01 && input <= 2000.00) {
-//        string1 = @"100.00";
-//        inputPrint = input + 100.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 2000.01 && input <= 2500.00) {
-//        string1 = @"130.00";
-//        inputPrint = input + 130.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 2500.01 && input <= 3000.00) {
-//        string1 = @"150.00";
-//        inputPrint = input + 150.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 3000.01 && input <= 4000.00) {
-//        string1 = @"180.00";
-//        inputPrint = input + 180.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 4000.01 && input <= 9500.00) {
-//        string1 = @"220.00";
-//        inputPrint = input + 220.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 9500.01 && input <= 14000.00) {
-//        string1 = @"240.00";
-//        inputPrint = input + 240.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 14000.01 && input <= 30000.00) {
-//        string1 = @"300.00";
-//        inputPrint = input + 300.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 30000.01 && input <= 40000.00) {
-//        string1 = @"350.00";
-//        inputPrint = input + 350.00;
-//        [self display:inputPrint charge:string1];
-//    }else if(input >= 40000.01 && input <= 50000.00) {
-//        string1 = @"400.00";
-//        inputPrint = input + 400.00;
-//        [self display:inputPrint charge:string1];
-//    }else{
-//        string1 = @"0.00";
-//        inputPrint = 0.00;
-//        [self display:inputPrint charge:string1];
-//        _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
-//        
-//    }
     
     checkdot = [newString componentsSeparatedByString:@"."];
     conv = [string1 doubleValue];
@@ -399,7 +309,7 @@
 }
 
 - (void)display:(double) input charge:(NSString *) charge{
-    string2 = [NSString stringWithFormat:@"%0.2f", inputPrint];
+    string2 = [NSString stringWithFormat:@"%.2f", inputPrint];
     _tf_amount.rightView = [[UIImageView alloc] initWithImage:right];
     [self setValue:charge total:string2];
 }
@@ -423,6 +333,5 @@
     }
     
 }
-
 
 @end

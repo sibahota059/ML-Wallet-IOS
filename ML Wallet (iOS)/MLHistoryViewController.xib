@@ -15,6 +15,7 @@
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="viewHistoryHeader" destination="chq-Ft-8v9" id="oyd-03-5VY"/>
                 <outlet property="view_fade" destination="iWB-oi-uiE" id="pvE-W0-61m"/>
+                <outlet property="view_header" destination="chq-Ft-8v9" id="upF-yF-O4f"/>
                 <outlet property="view_transform" destination="fmp-pD-IWC" id="EaY-gv-Asw"/>
             </connections>
         </placeholder>
@@ -123,7 +124,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="March 11, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ec-F1-X1Z">
                             <rect key="frame" x="5" y="117" width="167" height="28"/>

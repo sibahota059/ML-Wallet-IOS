@@ -11,23 +11,7 @@
 @implementation UINavigationBar (customNav)
 
 - (CGSize)sizeThatFits:(CGSize)size{
-    
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGSize newSize;
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        newSize = CGSizeMake(screenWidth, 100);
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        newSize = CGSizeMake(screenWidth, 130);
-    }
-    
-    //CGFloat screenHeight = screenRect.size.height;
-    
-    
+    CGSize newSize = CGSizeMake(320, 100);
     return newSize;
 }
 

@@ -53,7 +53,7 @@
     
     balance = [NSArray arrayWithObjects:@"100.00", @"200.00", @"300.00", @"400.00", @"500.00", @"600.00", @"700.00", @"800.00", @"900.00", @"1000.00", @"1100.00", @"1200.00", nil];
     
-    //self.viewHistoryHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navbar_bg.png"]];
+    self.viewHistoryHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navbar_bg.png"]];
 }
 
 - (IBAction)btn_back:(id)sender {
@@ -131,14 +131,6 @@
     viewContent.layer.shadowPath = shadowPath.CGPath;
     
     return viewContent;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        return 70;
-    }
-    return 44;
 }
 
 - (IBAction)btnClose:(id)sender {

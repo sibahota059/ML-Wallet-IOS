@@ -17,7 +17,6 @@
                 <outlet property="btnThree" destination="f0d-UQ-xGK" id="lZw-HS-AzA"/>
                 <outlet property="btnTwo" destination="vNm-Nk-fvj" id="0mC-40-NxY"/>
                 <outlet property="btnZero" destination="WqT-kH-Fki" id="rzs-qE-Wka"/>
-                <outlet property="btn_pin" destination="suv-1e-Tpf" id="Lsq-Jx-cZD"/>
                 <outlet property="image_mine" destination="v5V-ic-rie" id="rIu-eN-ddP"/>
                 <outlet property="image_receiver" destination="VFh-YD-O0i" id="8Lf-Y2-dHt"/>
                 <outlet property="preview_main" destination="Da8-3N-nsZ" id="nLt-uk-Fhs"/>
@@ -70,7 +69,7 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To         :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kcz-vi-Sam">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total      :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kcz-vi-Sam">
                                             <rect key="frame" x="12" y="111" width="107" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>

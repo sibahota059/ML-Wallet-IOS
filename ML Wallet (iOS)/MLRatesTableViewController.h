@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KpRates.h"
 
-@interface MLRatesTableViewController : UITableViewController<KpRatesDelegate>
+@interface MLRatesTableViewController : UITableViewController
 
 @end

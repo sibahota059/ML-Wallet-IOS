@@ -39,19 +39,7 @@
 - (void)navigationAppearance{
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header_bg2.png"] forBarMetrics:UIBarMetricsDefault];
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"ml_logo.png"] forBarMetrics:UIBarMetricsDefault];
-    }
-    
-
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header_bg2.png"] forBarMetrics:UIBarMetricsDefault];
   
 }
 
