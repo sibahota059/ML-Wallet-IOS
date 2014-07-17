@@ -13,6 +13,10 @@
 #import "UIAlertView+alertMe.h"
 #import "ReceiverAvatarViewController.h"
 #import "ReceiverObject.h"
+#import "MBProgressHUD.h"
+#import "ServiceConnection.h"
+#import "UIAlertView+alertMe.h"
+#import "UIImage+DecodeStringToImage.h"
 
 @interface ReceiverMenuListViewController ()
 
@@ -20,6 +24,7 @@
 
 @implementation ReceiverMenuListViewController
 
+@synthesize responseData;
 @synthesize allTableData;
 @synthesize filteredTableData;
 @synthesize searchBar;
@@ -42,24 +47,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    allTableData = [[NSMutableArray alloc] initWithObjects:
-                   [[ReceiverObject alloc] initWithName:@"Steak" Address:@"Address1" Relation:@"relation1" receiverImage:[UIImage imageNamed:@"so.9.png"]],
-                    [[ReceiverObject alloc] initWithName:@"Steak" Address:@"Address2" Relation:@"relation2" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                     [[ReceiverObject alloc] initWithName:@"Salad" Address:@"Address3" Relation:@"relation3" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                      [[ReceiverObject alloc] initWithName:@"Salad" Address:@"Address4" Relation:@"relation4" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                       [[ReceiverObject alloc] initWithName:@"Fruit" Address:@"Address5" Relation:@"relation5" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                        [[ReceiverObject alloc] initWithName:@"Potato" Address:@"Address6" Relation:@"relation6" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                         [[ReceiverObject alloc] initWithName:@"Potato" Address:@"Address7" Relation:@"relation7" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                          [[ReceiverObject alloc] initWithName:@"Bread" Address:@"Address8" Relation:@"relation8" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                           [[ReceiverObject alloc] initWithName:@"Bread" Address:@"Address9" Relation:@"relation9" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                            [[ReceiverObject alloc] initWithName:@"Hot Dog" Address:@"Address10" Relation:@"relation10" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                             [[ReceiverObject alloc] initWithName:@"Hot Dog" Address:@"Address11" Relation:@"relation11" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                              [[ReceiverObject alloc] initWithName:@"Hot Dog" Address:@"Address12" Relation:@"relation12" receiverImage:[UIImage imageNamed:@"no_image.png"]],
-                               [[ReceiverObject alloc] initWithName:@"Pizza" Address:@"Address13" Relation:@"relation13" receiverImage:[UIImage imageNamed:@"no_image.png"]], nil];
-    
 
+    
+    //WaitScreen
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    
+    
     //Set Navigator
     [self navigationButtons];
     //[self.MainScroll setScrollEnabled:YES];
@@ -76,8 +71,135 @@
         self.receiverTableView.frame = CGRectMake(0, 204, self.view.frame.size.width, self.view.frame.size.height);
         self.receiverSearchBar.frame = CGRectMake(0, 150, 320, 44);
     }
+    
+    
+    //RetrieveReciever's
+    [self RetrieveReceiverList];
 
 }
+
+#pragma mark - NSURLConnection Delegate
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[error description] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    //Hide Loader
+    [HUD hide:YES];
+    [HUD show:NO];
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return YES;
+}
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [responseData setLength:0];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [responseData appendData:data];
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+        
+    // convert to JSON
+    if (self.responseData == nil) {
+        [UIAlertView myCostumeAlert:@"Exception Error" alertMessage:@"No Data found" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        
+        //Hide Loader
+        [HUD hide:YES];
+        [HUD show:NO];
+        return;
+    }
+    
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    
+    if (myError == nil){
+        NSArray *result = [res valueForKey:@"retrieveReceiversResult"];
+        
+        NSNumber *respCode = [result valueForKey:@"<respcode>k__BackingField"];
+        NSString *respMesg = [result valueForKey:@"<respmessage>k__BackingField"];
+        
+        //Hide Loader
+        [HUD hide:YES];
+        [HUD show:NO];
+        
+        allTableData = [NSMutableArray new];
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]]) //Success
+        {
+            if ([result valueForKey:@"<receiverList>k__BackingField"] != [NSNull null])
+            {
+                NSArray *itemArray = [result valueForKey:@"<receiverList>k__BackingField"]; // check null if need
+                for (NSDictionary *itemDic in itemArray){
+                    NSString *address = [itemDic valueForKey:@"address"];
+                    NSString *fname = [itemDic valueForKey:@"fname"];
+                    NSString *lname = [itemDic valueForKey:@"lname"];
+                    NSString *mname = [itemDic valueForKey:@"mname"];
+                    NSString *photo = [itemDic valueForKey:@"photo"];
+                    NSNumber *receiverNo = [itemDic valueForKey:@"receiverNo"];
+                    NSString *relation = [itemDic valueForKey:@"relation"];
+                
+                    NSLog(@"ReceiverNo : %@", receiverNo);
+                    //Convert to Image
+                    UIImage *photoImage = [UIImage decodeBase64ToImage:photo];
+                    
+                    NSString *fullName = [NSString stringWithFormat:@"%@ %@ %@",fname, mname, lname];
+                    
+                    if (photoImage == nil) {
+                        photoImage = [UIImage imageNamed:@"no_image.png"];
+                    }
+                    
+                    //Add to NSMutableArray
+                    [allTableData addObject:[[ReceiverObject alloc] initWithName:fullName Address:address Relation:relation receiverImage:photoImage receiverNo:receiverNo]];
+                    
+                    
+                    
+                    //refresh tableView
+                    [self.tableView reloadData];
+                }
+            } else {
+                [UIAlertView myCostumeAlert:@"Validation Arror" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+                return;
+            }
+            
+            return;
+        }
+        else
+        {
+            //Show Error
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            return;
+        }
+        
+        
+    } else {
+        //Show if Error
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+}
+
+- (void) RetrieveReceiverList
+{
+    
+    //Show Animated
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"retrieveReceivers/?walletno=14030000000123"];
+    
+    self.responseData = [NSMutableData data];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [con start];
+}
+
 
 #pragma mark - Table view data source
 
@@ -187,8 +309,11 @@
 #pragma Start #Selector for HomeClick
 -(void)homeClick
 {
+    
     self.navigationController.navigationBarHidden = YES;
-    [self.navigationController popViewControllerAnimated:YES];
+    MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+    [self.navigationController pushViewController:menuPage animated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -218,6 +343,7 @@
     self.navigationItem.rightBarButtonItem = buttonAddReceiver;
 }
 
+#pragma mark - Search Delegate
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)TsearchBar
 {
     self.searchBar.showsCancelButton = YES;

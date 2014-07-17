@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface TopupViewController : UIViewController
+@interface TopupViewController : UIViewController <NSURLConnectionDelegate, MBProgressHUDDelegate>
+{
+    MBProgressHUD *HUD;
+}
+
+@property (retain, nonatomic) NSMutableData *responseData;
+@property (assign, nonatomic) NSUInteger idd;
+
+
+@property (strong, nonatomic) IBOutlet UITextField *txtKPTN;
+- (IBAction)btnSubmit:(id)sender;
 
 @end

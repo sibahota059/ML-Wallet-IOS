@@ -7,15 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <NSURLConnectionDelegate, MBProgressHUDDelegate>
+{
+    MBProgressHUD *HUD;
+}
+
+@property (strong, nonatomic) NSString *location;
+@property (strong, nonatomic) NSMutableData *responseData;
+@property (assign, nonatomic) NSUInteger idd;
+@property (nonatomic, assign) BOOL navigationBar;
+
+
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, assign) BOOL navigationBar;
+
 - (IBAction)btnRegister:(id)sender;
 - (IBAction)btnLogin:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UITextField *txtUser;
+@property (strong, nonatomic) IBOutlet UITextField *txtPass;
 
 
 //Harry added
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil navigationHidden:(BOOL) navigationHidden;
+
 @end

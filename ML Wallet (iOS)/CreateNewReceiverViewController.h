@@ -7,9 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface CreateNewReceiverViewController : UIViewController
+@interface CreateNewReceiverViewController : UIViewController <MBProgressHUDDelegate, NSURLConnectionDelegate>
+{
+    MBProgressHUD *HUD;
+}
+
+@property (strong, nonatomic) NSMutableData *responseData;
+
 @property (strong, nonatomic) IBOutlet UIScrollView *MyScrollview;
+
+@property (strong, nonatomic) IBOutlet UIView *relationView;
+@property (strong, nonatomic) IBOutlet UIButton *txtRelation;
+
+- (IBAction)btnRelation:(id)sender;
+- (IBAction)btnFamily:(id)sender;
+- (IBAction)btnFriend:(id)sender;
 
 
 //TextFields

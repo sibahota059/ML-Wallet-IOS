@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface ReceiverMenuListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIAlertViewDelegate>
+@interface ReceiverMenuListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIAlertViewDelegate, MBProgressHUDDelegate>
 
+{
+    MBProgressHUD *HUD;
+    
+}
 //@property (strong, nonatomic) IBOutlet UIScrollView *MainScroll;
 @property (strong, nonatomic) IBOutlet UISearchBar *receiverSearchBar;
 @property (strong, nonatomic) IBOutlet UITableView *receiverTableView;
-
+@property (strong, nonatomic) NSMutableData *responseData;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray* allTableData;

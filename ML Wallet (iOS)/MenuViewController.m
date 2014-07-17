@@ -19,8 +19,8 @@
 #import "AccountMain.h"
 #import "MLHistoryViewController.h"
 
-
 #define  VIEW_HIDDEN -320
+#define  VIEW_HIDDEN_IPAD -580
 
 
 @interface MenuViewController ()
@@ -46,6 +46,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -75,30 +76,65 @@
 
 #pragma Start #Pan Gesture
 - (IBAction)panLayer:(UIPanGestureRecognizer *)pan {
-    if (pan.state == UIGestureRecognizerStateChanged){
-        CGPoint point = [pan translationInView:self.topLayer];
-        CGRect frame = self.topLayer.frame;
-        frame.origin.x = self.layerPosition + point.x;
+    //Phone User
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        if (pan.state == UIGestureRecognizerStateChanged){
+            CGPoint point = [pan translationInView:self.topLayer];
+            CGRect frame = self.topLayer.frame;
+            frame.origin.x = self.layerPosition + point.x;
         
-        if (frame.origin.x > 160) frame.origin.x = 0;
-        self.topLayer.frame = frame;
-    }
+            if (frame.origin.x > 160) frame.origin.x = 0;
+            self.topLayer.frame = frame;
+        }
     
-    if (pan.state == UIGestureRecognizerStateEnded) {
-        if (self.topLayer.frame.origin.x > -160){
-            [self animateLayerToPoint:0];
+        if (pan.state == UIGestureRecognizerStateEnded) {
+            if (self.topLayer.frame.origin.x > -160)
+            {
+                [self animateLayerToPoint:0];
             
-            //For Label
-            [self.lblMain setBounds:CGRectMake(161, 112, 70, 21)];
-            [self.lblAccount setHidden:NO];
-            self.lblMain.text = @"MAIN MENU";
-        }else{
-            [self animateLayerToPoint: VIEW_HIDDEN];
+                //For Label
+                [self.lblMain setBounds:CGRectMake(161, 112, 70, 21)];
+                [self.lblAccount setHidden:NO];
+                self.lblMain.text = @"MENU";
+            }else{
+                [self animateLayerToPoint: VIEW_HIDDEN];
             
-            //For Label
-            [self.lblAccount setHidden:YES];
-            self.lblMain.text = @"ACCOUNT";
+                //For Label
+                [self.lblAccount setHidden:YES];
+                self.lblMain.text = @"ACCOUNT";
             
+            }
+        }
+    } else { //iPad User
+        if (pan.state == UIGestureRecognizerStateChanged){
+            CGPoint point = [pan translationInView:self.topLayer];
+            CGRect frame = self.topLayer.frame;
+            frame.origin.x = self.layerPosition + point.x;
+            
+            if (frame.origin.x > 300) frame.origin.x = 0;
+            self.topLayer.frame = frame;
+        }
+        
+        if (pan.state == UIGestureRecognizerStateEnded) {
+            NSLog(@"TOPLayer X : %f", self.topLayer.frame.origin.x);
+            if (self.topLayer.frame.origin.x > -200)
+            {
+                [self animateLayerToPoint:0];
+                
+                //For Label
+                [self.lblMain setBounds:CGRectMake(161, 112, 70, 21)];
+                [self.lblAccount setHidden:NO];
+                self.lblMain.text = @"MENU";
+                self.lblMenu.text = @"";
+            }else{
+                [self animateLayerToPoint: VIEW_HIDDEN_IPAD];
+                
+                //For Label
+                [self.lblAccount setHidden:YES];
+                self.lblMain.text = @"ACCOUNT";
+                self.lblMenu.text = @"MENU";
+            }
         }
     }
 }

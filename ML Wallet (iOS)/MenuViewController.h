@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblMain;
 @property (strong, nonatomic) IBOutlet UILabel *lblAccount;
 @property (strong, nonatomic) IBOutlet UILabel *lblUserName;
+@property (strong, nonatomic) IBOutlet UILabel *lblMenu;
 
 
 @property (strong, nonatomic) IBOutlet UIButton *pop_btnLocator;
@@ -30,11 +31,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *pop_btnRate;
 @property (strong, nonatomic) IBOutlet UIView *kycLayer;
 
-
 #pragma Middle Button
 - (IBAction)btnKYC:(id)sender;
 - (IBAction)kycGesture:(id)sender;
 - (IBAction)btnReceiver:(id)sender;
+- (IBAction)btn_Myprofile:(id)sender;
 
 
 #pragma Buttom Button

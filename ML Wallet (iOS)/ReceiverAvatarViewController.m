@@ -8,17 +8,26 @@
 
 #import "ReceiverAvatarViewController.h"
 #import "UIAlertView+alertMe.h"
+#import "ServiceConnection.h"
+#import "ReceiverMenuListViewController.h"
 
 @interface ReceiverAvatarViewController ()
 
 @end
 
+
 @implementation ReceiverAvatarViewController
+{
+    NSNumber *receiverno;
+}
+
 @synthesize nameLabel;
 @synthesize addressLabel;
 @synthesize relationLabel;
 @synthesize imageView;
 @synthesize receiver;
+@synthesize responseData;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +51,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    //SetUP Loader
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
     
     [self navigator];
     
@@ -68,6 +83,7 @@
     addressLabel.text = receiver.Address;
     relationLabel.text = receiver.Relation;
     imageView.image = receiver.ReceiverImage;
+    receiverno = receiver.receiverNo;
 }
 
 #pragma Start #Navigator
@@ -87,8 +103,100 @@
 #pragma Start - Selector Delete
 - (void)DeleteReceiver
 {
-    [UIAlertView myCostumeAlert:@"Todo" alertMessage:@"Delete button" delegate:nil cancelButton:@"Cancel" otherButtons:@"YES"];
+    [UIAlertView myCostumeAlert:@"Delete" alertMessage:@"Are you sure?" delegate:self cancelButton:@"Cancel" otherButtons:@"YES"];
     //toDO
+}
+
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if ([title isEqualToString:@"YES"]) {
+        [self deleteReceiver];
+        return;
+    }
+    
+    if ([title isEqualToString:@"Ok"]) {
+        
+        ReceiverMenuListViewController *bckList = [[ReceiverMenuListViewController alloc] initWithNibName:@"ReceiverMenuListViewController" bundle:nil];
+        [self.navigationController pushViewController:bckList animated:YES];
+        return;
+    }
+}
+
+#pragma mark - Delete Service
+- (void)deleteReceiver {
+    //Show Animated
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    
+    
+    //Rest Service
+    self.responseData = [NSMutableData data];
+    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"deleteReceiver/?"];
+    NSString *srvcURL = [NSString stringWithFormat: @"%@walletno=14030000000123&receiverno=%@", srvcURL1, receiverno];
+    
+    self.responseData = [NSMutableData data];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    [request setHTTPMethod:@"DELETE"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [con start];
+}
+
+#pragma mark - NSURLConnection Delegate
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return YES;
+}
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [responseData setLength:0];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [responseData appendData:data];
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    // convert to JSON
+    if (self.responseData == nil) {
+        [UIAlertView myCostumeAlert:@"Exception Error" alertMessage:@"No Data found" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        
+        //Hide Loader
+        [HUD hide:YES];
+        [HUD show:NO];
+        return;
+    }
+    
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    if (myError == nil) {
+        
+        NSArray *result = [res valueForKey:@"deleteReceiverResult"];
+        
+        NSNumber *respCode = [result valueForKey:@"respcode"];
+        NSString *respMesg = [result valueForKey:@"respmessage"];
+    
+        
+        //hide  loAder..
+        [HUD hide:YES];
+        [HUD show:NO];
+        
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]]) {
+            [UIAlertView myCostumeAlert:@"Delete receiver" alertMessage:respMesg delegate:self cancelButton:@"Ok" otherButtons:nil];
+            return;
+        } else {
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            return;
+        }
+    }
+    
 }
 
 

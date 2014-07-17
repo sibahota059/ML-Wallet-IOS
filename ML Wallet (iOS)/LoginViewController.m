@@ -10,13 +10,30 @@
 #import "MenuViewController.h"
 #import "InfoViewController.h"
 #import "EnterCustomerID.h"
+#import "UIAlertView+alertMe.h"
+#import "ServiceConnection.h"
+#import "DeviceID.h"
+#import "UIAlertView+WaitAlertView.h"
+#import "MBProgressHUD.h"
+
+#import <CoreLocation/CoreLocation.h>
 
 @interface LoginViewController ()
+
 
 @end
 
 @implementation LoginViewController
+{
+    
+    //Location
+    CLLocationManager *locationManager;
+    NSString *user;
+    NSString *pass;
+}
 
+@synthesize responseData;
+@synthesize idd;
 @synthesize navigationBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,9 +60,12 @@
 {
     [super viewDidLoad];
     
-    
     self.navigationController.navigationBarHidden = navigationBar;
-
+    
+    //WaitScreen
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
     
     if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
     {
@@ -62,6 +82,13 @@
     [self.scrollView setContentSize:CGSizeMake(320, 600)];
     
     
+    //Set UP Location
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+    [locationManager startUpdatingLocation];
+ 
+//    }
 }
 - (IBAction)btnInfo:(id)sender {
     
@@ -90,11 +117,221 @@
 
 }
 
-- (IBAction)btnLogin:(id)sender {
+#pragma mark **Button Logint
+- (IBAction)btnLogin:(id)sender
+{
+    //Check first if User and Pass NULL
+    user = self.txtUser.text;
+    pass = self.txtPass.text;
     
-    MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-    //[self presentViewController:menuPage animated:YES completion:nil];
-    [self.navigationController pushViewController:menuPage animated:YES];
+    if ( [user isEqualToString:@""] )
+    {
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Type your UserID" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        return;
+    }
+    else if ( [pass isEqualToString:@""] )
+    {
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Type your Password" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        return;
+    }
+    
+    
+    //Show Animated
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+    double latitude = [self Latitude];
+    double longtitude = [self Longtitude];
+    NSLog(@"Lat : %f and Lng : %f", [self Latitude], [self Longtitude]);
+    
+    //Get Location JSON
+    NSURLConnection *con;
+    NSString *getReq = [NSString stringWithFormat:@"latlng=%f,%f&sensor=true", latitude, longtitude];
+    
+    
+    NSLog(@"viewdidload");
+    self.responseData = [NSMutableData data];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[[[ServiceConnection alloc] NSgetLocationService] stringByAppendingString:getReq]]];
+    [request setHTTPMethod:@"GET"];
+    con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.idd = 1;
+
+}
+
+#pragma mark --Location
+//get Longtitude
+- (double) Longtitude
+{
+    return locationManager.location.coordinate.longitude;
+}
+- (double) Latitude
+{
+    return locationManager.location.coordinate.latitude;
+}
+#pragma mark --END Location
+
+
+#pragma mark --NSURLConnection Delegate
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    
+    self.txtUser.text = @"";
+    self.txtPass.text = @"";
+    [HUD hide:YES];
+    [HUD show:NO];
+}
+#pragma -ByPass Certificate
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return YES;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [responseData setLength:0];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [responseData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+  
+    /*
+     1 == get Location
+     2 == get Login Post Method
+     */
+    switch (self.idd) {
+        case 1:
+            NSLog(@"getting location");
+            [self IDDLocation];
+            [self Req_Login];
+            break;
+        case 2:
+            [self login];
+            break;
+            
+        default:
+            break;
+    }
+}
+#pragma mark --END Delegate
+
+#pragma mark POST Login
+- (void) login
+{
+    // convert to JSON
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    if (myError == nil){
+        NSArray *result = [res valueForKey:@"logInResult"];
+        
+        NSNumber *respCode = [result valueForKey:@"respcode"];
+        NSString *respMesg = [result valueForKey:@"respmessage"];
+        
+        //Hide Loader
+        [HUD hide:YES];
+        [HUD show:NO];
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
+        {
+            //GOTO Menu
+            MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+            [self.navigationController pushViewController:menuPage animated:YES];
+            return;
+        }
+        else
+        {
+            //Show Error
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            self.txtPass.text = @"";
+            self.txtUser.text = @"";
+            return;
+        }
+        
+        
+    } else {
+        //Show if Error
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+}
+
+
+#pragma mark GetLocation Address
+- (void) IDDLocation
+{
+    // convert to JSON
+    NSError *myError = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    // show all values
+    for(id key in res) {
+        
+        id value = [res objectForKey:key];
+        
+        NSString *keyAsString = (NSString *)key;
+        NSString *valueAsString = (NSString *)value;
+        
+        NSLog(@"key: %@", keyAsString);
+        NSLog(@"value: %@", valueAsString);
+    }
+    
+    // extract specific value...
+    NSArray *results = [res objectForKey:@"results"];
+    
+    int i = 0;
+    for (NSDictionary *result in results) {
+        if (i==0)
+        {
+            self.location =[result objectForKey:@"formatted_address"];
+            self.location = [result objectForKey:@"formatted_address"];
+            NSLog(@"formatted_address: %@", self.location);
+            return;
+        }
+        i++;
+    }
+  
+}
+
+- (void) Req_Login
+{
+    
+    
+    //if all OK... then procced
+    NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
+    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    
+    
+    NSString *post = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",
+                      user,
+                      pass,
+                      version,
+                      [self Latitude],
+                      [self Longtitude],
+                      deviceID,
+                      self.location];
+
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"login"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+    
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:requestData];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    
+    self.idd = 2;
 
 }
 @end

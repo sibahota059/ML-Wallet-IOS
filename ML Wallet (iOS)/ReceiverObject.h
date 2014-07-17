@@ -14,6 +14,7 @@
 @property (retain, nonatomic) NSString *Address;
 @property (retain, nonatomic) NSString *Relation;
 @property (retain, nonatomic) UIImage *ReceiverImage;
+@property (retain, nonatomic) NSNumber *receiverNo;
 
 /*
 - (instancetype) initReceiverToEdit:(NSString*)receiverName Address:(NSString*)address Relation:(NSString*)relation ReceiverImage:(UIImage*)receiverImage;
@@ -21,6 +22,6 @@
 - (instancetype)initRetriveInfo;
 */
 
--(id) initWithName:(NSString *)name Address:(NSString *)address Relation:(NSString *)relation receiverImage:(UIImage *)image;
+-(id) initWithName:(NSString *)name Address:(NSString *)address Relation:(NSString *)relation receiverImage:(UIImage *)image receiverNo:(NSNumber *)receiverNo;
 
 @end

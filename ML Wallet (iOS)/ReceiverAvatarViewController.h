@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "ReceiverObject.h"
+#import "MBProgressHUD.h"
 
-@interface ReceiverAvatarViewController : UIViewController
-
+@interface ReceiverAvatarViewController : UIViewController <MBProgressHUDDelegate, UIAlertViewDelegate>
+{
+    MBProgressHUD *HUD;
+}
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *relationLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (strong, nonatomic) NSMutableData *responseData;
 
 @property (strong, nonatomic) ReceiverObject* receiver;
 
