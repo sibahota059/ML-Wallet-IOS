@@ -16,6 +16,8 @@
 @interface MLTermsConditionViewController (){
     MLUI *getUI;
     MLMenuViewController *menu;
+    SendoutMobile *sendout;
+    MBProgressHUD *HUD;
 }
 
 @end
@@ -37,6 +39,7 @@
     // Do any additional setup after loading the view from its nib.
     menu = [MLMenuViewController new];
     getUI = [MLUI new];
+    sendout = [SendoutMobile new];
     //self.navigationItem.titleView = [getUI navTitle:@"Terms & Conditions"];
     self.title = @"Terms & Conditions";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
@@ -44,11 +47,18 @@
     _tv_termsCondition.text = [getUI termsConditions];
     _tv_termsCondition.editable = NO;
     [getUI shadowView:_view_tc];
-    self.view_dialogHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navbar_bg.png"]];
+    //    self.view_dialogHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navbar_bg.png"]];
     
     UIBarButtonItem *home = [getUI navBarButtonTc:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
     
     [self.navigationItem setLeftBarButtonItem:home];
+    
+    sendout = [[SendoutMobile alloc]initWithWalletNo:__walletNo senderFname:__senderFname senderMname:__senderMname senderLname:__senderLname receiverFname:__receiverFname receiverMname:__receiverMname receiverLname:__receiverLname receiverNo:__receiverNo principal:__total latitude:__latitude longitude:__longitude location:__location deviceId:__divice];
+    
+    sendout.delegate = self;
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.delegate = self;
 }
 
 
@@ -59,12 +69,29 @@
 }
 
 - (IBAction)btnDecline:(id)sender {
-
+    
     MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
     
     [self.navigationController popToViewController:smv.tabBarController animated:YES];
     
     
+}
+
+- (void)didFinishLoading{
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+    NSLog(@"KPTN: %@", sendout.getKptn);
+    _lbl_kptn.text = [NSString stringWithFormat:@"KPTN: %@",sendout.getKptn];
+    _view_success.hidden = NO;
+    _view_success.alpha = 0.2f;
+    _view_successOption.hidden = NO;
+    _btnDecline.enabled = NO;
+    _btnAgree.enabled = NO;
+    [getUI shadowView:_view_successOption];
+    self.title = @"Done";
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -76,22 +103,16 @@
 }
 
 - (IBAction)btnAgree:(id)sender {
-    //[getUI displayAlert:@"Message" message:@"Go Transact!"];
-    _view_success.hidden = NO;
-    _view_success.alpha = 0.2f;
-    _view_successOption.hidden = NO;
-    _btnDecline.enabled = NO;
-    _btnAgree.enabled = NO;
-    [getUI shadowView:_view_successOption];
-    //self.navigationItem.titleView = [getUI navTitle:@"Done"];
-    self.title = @"Done";
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.leftBarButtonItem = nil;
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    [sendout postDataToUrl];
 }
 - (IBAction)btnClose:(id)sender {
-
+    
     MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
-
+    
     [self.navigationController popToViewController:smv.tabBarController animated:YES];
 }
 

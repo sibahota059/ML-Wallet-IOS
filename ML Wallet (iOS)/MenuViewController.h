@@ -36,6 +36,7 @@
 - (IBAction)kycGesture:(id)sender;
 - (IBAction)btnReceiver:(id)sender;
 - (IBAction)btn_Myprofile:(id)sender;
+- (IBAction)btn_SendMoney:(id)sender;
 
 
 #pragma Buttom Button

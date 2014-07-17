@@ -15,6 +15,8 @@
 @interface MLPreviewViewController (){
     MLUI *getUI;
     UIBarButtonItem *next;
+    MBProgressHUD *HUD;
+    CheckPin *chk;
 }
 
 @end
@@ -34,36 +36,63 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-
+    
+    chk = [CheckPin new];
+    chk.delegate = self;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.view_keyboard.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.preview_main.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
-    self.view_content.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview_bg"]];
-    //self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
     getUI = [MLUI new];
-    //self.navigationItem.titleView = [getUI navTitle:@"Preview"];
     self.title = @"Preview";
-    
-    //next = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"next.png"] style:UIBarButtonItemStylePlain target:self action:@selector(btn_pin)];
-    
-    
     
     UIBarButtonItem *home = [getUI navBarButtonPreview:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
     
     [self.navigationItem setRightBarButtonItem:next];
     [self.navigationItem setLeftBarButtonItem:home];
-    
-    
+
     [self shadowView];
     
-    _image_mine.layer.cornerRadius = 20;
-    _image_mine.clipsToBounds = YES;
-    _image_receiver.layer.cornerRadius = 20;
-    _image_receiver.clipsToBounds = YES;
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.delegate = self;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        _image_mine.layer.cornerRadius = 20;
+        _image_mine.clipsToBounds = YES;
+        _image_receiver.layer.cornerRadius = 20;
+        _image_receiver.clipsToBounds = YES;
+        self.view_content.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview_bg"]];
+    }
+    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        _image_mine.layer.cornerRadius = 30;
+        _image_mine.clipsToBounds = YES;
+        _image_receiver.layer.cornerRadius = 30;
+        _image_receiver.clipsToBounds = YES;
+        self.view_content.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview_bg_ipad"]];
+    }
+
     _view_keyboard.hidden = YES;
     
     [self setText:_tf_pin1];
     
+    _lbl_sname.text   = [NSString stringWithFormat:@"%@, %@ %@", __senderLname, __senderFname, __senderMname];
+    _lbl_rname.text   = [NSString stringWithFormat:@"%@, %@ %@", __receiverLname, __receiverFname, __receiverMname];
+    _lbl_amount.text  = [NSString stringWithFormat:@"%0.2f", [__amount doubleValue]];
+    _lbl_charge.text  = __charge;
+    _lbl_total.text   = __total;
+    
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:__receiver_image options: NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    if ([UIImage imageWithData:data] == nil) {
+        _image_mine.image = [UIImage imageNamed:@"noImage.png"];
+        _image_receiver.image = [UIImage imageNamed:@"noImage.png"];
+    }else{
+        _image_mine.image = [UIImage imageWithData:data];
+        _image_receiver.image = [UIImage imageWithData:data];
+    }
     
 }
 
@@ -86,23 +115,55 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)btn_pin{
+- (void)didFinishLoadingPin{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
     
     MLTermsConditionViewController *tc = [[MLTermsConditionViewController alloc]initWithNibName:@"MLTermsConditionViewController" bundle:nil];
     
-    NSString *pin = [NSString stringWithFormat:@"%@%@%@%@",_tf_pin1.text, _tf_pin2.text, _tf_pin3.text, _tf_pin4.text];
-    if (![pin isEqualToString:@"1234"]) {
-        [getUI displayAlert:@"Message" message:@"Pin doesn't match!"];
+    tc._senderLname    =  __senderLname;
+    tc._senderFname    =  __senderFname;
+    tc._senderMname    =  __senderMname;
+    tc._receiverLname  =  __receiverLname;
+    tc._receiverFname  =  __receiverFname;
+    tc._receiverMname  =  __receiverMname;
+    tc._total          = __amount;
+    tc._walletNo       = __walletNo;
+    tc._latitude       = __latitude;
+    tc._longitude      = __longitude;
+    tc._divice         = __divice;
+    tc._location       = __location;
+    tc._receiverNo     = __receiverNo;
+    
+    NSDictionary* _getPin = [chk.getPin objectForKey:@"checkPinResult"];
+    
+    NSString* repscode = [_getPin objectForKey:@"respcode"];
+    NSString* respmessage = [_getPin objectForKey:@"respmessage"];
+    
+    if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"1"]) {
+        [self.navigationController pushViewController:tc animated:YES];
         [self reset];
     }else{
-        [self.navigationController pushViewController:tc animated:YES];
+        [getUI displayAlert:@"Message" message:respmessage];
+        [self reset];
     }
+}
+
+- (void)btnPin{
+    
+    NSString *pin = [NSString stringWithFormat:@"%@%@%@%@",_tf_pin1.text, _tf_pin2.text, _tf_pin3.text, _tf_pin4.text];
+    [chk getReceiverWalletNo:@"14050000000135" andReceiverPinNo:pin];
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
     
 }
 - (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender {
     
     if(sender.direction == UISwipeGestureRecognizerDirectionLeft){
-        [self btn_pin];
+        [self btnPin];
     }
     if(sender.direction == UISwipeGestureRecognizerDirectionRight){
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -116,12 +177,15 @@
     self.view_pinInput.alpha = 1.0;
     self.view_keyboard.alpha = 1.0;
     self.view_content.alpha = 0.0;
+    self.btn_pin.hidden = NO;
+    self.btn_pin.alpha = 0.0;
     [self reset];
     
     [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
         _view_keyboard.hidden = NO;
         self.view_pinInput.alpha = 0.0;
         self.view_keyboard.alpha = 0.0;
+        self.btn_pin.alpha = 1.0;
         self.view_content.alpha = 1;
     }completion:^(BOOL finished) {
         
@@ -138,6 +202,7 @@
     [self.preview_scroll setContentSize:CGSizeMake(320, 400)];
     self.view_pinInput.alpha = 0.0;
     self.view_keyboard.alpha = 0.0;
+    self.btn_pin.hidden = YES;
     
     [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
         _view_keyboard.hidden = NO;
@@ -150,7 +215,7 @@
     [_view_content setAlpha:0.1f];
     self.title = @"Enter Your Pin";
     //self.navigationItem.titleView = [getUI navTitle:@"Enter Your Pin"];
-    next = [getUI navBarButtonPreview:self navLink:@selector(btn_pin) imageNamed:@"next.png"];
+    next = [getUI navBarButtonPreview:self navLink:@selector(btnPin) imageNamed:@"next.png"];
     [self.navigationItem setRightBarButtonItem:next];
     _view_pinInput.hidden = NO;
 }
@@ -173,7 +238,7 @@
     _btnZero.enabled = YES;
     
     [self setText:_tf_pin1];
-
+    
 }
 
 - (IBAction)btnOne:(id)sender {

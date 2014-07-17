@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GetReceiver.h"
 
 @class MLReceiverTableViewController;
 
 @protocol MLReceiverTableViewControllerDelegate <NSObject>
 
-- (void)didSelectReceiver:(MLReceiverTableViewController *)controller receiverFname:(NSString *)rfname receiverMname:(NSString *)rmname receiverLname:(NSString *)rlname receiverImage:(UIImage *)rimage receiverAddress:(NSString *)raddress receiverRelation:(NSString *)rrelation rcount:(int)count;
+- (void)didSelectReceiver:(MLReceiverTableViewController *)controller receiverFname:(NSString *)rfname receiverMname:(NSString *)rmname receiverLname:(NSString *)rlname receiverImage:(NSString *)rimage receiverAddress:(NSString *)raddress receiverRelation:(NSString *)rrelation rcount:(int)count;
 
 @end
 
-@interface MLReceiverTableViewController : UITableViewController
+@interface MLReceiverTableViewController : UITableViewController<GetReceiverDelegate>
 
 @property (weak, nonatomic) id<MLReceiverTableViewControllerDelegate>delegate;
 

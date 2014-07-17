@@ -7,21 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CheckPin.h"
+#import "MBProgressHUD.h"
 
-@interface MLPreviewViewController : UIViewController
+@interface MLPreviewViewController : UIViewController<CheckPinDelegate, MBProgressHUDDelegate>
+
 @property (weak, nonatomic, getter = getText, setter = setText:) UITextField *setField;
 @property (weak, nonatomic) IBOutlet UIView *preview_main;
 @property (weak, nonatomic) IBOutlet UIView *view_content;
-- (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender;
-- (IBAction)tapPreview:(UITapGestureRecognizer *)sender;
-
 @property (weak, nonatomic) IBOutlet UIImageView *image_mine;
 @property (weak, nonatomic) IBOutlet UIImageView *image_receiver;
-- (IBAction)btn_pin:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *view_keyboard;
 @property (weak, nonatomic) IBOutlet UIScrollView *preview_scroll;
 @property (weak, nonatomic) IBOutlet UIView *view_pinInput;
-
+@property (weak, nonatomic) IBOutlet UIButton *btn_pin;
 @property (weak, nonatomic) IBOutlet UITextField *tf_pin1;
 @property (weak, nonatomic) IBOutlet UITextField *tf_pin2;
 @property (weak, nonatomic) IBOutlet UITextField *tf_pin3;
@@ -37,7 +36,34 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnNine;
 @property (weak, nonatomic) IBOutlet UIButton *btnZero;
 @property (weak, nonatomic) IBOutlet UIButton *btnClear;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_sname;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_rname;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_amount;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_charge;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_total;
 
+@property (strong, nonatomic) NSString *_walletNo;
+@property (strong, nonatomic) NSString *_senderLname;
+@property (strong, nonatomic) NSString *_senderFname;
+@property (strong, nonatomic) NSString *_senderMname;
+@property (strong, nonatomic) NSString *_receiverLname;
+@property (strong, nonatomic) NSString *_receiverFname;
+@property (strong, nonatomic) NSString *_receiverMname;
+@property (strong, nonatomic) NSString *_senderImage;
+@property (strong, nonatomic) NSString *_receiver_image;
+@property (strong, nonatomic) NSString *_amount;
+@property (strong, nonatomic) NSString *_charge;
+@property (strong, nonatomic) NSString *_total;
+@property (strong, nonatomic) NSString *_latitude;
+@property (strong, nonatomic) NSString *_longitude;
+@property (strong, nonatomic) NSString *_divice;
+@property (strong, nonatomic) NSString *_location;
+@property (strong, nonatomic) NSString *_receiverNo;
+
+
+- (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender;
+- (IBAction)tapPreview:(UITapGestureRecognizer *)sender;
+- (IBAction)btn_pin:(id)sender;
 - (IBAction)btnOne:(id)sender;
 - (IBAction)btnTwo:(id)sender;
 - (IBAction)btnThree:(id)sender;

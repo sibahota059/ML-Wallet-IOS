@@ -11,10 +11,11 @@
 #import "MLRatesTableViewCell.h"
 
 @interface MLRatesTableViewController (){
-
-    NSArray *amount, *rates;
+    
     MLUI *getUI;
-
+    KpRates *rate;
+    NSMutableArray *amount, *charges, *getValueRates;
+    
 }
 @end
 
@@ -35,18 +36,43 @@
     [super viewDidLoad];
     
     getUI = [MLUI new];
-
+    rate = [KpRates new];
+    
+    rate.delegate = self;
+    
     self.tabBarController.navigationItem.title = @"MLKP Rates";
     //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"MLKP Rates"];
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
-
-
-    amount = [NSArray arrayWithObjects:@"0.01 - 100.00", @"100.01 - 200.00", @"200.01 - 300.00", @"300.01 - 400.00", @"400.01 - 500.00", @"500.01 - 600.00", @"600.01 - 800.00", @"800.01 - 900.00", @"900.01 - 1,000.00", @"1,000.01 - 1,500.00", @"1,500.01 - 2,000.00", @"2,000.01 - 2,500.00", @"2,500.01 - 3,000.00", @"3,000.01 - 4,000.00", @"4,000.01 - 9,500.00", @"9,500.01 - 14,000.00", @"14,000.01 - 30,000.00", @"30,000.01 - 40,000.00", @"40,000.01 - 50,000.00", nil];
-    rates = [NSArray arrayWithObjects:@"7.00", @"13.00", @"18.00", @"25.00", @"30.00", @"35.00", @"40.00", @"45.00", @"50.00", @"80.00", @"100.00", @"130.00", @"150.00", @"180.00", @"220.00", @"240.00", @"300.00", @"350.00", @"400.00", nil];
     
     [self swipe];
+    
+    [rate loadRates];
+}
+
+- (void)didFinishLoadingRates{
+    
+    NSArray *ratess = [rate.getRates objectForKey:@"getChargeValuesResult"];
+    getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    
+    charges = [NSMutableArray new];
+    amount = [NSMutableArray new];
+    
+    for (NSDictionary *items in getValueRates) {
+        
+        NSString *minAmount  = [items valueForKey:@"minAmount"];
+        NSString *maxAmount  = [items valueForKey:@"maxAmount"];
+        NSString *ch  = [items valueForKey:@"chargeValue"];
+        
+        
+        [charges addObject:ch];
+        [amount addObject:[NSString stringWithFormat:@"%@ - %@", minAmount, maxAmount]];
+        //[maxAmounts addObject:maxAmount];
+        
+    }
+    
+    [self.tableView reloadData];
 }
 
 -(void)swipe{
@@ -76,16 +102,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
+    
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
     // Return the number of rows in the section.
-    return [amount count];
+    return [charges count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,16 +125,30 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.labelAmount.text = [amount objectAtIndex:indexPath.row];
-    cell.labelRates.text= [rates objectAtIndex:indexPath.row];
+    
+    NSString *charge = [charges objectAtIndex:[indexPath row]];
+    NSString *min = [amount objectAtIndex:[indexPath row]];
+    //NSString *max = [maxAmounts objectAtIndex:[indexPath row]];
+    
+    cell.labelRates.text   = [NSString stringWithFormat:@"%2@.00", charge ];
+    cell.labelAmount.text    = min;
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        return 44;
+    }
+    
+    return 70;
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tabBarController.navigationItem.title = @"MLKP Rates";
-    //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"MLKP Rates"];
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     self.tabBarController.navigationItem.rightBarButtonItem = nil;

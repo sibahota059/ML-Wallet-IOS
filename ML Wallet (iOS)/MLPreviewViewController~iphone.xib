@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MLPreviewViewController">
@@ -17,8 +17,14 @@
                 <outlet property="btnThree" destination="f0d-UQ-xGK" id="lZw-HS-AzA"/>
                 <outlet property="btnTwo" destination="vNm-Nk-fvj" id="0mC-40-NxY"/>
                 <outlet property="btnZero" destination="WqT-kH-Fki" id="rzs-qE-Wka"/>
+                <outlet property="btn_pin" destination="suv-1e-Tpf" id="Lsq-Jx-cZD"/>
                 <outlet property="image_mine" destination="v5V-ic-rie" id="rIu-eN-ddP"/>
                 <outlet property="image_receiver" destination="VFh-YD-O0i" id="8Lf-Y2-dHt"/>
+                <outlet property="lbl_amount" destination="n0J-fN-NJP" id="32Z-82-QNz"/>
+                <outlet property="lbl_charge" destination="7CW-be-r0g" id="Znn-6U-jyR"/>
+                <outlet property="lbl_rname" destination="7H7-uK-l0l" id="c0M-gU-ky0"/>
+                <outlet property="lbl_sname" destination="0CS-3n-5Os" id="0Qj-H8-5yA"/>
+                <outlet property="lbl_total" destination="izJ-sq-X0Y" id="emp-vo-kvY"/>
                 <outlet property="preview_main" destination="Da8-3N-nsZ" id="nLt-uk-Fhs"/>
                 <outlet property="preview_scroll" destination="mC3-la-7wc" id="kxe-Im-efQ"/>
                 <outlet property="tf_pin1" destination="49J-LZ-02U" id="9j1-51-PMp"/>
@@ -69,7 +75,7 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total      :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kcz-vi-Sam">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To         :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kcz-vi-Sam">
                                             <rect key="frame" x="12" y="111" width="107" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -138,7 +144,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VFh-YD-O0i">
-                                            <rect key="frame" x="257" y="115" width="40" height="40"/>
+                                            <rect key="frame" x="257" y="111" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
