@@ -170,7 +170,6 @@
 		F05C5F3118E12C0D002F2EE1 /* MLRatesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2618E12C0D002F2EE1 /* MLRatesTableViewCell.m */; };
 		F05C5F3218E12C0D002F2EE1 /* MLReceiverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2818E12C0D002F2EE1 /* MLReceiverTableViewController.m */; };
 		F05C5F3318E12C0D002F2EE1 /* MLTermsConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2A18E12C0D002F2EE1 /* MLTermsConditionViewController.m */; };
-		F05C5F3418E12C0D002F2EE1 /* MLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2C18E12C0D002F2EE1 /* MLMenuViewController.m */; };
 		F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F3618E12C30002F2EE1 /* MLUI.m */; };
 		F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F3818E12C30002F2EE1 /* UINavigationBar+customNav.m */; };
 		F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = F05C5F3D18E12C62002F2EE1 /* ic_preview.png */; };
@@ -424,8 +423,6 @@
 		F05C5F2818E12C0D002F2EE1 /* MLReceiverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLReceiverTableViewController.m; sourceTree = "<group>"; };
 		F05C5F2918E12C0D002F2EE1 /* MLTermsConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLTermsConditionViewController.h; sourceTree = "<group>"; };
 		F05C5F2A18E12C0D002F2EE1 /* MLTermsConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLTermsConditionViewController.m; sourceTree = "<group>"; };
-		F05C5F2B18E12C0D002F2EE1 /* MLMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLMenuViewController.h; sourceTree = "<group>"; };
-		F05C5F2C18E12C0D002F2EE1 /* MLMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLMenuViewController.m; sourceTree = "<group>"; };
 		F05C5F3518E12C30002F2EE1 /* MLUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLUI.h; sourceTree = "<group>"; };
 		F05C5F3618E12C30002F2EE1 /* MLUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLUI.m; sourceTree = "<group>"; };
 		F05C5F3718E12C30002F2EE1 /* UINavigationBar+customNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+customNav.h"; sourceTree = "<group>"; };
@@ -771,8 +768,6 @@
 				F05C5F2818E12C0D002F2EE1 /* MLReceiverTableViewController.m */,
 				F05C5F2918E12C0D002F2EE1 /* MLTermsConditionViewController.h */,
 				F05C5F2A18E12C0D002F2EE1 /* MLTermsConditionViewController.m */,
-				F05C5F2B18E12C0D002F2EE1 /* MLMenuViewController.h */,
-				F05C5F2C18E12C0D002F2EE1 /* MLMenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1351,7 +1346,6 @@
 				700661BB18DA74DD00A0F05C /* AccountMain.m in Sources */,
 				F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */,
 				F05C5F2F18E12C0D002F2EE1 /* MLPreviewViewController.m in Sources */,
-				F05C5F3418E12C0D002F2EE1 /* MLMenuViewController.m in Sources */,
 				F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */,
 				70EEA17D18D9C47800719BF7 /* SelectQuestionDialog.m in Sources */,
 				70EEA17918D9C46000719BF7 /* QuestionsActivity.m in Sources */,

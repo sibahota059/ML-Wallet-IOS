@@ -10,12 +10,10 @@
 #import "MLUI.h"
 #import "MLSendMoneyViewController.h"
 #import "MLRatesTableViewController.h"
-#import "MLMenuViewController.h"
 #import "MenuViewController.h"
 
 @interface MLTermsConditionViewController (){
     MLUI *getUI;
-    MLMenuViewController *menu;
     SendoutMobile *sendout;
     MBProgressHUD *HUD;
 }
@@ -37,7 +35,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    menu = [MLMenuViewController new];
     getUI = [MLUI new];
     sendout = [SendoutMobile new];
     //self.navigationItem.titleView = [getUI navTitle:@"Terms & Conditions"];
