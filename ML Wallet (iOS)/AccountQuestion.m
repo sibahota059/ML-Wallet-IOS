@@ -382,7 +382,9 @@ self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 
 
 
-
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 
 

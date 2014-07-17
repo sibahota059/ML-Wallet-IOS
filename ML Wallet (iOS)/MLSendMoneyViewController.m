@@ -61,7 +61,7 @@
     
     //create a bar button
     next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
-    home = [getUI navBarButton:self navLink:@selector(btn_back:) imageNamed:@"ic_home.png"];
+    home = [getUI navBarButton:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
     
     [self.tabBarController.navigationItem setRightBarButtonItem:next];
     [self.tabBarController.navigationItem setLeftBarButtonItem:home];

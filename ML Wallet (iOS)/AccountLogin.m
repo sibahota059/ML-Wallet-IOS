@@ -128,7 +128,9 @@ ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
     
 }
 
-
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 
 @end

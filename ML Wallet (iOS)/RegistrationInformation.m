@@ -269,6 +269,8 @@ ProfileOutline *fullNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *add
     
 }
 
-
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 @end

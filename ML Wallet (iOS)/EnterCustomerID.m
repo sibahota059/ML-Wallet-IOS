@@ -153,6 +153,10 @@ ProfileTextField *firstNumberTF, *secondNumberTF, *thirdNumberTF, *phoneNumberTF
 }
 
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 
 
 @end
