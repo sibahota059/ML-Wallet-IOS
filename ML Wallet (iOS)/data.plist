@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>walletno</key>
+	<string></string>
+	<key>fname</key>
+	<string></string>
+	<key>lname</key>
+	<string></string>
+	<key>photo</key>
+	<string></string>
+</dict>
+</plist>

@@ -17,12 +17,16 @@
 #import "ServiceConnection.h"
 #import "UIAlertView+alertMe.h"
 #import "UIImage+DecodeStringToImage.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface ReceiverMenuListViewController ()
 
 @end
 
 @implementation ReceiverMenuListViewController
+{
+    NSString *walletno;
+}
 
 @synthesize responseData;
 @synthesize allTableData;
@@ -47,7 +51,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    NSDictionary *dic = [NSDictionary initRead_LoadWallet_Data];
+    walletno = [dic objectForKey:@"walletno"];
+    
     
     //WaitScreen
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -190,7 +196,8 @@
     HUD.square = YES;
     [HUD show:YES];
     
-    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"retrieveReceivers/?walletno=14030000000123"];
+    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"retrieveReceivers/?"];
+    NSString *srvcURL = [NSString stringWithFormat:@"%@walletno=%@", srvcURL1, walletno];
     
     self.responseData = [NSMutableData data];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];

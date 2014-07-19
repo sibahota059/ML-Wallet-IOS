@@ -16,6 +16,8 @@
 #import "UIAlertView+WaitAlertView.h"
 #import "MBProgressHUD.h"
 
+#import "SaveWalletData.h"
+
 #import <CoreLocation/CoreLocation.h>
 
 @interface LoginViewController ()
@@ -30,6 +32,11 @@
     CLLocationManager *locationManager;
     NSString *user;
     NSString *pass;
+    
+    NSString *walletno;
+    NSString *fname;
+    NSString *lname;
+    NSString *photo;
 }
 
 @synthesize responseData;
@@ -243,6 +250,19 @@
         
         if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
         {
+            
+            walletno    = [result valueForKeyPath:@"walletno"];
+            fname       = [result valueForKeyPath:@"fname"];
+            lname       = [result valueForKeyPath:@"lname"];
+            photo       = [result valueForKeyPath:@"photo"];
+            
+            //Saving Data Plist
+            SaveWalletData *saveData = [SaveWalletData new];
+            [saveData initSaveData:walletno forKey:@"walletno"];
+            [saveData initSaveData:lname forKey:@"lname"];
+            [saveData initSaveData:fname forKey:@"fname"];
+            [saveData initSaveData:photo forKey:@"photo"];
+            
             //GOTO Menu
             MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
             [self.navigationController pushViewController:menuPage animated:YES];
@@ -334,4 +354,33 @@
     self.idd = 2;
 
 }
+
+/*
+#pragma mark - Data Property List
+- (void) StoreData
+{
+    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"];
+    [self WriteData_PathString:bundle];
+}
+
+//Write to PLIST
+- (void) WriteData_PathString : (NSString *)path
+{
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSLog(@"Wallet no to save : %@", walletno);
+    
+    [data setObject:[NSString stringWithString:walletno] forKey:@"walletno"];
+    [data writeToFile:path atomically:YES];
+    
+    [self ReadData_PathString:path];
+}
+
+//Read Data
+- (void) ReadData_PathString : (NSString *)path
+{
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+    NSString *val = [dic objectForKey:@"walletno"];
+    NSLog(@"VAlue%@", val);
+}*/
+
 @end
