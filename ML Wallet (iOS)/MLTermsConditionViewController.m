@@ -53,8 +53,8 @@
     sendout = [[SendoutMobile alloc]initWithWalletNo:__walletNo senderFname:__senderFname senderMname:__senderMname senderLname:__senderLname receiverFname:__receiverFname receiverMname:__receiverMname receiverLname:__receiverLname receiverNo:__receiverNo principal:__total latitude:__latitude longitude:__longitude location:__location deviceId:__divice];
     
     sendout.delegate = self;
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
 }
 
@@ -74,21 +74,28 @@
     
 }
 
-- (void)didFinishLoading{
+- (void)didFinishLoading:(NSString *)indicator{
     [HUD hide:YES];
     [HUD show:NO];
     
-    NSLog(@"KPTN: %@", sendout.getKptn);
-    _lbl_kptn.text = [NSString stringWithFormat:@"KPTN: %@",sendout.getKptn];
-    _view_success.hidden = NO;
-    _view_success.alpha = 0.2f;
-    _view_successOption.hidden = NO;
-    _btnDecline.enabled = NO;
-    _btnAgree.enabled = NO;
-    [getUI shadowView:_view_successOption];
-    self.title = @"Done";
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.leftBarButtonItem = nil;
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", sendout.getRespcode]isEqualToString:@"1"]){
+        NSLog(@"KPTN: %@", sendout.getKptn);
+        _lbl_kptn.text = [NSString stringWithFormat:@"Money Successfully Sent\nKPTN:\n%@",sendout.getKptn];
+        _view_success.hidden = NO;
+        _view_success.alpha = 0.2f;
+        _view_successOption.hidden = NO;
+        _btnDecline.enabled = NO;
+        _btnAgree.enabled = NO;
+        [getUI shadowView:_view_successOption];
+        self.title = @"Done";
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.leftBarButtonItem = nil;
+    }else if ([[NSString stringWithFormat:@"%@", sendout.getRespcode] isEqualToString:@"0"]){
+        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", sendout.getRespmessage]];
+    }else{
+        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+    }
+    
 }
 
 - (BOOL)prefersStatusBarHidden{

@@ -17,6 +17,8 @@
     GetReceiver *getReceiver;
     NSMutableArray *receiverImage, *receiverFname, *receiverMname, *receiverLname, *receiverAddress, *receiverRelation, *receiverNo, *getValueReceiver;
     UIImage *recImage;
+    MBProgressHUD *HUD;
+    MLUI *getUI;
 }
 
 @end
@@ -36,10 +38,21 @@
 {
     [super viewDidLoad];
     
+    //WaitScreen
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    
+    //Show Animated
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
     getReceiver = [GetReceiver new];
     getReceiver.delegate = self;
     
-    //MLUI *getUI = [MLUI new];
+    getUI = [MLUI new];
     //self.navigationItem.titleView = [getUI navTitle:@"Choose Receiver"];
     self.title = @"Choose Receiver";
     [self.navigationItem setHidesBackButton:YES animated:YES];
@@ -54,40 +67,56 @@
     [getReceiver getReceiverWalletNo:@"14050000000135"];
 }
 
-- (void)didFinishLoadingReceiver{
-    //NSLog(@"Receiver: %@", getReceiver.getReceiver);
+- (void)didFinishLoadingReceiver:(NSString *)indicator{
+
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+//    "<counter>k__BackingField" = 5;
     
     NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
     getValueReceiver = [receiver valueForKey:@"<receiverList>k__BackingField"];
+    NSString *respcode    = [receiver valueForKey:@"<respcode>k__BackingField"];
+    NSString *respmessage = [receiver valueForKey:@"<respmessage>k__BackingField"];
     
-    receiverImage = [NSMutableArray new];
-    receiverFname = [NSMutableArray new];
-    receiverMname = [NSMutableArray new];
-    receiverLname = [NSMutableArray new];
-    receiverAddress = [NSMutableArray new];
-    receiverRelation = [NSMutableArray new];
-    receiverNo = [NSMutableArray new];
-    
-    for (NSDictionary *items in getValueReceiver) {
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
         
-        NSString *rImage  = [items valueForKey:@"photo"];
-        NSString *fName  = [items valueForKey:@"fname"];
-        NSString *mName  = [items valueForKey:@"mname"];
-        NSString *lName  = [items valueForKey:@"lname"];
-        NSString *address  = [items valueForKey:@"address"];
-        NSString *rNumber  = [items valueForKey:@"receiverNo"];
-        NSString *relation  = [items valueForKey:@"relation"];
+        receiverImage = [NSMutableArray new];
+        receiverFname = [NSMutableArray new];
+        receiverMname = [NSMutableArray new];
+        receiverLname = [NSMutableArray new];
+        receiverAddress = [NSMutableArray new];
+        receiverRelation = [NSMutableArray new];
+        receiverNo = [NSMutableArray new];
         
+        for (NSDictionary *items in getValueReceiver) {
+            
+            NSString *rImage  = [items valueForKey:@"photo"];
+            NSString *fName  = [items valueForKey:@"fname"];
+            NSString *mName  = [items valueForKey:@"mname"];
+            NSString *lName  = [items valueForKey:@"lname"];
+            NSString *address  = [items valueForKey:@"address"];
+            NSString *rNumber  = [items valueForKey:@"receiverNo"];
+            NSString *relation  = [items valueForKey:@"relation"];
+            
+            
+            [receiverImage addObject:rImage];
+            [receiverFname addObject:fName];
+            [receiverMname addObject:mName];
+            [receiverLname addObject:lName];
+            [receiverAddress addObject:address];
+            [receiverNo addObject:rNumber];
+            [receiverRelation addObject:relation];
+            
+        }
         
-        [receiverImage addObject:rImage];
-        [receiverFname addObject:fName];
-        [receiverMname addObject:mName];
-        [receiverLname addObject:lName];
-        [receiverAddress addObject:address];
-        [receiverNo addObject:rNumber];
-        [receiverRelation addObject:relation];
-        
+    }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
+        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else{
+        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
+    
+    
     
     [self.tableView reloadData];
 }
