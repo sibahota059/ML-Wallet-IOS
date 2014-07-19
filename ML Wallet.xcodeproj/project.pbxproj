@@ -109,6 +109,9 @@
 		3BC3829218C095D200270567 /* ic_about.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3829118C095D200270567 /* ic_about.9.png */; };
 		3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCFE2D719580A8A008C4E6F /* UIAlertView+WaitAlertView.m */; };
 		3BF04C7319764DF4002C2FCC /* TopupViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF04C7219764DF4002C2FCC /* TopupViewController~ipad.xib */; };
+		3BF0B261197A508C00AC2C76 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BF0B260197A508C00AC2C76 /* data.plist */; };
+		3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0B266197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m */; };
+		3BF0B26D197A616400AC2C76 /* SaveWalletData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0B26C197A616400AC2C76 /* SaveWalletData.m */; };
 		700661B818DA74CF00A0F05C /* AccountMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 700661B718DA74CF00A0F05C /* AccountMain.xib */; };
 		700661BB18DA74DD00A0F05C /* AccountMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700661BA18DA74DD00A0F05C /* AccountMain.m */; };
 		700661E618DA766800A0F05C /* design_buttom_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 700661C118DA766800A0F05C /* design_buttom_left.png */; };
@@ -283,15 +286,6 @@
 		3BA8A22D197516580052FA2F /* UIImage+DecodeStringToImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DecodeStringToImage.m"; sourceTree = "<group>"; };
 		3BA8A22F19756F810052FA2F /* button_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_back.png; sourceTree = "<group>"; };
 		3BA8A231197570DF0052FA2F /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
-		3BB09D3719780FEC003CD45E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = "../../icon set/icon.png"; sourceTree = "<group>"; };
-		3BB09D3819781022003CD45E /* icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2.png; path = "../../icon set/icon2.png"; sourceTree = "<group>"; };
-		3BB09D391978107B003CD45E /* icon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon3.png; path = "../../icon set/icon3.png"; sourceTree = "<group>"; };
-		3BB09D3A197810B1003CD45E /* icon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon4.png; path = "../../icon set/icon4.png"; sourceTree = "<group>"; };
-		3BB09D3B197810EA003CD45E /* icon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon5.png; path = "../../icon set/icon5.png"; sourceTree = "<group>"; };
-		3BB09D3C19781125003CD45E /* icon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon6.png; path = "../../icon set/icon6.png"; sourceTree = "<group>"; };
-		3BB09D3D19781146003CD45E /* icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon7.png; path = "../../icon set/icon7.png"; sourceTree = "<group>"; };
-		3BB09D3E1978116E003CD45E /* icon8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon8.png; path = "../../icon set/icon8.png"; sourceTree = "<group>"; };
-		3BB09D3F19781186003CD45E /* icon9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon9.png; path = "../../icon set/icon9.png"; sourceTree = "<group>"; };
 		3BB42DE418D6B2CD0011792E /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3BB42DE718D6B6C60011792E /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		3BB42DE818D6B6C60011792E /* bradpit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bradpit.jpg; sourceTree = "<group>"; };
@@ -337,6 +331,11 @@
 		3BCFE2D619580A8A008C4E6F /* UIAlertView+WaitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+WaitAlertView.h"; sourceTree = "<group>"; };
 		3BCFE2D719580A8A008C4E6F /* UIAlertView+WaitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+WaitAlertView.m"; sourceTree = "<group>"; };
 		3BF04C7219764DF4002C2FCC /* TopupViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TopupViewController~ipad.xib"; sourceTree = "<group>"; };
+		3BF0B260197A508C00AC2C76 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
+		3BF0B265197A58BD00AC2C76 /* NSDictionary+LoadWalletData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LoadWalletData.h"; sourceTree = "<group>"; };
+		3BF0B266197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LoadWalletData.m"; sourceTree = "<group>"; };
+		3BF0B26B197A616400AC2C76 /* SaveWalletData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveWalletData.h; sourceTree = "<group>"; };
+		3BF0B26C197A616400AC2C76 /* SaveWalletData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveWalletData.m; sourceTree = "<group>"; };
 		700661B718DA74CF00A0F05C /* AccountMain.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountMain.xib; sourceTree = "<group>"; };
 		700661B918DA74DD00A0F05C /* AccountMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountMain.h; sourceTree = "<group>"; };
 		700661BA18DA74DD00A0F05C /* AccountMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountMain.m; sourceTree = "<group>"; };
@@ -608,6 +607,7 @@
 				3BA7CCA318B1D6B900B9FC4B /* InfoPlist.strings */,
 				3BA7CCA618B1D6B900B9FC4B /* main.m */,
 				3BA7CCA818B1D6B900B9FC4B /* ML Wallet (iOS)-Prefix.pch */,
+				3BF0B260197A508C00AC2C76 /* data.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -829,15 +829,6 @@
 		3BB42DE618D6B6C60011792E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				3BB09D3F19781186003CD45E /* icon9.png */,
-				3BB09D3E1978116E003CD45E /* icon8.png */,
-				3BB09D3D19781146003CD45E /* icon7.png */,
-				3BB09D3C19781125003CD45E /* icon6.png */,
-				3BB09D3B197810EA003CD45E /* icon5.png */,
-				3BB09D3A197810B1003CD45E /* icon4.png */,
-				3BB09D391978107B003CD45E /* icon3.png */,
-				3BB09D3819781022003CD45E /* icon2.png */,
-				3BB09D3719780FEC003CD45E /* icon.png */,
 				F081A05F19777613004568EF /* payment_bg_ipad.png */,
 				F05C5F3E18E12C62002F2EE1 /* header_bg2.png */,
 				F081A03919776D64004568EF /* preview_bg_ipad.png */,
@@ -965,6 +956,10 @@
 				3BCFE2D719580A8A008C4E6F /* UIAlertView+WaitAlertView.m */,
 				3BA8A22C197516580052FA2F /* UIImage+DecodeStringToImage.h */,
 				3BA8A22D197516580052FA2F /* UIImage+DecodeStringToImage.m */,
+				3BF0B265197A58BD00AC2C76 /* NSDictionary+LoadWalletData.h */,
+				3BF0B266197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m */,
+				3BF0B26B197A616400AC2C76 /* SaveWalletData.h */,
+				3BF0B26C197A616400AC2C76 /* SaveWalletData.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1232,6 +1227,7 @@
 				F081A05619776E55004568EF /* MLRatesTableViewController~ipad.xib in Resources */,
 				F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */,
 				3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */,
+				3BF0B261197A508C00AC2C76 /* data.plist in Resources */,
 				3BB42E0B18D6B6C60011792E /* rates_selected.png in Resources */,
 				3B71BBB518BD8B5C0094543C /* edit_image.png in Resources */,
 				3BB42E0218D6B6C60011792E /* navibar_bg.png in Resources */,
@@ -1314,6 +1310,7 @@
 				F05C5F3218E12C0D002F2EE1 /* MLReceiverTableViewController.m in Sources */,
 				3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */,
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
+				3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
 				3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */,
 				70AD602418DBC74F00E392BF /* UICreationMethods.m in Sources */,
@@ -1334,6 +1331,7 @@
 				3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */,
 				F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */,
 				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
+				3BF0B26D197A616400AC2C76 /* SaveWalletData.m in Sources */,
 				70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */,
 				3BA8A22E197516580052FA2F /* UIImage+DecodeStringToImage.m in Sources */,
 				F05C5F3318E12C0D002F2EE1 /* MLTermsConditionViewController.m in Sources */,
