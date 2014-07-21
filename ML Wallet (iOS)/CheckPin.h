@@ -12,7 +12,7 @@
 @protocol CheckPinDelegate <NSObject>
 
 @required
--(void)didFinishLoadingPin;
+-(void)didFinishLoadingPin:(NSString *)indicator;
 
 @end
 @interface CheckPin : NSObject

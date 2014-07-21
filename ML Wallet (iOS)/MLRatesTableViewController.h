@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "KpRates.h"
+#import "MBProgressHUD.h"
 
-@interface MLRatesTableViewController : UITableViewController<KpRatesDelegate>
+@interface MLRatesTableViewController : UITableViewController<KpRatesDelegate, MBProgressHUDDelegate>
 
 @end

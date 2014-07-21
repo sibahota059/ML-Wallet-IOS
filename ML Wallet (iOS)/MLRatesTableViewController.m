@@ -15,6 +15,7 @@
     MLUI *getUI;
     KpRates *rate;
     NSMutableArray *amount, *charges, *getValueRates;
+    MBProgressHUD *HUD;
     
 }
 @end
@@ -48,28 +49,51 @@
     
     [self swipe];
     
+    //WaitScreen
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.delegate = self;
+    
+    //Show Animated
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
     [rate loadRates];
 }
 
-- (void)didFinishLoadingRates{
+- (void)didFinishLoadingRates:(NSString *)indicator{
     
-    NSArray *ratess = [rate.getRates objectForKey:@"getChargeValuesResult"];
-    getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    [HUD hide:YES];
+    [HUD show:NO];
     
-    charges = [NSMutableArray new];
-    amount = [NSMutableArray new];
+    NSArray *ratess       = [rate.getRates objectForKey:@"getChargeValuesResult"];
+    getValueRates         = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
+    NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
     
-    for (NSDictionary *items in getValueRates) {
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
         
-        NSString *minAmount  = [items valueForKey:@"minAmount"];
-        NSString *maxAmount  = [items valueForKey:@"maxAmount"];
-        NSString *ch  = [items valueForKey:@"chargeValue"];
+        charges = [NSMutableArray new];
+        amount = [NSMutableArray new];
         
+        for (NSDictionary *items in getValueRates) {
+            
+            NSString *minAmount  = [items valueForKey:@"minAmount"];
+            NSString *maxAmount  = [items valueForKey:@"maxAmount"];
+            NSString *ch  = [items valueForKey:@"chargeValue"];
+            
+            
+            [charges addObject:ch];
+            [amount addObject:[NSString stringWithFormat:@"%@ - %@", minAmount, maxAmount]];
+            
+        }
         
-        [charges addObject:ch];
-        [amount addObject:[NSString stringWithFormat:@"%@ - %@", minAmount, maxAmount]];
-        //[maxAmounts addObject:maxAmount];
-        
+    }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
+        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else{
+        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
     
     [self.tableView reloadData];

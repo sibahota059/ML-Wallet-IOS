@@ -25,7 +25,7 @@ NSURLConnection *conn;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Bad: %@", [error description]);
     conn = nil;
-    [self.delegate didFinishLoadingRates];
+    [self.delegate didFinishLoadingRates:@"0"];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -36,7 +36,7 @@ NSURLConnection *conn;
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.getRates = jsonResponse;
-    [self.delegate didFinishLoadingRates];
+    [self.delegate didFinishLoadingRates:@"1"];
 }
 
 

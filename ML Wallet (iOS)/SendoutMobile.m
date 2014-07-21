@@ -43,21 +43,13 @@ NSURLConnection *conn;
     return self;
 }
 
-//-(void) loadContent {
-//    contentData = [NSMutableData data];
-//    NSString *contentURL = @"https://192.168.12.204:4443/Mobile/Client/mobileKP_WCF/service.svc/checkConnection";
-//    conn = [[NSURLConnection alloc] initWithRequest:
-//            [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];
-//    
-//}
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [contentData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Bad: %@", [error description]);
-    [self.delegate didFinishLoading];
+    //NSLog(@"Bad: %@", [error description]);
+    [self.delegate didFinishLoading:@"0"];
     conn = nil;
 }
 
@@ -70,7 +62,6 @@ NSURLConnection *conn;
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data
                                                                  options:kNilOptions
                                                                    error:nil];
-
     
     //NSLog(@"%@", jsonResponse);
     NSDictionary* sendout = [jsonResponse objectForKey:@"sendoutMobileResult"];
@@ -78,19 +69,20 @@ NSURLConnection *conn;
     //NSString* charge = [sendout objectForKey:@"charge"];
     NSString* kptn = [sendout objectForKey:@"kptn"];
     //NSString* principal = [sendout objectForKey:@"principal"];
-    NSString* recfname = [sendout objectForKey:@"recfname"];
-    NSString* reclname = [sendout objectForKey:@"reclname"];
-    NSString* recmname = [sendout objectForKey:@"recmname"];
-    //NSString* respcode = [sendout objectForKey:@"respcode"];
+    //NSString* recfname = [sendout objectForKey:@"recfname"];
+    //NSString* reclname = [sendout objectForKey:@"reclname"];
+    //NSString* recmname = [sendout objectForKey:@"recmname"];
+    NSString* respcode = [sendout objectForKey:@"respcode"];
     NSString* respmessage = [sendout objectForKey:@"respmessage"];
-    NSString* sendfname = [sendout objectForKey:@"sendfname"];
-    NSString* sendlname = [sendout objectForKey:@"sendlname"];
-    NSString* sendmname = [sendout objectForKey:@"sendmname"];
-    NSLog(@"My name is %@,%@%@. I sent money to %@,%@,%@ but it failed because I have %@", sendlname, sendfname, sendmname, reclname, recfname, recmname, respmessage);
+    //NSString* sendfname = [sendout objectForKey:@"sendfname"];
+    //NSString* sendlname = [sendout objectForKey:@"sendlname"];
+    //NSString* sendmname = [sendout objectForKey:@"sendmname"];
+
+    self.getKptn        = kptn;
+    self.getRespcode    = respcode;
+    self.getRespmessage = respmessage;
     
-    self.getKptn = kptn;
-    
-    [self.delegate didFinishLoading];
+    [self.delegate didFinishLoading:@"1"];
     
 }
 

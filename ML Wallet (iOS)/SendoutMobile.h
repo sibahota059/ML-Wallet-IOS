@@ -12,7 +12,7 @@
 @protocol SendoutMobileDelegate <NSObject>
 
 @required
--(void)didFinishLoading;
+-(void)didFinishLoading:(NSString *)indicator;
 
 @end
 
@@ -33,6 +33,8 @@
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSString *deviceId;
 @property (strong, nonatomic) NSString *getKptn;
+@property (strong, nonatomic) NSString *getRespcode;
+@property (strong, nonatomic) NSString *getRespmessage;
 
 - (instancetype) initWithWalletNo:(NSString*)walletNo senderFname:(NSString*)senderFname senderMname:(NSString*)senderMname senderLname:(NSString*)senderLname receiverFname:(NSString*)receiverFname receiverMname:(NSString*)receiverMname receiverLname:(NSString*)receiverLname receiverNo:(NSString*)receiverNo principal:(NSString*)principal latitude:(NSString*)latitude longitude:(NSString*)longitude location:(NSString*)location deviceId:(NSString*)deviceId;
 

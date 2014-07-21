@@ -53,8 +53,8 @@
 
     [self shadowView];
     
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -115,7 +115,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didFinishLoadingPin{
+- (void)didFinishLoadingPin:(NSString *)indicator{
     
     [HUD hide:YES];
     [HUD show:NO];

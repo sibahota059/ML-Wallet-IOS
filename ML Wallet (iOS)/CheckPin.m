@@ -22,7 +22,7 @@ NSURLConnection *conn;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Bad: %@", [error description]);
     conn = nil;
-    [self.delegate didFinishLoadingPin];
+    [self.delegate didFinishLoadingPin:@"0"];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -33,7 +33,7 @@ NSURLConnection *conn;
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.getPin= jsonResponse;
-    [self.delegate didFinishLoadingPin];
+    [self.delegate didFinishLoadingPin:@"1"];
     
 }
 

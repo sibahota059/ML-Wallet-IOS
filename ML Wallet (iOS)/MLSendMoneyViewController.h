@@ -20,7 +20,7 @@
 - (NSString *)getKptn:(NSString *)kptn;
 
 @end
-@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, SendoutMobileDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate>
+@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate>
 
 @property (weak, nonatomic) id<GetKptnDelegate>delegate;
 

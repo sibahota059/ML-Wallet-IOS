@@ -104,33 +104,35 @@
     [self swipe];
     [self keyboardNotification];
     
-    //_spinner.hidesWhenStopped = YES;
-    
     rates.delegate = self;
     getReceiver.delegate = self;
     
-    //[_spinner startAnimating];
-    
-    //[sendout postDataToUrl];
     [rates loadRates];
-    //[getReceiver getReceiverWalletNo:@"14050000000135"];
     
 }
 
-- (void)didFinishLoading{
-    [_spinner stopAnimating];
-    NSLog(@"KPTN: %@", sendout.getKptn);
-}
 
-- (void)didFinishLoadingRates{
+- (void)didFinishLoadingRates:(NSString *)indicator{
     [HUD hide:YES];
     [HUD show:NO];
     
-    getCharges = rates.getRates;
+    NSArray *ratess = [rates.getRates objectForKey:@"getChargeValuesResult"];
+    getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
+    NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
+    
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
+        getCharges = rates.getRates;
+    }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
+        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else{
+        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+    }
+
 }
 
 
-- (void)didFinishLoadingReceiver{
+- (void)didFinishLoadingReceiver:(NSString *)indicator{
     [_spinner stopAnimating];
     NSLog(@"Receiver: %@", getReceiver.getReceiver);
 }

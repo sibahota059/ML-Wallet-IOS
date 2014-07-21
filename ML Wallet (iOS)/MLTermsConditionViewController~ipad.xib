@@ -96,8 +96,8 @@
                             </subviews>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="KPTN: 0042-71M-LW24-876-9202" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="373" translatesAutoresizingMaskIntoConstraints="NO" id="I2K-N0-xpo">
-                            <rect key="frame" x="62" y="94" width="373" height="94"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money Successfully Sent\nKPTN:\n 0042-71M-LW24-876-9202" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="392" translatesAutoresizingMaskIntoConstraints="NO" id="I2K-N0-xpo">
+                            <rect key="frame" x="52" y="68" width="392" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="35"/>
                             <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
