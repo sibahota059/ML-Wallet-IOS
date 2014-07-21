@@ -85,16 +85,21 @@
     _lbl_charge.text  = __charge;
     _lbl_total.text   = __total;
     
-    NSData *data = [[NSData alloc] initWithBase64EncodedString:__receiver_image options: NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSData *dataSenderImage = [[NSData alloc] initWithBase64EncodedString:__senderImage options: NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSData *dataReceiverImage = [[NSData alloc] initWithBase64EncodedString:__receiver_image options: NSDataBase64DecodingIgnoreUnknownCharacters];
     
-    if ([UIImage imageWithData:data] == nil) {
+    if ([UIImage imageWithData:dataSenderImage] == nil) {
         _image_mine.image = [UIImage imageNamed:@"noImage.png"];
-        _image_receiver.image = [UIImage imageNamed:@"noImage.png"];
-    }else{
-        _image_mine.image = [UIImage imageWithData:data];
-        _image_receiver.image = [UIImage imageWithData:data];
+    }
+    else{
+        _image_mine.image = [UIImage imageWithData:dataSenderImage];
     }
     
+    if ([UIImage imageWithData:dataSenderImage] == nil) {
+        _image_receiver.image = [UIImage imageNamed:@"noImage.png"];
+    }else{
+        _image_receiver.image = [UIImage imageWithData:dataReceiverImage];
+    }
 }
 
 - (IBAction)btn_back:(id)sender {
@@ -154,7 +159,7 @@
 - (void)btnPin{
     
     NSString *pin = [NSString stringWithFormat:@"%@%@%@%@",_tf_pin1.text, _tf_pin2.text, _tf_pin3.text, _tf_pin4.text];
-    [chk getReceiverWalletNo:@"14050000000135" andReceiverPinNo:pin];
+    [chk getReceiverWalletNo:__walletNo andReceiverPinNo:pin];
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];

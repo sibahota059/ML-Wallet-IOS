@@ -11,11 +11,12 @@
 #import "MLUI.h"
 #import "MLRatesTableViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "NSDictionary+LoadWalletData.h"
 
 @interface MLSendMoneyViewController (){
     UITapGestureRecognizer *tapRecognizer;
     double inputPrint, conv, bal, total, amountValue;
-    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *getRaddress;
+    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno;
     NSArray *checkdot;
     UIImage *right, *wrong;
     MLUI *getUI;
@@ -27,7 +28,7 @@
     KpRates *rates;
     GetReceiver *getReceiver;
     NSMutableArray *getValueRates, *getValueReceiver;
-    NSDictionary *getCharges, *getReceivers;
+    NSDictionary *getCharges, *getReceivers, *dic;
     MBProgressHUD *HUD;
     CLLocationManager *locationManager;
 }
@@ -118,9 +119,37 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [locationManager startUpdatingLocation];
     
+    dic = [NSDictionary initRead_LoadWallet_Data];
+    walletno = [dic objectForKey:@"walletno"];
+    [self aboutSender];
+    
 }
 
+#pragma mark - Sender Info
+- (void)aboutSender{
 
+    _senderName.text = [NSString stringWithFormat:@"%@, %@ %@.", [dic objectForKey:@"lname"], [dic objectForKey:@"fname"], [dic objectForKey:@"mname"]];
+    _senderAddress.text = [dic objectForKey:@"address"];
+    _label_balance.text = [NSString stringWithFormat:@"%@", [self convertDecimal:[[dic objectForKey:@"balance"] doubleValue]]];
+    //_label_balance.text = [NSString stringWithFormat:@"%0.2f", [[dic objectForKey:@"balance"] doubleValue]];
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:[dic objectForKey:@"photo"] options: NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    if ([UIImage imageWithData:data] == nil) {
+        _senderImage.image = [UIImage imageNamed:@"noImage.png"];
+    }else{
+        _senderImage.image = [UIImage imageWithData:data];
+    }
+    
+}
+
+#pragma mark - Convert to Decimal
+- (NSString *)convertDecimal:(double)doubleValue{
+    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
+    [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *bals = [currencyFormatter stringFromNumber:[NSNumber numberWithInt:doubleValue]];
+    NSString *newStr = [bals substringFromIndex:1];
+    return newStr;
+}
 
 #pragma Retrieving Rates Done
 - (void)didFinishLoadingRates:(NSString *)indicator{
@@ -141,7 +170,7 @@
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
     
-    [getReceiver getReceiverWalletNo:@"14050000000135"];
+    [getReceiver getReceiverWalletNo:walletno];
 
 }
 
@@ -269,6 +298,8 @@
 #pragma mark - Click Button Preview
 - (IBAction)btn_preview:(id)sender {
     
+    NSString* uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSLog(@"UDID:: %@", uniqueIdentifier);
     
     if (getRlname == nil && getRfname == nil) {
          [getUI displayAlert:@"Message" message:@"Please provide a receiver!"];
@@ -276,9 +307,10 @@
          [getUI displayAlert:@"Message" message:@"Please enter an amount!"];
     }else{
         MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
-        preview._senderLname    =  @"GAUDICOS";
-        preview._senderFname    =  @"ALBERT";
-        preview._senderMname    =  @"";
+        preview._senderLname    =  [dic objectForKey:@"lname"];
+        preview._senderFname    =  [dic objectForKey:@"fname"];
+        preview._senderMname    =  [dic objectForKey:@"mname"];
+        preview._senderImage    =  [dic objectForKey:@"photo"];
         preview._receiverLname  =  getRlname;
         preview._receiverFname  =  getRfname;
         preview._receiverMname  =  getRmname;
@@ -286,11 +318,11 @@
         preview._amount         = _tf_amount.text;
         preview._charge         = _chargeValue.text;
         preview._total          = _totalValue.text;
-        preview._walletNo       = @"14050000000135";
+        preview._walletNo       = walletno;
         preview._latitude       = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
         preview._longitude      = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
         preview._divice         = @"2342343423";
-        preview._location       = getRaddress;
+        preview._location       = [dic objectForKey:@"address"];
         preview._receiverNo     = getRnumber;
     
     preview.hidesBottomBarWhenPushed = YES;
@@ -338,7 +370,6 @@
     getRmname   = rmname;
     getRimage   = rimage;
     getRnumber  = rnumber;
-    getRaddress = raddress;
     
     _receiverName.text = [NSString stringWithFormat:@"%@, %@ %@", rlname, rfname, rmname];
     _receiverAddress.text = raddress;
@@ -395,7 +426,7 @@
     checkdot = [newString componentsSeparatedByString:@"."];
     conv = [string1 doubleValue];
     total = conv + input;
-    bal = [@"2888.00" doubleValue];
+    bal = [[dic objectForKey:@"balance"] doubleValue];
     if (total > bal) {
         [getUI displayAlert:@"Validation Error" message:@"Insuficient Balance!"];
         _tf_amount.rightView = [[UIImageView alloc] initWithImage:wrong];

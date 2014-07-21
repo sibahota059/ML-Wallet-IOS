@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -9,6 +9,7 @@
                 <outlet property="btn_receiver" destination="eIF-Of-fdN" id="RHj-eV-Ch3"/>
                 <outlet property="chargeValue" destination="Tvg-bc-bJV" id="FCF-lN-qVf"/>
                 <outlet property="countReceiver" destination="GHq-hI-qFd" id="hzZ-bi-Ms3"/>
+                <outlet property="label_balance" destination="O1p-AS-Ycp" id="b4i-s6-FSf"/>
                 <outlet property="lblNoReceiver" destination="xh6-Ip-xi5" id="v7s-WJ-zoy"/>
                 <outlet property="receiverAddress" destination="rVh-k8-HQB" id="2nF-Ao-6by"/>
                 <outlet property="receiverImage" destination="QJI-ZL-v9m" id="mHj-0e-oMZ"/>
@@ -42,7 +43,7 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2,888.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1p-AS-Ycp">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2,888.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1p-AS-Ycp">
                             <rect key="frame" x="392" y="20" width="129" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
@@ -65,14 +66,14 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </view>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gaudicos, Alberto Jr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq5-gg-YYN">
-                                    <rect key="frame" x="175" y="9" width="314" height="39"/>
+                                    <rect key="frame" x="175" y="0.0" width="314" height="62"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Libertad, Tubigon, Bohol" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="314" translatesAutoresizingMaskIntoConstraints="NO" id="vJk-SD-bHU">
-                                    <rect key="frame" x="175" y="46" width="314" height="40"/>
+                                    <rect key="frame" x="175" y="49" width="314" height="67"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,7 +90,7 @@
                                     <rect key="frame" x="340" y="-19" width="140" height="120"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="QJI-ZL-v9m">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="QJI-ZL-v9m">
                                             <rect key="frame" x="5" y="5" width="130" height="110"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -113,7 +114,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIF-Of-fdN">
                                     <rect key="frame" x="349" y="109" width="122" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" patternImage="76C3C2AF-B132-4161-AEF2-4F4744F32757" colorSpace="pattern"/>
+                                    <color key="backgroundColor" patternImage="07341FCB-4152-4261-AEA5-8C36E69906CF" colorSpace="pattern"/>
                                     <state key="normal" title="Change" backgroundImage="navbar_bg.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -197,7 +198,7 @@
         </view>
     </objects>
     <resources>
-        <image name="76C3C2AF-B132-4161-AEF2-4F4744F32757" width="256" height="256">
+        <image name="07341FCB-4152-4261-AEA5-8C36E69906CF" width="256" height="256">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -4642,6 +4643,6 @@ AAAAAAAEAQAAAAAAAABCAAAAAAAAAAAAAAAAAAQO4w
         <image name="bradpit.jpg" width="259" height="194"/>
         <image name="content_bg.png" width="309" height="100"/>
         <image name="navbar_bg.png" width="320" height="44"/>
-        <image name="profile.jpg" width="259" height="194"/>
+        <image name="noImage.png" width="75" height="69"/>
     </resources>
 </document>
