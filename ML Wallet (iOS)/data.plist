@@ -12,5 +12,7 @@
 	<string></string>
 	<key>balance</key>
 	<string>0</string>
+	<key>address</key>
+	<string></string>
 </dict>
 </plist>

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/CreateNewReceiverViewController.m"
-            timestampString = "427613511.755437"
+            timestampString = "427618023.480393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "-hideRelationView"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/CreateNewReceiverViewController.m"
-            timestampString = "427613511.755437"
+            timestampString = "427618023.480393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-saveReceiver"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/CreateNewReceiverViewController.m"
-            timestampString = "427613511.755437"
+            timestampString = "427618023.480393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "-connectionDidFinishLoading:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/CreateNewReceiverViewController.m"
-            timestampString = "427613511.755437"
+            timestampString = "427618023.480393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "-connectionDidFinishLoading:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,12 +202,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/CreateNewReceiverViewController.m"
-            timestampString = "427613361.933844"
+            timestampString = "427618023.480393"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-getPhoto"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ML Wallet (iOS)/LoginViewController.m"
+            timestampString = "427618022.130847"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "-login"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

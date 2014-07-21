@@ -115,16 +115,7 @@
 {
     [textAnimate animateTextField:textField up:NO SelfView:self.view];
     [self.view endEditing:YES];
-    
-//    if (textField == self.txtPass) {
-//        if (self.txtUser.text.length != 0) {
-//            [self btnLogin:self];
-//        } else {
-//            //Type a userID
-//            [self.txtUser becomeFirstResponder];
-//            [self shakeView];
-//        }
-//    }
+
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -318,6 +309,7 @@
             [saveData initSaveData:fname forKey:@"fname"];
             [saveData initSaveData:photo forKey:@"photo"];
             [saveData initSaveData:bal forKey:@"balance"];
+            [saveData initSaveData:self.location forKey:@"address"];
             
             //GOTO Menu
             MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
