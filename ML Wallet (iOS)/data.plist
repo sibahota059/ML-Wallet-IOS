@@ -8,6 +8,8 @@
 	<string></string>
 	<key>lname</key>
 	<string></string>
+	<key>mname</key>
+	<string></string>
 	<key>photo</key>
 	<string></string>
 	<key>balance</key>
