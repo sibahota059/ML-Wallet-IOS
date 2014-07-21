@@ -128,7 +128,14 @@
 #pragma mark - Sender Info
 - (void)aboutSender{
 
-    _senderName.text = [NSString stringWithFormat:@"%@, %@ %@.", [dic objectForKey:@"lname"], [dic objectForKey:@"fname"], [dic objectForKey:@"mname"]];
+    NSString *smname;
+    if ([[NSString stringWithFormat:@"%@", [dic objectForKey:@"mname"]] isEqualToString:@""]) {
+        smname = @"";
+    }else{
+        smname = [NSString stringWithFormat:@"%@.", [[dic objectForKey:@"mname"] substringToIndex:1]];
+    }
+    
+    _senderName.text = [NSString stringWithFormat:@"%@, %@ %@", [dic objectForKey:@"lname"], [dic objectForKey:@"fname"], smname];
     _senderAddress.text = [dic objectForKey:@"address"];
     _label_balance.text = [NSString stringWithFormat:@"%@", [self convertDecimal:[[dic objectForKey:@"balance"] doubleValue]]];
     //_label_balance.text = [NSString stringWithFormat:@"%0.2f", [[dic objectForKey:@"balance"] doubleValue]];
@@ -141,6 +148,15 @@
     }
     
 }
+
+//#pragma mark - Capital 1st Letter
+//- (NSString *)capitalizeFirstChar:(NSString *)str{
+//    
+//    NSString *capFirstL = str;
+//    capFirstL = [capFirstL stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[capFirstL substringToIndex:1] uppercaseString]];
+//    
+//    return capFirstL;
+//}
 
 #pragma mark - Convert to Decimal
 - (NSString *)convertDecimal:(double)doubleValue{
