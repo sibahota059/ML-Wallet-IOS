@@ -258,13 +258,15 @@
             photo       = [result valueForKeyPath:@"photo"];
             balance     = [result valueForKeyPath:@"balance"];
             
+            NSString *bal = [NSString stringWithFormat:@"%@", balance];
+            
             //Saving Data Plist
             SaveWalletData *saveData = [SaveWalletData new];
             [saveData initSaveData:walletno forKey:@"walletno"];
             [saveData initSaveData:lname forKey:@"lname"];
             [saveData initSaveData:fname forKey:@"fname"];
             [saveData initSaveData:photo forKey:@"photo"];
-            [saveData initSaveData:balance forKey:@"balance"];
+            [saveData initSaveData:bal forKey:@"balance"];
             
             //GOTO Menu
             MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
