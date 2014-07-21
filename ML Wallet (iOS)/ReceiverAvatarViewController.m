@@ -10,6 +10,7 @@
 #import "UIAlertView+alertMe.h"
 #import "ServiceConnection.h"
 #import "ReceiverMenuListViewController.h"
+#import "CreateNewReceiverViewController.h"
 
 @interface ReceiverAvatarViewController ()
 
@@ -109,20 +110,45 @@
 
 #pragma mark - UIAlertView Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    NSString *titleView     = [alertView title];
+    NSString *titleButton   = [alertView buttonTitleAtIndex:buttonIndex];
     
-    if ([title isEqualToString:@"YES"]) {
-        [self deleteReceiver];
-        return;
+    //Delete BUtton
+    if ([titleView isEqualToString:@"Delete"] || [titleView isEqualToString:@"Delete receiver"])
+    {
+        if ([titleButton isEqualToString:@"YES"]) {
+            [self deleteReceiver];
+            return;
+        }
+    
+        if ([titleButton isEqualToString:@"Ok"]) {
+        
+            ReceiverMenuListViewController *bckList = [[ReceiverMenuListViewController alloc] initWithNibName:@"ReceiverMenuListViewController" bundle:nil];
+            [self.navigationController pushViewController:bckList animated:YES];
+            return;
+        }
     }
     
-    if ([title isEqualToString:@"Ok"]) {
-        
-        ReceiverMenuListViewController *bckList = [[ReceiverMenuListViewController alloc] initWithNibName:@"ReceiverMenuListViewController" bundle:nil];
-        [self.navigationController pushViewController:bckList animated:YES];
-        return;
+    //EDIT button
+    if ([titleView isEqualToString:@"Edit Receiver"]) {
+        //TODO,.
+        if ([titleButton isEqualToString:@"YES"]) {
+            CreateNewReceiverViewController *gotoCreate = [[CreateNewReceiverViewController alloc]
+                                                           initWithNibName:@"CreateNewReceiverViewController"
+                                                           bundle:nil];
+            gotoCreate.isEdit   = YES;
+            gotoCreate.fname    = receiver.fname;
+            gotoCreate.lname    = receiver.lname;
+            gotoCreate.mname    = receiver.mname;
+            gotoCreate.addrs    = receiver.Address;
+            gotoCreate.rlate    = receiver.Relation;
+            gotoCreate.recNo    = receiver.receiverNo;
+            [self.navigationController pushViewController:gotoCreate animated:YES];
+        }
     }
 }
+
+
 
 #pragma mark - Delete Service
 - (void)deleteReceiver {
@@ -144,6 +170,8 @@
     NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [con start];
 }
+
+
 
 #pragma mark - NSURLConnection Delegate
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
@@ -203,7 +231,7 @@
 #pragma Start - Selector Edit
 - (void)EditReceiver
 {
-    [UIAlertView myCostumeAlert:@"Todo" alertMessage:@"Edit button" delegate:nil cancelButton:@"Cancel" otherButtons:@"YES"];
+    [UIAlertView myCostumeAlert:@"Edit Receiver" alertMessage:@"Do you want to continue?" delegate:self cancelButton:@"Cancel" otherButtons:@"YES"];
     //toDO
 }
 

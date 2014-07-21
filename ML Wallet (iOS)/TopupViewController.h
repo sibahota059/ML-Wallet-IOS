@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface TopupViewController : UIViewController <NSURLConnectionDelegate, MBProgressHUDDelegate, UIAlertViewDelegate>
+@interface TopupViewController : UIViewController <NSURLConnectionDelegate, MBProgressHUDDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 {
     MBProgressHUD *HUD;
 }
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) NSMutableData *responseData;
 @property (assign, nonatomic) NSUInteger idd;
 @property (retain, nonatomic) NSString *strKPTN;

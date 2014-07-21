@@ -27,6 +27,7 @@
 		3B1B36C718B4ADA1006DA5BB /* icon_my_receiver_press.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B36C518B4ADA1006DA5BB /* icon_my_receiver_press.jpg */; };
 		3B1B36C818B4ADA1006DA5BB /* icon_my_receiver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B36C618B4ADA1006DA5BB /* icon_my_receiver.jpg */; };
 		3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */; };
+		3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */; };
 		3B38F7711952C64C00EC3948 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B38F7701952C64C00EC3948 /* CoreLocation.framework */; };
 		3B38F7751952CE0600EC3948 /* ServiceConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B38F7741952CE0600EC3948 /* ServiceConnection.m */; };
 		3B38F7781952CE3700EC3948 /* DeviceID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B38F7771952CE3700EC3948 /* DeviceID.m */; };
@@ -228,6 +229,8 @@
 		3B1B36C618B4ADA1006DA5BB /* icon_my_receiver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_my_receiver.jpg; sourceTree = "<group>"; };
 		3B1B36C918B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MenuAnimationUIVIew.h"; sourceTree = "<group>"; };
 		3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MenuAnimationUIVIew.m"; sourceTree = "<group>"; };
+		3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextfieldAnimate.h; sourceTree = "<group>"; };
+		3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextfieldAnimate.m; sourceTree = "<group>"; };
 		3B38F7701952C64C00EC3948 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3B38F7731952CE0600EC3948 /* ServiceConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceConnection.h; sourceTree = "<group>"; };
 		3B38F7741952CE0600EC3948 /* ServiceConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceConnection.m; sourceTree = "<group>"; };
@@ -960,6 +963,8 @@
 				3BF0B266197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m */,
 				3BF0B26B197A616400AC2C76 /* SaveWalletData.h */,
 				3BF0B26C197A616400AC2C76 /* SaveWalletData.m */,
+				3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */,
+				3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1340,6 +1345,7 @@
 				F081A03319776CDF004568EF /* KpRates.m in Sources */,
 				708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */,
 				700661BB18DA74DD00A0F05C /* AccountMain.m in Sources */,
+				3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */,
 				F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */,
 				F05C5F2F18E12C0D002F2EE1 /* MLPreviewViewController.m in Sources */,
 				F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */,

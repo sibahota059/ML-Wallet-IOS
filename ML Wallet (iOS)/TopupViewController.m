@@ -12,6 +12,7 @@
 #import "ServiceConnection.h"
 #import "DeviceID.h"
 #import "LoginViewController.h"
+#import "UITextfieldAnimate.h"
 
 #import <CoreLocation/CoreLocation.h>
 
@@ -22,6 +23,7 @@
 @implementation TopupViewController
 {    
     CLLocationManager *locationManager;
+    UITextfieldAnimate *textAnimate;
 }
 
 @synthesize responseData;
@@ -44,6 +46,10 @@
     [self navigationView];
     
     
+    //ScrollView
+    [self.scrollView setScrollEnabled:YES];
+    [self.scrollView setContentSize:CGSizeMake(320, 300)];
+    
     //WaitScreen
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -54,7 +60,31 @@
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [locationManager startUpdatingLocation];
+    
+    //Animate when Fucos :D
+    self.txtKPTN.delegate = self;
+    textAnimate = [UITextfieldAnimate new];
 }
+
+#pragma mark - Animate Textfield
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    [textAnimate animateTextField:textField up:YES SelfView:self.view];
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    [textAnimate animateTextField:textField up:NO SelfView:self.view];
+    [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return NO;
+}
+
+
 
 #pragma mark --Location
 //get Longtitude

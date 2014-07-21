@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface CreateNewReceiverViewController : UIViewController <MBProgressHUDDelegate, NSURLConnectionDelegate>
+@interface CreateNewReceiverViewController : UIViewController <MBProgressHUDDelegate, NSURLConnectionDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate>
 {
     MBProgressHUD *HUD;
 }
@@ -31,4 +31,14 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtLastName;
 @property (strong, nonatomic) IBOutlet UITextField *txtMiddleName;
 @property (strong, nonatomic) IBOutlet UITextField *txtAddress;
+
+//if Edit... Assign automatically
+@property (assign, nonatomic) BOOL isEdit;
+@property (assign, nonatomic) NSNumber *recNo;
+@property (assign, nonatomic) NSString *fname;
+@property (assign, nonatomic) NSString *lname;
+@property (assign, nonatomic) NSString *mname;
+@property (assign, nonatomic) NSString *addrs;
+@property (assign, nonatomic) NSString *rlate;
+
 @end

@@ -14,7 +14,7 @@
 
 @synthesize Address;
 
--(id) initWithName:(NSString *)name Address:(NSString *)address Relation:(NSString *)relation receiverImage:(UIImage *)image receiverNo:(NSNumber *)receiverNo;
+-(id) initWithName:(NSString *)name Address:(NSString *)address Relation:(NSString *)relation receiverImage:(UIImage *)image receiverNo:(NSNumber *)receiverNo FName:(NSString *)fname LName:(NSString *)lname MName:(NSString *)mname;
 {
     self = [super init];
     if(self)
@@ -24,6 +24,9 @@
         self.ReceiverImage  = image;
         self.Relation       = relation;
         self.receiverNo     = receiverNo;
+        self.fname          = fname;
+        self.lname          = lname;
+        self.mname          = mname;
     }
     return self;
 }

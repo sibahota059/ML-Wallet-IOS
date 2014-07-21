@@ -11,13 +11,19 @@
 #import "MBProgressHUD.h"
 #import "ServiceConnection.h"
 #import "ReceiverMenuListViewController.h"
+#import "UITextfieldAnimate.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface CreateNewReceiverViewController ()
 
 @end
 
 @implementation CreateNewReceiverViewController
-
+{
+    NSString *walletno;
+    
+    UITextfieldAnimate *textAnimate;
+}
 @synthesize responseData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +43,20 @@
 {
     [super viewDidLoad];
     
+    //Get Walletno
+    NSDictionary *dic = [NSDictionary initRead_LoadWallet_Data];
+    walletno = [dic objectForKey:@"walletno"];
+    
+    //Check if EDIT or NOT
+    NSLog(@"IS Edit : %d", self.isEdit);
+    if (self.isEdit) {
+        self.txtFirstName.text  = self.fname;
+        self.txtLastName.text   = self.lname;
+        self.txtMiddleName.text = self.mname;
+        self.txtAddress.text    = self.addrs;
+        [self.txtRelation setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.txtRelation.titleLabel.text = self.rlate;
+    }
 
     //relationView
     self.relationView.hidden = YES;
@@ -61,6 +81,60 @@
     {
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
     }
+    
+    //UIText Delagate
+    textAnimate = [UITextfieldAnimate new];
+    self.txtFirstName.delegate  = self;
+    self.txtLastName.delegate   = self;
+    self.txtMiddleName.delegate = self;
+    self.txtAddress.delegate    = self;
+}
+
+#pragma mark - UITextfield Delegate
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    [textAnimate animateTextField:textField up:YES SelfView:self.view];
+}
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    [textAnimate animateTextField:textField up:NO SelfView:self.view];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.txtFirstName)
+    {
+        [self.txtMiddleName becomeFirstResponder];
+        [self.txtFirstName resignFirstResponder];
+    }
+    else if (textField == self.txtMiddleName)
+    {
+        [self.txtMiddleName resignFirstResponder];
+        [self.txtLastName becomeFirstResponder];
+    }
+    else if (textField == self.txtLastName)
+    {
+        [self.txtLastName resignFirstResponder];
+        [self.txtAddress becomeFirstResponder];
+    }
+    else if (textField == self.txtAddress)
+    {
+        [self.txtAddress resignFirstResponder];
+    }
+    return NO;
+}
+
+//TODO
+#pragma mark - Get Photo
+- (void) getPhoto
+{
+    UIImagePickerController *imagePicker = [UIImagePickerController new];
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [imagePicker setAllowsEditing:YES];
+ 
+    [self.navigationController presentViewController:imagePicker animated:YES completion:^{
+        NSLog(@"DoNe");
+    }];
+    
 }
 
 
@@ -105,28 +179,51 @@
     HUD.square = YES;
     [HUD show:YES];
     
-    
-    //Rest Service
     self.responseData = [NSMutableData data];
-    NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"fname\" : \"%@\",\"mname\" : \"%@\",\"lname\" : \"%@\",\"relation\" : \"%@\",\"photo\" : \"%@\",\"address\" : \"%@\"}",
-                      @"14030000000123",
+    if (self.isEdit)
+    {
+        NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"receiverno\" : \"%@\",\"fname\" : \"%@\",\"mname\" : \"%@\",\"lname\" : \"%@\",\"relation\" : \"%@\",\"photo\" : \"%@\", \"address\" : \"%@\"}",
+                          walletno,
+                          self.recNo,
+                          fname,
+                          mname,
+                          lname,
+                          relation,
+                          @"", //Photo TODO
+                          address];
+        
+        NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"updateReceiver"];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+        NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+        
+        [request setHTTPMethod:@"PUT"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+        [request setHTTPBody:requestData];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    } else {
+        //Rest Service
+        NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"fname\" : \"%@\",\"mname\" : \"%@\",\"lname\" : \"%@\",\"relation\" : \"%@\",\"photo\" : \"%@\",\"address\" : \"%@\"}",
+                      walletno,
                       fname,
                       mname,
                       lname,
                       relation,
-                      @"",
+                      @"", //Photo TODO
                       address];
     
-    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"addReceiverList"];
+        NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"addReceiverList"];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+        NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
     
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-    [request setHTTPBody:requestData];
-    [NSURLConnection connectionWithRequest:request delegate:self];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+        [request setHTTPBody:requestData];
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    }
 }
 
 #pragma mark - NSURLConnection Delegate
@@ -160,11 +257,20 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil) {
+        if (self.isEdit) {
+            res = [res valueForKey:@"updateReceiverResult"];
+        }
+        
         NSNumber *respCode = [res valueForKey:@"respcode"];
         NSString *respMesg = [res valueForKey:@"respmessage"];
     
         if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]]) {
-            [UIAlertView myCostumeAlert:@"Create Receiver" alertMessage:@"New receiver successfuly added" delegate:self cancelButton:@"Ok" otherButtons:nil];
+            if(self.isEdit)
+            {
+                [UIAlertView myCostumeAlert:@"Edit Receiver" alertMessage:@"Receiver successfuly edited" delegate:self cancelButton:@"Ok" otherButtons:nil];
+            } else {
+                [UIAlertView myCostumeAlert:@"Create Receiver" alertMessage:@"New receiver successfuly added" delegate:self cancelButton:@"Ok" otherButtons:nil];
+            }
         } else {
              [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
         }

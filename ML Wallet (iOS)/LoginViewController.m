@@ -15,6 +15,7 @@
 #import "DeviceID.h"
 #import "UIAlertView+WaitAlertView.h"
 #import "MBProgressHUD.h"
+#import "UITextfieldAnimate.h"
 
 #import "SaveWalletData.h"
 
@@ -38,6 +39,8 @@
     NSString *lname;
     NSString *photo;
     NSString *balance;
+    
+    UITextfieldAnimate *textAnimate;
 }
 
 @synthesize responseData;
@@ -95,9 +98,58 @@
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
     [locationManager startUpdatingLocation];
- 
+    
+    //Handle TxtField
+    self.txtUser.delegate = self;
+    self.txtPass.delegate = self;
+    textAnimate = [UITextfieldAnimate new];
+
+}
+
+#pragma mark - UITextField Delegate
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    [textAnimate animateTextField:textField up:YES SelfView:self.view];
+}
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    [textAnimate animateTextField:textField up:NO SelfView:self.view];
+    [self.view endEditing:YES];
+    
+//    if (textField == self.txtPass) {
+//        if (self.txtUser.text.length != 0) {
+//            [self btnLogin:self];
+//        } else {
+//            //Type a userID
+//            [self.txtUser becomeFirstResponder];
+//            [self shakeView];
+//        }
 //    }
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.txtUser) {
+        [self.txtPass becomeFirstResponder];
+        [self.txtUser resignFirstResponder];
+    } else {
+        [self.txtPass resignFirstResponder];
+    }
+    return NO;
+}
+
+#pragma mark - Shake Animation
+-(void)shakeView {
+    
+    CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
+    [shake setDuration:0.1];
+    [shake setRepeatCount:2];
+    [shake setAutoreverses:YES];
+    [shake setFromValue:[NSValue valueWithCGPoint:CGPointMake(self.loginView.center.x - 5,self.loginView.center.y)]];
+    [shake setToValue:[NSValue valueWithCGPoint:CGPointMake(self.loginView.center.x + 5, self.loginView.center.y)]];
+    [self.loginView.layer addAnimation:shake forKey:@"position"];
+}
+
+#pragma mark - Button INFO -action
 - (IBAction)btnInfo:(id)sender {
     
     InfoViewController *gotoInfo = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
@@ -109,9 +161,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 
 - (IBAction)btnRegister:(id)sender {
     
@@ -135,11 +184,13 @@
     if ( [user isEqualToString:@""] )
     {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Type your UserID" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [self shakeView];
         return;
     }
     else if ( [pass isEqualToString:@""] )
     {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Type your Password" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [self shakeView];
         return;
     }
     
@@ -279,6 +330,8 @@
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
             self.txtPass.text = @"";
             self.txtUser.text = @"";
+            
+            [self shakeView];
             return;
         }
         
@@ -360,32 +413,5 @@
 
 }
 
-/*
-#pragma mark - Data Property List
-- (void) StoreData
-{
-    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"];
-    [self WriteData_PathString:bundle];
-}
-
-//Write to PLIST
-- (void) WriteData_PathString : (NSString *)path
-{
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    NSLog(@"Wallet no to save : %@", walletno);
-    
-    [data setObject:[NSString stringWithString:walletno] forKey:@"walletno"];
-    [data writeToFile:path atomically:YES];
-    
-    [self ReadData_PathString:path];
-}
-
-//Read Data
-- (void) ReadData_PathString : (NSString *)path
-{
-    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
-    NSString *val = [dic objectForKey:@"walletno"];
-    NSLog(@"VAlue%@", val);
-}*/
 
 @end

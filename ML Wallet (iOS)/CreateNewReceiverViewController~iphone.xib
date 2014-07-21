@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -7,10 +7,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateNewReceiverViewController">
             <connections>
                 <outlet property="MyScrollview" destination="9IE-VE-Xzs" id="cRJ-8b-s6t"/>
+                <outlet property="relationView" destination="28A-hD-HWg" id="M7g-y6-q8X"/>
                 <outlet property="txtAddress" destination="MuZ-yq-sDW" id="1Ts-oc-08F"/>
                 <outlet property="txtFirstName" destination="Chj-Ma-rD9" id="7nx-kY-4Qb"/>
                 <outlet property="txtLastName" destination="2o8-CD-UZb" id="JCj-OX-qTf"/>
                 <outlet property="txtMiddleName" destination="nyH-jN-CSA" id="HMY-10-pWi"/>
+                <outlet property="txtRelation" destination="K7x-a9-t6E" id="EyK-JF-j70"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -59,27 +61,88 @@
                             <rect key="frame" x="245" y="240" width="50" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Lastname" minimumFontSize="17" id="2o8-CD-UZb" userLabel="L.Name">
                             <rect key="frame" x="26" y="278" width="269" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" minimumFontSize="17" id="MuZ-yq-sDW" userLabel="Address">
                             <rect key="frame" x="26" y="316" width="269" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Firstname" minimumFontSize="17" id="Chj-Ma-rD9" userLabel="F.Name">
                             <rect key="frame" x="26" y="240" width="190" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
                         </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textbox.png" id="xhL-OC-GeM">
+                            <rect key="frame" x="20" y="354" width="280" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" id="28A-hD-HWg">
+                            <rect key="frame" x="25" y="381" width="270" height="71"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FG7-PH-qlB">
+                                    <rect key="frame" x="0.0" y="0.0" width="272" height="73"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="00T-01-ZuD">
+                                    <rect key="frame" x="6" y="38" width="220" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Friend">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnFriend:" destination="-1" eventType="touchUpInside" id="ihn-cW-gts"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cXN-Qo-K2Q">
+                                    <rect key="frame" x="6" y="0.0" width="220" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Family">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnFamily:" destination="-1" eventType="touchUpInside" id="JHv-fO-W98"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="nFf-Rb-rB4">
+                                    <rect key="frame" x="1" y="34" width="270" height="4"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="phq-ds-1ed">
+                            <rect key="frame" x="284" y="360" width="11" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" backgroundImage="down.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K7x-a9-t6E">
+                            <rect key="frame" x="26" y="351" width="269" height="36"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="Relation">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnRelation:" destination="-1" eventType="touchUpInside" id="h4Z-ls-Tcc"/>
+                            </connections>
+                        </button>
                     </subviews>
                 </scrollView>
             </subviews>
@@ -88,6 +151,8 @@
         </view>
     </objects>
     <resources>
+        <image name="down.png" width="11" height="9"/>
+        <image name="line.png" width="320" height="2"/>
         <image name="no_image.png" width="95" height="141"/>
         <image name="textbox.png" width="280" height="30"/>
         <image name="textbox2.png" width="91" height="30"/>

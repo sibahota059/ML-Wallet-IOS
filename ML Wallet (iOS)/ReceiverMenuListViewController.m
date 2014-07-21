@@ -159,7 +159,7 @@
                     }
                     
                     //Add to NSMutableArray
-                    [allTableData addObject:[[ReceiverObject alloc] initWithName:fullName Address:address Relation:relation receiverImage:photoImage receiverNo:receiverNo]];
+                    [allTableData addObject:[[ReceiverObject alloc] initWithName:fullName Address:address Relation:relation receiverImage:photoImage receiverNo:receiverNo FName:fname LName:lname MName:mname]];
                     
                     
                     
