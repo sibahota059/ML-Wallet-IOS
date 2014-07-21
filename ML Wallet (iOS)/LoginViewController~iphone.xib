@@ -40,7 +40,7 @@
                                             <rect key="frame" x="20" y="80" width="240" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="K64-8n-2E3">
                                             <rect key="frame" x="20" y="72" width="240" height="1"/>
