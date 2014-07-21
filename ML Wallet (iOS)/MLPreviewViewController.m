@@ -78,6 +78,7 @@
     
     [self setText:_tf_pin1];
     
+    
     _lbl_sname.text   = [NSString stringWithFormat:@"%@, %@ %@", __senderLname, __senderFname, __senderMname];
     _lbl_rname.text   = [NSString stringWithFormat:@"%@, %@ %@", __receiverLname, __receiverFname, __receiverMname];
     _lbl_amount.text  = [NSString stringWithFormat:@"%0.2f", [__amount doubleValue]];

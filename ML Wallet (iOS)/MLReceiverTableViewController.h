@@ -14,12 +14,13 @@
 
 @protocol MLReceiverTableViewControllerDelegate <NSObject>
 
-- (void)didSelectReceiver:(MLReceiverTableViewController *)controller receiverFname:(NSString *)rfname receiverMname:(NSString *)rmname receiverLname:(NSString *)rlname receiverImage:(NSString *)rimage receiverAddress:(NSString *)raddress receiverRelation:(NSString *)rrelation rcount:(int)count;
+- (void)didSelectReceiver:(MLReceiverTableViewController *)controller receiverFname:(NSString *)rfname receiverMname:(NSString *)rmname receiverLname:(NSString *)rlname receiverImage:(NSString *)rimage receiverAddress:(NSString *)raddress receiverRelation:(NSString *)rrelation rnumber:(NSString *)rnumber;
 
 @end
 
 @interface MLReceiverTableViewController : UITableViewController<GetReceiverDelegate, MBProgressHUDDelegate>
 
 @property (weak, nonatomic) id<MLReceiverTableViewControllerDelegate>delegate;
+@property (strong, nonatomic) NSDictionary *ds;
 
 @end

@@ -39,15 +39,15 @@
     [super viewDidLoad];
     
     //WaitScreen
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    HUD.delegate = self;
+    //HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    //[self.navigationController.view addSubview:HUD];
+    //HUD.delegate = self;
     
     //Show Animated
-    HUD.labelText = @"Please wait";
-    HUD.square = YES;
-    [HUD show:YES];
-    [self.view endEditing:YES];
+    //HUD.labelText = @"Please wait";
+    //HUD.square = YES;
+    //[HUD show:YES];
+    //[self.view endEditing:YES];
     
     getReceiver = [GetReceiver new];
     getReceiver.delegate = self;
@@ -64,7 +64,46 @@
     //    receiverAddress = [NSArray arrayWithObjects:@"Tejero, Cebu City", @"1097 MJ Cuenco Ave. Brgy. Barili, Cebu City", @"1097 MJ Cuenco Ave. Brgy. Tejero, Danao City", @"1097 MJ Cuenco Ave. Brgy. Talamban, Cebu City", nil];
     //    receiverRelation = [NSArray arrayWithObjects:@"Friends", @"Friends", @"Friends", @"Friends", nil];
     
-    [getReceiver getReceiverWalletNo:@"14050000000135"];
+    //[getReceiver getReceiverWalletNo:@"14050000000135"];
+    
+    NSArray *receiver = [_ds objectForKey:@"retrieveReceiversResult"];
+    getValueReceiver = [receiver valueForKey:@"<receiverList>k__BackingField"];
+
+    
+        receiverImage = [NSMutableArray new];
+        receiverFname = [NSMutableArray new];
+        receiverMname = [NSMutableArray new];
+        receiverLname = [NSMutableArray new];
+        receiverAddress = [NSMutableArray new];
+        receiverRelation = [NSMutableArray new];
+        receiverNo = [NSMutableArray new];
+        
+        for (NSDictionary *items in getValueReceiver) {
+            
+            NSString *rImage  = [items valueForKey:@"photo"];
+            NSString *fName  = [items valueForKey:@"fname"];
+            NSString *mName  = [items valueForKey:@"mname"];
+            NSString *lName  = [items valueForKey:@"lname"];
+            NSString *address  = [items valueForKey:@"address"];
+            NSString *rNumber  = [items valueForKey:@"receiverNo"];
+            NSString *relation  = [items valueForKey:@"relation"];
+            
+            
+            [receiverImage addObject:rImage];
+            [receiverFname addObject:fName];
+            [receiverMname addObject:mName];
+            [receiverLname addObject:lName];
+            [receiverAddress addObject:address];
+            [receiverNo addObject:rNumber];
+            [receiverRelation addObject:relation];
+            
+        }
+
+    
+    
+    
+    [self.tableView reloadData];
+    
 }
 
 - (void)didFinishLoadingReceiver:(NSString *)indicator{
@@ -191,7 +230,7 @@
 {
     
     counter = (int)[receiverFname count];
-    [self.delegate didSelectReceiver:self receiverFname:[receiverFname objectAtIndex:indexPath.row] receiverMname:[receiverMname objectAtIndex:indexPath.row] receiverLname:[receiverLname objectAtIndex:indexPath.row] receiverImage:[receiverImage objectAtIndex:indexPath.row] receiverAddress:[receiverAddress objectAtIndex:indexPath.row] receiverRelation:[receiverRelation objectAtIndex:indexPath.row] rcount:counter];
+    [self.delegate didSelectReceiver:self receiverFname:[receiverFname objectAtIndex:indexPath.row] receiverMname:[receiverMname objectAtIndex:indexPath.row] receiverLname:[receiverLname objectAtIndex:indexPath.row] receiverImage:[receiverImage objectAtIndex:indexPath.row] receiverAddress:[receiverAddress objectAtIndex:indexPath.row] receiverRelation:[receiverRelation objectAtIndex:indexPath.row] rnumber:[receiverNo objectAtIndex:indexPath.row]];
 }
 
 
