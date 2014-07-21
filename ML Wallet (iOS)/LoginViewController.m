@@ -37,6 +37,7 @@
     NSString *fname;
     NSString *lname;
     NSString *photo;
+    NSString *balance;
 }
 
 @synthesize responseData;
@@ -255,6 +256,7 @@
             fname       = [result valueForKeyPath:@"fname"];
             lname       = [result valueForKeyPath:@"lname"];
             photo       = [result valueForKeyPath:@"photo"];
+            balance     = [result valueForKeyPath:@"balance"];
             
             //Saving Data Plist
             SaveWalletData *saveData = [SaveWalletData new];
@@ -262,6 +264,7 @@
             [saveData initSaveData:lname forKey:@"lname"];
             [saveData initSaveData:fname forKey:@"fname"];
             [saveData initSaveData:photo forKey:@"photo"];
+            [saveData initSaveData:balance forKey:@"balance"];
             
             //GOTO Menu
             MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];

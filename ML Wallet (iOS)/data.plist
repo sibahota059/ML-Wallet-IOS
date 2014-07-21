@@ -10,5 +10,7 @@
 	<string></string>
 	<key>photo</key>
 	<string></string>
+	<key>balance</key>
+	<string>0</string>
 </dict>
 </plist>
