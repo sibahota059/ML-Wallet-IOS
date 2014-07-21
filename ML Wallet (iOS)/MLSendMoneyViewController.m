@@ -121,6 +121,7 @@
 }
 
 
+
 #pragma Retrieving Rates Done
 - (void)didFinishLoadingRates:(NSString *)indicator{
     [HUD hide:YES];
