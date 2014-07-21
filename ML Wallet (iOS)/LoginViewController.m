@@ -39,6 +39,7 @@
     NSString *lname;
     NSString *photo;
     NSString *balance;
+    NSString *mname;
     
     UITextfieldAnimate *textAnimate;
 }
@@ -299,6 +300,8 @@
             lname       = [result valueForKeyPath:@"lname"];
             photo       = [result valueForKeyPath:@"photo"];
             balance     = [result valueForKeyPath:@"balance"];
+            mname       = [result valueForKeyPath:@"mname"];
+            
             
             NSString *bal = [NSString stringWithFormat:@"%@", balance];
             
@@ -309,6 +312,10 @@
             [saveData initSaveData:fname forKey:@"fname"];
             [saveData initSaveData:photo forKey:@"photo"];
             [saveData initSaveData:bal forKey:@"balance"];
+            [saveData initSaveData:mname forKey:@"mname"];
+            if ([self.location isEqualToString:@""] || self.location.length == 0 || self.location == nil) {
+                self.location = @"";
+            }
             [saveData initSaveData:self.location forKey:@"address"];
             
             //GOTO Menu
