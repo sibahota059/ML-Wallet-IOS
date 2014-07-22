@@ -22,10 +22,14 @@
     NSMutableArray *gmLong;
     NSMutableArray *place;
     NSMutableArray *town;
+    NSArray *steps;
     GMSCircle *circ;
     MBProgressHUD *HUD;
     GMSMarker *marker;
     NSSet *markers;
+    NSURLSession *markerSession;
+    GMSPolyline *polyline;
+    UIButton *directionsButton;
     }
 
 
@@ -52,6 +56,10 @@
     [HUD show:YES];
     [self.view endEditing:YES];
     NSLog(@"viewdidload");
+    
+    
+    
+    
     self.responseData = [NSMutableData data];
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:@"https://192.168.12.204:4443/Mobile/Client/MapService/MapService.svc/getCoordinates/"]];
@@ -72,6 +80,12 @@
     
     
     [self.view insertSubview:mapView_ atIndex:0];
+    
+  
+    
+    directionsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    directionsButton.alpha = 0.0;
+    
     
     
     [mapView_ addObserver:self
@@ -99,26 +113,97 @@
     
 }
 
-- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
-    NSString *ahw = marker.snippet;
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)infoWindowmarker {
+    NSString *ahw = infoWindowmarker.snippet;
     NSLog(@"Marker Info Window Tap Branch Name : %@", ahw);
-    
-}
-- (void)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{
-    NSString *ahw = marker.snippet;
-    NSLog(@"Marker Tap Branch Name : %@", ahw);
-    [mapView_ setSelectedMarker:marker];
-    
-    GMSMutablePath *path = [GMSMutablePath path];
-    [path addLatitude:10.303857 longitude:123.909624];
-    [path addLatitude:10.297856 longitude:123.907808];
 
     
-    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-    polyline.strokeColor = [UIColor blueColor];
-    polyline.strokeWidth = 5.f;
-    polyline.map = mapView_;
+    
+    
 }
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)bmarker{
+    
+    NSURLSessionConfiguration *config =
+    [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
+                                                    diskCapacity:10 * 1024 * 1024
+                                                        diskPath:@"MarkerData"];
+    markerSession = [NSURLSession sessionWithConfiguration:config];
+   [mapView_ setSelectedMarker:bmarker];
+    CLLocation *myLocation = mapView_.myLocation;
+    NSLog(@"Location ni Naku ! %f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
+    
+     GMSMutablePath *path = [GMSMutablePath path];
+     [path addLatitude:myLocation.coordinate.latitude longitude:myLocation.coordinate.longitude];
+     [path addLatitude:bmarker.position.latitude longitude:bmarker.position.longitude];
+     /*
+     
+     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+     polyline.strokeColor = [UIColor blueColor];
+     polyline.strokeWidth = 5.f;
+     polyline.map = mapView_;
+    */
+    
+    
+    /*
+     NSURLSessionConfiguration *config =
+     [NSURLSessionConfiguration defaultSessionConfiguration];
+     config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
+     diskCapacity:10 * 1024 * 1024
+     diskPath:@"MarkerData"];
+     self.markerSession = [NSURLSession sessionWithConfiguration:config];
+     */
+
+    if(myLocation!=nil){
+        
+        NSLog(@"Dili null");
+        NSString *urlString =
+        [NSString stringWithFormat:@"%@?origin=%f,%f&destination=%f,%f&sensor=true&key=%@"
+         ,@"https://maps.googleapis.com/maps/api/directions/json",
+         myLocation.coordinate.latitude,
+         myLocation.coordinate.longitude,
+         bmarker.position.latitude,
+         bmarker.position.longitude,
+         @"AIzaSyDNYjJnFbOBJWmJMaXwLvX8Um4jk3p1F1A"];
+        
+        NSURL *directionsURL = [NSURL URLWithString:urlString];
+        NSURLSessionDataTask *directionsTask = [markerSession dataTaskWithURL:directionsURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *e){
+        NSError *error = nil;
+        NSDictionary *json = [NSJSONSerialization
+                            JSONObjectWithData: data
+                            options: NSJSONReadingMutableContainers
+                            error: &error];
+                                                                
+            if(!error) {
+                steps = json[@"routes"][0][@"legs"][0][@"steps"];
+                                                                    
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            directionsButton.alpha = 1.0;
+                            }];
+            GMSPath *path =
+            [GMSPath pathFromEncodedPath:
+            json[@"routes"][0][@"overview_polyline"][@"points"]];
+            polyline = [GMSPolyline polylineWithPath:path];
+            polyline.strokeWidth = 10;
+            polyline.strokeColor = [UIColor greenColor];
+            polyline.map = mapView_;
+
+            }
+                                                                
+        }];
+    }
+    return YES;
+}
+
+
+- (void)directionsTapped:(id)sender {
+
+                    // steps = nil;
+                    //    mapView_.selectedMarker = nil;
+                     
+    }
+
+
 
 - (void)dealloc {
     [mapView_ removeObserver:self
