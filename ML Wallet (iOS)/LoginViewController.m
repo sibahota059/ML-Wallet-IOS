@@ -16,6 +16,7 @@
 #import "UIAlertView+WaitAlertView.h"
 #import "MBProgressHUD.h"
 #import "UITextfieldAnimate.h"
+#import "MLUI.h"
 
 #import "SaveWalletData.h"
 
@@ -71,6 +72,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    MLUI *navigationUI = [MLUI new];
+    [navigationUI navigationAppearance];
     
     self.navigationController.navigationBarHidden = navigationBar;
     
