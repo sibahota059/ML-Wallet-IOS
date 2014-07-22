@@ -8,6 +8,8 @@
 
 #import "MapViewController.h"
 
+
+
 @interface MapViewController ()<GMSMapViewDelegate>
 @property (nonatomic, strong) NSMutableData *responseData;
 @end
@@ -47,7 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self navigationView];
+   // [self navigationView];
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
@@ -83,8 +85,7 @@
     
   
     
-    directionsButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    directionsButton.alpha = 0.0;
+
     
     
     
@@ -106,10 +107,16 @@
       // actualZoom = mapView_.camera.zoom;
     
     
+    NSURLSessionConfiguration *config =
+    [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
+                                                    diskCapacity:10 * 1024 * 1024
+                                                        diskPath:@"MarkerData"];
+    markerSession = [NSURLSession sessionWithConfiguration:config];
     
- 
     
-    
+    directionsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    directionsButton.alpha = 0.0;
     
 }
 
@@ -122,13 +129,6 @@
     
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)bmarker{
-    
-    NSURLSessionConfiguration *config =
-    [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
-                                                    diskCapacity:10 * 1024 * 1024
-                                                        diskPath:@"MarkerData"];
-    markerSession = [NSURLSession sessionWithConfiguration:config];
    [mapView_ setSelectedMarker:bmarker];
     CLLocation *myLocation = mapView_.myLocation;
     NSLog(@"Location ni Naku ! %f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
@@ -144,22 +144,16 @@
      polyline.map = mapView_;
     */
     
-    
-    /*
-     NSURLSessionConfiguration *config =
-     [NSURLSessionConfiguration defaultSessionConfiguration];
-     config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
-     diskCapacity:10 * 1024 * 1024
-     diskPath:@"MarkerData"];
-     self.markerSession = [NSURLSession sessionWithConfiguration:config];
-     */
+
 
     if(myLocation!=nil){
-        
+     
         NSLog(@"Dili null");
+        
+        
         NSString *urlString =
-        [NSString stringWithFormat:@"%@?origin=%f,%f&destination=%f,%f&sensor=true&key=%@"
-         ,@"https://maps.googleapis.com/maps/api/directions/json",
+        [NSString stringWithFormat:@"%@?origin=%f,%f&destination=%f,%f&sensor=true&key=%@",
+         @"https://maps.googleapis.com/maps/api/directions/json",
          myLocation.coordinate.latitude,
          myLocation.coordinate.longitude,
          bmarker.position.latitude,
@@ -191,6 +185,10 @@
             }
                                                                 
         }];
+         
+
+        
+        
     }
     return YES;
 }
@@ -302,9 +300,6 @@
                                             otherButtonTitles:@"500", @"1000",@"1500",@"2000",@"All", nil];
  
     [message show];
-
-    
-
 
 }
 

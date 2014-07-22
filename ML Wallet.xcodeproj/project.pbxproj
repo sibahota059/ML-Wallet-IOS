@@ -22,6 +22,8 @@
 		3012DC4E197DF62400AA5F6F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4D197DF62400AA5F6F /* OpenGLES.framework */; };
 		3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */; };
 		3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */; };
+		302FA640197E56F900B46F7A /* ml_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63E197E56F900B46F7A /* ml_1.png */; };
+		302FA641197E56F900B46F7A /* username.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63F197E56F900B46F7A /* username.png */; };
 		30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */; };
 		3B17584718B2EC6B005A7805 /* btn1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584618B2EC6B005A7805 /* btn1.png */; };
 		3B17584D18B2FC09005A7805 /* popup_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584C18B2FC09005A7805 /* popup_img.png */; };
@@ -238,6 +240,8 @@
 		3012DC4D197DF62400AA5F6F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		302FA63E197E56F900B46F7A /* ml_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_1.png; sourceTree = "<group>"; };
+		302FA63F197E56F900B46F7A /* username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = username.png; sourceTree = "<group>"; };
 		30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~ipad.xib"; sourceTree = "<group>"; };
 		3B17584618B2EC6B005A7805 /* btn1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn1.png; sourceTree = "<group>"; };
 		3B17584C18B2FC09005A7805 /* popup_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popup_img.png; sourceTree = "<group>"; };
@@ -764,6 +768,8 @@
 		3BA7CCD118B1D96D00B9FC4B /* images */ = {
 			isa = PBXGroup;
 			children = (
+				302FA63E197E56F900B46F7A /* ml_1.png */,
+				302FA63F197E56F900B46F7A /* username.png */,
 				3BA8A231197570DF0052FA2F /* down.png */,
 				3BA8A22F19756F810052FA2F /* button_back.png */,
 				707C03B618D9CD8100EC1B12 /* lock_profile.png */,
@@ -1271,7 +1277,6 @@
 				3B17585718B35CDB005A7805 /* peso_signr.png in Resources */,
 				3B1B36BE18B43181006DA5BB /* transparent.png in Resources */,
 				3012DC3C197DF59900AA5F6F /* GoogleMaps.bundle in Resources */,
-				F05C5F4218E12C62002F2EE1 /* header_bg2.png in Resources */,
 				3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */,
 				3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */,
 				3B8090C018B6106F00A11CB8 /* navigation_image.png in Resources */,
@@ -1307,6 +1312,7 @@
 				3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */,
 				3BB42E0318D6B6C60011792E /* next.png in Resources */,
 				3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */,
+				302FA641197E56F900B46F7A /* username.png in Resources */,
 				F0CE9CA41978AEE4002717C7 /* logo2.png in Resources */,
 				F081A03819776D57004568EF /* content_bg_ipad.png in Resources */,
 				7006622118DA81DD00A0F05C /* radio_button.png in Resources */,
@@ -1329,6 +1335,7 @@
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
 				F05C5F4418E12C70002F2EE1 /* ic_home.png in Resources */,
 				3BA7CCDD18B1DF6000B9FC4B /* new_key.png in Resources */,
+				302FA640197E56F900B46F7A /* ml_1.png in Resources */,
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController~iphone.xib in Resources */,
 				F081A05619776E55004568EF /* MLRatesTableViewController~ipad.xib in Resources */,
 				F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */,
@@ -1557,8 +1564,6 @@
 		3BA7CCC418B1D6B900B9FC4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1577,8 +1582,6 @@
 		3BA7CCC518B1D6B900B9FC4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
