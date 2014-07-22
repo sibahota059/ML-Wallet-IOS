@@ -196,6 +196,9 @@
                                             <state key="normal" title="SEND MONEY" backgroundImage="btn2.png"/>
                                             <state key="selected" title="SEND MONEY" backgroundImage="btn1.png"/>
                                             <state key="highlighted" backgroundImage="btn2.png"/>
+                                            <connections>
+                                                <action selector="btn_SendMoney:" destination="-1" eventType="touchUpInside" id="uc1-LI-uVf"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <gestureRecognizers/>

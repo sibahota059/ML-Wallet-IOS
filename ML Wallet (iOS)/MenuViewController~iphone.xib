@@ -9,9 +9,11 @@
                 <outlet property="imgPopup" destination="Qyr-7E-Ska" id="hsp-Kz-JPG"/>
                 <outlet property="kycLayer" destination="VKF-Ad-29a" id="kla-Rd-qs1"/>
                 <outlet property="lblAccount" destination="XKd-lT-keH" id="fxz-3c-wBm"/>
-                <outlet property="lblBalance" destination="Fas-PO-Nub" id="nvV-gd-rta"/>
+                <outlet property="lblBalance" destination="SGQ-bx-nHK" id="35Q-Kc-Hts"/>
+                <outlet property="lblDate" destination="6hz-YF-aen" id="yJu-FZ-qlu"/>
                 <outlet property="lblMain" destination="JQo-EO-OwJ" id="KK6-K0-Vq6"/>
                 <outlet property="lblUserName" destination="sVO-2a-tZW" id="OIX-fS-CCL"/>
+                <outlet property="lblWalletno" destination="fjN-k2-Rt7" id="OBr-Zr-pwE"/>
                 <outlet property="pop_btnInfo" destination="D7C-ee-iXt" id="Ta1-VI-PMn"/>
                 <outlet property="pop_btnLocator" destination="gBw-b2-K9X" id="yO4-Z7-4Xv"/>
                 <outlet property="pop_btnRate" destination="BHF-Kd-MFw" id="Ike-IC-FCf"/>
@@ -202,7 +204,7 @@
                                             <state key="selected" title="SEND MONEY" backgroundImage="btn1.png"/>
                                             <state key="highlighted" backgroundImage="btn2.png"/>
                                             <connections>
-                                                <action selector="btnSendmonet_2nd_view:" destination="-1" eventType="touchUpInside" id="Cj4-Sy-XkQ"/>
+                                                <action selector="btn_SendMoney:" destination="-1" eventType="touchUpInside" id="3bB-2D-FSN"/>
                                             </connections>
                                         </button>
                                     </subviews>
