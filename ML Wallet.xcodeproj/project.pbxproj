@@ -159,6 +159,8 @@
 		70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA19318D9C6E800719BF7 /* ProfileButton.m */; };
 		70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19918D9CA4900719BF7 /* edit_profile.png */; };
 		70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19B18D9CA7800719BF7 /* question_profile.png */; };
+		F00FEDB5197E057D00A9429E /* ml_logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F00FEDB4197E057D00A9429E /* ml_logo_ipad.png */; };
+		F00FEDB9197E06BB00A9429E /* ml_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = F00FEDB8197E06BB00A9429E /* ml_logo_iphone.png */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
 		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
 		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
@@ -405,6 +407,8 @@
 		70EEA19418D9C6E800719BF7 /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileButton.h; sourceTree = "<group>"; };
 		70EEA19918D9CA4900719BF7 /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_profile.png; sourceTree = "<group>"; };
 		70EEA19B18D9CA7800719BF7 /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_profile.png; sourceTree = "<group>"; };
+		F00FEDB4197E057D00A9429E /* ml_logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_ipad.png; sourceTree = "<group>"; };
+		F00FEDB8197E06BB00A9429E /* ml_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_iphone.png; sourceTree = "<group>"; };
 		F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
 		F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
 		F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -837,8 +841,10 @@
 				F081A03919776D64004568EF /* preview_bg_ipad.png */,
 				F081A03719776D57004568EF /* content_bg_ipad.png */,
 				7006622218DA823D00A0F05C /* black_check_credentials.png */,
+				F00FEDB8197E06BB00A9429E /* ml_logo_iphone.png */,
 				7006622318DA823D00A0F05C /* black_credentials.png */,
 				7006621E18DA81DD00A0F05C /* radio_button_selected.png */,
+				F00FEDB4197E057D00A9429E /* ml_logo_ipad.png */,
 				7006621F18DA81DD00A0F05C /* radio_button.png */,
 				707C03BE18D9D40F00EC1B12 /* back_profile.png */,
 				707C03BC18D9D00900EC1B12 /* submit_profile.png */,
@@ -1156,10 +1162,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BF04C7319764DF4002C2FCC /* TopupViewController~ipad.xib in Resources */,
+				F00FEDB5197E057D00A9429E /* ml_logo_ipad.png in Resources */,
 				3BB42E0D18D6B6C60011792E /* sendmoney_default.png in Resources */,
 				3BA7CCE118B1E13200B9FC4B /* headerbackground.png in Resources */,
 				F081A04F19776E55004568EF /* MLReceiverTableViewCell.xib in Resources */,
 				F081A05E19776F89004568EF /* MLHistoryTableViewCell~ipad.xib in Resources */,
+				F00FEDB9197E06BB00A9429E /* ml_logo_iphone.png in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
 				F0CE9CA31978AEE4002717C7 /* logo1.png in Resources */,
 				3BC3828C18C0958900270567 /* InfoViewController.xib in Resources */,
