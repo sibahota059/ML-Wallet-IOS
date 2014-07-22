@@ -210,6 +210,10 @@
     }
     
     _countReceiver.text =[NSString stringWithFormat:@"You have %@ receivers.", rcounter];
+    
+    if ([[NSString stringWithFormat:@"%@", rcounter] isEqualToString:@"0"]) {
+        _btn_receiver.enabled = NO;
+    }
 }
 
 #pragma mark - Hide Status Bar
