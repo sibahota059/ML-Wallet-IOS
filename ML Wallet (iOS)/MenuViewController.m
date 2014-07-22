@@ -348,6 +348,10 @@
     
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 #pragma mark - Send mOney MENU
 - (IBAction)btn_SendMoney:(id)sender {
     UIViewController *viewController1 = [[MLSendMoneyViewController alloc] initWithNibName:@"MLSendMoneyViewController" bundle:nil];

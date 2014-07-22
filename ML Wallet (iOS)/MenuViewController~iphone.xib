@@ -35,8 +35,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner1.png" id="18i-XP-Xza">
-                                    <rect key="frame" x="0.0" y="14" width="320" height="73"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ml_logo_iphone.png" id="18i-XP-Xza">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" id="yvg-Nq-DZE">
@@ -367,7 +367,6 @@
         </panGestureRecognizer>
     </objects>
     <resources>
-        <image name="banner1.png" width="320" height="74"/>
         <image name="bg_header.png" width="530" height="32"/>
         <image name="btn1.png" width="195" height="45"/>
         <image name="btn2.png" width="300" height="77"/>
@@ -376,6 +375,7 @@
         <image name="icon_my_receiver.jpg" width="307" height="209"/>
         <image name="icon_my_receiver_press.jpg" width="307" height="209"/>
         <image name="kyc.9.png" width="395" height="395"/>
+        <image name="ml_logo_iphone.png" width="320" height="100"/>
         <image name="new_info.png" width="400" height="400"/>
         <image name="new_kprate.png" width="400" height="400"/>
         <image name="new_locator.png" width="400" height="400"/>

@@ -341,6 +341,9 @@
     }
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 #pragma mark GetLocation Address
 - (void) IDDLocation
