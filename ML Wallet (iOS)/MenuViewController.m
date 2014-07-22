@@ -18,6 +18,7 @@
 #import "MLUI.h"
 #import "AccountMain.h"
 #import "MLHistoryViewController.h"
+#import "NSDictionary+LoadWalletData.h"
 
 #define  VIEW_HIDDEN -320
 #define  VIEW_HIDDEN_IPAD -580
@@ -47,7 +48,6 @@
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -66,12 +66,76 @@
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
     }
     
-    self.lblMain.textAlignment = NSTextAlignmentCenter;
-    self.lblUserName.textAlignment = NSTextAlignmentCenter;
-    self.layerPosition = self.topLayer.frame.origin.x;
+    self.lblMain.textAlignment      = NSTextAlignmentCenter;
+    self.lblUserName.textAlignment  = NSTextAlignmentCenter;
+    self.layerPosition              = self.topLayer.frame.origin.x;
     
     getUI = [MLUI new];
     
+    
+    //Get Data.plist
+    [self getDataPlist];
+}
+
+//TODO
+#pragma mark -Get From data.plist
+- (void) getDataPlist
+{
+    //Get Name From PLIST
+    NSDictionary *dic   = [NSDictionary initRead_LoadWallet_Data];
+    self.fullname       = [NSString stringWithFormat:@"%@ %@ %@",
+                           [dic valueForKey:@"fname"],
+                           [dic valueForKey:@"mname"],
+                           [dic valueForKey:@"lname"]];
+    
+  
+    NSString *bal = [dic valueForKey:@"balance"];
+    double d = currencyStringToDouble(bal);
+    NSLog(@"bal : %d", d);
+    //TextField
+    self.lblUserName.text   = self.fullname;
+//    self.lblBalance.text    = d;
+    
+}
+
+NSNumberFormatter* createCurrencyFormatter() {
+	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+	[formatter setCurrencySymbol:  @""];
+	return formatter;
+}
+
+NSString* doubleToCurrencyString(double d) {
+	
+	// convert the double to an NSNumber
+	NSNumber *number = [NSNumber numberWithDouble: d];
+	
+	// create a number formatter object
+	NSNumberFormatter *formatter = createCurrencyFormatter();
+	
+	// convert the number to a string
+	NSString *string = [formatter stringFromNumber: number];
+	
+	// return the string
+	return string;
+}
+
+double currencyStringToDouble(NSString *string) {
+	
+	// if the string is nil, return zero
+	if (nil == string)
+		return 0.0;
+	
+	// create a number formatter object
+	NSNumberFormatter *formatter = createCurrencyFormatter();
+	
+	// convert the double to an NSNumber
+	NSNumber *number = [formatter numberFromString: string];
+	double d = [number doubleValue];
+	
+	
+	// return the string
+	return d;
 }
 
 #pragma Start #Pan Gesture
