@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3012DC35197DF42000AA5F6F /* MapViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3012DC34197DF42000AA5F6F /* MapViewController~iphone.xib */; };
+		3012DC38197DF43300AA5F6F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3012DC37197DF43300AA5F6F /* MapViewController.m */; };
+		3012DC3A197DF56700AA5F6F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC39197DF56700AA5F6F /* GoogleMaps.framework */; };
+		3012DC3C197DF59900AA5F6F /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3012DC3B197DF59900AA5F6F /* GoogleMaps.bundle */; };
+		3012DC3E197DF5C400AA5F6F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */; };
+		3012DC40197DF5CD00AA5F6F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC3F197DF5CD00AA5F6F /* CoreData.framework */; };
+		3012DC42197DF5DD00AA5F6F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC41197DF5DD00AA5F6F /* CoreText.framework */; };
+		3012DC44197DF5E500AA5F6F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC43197DF5E500AA5F6F /* GLKit.framework */; };
+		3012DC46197DF5EE00AA5F6F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC45197DF5EE00AA5F6F /* ImageIO.framework */; };
+		3012DC48197DF5FD00AA5F6F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC47197DF5FD00AA5F6F /* libc++.dylib */; };
+		3012DC4A197DF60E00AA5F6F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC49197DF60E00AA5F6F /* libicucore.dylib */; };
+		3012DC4C197DF61700AA5F6F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4B197DF61700AA5F6F /* libz.dylib */; };
+		3012DC4E197DF62400AA5F6F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4D197DF62400AA5F6F /* OpenGLES.framework */; };
+		3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */; };
+		3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */; };
+		30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */; };
 		3B17584718B2EC6B005A7805 /* btn1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584618B2EC6B005A7805 /* btn1.png */; };
 		3B17584D18B2FC09005A7805 /* popup_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584C18B2FC09005A7805 /* popup_img.png */; };
 		3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */; };
@@ -205,6 +221,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3012DC34197DF42000AA5F6F /* MapViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~iphone.xib"; sourceTree = "<group>"; };
+		3012DC36197DF42C00AA5F6F /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		3012DC37197DF43300AA5F6F /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		3012DC39197DF56700AA5F6F /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		3012DC3B197DF59900AA5F6F /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../Downloads/GoogleMaps-iOS-1.8.1/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
+		3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3012DC3F197DF5CD00AA5F6F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3012DC41197DF5DD00AA5F6F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3012DC43197DF5E500AA5F6F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		3012DC45197DF5EE00AA5F6F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		3012DC47197DF5FD00AA5F6F /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		3012DC49197DF60E00AA5F6F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3012DC4B197DF61700AA5F6F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3012DC4D197DF62400AA5F6F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~ipad.xib"; sourceTree = "<group>"; };
 		3B17584618B2EC6B005A7805 /* btn1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn1.png; sourceTree = "<group>"; };
 		3B17584C18B2FC09005A7805 /* popup_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popup_img.png; sourceTree = "<group>"; };
 		3B17584E18B301B8005A7805 /* UIAlertView+alertMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+alertMe.h"; sourceTree = "<group>"; };
@@ -470,9 +503,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */,
+				3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */,
+				3012DC4E197DF62400AA5F6F /* OpenGLES.framework in Frameworks */,
+				3012DC4C197DF61700AA5F6F /* libz.dylib in Frameworks */,
+				3012DC4A197DF60E00AA5F6F /* libicucore.dylib in Frameworks */,
+				3012DC48197DF5FD00AA5F6F /* libc++.dylib in Frameworks */,
+				3012DC46197DF5EE00AA5F6F /* ImageIO.framework in Frameworks */,
+				3012DC44197DF5E500AA5F6F /* GLKit.framework in Frameworks */,
+				3012DC42197DF5DD00AA5F6F /* CoreText.framework in Frameworks */,
+				3012DC40197DF5CD00AA5F6F /* CoreData.framework in Frameworks */,
+				3012DC3E197DF5C400AA5F6F /* AVFoundation.framework in Frameworks */,
 				3B38F7711952C64C00EC3948 /* CoreLocation.framework in Frameworks */,
 				3BA7CC9D18B1D6B900B9FC4B /* CoreGraphics.framework in Frameworks */,
 				3BA7CC9F18B1D6B900B9FC4B /* UIKit.framework in Frameworks */,
+				3012DC3A197DF56700AA5F6F /* GoogleMaps.framework in Frameworks */,
 				3BA7CC9B18B1D6B900B9FC4B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +525,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3012DC2F197DF34000AA5F6F /* com.mlkpwallet.location */ = {
+			isa = PBXGroup;
+			children = (
+				3012DC33197DF37F00AA5F6F /* Categories */,
+				3012DC31197DF35A00AA5F6F /* Views */,
+				3012DC30197DF35200AA5F6F /* Controllers */,
+			);
+			name = com.mlkpwallet.location;
+			sourceTree = "<group>";
+		};
+		3012DC30197DF35200AA5F6F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3012DC36197DF42C00AA5F6F /* MapViewController.h */,
+				3012DC37197DF43300AA5F6F /* MapViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3012DC31197DF35A00AA5F6F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3012DC34197DF42000AA5F6F /* MapViewController~iphone.xib */,
+				30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		3012DC33197DF37F00AA5F6F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		3B17585118B301BE005A7805 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +651,19 @@
 		3BA7CC9918B1D6B900B9FC4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */,
+				3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */,
+				3012DC4D197DF62400AA5F6F /* OpenGLES.framework */,
+				3012DC4B197DF61700AA5F6F /* libz.dylib */,
+				3012DC49197DF60E00AA5F6F /* libicucore.dylib */,
+				3012DC47197DF5FD00AA5F6F /* libc++.dylib */,
+				3012DC45197DF5EE00AA5F6F /* ImageIO.framework */,
+				3012DC43197DF5E500AA5F6F /* GLKit.framework */,
+				3012DC41197DF5DD00AA5F6F /* CoreText.framework */,
+				3012DC3F197DF5CD00AA5F6F /* CoreData.framework */,
+				3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */,
+				3012DC3B197DF59900AA5F6F /* GoogleMaps.bundle */,
+				3012DC39197DF56700AA5F6F /* GoogleMaps.framework */,
 				3B38F7701952C64C00EC3948 /* CoreLocation.framework */,
 				3BA7CC9A18B1D6B900B9FC4B /* Foundation.framework */,
 				3BA7CC9C18B1D6B900B9FC4B /* CoreGraphics.framework */,
@@ -583,6 +676,7 @@
 		3BA7CCA018B1D6B900B9FC4B /* ML Wallet (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				3012DC2F197DF34000AA5F6F /* com.mlkpwallet.location */,
 				3BCFE2CC19580956008C4E6F /* Objects */,
 				3B38F7721952CDDC00EC3948 /* NSURLConnection */,
 				700661A518DA71C400A0F05C /* com.mlkptogo.account */,
@@ -1171,6 +1265,7 @@
 				3BB924EE196FEBE7007E76A5 /* ReceiverMenuListViewController~ipad.xib in Resources */,
 				3B17585718B35CDB005A7805 /* peso_signr.png in Resources */,
 				3B1B36BE18B43181006DA5BB /* transparent.png in Resources */,
+				3012DC3C197DF59900AA5F6F /* GoogleMaps.bundle in Resources */,
 				F05C5F4218E12C62002F2EE1 /* header_bg2.png in Resources */,
 				3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */,
 				3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */,
@@ -1198,6 +1293,7 @@
 				F081A05219776E55004568EF /* MLTermsConditionViewController~iphone.xib in Resources */,
 				3BB42E0618D6B6C60011792E /* payment_bg.png in Resources */,
 				3BA7CCFB18B213BE00B9FC4B /* line.png in Resources */,
+				30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */,
 				F081A05019776E55004568EF /* MLRatesTableViewCell~iphone.xib in Resources */,
 				70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */,
 				700661E618DA766800A0F05C /* design_buttom_left.png in Resources */,
@@ -1246,6 +1342,7 @@
 				7006621418DA797C00A0F05C /* AccountQuestion.xib in Resources */,
 				700661E718DA766800A0F05C /* design_buttom_right.png in Resources */,
 				70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */,
+				3012DC35197DF42000AA5F6F /* MapViewController~iphone.xib in Resources */,
 				3BA7CCA518B1D6B900B9FC4B /* InfoPlist.strings in Resources */,
 				3BC3827C18C02C6C00270567 /* TopupViewController~iphone.xib in Resources */,
 				3B19518F18B6F5260061969F /* MLBackground3.png in Resources */,
@@ -1354,6 +1451,7 @@
 				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
 				F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */,
 				3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */,
+				3012DC38197DF43300AA5F6F /* MapViewController.m in Sources */,
 				3B38F7781952CE3700EC3948 /* DeviceID.m in Sources */,
 				7006621D18DA817900A0F05C /* ProfileImage.m in Sources */,
 			);
@@ -1456,10 +1554,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1471,10 +1574,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
