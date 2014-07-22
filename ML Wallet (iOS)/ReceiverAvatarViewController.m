@@ -11,6 +11,7 @@
 #import "ServiceConnection.h"
 #import "ReceiverMenuListViewController.h"
 #import "CreateNewReceiverViewController.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface ReceiverAvatarViewController ()
 
@@ -20,6 +21,7 @@
 @implementation ReceiverAvatarViewController
 {
     NSNumber *receiverno;
+    NSString *walletno;
 }
 
 @synthesize nameLabel;
@@ -52,7 +54,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    //Get Walletno
+    NSDictionary *dic = [NSDictionary initRead_LoadWallet_Data];
+    walletno = [dic objectForKey:@"walletno"];
     
     //SetUP Loader
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -161,7 +165,7 @@
     //Rest Service
     self.responseData = [NSMutableData data];
     NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"deleteReceiver/?"];
-    NSString *srvcURL = [NSString stringWithFormat: @"%@walletno=14030000000123&receiverno=%@", srvcURL1, receiverno];
+    NSString *srvcURL = [NSString stringWithFormat: @"%@walletno=%@&receiverno=%@", srvcURL1, walletno, receiverno];
     
     self.responseData = [NSMutableData data];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];

@@ -167,26 +167,10 @@
                                         </button>
                                     </subviews>
                                 </view>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ml_logo2.png" translatesAutoresizingMaskIntoConstraints="NO" id="EiJ-aQ-jni">
-                                    <rect key="frame" x="196" y="20" width="337" height="74"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ml_logo_ipad.png" translatesAutoresizingMaskIntoConstraints="NO" id="EiJ-aQ-jni">
+                                    <rect key="frame" x="0.0" y="0.0" width="728" height="130"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9N-Vs-bc4">
-                                    <rect key="frame" x="0.0" y="20" width="188" height="41"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="highlightedColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nuI-Tu-Aeg">
-                                    <rect key="frame" x="541" y="20" width="187" height="41"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="highlightedColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </label>
                             </subviews>
                         </scrollView>
                     </subviews>
@@ -202,7 +186,7 @@
     <resources>
         <image name="headerbackground.png" width="320" height="50"/>
         <image name="line.png" width="320" height="2"/>
-        <image name="ml_logo2.png" width="1200" height="237"/>
+        <image name="ml_logo_ipad.png" width="768" height="130"/>
         <image name="new_info.png" width="400" height="400"/>
         <image name="new_key.png" width="202" height="197"/>
         <image name="new_kprate.png" width="400" height="400"/>

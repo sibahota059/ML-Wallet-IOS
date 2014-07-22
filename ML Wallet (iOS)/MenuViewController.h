@@ -46,6 +46,8 @@
 - (IBAction)btnHistory:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *lblBalance;
+@property (strong, nonatomic) IBOutlet UILabel *lblWalletno;
+@property (strong, nonatomic) IBOutlet UILabel *lblDate;
 
 //Assign From LoginviewController
 @property (assign, nonatomic) NSString *fullname;

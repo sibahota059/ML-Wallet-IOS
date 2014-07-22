@@ -170,16 +170,10 @@
                                 </button>
                             </subviews>
                         </view>
-                        <view contentMode="scaleToFill" id="JRd-az-TmK">
-                            <rect key="frame" x="0.0" y="14" width="320" height="93"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner1.png" id="I6b-LR-BUA">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </imageView>
-                            </subviews>
-                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ml_logo_iphone.png" id="I6b-LR-BUA">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
                     </subviews>
                 </scrollView>
             </subviews>
@@ -189,9 +183,9 @@
         </view>
     </objects>
     <resources>
-        <image name="banner1.png" width="320" height="74"/>
         <image name="headerbackground.png" width="320" height="50"/>
         <image name="line.png" width="320" height="2"/>
+        <image name="ml_logo_iphone.png" width="320" height="100"/>
         <image name="new_info.png" width="400" height="400"/>
         <image name="new_key.png" width="202" height="197"/>
         <image name="new_kprate.png" width="400" height="400"/>

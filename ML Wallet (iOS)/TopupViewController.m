@@ -145,7 +145,7 @@
     
     strKPTN = self.txtKPTN.text;
     
-    if ([strKPTN isEqualToString:@""] && strKPTN == nil) {
+    if ([strKPTN isEqualToString:@""] || strKPTN == nil) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Type your KPTN" delegate:nil cancelButton:@"Ok" otherButtons:nil];
         return;
     }
