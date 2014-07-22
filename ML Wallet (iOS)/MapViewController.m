@@ -120,6 +120,7 @@
     
 }
 
+//MAPVIew
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)infoWindowmarker {
     NSString *ahw = infoWindowmarker.snippet;
     NSLog(@"Marker Info Window Tap Branch Name : %@", ahw);
