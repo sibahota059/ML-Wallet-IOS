@@ -9,9 +9,11 @@
                 <outlet property="imgPopup" destination="Qyr-7E-Ska" id="hsp-Kz-JPG"/>
                 <outlet property="kycLayer" destination="VKF-Ad-29a" id="kla-Rd-qs1"/>
                 <outlet property="lblAccount" destination="XKd-lT-keH" id="fxz-3c-wBm"/>
-                <outlet property="lblBalance" destination="Fas-PO-Nub" id="nvV-gd-rta"/>
+                <outlet property="lblBalance" destination="SGQ-bx-nHK" id="35Q-Kc-Hts"/>
+                <outlet property="lblDate" destination="6hz-YF-aen" id="yJu-FZ-qlu"/>
                 <outlet property="lblMain" destination="JQo-EO-OwJ" id="KK6-K0-Vq6"/>
                 <outlet property="lblUserName" destination="sVO-2a-tZW" id="OIX-fS-CCL"/>
+                <outlet property="lblWalletno" destination="fjN-k2-Rt7" id="OBr-Zr-pwE"/>
                 <outlet property="pop_btnInfo" destination="D7C-ee-iXt" id="Ta1-VI-PMn"/>
                 <outlet property="pop_btnLocator" destination="gBw-b2-K9X" id="yO4-Z7-4Xv"/>
                 <outlet property="pop_btnRate" destination="BHF-Kd-MFw" id="Ike-IC-FCf"/>
@@ -33,8 +35,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner1.png" id="18i-XP-Xza">
-                                    <rect key="frame" x="0.0" y="14" width="320" height="73"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ml_logo_iphone.png" id="18i-XP-Xza">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" id="yvg-Nq-DZE">
@@ -202,7 +204,7 @@
                                             <state key="selected" title="SEND MONEY" backgroundImage="btn1.png"/>
                                             <state key="highlighted" backgroundImage="btn2.png"/>
                                             <connections>
-                                                <action selector="btnSendmonet_2nd_view:" destination="-1" eventType="touchUpInside" id="Cj4-Sy-XkQ"/>
+                                                <action selector="btn_SendMoney:" destination="-1" eventType="touchUpInside" id="3bB-2D-FSN"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -365,7 +367,6 @@
         </panGestureRecognizer>
     </objects>
     <resources>
-        <image name="banner1.png" width="320" height="74"/>
         <image name="bg_header.png" width="530" height="32"/>
         <image name="btn1.png" width="195" height="45"/>
         <image name="btn2.png" width="300" height="77"/>
@@ -374,6 +375,7 @@
         <image name="icon_my_receiver.jpg" width="307" height="209"/>
         <image name="icon_my_receiver_press.jpg" width="307" height="209"/>
         <image name="kyc.9.png" width="395" height="395"/>
+        <image name="ml_logo_iphone.png" width="320" height="100"/>
         <image name="new_info.png" width="400" height="400"/>
         <image name="new_kprate.png" width="400" height="400"/>
         <image name="new_locator.png" width="400" height="400"/>

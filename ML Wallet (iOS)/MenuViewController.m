@@ -77,7 +77,6 @@
     [self getDataPlist];
 }
 
-//TODO
 #pragma mark -Get From data.plist
 - (void) getDataPlist
 {
@@ -89,54 +88,39 @@
                            [dic valueForKey:@"lname"]];
     
   
-    NSString *bal = [dic valueForKey:@"balance"];
-    double d = currencyStringToDouble(bal);
-    NSLog(@"bal : %d", d);
-    //TextField
+    
+    
+    
     self.lblUserName.text   = self.fullname;
-//    self.lblBalance.text    = d;
+    self.lblBalance.text    = [NSString stringWithFormat:@"%@", [self convertDecimal:[[dic objectForKey:@"balance"] doubleValue]]];
+    self.lblWalletno.text   = [dic valueForKey:@"walletno"];
+    self.lblDate.text       = [self getCurrentDate];
     
 }
 
-NSNumberFormatter* createCurrencyFormatter() {
-	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-	[formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-	[formatter setCurrencySymbol:  @""];
-	return formatter;
+#pragma mark - get Current Date
+- (NSString*)getCurrentDate
+{
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"EEE MMM dd, yyyy"];
+    NSString *dateString = [dateFormat stringFromDate:today];
+    NSLog(@"date: %@", dateString);
+    
+    return dateString;
 }
 
-NSString* doubleToCurrencyString(double d) {
-	
-	// convert the double to an NSNumber
-	NSNumber *number = [NSNumber numberWithDouble: d];
-	
-	// create a number formatter object
-	NSNumberFormatter *formatter = createCurrencyFormatter();
-	
-	// convert the number to a string
-	NSString *string = [formatter stringFromNumber: number];
-	
-	// return the string
-	return string;
+//Tue, Feb. 18, 2014
+
+#pragma mark - Convert to Decimal
+- (NSString *)convertDecimal:(double)doubleValue{
+    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
+    [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *bals = [currencyFormatter stringFromNumber:[NSNumber numberWithInt:doubleValue]];
+    NSString *newStr = [bals substringFromIndex:1];
+    return newStr;
 }
 
-double currencyStringToDouble(NSString *string) {
-	
-	// if the string is nil, return zero
-	if (nil == string)
-		return 0.0;
-	
-	// create a number formatter object
-	NSNumberFormatter *formatter = createCurrencyFormatter();
-	
-	// convert the double to an NSNumber
-	NSNumber *number = [formatter numberFromString: string];
-	double d = [number doubleValue];
-	
-	
-	// return the string
-	return d;
-}
 
 #pragma Start #Pan Gesture
 - (IBAction)panLayer:(UIPanGestureRecognizer *)pan {
@@ -364,10 +348,11 @@ double currencyStringToDouble(NSString *string) {
     
 }
 
-- (IBAction)btnSendmonet_2nd_view:(id)sender {
-    [UIAlertView myCostumeAlert:@"Send money" alertMessage:@"To do.." delegate:nil cancelButton:@"Cancel" otherButtons:@"ok"];
+- (BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
+#pragma mark - Send mOney MENU
 - (IBAction)btn_SendMoney:(id)sender {
     UIViewController *viewController1 = [[MLSendMoneyViewController alloc] initWithNibName:@"MLSendMoneyViewController" bundle:nil];
     UITableViewController *viewController2 = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
