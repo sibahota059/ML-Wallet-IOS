@@ -9,9 +9,12 @@
                 <outlet property="imgPopup" destination="rgM-62-U8N" id="x0b-si-38D"/>
                 <outlet property="kycLayer" destination="joG-5R-CxZ" id="gw6-zs-dck"/>
                 <outlet property="lblAccount" destination="weU-yE-dBT" id="gDI-Fs-N2b"/>
-                <outlet property="lblBalance" destination="oaG-Qa-99R" id="Qcz-Eu-Ci7"/>
+                <outlet property="lblBalance" destination="Xsm-ml-jC5" id="4xr-2Y-q36"/>
+                <outlet property="lblDate" destination="HNa-UJ-lTc" id="7EU-v1-Lap"/>
                 <outlet property="lblMain" destination="I7e-8T-MRv" id="fY1-P5-Nfv"/>
                 <outlet property="lblMenu" destination="g1Y-YN-ily" id="DGk-Zp-UBo"/>
+                <outlet property="lblUserName" destination="6RE-RL-JH5" id="MyD-gR-IwE"/>
+                <outlet property="lblWalletno" destination="dnC-GC-LKV" id="YXw-7r-sHc"/>
                 <outlet property="pop_btnInfo" destination="bBz-o7-mWS" id="Krf-3e-nKW"/>
                 <outlet property="pop_btnLocator" destination="52c-It-NvR" id="dyK-sp-buu"/>
                 <outlet property="pop_btnRate" destination="bDM-bD-urT" id="6ak-61-lr8"/>
@@ -204,7 +207,7 @@
                                     <gestureRecognizers/>
                                 </view>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iwq-d2-0Vk">
-                                    <rect key="frame" x="20" y="788.00066749087" width="646" height="42"/>
+                                    <rect key="frame" x="20" y="788" width="646" height="42"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDY-l1-lli">
@@ -233,7 +236,7 @@
                                     </subviews>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XsX-le-Lbl">
-                                    <rect key="frame" x="0.0" y="838.00066749087" width="686" height="25"/>
+                                    <rect key="frame" x="0.0" y="838" width="686" height="25"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -243,11 +246,11 @@
                                     </state>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="popup_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="rgM-62-U8N">
-                                    <rect key="frame" x="46" y="700.00066749087" width="200" height="90"/>
+                                    <rect key="frame" x="46" y="700" width="200" height="90"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-bD-urT">
-                                    <rect key="frame" x="78" y="721.00066749087" width="40" height="40"/>
+                                    <rect key="frame" x="78" y="721" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                     <state key="normal" image="new_kprate.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -257,7 +260,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBz-o7-mWS">
-                                    <rect key="frame" x="174" y="721.00066749087" width="40" height="40"/>
+                                    <rect key="frame" x="174" y="721" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                     <state key="normal" image="new_info.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -267,7 +270,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52c-It-NvR">
-                                    <rect key="frame" x="126" y="721.00066749087" width="40" height="40"/>
+                                    <rect key="frame" x="126" y="721" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                     <state key="normal" image="new_locator.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -280,22 +283,8 @@
                                     <rect key="frame" x="0.0" y="1" width="686" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MENU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7e-8T-MRv">
-                                    <rect key="frame" x="306" y="842" width="75" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ACCOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weU-yE-dBT">
                                     <rect key="frame" x="620" y="1" width="90" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1Y-YN-ily">
-                                    <rect key="frame" x="3" y="842" width="90" height="21"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -308,6 +297,20 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MENU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I7e-8T-MRv">
+                                    <rect key="frame" x="306" y="0.0" width="75" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1Y-YN-ily">
+                                    <rect key="frame" x="3" y="0.0" width="90" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <gestureRecognizers/>
