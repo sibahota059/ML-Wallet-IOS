@@ -26,11 +26,20 @@
     
     self.navigationController=[[UINavigationController alloc] initWithRootViewController:self.viewController];
     
+    float size;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        size = 16.0;
+    }
+    else
+    {
+        size = 22.0;
+    }
     //Shadow for title
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = UIColorFromR(0x323232);
     shadow.shadowOffset = CGSizeMake(0, 1);
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Helvetica-Bold" size:22.0], NSFontAttributeName, nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Helvetica-Bold" size:size], NSFontAttributeName, nil];
     self.navigationController.navigationBar.titleTextAttributes = dic;
     
     

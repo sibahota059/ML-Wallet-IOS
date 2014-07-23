@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3012DC35197DF42000AA5F6F /* MapViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3012DC34197DF42000AA5F6F /* MapViewController~iphone.xib */; };
 		3012DC38197DF43300AA5F6F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3012DC37197DF43300AA5F6F /* MapViewController.m */; };
-		3012DC3A197DF56700AA5F6F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC39197DF56700AA5F6F /* GoogleMaps.framework */; };
 		3012DC3E197DF5C400AA5F6F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */; };
 		3012DC40197DF5CD00AA5F6F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC3F197DF5CD00AA5F6F /* CoreData.framework */; };
 		3012DC42197DF5DD00AA5F6F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC41197DF5DD00AA5F6F /* CoreText.framework */; };
@@ -21,7 +20,6 @@
 		3012DC4E197DF62400AA5F6F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4D197DF62400AA5F6F /* OpenGLES.framework */; };
 		3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */; };
 		3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */; };
-		30132071197F3BAF00127FFB /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30132070197F3BAF00127FFB /* GoogleMaps.bundle */; };
 		302FA640197E56F900B46F7A /* ml_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63E197E56F900B46F7A /* ml_1.png */; };
 		302FA641197E56F900B46F7A /* username.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63F197E56F900B46F7A /* username.png */; };
 		30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */; };
@@ -61,6 +59,8 @@
 		3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8090C318B6152E00A11CB8 /* header_navi.png */; };
 		3B8B9EF518BC341400639142 /* textbox2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B9EF418BC341400639142 /* textbox2.png */; };
 		3B8B9EF718BC4B3300639142 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B9EF618BC4B3300639142 /* save.png */; };
+		3B9A414B197F43F800640D49 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9A414A197F43F800640D49 /* GoogleMaps.framework */; };
+		3B9A414D197F45EC00640D49 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */; };
 		3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FC061196CC2970035446F /* MBProgressHUD.m */; };
 		3B9FC06D196D40750035446F /* LoginViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */; };
 		3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06E196D446E0035446F /* LoginViewController~ipad.xib */; };
@@ -224,7 +224,6 @@
 		3012DC34197DF42000AA5F6F /* MapViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~iphone.xib"; sourceTree = "<group>"; };
 		3012DC36197DF42C00AA5F6F /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3012DC37197DF43300AA5F6F /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		3012DC39197DF56700AA5F6F /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3012DC3F197DF5CD00AA5F6F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3012DC41197DF5DD00AA5F6F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -236,7 +235,6 @@
 		3012DC4D197DF62400AA5F6F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		30132070197F3BAF00127FFB /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		302FA63E197E56F900B46F7A /* ml_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_1.png; sourceTree = "<group>"; };
 		302FA63F197E56F900B46F7A /* username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = username.png; sourceTree = "<group>"; };
 		30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -285,6 +283,8 @@
 		3B8090C318B6152E00A11CB8 /* header_navi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_navi.png; sourceTree = "<group>"; };
 		3B8B9EF418BC341400639142 /* textbox2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbox2.png; sourceTree = "<group>"; };
 		3B8B9EF618BC4B3300639142 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		3B9A414A197F43F800640D49 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		3B9FC060196CC2970035446F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		3B9FC061196CC2970035446F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 				3B38F7711952C64C00EC3948 /* CoreLocation.framework in Frameworks */,
 				3BA7CC9D18B1D6B900B9FC4B /* CoreGraphics.framework in Frameworks */,
 				3BA7CC9F18B1D6B900B9FC4B /* UIKit.framework in Frameworks */,
-				3012DC3A197DF56700AA5F6F /* GoogleMaps.framework in Frameworks */,
+				3B9A414B197F43F800640D49 /* GoogleMaps.framework in Frameworks */,
 				3BA7CC9B18B1D6B900B9FC4B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,7 +651,8 @@
 		3BA7CC9918B1D6B900B9FC4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				30132070197F3BAF00127FFB /* GoogleMaps.bundle */,
+				3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */,
+				3B9A414A197F43F800640D49 /* GoogleMaps.framework */,
 				3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */,
 				3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */,
 				3012DC4D197DF62400AA5F6F /* OpenGLES.framework */,
@@ -663,7 +664,6 @@
 				3012DC41197DF5DD00AA5F6F /* CoreText.framework */,
 				3012DC3F197DF5CD00AA5F6F /* CoreData.framework */,
 				3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */,
-				3012DC39197DF56700AA5F6F /* GoogleMaps.framework */,
 				3B38F7701952C64C00EC3948 /* CoreLocation.framework */,
 				3BA7CC9A18B1D6B900B9FC4B /* Foundation.framework */,
 				3BA7CC9C18B1D6B900B9FC4B /* CoreGraphics.framework */,
@@ -1366,7 +1366,7 @@
 				3B5F848518BC6934001C1B29 /* ReceiverCell.xib in Resources */,
 				7006620318DA766800A0F05C /* rene.jpg in Resources */,
 				3BB42E0818D6B6C60011792E /* preview_bg.png in Resources */,
-				30132071197F3BAF00127FFB /* GoogleMaps.bundle in Resources */,
+				3B9A414D197F45EC00640D49 /* GoogleMaps.bundle in Resources */,
 				3BA7CCAD18B1D6B900B9FC4B /* Images.xcassets in Resources */,
 				3B8090BA18B5FB6700A11CB8 /* back2.png in Resources */,
 				3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */,
@@ -1554,6 +1554,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
@@ -1570,6 +1574,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";

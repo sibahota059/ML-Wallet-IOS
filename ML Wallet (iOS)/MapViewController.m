@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController.h"
+#import "ServiceConnection.h"
+#import "UIAlertView+alertMe.h"
 
 
 
@@ -46,10 +48,20 @@
     return self;
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   // [self navigationView];
+    [self navigationView];
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
@@ -61,73 +73,52 @@
     
     
     
-    
+    //Get Branch Coordinate
     self.responseData = [NSMutableData data];
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:@"https://192.168.12.204:4443/Mobile/Client/MapService/MapService.svc/getCoordinates/"]];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    ServiceConnection *str = [ServiceConnection new];
+    NSString *url = [NSString stringWithFormat:@"%@", [str NSGetMapService]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [con start];
     
+    
+    //Display MAP
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0
                                                             longitude:0
                                                                  zoom:16];
     
-   mapView_ = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
-   // mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    mapView_ = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.settings.myLocationButton = YES;
     mapView_.settings.compassButton = YES;
     mapView_.delegate = self;
-
-    //  self.view = mapView_;
-    
-    
     [self.view insertSubview:mapView_ atIndex:0];
-    
-  
-    
-
-    
-    
-    
     [mapView_ addObserver:self
                forKeyPath:@"myLocation"
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
     
-    
-    
-    
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-     //   mapView_.myLocationEnabled = YES;
-
           CLLocation *myLocation = mapView_.myLocation;
           NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
     });
-      // actualZoom = mapView_.camera.zoom;
-    
-    
+   
+    /*
     NSURLSessionConfiguration *config =
     [NSURLSessionConfiguration defaultSessionConfiguration];
     config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
                                                     diskCapacity:10 * 1024 * 1024
                                                         diskPath:@"MarkerData"];
     markerSession = [NSURLSession sessionWithConfiguration:config];
-    
-    
     directionsButton = [UIButton buttonWithType:UIButtonTypeSystem];
     directionsButton.alpha = 0.0;
-    
+    */
 }
 
-//MAPVIew
+#pragma mark - Map Delegate
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)infoWindowmarker {
     NSString *ahw = infoWindowmarker.snippet;
     NSLog(@"Marker Info Window Tap Branch Name : %@", ahw);
-
-    
-    
-    
 }
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)bmarker{
    [mapView_ setSelectedMarker:bmarker];
@@ -162,7 +153,8 @@
          @"AIzaSyDNYjJnFbOBJWmJMaXwLvX8Um4jk3p1F1A"];
         
         NSURL *directionsURL = [NSURL URLWithString:urlString];
-        NSURLSessionDataTask *directionsTask = [markerSession dataTaskWithURL:directionsURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *e){
+        NSURLSessionDataTask *directionsTask;
+        directionsTask = [markerSession dataTaskWithURL:directionsURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *e){
         NSError *error = nil;
         NSDictionary *json = [NSJSONSerialization
                             JSONObjectWithData: data
@@ -186,8 +178,6 @@
             }
                                                                 
         }];
-         
-
         
         
     }
@@ -195,15 +185,14 @@
 }
 
 
+//TODO
 - (void)directionsTapped:(id)sender {
 
                     // steps = nil;
                     //    mapView_.selectedMarker = nil;
-                     
     }
 
-
-
+//UNUSed
 - (void)dealloc {
     [mapView_ removeObserver:self
                   forKeyPath:@"myLocation"
@@ -211,7 +200,6 @@
 }
 
 #pragma mark - KVO updates
-
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -234,10 +222,6 @@
     }
 }
 
-
-- (BOOL)prefersStatusBarHidden{
-    return YES;
-}
 
 #pragma Start #Navigation Items
 - (void)navigationView
@@ -276,22 +260,8 @@
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
-/*
-- (void)gotoMyLocation
-{
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        mapView_.myLocationEnabled = YES;
-        CLLocation *myLocation = mapView_.myLocation;
-        NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-        mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
-                                                         zoom:16];
-       
-    });
-}
- */
-//select radius alertView
+#pragma mark - Goto branch
 -(void)gotoBranch{
 
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Select Radius."
@@ -304,7 +274,7 @@
 
 }
 
-//select radius button click
+#pragma mark - Custom alert
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
@@ -678,101 +648,76 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    
-}
-
-
-
-
+#pragma mark - NSURLConnection Delegate
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
     return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
 }
-
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    NSArray * trustedHosts = @[@"https://192.168.12.204:4443/Mobile/Client/MapService/MapService.svc/getCoordinates/"];
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
-        if ([trustedHosts containsObject:challenge.protectionSpace.host])
-            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-    
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 }
-
-
-
-
-
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     NSLog(@"didReceiveResponse");
     [self.responseData setLength:0];
 }
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [self.responseData appendData:data];
 }
-
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
-   // NSLog([NSString stringWithFormat:@"Connection failed: %@", [error description]]);
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
 }
-
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
     
     // convert to JSON
     NSError *myError = nil;
     NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
 
-   // dataArray = [[NSMutableArray alloc] init];
-    //creating branch markers
-    
-    gmLat = [[NSMutableArray alloc] init];
-    gmLong = [[NSMutableArray alloc] init];
-    place = [[NSMutableArray alloc] init];
-    for(id key in res) {
-        NSDictionary *resultCoordinates = [res objectForKey:key];
-        NSArray *resultList = [resultCoordinates objectForKey:@"mapInfo"];
+    if (myError == nil) {
+        gmLat = [[NSMutableArray alloc] init];
+        gmLong = [[NSMutableArray alloc] init];
+        place = [[NSMutableArray alloc] init];
+        for(id key in res) {
+            NSDictionary *resultCoordinates = [res objectForKey:key];
+            NSArray *resultList = [resultCoordinates objectForKey:@"mapInfo"];
         
-        for (NSDictionary *result in resultList) {
-            NSString *bName = [result objectForKey:@"bName"];
-           // NSLog(@"Branch Name : %@", bName);
-            NSString *mLat = [result objectForKey:@"mLat"];
-            //NSLog(@"Latitude : %@", bName);
-            NSString *mLong = [result objectForKey:@"mLong"];
-          //  NSLog(@"Longitude : %@", mLong);
+            for (NSDictionary *result in resultList) {
+                NSString *bName = [result objectForKey:@"bName"];
+                // NSLog(@"Branch Name : %@", bName);
+                NSString *mLat = [result objectForKey:@"mLat"];
+                //NSLog(@"Latitude : %@", bName);
+                NSString *mLong = [result objectForKey:@"mLong"];
+                //  NSLog(@"Longitude : %@", mLong);
             
             
-          //  gmLat = [[NSArray alloc]initWithObjects:mLat, nil];
-          //  gmLat = [[NSArray alloc]initWithObjects:mLat, nil];
-          //  gmLong = [[NSArray alloc]initWithObjects:mLong, nil];
-          //  place = [[NSArray alloc]initWithObjects:bName, nil];
-            NSUInteger count = [res count];
-            for(NSUInteger i=0;i < count; i++){
-                [gmLat insertObject:mLat atIndex:i];
-                [gmLong insertObject:mLong atIndex:i];
-                [place insertObject:bName atIndex:i];
-            }
+                //  gmLat = [[NSArray alloc]initWithObjects:mLat, nil];
+                //  gmLat = [[NSArray alloc]initWithObjects:mLat, nil];
+                //  gmLong = [[NSArray alloc]initWithObjects:mLong, nil];
+                //  place = [[NSArray alloc]initWithObjects:bName, nil];
+                NSUInteger count = [res count];
+                for(NSUInteger i=0;i < count; i++){
+                    [gmLat insertObject:mLat atIndex:i];
+                    [gmLong insertObject:mLong atIndex:i];
+                    [place insertObject:bName atIndex:i];
+                }
             
             
-            //town = [[NSArray alloc]initWithObjects:@"Minglanilla",@"Naga",@"Minglanilla",@"Minglanilla", nil];
+                //town = [[NSArray alloc]initWithObjects:@"Minglanilla",@"Naga",@"Minglanilla",@"Minglanilla", nil];
 
             
-            //Convert to double
-            double latdouble = [mLat doubleValue];
-            double londouble = [mLong doubleValue];
+                //Convert to double
+                double latdouble = [mLat doubleValue];
+                double londouble = [mLong doubleValue];
             
-            marker = [[GMSMarker alloc] init];
-            marker.position = CLLocationCoordinate2DMake(latdouble,londouble );
-          //  marker.title = bName;
-            marker.snippet = bName;
-            marker.icon = [UIImage imageNamed:@"ml_1"];
-            markers =[NSSet setWithObjects:marker, nil];
-            marker.map = mapView_;
+                marker = [[GMSMarker alloc] init];
+                marker.position = CLLocationCoordinate2DMake(latdouble,londouble );
+                //  marker.title = bName;
+                marker.snippet = bName;
+                marker.icon = [UIImage imageNamed:@"ml_1"];
+                markers =[NSSet setWithObjects:marker, nil];
+                marker.map = mapView_;
             
-            
+            }
             
         }
         

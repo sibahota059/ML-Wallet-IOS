@@ -9,6 +9,7 @@
 #import "ServiceConnection.h"
 
 #define URLService @"https://192.168.12.204:4443/mobile/client/mobilekp_wcf/service.svc/"
+#define URLMapService @"https://192.168.12.204:4443/Mobile/Client/MapService/MapService.svc/getCoordinates/";
 #define URLLocationService @"Http://maps.google.com/maps/api/geocode/json?";
 
 @implementation ServiceConnection
@@ -23,5 +24,9 @@
     return URLLocationService;
 }
 
+- (NSString *) NSGetMapService
+{
+    return URLMapService;
+}
 
 @end

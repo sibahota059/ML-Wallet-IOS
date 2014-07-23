@@ -25,6 +25,7 @@
 
 - (IBAction)btnRegister:(id)sender;
 - (IBAction)btnLogin:(id)sender;
+- (IBAction)btnLocator:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITextField *txtUser;
 @property (strong, nonatomic) IBOutlet UITextField *txtPass;

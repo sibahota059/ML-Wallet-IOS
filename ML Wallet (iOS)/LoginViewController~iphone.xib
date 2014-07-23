@@ -159,7 +159,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="btnLocator:" destination="-1" eventType="touchUpInside" id="ZcT-HV-dGV"/>
+                                        <action selector="btnLocator:" destination="-1" eventType="touchUpInside" id="EEF-kJ-7UI"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MO8-05-eU8">
