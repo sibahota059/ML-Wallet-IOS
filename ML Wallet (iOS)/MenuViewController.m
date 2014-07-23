@@ -19,7 +19,7 @@
 #import "AccountMain.h"
 #import "MLHistoryViewController.h"
 #import "NSDictionary+LoadWalletData.h"
-
+#import "MapViewController.h"
 #define  VIEW_HIDDEN -320
 #define  VIEW_HIDDEN_IPAD -580
 
@@ -237,7 +237,19 @@
 
 #pragma Start Click Popup Button Locator
 - (IBAction)pop_ActLocate:(id)sender {
+    /*
     [UIAlertView myCostumeAlert:@"Button Locate" alertMessage:@"You click me" delegate:nil cancelButton:nil otherButtons:@"OK"];
+
+     */
+
+    
+    
+    MapViewController *detailViewController = [[MapViewController alloc] initWithNibName:@"MapViewController"
+                                                                                  bundle:nil];
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    
+    
 }
 
 #pragma Start Click Popup Button Info
