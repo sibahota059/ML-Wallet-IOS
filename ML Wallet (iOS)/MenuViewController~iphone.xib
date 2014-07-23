@@ -12,6 +12,7 @@
                 <outlet property="lblBalance" destination="SGQ-bx-nHK" id="35Q-Kc-Hts"/>
                 <outlet property="lblDate" destination="6hz-YF-aen" id="yJu-FZ-qlu"/>
                 <outlet property="lblMain" destination="JQo-EO-OwJ" id="KK6-K0-Vq6"/>
+                <outlet property="lblMenu" destination="FgC-W1-GP4" id="k01-dl-Ln1"/>
                 <outlet property="lblUserName" destination="sVO-2a-tZW" id="OIX-fS-CCL"/>
                 <outlet property="lblWalletno" destination="fjN-k2-Rt7" id="OBr-Zr-pwE"/>
                 <outlet property="pop_btnInfo" destination="D7C-ee-iXt" id="Ta1-VI-PMn"/>
@@ -341,6 +342,13 @@
                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     <gestureRecognizers/>
                                 </view>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FgC-W1-GP4">
+                                    <rect key="frame" x="0.0" y="103" width="65" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <gestureRecognizers/>
                             <connections>
