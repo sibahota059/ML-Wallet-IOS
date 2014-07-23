@@ -12,6 +12,6 @@
 
 - (NSString *)NSgetURLService;
 - (NSString *) NSgetLocationService;
-
+- (NSString *) NSGetMapService;
 
 @end

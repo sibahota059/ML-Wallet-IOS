@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3012DC35197DF42000AA5F6F /* MapViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3012DC34197DF42000AA5F6F /* MapViewController~iphone.xib */; };
+		3012DC38197DF43300AA5F6F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3012DC37197DF43300AA5F6F /* MapViewController.m */; };
+		3012DC3E197DF5C400AA5F6F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */; };
+		3012DC40197DF5CD00AA5F6F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC3F197DF5CD00AA5F6F /* CoreData.framework */; };
+		3012DC42197DF5DD00AA5F6F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC41197DF5DD00AA5F6F /* CoreText.framework */; };
+		3012DC44197DF5E500AA5F6F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC43197DF5E500AA5F6F /* GLKit.framework */; };
+		3012DC46197DF5EE00AA5F6F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC45197DF5EE00AA5F6F /* ImageIO.framework */; };
+		3012DC48197DF5FD00AA5F6F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC47197DF5FD00AA5F6F /* libc++.dylib */; };
+		3012DC4A197DF60E00AA5F6F /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC49197DF60E00AA5F6F /* libicucore.dylib */; };
+		3012DC4C197DF61700AA5F6F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4B197DF61700AA5F6F /* libz.dylib */; };
+		3012DC4E197DF62400AA5F6F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4D197DF62400AA5F6F /* OpenGLES.framework */; };
+		3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */; };
+		3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */; };
+		302FA640197E56F900B46F7A /* ml_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63E197E56F900B46F7A /* ml_1.png */; };
+		302FA641197E56F900B46F7A /* username.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63F197E56F900B46F7A /* username.png */; };
+		30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */; };
 		3B17584718B2EC6B005A7805 /* btn1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584618B2EC6B005A7805 /* btn1.png */; };
 		3B17584D18B2FC09005A7805 /* popup_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584C18B2FC09005A7805 /* popup_img.png */; };
 		3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */; };
@@ -43,6 +59,8 @@
 		3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8090C318B6152E00A11CB8 /* header_navi.png */; };
 		3B8B9EF518BC341400639142 /* textbox2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B9EF418BC341400639142 /* textbox2.png */; };
 		3B8B9EF718BC4B3300639142 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B9EF618BC4B3300639142 /* save.png */; };
+		3B9A414B197F43F800640D49 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9A414A197F43F800640D49 /* GoogleMaps.framework */; };
+		3B9A414D197F45EC00640D49 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */; };
 		3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FC061196CC2970035446F /* MBProgressHUD.m */; };
 		3B9FC06D196D40750035446F /* LoginViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */; };
 		3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06E196D446E0035446F /* LoginViewController~ipad.xib */; };
@@ -205,6 +223,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3012DC34197DF42000AA5F6F /* MapViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~iphone.xib"; sourceTree = "<group>"; };
+		3012DC36197DF42C00AA5F6F /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		3012DC37197DF43300AA5F6F /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3012DC3F197DF5CD00AA5F6F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3012DC41197DF5DD00AA5F6F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3012DC43197DF5E500AA5F6F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		3012DC45197DF5EE00AA5F6F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		3012DC47197DF5FD00AA5F6F /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		3012DC49197DF60E00AA5F6F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3012DC4B197DF61700AA5F6F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3012DC4D197DF62400AA5F6F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		302FA63E197E56F900B46F7A /* ml_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_1.png; sourceTree = "<group>"; };
+		302FA63F197E56F900B46F7A /* username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = username.png; sourceTree = "<group>"; };
+		30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~ipad.xib"; sourceTree = "<group>"; };
 		3B17584618B2EC6B005A7805 /* btn1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn1.png; sourceTree = "<group>"; };
 		3B17584C18B2FC09005A7805 /* popup_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popup_img.png; sourceTree = "<group>"; };
 		3B17584E18B301B8005A7805 /* UIAlertView+alertMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+alertMe.h"; sourceTree = "<group>"; };
@@ -250,6 +285,8 @@
 		3B8090C318B6152E00A11CB8 /* header_navi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_navi.png; sourceTree = "<group>"; };
 		3B8B9EF418BC341400639142 /* textbox2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbox2.png; sourceTree = "<group>"; };
 		3B8B9EF618BC4B3300639142 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		3B9A414A197F43F800640D49 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		3B9FC060196CC2970035446F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		3B9FC061196CC2970035446F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -472,9 +509,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */,
+				3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */,
+				3012DC4E197DF62400AA5F6F /* OpenGLES.framework in Frameworks */,
+				3012DC4C197DF61700AA5F6F /* libz.dylib in Frameworks */,
+				3012DC4A197DF60E00AA5F6F /* libicucore.dylib in Frameworks */,
+				3012DC48197DF5FD00AA5F6F /* libc++.dylib in Frameworks */,
+				3012DC46197DF5EE00AA5F6F /* ImageIO.framework in Frameworks */,
+				3012DC44197DF5E500AA5F6F /* GLKit.framework in Frameworks */,
+				3012DC42197DF5DD00AA5F6F /* CoreText.framework in Frameworks */,
+				3012DC40197DF5CD00AA5F6F /* CoreData.framework in Frameworks */,
+				3012DC3E197DF5C400AA5F6F /* AVFoundation.framework in Frameworks */,
 				3B38F7711952C64C00EC3948 /* CoreLocation.framework in Frameworks */,
 				3BA7CC9D18B1D6B900B9FC4B /* CoreGraphics.framework in Frameworks */,
 				3BA7CC9F18B1D6B900B9FC4B /* UIKit.framework in Frameworks */,
+				3B9A414B197F43F800640D49 /* GoogleMaps.framework in Frameworks */,
 				3BA7CC9B18B1D6B900B9FC4B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +531,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3012DC2F197DF34000AA5F6F /* com.mlkpwallet.location */ = {
+			isa = PBXGroup;
+			children = (
+				3012DC33197DF37F00AA5F6F /* Categories */,
+				3012DC31197DF35A00AA5F6F /* Views */,
+				3012DC30197DF35200AA5F6F /* Controllers */,
+			);
+			name = com.mlkpwallet.location;
+			sourceTree = "<group>";
+		};
+		3012DC30197DF35200AA5F6F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3012DC36197DF42C00AA5F6F /* MapViewController.h */,
+				3012DC37197DF43300AA5F6F /* MapViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3012DC31197DF35A00AA5F6F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3012DC34197DF42000AA5F6F /* MapViewController~iphone.xib */,
+				30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		3012DC33197DF37F00AA5F6F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		3B17585118B301BE005A7805 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +657,19 @@
 		3BA7CC9918B1D6B900B9FC4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */,
+				3B9A414A197F43F800640D49 /* GoogleMaps.framework */,
+				3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */,
+				3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */,
+				3012DC4D197DF62400AA5F6F /* OpenGLES.framework */,
+				3012DC4B197DF61700AA5F6F /* libz.dylib */,
+				3012DC49197DF60E00AA5F6F /* libicucore.dylib */,
+				3012DC47197DF5FD00AA5F6F /* libc++.dylib */,
+				3012DC45197DF5EE00AA5F6F /* ImageIO.framework */,
+				3012DC43197DF5E500AA5F6F /* GLKit.framework */,
+				3012DC41197DF5DD00AA5F6F /* CoreText.framework */,
+				3012DC3F197DF5CD00AA5F6F /* CoreData.framework */,
+				3012DC3D197DF5C400AA5F6F /* AVFoundation.framework */,
 				3B38F7701952C64C00EC3948 /* CoreLocation.framework */,
 				3BA7CC9A18B1D6B900B9FC4B /* Foundation.framework */,
 				3BA7CC9C18B1D6B900B9FC4B /* CoreGraphics.framework */,
@@ -585,6 +682,7 @@
 		3BA7CCA018B1D6B900B9FC4B /* ML Wallet (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				3012DC2F197DF34000AA5F6F /* com.mlkpwallet.location */,
 				3BCFE2CC19580956008C4E6F /* Objects */,
 				3B38F7721952CDDC00EC3948 /* NSURLConnection */,
 				700661A518DA71C400A0F05C /* com.mlkptogo.account */,
@@ -670,6 +768,8 @@
 		3BA7CCD118B1D96D00B9FC4B /* images */ = {
 			isa = PBXGroup;
 			children = (
+				302FA63E197E56F900B46F7A /* ml_1.png */,
+				302FA63F197E56F900B46F7A /* username.png */,
 				3BA8A231197570DF0052FA2F /* down.png */,
 				3BA8A22F19756F810052FA2F /* button_back.png */,
 				707C03B618D9CD8100EC1B12 /* lock_profile.png */,
@@ -1201,6 +1301,7 @@
 				F081A05219776E55004568EF /* MLTermsConditionViewController~iphone.xib in Resources */,
 				3BB42E0618D6B6C60011792E /* payment_bg.png in Resources */,
 				3BA7CCFB18B213BE00B9FC4B /* line.png in Resources */,
+				30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */,
 				F081A05019776E55004568EF /* MLRatesTableViewCell~iphone.xib in Resources */,
 				70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */,
 				700661E618DA766800A0F05C /* design_buttom_left.png in Resources */,
@@ -1209,6 +1310,7 @@
 				3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */,
 				3BB42E0318D6B6C60011792E /* next.png in Resources */,
 				3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */,
+				302FA641197E56F900B46F7A /* username.png in Resources */,
 				F081A03819776D57004568EF /* content_bg_ipad.png in Resources */,
 				7006622118DA81DD00A0F05C /* radio_button.png in Resources */,
 				707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */,
@@ -1230,6 +1332,7 @@
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
 				F05C5F4418E12C70002F2EE1 /* ic_home.png in Resources */,
 				3BA7CCDD18B1DF6000B9FC4B /* new_key.png in Resources */,
+				302FA640197E56F900B46F7A /* ml_1.png in Resources */,
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController~iphone.xib in Resources */,
 				F081A05619776E55004568EF /* MLRatesTableViewController~ipad.xib in Resources */,
 				F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */,
@@ -1248,6 +1351,7 @@
 				7006621418DA797C00A0F05C /* AccountQuestion.xib in Resources */,
 				700661E718DA766800A0F05C /* design_buttom_right.png in Resources */,
 				70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */,
+				3012DC35197DF42000AA5F6F /* MapViewController~iphone.xib in Resources */,
 				3BA7CCA518B1D6B900B9FC4B /* InfoPlist.strings in Resources */,
 				3BC3827C18C02C6C00270567 /* TopupViewController~iphone.xib in Resources */,
 				3B19518F18B6F5260061969F /* MLBackground3.png in Resources */,
@@ -1272,6 +1376,7 @@
 				3B5F848518BC6934001C1B29 /* ReceiverCell.xib in Resources */,
 				7006620318DA766800A0F05C /* rene.jpg in Resources */,
 				3BB42E0818D6B6C60011792E /* preview_bg.png in Resources */,
+				3B9A414D197F45EC00640D49 /* GoogleMaps.bundle in Resources */,
 				3BA7CCAD18B1D6B900B9FC4B /* Images.xcassets in Resources */,
 				3B8090BA18B5FB6700A11CB8 /* back2.png in Resources */,
 				3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */,
@@ -1358,6 +1463,7 @@
 				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
 				F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */,
 				3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */,
+				3012DC38197DF43300AA5F6F /* MapViewController.m in Sources */,
 				3B38F7781952CE3700EC3948 /* DeviceID.m in Sources */,
 				7006621D18DA817900A0F05C /* ProfileImage.m in Sources */,
 			);
@@ -1464,6 +1570,7 @@
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1479,6 +1586,7 @@
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

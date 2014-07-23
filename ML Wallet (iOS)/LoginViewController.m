@@ -17,6 +17,7 @@
 #import "MBProgressHUD.h"
 #import "UITextfieldAnimate.h"
 #import "MLUI.h"
+#import "MapViewController.h"
 
 #import "SaveWalletData.h"
 
@@ -213,6 +214,13 @@
     con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     self.idd = 1;
 
+}
+
+- (IBAction)btnLocator:(id)sender {
+    MapViewController *detailViewController = [[MapViewController alloc]
+                                               initWithNibName:@"MapViewController"
+                                               bundle:nil];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 #pragma mark --Location
