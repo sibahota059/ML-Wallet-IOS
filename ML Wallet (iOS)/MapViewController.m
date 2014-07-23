@@ -31,10 +31,12 @@
     MBProgressHUD *HUD;
     GMSMarker *marker;
     NSSet *markers;
-    NSURLSession *markerSession;
     GMSPolyline *polyline;
-    UIButton *directionsButton;
-    }
+    NSString *addressBranch;
+    NSString *myLocName;
+    NSString *distancetoBranch;
+    NSString *timetraveledtoBranch;
+}
 
 
 
@@ -73,6 +75,9 @@
     
     
     
+    
+    
+    
     //Get Branch Coordinate
     self.responseData = [NSMutableData data];
     ServiceConnection *str = [ServiceConnection new];
@@ -97,100 +102,106 @@
                forKeyPath:@"myLocation"
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
+
+     dispatch_async(dispatch_get_main_queue(), ^{
+     CLLocation *myLocation = mapView_.myLocation;
+     NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
+     });
+
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-          CLLocation *myLocation = mapView_.myLocation;
-          NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-    });
-   
-    /*
-    NSURLSessionConfiguration *config =
-    [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2 * 1024 * 1024
-                                                    diskCapacity:10 * 1024 * 1024
-                                                        diskPath:@"MarkerData"];
-    markerSession = [NSURLSession sessionWithConfiguration:config];
-    directionsButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    directionsButton.alpha = 0.0;
-    */
 }
 
 #pragma mark - Map Delegate
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)infoWindowmarker {
     NSString *ahw = infoWindowmarker.snippet;
     NSLog(@"Marker Info Window Tap Branch Name : %@", ahw);
-}
-- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)bmarker{
-   [mapView_ setSelectedMarker:bmarker];
     CLLocation *myLocation = mapView_.myLocation;
-    NSLog(@"Location ni Naku ! %f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-    
-     GMSMutablePath *path = [GMSMutablePath path];
-     [path addLatitude:myLocation.coordinate.latitude longitude:myLocation.coordinate.longitude];
-     [path addLatitude:bmarker.position.latitude longitude:bmarker.position.longitude];
-     /*
-     
-     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-     polyline.strokeColor = [UIColor blueColor];
-     polyline.strokeWidth = 5.f;
-     polyline.map = mapView_;
-    */
-    
-
-
+    NSString *selectedBranchName = infoWindowmarker.snippet;
     if(myLocation!=nil){
-     
-        NSLog(@"Dili null");
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        HUD.delegate = self;
+        HUD.labelText = @"Please wait";
+        HUD.square = YES;
+        [HUD show:YES];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        
+        static NSURLSession* sharedSessionMainQueue = nil;
+        if(!sharedSessionMainQueue){
+            sharedSessionMainQueue = [NSURLSession sessionWithConfiguration:nil delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+        }
         
         
-        NSString *urlString =
-        [NSString stringWithFormat:@"%@?origin=%f,%f&destination=%f,%f&sensor=true&key=%@",
-         @"https://maps.googleapis.com/maps/api/directions/json",
-         myLocation.coordinate.latitude,
-         myLocation.coordinate.longitude,
-         bmarker.position.latitude,
-         bmarker.position.longitude,
-         @"AIzaSyDNYjJnFbOBJWmJMaXwLvX8Um4jk3p1F1A"];
+        NSString *urlString = [NSString stringWithFormat:
+                               @"%@?origin=%f,%f&destination=%f,%f&sensor=true&mode=driving",
+                               @"https://maps.googleapis.com/maps/api/directions/json",
+                               mapView_.myLocation.coordinate.latitude,
+                               mapView_.myLocation.coordinate.longitude,
+                               infoWindowmarker.position.latitude,
+                               infoWindowmarker.position.longitude];
+        
         
         NSURL *directionsURL = [NSURL URLWithString:urlString];
-        NSURLSessionDataTask *directionsTask;
-        directionsTask = [markerSession dataTaskWithURL:directionsURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *e){
+        NSURLSessionDataTask *directionsTask =
+        [sharedSessionMainQueue dataTaskWithURL:directionsURL
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *e) {
         NSError *error = nil;
-        NSDictionary *json = [NSJSONSerialization
-                            JSONObjectWithData: data
-                            options: NSJSONReadingMutableContainers
-                            error: &error];
-                                                                
-            if(!error) {
-                steps = json[@"routes"][0][@"legs"][0][@"steps"];
-                                                                    
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            directionsButton.alpha = 1.0;
-                            }];
-            GMSPath *path =
-            [GMSPath pathFromEncodedPath:
-            json[@"routes"][0][@"overview_polyline"][@"points"]];
-            polyline = [GMSPolyline polylineWithPath:path];
-            polyline.strokeWidth = 10;
-            polyline.strokeColor = [UIColor greenColor];
-            polyline.map = mapView_;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                            options:NSJSONReadingMutableContainers
+                            error:&error];
+                      //      NSLog(@"Directions Api Response: %@",json);
 
-            }
-                                                                
+                NSLog(@"Travel Time : %@",json[@"routes"][0][@"legs"][0][@"duration"][@"text"]);
+                NSLog(@"Distance : %@",json[@"routes"][0][@"legs"][0][@"distance"][@"text"]);
+                
+                distancetoBranch = json[@"routes"][0][@"legs"][0][@"distance"][@"text"];
+                timetraveledtoBranch = json[@"routes"][0][@"legs"][0][@"duration"][@"text"];
+                NSString *selectedBranchInfo = [NSString stringWithFormat:@"Travel Time:%@ \n Distance:%@",timetraveledtoBranch,distancetoBranch];
+                
+                //selected branch info alertview
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:selectedBranchName message:selectedBranchInfo delegate: self cancelButtonTitle: nil otherButtonTitles: @"OK",nil, nil];
+                [alert show];
+        //creating direction lines
+        polyline.map = nil;
+        GMSPath *path =
+        [GMSPath pathFromEncodedPath:
+            json[@"routes"][0][@"overview_polyline"][@"points"]];
+        polyline = [GMSPolyline polylineWithPath:path];
+        polyline.strokeWidth = 10;
+        polyline.strokeColor = [UIColor redColor];
+        polyline.map = mapView_;
         }];
         
+        [directionsTask resume];
+
+         });//end of asynctask
         
+        
+       
     }
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+    
+}
+//marker Click
+- (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)bmarker{
+    [mapView_ setSelectedMarker:bmarker];
+    
     return YES;
+    
 }
 
 
 //TODO
 - (void)directionsTapped:(id)sender {
-
-                    // steps = nil;
-                    //    mapView_.selectedMarker = nil;
-    }
+    
+    // steps = nil;
+    //    mapView_.selectedMarker = nil;
+}
 
 //UNUSed
 - (void)dealloc {
@@ -215,7 +226,7 @@
         //circ.fillColor = [UIColor whiteColor];
         circ.strokeColor = [UIColor redColor];
         circ.strokeWidth = 0.8;
-       // circ.map = mapView_;
+        // circ.map = mapView_;
         GMSCameraUpdate *upwards = [GMSCameraUpdate scrollByX:0 Y:50 ];
         [mapView_ animateWithCameraUpdate:upwards];
         NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
@@ -235,9 +246,9 @@
                                                                action:@selector(gotoHome)];
     //go to current user location button
     UIBarButtonItem *btnMyLocation = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"username.png"]
-                                                                style:UIBarButtonItemStyleBordered
-                                                               target:self
-                                                               action:@selector(gotoBranch)];
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(gotoBranch)];
     
     self.navigationItem.leftBarButtonItem = btnHome;
     self.navigationItem.rightBarButtonItem = btnMyLocation;
@@ -263,15 +274,15 @@
 
 #pragma mark - Goto branch
 -(void)gotoBranch{
-
+    
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Select Radius."
                                                       message:@""
                                                      delegate:self
                                             cancelButtonTitle:@"Cancel"
                                             otherButtonTitles:@"500", @"1000",@"1500",@"2000",@"All", nil];
- 
+    
     [message show];
-
+    
 }
 
 #pragma mark - Custom alert
@@ -350,7 +361,7 @@
             
         });
         
-
+        
     }
     else if([title isEqualToString:@"1000"])
     {
@@ -425,7 +436,7 @@
             
         });
         
-
+        
     }
     else if([title isEqualToString:@"1500"])
     {
@@ -500,7 +511,7 @@
             
         });
         
-
+        
     }
     else if([title isEqualToString:@"2000"])
     {
@@ -575,8 +586,8 @@
             
         });
         
-
-
+        
+        
     }
     else if([title isEqualToString:@"All"]){
         [mapView_ clear];
@@ -602,7 +613,7 @@
             //circ.fillColor = [UIColor whiteColor];
             circ.strokeColor = [UIColor redColor];
             circ.strokeWidth = 0.8;
-          //  circ.map = mapView_;
+            //  circ.map = mapView_;
             
             
             NSLog(@"Button All was selected.");
@@ -614,7 +625,7 @@
                 strlongitude = [gmLong objectAtIndex:i];
                 strlatitude = [gmLat objectAtIndex:i];
                 strplace =[place objectAtIndex:i];
-          
+                
                 // NSLog(@"Latitude : %@", place);
                 double longdouble = [strlongitude doubleValue];
                 double latdouble = [strlatitude doubleValue];
@@ -625,24 +636,24 @@
                 marker.map = mapView_;
                 marker.icon = [UIImage imageNamed:@"ml_1"];
                 
-            
+                
             }
-
+            
             
             
             
             [HUD hide:YES];
             [HUD show:NO];
-          
+            
             
             
         });
         
-
+        
     }
     else if([title isEqualToString:@"Cancel"])
     {
-       // [mapView_ clear];
+        // [mapView_ clear];
         NSLog(@"Button Cancel was selected.");
     }
 }
@@ -672,7 +683,7 @@
     // convert to JSON
     NSError *myError = nil;
     NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-
+    
     if (myError == nil) {
         gmLat = [[NSMutableArray alloc] init];
         gmLong = [[NSMutableArray alloc] init];
@@ -680,35 +691,25 @@
         for(id key in res) {
             NSDictionary *resultCoordinates = [res objectForKey:key];
             NSArray *resultList = [resultCoordinates objectForKey:@"mapInfo"];
-        
+            
             for (NSDictionary *result in resultList) {
                 NSString *bName = [result objectForKey:@"bName"];
                 // NSLog(@"Branch Name : %@", bName);
                 NSString *mLat = [result objectForKey:@"mLat"];
                 //NSLog(@"Latitude : %@", bName);
                 NSString *mLong = [result objectForKey:@"mLong"];
-                //  NSLog(@"Longitude : %@", mLong);
-            
-            
-                //  gmLat = [[NSArray alloc]initWithObjects:mLat, nil];
-                //  gmLat = [[NSArray alloc]initWithObjects:mLat, nil];
-                //  gmLong = [[NSArray alloc]initWithObjects:mLong, nil];
-                //  place = [[NSArray alloc]initWithObjects:bName, nil];
                 NSUInteger count = [res count];
                 for(NSUInteger i=0;i < count; i++){
                     [gmLat insertObject:mLat atIndex:i];
                     [gmLong insertObject:mLong atIndex:i];
                     [place insertObject:bName atIndex:i];
                 }
-            
-            
-                //town = [[NSArray alloc]initWithObjects:@"Minglanilla",@"Naga",@"Minglanilla",@"Minglanilla", nil];
 
-            
+                
                 //Convert to double
                 double latdouble = [mLat doubleValue];
                 double londouble = [mLong doubleValue];
-            
+                
                 marker = [[GMSMarker alloc] init];
                 marker.position = CLLocationCoordinate2DMake(latdouble,londouble );
                 //  marker.title = bName;
@@ -716,7 +717,7 @@
                 marker.icon = [UIImage imageNamed:@"ml_1"];
                 markers =[NSSet setWithObjects:marker, nil];
                 marker.map = mapView_;
-            
+                
             }
             
         }
@@ -749,6 +750,13 @@
         UIEdgeInsetsMake(self.topLayoutGuide.length + 100,
                          0,
                          self.bottomLayoutGuide.length + (bar*.4),
+                         0);
+    }
+    if(bar==1024){
+        mapView_.padding =
+        UIEdgeInsetsMake(self.topLayoutGuide.length + 100,
+                         0,
+                         self.bottomLayoutGuide.length + 140,
                          0);
     }
     else {
