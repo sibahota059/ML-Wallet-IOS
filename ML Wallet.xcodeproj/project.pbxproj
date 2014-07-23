@@ -160,6 +160,8 @@
 		70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA19318D9C6E800719BF7 /* ProfileButton.m */; };
 		70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19918D9CA4900719BF7 /* edit_profile.png */; };
 		70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19B18D9CA7800719BF7 /* question_profile.png */; };
+		F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B49197F53AE00E47198 /* TempConnection.m */; };
+		F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B4C197F8ABE00E47198 /* SendEmail.m */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
 		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
 		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
@@ -404,6 +406,10 @@
 		70EEA19418D9C6E800719BF7 /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileButton.h; sourceTree = "<group>"; };
 		70EEA19918D9CA4900719BF7 /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_profile.png; sourceTree = "<group>"; };
 		70EEA19B18D9CA7800719BF7 /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_profile.png; sourceTree = "<group>"; };
+		F00D4B48197F53AE00E47198 /* TempConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempConnection.h; sourceTree = "<group>"; };
+		F00D4B49197F53AE00E47198 /* TempConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempConnection.m; sourceTree = "<group>"; };
+		F00D4B4B197F8ABE00E47198 /* SendEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmail.h; sourceTree = "<group>"; };
+		F00D4B4C197F8ABE00E47198 /* SendEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmail.m; sourceTree = "<group>"; };
 		F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
 		F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
 		F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -779,6 +785,10 @@
 				F081A02F19776BF7004568EF /* SendoutMobile.m */,
 				F081A0611977A6C7004568EF /* CheckPin.h */,
 				F081A0621977A6C7004568EF /* CheckPin.m */,
+				F00D4B48197F53AE00E47198 /* TempConnection.h */,
+				F00D4B49197F53AE00E47198 /* TempConnection.m */,
+				F00D4B4B197F8ABE00E47198 /* SendEmail.h */,
+				F00D4B4C197F8ABE00E47198 /* SendEmail.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1300,11 +1310,13 @@
 				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
 				3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */,
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
+				F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */,
 				F081A0631977A6C7004568EF /* CheckPin.m in Sources */,
 				7006621918DA813800A0F05C /* UpdateInformation.m in Sources */,
 				3BA7CCA718B1D6B900B9FC4B /* main.m in Sources */,
 				F081A03619776CEA004568EF /* GetReceiver.m in Sources */,
 				F05C5F3218E12C0D002F2EE1 /* MLReceiverTableViewController.m in Sources */,
+				F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */,
 				3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */,
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
 				3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */,

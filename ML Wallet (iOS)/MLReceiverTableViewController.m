@@ -54,7 +54,7 @@
     
     getUI = [MLUI new];
     //self.navigationItem.titleView = [getUI navTitle:@"Choose Receiver"];
-    self.title = @"Choose Receiver";
+    self.title = @"CHOOSE RECEIVER";
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
     //    receiverImage = [NSArray arrayWithObjects:@"bradpit.jpg", @"profile.jpg", @"bradpit.jpg", @"profile.jpg", nil];

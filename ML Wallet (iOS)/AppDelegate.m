@@ -12,6 +12,7 @@
 
 #define UIColorFromR(rbValue) [UIColor colorWithRed:((float)((rbValue & 0xFF0000) >> 16))/255.0 green:((float)((rbValue & 0xFF00) >> 8))/255.0 blue:((float)(rbValue & 0xFF))/255.0 alpha:2.0]
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -25,11 +26,20 @@
     
     self.navigationController=[[UINavigationController alloc] initWithRootViewController:self.viewController];
     
+    CGFloat navTitleTextSize;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        navTitleTextSize = 18.0;
+    }
+    else {
+        navTitleTextSize = 22.0;
+    }
+    
     //Shadow for title
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = UIColorFromR(0x323232);
     shadow.shadowOffset = CGSizeMake(0, 1);
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Helvetica-Bold" size:22.0], NSFontAttributeName, nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Helvetica-Bold" size:navTitleTextSize], NSFontAttributeName, nil];
     self.navigationController.navigationBar.titleTextAttributes = dic;
     
     

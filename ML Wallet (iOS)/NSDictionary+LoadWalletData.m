@@ -15,7 +15,7 @@
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"];
     NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
-    NSLog(@"VAlue%@", dic);
+    //NSLog(@"VAlue%@", dic);
     
     return dic;
 }

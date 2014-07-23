@@ -297,9 +297,10 @@
     if (buttonIndex==1) {
 //        LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
         
-        LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil navigationHidden:YES ];
+        //LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil navigationHidden:YES ];
         
-        [self.navigationController pushViewController:loginPage animated:YES];
+        //[self.navigationController pushViewController:loginPage animated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

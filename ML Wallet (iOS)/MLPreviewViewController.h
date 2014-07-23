@@ -10,8 +10,17 @@
 #import "CheckPin.h"
 #import "MBProgressHUD.h"
 
+@class MLPreviewViewController;
+
+@protocol MLPreviewViewControllerDelegate <NSObject>
+
+- (void)didSuccessPreview:(MLPreviewViewController *)controller receiverFname:(NSString *)log;
+
+@end
+
 @interface MLPreviewViewController : UIViewController<CheckPinDelegate, MBProgressHUDDelegate>
 
+@property (weak, nonatomic) id<MLPreviewViewControllerDelegate>delegate;
 @property (weak, nonatomic, getter = getText, setter = setText:) UITextField *setField;
 @property (weak, nonatomic) IBOutlet UIView *preview_main;
 @property (weak, nonatomic) IBOutlet UIView *view_content;

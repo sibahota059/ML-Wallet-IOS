@@ -41,7 +41,7 @@
     
     rate.delegate = self;
     
-    self.tabBarController.navigationItem.title = @"MLKP Rates";
+    self.tabBarController.navigationItem.title = @"MLKP RATES";
     //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"MLKP Rates"];
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
@@ -109,6 +109,7 @@
 - (void)left{
     self.tabBarController.selectedIndex = 0;
     [self.navigationController.tabBarController.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning

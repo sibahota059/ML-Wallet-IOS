@@ -12,17 +12,12 @@
 #import "KpRates.h"
 #import "GetReceiver.h"
 #import "MBProgressHUD.h"
+#import "MLTermsConditionViewController.h"
+#import "MLPreviewViewController.h"
 
-@class MLSendMoneyViewController;
-@protocol GetKptnDelegate <NSObject>
+@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate, MLTermsConditionDelegate, MLPreviewViewControllerDelegate>
 
-@required
-- (NSString *)getKptn:(NSString *)kptn;
-
-@end
-@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate>
-
-@property (weak, nonatomic) id<GetKptnDelegate>delegate;
+//@property (weak, nonatomic) id<GetKptnDelegate>delegate;
 
 //outlet
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;

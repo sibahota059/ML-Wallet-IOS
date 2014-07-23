@@ -12,11 +12,13 @@
 #import "MLRatesTableViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "NSDictionary+LoadWalletData.h"
+#import "DeviceID.h"
+#import "MLTermsConditionViewController.h"
 
 @interface MLSendMoneyViewController (){
     UITapGestureRecognizer *tapRecognizer;
     double inputPrint, conv, bal, total, amountValue;
-    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno;
+    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname;
     NSArray *checkdot;
     UIImage *right, *wrong;
     MLUI *getUI;
@@ -31,6 +33,8 @@
     NSDictionary *getCharges, *getReceivers, *dic;
     MBProgressHUD *HUD;
     CLLocationManager *locationManager;
+    DeviceID *di;
+    MLTermsConditionViewController *tr;
 }
 
 @end
@@ -63,13 +67,17 @@
     [self.view endEditing:YES];
     
     // Do any additional setup after loading the view from its nib.
-    getUI = [MLUI new];
-    rates = [KpRates new];
-    getReceiver = [GetReceiver new];
-    
+    getUI          =  [MLUI new];
+    rates          =  [KpRates new];
+    getReceiver    =  [GetReceiver new];
+    di             =  [DeviceID new];
+    tr             =  [MLTermsConditionViewController new];
+
+    tr.delegate = self;
     getReceiver.delegate = self;
-    self.tabBarController.navigationItem.title = @"Send Money";
-    //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"Send Money"];
+    //self.title = @"SEND MONEYSSS";
+    self.tabBarController.navigationItem.title = @"SEND MONEY";
+    //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"Send Moneys"];
     
     wrong = [UIImage imageNamed:@"wrong.png"];
     right = [UIImage imageNamed:@"right.png"];
@@ -128,7 +136,6 @@
 #pragma mark - Sender Info
 - (void)aboutSender{
 
-    NSString *smname;
     if ([[NSString stringWithFormat:@"%@", [dic objectForKey:@"mname"]] isEqualToString:@""]) {
         smname = @"";
     }else{
@@ -147,6 +154,14 @@
         _senderImage.image = [UIImage imageWithData:data];
     }
     
+}
+
+- (void)didSuccessTransaction{
+    NSLog(@"Nesud dre");
+}
+
+- (void)didSuccessPreview:(MLPreviewViewController *)controller receiverFname:(NSString *)log{
+   NSLog(@"%@", log);
 }
 
 #pragma mark - Capital 1st Letter
@@ -169,8 +184,6 @@
 
 #pragma Retrieving Rates Done
 - (void)didFinishLoadingRates:(NSString *)indicator{
-    [HUD hide:YES];
-    [HUD show:NO];
     
     NSArray *ratess = [rates.getRates objectForKey:@"getChargeValuesResult"];
     getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
@@ -192,7 +205,6 @@
 
 #pragma Retrieving Receivers Done
 - (void)didFinishLoadingReceiver:(NSString *)indicator{
-    [_spinner stopAnimating];
     
     NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
     getValueReceiver = [receiver valueForKey:@"<receiverList>k__BackingField"];
@@ -214,6 +226,9 @@
     if ([[NSString stringWithFormat:@"%@", rcounter] isEqualToString:@"0"]) {
         _btn_receiver.enabled = NO;
     }
+    
+    [HUD hide:YES];
+    [HUD show:NO];
 }
 
 #pragma mark - Hide Status Bar
@@ -257,7 +272,6 @@
     self.tabBarController.selectedIndex = 1;
     [self.navigationController.tabBarController.navigationController popViewControllerAnimated:YES];
     
-    
 }
 
 
@@ -287,6 +301,7 @@
     self.tabBarController.navigationItem.title = @"Send Money";
     [self.tabBarController.navigationItem setRightBarButtonItem:next];
     [self.tabBarController.navigationItem setLeftBarButtonItem:home];
+
 }
 
 #pragma mark - Hide or Stop View
@@ -318,18 +333,15 @@
 #pragma mark - Click Button Preview
 - (IBAction)btn_preview:(id)sender {
     
-    NSString* uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSLog(@"UDID:: %@", uniqueIdentifier);
-    
     if (getRlname == nil && getRfname == nil) {
          [getUI displayAlert:@"Message" message:@"Please provide a receiver!"];
     }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] isEqualToString:@""]){
          [getUI displayAlert:@"Message" message:@"Please enter an amount!"];
     }else{
         MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
-        preview._senderLname    =  [dic objectForKey:@"lname"];
-        preview._senderFname    =  [dic objectForKey:@"fname"];
-        preview._senderMname    =  [dic objectForKey:@"mname"];
+        preview._senderLname    =  [self capitalizeFirstChar:[[dic objectForKey:@"lname"] lowercaseString]];
+        preview._senderFname    =  [self capitalizeFirstChar:[[dic objectForKey:@"fname"] lowercaseString]];
+        preview._senderMname    =  smname;
         preview._senderImage    =  [dic objectForKey:@"photo"];
         preview._receiverLname  =  getRlname;
         preview._receiverFname  =  getRfname;
@@ -341,7 +353,7 @@
         preview._walletNo       = walletno;
         preview._latitude       = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
         preview._longitude      = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
-        preview._divice         = @"2342343423";
+        preview._divice         = di.NSGetDeviceID;
         preview._location       = [dic objectForKey:@"address"];
         preview._receiverNo     = getRnumber;
     

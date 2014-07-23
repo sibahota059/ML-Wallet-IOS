@@ -7,15 +7,18 @@
 //
 
 #import "GetReceiver.h"
+#import "TempConnection.h"
 
-#define TRUSTED_HOST @"192.168.12.204"
+//#define TRUSTED_HOST @"192.168.12.204"
 
 @implementation GetReceiver
-
-NSMutableData *contentData;
-NSURLConnection *conn;
-
-
+{
+    
+    NSMutableData *contentData;
+    NSURLConnection *conn;
+    TempConnection *con;
+    
+}
 
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -23,7 +26,6 @@ NSURLConnection *conn;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Bad: %@", [error description]);
     conn = nil;
     [self.delegate didFinishLoadingReceiver:@"0"];
 }
@@ -51,7 +53,7 @@ NSURLConnection *conn;
 (NSURLAuthenticationChallenge *)challenge {
     if (([challenge.protectionSpace.authenticationMethod
           isEqualToString:NSURLAuthenticationMethodServerTrust])) {
-        if ([challenge.protectionSpace.host isEqualToString:TRUSTED_HOST]) {
+        if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
             NSLog(@"Allowing bypass...");
             NSURLCredential *credential = [NSURLCredential credentialForTrust:
                                            challenge.protectionSpace.serverTrust];
@@ -67,8 +69,13 @@ NSURLConnection *conn;
 - (void)getReceiverWalletNo:(NSString *)walleno
 {
     contentData = [NSMutableData data];
-    NSString *contentURL = [NSString stringWithFormat:@"https://192.168.12.204:4443/Mobile/Client/mobileKP_WCF/service.svc/retrieveReceivers/?walletno=%@", walleno];
-    //NSString *contentURL = @"https://192.168.12.204:4443/Mobile/Client/mobileKP_WCF/service.svc/retrieveReceivers/?walletno=14050000000135";
+    con         = [TempConnection new];
+    
+    NSString *serviceMethods = @"retrieveReceivers";
+    
+    NSString *contentURL = [NSString stringWithFormat:@"%@%@:%@%@%@/?walletno=%@", con.getHttp, con.getUrl, con.getPort, con.getPath, serviceMethods, walleno];
+
+    
     conn = [[NSURLConnection alloc] initWithRequest:
             [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];
     

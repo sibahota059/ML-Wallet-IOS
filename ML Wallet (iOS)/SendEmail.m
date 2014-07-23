@@ -1,23 +1,19 @@
 //
-//  KpRates.m
+//  SendEmail.m
 //  ML Wallet
 //
-//  Created by mm20 on 7/16/14.
+//  Created by ml on 7/23/14.
 //  Copyright (c) 2014 ML Lhuillier. All rights reserved.
 //
 
-#import "KpRates.h"
-#import "MLRatesTableViewController.h"
+#import "SendEmail.h"
 #import "TempConnection.h"
-//#define TRUSTED_HOST @"192.168.12.204"
 
-@implementation KpRates
+@implementation SendEmail
 {
-    
     NSMutableData *contentData;
     NSURLConnection *conn;
     TempConnection *con;
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -25,8 +21,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    //NSLog(@"Bad: %@", [error description]);
+    [self.delegate didFinishLoadingEmail:@"0"];
     conn = nil;
-    [self.delegate didFinishLoadingRates:@"0"];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -35,9 +32,23 @@
                                contentData encoding:NSUTF8StringEncoding];
     
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    self.getRates = jsonResponse;
-    [self.delegate didFinishLoadingRates:@"1"];
+    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:kNilOptions
+                                                                   error:nil];
+    
+    //NSLog(@"%@", jsonResponse);
+    NSDictionary* email = [jsonResponse objectForKey:@"MailKptnResult"];
+    
+    NSString* repscode = [email objectForKey:@"respcode"];
+    NSString* repsmessage = [email objectForKey:@"respmessage"];
+
+
+    
+    self.respcode    = repscode;
+    self.respmessage = repsmessage;
+    
+    [self.delegate didFinishLoadingEmail:@"1"];
+    
 }
 
 
@@ -65,21 +76,30 @@
 // -------------------ByPass ssl ends
 
 
-- (void)loadRates
+-(void)sendEmail:(NSString *)walletNo andKptn:(NSString *)kptn
 {
+    
     contentData = [NSMutableData data];
     con         = [TempConnection new];
     
-    NSString *serviceMethods = @"getChargeValues";
+    NSString *jsonRequest = [NSString stringWithFormat:@"{\"walletno\":\"%@\",\"kptn\":\"%@\"}", walletNo, kptn];
     
-    NSString *contentURL = [NSString stringWithFormat:@"%@%@:%@%@%@", con.getHttp, con.getUrl, con.getPort, con.getPath, serviceMethods];
+    NSString *serviceMethods = @"MailKptn";
     
-    conn = [[NSURLConnection alloc] initWithRequest:
-            [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];
-
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@:%@%@%@", con.getHttp, con.getUrl, con.getPort, con.getPath, serviceMethods]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    NSData *requestData = [NSData dataWithBytes:[jsonRequest UTF8String] length:[jsonRequest length]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: requestData];
+    
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
 }
-
-
 
 
 @end
