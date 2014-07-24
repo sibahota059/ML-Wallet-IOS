@@ -45,7 +45,7 @@
 		3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */; };
 		3B1BD6A11980D57100E234C5 /* MLBackground4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A01980D57100E234C5 /* MLBackground4.png */; };
 		3B1BD6A31980D7AA00E234C5 /* MLBackground5.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A21980D7AA00E234C5 /* MLBackground5.png */; };
-		3B1BD6A51980DAA500E234C5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A41980DAA500E234C5 /* GoogleMaps.bundle */; };
+		3B1BD6A7198115C800E234C5 /* InfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A6198115C800E234C5 /* InfoViewController~ipad.xib */; };
 		3B1CE09F197E3F2E00F2AF31 /* ml_logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */; };
 		3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */; };
 		3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */; };
@@ -124,7 +124,7 @@
 		3BC3828118C0330A00270567 /* mlcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828018C0330900270567 /* mlcard.png */; };
 		3BC3828318C0359B00270567 /* ban.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828218C0359B00270567 /* ban.png */; };
 		3BC3828B18C0958900270567 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3828918C0958900270567 /* InfoViewController.m */; };
-		3BC3828C18C0958900270567 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828A18C0958900270567 /* InfoViewController.xib */; };
+		3BC3828C18C0958900270567 /* InfoViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828A18C0958900270567 /* InfoViewController~iphone.xib */; };
 		3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828D18C095B500270567 /* ic_faq.9.png */; };
 		3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828F18C095BB00270567 /* ic_contact.9.png */; };
 		3BC3829218C095D200270567 /* ic_about.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3829118C095D200270567 /* ic_about.9.png */; };
@@ -269,7 +269,7 @@
 		3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MenuAnimationUIVIew.m"; sourceTree = "<group>"; };
 		3B1BD6A01980D57100E234C5 /* MLBackground4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground4.png; sourceTree = "<group>"; };
 		3B1BD6A21980D7AA00E234C5 /* MLBackground5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground5.png; sourceTree = "<group>"; };
-		3B1BD6A41980DAA500E234C5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		3B1BD6A6198115C800E234C5 /* InfoViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InfoViewController~ipad.xib"; sourceTree = "<group>"; };
 		3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_ipad.png; sourceTree = "<group>"; };
 		3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_iphone.png; sourceTree = "<group>"; };
 		3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextfieldAnimate.h; sourceTree = "<group>"; };
@@ -369,7 +369,7 @@
 		3BC3828218C0359B00270567 /* ban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban.png; sourceTree = "<group>"; };
 		3BC3828818C0958900270567 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		3BC3828918C0958900270567 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		3BC3828A18C0958900270567 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		3BC3828A18C0958900270567 /* InfoViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InfoViewController~iphone.xib"; sourceTree = "<group>"; };
 		3BC3828D18C095B500270567 /* ic_faq.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_faq.9.png; sourceTree = "<group>"; };
 		3BC3828F18C095BB00270567 /* ic_contact.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_contact.9.png; sourceTree = "<group>"; };
 		3BC3829118C095D200270567 /* ic_about.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_about.9.png; sourceTree = "<group>"; };
@@ -1057,7 +1057,8 @@
 		3BC3828718C0953C00270567 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3BC3828A18C0958900270567 /* InfoViewController.xib */,
+				3BC3828A18C0958900270567 /* InfoViewController~iphone.xib */,
+				3B1BD6A6198115C800E234C5 /* InfoViewController~ipad.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1275,7 +1276,7 @@
 				F081A05E19776F89004568EF /* MLHistoryTableViewCell~ipad.xib in Resources */,
 				3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
-				3BC3828C18C0958900270567 /* InfoViewController.xib in Resources */,
+				3BC3828C18C0958900270567 /* InfoViewController~iphone.xib in Resources */,
 				7006622018DA81DD00A0F05C /* radio_button_selected.png in Resources */,
 				3BC3828118C0330A00270567 /* mlcard.png in Resources */,
 				3BB42E1218D6B6C60011792E /* wrong.png in Resources */,
@@ -1372,6 +1373,7 @@
 				708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */,
 				F05C5F4618E137AF002F2EE1 /* ic_seal_pending.png in Resources */,
 				3BB42E0418D6B6C60011792E /* noImage.png in Resources */,
+				3B1BD6A7198115C800E234C5 /* InfoViewController~ipad.xib in Resources */,
 				3BB42E0718D6B6C60011792E /* pin_bg.png in Resources */,
 				3BC3829218C095D200270567 /* ic_about.9.png in Resources */,
 				F081A04C19776E55004568EF /* MLRatesTableViewController~iphone.xib in Resources */,
@@ -1407,7 +1409,6 @@
 				3BB42E0118D6B6C60011792E /* navbar_bg.png in Resources */,
 				3BB42DFF18D6B6C60011792E /* btnReceiver_bg.png in Resources */,
 				3B8B9EF518BC341400639142 /* textbox2.png in Resources */,
-				3B1BD6A51980DAA500E234C5 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

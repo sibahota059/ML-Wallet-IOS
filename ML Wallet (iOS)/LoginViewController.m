@@ -18,6 +18,7 @@
 #import "UITextfieldAnimate.h"
 #import "MLUI.h"
 #import "MapViewController.h"
+#import "MLRatesTableViewController.h"
 
 #import "SaveWalletData.h"
 
@@ -229,6 +230,16 @@
                                                initWithNibName:@"MapViewController"
                                                bundle:nil];
     [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+
+#pragma mark - Button Rates
+- (IBAction)btnRates:(id)sender {
+    
+    MLRatesTableViewController *rates = [[MLRatesTableViewController alloc]
+                                         initWithNibName:@"MLRatesTableViewController"
+                                         bundle:nil];
+    [self.navigationController pushViewController:rates animated:YES];
 }
 
 #pragma mark --Location

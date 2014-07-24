@@ -123,7 +123,7 @@
 - (void)navigationView
 {
     self.navigationController.navigationBarHidden = NO;
-    self.title = @"MY RECEIVER";
+    self.title = @"Topup";
     
     UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home.png"]
                                                                 style:UIBarButtonItemStyleBordered

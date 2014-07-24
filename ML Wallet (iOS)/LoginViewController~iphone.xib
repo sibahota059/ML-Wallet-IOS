@@ -151,6 +151,9 @@
                                     <state key="normal" image="new_kprate.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="btnRates:" destination="-1" eventType="touchUpInside" id="HkY-dm-nYQ"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="or3-bv-z4g">
                                     <rect key="frame" x="123" y="7" width="73" height="68"/>

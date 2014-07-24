@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface InfoViewController : UIViewController
+- (IBAction)btnCotactUs:(id)sender;
+- (IBAction)btnFAQ:(id)sender;
+- (IBAction)btnAbout:(id)sender;
 
 @end
