@@ -67,16 +67,23 @@
     //[self.MainScroll setContentSize:CGSizeMake(320, 600)];
     
     //Set Background
-    if ([UIScreen mainScreen].bounds.size.height >= 568) //4 inch
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+        
+        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
+        {
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+        }
+        else //4 inc below
+        {
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+        }
     }
-    else //4 inc below
+    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
-        self.receiverTableView.frame = CGRectMake(0, 204, self.view.frame.size.width, self.view.frame.size.height);
-        self.receiverSearchBar.frame = CGRectMake(0, 150, 320, 44);
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground5.png"]]];
     }
+
     
     
     //RetrieveReciever's

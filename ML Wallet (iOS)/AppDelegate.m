@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    
     [GMSServices provideAPIKey:@"AIzaSyDNYjJnFbOBJWmJMaXwLvX8Um4jk3p1F1A"];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];    
     

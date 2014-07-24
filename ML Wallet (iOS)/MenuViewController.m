@@ -56,14 +56,22 @@
     
     self.navigationController.navigationBarHidden = YES;
     
-    //Set backgound Image
-    if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
+    //Set Background
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+        
+        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
+        {
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+        }
+        else //4 inc below
+        {
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+        }
     }
-    else //4 inc below
+    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground4.png"]]];
     }
     
     self.lblMain.textAlignment      = NSTextAlignmentCenter;
