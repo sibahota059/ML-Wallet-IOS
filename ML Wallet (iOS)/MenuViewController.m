@@ -122,7 +122,7 @@
 }
 
 
-#pragma Start #Pan Gesture
+#pragma mark -Pan Gesture
 - (IBAction)panLayer:(UIPanGestureRecognizer *)pan {
     //Phone User
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -145,13 +145,14 @@
                 [self.lblMain setBounds:CGRectMake(161, 112, 70, 21)];
                 [self.lblAccount setHidden:NO];
                 self.lblMain.text = @"MENU";
+                self.lblMenu.text = @"";
             }else{
                 [self animateLayerToPoint: VIEW_HIDDEN];
             
                 //For Label
                 [self.lblAccount setHidden:YES];
                 self.lblMain.text = @"ACCOUNT";
-            
+                self.lblMenu.text = @"MENU";
             }
         }
     } else { //iPad User
@@ -187,7 +188,7 @@
     }
 }
 
-#pragma Start #Animate Swipe
+#pragma mark - #Animate Swipe
 -(void) animateLayerToPoint:(CGFloat)x
 {
     [UIView animateWithDuration:0.3
@@ -302,9 +303,10 @@
     if (buttonIndex==1) {
 //        LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
         
-        LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil navigationHidden:YES ];
+        //LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil navigationHidden:YES ];
         
-        [self.navigationController pushViewController:loginPage animated:YES];
+        //[self.navigationController pushViewController:loginPage animated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

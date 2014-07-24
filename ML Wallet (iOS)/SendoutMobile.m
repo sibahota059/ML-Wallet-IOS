@@ -8,13 +8,20 @@
 
 #import "SendoutMobile.h"
 #import "MLSendMoneyViewController.h"
+#import "TempConnection.h"
 
-#define TRUSTED_HOST @"192.168.12.204"
+//#define TRUSTED_HOST @"192.168.12.204"
 
 @implementation SendoutMobile
+{
+    
+    NSMutableData *contentData;
+    NSURLConnection *conn;
+    TempConnection *con;
+    
+}
 
-NSMutableData *contentData;
-NSURLConnection *conn;
+
 
 - (instancetype)initWithWalletNo:(NSString *)walletNo senderFname:(NSString *)senderFname senderMname:(NSString *)senderMname senderLname:(NSString *)senderLname receiverFname:(NSString *)receiverFname receiverMname:(NSString *)receiverMname receiverLname:(NSString *)receiverLname receiverNo:(NSString *)receiverNo principal:(NSString *)principal latitude:(NSString *)latitude longitude:(NSString *)longitude location:(NSString *)location deviceId:(NSString *)deviceId{
     
@@ -98,7 +105,7 @@ NSURLConnection *conn;
 (NSURLAuthenticationChallenge *)challenge {
     if (([challenge.protectionSpace.authenticationMethod
           isEqualToString:NSURLAuthenticationMethodServerTrust])) {
-        if ([challenge.protectionSpace.host isEqualToString:TRUSTED_HOST]) {
+        if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
             NSLog(@"Allowing bypass...");
             NSURLCredential *credential = [NSURLCredential credentialForTrust:
                                            challenge.protectionSpace.serverTrust];
@@ -115,12 +122,13 @@ NSURLConnection *conn;
 {
     
     contentData = [NSMutableData data];
-    
-//    NSString *jsonRequest = @"{\"walletno\":\"14050000000135\",\"receiverno\":\"690\",\"senderlname\":\"GAUDICOS\",\"sendermname\":\"\",\"senderfname\":\"ALBERT\",\"receiverlname\":\"Tarrayo\",\"receivermname\":\"A\",\"receiverfname\":\"Arthur\",\"principal\":\"300.0\",\"latitude\":\"-0.3234234\", \"longitude\":\"3.234343\", \"deviceid\":\"2342343423\", \"location\":\"Bohol, Philippines\"}";
+    con         = [TempConnection new];
     
     NSString *jsonRequest = [NSString stringWithFormat:@"{\"walletno\":\"%@\",\"receiverno\":\"%@\",\"senderlname\":\"%@\",\"sendermname\":\"%@\",\"senderfname\":\"%@\",\"receiverlname\":\"%@\",\"receivermname\":\"%@\",\"receiverfname\":\"%@\",\"principal\":\"%@\",\"latitude\":\"%@\", \"longitude\":\"%@\", \"deviceid\":\"%@\", \"location\":\"%@\"}", self.walletNo, self.receiverNo, self.senderLname, self.senderMname, self.senderFname, self.receiverLname, self.receiverMname, self.receiverFname, self.principal, self.latitude, self.longitude, self.deviceId, self.location];
     
-    NSURL *url = [NSURL URLWithString:@"https://192.168.12.204:4443/Mobile/Client/mobileKP_WCF/service.svc/sendoutMobile"];
+    NSString *serviceMethods = @"sendoutMobile";
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@:%@%@%@", con.getHttp, con.getUrl, con.getPort, con.getPath, serviceMethods]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSData *requestData = [NSData dataWithBytes:[jsonRequest UTF8String] length:[jsonRequest length]];

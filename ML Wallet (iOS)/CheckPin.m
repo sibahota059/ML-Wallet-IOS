@@ -7,13 +7,18 @@
 //
 
 #import "CheckPin.h"
+#import "TempConnection.h"
 
-#define TRUSTED_HOST @"192.168.12.204"
+//#define TRUSTED_HOST @"192.168.12.204"
 
 @implementation CheckPin
-
-NSMutableData *contentData;
-NSURLConnection *conn;
+{
+    
+    NSMutableData *contentData;
+    NSURLConnection *conn;
+    TempConnection *con;
+    
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [contentData appendData:data];
@@ -49,7 +54,7 @@ NSURLConnection *conn;
 (NSURLAuthenticationChallenge *)challenge {
     if (([challenge.protectionSpace.authenticationMethod
           isEqualToString:NSURLAuthenticationMethodServerTrust])) {
-        if ([challenge.protectionSpace.host isEqualToString:TRUSTED_HOST]) {
+        if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
             NSLog(@"Allowing bypass...");
             NSURLCredential *credential = [NSURLCredential credentialForTrust:
                                            challenge.protectionSpace.serverTrust];
@@ -65,7 +70,11 @@ NSURLConnection *conn;
 - (void)getReceiverWalletNo:(NSString *)walleno andReceiverPinNo:(NSString *)pin
 {
     contentData = [NSMutableData data];
-    NSString *contentURL = [NSString stringWithFormat:@"https://192.168.12.204:4443/Mobile/Client/mobileKP_WCF/service.svc/checkPin/?walletno=%@&pin=%@", walleno, pin];
+    con         = [TempConnection new];
+    
+    NSString *serviceMethods = @"checkPin";
+    
+    NSString *contentURL = [NSString stringWithFormat:@"%@%@:%@%@%@/?walletno=%@&pin=%@", con.getHttp, con.getUrl, con.getPort, con.getPath, serviceMethods, walleno, pin];
 
     conn = [[NSURLConnection alloc] initWithRequest:
             [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];

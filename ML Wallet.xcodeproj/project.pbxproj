@@ -59,8 +59,7 @@
 		3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8090C318B6152E00A11CB8 /* header_navi.png */; };
 		3B8B9EF518BC341400639142 /* textbox2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B9EF418BC341400639142 /* textbox2.png */; };
 		3B8B9EF718BC4B3300639142 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B9EF618BC4B3300639142 /* save.png */; };
-		3B9A414B197F43F800640D49 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9A414A197F43F800640D49 /* GoogleMaps.framework */; };
-		3B9A414D197F45EC00640D49 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */; };
+		3B9A414F197FD59000640D49 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9A414E197FD59000640D49 /* GoogleMaps.framework */; };
 		3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FC061196CC2970035446F /* MBProgressHUD.m */; };
 		3B9FC06D196D40750035446F /* LoginViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */; };
 		3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06E196D446E0035446F /* LoginViewController~ipad.xib */; };
@@ -178,6 +177,8 @@
 		70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA19318D9C6E800719BF7 /* ProfileButton.m */; };
 		70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19918D9CA4900719BF7 /* edit_profile.png */; };
 		70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19B18D9CA7800719BF7 /* question_profile.png */; };
+		F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B49197F53AE00E47198 /* TempConnection.m */; };
+		F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B4C197F8ABE00E47198 /* SendEmail.m */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
 		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
 		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
@@ -283,8 +284,7 @@
 		3B8090C318B6152E00A11CB8 /* header_navi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_navi.png; sourceTree = "<group>"; };
 		3B8B9EF418BC341400639142 /* textbox2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbox2.png; sourceTree = "<group>"; };
 		3B8B9EF618BC4B3300639142 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
-		3B9A414A197F43F800640D49 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		3B9A414E197FD59000640D49 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		3B9FC060196CC2970035446F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		3B9FC061196CC2970035446F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -441,6 +441,10 @@
 		70EEA19418D9C6E800719BF7 /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileButton.h; sourceTree = "<group>"; };
 		70EEA19918D9CA4900719BF7 /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_profile.png; sourceTree = "<group>"; };
 		70EEA19B18D9CA7800719BF7 /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_profile.png; sourceTree = "<group>"; };
+		F00D4B48197F53AE00E47198 /* TempConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempConnection.h; sourceTree = "<group>"; };
+		F00D4B49197F53AE00E47198 /* TempConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempConnection.m; sourceTree = "<group>"; };
+		F00D4B4B197F8ABE00E47198 /* SendEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmail.h; sourceTree = "<group>"; };
+		F00D4B4C197F8ABE00E47198 /* SendEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmail.m; sourceTree = "<group>"; };
 		F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
 		F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
 		F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -517,7 +521,7 @@
 				3B38F7711952C64C00EC3948 /* CoreLocation.framework in Frameworks */,
 				3BA7CC9D18B1D6B900B9FC4B /* CoreGraphics.framework in Frameworks */,
 				3BA7CC9F18B1D6B900B9FC4B /* UIKit.framework in Frameworks */,
-				3B9A414B197F43F800640D49 /* GoogleMaps.framework in Frameworks */,
+				3B9A414F197FD59000640D49 /* GoogleMaps.framework in Frameworks */,
 				3BA7CC9B18B1D6B900B9FC4B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,8 +655,7 @@
 		3BA7CC9918B1D6B900B9FC4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3B9A414C197F45EC00640D49 /* GoogleMaps.bundle */,
-				3B9A414A197F43F800640D49 /* GoogleMaps.framework */,
+				3B9A414E197FD59000640D49 /* GoogleMaps.framework */,
 				3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */,
 				3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */,
 				3012DC4D197DF62400AA5F6F /* OpenGLES.framework */,
@@ -879,6 +882,10 @@
 				F081A02F19776BF7004568EF /* SendoutMobile.m */,
 				F081A0611977A6C7004568EF /* CheckPin.h */,
 				F081A0621977A6C7004568EF /* CheckPin.m */,
+				F00D4B48197F53AE00E47198 /* TempConnection.h */,
+				F00D4B49197F53AE00E47198 /* TempConnection.m */,
+				F00D4B4B197F8ABE00E47198 /* SendEmail.h */,
+				F00D4B4C197F8ABE00E47198 /* SendEmail.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1366,7 +1373,6 @@
 				3B5F848518BC6934001C1B29 /* ReceiverCell.xib in Resources */,
 				7006620318DA766800A0F05C /* rene.jpg in Resources */,
 				3BB42E0818D6B6C60011792E /* preview_bg.png in Resources */,
-				3B9A414D197F45EC00640D49 /* GoogleMaps.bundle in Resources */,
 				3BA7CCAD18B1D6B900B9FC4B /* Images.xcassets in Resources */,
 				3B8090BA18B5FB6700A11CB8 /* back2.png in Resources */,
 				3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */,
@@ -1405,11 +1411,13 @@
 				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
 				3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */,
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
+				F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */,
 				F081A0631977A6C7004568EF /* CheckPin.m in Sources */,
 				7006621918DA813800A0F05C /* UpdateInformation.m in Sources */,
 				3BA7CCA718B1D6B900B9FC4B /* main.m in Sources */,
 				F081A03619776CEA004568EF /* GetReceiver.m in Sources */,
 				F05C5F3218E12C0D002F2EE1 /* MLReceiverTableViewController.m in Sources */,
+				F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */,
 				3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */,
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
 				3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */,
@@ -1553,7 +1561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1573,7 +1581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

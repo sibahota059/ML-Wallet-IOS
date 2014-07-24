@@ -16,6 +16,7 @@
     MLUI *getUI;
     SendoutMobile *sendout;
     MBProgressHUD *HUD;
+    SendEmail *se;
 }
 
 @end
@@ -35,10 +36,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    getUI = [MLUI new];
+    
+    getUI   = [MLUI new];
     sendout = [SendoutMobile new];
+    se      = [SendEmail new];
+    
     //self.navigationItem.titleView = [getUI navTitle:@"Terms & Conditions"];
-    self.title = @"Terms & Conditions";
+    self.title = @"TERMS & CONDITIONS";
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
     _tv_termsCondition.text = [getUI termsConditions];
@@ -52,6 +56,7 @@
     
     sendout = [[SendoutMobile alloc]initWithWalletNo:__walletNo senderFname:__senderFname senderMname:__senderMname senderLname:__senderLname receiverFname:__receiverFname receiverMname:__receiverMname receiverLname:__receiverLname receiverNo:__receiverNo principal:__total latitude:__latitude longitude:__longitude location:__location deviceId:__divice];
     
+    se.delegate = self;
     sendout.delegate = self;
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -87,7 +92,7 @@
         _btnDecline.enabled = NO;
         _btnAgree.enabled = NO;
         [getUI shadowView:_view_successOption];
-        self.title = @"Done";
+        self.title = @"TRANSACTION SUCCESS";
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.leftBarButtonItem = nil;
     }else if ([[NSString stringWithFormat:@"%@", sendout.getRespcode] isEqualToString:@"0"]){
@@ -95,6 +100,7 @@
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
+    
     
 }
 
@@ -115,16 +121,59 @@
 }
 - (IBAction)btnClose:(id)sender {
     
-    MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
+    [self dismissView];
     
-    [self.navigationController popToViewController:smv.tabBarController animated:YES];
 }
 
+- (void)dismissView{
+    
+    MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
+    [self.navigationController popToViewController:smv.tabBarController animated:NO];
+    [self.delegate didSuccessTransaction];
+    
+}
+
+- (void) didFinishLoadingEmail:(NSString *)indicator{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", se.respcode]isEqualToString:@"1"]){
+        
+        [self dismissView];
+        [getUI displayAlert:@"Message" message:@"KPTN successfully sent to your email."];
+        
+    }else if ([[NSString stringWithFormat:@"%@", se.respcode] isEqualToString:@"0"]){
+        
+        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", se.respmessage]];
+        
+    }else{
+        
+        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+    }
+    
+    
+}
 - (IBAction)btnSms:(id)sender {
-    [getUI displayAlert:@"Message" message:@"This will redirect to sms and function it later."];
+    
+    [getUI displayAlert:@"Message" message:@"This will send kptn to your email and function it later."];
 }
 
 - (IBAction)btnEmail:(id)sender {
-    [getUI displayAlert:@"Message" message:@"This will send kptn to your email and function it later."];
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+ 
+    NSString *sub1 = [sendout.getKptn substringToIndex:4];
+    NSString *sub2 = [sendout.getKptn substringWithRange:NSMakeRange(4, 3)];
+    NSString *sub3 = [sendout.getKptn substringWithRange:NSMakeRange(7, 4)];
+    NSString *sub4 = [sendout.getKptn substringWithRange:NSMakeRange(11, 3)];
+    NSString *sub5 = [sendout.getKptn substringWithRange:NSMakeRange(14, 4)];
+    
+    NSString *sendKptn = [NSString stringWithFormat:@"%@-%@-%@-%@-%@", sub1, sub2, sub3, sub4, sub5];
+    [se sendEmail:__walletNo andKptn:sendKptn];
+    
 }
 @end

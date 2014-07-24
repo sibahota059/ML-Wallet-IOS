@@ -44,7 +44,7 @@
     self.preview_main.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
     getUI = [MLUI new];
-    self.title = @"Preview";
+    self.title = @"PREVIEW";
     
     UIBarButtonItem *home = [getUI navBarButtonPreview:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
     
@@ -95,12 +95,16 @@
         _image_mine.image = [UIImage imageWithData:dataSenderImage];
     }
     
-    if ([UIImage imageWithData:dataSenderImage] == nil) {
+    if ([UIImage imageWithData:dataReceiverImage] == nil) {
         _image_receiver.image = [UIImage imageNamed:@"noImage.png"];
     }else{
         _image_receiver.image = [UIImage imageWithData:dataReceiverImage];
     }
+    
+    [self.delegate didSuccessPreview:self receiverFname:@"nesud dre"];
+    
 }
+
 
 - (IBAction)btn_back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -219,7 +223,7 @@
     }];
     
     [_view_content setAlpha:0.1f];
-    self.title = @"Enter Your Pin";
+    self.title = @"ENTER YOUR PIN";
     //self.navigationItem.titleView = [getUI navTitle:@"Enter Your Pin"];
     next = [getUI navBarButtonPreview:self navLink:@selector(btnPin) imageNamed:@"next.png"];
     [self.navigationItem setRightBarButtonItem:next];
