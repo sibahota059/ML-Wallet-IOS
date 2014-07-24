@@ -206,7 +206,7 @@
 - (NSString *)convertDecimal:(double)doubleValue{
     NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
     [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    NSString *bals = [currencyFormatter stringFromNumber:[NSNumber numberWithInt:doubleValue]];
+    NSString *bals = [currencyFormatter stringFromNumber:[NSNumber numberWithDouble:doubleValue]];
     NSString *newStr = [bals substringFromIndex:1];
     return newStr;
 }
