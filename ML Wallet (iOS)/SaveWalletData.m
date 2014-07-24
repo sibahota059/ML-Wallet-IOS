@@ -27,11 +27,20 @@
         [self initPath];
     }
     
-    path = self.path;    
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    [data setObject:[NSString stringWithString:strValue] forKey:forkey];
-    [data writeToFile:path atomically:YES];
-    
+    if ([forkey isEqualToString:@"balance"])
+    {
+        path = self.path;
+        NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+        [data setObject:[NSNumber numberWithDouble:[strValue doubleValue]] forKey:forkey];
+        [data writeToFile:path atomically:YES];
+    }
+    else
+    {
+        path = self.path;
+        NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+        [data setObject:[NSString stringWithString:strValue] forKey:forkey];
+        [data writeToFile:path atomically:YES];
+    }
 }
 
 @end

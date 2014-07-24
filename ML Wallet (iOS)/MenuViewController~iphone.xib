@@ -12,7 +12,7 @@
                 <outlet property="lblBalance" destination="SGQ-bx-nHK" id="35Q-Kc-Hts"/>
                 <outlet property="lblDate" destination="6hz-YF-aen" id="yJu-FZ-qlu"/>
                 <outlet property="lblMain" destination="JQo-EO-OwJ" id="KK6-K0-Vq6"/>
-                <outlet property="lblMenu" destination="FgC-W1-GP4" id="k01-dl-Ln1"/>
+                <outlet property="lblMenu" destination="FgC-W1-GP4" id="vTd-7p-dfU"/>
                 <outlet property="lblUserName" destination="sVO-2a-tZW" id="OIX-fS-CCL"/>
                 <outlet property="lblWalletno" destination="fjN-k2-Rt7" id="OBr-Zr-pwE"/>
                 <outlet property="pop_btnInfo" destination="D7C-ee-iXt" id="Ta1-VI-PMn"/>
