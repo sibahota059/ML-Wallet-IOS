@@ -38,8 +38,6 @@
     NSString *timetraveledtoBranch;
 }
 
-
-
 @synthesize responseData = _responseData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -83,6 +81,7 @@
     ServiceConnection *str = [ServiceConnection new];
     NSString *url = [NSString stringWithFormat:@"%@", [str NSGetMapService]];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    //  NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0];
     NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [con start];
     
@@ -102,12 +101,12 @@
                forKeyPath:@"myLocation"
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
-
-     dispatch_async(dispatch_get_main_queue(), ^{
-     CLLocation *myLocation = mapView_.myLocation;
-     NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-     });
-
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CLLocation *myLocation = mapView_.myLocation;
+        NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
+    });
+    
     
 }
 
@@ -127,63 +126,103 @@
         [HUD show:YES];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            static NSURLSession* sharedSessionMainQueue = nil;
+            if(!sharedSessionMainQueue){
+                sharedSessionMainQueue = [NSURLSession sessionWithConfiguration:nil delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+            }
+            NSString *urlString = [NSString stringWithFormat:
+                                   @"%@?origin=%f,%f&destination=%f,%f&sensor=true&mode=driving",
+                                   @"https://maps.googleapis.com/maps/api/directions/json",
+                                   mapView_.myLocation.coordinate.latitude,
+                                   mapView_.myLocation.coordinate.longitude,
+                                   infoWindowmarker.position.latitude,
+                                   infoWindowmarker.position.longitude];
+            
+            
+            NSURL *directionsURL = [NSURL URLWithString:urlString];
+            NSURLSessionDataTask *directionsTask =
+            [sharedSessionMainQueue dataTaskWithURL:directionsURL
+                                  completionHandler:^(NSData *data, NSURLResponse *response, NSError *e) {
+                                      NSError *error = nil;
+                                      NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                           options:NSJSONReadingMutableContainers
+                                                                                             error:&error];
+                                      NSLog(@"Directions Api Response: %@",json);
+                                      
+                                      NSLog(@"Json Result: %@",json[@"status"]);
+                                      
+                                      NSString *directionsResponse = json[@"status"];
+                                      
+                                      
+                                      if(error==nil){
+                                          
+                                          
+                                          if([directionsResponse isEqualToString:@"ZERO_RESULTS"]){
+                                              
+                                              
+                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:selectedBranchName message:@"Cannot Create Route." delegate: self cancelButtonTitle: nil otherButtonTitles: @"OK",nil, nil];
+                                              [alert show];
+                                              [HUD hide:YES];
+                                              [HUD show:NO];
+                                              
+                                              
+                                              
+                                          }
+                                          else if([directionsResponse isEqualToString:@"OK"]){
+                                              NSLog(@"Travel Time : %@",json[@"routes"][0][@"legs"][0][@"duration"][@"text"]);
+                                              NSLog(@"Distance : %@",json[@"routes"][0][@"legs"][0][@"distance"][@"text"]);
+                                              
+                                              distancetoBranch = json[@"routes"][0][@"legs"][0][@"distance"][@"text"];
+                                              timetraveledtoBranch = json[@"routes"][0][@"legs"][0][@"duration"][@"text"];
+                                              NSString *selectedBranchInfo = [NSString stringWithFormat:@"Travel Time:%@ \n Distance:%@",timetraveledtoBranch,distancetoBranch];
+                                              
+                                              //selected branch info alertview
+                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:selectedBranchName message:selectedBranchInfo delegate: self cancelButtonTitle: nil otherButtonTitles: @"OK",nil, nil];
+                                              [alert show];
+                                              //creating direction lines
+                                              polyline.map = nil;
+                                              GMSPath *path =
+                                              [GMSPath pathFromEncodedPath:
+                                               json[@"routes"][0][@"overview_polyline"][@"points"]];
+                                              polyline = [GMSPolyline polylineWithPath:path];
+                                              polyline.strokeWidth = 10;
+                                              polyline.strokeColor = [UIColor redColor];
+                                              polyline.map = mapView_;
+                                              [HUD hide:YES];
+                                              [HUD show:NO];
+                                          }//end else if
+                                          else{
+                                              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:selectedBranchName message:directionsResponse delegate: self cancelButtonTitle: nil otherButtonTitles: @"OK",nil, nil];
+                                              [alert show];
+                                              [HUD hide:YES];
+                                              [HUD show:NO];
+                                          }//end else
+                                          
+                                          
+                                          
+                                      }//end if
+                                      else{
+                                          NSLog(@"%@",error);
+                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:selectedBranchName message:error.localizedDescription delegate: self cancelButtonTitle: nil otherButtonTitles: @"OK",nil, nil];
+                                          [alert show];
+                                          [HUD hide:YES];
+                                          [HUD show:NO];
+                                      }// end else
+                                      
+                                  }];
+            
+            [directionsTask resume];
+            
+            
+            
+        });//end of asynctask
         
-        static NSURLSession* sharedSessionMainQueue = nil;
-        if(!sharedSessionMainQueue){
-            sharedSessionMainQueue = [NSURLSession sessionWithConfiguration:nil delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-        }
         
         
-        NSString *urlString = [NSString stringWithFormat:
-                               @"%@?origin=%f,%f&destination=%f,%f&sensor=true&mode=driving",
-                               @"https://maps.googleapis.com/maps/api/directions/json",
-                               mapView_.myLocation.coordinate.latitude,
-                               mapView_.myLocation.coordinate.longitude,
-                               infoWindowmarker.position.latitude,
-                               infoWindowmarker.position.longitude];
-        
-        
-        NSURL *directionsURL = [NSURL URLWithString:urlString];
-        NSURLSessionDataTask *directionsTask =
-        [sharedSessionMainQueue dataTaskWithURL:directionsURL
-            completionHandler:^(NSData *data, NSURLResponse *response, NSError *e) {
-        NSError *error = nil;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
-                            options:NSJSONReadingMutableContainers
-                            error:&error];
-                      //      NSLog(@"Directions Api Response: %@",json);
-
-                NSLog(@"Travel Time : %@",json[@"routes"][0][@"legs"][0][@"duration"][@"text"]);
-                NSLog(@"Distance : %@",json[@"routes"][0][@"legs"][0][@"distance"][@"text"]);
-                
-                distancetoBranch = json[@"routes"][0][@"legs"][0][@"distance"][@"text"];
-                timetraveledtoBranch = json[@"routes"][0][@"legs"][0][@"duration"][@"text"];
-                NSString *selectedBranchInfo = [NSString stringWithFormat:@"Travel Time:%@ \n Distance:%@",timetraveledtoBranch,distancetoBranch];
-                
-                //selected branch info alertview
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:selectedBranchName message:selectedBranchInfo delegate: self cancelButtonTitle: nil otherButtonTitles: @"OK",nil, nil];
-                [alert show];
-        //creating direction lines
-        polyline.map = nil;
-        GMSPath *path =
-        [GMSPath pathFromEncodedPath:
-            json[@"routes"][0][@"overview_polyline"][@"points"]];
-        polyline = [GMSPolyline polylineWithPath:path];
-        polyline.strokeWidth = 10;
-        polyline.strokeColor = [UIColor redColor];
-        polyline.map = mapView_;
-        }];
-        
-        [directionsTask resume];
-
-         });//end of asynctask
-        
-        
-       
     }
     
-    [HUD hide:YES];
-    [HUD show:NO];
+    
     
     
 }
@@ -545,6 +584,7 @@
             
             NSLog(@"2000 Radius was selected.");
             NSUInteger count = [gmLat count];
+            
             for(NSUInteger i = 0;i < count; i++){
                 NSString *strlongitude;
                 NSString *strlatitude;
@@ -639,12 +679,8 @@
                 
             }
             
-            
-            
-            
             [HUD hide:YES];
             [HUD show:NO];
-            
             
             
         });
@@ -675,9 +711,13 @@
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
-    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
     [HUD hide:YES];
     [HUD show:NO];
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    
+    
+    
+    
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"connectionDidFinishLoading");
@@ -690,10 +730,16 @@
         gmLat = [[NSMutableArray alloc] init];
         gmLong = [[NSMutableArray alloc] init];
         place = [[NSMutableArray alloc] init];
-        for(id key in res) {
-            NSDictionary *resultCoordinates = [res objectForKey:key];
-            NSArray *resultList = [resultCoordinates objectForKey:@"mapInfo"];
-            
+        
+        NSDictionary *resultCoordinates = [res objectForKey:@"getCoordinatesResult"];
+        NSArray *resultList = [resultCoordinates objectForKey:@"mapInfo"];
+        NSString *strResponseCode = [resultCoordinates objectForKey:@"respcode"];
+        NSString *strResponseMessage = [resultCoordinates objectForKey:@"respmessage"];
+        NSLog(@"Response Code : %@",strResponseCode);
+        NSLog(@"Response Message : %@",strResponseMessage);
+        
+        
+        if([strResponseMessage isEqualToString:@"OK"]){
             for (NSDictionary *result in resultList) {
                 NSString *bName = [result objectForKey:@"bName"];
                 // NSLog(@"Branch Name : %@", bName);
@@ -705,8 +751,8 @@
                     [gmLat insertObject:mLat atIndex:i];
                     [gmLong insertObject:mLong atIndex:i];
                     [place insertObject:bName atIndex:i];
-                }
-
+                }//end for (NSUInteger i=0;i < count; i++)
+                
                 //ss
                 //Convert to double
                 double latdouble = [mLat doubleValue];
@@ -719,20 +765,37 @@
                 marker.icon = [UIImage imageNamed:@"ml_1"];
                 markers =[NSSet setWithObjects:marker, nil];
                 marker.map = mapView_;
+                [HUD hide:YES];
+                [HUD show:NO];
                 
-            }
+            }//end for(NSDictionary *result in resultList)
             
-        }
+        }//end if([strResponseMessage isEqualToString:@"OK"])
+        else{
+            NSLog(@"Error: %@",myError);
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [HUD hide:YES];
+            [HUD show:NO];
+            
+        }//end else
         
         
-    }
+        
+        
+    }//end if
+    
+    else {
+        NSLog(@"Error: %@",myError);
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:myError.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [HUD hide:YES];
+        [HUD show:NO];
+    }//end else
     
     
-    [HUD hide:YES];
-    [HUD show:NO];
     
     
-}
+    
+}//end connectionDidFinishLoading
 
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -746,7 +809,7 @@
     CGFloat screenHeight = screenSize.height;
     NSInteger bar = (int)screenHeight;
     NSString *inStr = [NSString stringWithFormat: @"%d", (int)bar];
-    NSLog(@"Skrin Hayt : %@", inStr);
+    NSLog(@"Screen Height : %@", inStr);
     if(bar<=490){
         mapView_.padding =
         UIEdgeInsetsMake(self.topLayoutGuide.length + 100,
