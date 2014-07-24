@@ -707,7 +707,7 @@
                     [place insertObject:bName atIndex:i];
                 }
 
-                
+                //ss
                 //Convert to double
                 double latdouble = [mLat doubleValue];
                 double londouble = [mLong doubleValue];
