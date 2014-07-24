@@ -38,28 +38,36 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-
-    
+    //create object of CheckPin class and set delegate to it
     chk = [CheckPin new];
     chk.delegate = self;
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
-    self.view_keyboard.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
-    self.preview_main.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
+    //create object of MLUI class
     getUI = [MLUI new];
-    self.title = @"PREVIEW";
     
-    UIBarButtonItem *home = [getUI navBarButtonPreview:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
-    
-    [self.navigationItem setRightBarButtonItem:next];
-    [self.navigationItem setLeftBarButtonItem:home];
-
-    [self shadowView];
-    
+    //create object of MBProgressHUD class, set delegate, and add loader view
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
     
+    //set title for navigation bar
+    self.title = @"PREVIEW";
+    
+    //customize the icon for back button and call the btn_back method
+    UIBarButtonItem *home = [getUI navBarButtonPreview:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
+    
+    //set the bar button home to left
+    [self.navigationItem setLeftBarButtonItem:home];
+    
+    //set background image of each view
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
+    self.view_keyboard.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
+    self.preview_main.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
+
+    //call shadowView method to create a shadow of view_content view
+    [self shadowView];
+    
+    //check if device is iphone or ipad and set background image of view_content view and change radius of sender and receiver image
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         _image_mine.layer.cornerRadius = 20;
@@ -77,20 +85,24 @@
         self.view_content.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"preview_bg_ipad"]];
     }
 
+    //hid the view_keyboard view
     _view_keyboard.hidden = YES;
     
+    //Input Pin start at 1st textfield
     [self setText:_tf_pin1];
     
-    
+    //setting sender and receiver information on it's label
     _lbl_sname.text   = [NSString stringWithFormat:@"%@, %@ %@", __senderLname, __senderFname, __senderMname];
     _lbl_rname.text   = [NSString stringWithFormat:@"%@, %@ %@", __receiverLname, __receiverFname, __receiverMname];
     _lbl_amount.text  = [NSString stringWithFormat:@"%0.2f", [__amount doubleValue]];
     _lbl_charge.text  = __charge;
     _lbl_total.text   = __total;
     
+    //convert base64string of sender and receiver image into data
     NSData *dataSenderImage = [[NSData alloc] initWithBase64EncodedString:__senderImage options: NSDataBase64DecodingIgnoreUnknownCharacters];
     NSData *dataReceiverImage = [[NSData alloc] initWithBase64EncodedString:__receiver_image options: NSDataBase64DecodingIgnoreUnknownCharacters];
     
+    //setting image for sender
     if ([UIImage imageWithData:dataSenderImage] == nil) {
         _image_mine.image = [UIImage imageNamed:@"noImage.png"];
     }
@@ -98,21 +110,21 @@
         _image_mine.image = [UIImage imageWithData:dataSenderImage];
     }
     
+    //setting image for receiver
     if ([UIImage imageWithData:dataReceiverImage] == nil) {
         _image_receiver.image = [UIImage imageNamed:@"noImage.png"];
     }else{
         _image_receiver.image = [UIImage imageWithData:dataReceiverImage];
     }
     
-    [self.delegate didSuccessPreview:self receiverFname:@"zz"];
-    
 }
 
-
+#pragma mark - Back Button
 - (IBAction)btn_back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - View Shadow
 - (void)shadowView{
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.view_content.bounds];
     self.view_content.layer.masksToBounds = NO;
@@ -128,11 +140,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Checking Pin
 - (void)didFinishLoadingPin:(NSString *)indicator{
     
+    //hide the progress dialog
     [HUD hide:YES];
     [HUD show:NO];
     
+    //create object of MLTermsConditionViewController and setting value on it
     MLTermsConditionViewController *tc = [[MLTermsConditionViewController alloc]initWithNibName:@"MLTermsConditionViewController" bundle:nil];
     
     tc._senderLname    =  __senderLname;
@@ -149,11 +164,14 @@
     tc._location       = __location;
     tc._receiverNo     = __receiverNo;
     
+    //get the results of pin request
     NSDictionary* _getPin = [chk.getPin objectForKey:@"checkPinResult"];
     
+    //extract dictionary and get value for repscode & respmessage
     NSString* repscode = [_getPin objectForKey:@"respcode"];
     NSString* respmessage = [_getPin objectForKey:@"respmessage"];
     
+    //if requesting pin is successful go to next page, else display error message
     if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"1"]) {
         [self.navigationController pushViewController:tc animated:YES];
         [self reset];
@@ -163,28 +181,24 @@
     }
 }
 
+#pragma mark - Button Next is Pressed
 - (void)btnPin{
     
+    //get the inputted pin
     NSString *pin = [NSString stringWithFormat:@"%@%@%@%@",_tf_pin1.text, _tf_pin2.text, _tf_pin3.text, _tf_pin4.text];
+    
+    //call webservice to check if inputted pin is correct
     [chk getReceiverWalletNo:__walletNo andReceiverPinNo:pin];
+    
+    //display progress dialog
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];
     [self.view endEditing:YES];
     
 }
-- (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender {
-    
-    if(sender.direction == UISwipeGestureRecognizerDirectionLeft){
-        [self btnPin];
-    }
-    if(sender.direction == UISwipeGestureRecognizerDirectionRight){
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        
-    }
-    
-}
 
+#pragma mark - Tap Gesture Recognizer Event
 - (IBAction)tapPreview:(UITapGestureRecognizer *)sender {
     [self.preview_scroll setContentSize:CGSizeMake(320, 400)];
     self.view_pinInput.alpha = 1.0;
@@ -205,12 +219,12 @@
     }];
     
     [_view_content setAlpha:1];
-    //self.navigationItem.titleView = [getUI navTitle:@"Preview"];
-    self.title = @"Preview";
+    self.title = @"PREVIEW";
     [self.navigationItem setRightBarButtonItem:nil];
 }
 
 
+#pragma mark - Click on Next Button
 - (IBAction)btn_pin:(id)sender {
     [self.preview_scroll setContentSize:CGSizeMake(320, 400)];
     self.view_pinInput.alpha = 0.0;
@@ -233,6 +247,7 @@
     _view_pinInput.hidden = NO;
 }
 
+#pragma mark - Reset
 - (void)reset{
     _tf_pin1.text = @"";
     _tf_pin2.text = @"";
@@ -304,6 +319,7 @@
     [self setText:[self nextField]];
 }
 
+#pragma mark - Hide Status Bar
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
@@ -312,8 +328,12 @@
     [self reset];
 }
 
+#pragma mark - TextField Input
+//create a function that return UITextField to be inputted
 - (UITextField *)nextField{
+    
     UITextField *checkNext;
+    
     if (![_tf_pin1.text isEqualToString:@""]) {
         checkNext = _tf_pin2;
     }

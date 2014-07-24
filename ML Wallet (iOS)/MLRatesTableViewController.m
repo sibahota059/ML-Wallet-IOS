@@ -36,48 +36,56 @@
 {
     [super viewDidLoad];
     
-    getUI = [MLUI new];
-    rate = [KpRates new];
-    
-    rate.delegate = self;
-    
-    self.tabBarController.navigationItem.title = @"MLKP RATES";
-    //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"MLKP Rates"];
-    self.tabBarController.navigationItem.hidesBackButton = YES;
-    self.tabBarController.navigationItem.leftBarButtonItem = nil;
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    
-    [self swipe];
-    
-    //WaitScreen
+    //Create object of MBProgressHUD class, set delegate to this class and add Progress Bar view
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     HUD.delegate = self;
     
-    //Show Animated
+    //Display Progress Bar View
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];
     [self.view endEditing:YES];
     
+    //Create object of MLUI, KpRates class
+    getUI = [MLUI new];
+    rate = [KpRates new];
+    
+    //Set the KpRates delegate to this class
+    rate.delegate = self;
+    
+    //Call swipe methods to swipe left
+    [self swipe];
+    
+    //Call the loadRates method of KpRates to retrieve data from webservice
     [rate loadRates];
 }
 
+#pragma mark - Retrieve Rates Data from Webservice
 - (void)didFinishLoadingRates:(NSString *)indicator{
     
+    //Hide Progress Bar
     [HUD hide:YES];
     [HUD show:NO];
     
+    //Store the NSDictionary rates data into static array
     NSArray *ratess       = [rate.getRates objectForKey:@"getChargeValuesResult"];
+    
+    //Store the value of ratess array into mutable array
     getValueRates         = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    
+    //Get the value of respcode & respmessage in retrieving rates
     NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
     NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
     
+    //Check if retrieving rates is successful or not and if successful, stored in charges and amount mutable array
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
         
+        //Create an object of charges & amount mutable array
         charges = [NSMutableArray new];
         amount = [NSMutableArray new];
         
+        //Looping rates value and add to charges & amount array
         for (NSDictionary *items in getValueRates) {
             
             NSString *minAmount  = [items valueForKey:@"minAmount"];
@@ -96,9 +104,11 @@
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
     
+    //reload tableview after retrieving
     [self.tableView reloadData];
 }
 
+#pragma mark - Create Gesture to swipe left
 -(void)swipe{
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(left)];
     
@@ -106,6 +116,7 @@
     [self.view addGestureRecognizer:swipeRight];
 }
 
+#pragma mark - Set Tab 1
 - (void)left{
     self.tabBarController.selectedIndex = 0;
     [self.navigationController.tabBarController.navigationController popViewControllerAnimated:YES];
@@ -171,9 +182,10 @@
     
 }
 
+#pragma mark - Set Up Rates Navigation
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tabBarController.navigationItem.title = @"MLKP Rates";
+    self.tabBarController.navigationItem.title = @"MLKP RATES";
     self.tabBarController.navigationItem.hidesBackButton = YES;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     self.tabBarController.navigationItem.rightBarButtonItem = nil;

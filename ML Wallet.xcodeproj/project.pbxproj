@@ -45,7 +45,6 @@
 		3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */; };
 		3B1BD6A11980D57100E234C5 /* MLBackground4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A01980D57100E234C5 /* MLBackground4.png */; };
 		3B1BD6A31980D7AA00E234C5 /* MLBackground5.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A21980D7AA00E234C5 /* MLBackground5.png */; };
-		3B1BD6A51980DAA500E234C5 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A41980DAA500E234C5 /* GoogleMaps.bundle */; };
 		3B1CE09F197E3F2E00F2AF31 /* ml_logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */; };
 		3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */; };
 		3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */; };
@@ -269,7 +268,6 @@
 		3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MenuAnimationUIVIew.m"; sourceTree = "<group>"; };
 		3B1BD6A01980D57100E234C5 /* MLBackground4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground4.png; sourceTree = "<group>"; };
 		3B1BD6A21980D7AA00E234C5 /* MLBackground5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground5.png; sourceTree = "<group>"; };
-		3B1BD6A41980DAA500E234C5 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_ipad.png; sourceTree = "<group>"; };
 		3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_iphone.png; sourceTree = "<group>"; };
 		3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextfieldAnimate.h; sourceTree = "<group>"; };
@@ -1407,7 +1405,6 @@
 				3BB42E0118D6B6C60011792E /* navbar_bg.png in Resources */,
 				3BB42DFF18D6B6C60011792E /* btnReceiver_bg.png in Resources */,
 				3B8B9EF518BC341400639142 /* textbox2.png in Resources */,
-				3B1BD6A51980DAA500E234C5 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

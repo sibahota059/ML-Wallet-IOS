@@ -10,17 +10,8 @@
 #import "CheckPin.h"
 #import "MBProgressHUD.h"
 
-@class MLPreviewViewController;
-
-@protocol MLPreviewViewControllerDelegate <NSObject>
-
-- (void)didSuccessPreview:(MLPreviewViewController *)controller receiverFname:(NSString *)log;
-
-@end
-
 @interface MLPreviewViewController : UIViewController<CheckPinDelegate, MBProgressHUDDelegate>
 
-@property (weak, nonatomic) id<MLPreviewViewControllerDelegate>delegate;
 @property (weak, nonatomic, getter = getText, setter = setText:) UITextField *setField;
 @property (weak, nonatomic) IBOutlet UIView *preview_main;
 @property (weak, nonatomic) IBOutlet UIView *view_content;
@@ -69,8 +60,6 @@
 @property (strong, nonatomic) NSString *_location;
 @property (strong, nonatomic) NSString *_receiverNo;
 
-
-- (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender;
 - (IBAction)tapPreview:(UITapGestureRecognizer *)sender;
 - (IBAction)btn_pin:(id)sender;
 - (IBAction)btnOne:(id)sender;
