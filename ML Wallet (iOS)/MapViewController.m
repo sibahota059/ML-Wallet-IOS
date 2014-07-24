@@ -676,6 +676,8 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
     [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    [HUD hide:YES];
+    [HUD show:NO];
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"connectionDidFinishLoading");
