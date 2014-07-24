@@ -83,15 +83,23 @@
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
     
-    if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
+    //Set Background
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
-    }
+
+        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
+        {
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+        }
         else //4 inc below
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+        {
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+        }
     }
-    
+    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground4.png"]]];
+    }
     
     [self.loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_img.png"]]];
     [self.scrollView setScrollEnabled:YES];
@@ -336,6 +344,15 @@
         }
         else
         {
+            NSRange strRange = [respMesg
+                                rangeOfString:@"MySql.Data.MySqlClient.MySqlException"
+                                options:NSCaseInsensitiveSearch];
+            
+            if (strRange.length > 1)
+            {
+                respMesg = @"Service is temporary unavailable";
+            }
+            
             //Show Error
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
             self.txtPass.text = @"";
