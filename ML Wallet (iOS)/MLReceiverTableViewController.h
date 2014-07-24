@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GetReceiver.h"
+//#import "GetReceiver.h"
 #import "MBProgressHUD.h"
 
 @class MLReceiverTableViewController;
@@ -18,7 +18,7 @@
 
 @end
 
-@interface MLReceiverTableViewController : UITableViewController<GetReceiverDelegate, MBProgressHUDDelegate>
+@interface MLReceiverTableViewController : UITableViewController<MBProgressHUDDelegate>
 
 @property (weak, nonatomic) id<MLReceiverTableViewControllerDelegate>delegate;
 @property (strong, nonatomic) NSDictionary *ds;

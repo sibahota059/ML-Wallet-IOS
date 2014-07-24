@@ -11,12 +11,14 @@
 #import "MLSendMoneyViewController.h"
 #import "MLRatesTableViewController.h"
 #import "MenuViewController.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface MLTermsConditionViewController (){
     MLUI *getUI;
     SendoutMobile *sendout;
     MBProgressHUD *HUD;
     SendEmail *se;
+    MLSendMoneyViewController *sm;
 }
 
 @end
@@ -61,6 +63,8 @@
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
+    
+    
 }
 
 
@@ -127,10 +131,14 @@
 
 - (void)dismissView{
     
+    sm = [MLSendMoneyViewController new];
+    NSString *ch = sendout.getTotal;
+    sm.chTotal = ch;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object:sm];
     MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
     [self.navigationController popToViewController:smv.tabBarController animated:NO];
-    [self.delegate didSuccessTransaction];
-    
+  
 }
 
 - (void) didFinishLoadingEmail:(NSString *)indicator{

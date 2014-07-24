@@ -73,9 +73,9 @@
     //NSLog(@"%@", jsonResponse);
     NSDictionary* sendout = [jsonResponse objectForKey:@"sendoutMobileResult"];
     
-    //NSString* charge = [sendout objectForKey:@"charge"];
+    NSString* charge = [sendout objectForKey:@"charge"];
     NSString* kptn = [sendout objectForKey:@"kptn"];
-    //NSString* principal = [sendout objectForKey:@"principal"];
+    NSString* principal = [sendout objectForKey:@"principal"];
     //NSString* recfname = [sendout objectForKey:@"recfname"];
     //NSString* reclname = [sendout objectForKey:@"reclname"];
     //NSString* recmname = [sendout objectForKey:@"recmname"];
@@ -88,6 +88,7 @@
     self.getKptn        = kptn;
     self.getRespcode    = respcode;
     self.getRespmessage = respmessage;
+    self.getTotal       = [NSString stringWithFormat:@"%0.2f", [charge doubleValue] + [principal doubleValue]];
     
     [self.delegate didFinishLoading:@"1"];
     

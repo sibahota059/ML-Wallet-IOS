@@ -13,12 +13,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import "NSDictionary+LoadWalletData.h"
 #import "DeviceID.h"
-#import "MLTermsConditionViewController.h"
+#import "SaveWalletData.h"
 
 @interface MLSendMoneyViewController (){
     UITapGestureRecognizer *tapRecognizer;
     double inputPrint, conv, bal, total, amountValue;
-    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname;
+    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname, *test;
     NSArray *checkdot;
     UIImage *right, *wrong;
     MLUI *getUI;
@@ -34,19 +34,21 @@
     MBProgressHUD *HUD;
     CLLocationManager *locationManager;
     DeviceID *di;
-    MLTermsConditionViewController *tr;
+
 }
 
 @end
 
-@implementation MLSendMoneyViewController
 
+@implementation MLSendMoneyViewController
+@synthesize chTotal;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         //self.tabBarController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        test = chTotal;
     }
     return self;
 }
@@ -71,9 +73,7 @@
     rates          =  [KpRates new];
     getReceiver    =  [GetReceiver new];
     di             =  [DeviceID new];
-    tr             =  [MLTermsConditionViewController new];
-
-    tr.delegate = self;
+    
     getReceiver.delegate = self;
     //self.title = @"SEND MONEYSSS";
     self.tabBarController.navigationItem.title = @"SEND MONEY";
@@ -131,6 +131,39 @@
     walletno = [dic objectForKey:@"walletno"];
     [self aboutSender];
     
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(clearAction:) name:@"NotificationMessageEvent" object:nil];
+}
+
+#pragma mark - Notification Clear All
+-(void) clearAction:(NSNotification *) notification
+{
+//    if ([notification.object isKindOfClass:[MLSendMoneyViewController class]])
+//    {
+//        NSLog(@"Nahuman nang transaction, mao nga class");
+//    }
+//    else
+//    {
+//        NSLog(@"Nahuman nang transaction, d mao nga class");
+//    }
+    _tf_amount.text = @"";
+    _chargeValue.text = @"0.00";
+    _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
+    _lblNoReceiver.hidden = NO;
+    _receiverName.hidden = YES;
+    _receiverAddress.hidden = YES;
+    [_btn_receiver setTitle:@"Select" forState:UIControlStateNormal];
+    _receiverImage.image = [UIImage imageNamed:@"noImage.png"];
+    NSLog(@"Total: %@", _totalValue.text);
+    double getTotal = [_label_balance.text doubleValue] - [_totalValue.text doubleValue];
+    _label_balance.text = [NSString stringWithFormat:@"%0.2f", getTotal];
+    _totalValue.text = @"0.00";
+    
+    NSString *finalBalance = [NSString stringWithFormat:@"%@", _label_balance.text];
+    
+    //Saving Data Plist
+    SaveWalletData *saveData = [SaveWalletData new];
+    [saveData initSaveData:finalBalance forKey:@"balance"];
 }
 
 #pragma mark - Sender Info
@@ -156,12 +189,8 @@
     
 }
 
-- (void)didSuccessTransaction{
-    NSLog(@"Nesud dre");
-}
-
-- (void)didSuccessPreview:(MLPreviewViewController *)controller receiverFname:(NSString *)log{
-   NSLog(@"%@", log);
+-(void)didSuccessPreview:(MLPreviewViewController *)controller receiverFname:(NSString *)log{
+    NSLog(@"%@", log);
 }
 
 #pragma mark - Capital 1st Letter
@@ -338,6 +367,7 @@
     }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] isEqualToString:@""]){
          [getUI displayAlert:@"Message" message:@"Please enter an amount!"];
     }else{
+        
         MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
         preview._senderLname    =  [self capitalizeFirstChar:[[dic objectForKey:@"lname"] lowercaseString]];
         preview._senderFname    =  [self capitalizeFirstChar:[[dic objectForKey:@"fname"] lowercaseString]];
@@ -357,8 +387,10 @@
         preview._location       = [dic objectForKey:@"address"];
         preview._receiverNo     = getRnumber;
     
+        preview.delegate = self;
     preview.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:preview animated:YES];
+        
     }
 }
 

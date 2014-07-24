@@ -11,17 +11,15 @@
 #import "MBProgressHUD.h"
 #import "SendEmail.h"
 
-@protocol MLTermsConditionDelegate <NSObject>
+@protocol MLTermsConditionViewControllerDelegate <NSObject>
 
-@required
-
-- (void)didSuccessTransaction;
+- (void)didSuccessTransaction:(NSString *)log;
 
 @end
 
 @interface MLTermsConditionViewController : UIViewController<SendoutMobileDelegate, MBProgressHUDDelegate, SendKptnDelegate>
 
-@property (weak, nonatomic) id<MLTermsConditionDelegate>delegate;
+@property (weak, nonatomic) id<MLTermsConditionViewControllerDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UITextView *tv_termsCondition;
 @property (weak, nonatomic) IBOutlet UIView *view_tc;
 @property (weak, nonatomic) IBOutlet UIView *view_success;

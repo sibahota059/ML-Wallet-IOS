@@ -7,7 +7,6 @@
 //
 
 #import "MLPreviewViewController.h"
-#import "MLSendMoneyViewController.h"
 #import "MLUI.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MLTermsConditionViewController.h"
@@ -17,6 +16,8 @@
     UIBarButtonItem *next;
     MBProgressHUD *HUD;
     CheckPin *chk;
+    
+    
 }
 
 @end
@@ -36,6 +37,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+
     
     chk = [CheckPin new];
     chk.delegate = self;
@@ -101,7 +104,7 @@
         _image_receiver.image = [UIImage imageWithData:dataReceiverImage];
     }
     
-    [self.delegate didSuccessPreview:self receiverFname:@"nesud dre"];
+    [self.delegate didSuccessPreview:self receiverFname:@"zz"];
     
 }
 

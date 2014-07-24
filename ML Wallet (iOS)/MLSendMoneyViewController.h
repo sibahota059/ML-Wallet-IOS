@@ -12,10 +12,9 @@
 #import "KpRates.h"
 #import "GetReceiver.h"
 #import "MBProgressHUD.h"
-#import "MLTermsConditionViewController.h"
 #import "MLPreviewViewController.h"
 
-@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate, MLTermsConditionDelegate, MLPreviewViewControllerDelegate>
+@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate, MLPreviewViewControllerDelegate>
 
 //@property (weak, nonatomic) id<GetKptnDelegate>delegate;
 
@@ -43,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countReceiver;
 @property (weak, nonatomic) IBOutlet UILabel *lblNoReceiver;
 @property (weak, nonatomic) IBOutlet UIButton *btn_receiver;
+@property (strong, nonatomic) NSString *chTotal;
 
 //action
 - (IBAction)btn_receiver:(id)sender;
