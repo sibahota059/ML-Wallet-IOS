@@ -27,6 +27,8 @@
 - (IBAction)btnLogin:(id)sender;
 - (IBAction)btnLocator:(id)sender;
 - (IBAction)btnRates:(id)sender;
+- (IBAction)btnResetPIN:(id)sender;
+- (IBAction)btnForgotPassword:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITextField *txtUser;
 @property (strong, nonatomic) IBOutlet UITextField *txtPass;

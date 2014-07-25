@@ -72,6 +72,9 @@
                                         <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="btnResetPIN:" destination="-1" eventType="touchUpInside" id="VsV-DV-TjJ"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="e8B-mf-z2a">
                                     <rect key="frame" x="20" y="205" width="280" height="30"/>
@@ -120,6 +123,9 @@
                                         <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="btnForgotPassword:" destination="-1" eventType="touchUpInside" id="tKe-5T-ej7"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </view>
