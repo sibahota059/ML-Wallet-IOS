@@ -19,6 +19,7 @@
 #import "MLUI.h"
 #import "MapViewController.h"
 #import "MLRatesTableViewController.h"
+#import "ResetPassViewController.h"
 
 #import "SaveWalletData.h"
 
@@ -240,6 +241,18 @@
                                          initWithNibName:@"MLRatesTableViewController"
                                          bundle:nil];
     [self.navigationController pushViewController:rates animated:YES];
+}
+
+#pragma mark - ResetPIN and ForgotPass
+- (IBAction)btnResetPIN:(id)sender {
+    [UIAlertView myCostumeAlert:@"Contact MLhuillier Support" alertMessage:@"To reset your PIN, you must call our 24/7 Mlhuillier Support. \n\nCall:(032)232-1036 or 09479991948. \nSMS:09479991948 or 09059990533\n\nEmail: mis.helpdesk@mlhuillier1.com or Visit to your nearest branch" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+}
+
+- (IBAction)btnForgotPassword:(id)sender {
+    ResetPassViewController *resetPage = [[ResetPassViewController alloc]
+                                          initWithNibName:@"ResetPassViewController"
+                                          bundle:nil];
+    [self.navigationController pushViewController:resetPage animated:YES];
 }
 
 #pragma mark --Location

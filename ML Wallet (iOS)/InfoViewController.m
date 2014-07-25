@@ -7,6 +7,7 @@
 //
 
 #import "InfoViewController.h"
+#import "UIAlertView+alertMe.h"
 
 
 @interface InfoViewController ()
@@ -78,11 +79,21 @@
 }
 
 - (IBAction)btnCotactUs:(id)sender {
+    NSString *call  = @"Call : (032)232-1035 or 232-1036\n\n";
+    NSString *email = @"Email: customercare@mlhuillier1.com\n\n";
+    NSString *sms   = @"SMS  : Helpdesk:\n09479992754\n09479992755\n09479991948 \n\nCustomer Care:\n09479990337";
+    [UIAlertView myCostumeAlert:nil alertMessage:[NSString stringWithFormat:@"%@%@%@", call, email, sms] delegate:nil cancelButton:@"Ok" otherButtons:nil];
 }
 
 - (IBAction)btnFAQ:(id)sender {
 }
 
 - (IBAction)btnAbout:(id)sender {
+    NSString *version   = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *deviceN   = [[UIDevice currentDevice] name];
+    NSString *msg       = [NSString stringWithFormat:@"ML Wallet v%@\n%@\nThis will run in IOS 7 or higher version",version, deviceN];
+    
+    [UIAlertView myCostumeAlert:@"About" alertMessage:msg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    
 }
 @end

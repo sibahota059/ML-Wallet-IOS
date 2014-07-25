@@ -472,6 +472,10 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
+#pragma mark Button Webview
+- (IBAction)bntWebview:(id)sender {
+}
+
 
 - (IBAction)btn_Myprofile:(id)sender {
     AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];

@@ -49,6 +49,9 @@
 		3B1CE09F197E3F2E00F2AF31 /* ml_logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */; };
 		3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */; };
 		3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */; };
+		3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3028571981E8C9007825CE /* ResetPassViewController.m */; };
+		3B30285A1981E8C9007825CE /* ResetPassViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3028581981E8C9007825CE /* ResetPassViewController~iphone.xib */; };
+		3B30285E1981E8FE007825CE /* ResetPassViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B30285D1981E8FE007825CE /* ResetPassViewController~ipad.xib */; };
 		3B38F7711952C64C00EC3948 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B38F7701952C64C00EC3948 /* CoreLocation.framework */; };
 		3B38F7751952CE0600EC3948 /* ServiceConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B38F7741952CE0600EC3948 /* ServiceConnection.m */; };
 		3B38F7781952CE3700EC3948 /* DeviceID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B38F7771952CE3700EC3948 /* DeviceID.m */; };
@@ -274,6 +277,10 @@
 		3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_iphone.png; sourceTree = "<group>"; };
 		3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextfieldAnimate.h; sourceTree = "<group>"; };
 		3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextfieldAnimate.m; sourceTree = "<group>"; };
+		3B3028561981E8C9007825CE /* ResetPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPassViewController.h; sourceTree = "<group>"; };
+		3B3028571981E8C9007825CE /* ResetPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPassViewController.m; sourceTree = "<group>"; };
+		3B3028581981E8C9007825CE /* ResetPassViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPassViewController~iphone.xib"; sourceTree = "<group>"; };
+		3B30285D1981E8FE007825CE /* ResetPassViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPassViewController~ipad.xib"; sourceTree = "<group>"; };
 		3B38F7701952C64C00EC3948 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3B38F7731952CE0600EC3948 /* ServiceConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceConnection.h; sourceTree = "<group>"; };
 		3B38F7741952CE0600EC3948 /* ServiceConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceConnection.m; sourceTree = "<group>"; };
@@ -752,6 +759,8 @@
 		3BA7CCCF18B1D76600B9FC4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B3028581981E8C9007825CE /* ResetPassViewController~iphone.xib */,
+				3B30285D1981E8FE007825CE /* ResetPassViewController~ipad.xib */,
 				3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */,
 				3B9FC06E196D446E0035446F /* LoginViewController~ipad.xib */,
 				3BA7CD0418B22C2000B9FC4B /* MenuViewController~iphone.xib */,
@@ -763,6 +772,8 @@
 		3BA7CCD018B1D77800B9FC4B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B3028561981E8C9007825CE /* ResetPassViewController.h */,
+				3B3028571981E8C9007825CE /* ResetPassViewController.m */,
 				3BA7CD0218B22C2000B9FC4B /* MenuViewController.h */,
 				3BA7CD0318B22C2000B9FC4B /* MenuViewController.m */,
 				3BA7CCCA18B1D73B00B9FC4B /* LoginViewController.h */,
@@ -1297,6 +1308,7 @@
 				3B9FC104196E4D3E0035446F /* MenuViewController~ipad.xib in Resources */,
 				F081A05319776E55004568EF /* MLTermsConditionViewController~ipad.xib in Resources */,
 				7006620618DA77E900A0F05C /* profile_frame.jpg in Resources */,
+				3B30285A1981E8C9007825CE /* ResetPassViewController~iphone.xib in Resources */,
 				3B19518E18B6F5260061969F /* MLBackground2.png in Resources */,
 				3B19519E18B732030061969F /* textbox.png in Resources */,
 				7006622418DA823D00A0F05C /* black_check_credentials.png in Resources */,
@@ -1306,6 +1318,7 @@
 				3BB42E0018D6B6C60011792E /* content_bg.png in Resources */,
 				3BB924EC196FDCE9007E76A5 /* ReceiverAvatarViewController~ipad.xib in Resources */,
 				3BB42E0F18D6B6C60011792E /* tabbar_bg.png in Resources */,
+				3B30285E1981E8FE007825CE /* ResetPassViewController~ipad.xib in Resources */,
 				F081A05B19776F89004568EF /* MLHistoryViewController~iphone.xib in Resources */,
 				7006620A18DA78EF00A0F05C /* AccountInformation.xib in Resources */,
 				F081A05219776E55004568EF /* MLTermsConditionViewController~iphone.xib in Resources */,
@@ -1472,6 +1485,7 @@
 				F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */,
 				70EEA17D18D9C47800719BF7 /* SelectQuestionDialog.m in Sources */,
 				70EEA17918D9C46000719BF7 /* QuestionsActivity.m in Sources */,
+				3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */,
 				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
 				F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */,
 				3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */,
