@@ -92,11 +92,13 @@
                                                                  zoom:16];
     
     mapView_ = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
+    mapView_.settings.compassButton = YES;
     mapView_.myLocationEnabled = YES;
     mapView_.settings.myLocationButton = YES;
-    mapView_.settings.compassButton = YES;
     mapView_.delegate = self;
-    [self.view insertSubview:mapView_ atIndex:0];
+    self.view = mapView_;
+    
+    //[self.view insertSubview:mapView_ atIndex:0];
     [mapView_ addObserver:self
                forKeyPath:@"myLocation"
                   options:NSKeyValueObservingOptionNew
@@ -165,8 +167,6 @@
                                               [alert show];
                                               [HUD hide:YES];
                                               [HUD show:NO];
-                                              
-                                              
                                               
                                           }
                                           else if([directionsResponse isEqualToString:@"OK"]){
@@ -266,9 +266,8 @@
         circ.strokeColor = [UIColor redColor];
         circ.strokeWidth = 0.8;
         // circ.map = mapView_;
-        GMSCameraUpdate *upwards = [GMSCameraUpdate scrollByX:0 Y:50 ];
-        [mapView_ animateWithCameraUpdate:upwards];
         NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
+        
     }
 }
 
@@ -352,8 +351,6 @@
             circ.map = mapView_;
             mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
                                                              zoom:15.5];
-            GMSCameraUpdate *upwards = [GMSCameraUpdate scrollByX:0 Y:50 ];
-            [mapView_ animateWithCameraUpdate:upwards];
             
             
             
@@ -427,10 +424,6 @@
             circ.map = mapView_;
             mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
                                                              zoom:14.5];
-            GMSCameraUpdate *upwards = [GMSCameraUpdate scrollByX:0 Y:50 ];
-            [mapView_ animateWithCameraUpdate:upwards];
-            
-            
             
             NSLog(@"1000 Radius was selected.");
             NSUInteger count = [gmLat count];
@@ -502,9 +495,6 @@
             circ.map = mapView_;
             mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
                                                              zoom:13.9];
-            GMSCameraUpdate *upwards = [GMSCameraUpdate scrollByX:0 Y:50 ];
-            [mapView_ animateWithCameraUpdate:upwards];
-            
             
             
             NSLog(@"1500 Radius was selected.");
@@ -577,10 +567,7 @@
             circ.map = mapView_;
             mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
                                                              zoom:13.3];
-            GMSCameraUpdate *upwards = [GMSCameraUpdate scrollByX:0 Y:50 ];
-            [mapView_ animateWithCameraUpdate:upwards];
-            
-            
+
             
             NSLog(@"2000 Radius was selected.");
             NSUInteger count = [gmLat count];
@@ -647,8 +634,7 @@
             NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
             mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
                                                              zoom:15];
-            GMSCameraUpdate *upwards = [GMSCameraUpdate scrollByX:0 Y:50 ];
-            [mapView_ animateWithCameraUpdate:upwards];
+
             circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:100];
             //circ.fillColor = [UIColor whiteColor];
             circ.strokeColor = [UIColor redColor];
@@ -800,39 +786,7 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
-//mylocationbutton gmap
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    CGRect screenBound = [[UIScreen mainScreen] bounds];
-    CGSize screenSize = screenBound.size;
-    CGFloat screenHeight = screenSize.height;
-    NSInteger bar = (int)screenHeight;
-    NSString *inStr = [NSString stringWithFormat: @"%d", (int)bar];
-    NSLog(@"Screen Height : %@", inStr);
-    if(bar<=490){
-        mapView_.padding =
-        UIEdgeInsetsMake(self.topLayoutGuide.length + 100,
-                         0,
-                         self.bottomLayoutGuide.length + (bar*.4),
-                         0);
-    }
-    if(bar==1024){
-        mapView_.padding =
-        UIEdgeInsetsMake(self.topLayoutGuide.length + 100,
-                         0,
-                         self.bottomLayoutGuide.length + 140,
-                         0);
-    }
-    else {
-        mapView_.padding =
-        UIEdgeInsetsMake(self.topLayoutGuide.length + 100,
-                         0,
-                         self.bottomLayoutGuide.length + 100,
-                         0);
-        
-    }
-    
-}
+
+
 
 @end
