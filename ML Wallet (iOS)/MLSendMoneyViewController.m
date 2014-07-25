@@ -335,8 +335,11 @@
 
 #pragma mark - Display Rates View
 - (void)right{
+    
     self.tabBarController.selectedIndex = 1;
     [self.navigationController.tabBarController.navigationController popViewControllerAnimated:YES];
+    MLRatesTableViewController *ratess = [MLRatesTableViewController new];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckView" object:ratess];
     
 }
 

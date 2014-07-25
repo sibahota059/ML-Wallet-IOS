@@ -132,8 +132,6 @@
 - (void)dismissView{
     
     sm = [MLSendMoneyViewController new];
-    NSString *ch = sendout.getTotal;
-    sm.chTotal = ch;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object:sm];
     MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];

@@ -13,4 +13,5 @@
 @interface MLRatesTableViewController : UITableViewController<KpRatesDelegate, MBProgressHUDDelegate>
 
 @property (strong, nonatomic) NSDictionary *getRates;
+@property (strong, nonatomic) NSString *indicator;
 @end

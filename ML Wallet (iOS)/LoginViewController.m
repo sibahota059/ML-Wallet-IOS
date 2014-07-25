@@ -236,10 +236,13 @@
 #pragma mark - Button Rates
 - (IBAction)btnRates:(id)sender {
     
-    MLRatesTableViewController *rates = [[MLRatesTableViewController alloc]
-                                         initWithNibName:@"MLRatesTableViewController"
-                                         bundle:nil];
+    MLRatesTableViewController *rates = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
+    
+    rates.indicator = @"login";
+    
     [self.navigationController pushViewController:rates animated:YES];
+    self.navigationController.navigationBarHidden = NO;
+
 }
 
 #pragma mark --Location
