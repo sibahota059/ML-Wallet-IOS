@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuViewController : UIViewController <UIAlertViewDelegate>
+
 @property (strong, nonatomic) UITabBarController *tabBarController;
+@property (strong, nonatomic) NSMutableData *responseData;
+
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *imgPopup;
 
@@ -24,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblAccount;
 @property (strong, nonatomic) IBOutlet UILabel *lblUserName;
 @property (strong, nonatomic) IBOutlet UILabel *lblMenu;
+@property (strong, nonatomic) IBOutlet UILabel *lblNoAttempts;
 
 
 @property (strong, nonatomic) IBOutlet UIButton *pop_btnLocator;

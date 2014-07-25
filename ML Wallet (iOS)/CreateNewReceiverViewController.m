@@ -150,7 +150,7 @@
 #pragma Start #Navigator
 - (void)navigator
 {
-    self.title = @"NEW RECEIVER";
+    self.title = @"New Receiver";
     UIBarButtonItem *buttonAddReceiver = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"save.png"] style:UIBarButtonItemStyleDone  target:self action:@selector(saveReceiver)];
     self.navigationItem.rightBarButtonItem = buttonAddReceiver;
 }
@@ -168,9 +168,9 @@
     if ([lname isEqualToString:@""]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Lastname must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
         return;
-    } else if ([mname isEqualToString:@""]) {
-        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Middlename must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
-        return;
+//    } else if ([mname isEqualToString:@""]) {
+//        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Middlename must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
+//        return;
     } else if ([fname isEqualToString:@""]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Firstname must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
         return;

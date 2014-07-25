@@ -16,9 +16,10 @@
 #import "SaveWalletData.h"
 
 @interface MLSendMoneyViewController (){
+    
     UITapGestureRecognizer *tapRecognizer;
     double inputPrint, conv, bal, total, amountValue;
-    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname, *test;
+    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname;
     NSArray *checkdot;
     UIImage *right, *wrong;
     MLUI *getUI;
@@ -48,7 +49,6 @@
     if (self) {
         // Custom initialization
         //self.tabBarController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        test = chTotal;
     }
     return self;
 }
@@ -57,46 +57,48 @@
 {
     [super viewDidLoad];
     
-    //WaitScreen
+    //Create object of MBProgressHUD class and add progress dialog view
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     HUD.delegate = self;
     
-    //Show Animated
+    //Display the Progress Dialog
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];
     [self.view endEditing:YES];
     
-    // Do any additional setup after loading the view from its nib.
+    //Create object of MLUI, KpRates, GetReceiver, and DeviceID class
     getUI          =  [MLUI new];
     rates          =  [KpRates new];
     getReceiver    =  [GetReceiver new];
     di             =  [DeviceID new];
     
+    //Setting GetReceiver & KpRates delegate to this class
     getReceiver.delegate = self;
-    //self.title = @"SEND MONEYSSS";
-    self.tabBarController.navigationItem.title = @"SEND MONEY";
-    //self.tabBarController.navigationItem.titleView = [getUI navTitle:@"Send Moneys"];
+    rates.delegate = self;
     
+    //Create object on UIImage and set image on it
     wrong = [UIImage imageNamed:@"wrong.png"];
     right = [UIImage imageNamed:@"right.png"];
     
-    //create a bar button
+    //Create a NavigationBar Left & Right Button and add link
     next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
     home = [getUI navBarButton:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
     
-    [self.tabBarController.navigationItem setRightBarButtonItem:next];
-    [self.tabBarController.navigationItem setLeftBarButtonItem:home];
-    
+    //Set Up the Receivers View area
     [self setUpReceivers];
     
+    //Add background image of a view
     self.view_main.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
+    
+    //Setting fontsize of a label
     _label_balance.font = [UIFont boldSystemFontOfSize:24.0f];
     _chargeValue.font = [UIFont boldSystemFontOfSize:24.0f];
     _totalValue.font = [UIFont boldSystemFontOfSize:24.0f];
     
+    //Check if device is iphone or ipad and create object of UIImage and add image on it
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         image = [UIImage imageNamed:@"content_bg"];
@@ -108,34 +110,43 @@
         payment = [UIImage imageNamed:@"payment_bg_ipad"];
     }
     
-    
+    //Setting background image of a view
     self.view_sender.backgroundColor = [UIColor colorWithPatternImage:image];
     self.view_receiver.backgroundColor = [UIColor colorWithPatternImage:image];
     self.view_charge.backgroundColor = [UIColor colorWithPatternImage:payment];
     self.view_total.backgroundColor = [UIColor colorWithPatternImage:payment];
     
+    //Create a swipe Gesture Recognizer for swiping right
     [self swipe];
+    
+    //Add observer of a keyboard show/hide
     [self keyboardNotification];
     
-    rates.delegate = self;
-    getReceiver.delegate = self;
-    
+    //Call the loadRates methods in KpRates Class
     [rates loadRates];
     
+    //Create object of CLLocationManager to get the location, latitude, longitude
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
     [locationManager startUpdatingLocation];
     
+    //Create object of NSDictionary and load data from Property List
     dic = [NSDictionary initRead_LoadWallet_Data];
+    
+    //Get the value of walletno in Property List
     walletno = [dic objectForKey:@"walletno"];
+    
+    //Setup data about senderInfo and balance
     [self aboutSender];
     
+    //Register a notification to check  if Transaction is finished
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(clearAction:) name:@"NotificationMessageEvent" object:nil];
 }
 
-#pragma mark - Notification Clear All
+
+#pragma mark - Notification Called when Transaction is successful
 -(void) clearAction:(NSNotification *) notification
 {
 //    if ([notification.object isKindOfClass:[MLSendMoneyViewController class]])
@@ -146,6 +157,8 @@
 //    {
 //        NSLog(@"Nahuman nang transaction, d mao nga class");
 //    }
+    
+    //Set view after transaction
     _tf_amount.text = @"";
     _chargeValue.text = @"0.00";
     _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
@@ -154,33 +167,40 @@
     _receiverAddress.hidden = YES;
     [_btn_receiver setTitle:@"Select" forState:UIControlStateNormal];
     _receiverImage.image = [UIImage imageNamed:@"noImage.png"];
-    NSLog(@"Total: %@", _totalValue.text);
+
+    //Get the total ammount of transaction and deduct to the balance
     double getTotal = [_label_balance.text doubleValue] - [_totalValue.text doubleValue];
     _label_balance.text = [NSString stringWithFormat:@"%0.2f", getTotal];
     _totalValue.text = @"0.00";
     
+    //Get the user balance
     NSString *finalBalance = [NSString stringWithFormat:@"%@", _label_balance.text];
     
-    //Saving Data Plist
+    //Saving balance data to property list
     SaveWalletData *saveData = [SaveWalletData new];
     [saveData initSaveData:finalBalance forKey:@"balance"];
+    
 }
 
 #pragma mark - Sender Info
 - (void)aboutSender{
 
+    //Check if user middlename is empty and if not get the first character of a middlename and add dot and display
     if ([[NSString stringWithFormat:@"%@", [dic objectForKey:@"mname"]] isEqualToString:@""]) {
         smname = @"";
     }else{
         smname = [NSString stringWithFormat:@"%@.", [self capitalizeFirstChar:[[[dic objectForKey:@"mname"] substringToIndex:1] lowercaseString]]];
     }
     
+    //Get the user info and balance then capitalize each first character
     _senderName.text = [NSString stringWithFormat:@"%@, %@ %@", [self capitalizeFirstChar:[[dic objectForKey:@"lname"] lowercaseString]], [self capitalizeFirstChar:[[dic objectForKey:@"fname"] lowercaseString]], smname];
     _senderAddress.text = [dic objectForKey:@"address"];
     _label_balance.text = [NSString stringWithFormat:@"%@", [self convertDecimal:[[dic objectForKey:@"balance"] doubleValue]]];
-    //_label_balance.text = [NSString stringWithFormat:@"%0.2f", [[dic objectForKey:@"balance"] doubleValue]];
+
+    //Convert the user base64string image and set to NSData object
     NSData *data = [[NSData alloc] initWithBase64EncodedString:[dic objectForKey:@"photo"] options: NSDataBase64DecodingIgnoreUnknownCharacters];
     
+    //Check if user image is empty or not and set corresponding image
     if ([UIImage imageWithData:data] == nil) {
         _senderImage.image = [UIImage imageNamed:@"noImage.png"];
     }else{
@@ -189,9 +209,6 @@
     
 }
 
--(void)didSuccessPreview:(MLPreviewViewController *)controller receiverFname:(NSString *)log{
-    NSLog(@"%@", log);
-}
 
 #pragma mark - Capital 1st Letter
 - (NSString *)capitalizeFirstChar:(NSString *)str{
@@ -211,23 +228,32 @@
     return newStr;
 }
 
-#pragma Retrieving Rates Done
+#pragma mark - Retrieving Rates Done
 - (void)didFinishLoadingRates:(NSString *)indicator{
     
+    //Store the rates data return from webservice into static array
     NSArray *ratess = [rates.getRates objectForKey:@"getChargeValuesResult"];
+    
+    //Parse the data of <chargeList>k__BackingField and stored in mutable array
     getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
     
+    //Get the value of respcode and respmessage
     NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
     NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
     
+    //Check if response is successful or not
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
+        
+        //store the NSDicationary rates data to mutable array
         getCharges = rates.getRates;
+        
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
     
+    //Call Webservice to get the list of receiver
     [getReceiver getReceiverWalletNo:walletno];
 
 }
@@ -235,13 +261,21 @@
 #pragma Retrieving Receivers Done
 - (void)didFinishLoadingReceiver:(NSString *)indicator{
     
+    //Store the NSDicationary receivers data to static array
     NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
+    
+    //Store the value of <receiverList>k__BackingField arry to mutable array
     getValueReceiver = [receiver valueForKey:@"<receiverList>k__BackingField"];
+    
+    //Get the repscode, respmessage, and number of receiver
     NSString *respcode    = [receiver valueForKey:@"<respcode>k__BackingField"];
     NSString *respmessage = [receiver valueForKey:@"<respmessage>k__BackingField"];
     NSString *rcounter = [receiver valueForKey:@"<counter>k__BackingField"];
     
+    //Check if getting the receiver is successful or not
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
+        
+        //Store the NSDicationary receivers data to NSDicatonary for MLGetReceiverClass usage
         getReceivers = getReceiver.getReceiver;
     
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
@@ -250,12 +284,15 @@
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
     
+    //Set the number of receiver in a label
     _countReceiver.text =[NSString stringWithFormat:@"You have %@ receivers.", rcounter];
     
+    //If user has no receiver, disable the button to select receiver
     if ([[NSString stringWithFormat:@"%@", rcounter] isEqualToString:@"0"]) {
         _btn_receiver.enabled = NO;
     }
     
+    //dismiss the progress dialog
     [HUD hide:YES];
     [HUD show:NO];
 }
@@ -327,7 +364,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self registerForKeyboardNotifications];
-    self.tabBarController.navigationItem.title = @"Send Money";
+    self.tabBarController.navigationItem.title = @"SEND MONEY";
     [self.tabBarController.navigationItem setRightBarButtonItem:next];
     [self.tabBarController.navigationItem setLeftBarButtonItem:home];
 
@@ -362,12 +399,19 @@
 #pragma mark - Click Button Preview
 - (IBAction)btn_preview:(id)sender {
     
+    //Hide the keyboard
+    [_tf_amount resignFirstResponder];
+    
+    //Validating user input
     if (getRlname == nil && getRfname == nil) {
          [getUI displayAlert:@"Message" message:@"Please provide a receiver!"];
     }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] isEqualToString:@""]){
          [getUI displayAlert:@"Message" message:@"Please enter an amount!"];
+    }else if ([[_tf_amount.text componentsSeparatedByString:@"."] count]>2) {
+         [getUI displayAlert:@"Message" message:@"Invalid Ammount!"];
     }else{
         
+        //Create object of MLPreviewViewController and pass data to it
         MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
         preview._senderLname    =  [self capitalizeFirstChar:[[dic objectForKey:@"lname"] lowercaseString]];
         preview._senderFname    =  [self capitalizeFirstChar:[[dic objectForKey:@"fname"] lowercaseString]];
@@ -387,8 +431,10 @@
         preview._location       = [dic objectForKey:@"address"];
         preview._receiverNo     = getRnumber;
     
-        preview.delegate = self;
+    //hide tabBar
     preview.hidesBottomBarWhenPushed = YES;
+        
+    //Pushing to MLPreviewViewController
     [self.navigationController pushViewController:preview animated:YES];
         
     }
@@ -413,6 +459,7 @@
 #pragma mark - didSelectReceiver Delegate Called
 - (void)didSelectReceiver:(MLReceiverTableViewController *)controller receiverFname:(NSString *)rfname receiverMname:(NSString *)rmname receiverLname:(NSString *)rlname receiverImage:(NSString *)rimage receiverAddress:(NSString *)raddress receiverRelation:(NSString *)rrelation rnumber:(NSString *)rnumber{
     
+    //Set empty to corresponding label
     _tf_amount.text = @"";
     _chargeValue.text = @"0.00";
     _totalValue.text = @"0.00";
@@ -421,47 +468,55 @@
     //[self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
     
+    //Convert the receiver base64string to data
     NSData *data = [[NSData alloc] initWithBase64EncodedString:rimage options: NSDataBase64DecodingIgnoreUnknownCharacters];
     
+    //Create UIImage object and check if receiver has image or not and add corresponding image
     if ([UIImage imageWithData:data] == nil) {
         _receiverImage.image = [UIImage imageNamed:@"noImage.png"];
     }else{
         _receiverImage.image = [UIImage imageWithData:data];
     }
     
+    //getting the lname and more of receiver
     getRlname   = rlname;
     getRfname   = rfname;
     getRmname   = rmname;
     getRimage   = rimage;
     getRnumber  = rnumber;
     
+    //setting the name of a receiver to a label
     _receiverName.text = [NSString stringWithFormat:@"%@, %@ %@", rlname, rfname, rmname];
     _receiverAddress.text = raddress;
     
+    //setup receivers view
     [self setUpReceivers];
 }
 
 #pragma mark - getting the charge & total
 -(void)setAmount:(double)input{
     
+    //Store rates NSDictionarry data to static array
     NSArray *ratess = [getCharges objectForKey:@"getChargeValuesResult"];
+    
+    //Store the value of array into NSMutable array
     getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
     
-    
+    //Looping value of rates in corresponding amount input
     for (NSDictionary *items in getValueRates) {
         
+        //Getting the minimum, maximum, charge data
         NSString *minAmount  = [items valueForKey:@"minAmount"];
         NSString *maxAmount  = [items valueForKey:@"maxAmount"];
         NSString *ch  = [items valueForKey:@"chargeValue"];
+        
+        //Set corresponding value
         int charge = [ch integerValue];
         int min = [minAmount integerValue];
         int max = [maxAmount integerValue];
         
-//        NSString * grLname = getRlname;
-//        NSString * grFname = getRfname;
-//        NSString * grMname = getRmname;
-        
-        if ([[NSString stringWithFormat:@"%@", [getRlname uppercaseString]] isEqualToString:@"GAUDICOS"] && [[NSString stringWithFormat:@"%@", [getRfname uppercaseString]] isEqualToString:@"ALBERT"] && [[NSString stringWithFormat:@"%@", [getRmname uppercaseString]] isEqualToString:@""]) {
+        //User sending to it's own
+        if ([[NSString stringWithFormat:@"%@", [getRlname uppercaseString]] isEqualToString:[[dic objectForKey:@"lname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRfname uppercaseString]] isEqualToString:[[dic objectForKey:@"fname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRmname uppercaseString]] isEqualToString:[[dic objectForKey:@"mname"]uppercaseString]]) {
             
             string1 = [NSString stringWithFormat:@"%@", @"0.00"];
             inputPrint = input;
@@ -470,6 +525,7 @@
             break;
         }
         
+        //User sending to another
         if(input > min && input <= max){
             
             string1 = [NSString stringWithFormat:@"%@", ch];
@@ -487,15 +543,21 @@
         
     }
     
+    //Count the number of dots inputed
     checkdot = [newString componentsSeparatedByString:@"."];
     conv = [string1 doubleValue];
     total = conv + input;
+    
+    //Get the user balance
     bal = [[dic objectForKey:@"balance"] doubleValue];
+    
+    //Check if total is greater than balance
     if (total > bal) {
         [getUI displayAlert:@"Validation Error" message:@"Insuficient Balance!"];
         _tf_amount.rightView = [[UIImageView alloc] initWithImage:wrong];
     }
     
+    //Validating valid amoutn input
     if([checkdot count] >=3){
         _tf_amount.rightView = [[UIImageView alloc] initWithImage:wrong];
         [getUI displayAlert:@"Validation Error" message:@"Invalid Amount!"];
