@@ -102,7 +102,7 @@
 #pragma Start #Navigator
 - (void)navigator
 {
-    self.title = @"MY RECEIVER";
+    self.title = @"My Receiver";
     UIBarButtonItem *buttonEdit = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"edit_image.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(EditReceiver)];
     
     UIBarButtonItem *buttonDelete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(DeleteReceiver)];

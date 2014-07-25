@@ -13,6 +13,7 @@
                 <outlet property="lblDate" destination="HNa-UJ-lTc" id="7EU-v1-Lap"/>
                 <outlet property="lblMain" destination="I7e-8T-MRv" id="fY1-P5-Nfv"/>
                 <outlet property="lblMenu" destination="g1Y-YN-ily" id="DGk-Zp-UBo"/>
+                <outlet property="lblNoAttempts" destination="kZ5-No-ofh" id="odz-Fb-H43"/>
                 <outlet property="lblUserName" destination="6RE-RL-JH5" id="MyD-gR-IwE"/>
                 <outlet property="lblWalletno" destination="dnC-GC-LKV" id="YXw-7r-sHc"/>
                 <outlet property="pop_btnInfo" destination="bBz-o7-mWS" id="Krf-3e-nKW"/>
@@ -203,6 +204,19 @@
                                                 <action selector="btn_SendMoney:" destination="-1" eventType="touchUpInside" id="uc1-LI-uVf"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZ5-No-ofh">
+                                            <rect key="frame" x="907" y="382" width="92" height="12"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No. Attempts:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RF-Eo-L4C">
+                                            <rect key="frame" x="807" y="384" width="106" height="12"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <gestureRecognizers/>
                                 </view>

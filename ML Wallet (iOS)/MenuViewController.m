@@ -20,13 +20,18 @@
 #import "MLHistoryViewController.h"
 #import "NSDictionary+LoadWalletData.h"
 #import "MapViewController.h"
+#import "ServiceConnection.h"
+#import "SaveWalletData.h"
+
+
 #define  VIEW_HIDDEN -320
 #define  VIEW_HIDDEN_IPAD -580
 
 
 @interface MenuViewController ()
 {
-        MLUI *getUI;
+    MLUI *getUI;
+    NSNumber *walletno;
 }
 @end
 
@@ -37,7 +42,7 @@
 
 @synthesize topLayer = _topLayer;
 @synthesize layerPosition = _layerPosition;
-
+@synthesize responseData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,13 +55,75 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self getDataPlist];
+    //Refresh user
+    self.responseData = [NSMutableData data];
+    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"RefreshUser/?walletno"];
+    NSString *srvcURL = [NSString stringWithFormat:@"%@=%@",srvcURL1, walletno];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
     NSLog(@"On resume");
 }
+
+#pragma mark -NSURLConnection Delegate
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+}
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return YES;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [responseData setLength:0];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [responseData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    // convert to JSON
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    if (myError == nil){
+        NSArray *result = [res valueForKey:@"RefreshUserResult"];
+        
+        NSNumber *respCode  = [result valueForKey:@"respcode"];
+        NSString *respMesg  = [result valueForKey:@"respmessage"];
+        NSLog(@"Respmessage %@",respMesg);
+        
+        NSString *bal          = [result valueForKey:@"walletno"] ; //Itz Balance not wallet
+        int attemps           = (int)[[result valueForKey:@"noofattempt"] integerValue] ;
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:0]]) //Success
+        {
+            SaveWalletData *saveData = [SaveWalletData new];
+            [saveData initSaveData:bal forKey:@"balance"];
+            self.lblNoAttempts.text = [NSString stringWithFormat:@"%d", attemps];
+        }
+        
+        [self getDataPlist];
+    }
+    
+}
+
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self hidePopUP];
     isClickPopUp = TRUE;
     
@@ -108,6 +175,7 @@
     self.lblUserName.text   = self.fullname;
     self.lblBalance.text    = [NSString stringWithFormat:@"%@", [self convertDecimal:[[dic objectForKey:@"balance"] doubleValue]]];
     self.lblWalletno.text   = [dic valueForKey:@"walletno"];
+    walletno                = [dic valueForKey:@"walletno"];
     self.lblDate.text       = [self getCurrentDate];
     
 }

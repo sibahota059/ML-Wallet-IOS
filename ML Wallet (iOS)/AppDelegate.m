@@ -32,7 +32,7 @@
     CGFloat navTitleTextSize;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        navTitleTextSize = 18.0;
+        navTitleTextSize = 16.0;
     }
     else {
         navTitleTextSize = 22.0;
@@ -42,7 +42,7 @@
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = UIColorFromR(0x323232);
     shadow.shadowOffset = CGSizeMake(0, 1);
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Helvetica-Bold" size:navTitleTextSize], NSFontAttributeName, nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName, shadow, NSShadowAttributeName, [UIFont fontWithName:@"Arial" size:navTitleTextSize], NSFontAttributeName, nil];
     self.navigationController.navigationBar.titleTextAttributes = dic;
     
     

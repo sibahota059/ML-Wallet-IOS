@@ -123,7 +123,7 @@
 		3BC3828118C0330A00270567 /* mlcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828018C0330900270567 /* mlcard.png */; };
 		3BC3828318C0359B00270567 /* ban.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828218C0359B00270567 /* ban.png */; };
 		3BC3828B18C0958900270567 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3828918C0958900270567 /* InfoViewController.m */; };
-		3BC3828C18C0958900270567 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828A18C0958900270567 /* InfoViewController.xib */; };
+		3BC3828C18C0958900270567 /* InfoViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828A18C0958900270567 /* InfoViewController~iphone.xib */; };
 		3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828D18C095B500270567 /* ic_faq.9.png */; };
 		3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828F18C095BB00270567 /* ic_contact.9.png */; };
 		3BC3829218C095D200270567 /* ic_about.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3829118C095D200270567 /* ic_about.9.png */; };
@@ -367,7 +367,7 @@
 		3BC3828218C0359B00270567 /* ban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ban.png; sourceTree = "<group>"; };
 		3BC3828818C0958900270567 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		3BC3828918C0958900270567 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		3BC3828A18C0958900270567 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		3BC3828A18C0958900270567 /* InfoViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InfoViewController~iphone.xib"; sourceTree = "<group>"; };
 		3BC3828D18C095B500270567 /* ic_faq.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_faq.9.png; sourceTree = "<group>"; };
 		3BC3828F18C095BB00270567 /* ic_contact.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_contact.9.png; sourceTree = "<group>"; };
 		3BC3829118C095D200270567 /* ic_about.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_about.9.png; sourceTree = "<group>"; };
@@ -1055,7 +1055,8 @@
 		3BC3828718C0953C00270567 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3BC3828A18C0958900270567 /* InfoViewController.xib */,
+				3BC3828A18C0958900270567 /* InfoViewController~iphone.xib */,
+				3B1BD6A6198115C800E234C5 /* InfoViewController~ipad.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1273,7 +1274,7 @@
 				F081A05E19776F89004568EF /* MLHistoryTableViewCell~ipad.xib in Resources */,
 				3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
-				3BC3828C18C0958900270567 /* InfoViewController.xib in Resources */,
+				3BC3828C18C0958900270567 /* InfoViewController~iphone.xib in Resources */,
 				7006622018DA81DD00A0F05C /* radio_button_selected.png in Resources */,
 				3BC3828118C0330A00270567 /* mlcard.png in Resources */,
 				3BB42E1218D6B6C60011792E /* wrong.png in Resources */,
@@ -1370,6 +1371,7 @@
 				708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */,
 				F05C5F4618E137AF002F2EE1 /* ic_seal_pending.png in Resources */,
 				3BB42E0418D6B6C60011792E /* noImage.png in Resources */,
+				3B1BD6A7198115C800E234C5 /* InfoViewController~ipad.xib in Resources */,
 				3BB42E0718D6B6C60011792E /* pin_bg.png in Resources */,
 				3BC3829218C095D200270567 /* ic_about.9.png in Resources */,
 				F081A04C19776E55004568EF /* MLRatesTableViewController~iphone.xib in Resources */,

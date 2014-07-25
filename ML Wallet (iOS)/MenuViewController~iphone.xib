@@ -13,6 +13,7 @@
                 <outlet property="lblDate" destination="6hz-YF-aen" id="yJu-FZ-qlu"/>
                 <outlet property="lblMain" destination="JQo-EO-OwJ" id="KK6-K0-Vq6"/>
                 <outlet property="lblMenu" destination="FgC-W1-GP4" id="vTd-7p-dfU"/>
+                <outlet property="lblNoAttempts" destination="KQm-JM-CnV" id="VMC-Do-hgr"/>
                 <outlet property="lblUserName" destination="sVO-2a-tZW" id="OIX-fS-CCL"/>
                 <outlet property="lblWalletno" destination="fjN-k2-Rt7" id="OBr-Zr-pwE"/>
                 <outlet property="pop_btnInfo" destination="D7C-ee-iXt" id="Ta1-VI-PMn"/>
@@ -118,7 +119,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="rES-If-Hf3">
-                                            <rect key="frame" x="488" y="262" width="84" height="30"/>
+                                            <rect key="frame" x="488" y="287" width="84" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                             <state key="normal" title="TOP UP" backgroundImage="btn2.png">
@@ -169,7 +170,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KTk-Xm-dkK">
-                                            <rect key="frame" x="450" y="242" width="31" height="12"/>
+                                            <rect key="frame" x="450" y="267" width="31" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -188,7 +189,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue, Feb. 18, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6hz-YF-aen">
-                                            <rect key="frame" x="488" y="242" width="127" height="12"/>
+                                            <rect key="frame" x="488" y="267" width="127" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
@@ -198,7 +199,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Qsg-W6-m2q">
-                                            <rect key="frame" x="397" y="262" width="84" height="30"/>
+                                            <rect key="frame" x="397" y="287" width="84" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                             <state key="normal" title="SEND MONEY" backgroundImage="btn2.png"/>
@@ -208,6 +209,19 @@
                                                 <action selector="btn_SendMoney:" destination="-1" eventType="touchUpInside" id="3bB-2D-FSN"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No. Attempts:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KkA-8p-r0e">
+                                            <rect key="frame" x="411" y="247" width="73" height="12"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KQm-JM-CnV">
+                                            <rect key="frame" x="488" y="247" width="127" height="12"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <gestureRecognizers/>
                                 </view>
