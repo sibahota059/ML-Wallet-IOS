@@ -94,9 +94,9 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
     //Setting fontsize of a label
-    _label_balance.font = [UIFont boldSystemFontOfSize:24.0f];
-    _chargeValue.font = [UIFont boldSystemFontOfSize:24.0f];
-    _totalValue.font = [UIFont boldSystemFontOfSize:24.0f];
+    //_label_balance.font = [UIFont boldSystemFontOfSize:24.0f];
+    //_chargeValue.font = [UIFont boldSystemFontOfSize:24.0f];
+    //_totalValue.font = [UIFont boldSystemFontOfSize:24.0f];
     
     //Check if device is iphone or ipad and create object of UIImage and add image on it
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -207,8 +207,8 @@
         _senderImage.image = [UIImage imageWithData:data];
     }
     
+    
 }
-
 
 #pragma mark - Capital 1st Letter
 - (NSString *)capitalizeFirstChar:(NSString *)str{
@@ -412,6 +412,8 @@
          [getUI displayAlert:@"Message" message:@"Please enter an amount!"];
     }else if ([[_tf_amount.text componentsSeparatedByString:@"."] count]>2) {
          [getUI displayAlert:@"Message" message:@"Invalid Ammount!"];
+    }else if (total > bal) {
+        [getUI displayAlert:@"Validation Error" message:@"Insuficient Balance!"];
     }else{
         
         //Create object of MLPreviewViewController and pass data to it
@@ -571,11 +573,22 @@
 #pragma mark - Supply corresponding charge & total on amount
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    newString = [_tf_amount.text stringByReplacingCharactersInRange:range withString:string];
+    //User are allowed to input for example 11111.111.
+    NSString *newStrings = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *expression = @"^([0-9]{1,5})?(\\.([0-9]{1,3})?)?$";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:newStrings
+                                                        options:0
+                                                          range:NSMakeRange(0, [newStrings length])];
     [_tf_amount setRightViewMode:UITextFieldViewModeAlways];
     
-    amountValue = [newString doubleValue];
+    amountValue = [newStrings doubleValue];
     [self setAmount:amountValue];
+    
+    if (numberOfMatches == 0)
+        return NO;
     
     return YES;
 }
