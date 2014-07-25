@@ -12,9 +12,8 @@
 #import "KpRates.h"
 #import "GetReceiver.h"
 #import "MBProgressHUD.h"
-#import "MLPreviewViewController.h"
 
-@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate, MLPreviewViewControllerDelegate>
+@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate>
 
 //@property (weak, nonatomic) id<GetKptnDelegate>delegate;
 
