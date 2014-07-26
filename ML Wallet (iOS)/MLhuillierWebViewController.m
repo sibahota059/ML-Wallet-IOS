@@ -34,7 +34,6 @@
     
     // Do any additional setup after loading the view from its nib.
     NSURL*url=[NSURL URLWithString:@"http://mlhuillier.com"];
-    //NSURL*url=[NSURL URLWithString:@"http://google.com"];
     NSURLRequest*request=[NSURLRequest requestWithURL:url];
     [self.mLhuillierWebView loadRequest:request];
     self.mLhuillierWebView.delegate = self;
@@ -105,15 +104,13 @@
     frame.size.width = width;
     self.mLhuillierWebView.frame = frame;
     self.mLhuillierWebView.frame=self.view.bounds;
-    
+    self.navigationItem.leftBarButtonItem.enabled = NO;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     
     NSLog(@"WebView Loading Started");
     self.mLhuillierWebView.scrollView.contentOffset = CGPointMake(0,120);
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
-    self.navigationItem.leftBarButtonItem.enabled = NO;
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-    
     HUD.delegate = self;
     HUD.labelText = @"Please wait";
     HUD.square = YES;
@@ -125,30 +122,37 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)mLhuillierWebView
 {
+    NSLog(@"didFinish: %@; stillLoading:%@", [[self.mLhuillierWebView request]URL],
+          (self.mLhuillierWebView.loading?@"NO":@"YES"));
+    
     self.navigationItem.leftBarButtonItem.enabled = YES;
     self.navigationItem.rightBarButtonItem.enabled = YES;
     self.mLhuillierWebView.scrollView.contentOffset = CGPointMake(0,120);
-    // [self.mLhuillierWebView.scrollView scrollRectToVisible:CGRectMake(0, self.mLhuillierWebView.bounds.size.height + 120, 1, 1) animated:NO];
     NSLog(@"WebView Success Loading");
     [HUD hide:YES];
     [HUD show:NO];
+
     
 }
 
 -(void)webView:(UIWebView *)mLhuillierWebView didFailLoadWithError:(NSError *)error{
+    NSLog(@"didFail: %@; stillLoading:%@", [[self.mLhuillierWebView request]URL],
+          (self.mLhuillierWebView.loading?@"NO":@"YES"));
     NSLog(@"WebView Error : %@",error.localizedDescription);
-    self.navigationItem.leftBarButtonItem.enabled = YES;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    
     [HUD hide:YES];
     [HUD show:NO];
+    self.navigationItem.leftBarButtonItem.enabled = YES;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     [UIAlertView myCostumeAlert:@"Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
+
 }
 //detect webview scrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //  NSLog(@"scrolled:::");
     if([scrollView isEqual:self.mLhuillierWebView.scrollView]) {
         float webViewScrollPosition = self.mLhuillierWebView.scrollView.contentOffset.y;
-        NSLog(@"Scroll : %f",webViewScrollPosition);
+        //NSLog(@"Scroll : %f",webViewScrollPosition);
         if(webViewScrollPosition <= 119) {
             [self.mLhuillierWebView.scrollView scrollRectToVisible:CGRectMake(0, self.mLhuillierWebView.bounds.size.height + 120, 1, 1) animated:NO];
         }
