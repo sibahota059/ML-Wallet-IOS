@@ -107,10 +107,6 @@
 #pragma mark - Retrieve Rates Data from Webservice
 - (void)didFinishLoadingRates:(NSString *)indicator{
     
-    //Hide Progress Bar
-    [HUD hide:YES];
-    [HUD show:NO];
-    
     //Store the NSDictionary rates data into static array
     NSArray *ratess       = [rate.getRates objectForKey:@"getChargeValuesResult"];
     
@@ -149,6 +145,10 @@
     
     //reload tableview after retrieving
     [self.tableView reloadData];
+    
+    //Hide Progress Bar
+    [HUD hide:YES];
+    [HUD show:NO];
 }
 
 #pragma mark - Create Gesture to swipe left
