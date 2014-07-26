@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResetPassViewController : UIViewController
+@interface ResetPassViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+{
+    NSMutableArray *searchWhereOptions;
+    UIActionSheet *actionSheet;
+    IBOutlet UILabel *searchWhere;
+    NSInteger selectedOption;
+}
+@property (strong, nonatomic) IBOutlet UITextField *lblUsername;
+@property (strong, nonatomic) IBOutlet UITextField *lblEmail;
+@property (strong, nonatomic) IBOutlet UITextField *lblSecQuestion;
+@property (strong, nonatomic) IBOutlet UITextField *lblAnswer;
 
+- (IBAction)showSearchWhereOptions:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *SecQuestion;
 @end
