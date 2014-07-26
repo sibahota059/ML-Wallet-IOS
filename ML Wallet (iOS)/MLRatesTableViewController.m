@@ -9,6 +9,8 @@
 #import "MLRatesTableViewController.h"
 #import "MLUI.h"
 #import "MLRatesTableViewCell.h"
+#import "MenuViewController.h"
+#import "LoginViewController.h"
 
 @interface MLRatesTableViewController (){
     
@@ -54,11 +56,52 @@
     //Set the KpRates delegate to this class
     rate.delegate = self;
     
+    //customize the icon for back button and call the btn_back method
+    UIBarButtonItem *home = [getUI navBarButtonRates:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
+    
+    //set the bar button home to left
+    [self.navigationItem setLeftBarButtonItem:home];
+    
     //Call swipe methods to swipe left
     [self swipe];
     
     //Call the loadRates method of KpRates to retrieve data from webservice
     [rate loadRates];
+    
+    //Register a notification to check  if Transaction is finished
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(chooseTab:) name:@"CheckView" object:nil];
+}
+
+#pragma mark - Notification Called when Transaction is successful
+-(void) chooseTab:(NSNotification *) notification
+{
+
+    self.tabBarController.navigationItem.title = @"MLKP RATES";
+    self.tabBarController.navigationItem.hidesBackButton = YES;
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    
+}
+
+#pragma mark - Back Button
+- (IBAction)btn_back:(id)sender {
+    
+    NSLog(@"%@", _indicator);
+    if ([_indicator isEqualToString:@"login"])
+    {
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+    else
+    {
+        self.navigationController.navigationBarHidden = YES;
+        MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
+        [self.navigationController popToViewController:smv animated:NO];
+    }
+    
+    
+    
 }
 
 #pragma mark - Retrieve Rates Data from Webservice
@@ -185,10 +228,9 @@
 #pragma mark - Set Up Rates Navigation
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tabBarController.navigationItem.title = @"MLKP RATES";
-    self.tabBarController.navigationItem.hidesBackButton = YES;
-    self.tabBarController.navigationItem.leftBarButtonItem = nil;
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    
+    self.navigationItem.title = @"MLKP RATES";
+
 }
 
 @end

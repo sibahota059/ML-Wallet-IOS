@@ -12,7 +12,7 @@
 
 @interface MLHistoryViewController (){
     NSArray *date, *type, *amount, *balance;
-    UIBarButtonItem *back, *right;
+    UIBarButtonItem *back, *right, * rightPending;
     MLUI *getUI;
 }
 
@@ -32,17 +32,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Create object of MLUI class
     getUI = [MLUI new];
     
+    //Show the navigation bar
     self.navigationController.navigationBarHidden = NO;
+    
+    //Create object of navigation bar button
     back = [getUI navBarButtonHistory:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
-    right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_preview.png"];
+    right = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_preview.png"];
+    rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_preview.png"];
+    
+    //Set background image of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
+    //Setting navigationbar button
     [self.navigationItem setLeftBarButtonItem:back];
-    [self.navigationItem setRightBarButtonItem:right];
-    //self.navigationItem.titleView = [getUI navTitle:@"History"];
-    self.title = @"History";
+    self.navigationItem.rightBarButtonItems = @[right,rightPending];
+    
+    //Set Title
+    self.title = @"HISTORY";
     
     // Do any additional setup after loading the view from its nib.
     date = [NSArray arrayWithObjects:@"January 01, 2014", @"February 01, 2014", @"March 01, 2014", @"April 01, 2014", @"May 01, 2014", @"June 01, 2014", @"July 01, 2014", @"August 01, 2014", @"September 01, 2014", @"October 01, 2014", @"November 01, 2014", @"December 01, 2014", nil];
@@ -52,19 +62,26 @@
     amount = [NSArray arrayWithObjects:@"100.00", @"200.00", @"300.00", @"400.00", @"500.00", @"600.00", @"700.00", @"800.00", @"900.00", @"1000.00", @"1100.00", @"1200.00", nil];
     
     balance = [NSArray arrayWithObjects:@"100.00", @"200.00", @"300.00", @"400.00", @"500.00", @"600.00", @"700.00", @"800.00", @"900.00", @"1000.00", @"1100.00", @"1200.00", nil];
-    
-    //self.viewHistoryHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navbar_bg.png"]];
+
 }
 
+#pragma mark - Back Button Pressed
 - (IBAction)btn_back:(id)sender {
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - Display All Transaction Button Pressed
 - (IBAction)btn_sendPreview:(id)sender {
-    [getUI displayAlert:@"Message" message:@"This will send preview of transaction to email and function it later."];
+    [getUI displayAlert:@"Message" message:@"Display all transaction."];
 }
 
+#pragma mark - Display List Pending Transaction Button Pressed
+- (IBAction)btn_pending:(id)sender {
+    [getUI displayAlert:@"Message" message:@"Display list of pending transactions."];
+}
+
+#pragma mark - Hide Status Bar
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
@@ -141,6 +158,7 @@
     return 44;
 }
 
+#pragma mark - Dismiss Preview View
 - (IBAction)btnClose:(id)sender {
     _view_fade.hidden = YES;
     _view_transform.hidden = YES;

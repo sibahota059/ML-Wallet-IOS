@@ -67,7 +67,9 @@
     [NSURLConnection connectionWithRequest:request delegate:self];
     
     NSLog(@"On resume");
+    
 }
+
 
 #pragma mark -NSURLConnection Delegate
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -315,7 +317,13 @@
 
 #pragma Start Click Popup Button Rate
 - (IBAction)pop_ActbtnRate:(id)sender {
-    [UIAlertView myCostumeAlert:@"Button Rate" alertMessage:@"You click me" delegate:nil cancelButton:nil otherButtons:@"OK"];
+//    [UIAlertView myCostumeAlert:@"Button Rate" alertMessage:@"You click me" delegate:nil cancelButton:nil otherButtons:@"OK"];
+    
+    MLRatesTableViewController *rates = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
+    
+    
+    [self.navigationController pushViewController:rates animated:YES];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 #pragma Start Click Popup Button Locator

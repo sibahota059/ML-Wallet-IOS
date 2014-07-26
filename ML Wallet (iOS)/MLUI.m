@@ -81,6 +81,13 @@
     return myNavBtn;
 }
 
+- (UIBarButtonItem *)navBarButtonRates:(MLRatesTableViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename{
+    
+    UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imagename] style:UIBarButtonItemStylePlain target:controller action:link];
+    
+    return myNavBtn;
+}
+
 - (UIBarButtonItem *)navBarButtonTc:(MLTermsConditionViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename{
     
     UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imagename] style:UIBarButtonItemStylePlain target:controller action:link];
