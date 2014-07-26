@@ -22,6 +22,7 @@
 #import "MapViewController.h"
 #import "ServiceConnection.h"
 #import "SaveWalletData.h"
+#import "MLhuillierWebViewController.h"
 
 
 #define  VIEW_HIDDEN -320
@@ -482,6 +483,11 @@
 
 #pragma mark Button Webview
 - (IBAction)bntWebview:(id)sender {
+    MLhuillierWebViewController *webViewController = [[MLhuillierWebViewController alloc]
+                                                      initWithNibName:@"MLhuillierWebViewController"
+                                                      bundle:nil];
+    
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 
