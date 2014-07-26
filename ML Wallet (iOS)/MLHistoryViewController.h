@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoadHistory.h"
+#import "MBProgressHUD.h"
 
-@interface MLHistoryViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface MLHistoryViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, LoadHistoryDelegate, MBProgressHUDDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tblHistory;
 @property (weak, nonatomic) IBOutlet UIView *view_header;
@@ -23,5 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelKptn;
 @property (weak, nonatomic) IBOutlet UILabel *labelReceiverId;
 @property (weak, nonatomic) IBOutlet UILabel *labelType;
+@property (weak, nonatomic) IBOutlet UIImageView *img_status;
 
 @end

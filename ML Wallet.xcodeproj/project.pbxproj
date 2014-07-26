@@ -226,6 +226,9 @@
 		F081A05E19776F89004568EF /* MLHistoryTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F081A05A19776F89004568EF /* MLHistoryTableViewCell~ipad.xib */; };
 		F081A06019777613004568EF /* payment_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F081A05F19777613004568EF /* payment_bg_ipad.png */; };
 		F081A0631977A6C7004568EF /* CheckPin.m in Sources */ = {isa = PBXBuildFile; fileRef = F081A0621977A6C7004568EF /* CheckPin.m */; };
+		F0BE7CA4198336C300D0946B /* LoadHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = F0BE7CA3198336C300D0946B /* LoadHistory.m */; };
+		F0BE7CA71983771500D0946B /* ic_seal_cancelled.png in Resources */ = {isa = PBXBuildFile; fileRef = F0BE7CA51983771500D0946B /* ic_seal_cancelled.png */; };
+		F0BE7CA81983771500D0946B /* ic_seal_claimed.png in Resources */ = {isa = PBXBuildFile; fileRef = F0BE7CA61983771500D0946B /* ic_seal_claimed.png */; };
 		F0E3C738197FCCD4004F44F9 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0E3C737197FCCD4004F44F9 /* GoogleMaps.framework */; };
 		F0E3C73A197FCCDD004F44F9 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F0E3C739197FCCDD004F44F9 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
@@ -518,6 +521,10 @@
 		F081A05F19777613004568EF /* payment_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg_ipad.png; sourceTree = "<group>"; };
 		F081A0611977A6C7004568EF /* CheckPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckPin.h; sourceTree = "<group>"; };
 		F081A0621977A6C7004568EF /* CheckPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckPin.m; sourceTree = "<group>"; };
+		F0BE7CA2198336C300D0946B /* LoadHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadHistory.h; sourceTree = "<group>"; };
+		F0BE7CA3198336C300D0946B /* LoadHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadHistory.m; sourceTree = "<group>"; };
+		F0BE7CA51983771500D0946B /* ic_seal_cancelled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_seal_cancelled.png; sourceTree = "<group>"; };
+		F0BE7CA61983771500D0946B /* ic_seal_claimed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_seal_claimed.png; sourceTree = "<group>"; };
 		F0E3C737197FCCD4004F44F9 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		F0E3C739197FCCDD004F44F9 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -933,8 +940,8 @@
 			isa = PBXGroup;
 			children = (
 				F081A05719776F89004568EF /* MLHistoryViewController~iphone.xib */,
-				F081A05819776F89004568EF /* MLHistoryTableViewCell~iphone.xib */,
 				F081A05919776F89004568EF /* MLHistoryViewController~ipad.xib */,
+				F081A05819776F89004568EF /* MLHistoryTableViewCell~iphone.xib */,
 				F081A05A19776F89004568EF /* MLHistoryTableViewCell~ipad.xib */,
 			);
 			name = Views;
@@ -954,6 +961,8 @@
 		3BB42DD918D6B2470011792E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F0BE7CA2198336C300D0946B /* LoadHistory.h */,
+				F0BE7CA3198336C300D0946B /* LoadHistory.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -993,6 +1002,8 @@
 				3BB42DEB18D6B6C60011792E /* navbar_bg.png */,
 				3BB42DEC18D6B6C60011792E /* navibar_bg.png */,
 				3BB42DED18D6B6C60011792E /* next.png */,
+				F0BE7CA51983771500D0946B /* ic_seal_cancelled.png */,
+				F0BE7CA61983771500D0946B /* ic_seal_claimed.png */,
 				3BB42DEE18D6B6C60011792E /* noImage.png */,
 				3BB42DEF18D6B6C60011792E /* pad_bg.png */,
 				3BB42DF018D6B6C60011792E /* payment_bg.png */,
@@ -1373,6 +1384,7 @@
 				3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */,
 				3BF0B261197A508C00AC2C76 /* data.plist in Resources */,
 				3BB42E0B18D6B6C60011792E /* rates_selected.png in Resources */,
+				F0BE7CA81983771500D0946B /* ic_seal_claimed.png in Resources */,
 				3B71BBB518BD8B5C0094543C /* edit_image.png in Resources */,
 				3BB42E0218D6B6C60011792E /* navibar_bg.png in Resources */,
 				3BB42E0A18D6B6C60011792E /* rates_default.png in Resources */,
@@ -1406,6 +1418,7 @@
 				7006620918DA78EF00A0F05C /* ProfileInformation.xib in Resources */,
 				3B19518718B6EA630061969F /* receiver_add_person.png in Resources */,
 				3BB5268618BCB66100D0A5EA /* ReceiverAvatarViewController~iphone.xib in Resources */,
+				F0BE7CA71983771500D0946B /* ic_seal_cancelled.png in Resources */,
 				3B1B36C718B4ADA1006DA5BB /* icon_my_receiver_press.jpg in Resources */,
 				3B5F848518BC6934001C1B29 /* ReceiverCell.xib in Resources */,
 				7006620318DA766800A0F05C /* rene.jpg in Resources */,
@@ -1458,6 +1471,7 @@
 				F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */,
 				3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */,
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
+				F0BE7CA4198336C300D0946B /* LoadHistory.m in Sources */,
 				3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
 				3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */,
