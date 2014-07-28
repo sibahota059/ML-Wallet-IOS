@@ -48,6 +48,7 @@
 		3B1CE09F197E3F2E00F2AF31 /* ml_logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */; };
 		3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */; };
 		3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */; };
+		3B1D2A1A1985E282004A70FC /* InfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D2A191985E282004A70FC /* InfoViewController~ipad.xib */; };
 		3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3028571981E8C9007825CE /* ResetPassViewController.m */; };
 		3B30285A1981E8C9007825CE /* ResetPassViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3028581981E8C9007825CE /* ResetPassViewController~iphone.xib */; };
 		3B30285E1981E8FE007825CE /* ResetPassViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B30285D1981E8FE007825CE /* ResetPassViewController~ipad.xib */; };
@@ -275,6 +276,7 @@
 		3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_iphone.png; sourceTree = "<group>"; };
 		3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextfieldAnimate.h; sourceTree = "<group>"; };
 		3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextfieldAnimate.m; sourceTree = "<group>"; };
+		3B1D2A191985E282004A70FC /* InfoViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InfoViewController~ipad.xib"; sourceTree = "<group>"; };
 		3B3028561981E8C9007825CE /* ResetPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPassViewController.h; sourceTree = "<group>"; };
 		3B3028571981E8C9007825CE /* ResetPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPassViewController.m; sourceTree = "<group>"; };
 		3B3028581981E8C9007825CE /* ResetPassViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPassViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -1066,8 +1068,8 @@
 		3BC3828718C0953C00270567 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B1D2A191985E282004A70FC /* InfoViewController~ipad.xib */,
 				3BC3828A18C0958900270567 /* InfoViewController~iphone.xib */,
-				3B1BD6A6198115C800E234C5 /* InfoViewController~ipad.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1384,7 +1386,6 @@
 				708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */,
 				F05C5F4618E137AF002F2EE1 /* ic_seal_pending.png in Resources */,
 				3BB42E0418D6B6C60011792E /* noImage.png in Resources */,
-				3B1BD6A7198115C800E234C5 /* InfoViewController~ipad.xib in Resources */,
 				3BB42E0718D6B6C60011792E /* pin_bg.png in Resources */,
 				3BC3829218C095D200270567 /* ic_about.9.png in Resources */,
 				F081A04C19776E55004568EF /* MLRatesTableViewController~iphone.xib in Resources */,
@@ -1409,6 +1410,7 @@
 				3BB42E0C18D6B6C60011792E /* right.png in Resources */,
 				3B17584D18B2FC09005A7805 /* popup_img.png in Resources */,
 				3BA8A23019756F810052FA2F /* button_back.png in Resources */,
+				3B1D2A1A1985E282004A70FC /* InfoViewController~ipad.xib in Resources */,
 				3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */,
 				3BA7CD0618B22C2000B9FC4B /* MenuViewController~iphone.xib in Resources */,
 				3B1B36C418B4AD70006DA5BB /* icon_my_account.jpg in Resources */,
