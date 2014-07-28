@@ -162,7 +162,7 @@
                     NSString *fullName = [NSString stringWithFormat:@"%@ %@ %@",fname, mname, lname];
                     
                     if (photoImage == nil) {
-                        photoImage = [UIImage imageNamed:@"no_image.png"];
+                        photoImage = [UIImage imageNamed:@"noImage.png"];
                     }
                     
                     //Add to NSMutableArray

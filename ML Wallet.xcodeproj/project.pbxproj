@@ -30,7 +30,6 @@
 		3B17584D18B2FC09005A7805 /* popup_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584C18B2FC09005A7805 /* popup_img.png */; };
 		3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */; };
 		3B17585318B34EE3005A7805 /* bg_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17585218B34EE3005A7805 /* bg_header.png */; };
-		3B17585518B35BA3005A7805 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17585418B35BA3005A7805 /* no_image.png */; };
 		3B17585718B35CDB005A7805 /* peso_signr.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17585618B35CDB005A7805 /* peso_signr.png */; };
 		3B19518718B6EA630061969F /* receiver_add_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19518618B6EA630061969F /* receiver_add_person.png */; };
 		3B19518D18B6F5260061969F /* MLBackground1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19518A18B6F5260061969F /* MLBackground1.png */; };
@@ -261,7 +260,6 @@
 		3B17584E18B301B8005A7805 /* UIAlertView+alertMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+alertMe.h"; sourceTree = "<group>"; };
 		3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+alertMe.m"; sourceTree = "<group>"; };
 		3B17585218B34EE3005A7805 /* bg_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_header.png; sourceTree = "<group>"; };
-		3B17585418B35BA3005A7805 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
 		3B17585618B35CDB005A7805 /* peso_signr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peso_signr.png; sourceTree = "<group>"; };
 		3B19518418B6E8CE0061969F /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3B19518618B6EA630061969F /* receiver_add_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receiver_add_person.png; sourceTree = "<group>"; };
@@ -835,7 +833,6 @@
 				3B1B36BF18B445C3006DA5BB /* btn2.png */,
 				3B1B36BD18B43181006DA5BB /* transparent.png */,
 				3B17585618B35CDB005A7805 /* peso_signr.png */,
-				3B17585418B35BA3005A7805 /* no_image.png */,
 				3B17585218B34EE3005A7805 /* bg_header.png */,
 				3B17584C18B2FC09005A7805 /* popup_img.png */,
 				3B17584618B2EC6B005A7805 /* btn1.png */,
@@ -1364,7 +1361,6 @@
 				F081A05519776E55004568EF /* MLRatesTableViewCell~ipad.xib in Resources */,
 				70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */,
 				700661E918DA766800A0F05C /* design_top_right.png in Resources */,
-				3B17585518B35BA3005A7805 /* no_image.png in Resources */,
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
 				707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */,
 				3BA8A232197570DF0052FA2F /* down.png in Resources */,
@@ -1620,6 +1616,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1630,6 +1628,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1640,6 +1639,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1650,6 +1651,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
