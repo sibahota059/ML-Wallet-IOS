@@ -696,10 +696,10 @@
     [self.responseData appendData:data];
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
+    NSLog(@"didFailWithError : %@",error.localizedDescription);
     [HUD hide:YES];
     [HUD show:NO];
-    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Service is temporarily unavailable." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     
     
     
@@ -759,7 +759,7 @@
         }//end if([strResponseMessage isEqualToString:@"OK"])
         else{
             NSLog(@"Error: %@",myError);
-            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Service temporarily unavailabe." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             [HUD hide:YES];
             [HUD show:NO];
             
@@ -771,8 +771,8 @@
     }//end if
     
     else {
-        NSLog(@"Error: %@",myError);
-        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:myError.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        NSLog(@"Error : %@",myError.localizedDescription);
+        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Service temporarily unavailable." delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [HUD hide:YES];
         [HUD show:NO];
     }//end else

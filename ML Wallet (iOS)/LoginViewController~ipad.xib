@@ -157,6 +157,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
+                                                <action selector="btnRates:" destination="-1" eventType="touchUpInside" id="ZfM-5a-Amt"/>
                                                 <action selector="btnRates:" destination="-1" eventType="touchUpInside" id="z0y-gt-2vj"/>
                                             </connections>
                                         </button>

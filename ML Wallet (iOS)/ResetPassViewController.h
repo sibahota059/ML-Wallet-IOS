@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface ResetPassViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+@interface ResetPassViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, MBProgressHUDDelegate>
 {
+    MBProgressHUD *HUD;
     NSMutableArray *searchWhereOptions;
     UIActionSheet *actionSheet;
     IBOutlet UILabel *searchWhere;
@@ -21,5 +23,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *lblAnswer;
 
 - (IBAction)showSearchWhereOptions:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *lblViewIpad;
 @property (strong, nonatomic) IBOutlet UITextField *SecQuestion;
+
+@property (strong, nonatomic) NSMutableData *responseData;
 @end

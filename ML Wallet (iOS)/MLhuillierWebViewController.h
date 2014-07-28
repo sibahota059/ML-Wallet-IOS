@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 @interface MLhuillierWebViewController : UIViewController<UIWebViewDelegate,MBProgressHUDDelegate>
-@property (strong, nonatomic) IBOutlet UIWebView *mLhuillierWebView;
+@property (weak, nonatomic) IBOutlet UIWebView *mLhuillierWebView;
 
 @end

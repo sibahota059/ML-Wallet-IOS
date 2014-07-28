@@ -30,7 +30,6 @@
 		3B17584D18B2FC09005A7805 /* popup_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584C18B2FC09005A7805 /* popup_img.png */; };
 		3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */; };
 		3B17585318B34EE3005A7805 /* bg_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17585218B34EE3005A7805 /* bg_header.png */; };
-		3B17585518B35BA3005A7805 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17585418B35BA3005A7805 /* no_image.png */; };
 		3B17585718B35CDB005A7805 /* peso_signr.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17585618B35CDB005A7805 /* peso_signr.png */; };
 		3B19518718B6EA630061969F /* receiver_add_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19518618B6EA630061969F /* receiver_add_person.png */; };
 		3B19518D18B6F5260061969F /* MLBackground1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19518A18B6F5260061969F /* MLBackground1.png */; };
@@ -51,6 +50,7 @@
 		3B1CE09F197E3F2E00F2AF31 /* ml_logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */; };
 		3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */; };
 		3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */; };
+		3B1D2A1A1985E282004A70FC /* InfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D2A191985E282004A70FC /* InfoViewController~ipad.xib */; };
 		3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3028571981E8C9007825CE /* ResetPassViewController.m */; };
 		3B30285A1981E8C9007825CE /* ResetPassViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3028581981E8C9007825CE /* ResetPassViewController~iphone.xib */; };
 		3B30285E1981E8FE007825CE /* ResetPassViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B30285D1981E8FE007825CE /* ResetPassViewController~ipad.xib */; };
@@ -263,7 +263,6 @@
 		3B17584E18B301B8005A7805 /* UIAlertView+alertMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+alertMe.h"; sourceTree = "<group>"; };
 		3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+alertMe.m"; sourceTree = "<group>"; };
 		3B17585218B34EE3005A7805 /* bg_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_header.png; sourceTree = "<group>"; };
-		3B17585418B35BA3005A7805 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
 		3B17585618B35CDB005A7805 /* peso_signr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peso_signr.png; sourceTree = "<group>"; };
 		3B19518418B6E8CE0061969F /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3B19518618B6EA630061969F /* receiver_add_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receiver_add_person.png; sourceTree = "<group>"; };
@@ -288,6 +287,7 @@
 		3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_iphone.png; sourceTree = "<group>"; };
 		3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextfieldAnimate.h; sourceTree = "<group>"; };
 		3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextfieldAnimate.m; sourceTree = "<group>"; };
+		3B1D2A191985E282004A70FC /* InfoViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InfoViewController~ipad.xib"; sourceTree = "<group>"; };
 		3B3028561981E8C9007825CE /* ResetPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPassViewController.h; sourceTree = "<group>"; };
 		3B3028571981E8C9007825CE /* ResetPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPassViewController.m; sourceTree = "<group>"; };
 		3B3028581981E8C9007825CE /* ResetPassViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResetPassViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -839,7 +839,6 @@
 				3B1B36BF18B445C3006DA5BB /* btn2.png */,
 				3B1B36BD18B43181006DA5BB /* transparent.png */,
 				3B17585618B35CDB005A7805 /* peso_signr.png */,
-				3B17585418B35BA3005A7805 /* no_image.png */,
 				3B17585218B34EE3005A7805 /* bg_header.png */,
 				3B17584C18B2FC09005A7805 /* popup_img.png */,
 				3B17584618B2EC6B005A7805 /* btn1.png */,
@@ -1097,6 +1096,7 @@
 		3BC3828718C0953C00270567 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B1D2A191985E282004A70FC /* InfoViewController~ipad.xib */,
 				3BC3828A18C0958900270567 /* InfoViewController~iphone.xib */,
 			);
 			name = Views;
@@ -1371,7 +1371,6 @@
 				F081A05519776E55004568EF /* MLRatesTableViewCell~ipad.xib in Resources */,
 				70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */,
 				700661E918DA766800A0F05C /* design_top_right.png in Resources */,
-				3B17585518B35BA3005A7805 /* no_image.png in Resources */,
 				3BA7CD0E18B2365800B9FC4B /* kyc.9.png in Resources */,
 				707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */,
 				3BA8A232197570DF0052FA2F /* down.png in Resources */,
@@ -1445,6 +1444,7 @@
 				F007CC3A1985D7D20022FFF2 /* ic_print.png in Resources */,
 				3B17584D18B2FC09005A7805 /* popup_img.png in Resources */,
 				3BA8A23019756F810052FA2F /* button_back.png in Resources */,
+				3B1D2A1A1985E282004A70FC /* InfoViewController~ipad.xib in Resources */,
 				3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */,
 				3BA7CD0618B22C2000B9FC4B /* MenuViewController~iphone.xib in Resources */,
 				3B1B36C418B4AD70006DA5BB /* icon_my_account.jpg in Resources */,
@@ -1628,6 +1628,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1638,6 +1640,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1648,6 +1651,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1658,6 +1663,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
