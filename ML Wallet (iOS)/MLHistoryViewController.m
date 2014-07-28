@@ -83,7 +83,10 @@
     [loadHistory getUserWalletNo:walletno];
     
     statusInd = @"all";
-
+    
+    
+    self.view_keyboard.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
+    self.view_pinInput.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
 }
 
 #pragma mark - Done loading transaction
@@ -156,6 +159,8 @@
         
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else if ([indicator isEqualToString:@"8"]){
+        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", @"Slow or no internet connection."]];
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
@@ -295,8 +300,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@",[getDate objectAtIndex:indexPath.row]);
-    
     
     _view_fade.hidden = NO;
     _view_fade.alpha = 0.2f;
@@ -396,10 +399,140 @@
 - (IBAction)btnClose:(id)sender {
     _view_fade.hidden = YES;
     _view_transform.hidden = YES;
+    self.view_keyboard.hidden = YES;
+    self.view_pinInput.hidden = YES;
     
     self.navigationItem.leftBarButtonItem.enabled = YES;
     for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
         button.enabled = YES;
     }
+}
+
+
+
+- (IBAction)btn_cancel:(id)sender {
+
+    self.view_pinInput.alpha = 0.0;
+    self.view_keyboard.alpha = 0.0;
+    //self.btn_pin.hidden = YES;
+    
+    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        _view_keyboard.hidden = NO;
+        self.view_pinInput.alpha = 1.0;
+        self.view_keyboard.alpha = 1.0;
+    }completion:^(BOOL finished) {
+        
+    }];
+    
+    self.navigationItem.rightBarButtonItems = nil;
+    
+    self.title = @"ENTER YOUR PIN";
+    UIBarButtonItem *nexts = [getUI navBarButtonHistory:self navLink:@selector(btnPin) imageNamed:@"next.png"];
+    
+    [self.navigationItem setRightBarButtonItem:nexts];
+    _view_pinInput.hidden = NO;
+}
+
+- (void)btnPin{
+    
+    [getUI displayAlert:@"Message" message:@"Check Pin"];
+    self.view_pinInput.alpha = 1.0;
+    self.view_keyboard.alpha = 1.0;
+    
+    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        self.view_pinInput.alpha = 0.0;
+        self.view_keyboard.alpha = 0.0;
+        self.view_transform.alpha = 1.0;
+        
+    }completion:^(BOOL finished) {
+        
+    }];
+    
+    self.view_transform.hidden = YES;
+    self.title = @"PREVIEW";
+    
+    if ([statusInd isEqualToString:@"pending"]) {
+        rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_all.png"];
+    }else{
+        rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_pending.png"];
+    }
+    
+    right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_print.png"];
+    
+    self.navigationItem.rightBarButtonItems = @[right,rightPending];
+    self.navigationItem.leftBarButtonItem.enabled = YES;
+    for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
+        button.enabled = YES;
+    }
+    _view_fade.hidden = YES;
+    
+}
+
+- (IBAction)didTapSurface:(UITapGestureRecognizer *)sender {
+
+    self.view_pinInput.alpha = 1.0;
+    self.view_keyboard.alpha = 1.0;
+    
+    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+
+        self.view_pinInput.alpha = 0.0;
+        self.view_keyboard.alpha = 0.0;
+        self.view_transform.alpha = 1.0;
+
+    }completion:^(BOOL finished) {
+        
+    }];
+    
+    self.view_transform.hidden = NO;
+    self.title = @"PREVIEW";
+    
+    if ([statusInd isEqualToString:@"pending"]) {
+        rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_all.png"];
+    }else{
+        rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_pending.png"];
+    }
+    
+    right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_print.png"];
+    
+    self.navigationItem.rightBarButtonItems = @[right,rightPending];
+    for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
+        button.enabled = NO;
+    }
+    
+}
+
+- (IBAction)btnOne:(id)sender {
+    
+}
+
+- (IBAction)btnTwo:(id)sender {
+}
+
+- (IBAction)btnThree:(id)sender {
+}
+
+- (IBAction)btnFour:(id)sender {
+}
+
+- (IBAction)btnFive:(id)sender {
+}
+
+- (IBAction)btnSix:(id)sender {
+}
+
+- (IBAction)btnSeven:(id)sender {
+}
+
+- (IBAction)btnEight:(id)sender {
+}
+
+- (IBAction)btnNine:(id)sender {
+}
+
+- (IBAction)btnZero:(id)sender {
+}
+
+- (IBAction)btnClear:(id)sender {
 }
 @end

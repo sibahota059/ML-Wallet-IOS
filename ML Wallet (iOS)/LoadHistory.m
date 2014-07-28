@@ -27,7 +27,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     conn = nil;
-    [self.delegate didFinishLoadingHistory:@"0"];
+    [self.delegate didFinishLoadingHistory:@"8"];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

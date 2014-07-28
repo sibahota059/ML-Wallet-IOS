@@ -1284,6 +1284,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "ML Lhuillier";
+				TargetAttributes = {
+					3BA7CC9618B1D6B900B9FC4B = {
+						DevelopmentTeam = 3PWY7M6GJR;
+					};
+				};
 			};
 			buildConfigurationList = 3BA7CC9218B1D6B900B9FC4B /* Build configuration list for PBXProject "ML Wallet" */;
 			compatibilityVersion = "Xcode 3.2";
