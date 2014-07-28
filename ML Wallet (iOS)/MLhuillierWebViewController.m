@@ -14,7 +14,7 @@
 
 @implementation MLhuillierWebViewController{
     MBProgressHUD *HUD;
-    
+    NSInteger *webViewLoads;
 }
 @synthesize mLhuillierWebView = _mLhuillierWebView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,7 +30,10 @@
 {
     [super viewDidLoad];
     [self navigationView];
-    
+    webViewLoads=0;
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
     
     // Do any additional setup after loading the view from its nib.
     NSURL*url=[NSURL URLWithString:@"http://mlhuillier.com"];
@@ -86,7 +89,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -98,7 +100,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)mLhuillierWebView
 {
-    
+    webViewLoads++;
     CGFloat width = [[self.mLhuillierWebView stringByEvaluatingJavaScriptFromString:@"document.body.offsetWidth"] floatValue];
     CGRect frame = self.mLhuillierWebView.frame;
     frame.size.width = width;
@@ -109,9 +111,7 @@
     
     NSLog(@"WebView Loading Started");
     self.mLhuillierWebView.scrollView.contentOffset = CGPointMake(0,120);
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    HUD.delegate = self;
+    
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];
@@ -122,7 +122,11 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)mLhuillierWebView
 {
+    webViewLoads--;
     NSLog(@"didFinish: %@; stillLoading:%@", [[self.mLhuillierWebView request]URL],
+          (self.mLhuillierWebView.loading?@"NO":@"YES"));
+    if(webViewLoads==0){
+    NSLog(@"Last didFinish: %@; stillLoading:%@", [[self.mLhuillierWebView request]URL],
           (self.mLhuillierWebView.loading?@"NO":@"YES"));
     
     self.navigationItem.leftBarButtonItem.enabled = YES;
@@ -131,21 +135,25 @@
     NSLog(@"WebView Success Loading");
     [HUD hide:YES];
     [HUD show:NO];
-
+    }
     
 }
 
 -(void)webView:(UIWebView *)mLhuillierWebView didFailLoadWithError:(NSError *)error{
-    NSLog(@"didFail: %@; stillLoading:%@", [[self.mLhuillierWebView request]URL],
-          (self.mLhuillierWebView.loading?@"NO":@"YES"));
-    NSLog(@"WebView Error : %@",error.localizedDescription);
-    
-    [HUD hide:YES];
-    [HUD show:NO];
-    self.navigationItem.leftBarButtonItem.enabled = YES;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
-    [UIAlertView myCostumeAlert:@"Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
 
+    NSLog(@"WebView Error : %@",error.localizedDescription);
+    webViewLoads--;
+    if(webViewLoads==0){
+     NSLog(@"Last WebView Error : %@",error.localizedDescription);
+        [HUD hide:YES];
+        [HUD show:NO];
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        
+        [UIAlertView myCostumeAlert:@"Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+
+    
 }
 //detect webview scrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
