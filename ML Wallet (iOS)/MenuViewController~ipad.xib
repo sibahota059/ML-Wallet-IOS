@@ -126,7 +126,7 @@
                                                 <action selector="btnReload:" destination="-1" eventType="touchUpInside" id="6LR-xa-iU4"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="no_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="FKn-Dk-3Bn">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="FKn-Dk-3Bn">
                                             <rect key="frame" x="837" y="151" width="123" height="106"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -402,7 +402,7 @@
         <image name="new_info.png" width="400" height="400"/>
         <image name="new_kprate.png" width="400" height="400"/>
         <image name="new_locator.png" width="400" height="400"/>
-        <image name="no_image.png" width="95" height="141"/>
+        <image name="noImage.png" width="75" height="69"/>
         <image name="peso_signr.png" width="47" height="48"/>
         <image name="popup_img.png" width="170" height="100"/>
         <image name="reload.9.png" width="395" height="395"/>

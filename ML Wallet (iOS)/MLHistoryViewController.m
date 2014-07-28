@@ -63,11 +63,11 @@
     
     //Show the navigation bar
     self.navigationController.navigationBarHidden = NO;
-    
+
     //Create object of navigation bar button
     back = [getUI navBarButtonHistory:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
-    right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_preview.png"];
-    rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_preview.png"];
+    right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_print.png"];
+    rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_pending.png"];
     
     //Set background image of the view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
@@ -79,17 +79,10 @@
     //Set Title
     self.title = @"HISTORY";
     
-    // Do any additional setup after loading the view from its nib.
-//    date = [NSArray arrayWithObjects:@"January 01, 2014", @"February 01, 2014", @"March 01, 2014", @"April 01, 2014", @"May 01, 2014", @"June 01, 2014", @"July 01, 2014", @"August 01, 2014", @"September 01, 2014", @"October 01, 2014", @"November 01, 2014", @"December 01, 2014", nil];
-//    
-//    type = [NSArray arrayWithObjects:@"Sendout", @"Payout", @"Payout", @"Sendout", @"Payout", @"Sendout", @"Payout", @"Sendout", @"Payout", @"Sendout", @"Payout", @"Sendout", nil];
-//    
-//    amount = [NSArray arrayWithObjects:@"100.00", @"200.00", @"300.00", @"400.00", @"500.00", @"600.00", @"700.00", @"800.00", @"900.00", @"1000.00", @"1100.00", @"1200.00", nil];
-//    
-//    balance = [NSArray arrayWithObjects:@"100.00", @"200.00", @"300.00", @"400.00", @"500.00", @"600.00", @"700.00", @"800.00", @"900.00", @"1000.00", @"1100.00", @"1200.00", nil];
-    
     loadHistory.delegate = self;
     [loadHistory getUserWalletNo:walletno];
+    
+    statusInd = @"all";
 
 }
 
@@ -185,18 +178,45 @@
 
 #pragma mark - Display All Transaction Button Pressed
 - (IBAction)btn_sendPreview:(id)sender {
-    statusInd = @"all";
-    [getUI displayAlert:@"Message" message:statusInd];
-    //reload tableview after retrieving
-    [self.tblHistory reloadData];
+
+    [getUI displayAlert:@"Message" message:@"This will send transaction to email. This will function later."];
+
 }
 
 #pragma mark - Display List Pending Transaction Button Pressed
 - (IBAction)btn_pending:(id)sender {
-    statusInd = @"pending";
-    [getUI displayAlert:@"Message" message:statusInd];
-    //reload tableview after retrieving
-    [self.tblHistory reloadData];
+    
+    
+    if ([statusInd isEqualToString:@"pending"]) {
+        
+        HUD.labelText = @"Please wait";
+        HUD.square = YES;
+        [HUD show:YES];
+        [self.view endEditing:YES];
+        
+        statusInd = @"all";
+        rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_pending.png"];
+        [self.tblHistory reloadData];
+
+        
+    }else{
+        
+        HUD.labelText = @"Please wait";
+        HUD.square = YES;
+        [HUD show:YES];
+        [self.view endEditing:YES];
+        
+        statusInd = @"pending";
+        rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_all.png"];
+        [self.tblHistory reloadData];
+        
+        
+    }
+    
+    self.navigationItem.rightBarButtonItems = @[right,rightPending];
+    //dismiss the progress dialog
+    [HUD hide:YES];
+    [HUD show:NO];
 }
 
 #pragma mark - Hide Status Bar
@@ -258,15 +278,17 @@
         type = [getType objectAtIndex:[indexPath row]];
         ammount = [getAmmount objectAtIndex:[indexPath row]];
         balance = [getBalance objectAtIndex:[indexPath row]];
-        
     }
     
     
     NSArray * arrDate = [date componentsSeparatedByString:@" "];
 
-    
+    if ([type isEqualToString:@"CANCEL"]) {
+        cell.labelType.text    = @"CANCELLED";
+    }else{
+        cell.labelType.text    = [NSString stringWithFormat:@"%@", type];
+    }
     cell.labelDate.text    = [NSString stringWithFormat:@"%@", arrDate[0]];
-    cell.labelType.text    = [NSString stringWithFormat:@"%@", type];
     cell.labelAmount.text  = [NSString stringWithFormat:@"%0.2f", [ammount doubleValue]];
     cell.labelBalance.text = [NSString stringWithFormat:@"%0.2f", [balance doubleValue]];
     return cell;
@@ -287,7 +309,14 @@
         _labelKptn.text = [getKptnP objectAtIndex:indexPath.row];
         _labelReceiverId.text = walletno;
         _labelDate.text = [self getDate:[getDateP objectAtIndex:indexPath.row]];
-        _labelType.text = [getTypeP objectAtIndex:indexPath.row];
+        
+        if ([[getTypeP objectAtIndex:indexPath.row] isEqualToString:@"CANCEL"]) {
+            _labelType.text = @"CANCELLED";
+            _btn_cancel.hidden = YES;
+        }else{
+            _labelType.text = [getTypeP objectAtIndex:indexPath.row];
+            _btn_cancel.hidden = NO;
+        }
         
         if ([[NSString stringWithFormat:@"%@", [getStatusP objectAtIndex:indexPath.row]] isEqualToString:@"PENDING"]) {
             _img_status.image = [UIImage imageNamed:@"ic_seal_pending.png"];
@@ -303,7 +332,15 @@
         _labelKptn.text = [getKptn objectAtIndex:indexPath.row];
         _labelReceiverId.text = walletno;
         _labelDate.text = [self getDate:[getDate objectAtIndex:indexPath.row]];
-        _labelType.text = [getType objectAtIndex:indexPath.row];
+        
+        if ([[getType objectAtIndex:indexPath.row] isEqualToString:@"CANCEL"]) {
+            _labelType.text = @"CANCELLED";
+            _btn_cancel.hidden = YES;
+        }else{
+            _labelType.text = [getType objectAtIndex:indexPath.row];
+            _btn_cancel.hidden = NO;
+        }
+
         
         if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"PENDING"]) {
             _img_status.image = [UIImage imageNamed:@"ic_seal_pending.png"];
@@ -320,8 +357,11 @@
 
     
     [self shadowView:_view_transform];
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+
     self.navigationItem.leftBarButtonItem.enabled = NO;
+    for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
+        button.enabled = NO;
+    }
 }
 
 - (NSString *)getDate:(NSString *)defaultString{
@@ -356,7 +396,10 @@
 - (IBAction)btnClose:(id)sender {
     _view_fade.hidden = YES;
     _view_transform.hidden = YES;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    
     self.navigationItem.leftBarButtonItem.enabled = YES;
+    for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
+        button.enabled = YES;
+    }
 }
 @end

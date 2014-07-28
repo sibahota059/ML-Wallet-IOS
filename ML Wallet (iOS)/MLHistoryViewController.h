@@ -26,5 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelReceiverId;
 @property (weak, nonatomic) IBOutlet UILabel *labelType;
 @property (weak, nonatomic) IBOutlet UIImageView *img_status;
+@property (weak, nonatomic) IBOutlet UIButton *btn_cancel;
 
 @end

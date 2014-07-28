@@ -12,6 +12,7 @@
 
 - (void) initSaveData: (NSString *)strValue forKey: (NSString *)forkey;
 
-@property (assign, nonatomic) NSString *path;
+//@property (assign, nonatomic) NSString *path;
+//@property (assign, nonatomic) NSMutableDictionary *data;
 
 @end
