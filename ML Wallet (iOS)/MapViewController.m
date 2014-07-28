@@ -36,6 +36,7 @@
     NSString *myLocName;
     NSString *distancetoBranch;
     NSString *timetraveledtoBranch;
+    NSUInteger circleRad;
 }
 
 @synthesize responseData = _responseData;
@@ -62,29 +63,8 @@
 {
     [super viewDidLoad];
     [self navigationView];
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    HUD.delegate = self;
-    HUD.labelText = @"Please wait";
-    HUD.square = YES;
-    [HUD show:YES];
-    [self.view endEditing:YES];
     NSLog(@"viewdidload");
-    
-    
-    
-    
-    
-    
-    //Get Branch Coordinate
-    self.responseData = [NSMutableData data];
-    ServiceConnection *str = [ServiceConnection new];
-    NSString *url = [NSString stringWithFormat:@"%@", [str NSGetMapService]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    //  NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0];
-    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [con start];
-    
+    [self getBranchMarkers:0];
     
     //Display MAP
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0
@@ -226,14 +206,252 @@
     
     
 }
-//marker Click
+#pragma mark - marker Click
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)bmarker{
     [mapView_ setSelectedMarker:bmarker];
     
     return YES;
     
 }
+#pragma mark - Get Branch Markers Method
+-(void)getBranchMarkers:(NSUInteger)radd{
+    circleRad = radd;
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    //Get Branch Coordinate
+    self.responseData = [NSMutableData data];
+    ServiceConnection *str = [ServiceConnection new];
+    NSString *url = [NSString stringWithFormat:@"%@", [str NSGetMapService]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    //  NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0];
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [con start];
+}
+#pragma mark - Get Branch Markers Plus Radius
+-(void)getBranchMarkersWithRadius:(NSUInteger)rad;{
 
+    circ.map = nil;
+    mapView_.myLocationEnabled = YES;
+    CLLocation *myLocation = mapView_.myLocation;
+    NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
+    if(rad==0){
+     mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
+                                                         zoom:15.5];
+      NSLog(@"0 Radius was selected.");
+        NSUInteger count = [gmLat count];
+        for(NSUInteger i = 0;i < count; i++){
+            NSString *strlongitude;
+            NSString *strlatitude;
+            NSString *strplace;
+            strlongitude = [gmLong objectAtIndex:i];
+            strlatitude = [gmLat objectAtIndex:i];
+            strplace =[place objectAtIndex:i];
+            
+            // NSLog(@"Latitude : %@", place);
+            double longdouble = [strlongitude doubleValue];
+            double latdouble = [strlatitude doubleValue];
+                
+                
+                marker = [[GMSMarker alloc] init];
+                marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
+                marker.snippet = strplace;
+                marker.map = mapView_;
+                marker.icon = [UIImage imageNamed:@"ml_1"];
+
+            
+            
+        }//end for loop
+
+    }//end if(rad==0)
+    else if(rad==500){
+        circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:500];
+        //circ.fillColor = [UIColor whiteColor];
+        circ.strokeColor = [UIColor redColor];
+        circ.strokeWidth = 2;
+        circ.map = mapView_;
+        mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
+                                                         zoom:15.5];
+        
+        
+        
+        NSLog(@"500 Radius was selected.");
+        NSUInteger count = [gmLat count];
+        for(NSUInteger i = 0;i < count; i++){
+            NSString *strlongitude;
+            NSString *strlatitude;
+            NSString *strplace;
+            strlongitude = [gmLong objectAtIndex:i];
+            strlatitude = [gmLat objectAtIndex:i];
+            strplace =[place objectAtIndex:i];
+            
+            // NSLog(@"Latitude : %@", place);
+            double longdouble = [strlongitude doubleValue];
+            double latdouble = [strlatitude doubleValue];
+            
+            CLLocation *locA = [[CLLocation alloc] initWithLatitude:latdouble longitude:longdouble];
+            
+            
+            int distance = [myLocation distanceFromLocation:locA];
+            if(distance < 500)
+            {
+                
+                
+                marker = [[GMSMarker alloc] init];
+                marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
+                marker.snippet = strplace;
+                marker.map = mapView_;
+                marker.icon = [UIImage imageNamed:@"ml_1"];
+                
+            }//end if
+            
+            
+        }//end for loop
+
+    }//end else if(rad==500)
+    else if(rad==1000){
+        circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:1000];
+        //circ.fillColor = [UIColor whiteColor];
+        circ.strokeColor = [UIColor redColor];
+        circ.strokeWidth = 2;
+        circ.map = mapView_;
+        mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
+                                                         zoom:13.9];
+        
+        
+        
+        NSLog(@"1000 Radius was selected.");
+        NSUInteger count = [gmLat count];
+        for(NSUInteger i = 0;i < count; i++){
+            NSString *strlongitude;
+            NSString *strlatitude;
+            NSString *strplace;
+            strlongitude = [gmLong objectAtIndex:i];
+            strlatitude = [gmLat objectAtIndex:i];
+            strplace =[place objectAtIndex:i];
+            
+            // NSLog(@"Latitude : %@", place);
+            double longdouble = [strlongitude doubleValue];
+            double latdouble = [strlatitude doubleValue];
+            
+            CLLocation *locA = [[CLLocation alloc] initWithLatitude:latdouble longitude:longdouble];
+            
+            
+            int distance = [myLocation distanceFromLocation:locA];
+            if(distance < 1000)
+            {
+                
+                
+                marker = [[GMSMarker alloc] init];
+                marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
+                marker.snippet = strplace;
+                marker.map = mapView_;
+                marker.icon = [UIImage imageNamed:@"ml_1"];
+                
+            }//end if
+            
+            
+        }//end for loop
+    
+    }//end else if(radd==1000)
+    else if(rad==1500){
+        circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:1500];
+        //circ.fillColor = [UIColor whiteColor];
+        circ.strokeColor = [UIColor redColor];
+        circ.strokeWidth = 2;
+        circ.map = mapView_;
+        mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
+                                                         zoom:13.3];
+        
+        
+        
+        NSLog(@"2000 Radius was selected.");
+        NSUInteger count = [gmLat count];
+        for(NSUInteger i = 0;i < count; i++){
+            NSString *strlongitude;
+            NSString *strlatitude;
+            NSString *strplace;
+            strlongitude = [gmLong objectAtIndex:i];
+            strlatitude = [gmLat objectAtIndex:i];
+            strplace =[place objectAtIndex:i];
+            
+            // NSLog(@"Latitude : %@", place);
+            double longdouble = [strlongitude doubleValue];
+            double latdouble = [strlatitude doubleValue];
+            
+            CLLocation *locA = [[CLLocation alloc] initWithLatitude:latdouble longitude:longdouble];
+            
+            
+            int distance = [myLocation distanceFromLocation:locA];
+            if(distance < 1500)
+            {
+                
+                
+                marker = [[GMSMarker alloc] init];
+                marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
+                marker.snippet = strplace;
+                marker.map = mapView_;
+                marker.icon = [UIImage imageNamed:@"ml_1"];
+                
+            }//end if
+            
+            
+        }//end for loop
+    
+    }//end else if(rad==1500)
+    else if(rad==2000){
+        circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:2000];
+        //circ.fillColor = [UIColor whiteColor];
+        circ.strokeColor = [UIColor redColor];
+        circ.strokeWidth = 2;
+        circ.map = mapView_;
+        mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
+                                                         zoom:13.3];
+        
+        
+        
+        NSLog(@"2000 Radius was selected.");
+        NSUInteger count = [gmLat count];
+        for(NSUInteger i = 0;i < count; i++){
+            NSString *strlongitude;
+            NSString *strlatitude;
+            NSString *strplace;
+            strlongitude = [gmLong objectAtIndex:i];
+            strlatitude = [gmLat objectAtIndex:i];
+            strplace =[place objectAtIndex:i];
+            
+            // NSLog(@"Latitude : %@", place);
+            double longdouble = [strlongitude doubleValue];
+            double latdouble = [strlatitude doubleValue];
+            
+            CLLocation *locA = [[CLLocation alloc] initWithLatitude:latdouble longitude:longdouble];
+            
+            
+            int distance = [myLocation distanceFromLocation:locA];
+            if(distance < 2000)
+            {
+                
+                
+                marker = [[GMSMarker alloc] init];
+                marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
+                marker.snippet = strplace;
+                marker.map = mapView_;
+                marker.icon = [UIImage imageNamed:@"ml_1"];
+                
+            }//end if
+            
+            
+        }//end for loop
+    }//end else if(rad==2000)
+    
+    
+    
+    
+}
 
 //TODO
 - (void)directionsTapped:(id)sender {
@@ -330,346 +548,64 @@
     if([title isEqualToString:@"500"])
     {
         [mapView_ clear];
-        
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
-        HUD.delegate = self;
-        HUD.labelText = @"Please wait";
-        HUD.square = YES;
-        [HUD show:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            circ.map = nil;
-            mapView_.myLocationEnabled = YES;
-            CLLocation *myLocation = mapView_.myLocation;
-            NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-            circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:500];
-            //circ.fillColor = [UIColor whiteColor];
-            circ.strokeColor = [UIColor redColor];
-            circ.strokeWidth = 2;
-            circ.map = mapView_;
-            mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
-                                                             zoom:15.5];
-            
-            
-            
-            NSLog(@"500 Radius was selected.");
-            NSUInteger count = [gmLat count];
-            for(NSUInteger i = 0;i < count; i++){
-                NSString *strlongitude;
-                NSString *strlatitude;
-                NSString *strplace;
-                strlongitude = [gmLong objectAtIndex:i];
-                strlatitude = [gmLat objectAtIndex:i];
-                strplace =[place objectAtIndex:i];
-                
-                // NSLog(@"Latitude : %@", place);
-                double longdouble = [strlongitude doubleValue];
-                double latdouble = [strlatitude doubleValue];
-                
-                CLLocation *locA = [[CLLocation alloc] initWithLatitude:latdouble longitude:longdouble];
-                
-                
-                int distance = [myLocation distanceFromLocation:locA];
-                if(distance < 500)
-                {
-                    
-                    
-                    marker = [[GMSMarker alloc] init];
-                    marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
-                    marker.snippet = strplace;
-                    marker.map = mapView_;
-                    marker.icon = [UIImage imageNamed:@"ml_1"];
-                    
-                }
-                
-                
-            }
-            
-            
-            
-            
-            [HUD hide:YES];
-            [HUD show:NO];
-            
-            
-            
-        });
-        
+        NSUInteger dataArr = [gmLat count];
+        if(dataArr==0){
+            [self getBranchMarkers:500];
+        }
+        else {
+            [self getBranchMarkersWithRadius:500];
+        }
         
     }
     else if([title isEqualToString:@"1000"])
     {
         [mapView_ clear];
+        NSUInteger dataArr = [gmLat count];
+        if(dataArr==0){
+            [self getBranchMarkers:1000];
+        }
         
-        
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
-        HUD.delegate = self;
-        HUD.labelText = @"Please wait";
-        HUD.square = YES;
-        [HUD show:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            circ.map = nil;
-            mapView_.myLocationEnabled = YES;
-            CLLocation *myLocation = mapView_.myLocation;
-            NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-            circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:1000];
-            //circ.fillColor = [UIColor whiteColor];
-            circ.strokeColor = [UIColor redColor];
-            circ.strokeWidth = 2;
-            circ.map = mapView_;
-            mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
-                                                             zoom:14.5];
-            
-            NSLog(@"1000 Radius was selected.");
-            NSUInteger count = [gmLat count];
-            for(NSUInteger i = 0;i < count; i++){
-                NSString *strlongitude;
-                NSString *strlatitude;
-                NSString *strplace;
-                strlongitude = [gmLong objectAtIndex:i];
-                strlatitude = [gmLat objectAtIndex:i];
-                strplace =[place objectAtIndex:i];
-                
-                // NSLog(@"Latitude : %@", place);
-                double longdouble = [strlongitude doubleValue];
-                double latdouble = [strlatitude doubleValue];
-                
-                CLLocation *locA = [[CLLocation alloc] initWithLatitude:latdouble longitude:longdouble];
-                
-                
-                int distance = [myLocation distanceFromLocation:locA];
-                if(distance < 1000)
-                {
-                    
-                    
-                    marker = [[GMSMarker alloc] init];
-                    marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
-                    marker.snippet = strplace;
-                    marker.map = mapView_;
-                    marker.icon = [UIImage imageNamed:@"ml_1"];
-                    
-                }
-                
-                
-            }
-            
-            
-            
-            
-            [HUD hide:YES];
-            [HUD show:NO];
-            
-            
-            
-        });
+        else {
+            [self getBranchMarkersWithRadius:1000];
+        }
         
         
     }
     else if([title isEqualToString:@"1500"])
     {
         [mapView_ clear];
-        
-        
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
-        HUD.delegate = self;
-        HUD.labelText = @"Please wait";
-        HUD.square = YES;
-        [HUD show:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            circ.map = nil;
-            mapView_.myLocationEnabled = YES;
-            CLLocation *myLocation = mapView_.myLocation;
-            NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-            circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:1500];
-            //circ.fillColor = [UIColor whiteColor];
-            circ.strokeColor = [UIColor redColor];
-            circ.strokeWidth = 2;
-            circ.map = mapView_;
-            mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
-                                                             zoom:13.9];
-            
-            
-            NSLog(@"1500 Radius was selected.");
-            NSUInteger count = [gmLat count];
-            for(NSUInteger i = 0;i < count; i++){
-                NSString *strlongitude;
-                NSString *strlatitude;
-                NSString *strplace;
-                strlongitude = [gmLong objectAtIndex:i];
-                strlatitude = [gmLat objectAtIndex:i];
-                strplace =[place objectAtIndex:i];
-                
-                // NSLog(@"Latitude : %@", place);
-                double longdouble = [strlongitude doubleValue];
-                double latdouble = [strlatitude doubleValue];
-                
-                CLLocation *locA = [[CLLocation alloc] initWithLatitude:latdouble longitude:longdouble];
-                
-                
-                int distance = [myLocation distanceFromLocation:locA];
-                if(distance < 1500)
-                {
-                    
-                    
-                    marker = [[GMSMarker alloc] init];
-                    marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
-                    marker.snippet = strplace;
-                    marker.map = mapView_;
-                    marker.icon = [UIImage imageNamed:@"ml_1"];
-                    
-                }
-                
-                
-            }
-            
-            
-            
-            
-            [HUD hide:YES];
-            [HUD show:NO];
-            
-            
-            
-        });
-        
+        NSUInteger dataArr = [gmLat count];
+        if(dataArr==0){
+            [self getBranchMarkers:1500];
+        }
+        else {
+            [self getBranchMarkersWithRadius:1500];
+        }
         
     }
     else if([title isEqualToString:@"2000"])
     {
-        [mapView_ clear];
-        
-        
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
-        HUD.delegate = self;
-        HUD.labelText = @"Please wait";
-        HUD.square = YES;
-        [HUD show:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            circ.map = nil;
-            mapView_.myLocationEnabled = YES;
-            CLLocation *myLocation = mapView_.myLocation;
-            NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-            circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:2000];
-            //circ.fillColor = [UIColor whiteColor];
-            circ.strokeColor = [UIColor redColor];
-            circ.strokeWidth = 2;
-            circ.map = mapView_;
-            mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
-                                                             zoom:13.3];
-
-            
-            NSLog(@"2000 Radius was selected.");
-            NSUInteger count = [gmLat count];
-            
-            for(NSUInteger i = 0;i < count; i++){
-                NSString *strlongitude;
-                NSString *strlatitude;
-                NSString *strplace;
-                strlongitude = [gmLong objectAtIndex:i];
-                strlatitude = [gmLat objectAtIndex:i];
-                strplace =[place objectAtIndex:i];
-                
-                // NSLog(@"Latitude : %@", place);
-                double longdouble = [strlongitude doubleValue];
-                double latdouble = [strlatitude doubleValue];
-                
-                CLLocation *locA = [[CLLocation alloc] initWithLatitude:latdouble longitude:longdouble];
-                
-                
-                int distance = [myLocation distanceFromLocation:locA];
-                if(distance < 2000)
-                {
-                    
-                    
-                    marker = [[GMSMarker alloc] init];
-                    marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
-                    marker.snippet = strplace;
-                    marker.map = mapView_;
-                    marker.icon = [UIImage imageNamed:@"ml_1"];
-                    
-                }
-                
-                
-            }
-            
-            
-            
-            
-            [HUD hide:YES];
-            [HUD show:NO];
-            
-            
-            
-        });
-        
+       [mapView_ clear];
+        NSUInteger dataArr = [gmLat count];
+        if(dataArr==0){
+            [self getBranchMarkers:2000];
+        }
+        else {
+            [self getBranchMarkersWithRadius:2000];
+        }
         
         
     }
     else if([title isEqualToString:@"All"]){
         [mapView_ clear];
+        NSUInteger dataArr = [gmLat count];
+        if(dataArr==0){
+            [self getBranchMarkers:0];
+        }
         
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
-        HUD.delegate = self;
-        HUD.labelText = @"Please wait";
-        HUD.square = YES;
-        [HUD show:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            circ.map = nil;
-            mapView_.myLocationEnabled = YES;
-            CLLocation *myLocation = mapView_.myLocation;
-            NSLog(@"%f %f",myLocation.coordinate.latitude, myLocation.coordinate.longitude);
-            mapView_.camera = [GMSCameraPosition cameraWithTarget:myLocation.coordinate
-                                                             zoom:15];
-
-            circ = [GMSCircle circleWithPosition:myLocation.coordinate radius:100];
-            //circ.fillColor = [UIColor whiteColor];
-            circ.strokeColor = [UIColor redColor];
-            circ.strokeWidth = 0.8;
-            //  circ.map = mapView_;
-            
-            
-            NSLog(@"Button All was selected.");
-            NSUInteger count = [gmLat count];
-            for(NSUInteger i = 0;i < count; i++){
-                NSString *strlongitude;
-                NSString *strlatitude;
-                NSString *strplace;
-                strlongitude = [gmLong objectAtIndex:i];
-                strlatitude = [gmLat objectAtIndex:i];
-                strplace =[place objectAtIndex:i];
-                
-                // NSLog(@"Latitude : %@", place);
-                double longdouble = [strlongitude doubleValue];
-                double latdouble = [strlatitude doubleValue];
-                
-                marker = [[GMSMarker alloc] init];
-                marker.position = CLLocationCoordinate2DMake(latdouble,longdouble );
-                marker.snippet = strplace;
-                marker.map = mapView_;
-                marker.icon = [UIImage imageNamed:@"ml_1"];
-                
-                
-            }
-            
-            [HUD hide:YES];
-            [HUD show:NO];
-            
-            
-        });
+        else {
+            [self getBranchMarkersWithRadius:0];
+        }
         
         
     }
@@ -699,7 +635,7 @@
     NSLog(@"didFailWithError : %@",error.localizedDescription);
     [HUD hide:YES];
     [HUD show:NO];
-    [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Service is temporarily unavailable." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     
     
     
@@ -741,6 +677,7 @@
                 
                 //ss
                 //Convert to double
+                /*
                 double latdouble = [mLat doubleValue];
                 double londouble = [mLong doubleValue];
                 
@@ -751,15 +688,17 @@
                 marker.icon = [UIImage imageNamed:@"ml_1"];
                 markers =[NSSet setWithObjects:marker, nil];
                 marker.map = mapView_;
-                [HUD hide:YES];
+                */
+                 [HUD hide:YES];
                 [HUD show:NO];
                 
             }//end for(NSDictionary *result in resultList)
+            [self getBranchMarkersWithRadius:circleRad];
             
         }//end if([strResponseMessage isEqualToString:@"OK"])
         else{
             NSLog(@"Error: %@",myError);
-            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Service temporarily unavailabe." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
             [HUD hide:YES];
             [HUD show:NO];
             
@@ -772,7 +711,7 @@
     
     else {
         NSLog(@"Error : %@",myError.localizedDescription);
-        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Service temporarily unavailable." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [HUD hide:YES];
         [HUD show:NO];
     }//end else
