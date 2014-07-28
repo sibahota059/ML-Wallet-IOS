@@ -184,6 +184,9 @@
 		70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA19318D9C6E800719BF7 /* ProfileButton.m */; };
 		70EEA19A18D9CA4900719BF7 /* edit_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19918D9CA4900719BF7 /* edit_profile.png */; };
 		70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA19B18D9CA7800719BF7 /* question_profile.png */; };
+		F007CC381985D7D20022FFF2 /* ic_all.png in Resources */ = {isa = PBXBuildFile; fileRef = F007CC351985D7D20022FFF2 /* ic_all.png */; };
+		F007CC391985D7D20022FFF2 /* ic_pending.png in Resources */ = {isa = PBXBuildFile; fileRef = F007CC361985D7D20022FFF2 /* ic_pending.png */; };
+		F007CC3A1985D7D20022FFF2 /* ic_print.png in Resources */ = {isa = PBXBuildFile; fileRef = F007CC371985D7D20022FFF2 /* ic_print.png */; };
 		F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B49197F53AE00E47198 /* TempConnection.m */; };
 		F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B4C197F8ABE00E47198 /* SendEmail.m */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
@@ -462,6 +465,9 @@
 		70EEA19418D9C6E800719BF7 /* ProfileButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileButton.h; sourceTree = "<group>"; };
 		70EEA19918D9CA4900719BF7 /* edit_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_profile.png; sourceTree = "<group>"; };
 		70EEA19B18D9CA7800719BF7 /* question_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_profile.png; sourceTree = "<group>"; };
+		F007CC351985D7D20022FFF2 /* ic_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_all.png; sourceTree = "<group>"; };
+		F007CC361985D7D20022FFF2 /* ic_pending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_pending.png; sourceTree = "<group>"; };
+		F007CC371985D7D20022FFF2 /* ic_print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_print.png; sourceTree = "<group>"; };
 		F00D4B48197F53AE00E47198 /* TempConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempConnection.h; sourceTree = "<group>"; };
 		F00D4B49197F53AE00E47198 /* TempConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempConnection.m; sourceTree = "<group>"; };
 		F00D4B4B197F8ABE00E47198 /* SendEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmail.h; sourceTree = "<group>"; };
@@ -973,6 +979,9 @@
 				3B1BD6A01980D57100E234C5 /* MLBackground4.png */,
 				3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */,
 				3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */,
+				F007CC351985D7D20022FFF2 /* ic_all.png */,
+				F007CC361985D7D20022FFF2 /* ic_pending.png */,
+				F007CC371985D7D20022FFF2 /* ic_print.png */,
 				F081A05F19777613004568EF /* payment_bg_ipad.png */,
 				F081A03919776D64004568EF /* preview_bg_ipad.png */,
 				F081A03719776D57004568EF /* content_bg_ipad.png */,
@@ -1329,6 +1338,7 @@
 				7006620618DA77E900A0F05C /* profile_frame.jpg in Resources */,
 				3B30285A1981E8C9007825CE /* ResetPassViewController~iphone.xib in Resources */,
 				3B19518E18B6F5260061969F /* MLBackground2.png in Resources */,
+				F007CC381985D7D20022FFF2 /* ic_all.png in Resources */,
 				3B19519E18B732030061969F /* textbox.png in Resources */,
 				7006622418DA823D00A0F05C /* black_check_credentials.png in Resources */,
 				F081A03E19776DFE004568EF /* MLSendMoneyViewController~iphone.xib in Resources */,
@@ -1365,6 +1375,7 @@
 				707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */,
 				3BA8A232197570DF0052FA2F /* down.png in Resources */,
 				7006622518DA823D00A0F05C /* black_credentials.png in Resources */,
+				F007CC391985D7D20022FFF2 /* ic_pending.png in Resources */,
 				F081A06019777613004568EF /* payment_bg_ipad.png in Resources */,
 				3011287A19838600007EC190 /* MLhuillierWebViewController~ipad.xib in Resources */,
 				F081A05419776E55004568EF /* MLMenuViewController.xib in Resources */,
@@ -1430,6 +1441,7 @@
 				3B1B36C818B4ADA1006DA5BB /* icon_my_receiver.jpg in Resources */,
 				3BB42E0918D6B6C60011792E /* profile.jpg in Resources */,
 				3BB42E0C18D6B6C60011792E /* right.png in Resources */,
+				F007CC3A1985D7D20022FFF2 /* ic_print.png in Resources */,
 				3B17584D18B2FC09005A7805 /* popup_img.png in Resources */,
 				3BA8A23019756F810052FA2F /* button_back.png in Resources */,
 				3B1D2A1A1985E282004A70FC /* InfoViewController~ipad.xib in Resources */,

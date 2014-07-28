@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MLHistoryViewController">
             <connections>
+                <outlet property="btn_cancel" destination="QAp-wO-hio" id="yQj-ov-u9j"/>
                 <outlet property="img_status" destination="hmt-Kg-sjj" id="TOy-s9-rRF"/>
                 <outlet property="labelDate" destination="4ec-F1-X1Z" id="6JG-x5-q6o"/>
                 <outlet property="labelKptn" destination="OrN-Bg-y4l" id="opb-od-hSQ"/>
@@ -153,7 +154,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sendout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC5-cK-jCl">
-                            <rect key="frame" x="5" y="146" width="87" height="21"/>
+                            <rect key="frame" x="5" y="146" width="130" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
