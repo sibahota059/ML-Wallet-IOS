@@ -11,17 +11,23 @@
 #import "MLUI.h"
 #import "LoadHistory.h"
 #import "NSDictionary+LoadWalletData.h"
+#import <CoreLocation/CoreLocation.h>
+#import "DeviceID.h"
 
 @interface MLHistoryViewController (){
 
     UIBarButtonItem *back, *right, * rightPending;
     MLUI *getUI;
     LoadHistory *loadHistory;
+    CheckPin *chk;
+    SoCancel *sc;
     NSDictionary *dic;
     NSString *walletno, *statusInd;
     MBProgressHUD *HUD;
     NSMutableArray *getLoadHistory, *getDate, *getType, *getAmmount, *getBalance, *getReceiverName, *getKptn, *getStatus, *getDateP, *getTypeP, *getAmmountP, *getBalanceP, *getReceiverNameP, *getKptnP, *getStatusP;
-    
+    CLLocationManager *locationManager;
+    DeviceID *di;
+    PrintTransaction *pt;
     
 }
 
@@ -45,7 +51,14 @@
     //Create object of MLUI, NSDictionary+LoadWalletData, & LoadHistory class
     getUI       = [MLUI new];
     loadHistory = [LoadHistory new];
+    chk         = [CheckPin new];
+    sc          = [SoCancel new];
     dic         = [NSDictionary initRead_LoadWallet_Data];
+    di          = [DeviceID new];
+    pt          = [PrintTransaction new];
+    
+    chk.delegate = self;
+    pt.delegate  = self;
     
     //Create object of MBProgressHUD class and add progress dialog view
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
@@ -53,10 +66,13 @@
     HUD.delegate = self;
     
     //Display the Progress Dialog
-    HUD.labelText = @"Please wait";
-    HUD.square = YES;
-    [HUD show:YES];
-    [self.view endEditing:YES];
+    [self displayProgressBar];
+    
+    //Create object of CLLocationManager to get the location, latitude, longitude
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [locationManager startUpdatingLocation];
     
     //Get the value of walletno in Property List
     walletno = [dic objectForKey:@"walletno"];
@@ -79,10 +95,12 @@
     //Set Title
     self.title = @"HISTORY";
     
+    sc.delegate = self;
     loadHistory.delegate = self;
     [loadHistory getUserWalletNo:walletno];
     
     statusInd = @"all";
+    [self setTextField:_tf_pin1];
     
     
     self.view_keyboard.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
@@ -170,8 +188,7 @@
 
     
     //dismiss the progress dialog
-    [HUD hide:YES];
-    [HUD show:NO];
+    [self dismissProgressBar];
     
 }
 
@@ -184,8 +201,37 @@
 #pragma mark - Display All Transaction Button Pressed
 - (IBAction)btn_sendPreview:(id)sender {
 
-    [getUI displayAlert:@"Message" message:@"This will send transaction to email. This will function later."];
+    //Display the Progress Dialog
+    [self displayProgressBar];
+    
+    [pt getUserWalletNo:walletno];
 
+    self.navigationItem.leftBarButtonItem.enabled = NO;
+    for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
+        button.enabled = NO;
+    }
+}
+
+- (void)didFinishLoadingTransaction:(NSString *)indicator{
+    
+    self.navigationItem.leftBarButtonItem.enabled = YES;
+    for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
+        button.enabled = YES;
+    }
+    
+    //dismiss the progress dialog
+    [self dismissProgressBar];
+    
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", pt.respcode] isEqualToString:@"1"]) {
+        [getUI displayAlert:@"Message" message:pt.respmessage];
+    }else if([[NSString stringWithFormat:@"%@", pt.respcode] isEqualToString:@"0"]){
+        [getUI displayAlert:@"Message" message:pt.respmessage];
+    }else if([indicator isEqualToString:@"0"]){
+        [getUI displayAlert:@"Message" message:@"Slow or no internet connection."];
+    }else{
+        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+    }
+    
 }
 
 #pragma mark - Display List Pending Transaction Button Pressed
@@ -194,10 +240,7 @@
     
     if ([statusInd isEqualToString:@"pending"]) {
         
-        HUD.labelText = @"Please wait";
-        HUD.square = YES;
-        [HUD show:YES];
-        [self.view endEditing:YES];
+        [self displayProgressBar];
         
         statusInd = @"all";
         rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_pending.png"];
@@ -206,10 +249,7 @@
         
     }else{
         
-        HUD.labelText = @"Please wait";
-        HUD.square = YES;
-        [HUD show:YES];
-        [self.view endEditing:YES];
+        [self displayProgressBar];
         
         statusInd = @"pending";
         rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_all.png"];
@@ -219,9 +259,9 @@
     }
     
     self.navigationItem.rightBarButtonItems = @[right,rightPending];
+    
     //dismiss the progress dialog
-    [HUD hide:YES];
-    [HUD show:NO];
+    [self dismissProgressBar];
 }
 
 #pragma mark - Hide Status Bar
@@ -414,12 +454,14 @@
 
     self.view_pinInput.alpha = 0.0;
     self.view_keyboard.alpha = 0.0;
+    self.view_inputted.alpha = 0.0;
     //self.btn_pin.hidden = YES;
     
     [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
         _view_keyboard.hidden = NO;
         self.view_pinInput.alpha = 1.0;
         self.view_keyboard.alpha = 1.0;
+        self.view_inputted.alpha = 1.0;
     }completion:^(BOOL finished) {
         
     }];
@@ -431,53 +473,106 @@
     
     [self.navigationItem setRightBarButtonItem:nexts];
     _view_pinInput.hidden = NO;
+    _view_inputted.hidden = NO;
 }
 
 - (void)btnPin{
     
-    [getUI displayAlert:@"Message" message:@"Check Pin"];
-    self.view_pinInput.alpha = 1.0;
-    self.view_keyboard.alpha = 1.0;
+    //Display the Progress Dialog
+    [self displayProgressBar];
     
-    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        
-        self.view_pinInput.alpha = 0.0;
-        self.view_keyboard.alpha = 0.0;
-        self.view_transform.alpha = 1.0;
-        
-    }completion:^(BOOL finished) {
-        
-    }];
+    NSString *pin = [NSString stringWithFormat:@"%@%@%@%@", _tf_pin1.text, _tf_pin2.text, _tf_pin3.text, _tf_pin4.text];
     
-    self.view_transform.hidden = YES;
-    self.title = @"PREVIEW";
+    [chk getReceiverWalletNo:walletno andReceiverPinNo:pin];
+   
+}
+
+- (void)didFinishLoadingPin:(NSString *)indicator{
     
-    if ([statusInd isEqualToString:@"pending"]) {
-        rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_all.png"];
+    //get the results of pin request
+    NSDictionary* _getPin = [chk.getPin objectForKey:@"checkPinResult"];
+    
+    //extract dictionary and get value for repscode & respmessage
+    NSString* repscode = [_getPin objectForKey:@"respcode"];
+    NSString* respmessage = [_getPin objectForKey:@"respmessage"];
+    
+    //if requesting pin is successful go to next page, else display error message
+    if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"1"]) {
+        
+        [sc soCancel:walletno andKptn:_labelKptn.text andLatitude:[NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude] andLongitude:[NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude] andDeviceId:di.NSGetDeviceID andLocation:[dic objectForKey:@"address"]];
+        
+        [self reset];
     }else{
-        rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_pending.png"];
+        [getUI displayAlert:@"Message" message:respmessage];
+        [self reset];
     }
     
-    right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_print.png"];
-    
-    self.navigationItem.rightBarButtonItems = @[right,rightPending];
-    self.navigationItem.leftBarButtonItem.enabled = YES;
-    for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
-        button.enabled = YES;
+}
+
+- (void)didFinishLoadingCancellation:(NSString *)indicator{
+
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", sc.respcode]isEqualToString:@"1"]){
+        
+        [loadHistory getUserWalletNo:walletno];
+        
+        [getUI displayAlert:@"Message" message:@"Sendout Successfully Cancelled. Just kindly check your balance."];
+        
+        self.view_pinInput.alpha = 1.0;
+        self.view_keyboard.alpha = 1.0;
+        self.view_inputted.alpha = 1.0;
+        
+        [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            self.view_pinInput.alpha = 0.0;
+            self.view_keyboard.alpha = 0.0;
+            self.view_inputted.alpha = 0.0;
+            self.view_transform.alpha = 1.0;
+            
+        }completion:^(BOOL finished) {
+            
+        }];
+        
+        self.view_transform.hidden = YES;
+        self.title = @"PREVIEW";
+        
+        if ([statusInd isEqualToString:@"pending"]) {
+            rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_all.png"];
+        }else{
+            rightPending = [getUI navBarButtonHistory:self navLink:@selector(btn_pending:) imageNamed:@"ic_pending.png"];
+        }
+        
+        right = [getUI navBarButtonHistory:self navLink:@selector(btn_sendPreview:) imageNamed:@"ic_print.png"];
+        
+        self.navigationItem.rightBarButtonItems = @[right,rightPending];
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
+            button.enabled = YES;
+        }
+        _view_fade.hidden = YES;
+        [self reset];
+        
+    }else if ([[NSString stringWithFormat:@"%@", sc.respcode] isEqualToString:@"0"]){
+        
+        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", sc.respmessage]];
+        
+    }else{
+        
+        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
-    _view_fade.hidden = YES;
-    
+
 }
 
 - (IBAction)didTapSurface:(UITapGestureRecognizer *)sender {
 
     self.view_pinInput.alpha = 1.0;
     self.view_keyboard.alpha = 1.0;
+    self.view_inputted.alpha = 1.0;
     
     [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
 
         self.view_pinInput.alpha = 0.0;
         self.view_keyboard.alpha = 0.0;
+        self.view_inputted.alpha = 0.0;
         self.view_transform.alpha = 1.0;
 
     }completion:^(BOOL finished) {
@@ -500,39 +595,136 @@
         button.enabled = NO;
     }
     
-}
-
-- (IBAction)btnOne:(id)sender {
+    [self reset];
     
 }
 
+- (UITextField *)toBeInputted{
+    
+    UITextField *checkNext;
+    
+    if(![_tf_pin1.text isEqualToString:@""]){
+        checkNext = _tf_pin2;
+    }
+    
+    if(![_tf_pin2.text isEqualToString:@""]){
+        checkNext = _tf_pin3;
+    }
+    
+    if(![_tf_pin3.text isEqualToString:@""]){
+        checkNext = _tf_pin4;
+    }
+    
+    if(![_tf_pin4.text isEqualToString:@""]){
+        _btnOne.enabled = NO;
+        _btnTwo.enabled = NO;
+        _btnThree.enabled = NO;
+        _btnFour.enabled = NO;
+        _btnFive.enabled = NO;
+        _btnSix.enabled = NO;
+        _btnSeven.enabled = NO;
+        _btnEight.enabled = NO;
+        _btnNine.enabled = NO;
+        _btnZero.enabled = NO;
+    }
+    
+    return checkNext;
+    
+}
+- (IBAction)btnOne:(id)sender {
+    [self getTextField].text = @"1";
+    [self setTextField:[self toBeInputted]];
+}
+
 - (IBAction)btnTwo:(id)sender {
+    [self getTextField].text = @"2";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnThree:(id)sender {
+    [self getTextField].text = @"3";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnFour:(id)sender {
+    [self getTextField].text = @"4";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnFive:(id)sender {
+    [self getTextField].text = @"5";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnSix:(id)sender {
+    [self getTextField].text = @"6";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnSeven:(id)sender {
+    [self getTextField].text = @"7";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnEight:(id)sender {
+    [self getTextField].text = @"8";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnNine:(id)sender {
+    [self getTextField].text = @"9";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnZero:(id)sender {
+    [self getTextField].text = @"0";
+    [self setTextField:[self toBeInputted]];
 }
 
 - (IBAction)btnClear:(id)sender {
+    [self reset];
 }
+
+- (void)reset{
+    
+    _tf_pin1.text = @"";
+    _tf_pin2.text = @"";
+    _tf_pin3.text = @"";
+    _tf_pin4.text = @"";
+    
+    _btnOne.enabled = YES;
+    _btnTwo.enabled = YES;
+    _btnThree.enabled = YES;
+    _btnFour.enabled = YES;
+    _btnFive.enabled = YES;
+    _btnSix.enabled = YES;
+    _btnSeven.enabled = YES;
+    _btnEight.enabled = YES;
+    _btnNine.enabled = YES;
+    _btnZero.enabled = YES;
+    
+    [self setTextField:_tf_pin1];
+    
+}
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
+
+- (void)enableBarButton{
+    
+}
+
 @end

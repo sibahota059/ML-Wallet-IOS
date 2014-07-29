@@ -187,6 +187,8 @@
 		F007CC381985D7D20022FFF2 /* ic_all.png in Resources */ = {isa = PBXBuildFile; fileRef = F007CC351985D7D20022FFF2 /* ic_all.png */; };
 		F007CC391985D7D20022FFF2 /* ic_pending.png in Resources */ = {isa = PBXBuildFile; fileRef = F007CC361985D7D20022FFF2 /* ic_pending.png */; };
 		F007CC3A1985D7D20022FFF2 /* ic_print.png in Resources */ = {isa = PBXBuildFile; fileRef = F007CC371985D7D20022FFF2 /* ic_print.png */; };
+		F008272B1987634800C80571 /* SoCancel.m in Sources */ = {isa = PBXBuildFile; fileRef = F008272A1987634800C80571 /* SoCancel.m */; };
+		F008272E198772D100C80571 /* PrintTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = F008272D198772D100C80571 /* PrintTransaction.m */; };
 		F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B49197F53AE00E47198 /* TempConnection.m */; };
 		F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B4C197F8ABE00E47198 /* SendEmail.m */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
@@ -468,6 +470,10 @@
 		F007CC351985D7D20022FFF2 /* ic_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_all.png; sourceTree = "<group>"; };
 		F007CC361985D7D20022FFF2 /* ic_pending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_pending.png; sourceTree = "<group>"; };
 		F007CC371985D7D20022FFF2 /* ic_print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_print.png; sourceTree = "<group>"; };
+		F00827291987634800C80571 /* SoCancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoCancel.h; sourceTree = "<group>"; };
+		F008272A1987634800C80571 /* SoCancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCancel.m; sourceTree = "<group>"; };
+		F008272C198772D100C80571 /* PrintTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintTransaction.h; sourceTree = "<group>"; };
+		F008272D198772D100C80571 /* PrintTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintTransaction.m; sourceTree = "<group>"; };
 		F00D4B48197F53AE00E47198 /* TempConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempConnection.h; sourceTree = "<group>"; };
 		F00D4B49197F53AE00E47198 /* TempConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempConnection.m; sourceTree = "<group>"; };
 		F00D4B4B197F8ABE00E47198 /* SendEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmail.h; sourceTree = "<group>"; };
@@ -968,6 +974,10 @@
 			children = (
 				F0BE7CA2198336C300D0946B /* LoadHistory.h */,
 				F0BE7CA3198336C300D0946B /* LoadHistory.m */,
+				F00827291987634800C80571 /* SoCancel.h */,
+				F008272A1987634800C80571 /* SoCancel.m */,
+				F008272C198772D100C80571 /* PrintTransaction.h */,
+				F008272D198772D100C80571 /* PrintTransaction.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1471,6 +1481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F008272E198772D100C80571 /* PrintTransaction.m in Sources */,
 				7006621A18DA813800A0F05C /* AccountQuestion.m in Sources */,
 				70EEA17A18D9C46000719BF7 /* RegistrationInformation.m in Sources */,
 				7006620F18DA791600A0F05C /* ProfileInformation.m in Sources */,
@@ -1525,6 +1536,7 @@
 				F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */,
 				70EEA17D18D9C47800719BF7 /* SelectQuestionDialog.m in Sources */,
 				70EEA17918D9C46000719BF7 /* QuestionsActivity.m in Sources */,
+				F008272B1987634800C80571 /* SoCancel.m in Sources */,
 				3011287719838585007EC190 /* MLhuillierWebViewController.m in Sources */,
 				3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */,
 				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
