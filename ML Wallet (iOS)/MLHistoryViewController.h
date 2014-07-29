@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "LoadHistory.h"
 #import "MBProgressHUD.h"
+#import "CheckPin.h"
+#import "SoCancel.h"
+#import "PrintTransaction.h"
 
-@interface MLHistoryViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, LoadHistoryDelegate, MBProgressHUDDelegate>
+@interface MLHistoryViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, LoadHistoryDelegate, MBProgressHUDDelegate, CheckPinDelegate, SoCancelDelegate, PrintTransactionDelegate>
 
+@property (weak, nonatomic, getter = getTextField, setter = setTextField:) UITextField *setField;
 @property (weak, nonatomic) IBOutlet UITableView *tblHistory;
 @property (weak, nonatomic) IBOutlet UIView *view_header;
 @property (weak, nonatomic) IBOutlet UIView *view_transform;
@@ -29,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_cancel;
 @property (weak, nonatomic) IBOutlet UIView *view_keyboard;
 @property (weak, nonatomic) IBOutlet UIView *view_pinInput;
+@property (weak, nonatomic) IBOutlet UIView *view_inputted;
 - (IBAction)btn_cancel:(id)sender;
 - (IBAction)didTapSurface:(UITapGestureRecognizer *)sender;
 
@@ -37,6 +42,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *tf_pin3;
 @property (weak, nonatomic) IBOutlet UITextField *tf_pin4;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnOne;
+@property (weak, nonatomic) IBOutlet UIButton *btnTwo;
+@property (weak, nonatomic) IBOutlet UIButton *btnThree;
+@property (weak, nonatomic) IBOutlet UIButton *btnFour;
+@property (weak, nonatomic) IBOutlet UIButton *btnFive;
+@property (weak, nonatomic) IBOutlet UIButton *btnSix;
+@property (weak, nonatomic) IBOutlet UIButton *btnSeven;
+@property (weak, nonatomic) IBOutlet UIButton *btnEight;
+@property (weak, nonatomic) IBOutlet UIButton *btnNine;
+@property (weak, nonatomic) IBOutlet UIButton *btnZero;
 
 - (IBAction)btnOne:(id)sender;
 - (IBAction)btnTwo:(id)sender;

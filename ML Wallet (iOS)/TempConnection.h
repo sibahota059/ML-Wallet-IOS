@@ -14,5 +14,6 @@
 - (NSString *)getUrl;
 - (NSString *)getPort;
 - (NSString *)getPath;
+- (NSString *)getPdfPath;
 
 @end
