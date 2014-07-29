@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoViewController">
             <connections>
+                <outlet property="FaqView" destination="2i5-fx-uVD" id="ra4-9m-RDE"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -44,6 +45,82 @@
                         <action selector="btnAbout:" destination="-1" eventType="touchUpInside" id="WWm-DH-KAP"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" id="2i5-fx-uVD">
+                    <rect key="frame" x="20" y="20" width="280" height="448"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" id="wZT-I8-kvf">
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="401"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <mutableString key="text">1. What is ML Wallet Mobile? 
+ML Wallet Mobile is M. Lhuillier’s official mobile application that allows customer to send money at your own convenience using your mobile device. 
+
+
+2. What can I do with my ML Wallet Mobile application? 
+You can perform the following: 
+Send money to your registered beneficiary 
+Register beneficiary 
+Check balance of your account 
+Reload your account 
+View transaction history 
+Transfer fund withdrawable to any of ML locations nationwide 
+Check mobile sendout rates 
+Locate nearest ML branch 
+
+
+3. How do I register to ML Wallet mobile application? 
+If you are an existing M. Lhuillier customer, call, text or email ML Helpdesk to request your customer ID or you can go to a nearest ML branch to obtain your ML Customer ID.  Once you have your ML Customer ID, on your mobile, tap Register here and supply your customer ID to proceed with the registration. 
+If you are a new customer, it is required to go to a nearest ML branch and register.  Please bring valid ID (SSS, GSIS, Passport, etc).  You may be required to present Statement of Account or utility bill as additional proof of identity. 
+
+
+4. Do I need to pay for using ML Wallet application? 
+Using ML Wallet application will follow the Sendout Rate stated in the login page and will depend on the amount of money you are going to transfer.  This also charged you when loading your wallet.  However, when you withdraw an amount, it is free of charge.  Just go to an ML branch near you. 
+
+
+5. Is there a limit of amount I can load to my ML Wallet? 
+Yes.  The system only allows you to maintain P50, 000.00 in your ML Wallet. 
+
+
+6. Is there a limit of amount I can send in a day? 
+Yes.  The system allows sendout transaction amount at P50,000.00 per day. 
+
+
+7. Will I be charged of a dormancy fee of my account?  How about my sendout  transaction when unclaimed? 
+No.  You will not be charged of any fee of your deposit.  However, your sendout transaction will be charged P500.00 dormancy fee when left unclaimed after three (3) months. 
+
+
+8. Is the ML Wallet mobile application safe and secure? 
+Yes.  M. Lhuillier ensures your account to be safe and secured.  M. Lhuillier employs the best security practices and methods to safeguard your account. 
+PIN is required for every transaction done. 
+Transaction cannot proceed when you are using a new SIM or cellphone number. 
+Verisign security certificate is employed for transaction encryption. 
+Five (5) minutes idle time that allows system to log out automatically, requiring username and password to re-login. 
+Device ID, transaction location and IP addresses are logged 
+
+
+9. Can I install or access ML Wallet mobile app to any device? 
+Yes but you have also to insert along your SIM card to the new mobile device you are going to use.  This is a part of a security feature of the system. 
+</mutableString>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OvM-et-wVg">
+                            <rect key="frame" x="0.0" y="409" width="280" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="Ok" backgroundImage="transparent.png">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="bntClose:" destination="-1" eventType="touchUpInside" id="bg4-rK-MmE"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.91306455289999999" alpha="1" colorSpace="calibratedWhite"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -54,5 +131,6 @@
         <image name="ic_about.9.png" width="500" height="75"/>
         <image name="ic_contact.9.png" width="500" height="75"/>
         <image name="ic_faq.9.png" width="500" height="75"/>
+        <image name="transparent.png" width="100" height="60"/>
     </resources>
 </document>
