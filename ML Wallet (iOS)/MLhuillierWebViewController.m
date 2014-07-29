@@ -106,8 +106,8 @@
     frame.size.width = width;
     self.mLhuillierWebView.frame = frame;
     self.mLhuillierWebView.frame=self.view.bounds;
-    self.navigationItem.leftBarButtonItem.enabled = NO;
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+   // self.navigationItem.leftBarButtonItem.enabled = NO;
+   // self.navigationItem.rightBarButtonItem.enabled = NO;
     
     NSLog(@"WebView Loading Started");
     self.mLhuillierWebView.scrollView.contentOffset = CGPointMake(0,120);
@@ -129,8 +129,8 @@
     NSLog(@"Last didFinish: %@; stillLoading:%@", [[self.mLhuillierWebView request]URL],
           (self.mLhuillierWebView.loading?@"NO":@"YES"));
     
-    self.navigationItem.leftBarButtonItem.enabled = YES;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+  //  self.navigationItem.leftBarButtonItem.enabled = YES;
+  //  self.navigationItem.rightBarButtonItem.enabled = YES;
     self.mLhuillierWebView.scrollView.contentOffset = CGPointMake(0,120);
     NSLog(@"WebView Success Loading");
     [HUD hide:YES];
@@ -147,17 +147,17 @@
      NSLog(@"Last WebView Error : %@",error.localizedDescription);
         [HUD hide:YES];
         [HUD show:NO];
-        self.navigationItem.leftBarButtonItem.enabled = YES;
-        self.navigationItem.rightBarButtonItem.enabled = YES;
+     //   self.navigationItem.leftBarButtonItem.enabled = YES;
+     //   self.navigationItem.rightBarButtonItem.enabled = YES;
         
-        [UIAlertView myCostumeAlert:@"Error" alertMessage:error.localizedDescription delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
 
     
 }
 //detect webview scrolling
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    //  NSLog(@"scrolled:::");
+     //  NSLog(@"scrolled:::");
     if([scrollView isEqual:self.mLhuillierWebView.scrollView]) {
         float webViewScrollPosition = self.mLhuillierWebView.scrollView.contentOffset.y;
         //NSLog(@"Scroll : %f",webViewScrollPosition);

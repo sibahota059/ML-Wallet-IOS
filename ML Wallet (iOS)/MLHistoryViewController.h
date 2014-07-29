@@ -27,5 +27,27 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelType;
 @property (weak, nonatomic) IBOutlet UIImageView *img_status;
 @property (weak, nonatomic) IBOutlet UIButton *btn_cancel;
+@property (weak, nonatomic) IBOutlet UIView *view_keyboard;
+@property (weak, nonatomic) IBOutlet UIView *view_pinInput;
+- (IBAction)btn_cancel:(id)sender;
+- (IBAction)didTapSurface:(UITapGestureRecognizer *)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *tf_pin1;
+@property (weak, nonatomic) IBOutlet UITextField *tf_pin2;
+@property (weak, nonatomic) IBOutlet UITextField *tf_pin3;
+@property (weak, nonatomic) IBOutlet UITextField *tf_pin4;
+
+
+- (IBAction)btnOne:(id)sender;
+- (IBAction)btnTwo:(id)sender;
+- (IBAction)btnThree:(id)sender;
+- (IBAction)btnFour:(id)sender;
+- (IBAction)btnFive:(id)sender;
+- (IBAction)btnSix:(id)sender;
+- (IBAction)btnSeven:(id)sender;
+- (IBAction)btnEight:(id)sender;
+- (IBAction)btnNine:(id)sender;
+- (IBAction)btnZero:(id)sender;
+- (IBAction)btnClear:(id)sender;
 
 @end
