@@ -10,6 +10,8 @@
 #import "LoginViewController.h"
 #import "MBProgressHUD.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "TimerUIApplication.h"
+#import "UIAlertView+alertMe.h"
 
 #define UIColorFromR(rbValue) [UIColor colorWithRed:((float)((rbValue & 0xFF0000) >> 16))/255.0 green:((float)((rbValue & 0xFF00) >> 8))/255.0 blue:((float)(rbValue & 0xFF))/255.0 alpha:2.0]
 
@@ -52,7 +54,25 @@
     
     self.window.rootViewController =self.navigationController;
     [self.window makeKeyAndVisible];
+    
+    //Timeout Code
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
+
     return YES;
+}
+
+//Timeout Selector
+-(void)applicationDidTimeout:(NSNotification *) notif
+{
+    NSLog (@"time exceeded!!");
+    if (self.viewController.isViewLoaded && self.viewController.view.window)
+    {} else {
+        [UIAlertView myCostumeAlert:@"Timeout" alertMessage:@"You are redirected to login." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [self.navigationController removeFromParentViewController];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        self.navigationController.navigationBarHidden =YES;
+    }
+   
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
