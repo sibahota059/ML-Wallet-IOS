@@ -93,7 +93,7 @@
 
 #pragma mark - NSURLConnection Delegate
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[error description] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     //Hide Loader
     [HUD hide:YES];
     [HUD show:NO];

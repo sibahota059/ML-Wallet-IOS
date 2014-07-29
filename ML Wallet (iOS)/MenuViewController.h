@@ -34,6 +34,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *pop_btnInfo;
 @property (strong, nonatomic) IBOutlet UIButton *pop_btnRate;
 @property (strong, nonatomic) IBOutlet UIView *kycLayer;
+@property (strong, nonatomic) IBOutlet UIImageView *imageUser;
 
 #pragma Middle Button
 - (IBAction)btnKYC:(id)sender;

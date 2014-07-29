@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController">
             <connections>
+                <outlet property="imageUser" destination="FKn-Dk-3Bn" id="bxg-Ih-dTx"/>
                 <outlet property="imgPopup" destination="rgM-62-U8N" id="x0b-si-38D"/>
                 <outlet property="kycLayer" destination="joG-5R-CxZ" id="gw6-zs-dck"/>
                 <outlet property="lblAccount" destination="weU-yE-dBT" id="gDI-Fs-N2b"/>
@@ -127,7 +128,7 @@
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="FKn-Dk-3Bn">
-                                            <rect key="frame" x="837" y="151" width="123" height="106"/>
+                                            <rect key="frame" x="813" y="100" width="172" height="158"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Here.." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RE-RL-JH5">

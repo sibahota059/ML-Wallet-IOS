@@ -23,6 +23,7 @@
 #import "ServiceConnection.h"
 #import "SaveWalletData.h"
 #import "MLhuillierWebViewController.h"
+#import "UIImage+DecodeStringToImage.h"
 
 
 #define  VIEW_HIDDEN -320
@@ -180,7 +181,9 @@
     self.lblWalletno.text   = [dic valueForKey:@"walletno"];
     walletno                = [dic valueForKey:@"walletno"];
     self.lblDate.text       = [self getCurrentDate];
-    
+    if (![[dic valueForKey:@"photo"] isEqualToString:@""]){
+        self.imageUser.image = [UIImage decodeBase64ToImage:[NSString stringWithFormat:@"%@", [dic valueForKey:@"photo"]]];
+    }
 }
 
 #pragma mark - get Current Date

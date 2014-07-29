@@ -120,7 +120,6 @@
     textAnimate = [UITextfieldAnimate new];
 
 }
-
 #pragma mark - UITextField Delegate
 - (void) textFieldDidBeginEditing:(UITextField *)textField
 {

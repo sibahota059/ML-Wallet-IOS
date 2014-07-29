@@ -26,6 +26,7 @@
 		302FA640197E56F900B46F7A /* ml_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63E197E56F900B46F7A /* ml_1.png */; };
 		302FA641197E56F900B46F7A /* username.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63F197E56F900B46F7A /* username.png */; };
 		30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */; };
+		3B15D2A519869C5700AD69AE /* TimerUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B15D2A419869C5700AD69AE /* TimerUIApplication.m */; };
 		3B17584718B2EC6B005A7805 /* btn1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584618B2EC6B005A7805 /* btn1.png */; };
 		3B17584D18B2FC09005A7805 /* popup_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584C18B2FC09005A7805 /* popup_img.png */; };
 		3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */; };
@@ -260,6 +261,8 @@
 		302FA63E197E56F900B46F7A /* ml_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_1.png; sourceTree = "<group>"; };
 		302FA63F197E56F900B46F7A /* username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = username.png; sourceTree = "<group>"; };
 		30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~ipad.xib"; sourceTree = "<group>"; };
+		3B15D2A319869C5700AD69AE /* TimerUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerUIApplication.h; sourceTree = "<group>"; };
+		3B15D2A419869C5700AD69AE /* TimerUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerUIApplication.m; sourceTree = "<group>"; };
 		3B17584618B2EC6B005A7805 /* btn1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn1.png; sourceTree = "<group>"; };
 		3B17584C18B2FC09005A7805 /* popup_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popup_img.png; sourceTree = "<group>"; };
 		3B17584E18B301B8005A7805 /* UIAlertView+alertMe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+alertMe.h"; sourceTree = "<group>"; };
@@ -1127,6 +1130,8 @@
 				3BF0B26C197A616400AC2C76 /* SaveWalletData.m */,
 				3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */,
 				3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */,
+				3B15D2A319869C5700AD69AE /* TimerUIApplication.h */,
+				3B15D2A419869C5700AD69AE /* TimerUIApplication.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1489,6 +1494,7 @@
 				70EEA18618D9C53200719BF7 /* ProfileHeader.m in Sources */,
 				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
 				3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */,
+				3B15D2A519869C5700AD69AE /* TimerUIApplication.m in Sources */,
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
 				F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */,
 				F081A0631977A6C7004568EF /* CheckPin.m in Sources */,
