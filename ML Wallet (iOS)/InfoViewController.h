@@ -12,5 +12,7 @@
 - (IBAction)btnCotactUs:(id)sender;
 - (IBAction)btnFAQ:(id)sender;
 - (IBAction)btnAbout:(id)sender;
+@property (strong, nonatomic) IBOutlet UIView *FaqView;
+- (IBAction)bntClose:(id)sender;
 
 @end

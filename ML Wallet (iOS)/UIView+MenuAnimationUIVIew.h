@@ -11,5 +11,5 @@
 @interface UIView (MenuAnimationUIVIew)
 
 +(void) AnimationPopUp: (UIView *)popUp;
-    
++(void)popView:(UIView *)viewToPop;
 @end
