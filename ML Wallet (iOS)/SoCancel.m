@@ -22,7 +22,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     //NSLog(@"Bad: %@", [error description]);
-    [self.delegate didFinishLoadingCancellation:@"0"];
+    [self.delegate didFinishLoadingCancellation:@"error"];
     conn = nil;
 }
 

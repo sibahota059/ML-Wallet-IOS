@@ -27,7 +27,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Bad: %@", [error description]);
     conn = nil;
-    [self.delegate didFinishLoadingPin:@"0"];
+    [self.delegate didFinishLoadingPin:@"error"];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
