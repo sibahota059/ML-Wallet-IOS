@@ -195,6 +195,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  */
 - (void)show:(BOOL)animated;
 
+- (void)show:(BOOL)animated navigatorItem:(UINavigationItem*)ButtonItems ;
 /** 
  * Hide the HUD. This still calls the hudWasHidden: delegate. This is the counterpart of the show: method. Use it to
  * hide the HUD when your task completes.

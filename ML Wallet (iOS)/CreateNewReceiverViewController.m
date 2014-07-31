@@ -71,7 +71,7 @@
     //Set Navigator
     [self navigator];
     [self.MyScrollview setScrollEnabled:YES];
-    [self.MyScrollview setContentSize:CGSizeMake(320, 600)];
+    
     
     //Set Background
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -79,11 +79,13 @@
         
         if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
         {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+            [self.MyScrollview setContentSize:CGSizeMake(320, 568)];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
         }
         else //4 inc below
         {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+            [self.MyScrollview setContentSize:CGSizeMake(320, 500)];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
         }
     }
     else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -223,7 +225,7 @@
     } else if ([address isEqualToString:@""]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Address must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
         return;
-    } else if ([relation isEqualToString:@""]) {
+    } else if ([relation isEqualToString:@"Relation"]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Relation must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
         return;
     }
@@ -232,7 +234,7 @@
     //Show Animated
     HUD.labelText = @"Please wait";
     HUD.square = YES;
-    [HUD show:YES];
+    [HUD show:YES navigatorItem:self.navigationItem];
     
     self.responseData = [NSMutableData data];
     if (self.isEdit)

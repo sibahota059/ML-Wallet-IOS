@@ -85,6 +85,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	UILabel *detailsLabel;
 	BOOL isFinished;
 	CGAffineTransform rotationTransform;
+    BOOL buttonNavigatorEnable;
+    UINavigationItem *navButtonItems;
 }
 
 #pragma mark - Properties
@@ -252,7 +254,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 #pragma mark - Show & hide
 
-- (void)show:(BOOL)animated {
+- (void)show:(BOOL)animated navigatorItem:(UINavigationItem*)ButtonItems {
 	useAnimation = animated;
 	// If the grace time is set postpone the HUD display
 	if (self.graceTime > 0.0) {
@@ -264,6 +266,51 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[self setNeedsDisplay];
 		[self showUsingAnimation:useAnimation];
 	}
+    
+    
+    navButtonItems = ButtonItems;
+    if (animated) {
+        //Disable ButtonItems
+        UIBarButtonItem *button;
+        for(button in ButtonItems.rightBarButtonItems) {
+            button.enabled = NO;
+        }
+        ButtonItems.leftBarButtonItem.enabled = NO;
+        
+        buttonNavigatorEnable = YES;
+    } else {
+        //Disable ButtonItems
+        UIBarButtonItem *button;
+        for(button in ButtonItems.rightBarButtonItems) {
+            button.enabled = YES;
+        }
+        ButtonItems.leftBarButtonItem.enabled = YES;
+        buttonNavigatorEnable = NO;
+    }
+}
+
+- (void)show:(BOOL)animated {
+	useAnimation = animated;
+	// If the grace time is set postpone the HUD display
+	if (self.graceTime > 0.0) {
+		self.graceTimer = [NSTimer scheduledTimerWithTimeInterval:self.graceTime target:self
+                                                         selector:@selector(handleGraceTimer:) userInfo:nil repeats:NO];
+	}
+	// ... otherwise show the HUD imediately
+	else {
+		[self setNeedsDisplay];
+		[self showUsingAnimation:useAnimation];
+	}
+    
+    //Check for navigation
+    if (buttonNavigatorEnable) {
+        UIBarButtonItem *button;
+        for(button in navButtonItems.rightBarButtonItems) {
+            button.enabled = YES;
+        }        
+        navButtonItems.leftBarButtonItem.enabled = YES;
+        buttonNavigatorEnable = NO;
+    }
 }
 
 - (void)hide:(BOOL)animated {
