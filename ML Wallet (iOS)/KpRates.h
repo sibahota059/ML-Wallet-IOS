@@ -12,7 +12,7 @@
 @protocol KpRatesDelegate <NSObject>
 
 @required
--(void)didFinishLoadingRates:(NSString *)indicator;
+-(void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError;
 
 @end
 

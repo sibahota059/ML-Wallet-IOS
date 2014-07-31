@@ -28,6 +28,7 @@
     CLLocationManager *locationManager;
     DeviceID *di;
     PrintTransaction *pt;
+    int transCounter;
     
 }
 
@@ -108,7 +109,7 @@
 }
 
 #pragma mark - Done loading transaction
-- (void)didFinishLoadingHistory:(NSString *)indicator{
+- (void)didFinishLoadingHistory:(NSString *)indicator andError:(NSString *)getError{
     
     //Store the NSDictionary rates data into static array
     NSArray *ratess       = [loadHistory.getHistory objectForKey:@"sendoutTopUpHistoryResult"];
@@ -118,7 +119,7 @@
     
     //Get the value of respcode & respmessage in retrieving rates
     NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
-    NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
+    //NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
     
     //Check if retrieving rates is successful or not and if successful, stored in charges and amount mutable array
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
@@ -175,10 +176,15 @@
             
         }
         
+        transCounter += 1;
+        
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+        [getUI displayAlert:@"Message" message:@"You have no transaction for this month."];
     }else if ([indicator isEqualToString:@"error"]){
-        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", @"Slow or no internet connection."]];
+        
+        confirmInd = @"loadHistory";
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
+        
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
@@ -206,7 +212,7 @@
     
 }
 
-- (void)didFinishLoadingTransaction:(NSString *)indicator{
+- (void)didFinishLoadingTransaction:(NSString *)indicator andError:(NSString *)getError{
     
     self.navigationItem.leftBarButtonItem.enabled = YES;
     for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
@@ -220,8 +226,8 @@
         [getUI displayAlert:@"Message" message:pt.respmessage];
     }else if([[NSString stringWithFormat:@"%@", pt.respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:pt.respmessage];
-    }else if([indicator isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:@"Slow or no internet connection."];
+    }else if([indicator isEqualToString:@"error"]){
+        [getUI displayAlert:@"Message" message:getError];
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
@@ -344,7 +350,7 @@
     
     if ([[NSString stringWithFormat:@"%@", statusInd] isEqualToString:@"pending"]) {
         
-        _labelName.text = [getReceiverNameP objectAtIndex:indexPath.row];
+        _labelName.text = [[getReceiverNameP objectAtIndex:indexPath.row] uppercaseString];
         _labelKptn.text = [getKptnP objectAtIndex:indexPath.row];
         _labelReceiverId.text = walletno;
         _labelDate.text = [self getDate:[getDateP objectAtIndex:indexPath.row]];
@@ -367,7 +373,7 @@
         
     }else{
         
-        _labelName.text = [getReceiverName objectAtIndex:indexPath.row];
+        _labelName.text = [[getReceiverName objectAtIndex:indexPath.row]uppercaseString];
         _labelKptn.text = [getKptn objectAtIndex:indexPath.row];
         _labelReceiverId.text = walletno;
         _labelDate.text = [self getDate:[getDate objectAtIndex:indexPath.row]];
@@ -458,6 +464,7 @@
 
 - (void)btnPin{
     
+    confirmInd = @"pin";
     //Display the Progress Dialog
     [self displayProgressBar];
     
@@ -467,7 +474,7 @@
    
 }
 
-- (void)didFinishLoadingPin:(NSString *)indicator{
+- (void)didFinishLoadingPin:(NSString *)indicator andError:(NSString *)getError{
     
     //get the results of pin request
     NSDictionary* _getPin = [chk.getPin objectForKey:@"checkPinResult"];
@@ -481,21 +488,31 @@
         
         [sc soCancel:walletno andKptn:_labelKptn.text andLatitude:[NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude] andLongitude:[NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude] andDeviceId:di.NSGetDeviceID andLocation:[dic objectForKey:@"address"]];
         
-        [self reset];
+        //[self reset];
     }else if([indicator isEqualToString:@"error"]){
-        [getUI displayAlert:@"Message" message:@"Slow or no internet connection."];
+        
         [self dismissProgressBar];
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
+        
     }else if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:respmessage];
         [self dismissProgressBar];
+        [self reset];
+    }else if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"3"]){
+        [getUI displayAlert:@"Message" message:respmessage];
+        [self dismissProgressBar];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        self.navigationController.navigationBarHidden = YES;
+
     }else{
+        [self dismissProgressBar];
         [getUI displayAlert:@"Message" message:respmessage];
         [self reset];
     }
     
 }
 
-- (void)didFinishLoadingCancellation:(NSString *)indicator{
+- (void)didFinishLoadingCancellation:(NSString *)indicator andError:(NSString *)getError{
 
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", sc.respcode]isEqualToString:@"1"]){
         
@@ -544,7 +561,8 @@
         
     }else if([indicator isEqualToString:@"error"]){
         
-        [getUI displayAlert:@"Message" message:@"Slow or no internet connection."];
+        [self dismissProgressBar];
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     
     }else{
         
@@ -752,21 +770,43 @@
         _view_inputted.hidden = NO;
             
             
+        }else if ([confirmInd isEqualToString:@"loadHistory"]){
+            
+            [self displayProgressBar];
+            [loadHistory getUserWalletNo:walletno];
+            
+        }else if ([confirmInd isEqualToString:@"pin"]){
+            
+            [self btnPin];
+            
         }else{
             
-            //Display the Progress Dialog
-            [self displayProgressBar];
-            
-            [pt getUserWalletNo:walletno];
-            
-            self.navigationItem.leftBarButtonItem.enabled = NO;
-            for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
-                button.enabled = NO;
+            if (transCounter > 0) {
+                //Display the Progress Dialog
+                [self displayProgressBar];
+                
+                [pt getUserWalletNo:walletno];
+                
+                self.navigationItem.leftBarButtonItem.enabled = NO;
+                for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
+                    button.enabled = NO;
+                }
+            } else {
+                [getUI displayAlert:@"Message" message:@"You have no transactions yet."];
             }
+            
         }
     }
     else if (buttonIndex == 1) {
         //dismiss dialog
+        
+        if ([confirmInd isEqualToString:@"loadHistory"]) {
+            self.navigationController.navigationBarHidden = YES;
+            [self.navigationController popViewControllerAnimated:YES];
+        }else if ([confirmInd isEqualToString:@"pin"]){
+            [self dismissProgressBar];
+            [self reset];
+        }
     }
 }
 

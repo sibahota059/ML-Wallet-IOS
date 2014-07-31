@@ -12,7 +12,7 @@
 @protocol SoCancelDelegate <NSObject>
 
 @required
--(void)didFinishLoadingCancellation:(NSString *)indicator;
+-(void)didFinishLoadingCancellation:(NSString *)indicator andError:(NSString *)getError;
 
 @end
 

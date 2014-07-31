@@ -141,7 +141,7 @@
 }
 
 #pragma mark - Checking Pin
-- (void)didFinishLoadingPin:(NSString *)indicator{
+- (void)didFinishLoadingPin:(NSString *)indicator andError:(NSString *)getError{
     
     //hide the progress dialog
     [HUD hide:YES];

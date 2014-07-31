@@ -25,7 +25,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     conn = nil;
-    [self.delegate didFinishLoadingTransaction:@"8"];
+    [self.delegate didFinishLoadingTransaction:@"error" andError:error.localizedDescription];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -40,7 +40,7 @@
     self.respcode = [jsonResponse objectForKey:@"respcode"];
     self.respmessage = [jsonResponse objectForKey:@"respmsg"];
     
-    [self.delegate didFinishLoadingTransaction:@"1"];
+    [self.delegate didFinishLoadingTransaction:@"1" andError:@""];
 }
 
 
@@ -56,7 +56,7 @@
     if (([challenge.protectionSpace.authenticationMethod
           isEqualToString:NSURLAuthenticationMethodServerTrust])) {
         if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
-            NSLog(@"Allowing bypass...");
+
             NSURLCredential *credential = [NSURLCredential credentialForTrust:
                                            challenge.protectionSpace.serverTrust];
             [challenge.sender useCredential:credential
