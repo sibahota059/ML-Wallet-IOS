@@ -21,9 +21,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    //NSLog(@"Bad: %@", [error description]);
-    [self.delegate didFinishLoadingCancellation:@"0"];
     conn = nil;
+    [self.delegate didFinishLoadingCancellation:@"error" andError:error.localizedDescription];
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -47,7 +47,7 @@
     self.respcode    = repscode;
     self.respmessage = repsmessage;
     
-    [self.delegate didFinishLoadingCancellation:@"1"];
+    [self.delegate didFinishLoadingCancellation:@"1" andError:@""];
     
 }
 
@@ -64,7 +64,7 @@
     if (([challenge.protectionSpace.authenticationMethod
           isEqualToString:NSURLAuthenticationMethodServerTrust])) {
         if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
-            NSLog(@"Allowing bypass...");
+
             NSURLCredential *credential = [NSURLCredential credentialForTrust:
                                            challenge.protectionSpace.serverTrust];
             [challenge.sender useCredential:credential

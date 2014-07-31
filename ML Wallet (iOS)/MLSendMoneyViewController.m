@@ -63,10 +63,7 @@
     HUD.delegate = self;
     
     //Display the Progress Dialog
-    HUD.labelText = @"Please wait";
-    HUD.square = YES;
-    [HUD show:YES];
-    [self.view endEditing:YES];
+    [self displayProgressBar];
     
     //Create object of MLUI, KpRates, GetReceiver, and DeviceID class
     getUI          =  [MLUI new];
@@ -93,10 +90,6 @@
     self.view_main.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
-    //Setting fontsize of a label
-    //_label_balance.font = [UIFont boldSystemFontOfSize:24.0f];
-    //_chargeValue.font = [UIFont boldSystemFontOfSize:24.0f];
-    //_totalValue.font = [UIFont boldSystemFontOfSize:24.0f];
     
     //Check if device is iphone or ipad and create object of UIImage and add image on it
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -229,7 +222,7 @@
 }
 
 #pragma mark - Retrieving Rates Done
-- (void)didFinishLoadingRates:(NSString *)indicator{
+- (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
     
     //Store the rates data return from webservice into static array
     NSArray *ratess = [rates.getRates objectForKey:@"getChargeValuesResult"];
@@ -293,8 +286,7 @@
     }
     
     //dismiss the progress dialog
-    [HUD hide:YES];
-    [HUD show:NO];
+    [self dismissProgressBar];
 }
 
 #pragma mark - Hide Status Bar
@@ -418,12 +410,12 @@
         
         //Create object of MLPreviewViewController and pass data to it
         MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
-        preview._senderLname    =  [self capitalizeFirstChar:[[dic objectForKey:@"lname"] lowercaseString]];
-        preview._senderFname    =  [self capitalizeFirstChar:[[dic objectForKey:@"fname"] lowercaseString]];
-        preview._senderMname    =  smname;
+        preview._senderLname    =  [[dic objectForKey:@"lname"] uppercaseString];
+        preview._senderFname    =  [[dic objectForKey:@"fname"] uppercaseString];
+        preview._senderMname    =  [smname uppercaseString];
         preview._senderImage    =  [dic objectForKey:@"photo"];
-        preview._receiverLname  =  getRlname;
-        preview._receiverFname  =  getRfname;
+        preview._receiverLname  =  [self capitalizeFirstChar:getRlname];
+        preview._receiverFname  =  [self capitalizeFirstChar:getRfname];
         preview._receiverMname  =  getRmname;
         preview._receiver_image =  getRimage;
         preview._amount         = _tf_amount.text;
@@ -629,5 +621,38 @@
     
 }
 
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
+
+- (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    [alert show];
+    
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        
+    }
+    else if (buttonIndex == 1) {
+        
+    }
+}
 
 @end

@@ -88,8 +88,8 @@
     [HUD show:NO];
     
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", sendout.getRespcode]isEqualToString:@"1"]){
-        NSLog(@"KPTN: %@", sendout.getKptn);
-        _lbl_kptn.text = [NSString stringWithFormat:@"Money Successfully Sent\nKPTN:\n%@",sendout.getKptn];
+
+        _lbl_kptn.text = [NSString stringWithFormat:@"Money Successfully Sent\nKPTN:\n%@",[self formatKptn:sendout.getKptn]];
         _view_success.hidden = NO;
         _view_success.alpha = 0.2f;
         _view_successOption.hidden = NO;
@@ -106,6 +106,18 @@
     }
     
     
+}
+
+- (NSString *)formatKptn:(NSString *)kptn{
+    
+    NSString *sub1 = [kptn substringToIndex:4];
+    NSString *sub2 = [kptn substringWithRange:NSMakeRange(4, 3)];
+    NSString *sub3 = [kptn substringWithRange:NSMakeRange(7, 4)];
+    NSString *sub4 = [kptn substringWithRange:NSMakeRange(11, 3)];
+    NSString *sub5 = [kptn substringWithRange:NSMakeRange(14, 4)];
+    NSString *sendKptn = [NSString stringWithFormat:@"%@-%@-%@-%@-%@", sub1, sub2, sub3, sub4, sub5];
+    
+    return sendKptn;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -172,14 +184,7 @@
     [HUD show:YES];
     [self.view endEditing:YES];
  
-    NSString *sub1 = [sendout.getKptn substringToIndex:4];
-    NSString *sub2 = [sendout.getKptn substringWithRange:NSMakeRange(4, 3)];
-    NSString *sub3 = [sendout.getKptn substringWithRange:NSMakeRange(7, 4)];
-    NSString *sub4 = [sendout.getKptn substringWithRange:NSMakeRange(11, 3)];
-    NSString *sub5 = [sendout.getKptn substringWithRange:NSMakeRange(14, 4)];
-    
-    NSString *sendKptn = [NSString stringWithFormat:@"%@-%@-%@-%@-%@", sub1, sub2, sub3, sub4, sub5];
-    [se sendEmail:__walletNo andKptn:sendKptn];
+    [se sendEmail:__walletNo andKptn:[self formatKptn:sendout.getKptn]];
     
 }
 @end
