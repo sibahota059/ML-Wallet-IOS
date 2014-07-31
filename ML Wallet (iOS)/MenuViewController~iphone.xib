@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController">
             <connections>
+                <outlet property="imageUser" destination="bHa-F0-UpT" id="u5o-yd-Njj"/>
                 <outlet property="imgPopup" destination="Qyr-7E-Ska" id="hsp-Kz-JPG"/>
                 <outlet property="kycLayer" destination="VKF-Ad-29a" id="kla-Rd-qs1"/>
                 <outlet property="lblAccount" destination="XKd-lT-keH" id="fxz-3c-wBm"/>

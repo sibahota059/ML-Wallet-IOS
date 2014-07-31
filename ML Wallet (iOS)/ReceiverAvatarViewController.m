@@ -155,6 +155,7 @@
             gotoCreate.addrs    = receiver.Address;
             gotoCreate.rlate    = receiver.Relation;
             gotoCreate.recNo    = receiver.receiverNo;
+            gotoCreate.image    = receiver.ReceiverImage;
             [self.navigationController pushViewController:gotoCreate animated:YES];
         }
     }
