@@ -56,7 +56,10 @@
         self.txtAddress.text    = self.addrs;
         [self.txtRelation setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         self.txtRelation.titleLabel.text = self.rlate;
-        self.rec_image.image    = self.image;
+        if (self.image != [UIImage imageNamed:@"noImage.png"]) {
+           self.rec_image.image    = self.image;
+        }
+        
     }
 
     //relationView
@@ -209,10 +212,12 @@
     NSArray *objects ;
     NSDictionary *jsonDictionary ;
     
-    if (recImage != nil) {
+    if (self.rec_image.image != [UIImage imageNamed:@"noImage.png"]) {
         recImage = [self imageWithImage:recImage scaledToSize:size];
         strImage = [self encodeToBase64String:recImage];
         arrayString = [NSArray arrayWithObject:strImage];
+    } else {
+        arrayString = [NSArray arrayWithObjects:@"", nil];
     }
     
     //Validation NuLL Value

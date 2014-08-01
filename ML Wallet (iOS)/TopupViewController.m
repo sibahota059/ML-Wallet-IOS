@@ -185,7 +185,7 @@
     //Show Animated
     HUD.labelText = @"Please wait";
     HUD.square = YES;
-    [HUD show:YES];
+    [HUD show:YES navigatorItem:self.navigationItem];
     
     //TODO : NO Wallet
     NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"searchKPTN/?"];
