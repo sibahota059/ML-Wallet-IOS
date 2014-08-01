@@ -401,7 +401,7 @@
 #pragma mark - UIImagePicker Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    UIImage *buttonImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    UIImage *buttonImage = [info objectForKey:UIImagePickerControllerEditedImage];
     self.rec_image.image = buttonImage;
     
     NSLog(@"H and W : %f %f",buttonImage.size.height, buttonImage.size.width);
