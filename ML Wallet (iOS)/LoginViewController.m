@@ -299,7 +299,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-  
+    self.txtUser.text = @"";
+    self.txtPass.text = @"";
     /*
      1 == get Location
      2 == get Login Post Method

@@ -38,7 +38,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VsI-4T-cmF">
-                                    <rect key="frame" x="3" y="29" width="1075" height="551"/>
+                                    <rect key="frame" x="2" y="29" width="1076" height="551"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eo-dP-4e1">
@@ -115,7 +115,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CK1-4o-aMz">
-                                            <rect key="frame" x="898" y="402" width="84" height="30"/>
+                                            <rect key="frame" x="899" y="402" width="84" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                             <state key="normal" title="TOP UP" backgroundImage="btn2.png">
@@ -179,7 +179,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11,500.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-ml-jC5">
-                                            <rect key="frame" x="930" y="349" width="80" height="12"/>
+                                            <rect key="frame" x="908" y="349" width="80" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
@@ -190,12 +190,8 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="peso_signr.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nd1-LX-uhL">
-                                            <rect key="frame" x="907" y="337" width="27" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZX-Bf-1x5">
-                                            <rect key="frame" x="809" y="402" width="84" height="30"/>
+                                            <rect key="frame" x="810" y="402" width="84" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                             <state key="normal" title="SEND MONEY" backgroundImage="btn2.png"/>
@@ -404,7 +400,6 @@
         <image name="new_kprate.png" width="400" height="400"/>
         <image name="new_locator.png" width="400" height="400"/>
         <image name="noImage.png" width="75" height="69"/>
-        <image name="peso_signr.png" width="47" height="48"/>
         <image name="popup_img.png" width="170" height="100"/>
         <image name="reload.9.png" width="395" height="395"/>
         <image name="so.9.png" width="395" height="395"/>

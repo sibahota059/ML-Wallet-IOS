@@ -132,6 +132,7 @@
     isClickPopUp = TRUE;
     
     self.navigationController.navigationBarHidden = YES;
+    [self.scrollView setScrollEnabled:YES];
     
     //Set Background
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -139,10 +140,12 @@
         
         if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
         {
+            [self.scrollView setContentSize:CGSizeMake(320, 568)];
             [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
         }
         else //4 inc below
         {
+            [self.scrollView setContentSize:CGSizeMake(320, 400)];
             [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
         }
     }
@@ -157,6 +160,8 @@
     
     getUI = [MLUI new];
     
+//    [self.scrollView setScrollEnabled:YES];
+//    [self.scrollView setContentSize:CGSizeMake(320, 600)];
     
     //Get Data.plist
     [self getDataPlist];

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateNewReceiverViewController">
             <connections>
+                <outlet property="rec_image" destination="Jvf-o3-Z5b" id="jZR-oO-8fK"/>
                 <outlet property="relationView" destination="qUe-bP-4LA" id="q9P-hZ-RcY"/>
                 <outlet property="txtAddress" destination="Xde-Ld-EVT" id="f2C-NW-547"/>
                 <outlet property="txtFirstName" destination="FGh-xj-3Zs" id="Cse-Jq-4a3"/>
@@ -40,22 +41,6 @@
                             <rect key="frame" x="443" y="448" width="93" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OM8-8k-7am">
-                            <rect key="frame" x="230" y="164" width="268" height="270"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <size key="titleShadowOffset" width="1" height="2"/>
-                            <state key="normal" backgroundImage="no_image.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQp-mu-XW0">
-                            <rect key="frame" x="314" y="413" width="101" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="M.I" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4rV-Vi-8m1" userLabel="M.I">
                             <rect key="frame" x="449" y="448" width="84" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -84,6 +69,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="textbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="PPv-Yt-vPX">
                             <rect key="frame" x="186" y="562" width="347" height="39"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOG-vR-dka">
                             <rect key="frame" x="500" y="571" width="20" height="21"/>
@@ -142,6 +128,21 @@
                                 <action selector="btnRelation:" destination="-1" eventType="touchUpInside" id="7nm-Z5-FP0"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Dj-Al-LBD">
+                            <rect key="frame" x="297" y="395" width="134" height="38"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="Select photo" backgroundImage="btn2.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnGetPhoto:" destination="-1" eventType="touchUpInside" id="gOw-rG-MS3"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jvf-o3-Z5b">
+                            <rect key="frame" x="225" y="107" width="279" height="280"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
                     </subviews>
                 </scrollView>
             </subviews>
@@ -150,9 +151,10 @@
         </view>
     </objects>
     <resources>
+        <image name="btn2.png" width="300" height="77"/>
         <image name="down.png" width="11" height="9"/>
         <image name="line.png" width="320" height="2"/>
-        <image name="no_image.png" width="95" height="141"/>
+        <image name="noImage.png" width="75" height="69"/>
         <image name="textbox.png" width="280" height="30"/>
         <image name="textbox2.png" width="91" height="30"/>
     </resources>
