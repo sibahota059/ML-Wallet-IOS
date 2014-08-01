@@ -105,7 +105,7 @@
 }
 
 #pragma mark - Retrieve Rates Data from Webservice
-- (void)didFinishLoadingRates:(NSString *)indicator{
+- (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
     
     //Store the NSDictionary rates data into static array
     NSArray *ratess       = [rate.getRates objectForKey:@"getChargeValuesResult"];
@@ -139,6 +139,8 @@
         
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else if ([indicator isEqualToString:@"error"]){
+        [getUI displayAlert:@"Message" message:getError];
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }

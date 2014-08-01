@@ -508,9 +508,9 @@
         NSString *ch  = [items valueForKey:@"chargeValue"];
         
         //Set corresponding value
-        int charge = [ch integerValue];
-        int min = [minAmount integerValue];
-        int max = [maxAmount integerValue];
+        NSInteger charge = [ch integerValue];
+        NSInteger min = [minAmount integerValue];
+        NSInteger max = [maxAmount integerValue];
         
         //User sending to it's own
         if ([[NSString stringWithFormat:@"%@", [getRlname uppercaseString]] isEqualToString:[[dic objectForKey:@"lname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRfname uppercaseString]] isEqualToString:[[dic objectForKey:@"fname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRmname uppercaseString]] isEqualToString:[[dic objectForKey:@"mname"]uppercaseString]]) {
