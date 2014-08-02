@@ -56,7 +56,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     //NSLog(@"Bad: %@", [error description]);
-    [self.delegate didFinishLoading:@"0"];
+    [self.delegate didFinishLoading:@"error" andEror:error.localizedDescription];
     conn = nil;
 }
 
@@ -90,7 +90,7 @@
     self.getRespmessage = respmessage;
     self.getTotal       = [NSString stringWithFormat:@"%0.2f", [charge doubleValue] + [principal doubleValue]];
     
-    [self.delegate didFinishLoading:@"1"];
+    [self.delegate didFinishLoading:@"1" andEror:@""];
     
 }
 

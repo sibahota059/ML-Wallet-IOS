@@ -16,6 +16,7 @@
     UIBarButtonItem *next;
     MBProgressHUD *HUD;
     CheckPin *chk;
+    NSString *confirmInd, *pin;
     
     
 }
@@ -54,10 +55,10 @@
     self.title = @"PREVIEW";
     
     //customize the icon for back button and call the btn_back method
-    UIBarButtonItem *home = [getUI navBarButtonPreview:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
+    //UIBarButtonItem *home = [getUI navBarButtonPreview:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
     
     //set the bar button home to left
-    [self.navigationItem setLeftBarButtonItem:home];
+    //[self.navigationItem setLeftBarButtonItem:home];
     
     //set background image of each view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
@@ -144,8 +145,7 @@
 - (void)didFinishLoadingPin:(NSString *)indicator andError:(NSString *)getError{
     
     //hide the progress dialog
-    [HUD hide:YES];
-    [HUD show:NO];
+    [self dismissProgressBar];
     
     //create object of MLTermsConditionViewController and setting value on it
     MLTermsConditionViewController *tc = [[MLTermsConditionViewController alloc]initWithNibName:@"MLTermsConditionViewController" bundle:nil];
@@ -175,6 +175,17 @@
     if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"1"]) {
         [self.navigationController pushViewController:tc animated:YES];
         [self reset];
+    }else if ([indicator isEqualToString:@"error"]){
+        confirmInd = @"pin";	
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
+    }else if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"0"]){
+        [getUI displayAlert:@"Message" message:respmessage];
+    }else if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"3"]){
+        [getUI displayAlert:@"Message" message:respmessage];
+        [self dismissProgressBar];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        self.navigationController.navigationBarHidden = YES;
+        
     }else{
         [getUI displayAlert:@"Message" message:respmessage];
         [self reset];
@@ -185,17 +196,21 @@
 - (void)btnPin{
     
     //get the inputted pin
-    NSString *pin = [NSString stringWithFormat:@"%@%@%@%@",_tf_pin1.text, _tf_pin2.text, _tf_pin3.text, _tf_pin4.text];
+    pin = [NSString stringWithFormat:@"%@%@%@%@",_tf_pin1.text, _tf_pin2.text, _tf_pin3.text, _tf_pin4.text];
     
-    //call webservice to check if inputted pin is correct
-    [chk getReceiverWalletNo:__walletNo andReceiverPinNo:pin];
+    NSUInteger pinCount = pin.length;
     
-    //display progress dialog
-    HUD.labelText = @"Please wait";
-    HUD.square = YES;
-    [HUD show:YES];
-    [self.view endEditing:YES];
-    
+    if (pinCount == 4) {
+        
+        //call webservice to check if inputted pin is correct
+        [chk getReceiverWalletNo:__walletNo andReceiverPinNo:pin];
+        
+        //display progress dialog
+        [self displayProgressBar];
+        
+    }else{
+        [getUI displayAlert:@"Message" message:@"Pin must be 4 characters"];
+    }
 }
 
 #pragma mark - Tap Gesture Recognizer Event
@@ -242,7 +257,16 @@
     [_view_content setAlpha:0.1f];
     self.title = @"ENTER YOUR PIN";
     //self.navigationItem.titleView = [getUI navTitle:@"Enter Your Pin"];
-    next = [getUI navBarButtonPreview:self navLink:@selector(btnPin) imageNamed:@"next.png"];
+    
+    
+    next = [[UIBarButtonItem alloc]
+            initWithTitle:@"Next"
+            style:UIBarButtonItemStyleBordered
+            target:self
+            action:@selector(btnPin)];
+    self.navigationItem.rightBarButtonItem = next;
+    
+    //next = [getUI navBarButtonPreview:self navLink:@selector(btnPin) imageNamed:@"next.png"];
     [self.navigationItem setRightBarButtonItem:next];
     _view_pinInput.hidden = NO;
 }
@@ -361,5 +385,45 @@
     
     return checkNext;
 }
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
+
+- (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    [alert show];
+    
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        if ([confirmInd isEqualToString:@"pin"]) {
+            [self displayProgressBar];
+            [chk getReceiverWalletNo:__walletNo andReceiverPinNo:pin];
+        }
+    }
+    else if (buttonIndex == 1) {
+        if ([confirmInd isEqualToString:@"pin"]) {
+            //do nothing
+        }
+    }
+}
+
 
 @end

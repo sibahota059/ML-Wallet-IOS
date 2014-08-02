@@ -27,7 +27,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     conn = nil;
-    [self.delegate didFinishLoadingReceiver:@"0"];
+    [self.delegate didFinishLoadingReceiver:@"error" andError:error.localizedDescription];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -38,7 +38,7 @@
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.getReceiver = jsonResponse;
-    [self.delegate didFinishLoadingReceiver:@"1"];
+    [self.delegate didFinishLoadingReceiver:@"1" andError:@""];
 }
 
 

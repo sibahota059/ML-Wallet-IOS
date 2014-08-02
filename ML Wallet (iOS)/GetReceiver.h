@@ -12,7 +12,7 @@
 @protocol GetReceiverDelegate <NSObject>
 
 @required
--(void)didFinishLoadingReceiver:(NSString *)indicator;
+-(void)didFinishLoadingReceiver:(NSString *)indicator andError:(NSString *)getError;
 
 @end
 @interface GetReceiver : NSObject

@@ -19,7 +19,7 @@
     
     UITapGestureRecognizer *tapRecognizer;
     double inputPrint, conv, bal, total, amountValue;
-    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname;
+    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname, *confirmInd;
     NSArray *checkdot;
     UIImage *right, *wrong;
     MLUI *getUI;
@@ -80,8 +80,16 @@
     right = [UIImage imageNamed:@"right.png"];
     
     //Create a NavigationBar Left & Right Button and add link
-    next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
+    //next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
     home = [getUI navBarButton:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
+    
+    next = [[UIBarButtonItem alloc]
+                                initWithTitle:@"Next"
+                                style:UIBarButtonItemStyleBordered
+                                target:self
+                                action:@selector(btn_preview:)];
+    self.navigationItem.rightBarButtonItem = next;
+    
     
     //Set Up the Receivers View area
     [self setUpReceivers];
@@ -239,20 +247,27 @@
         
         //store the NSDicationary rates data to mutable array
         getCharges = rates.getRates;
+        //Call Webservice to get the list of receiver
+        [getReceiver getReceiverWalletNo:walletno];
         
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else if([indicator isEqualToString:@"error"]){
+
+        confirmInd = @"rates";
+        [self dismissProgressBar];
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
+        
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
     
-    //Call Webservice to get the list of receiver
-    [getReceiver getReceiverWalletNo:walletno];
+    
 
 }
 
 #pragma Retrieving Receivers Done
-- (void)didFinishLoadingReceiver:(NSString *)indicator{
+- (void)didFinishLoadingReceiver:(NSString *)indicator andError:(NSString *)getError{
     
     //Store the NSDicationary receivers data to static array
     NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
@@ -273,6 +288,10 @@
     
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else if ([indicator isEqualToString:@"error"]){
+        [self dismissProgressBar];
+        confirmInd = @"receiver";
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
@@ -648,10 +667,19 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex == 0) {
-        
+        if ([confirmInd isEqualToString:@"rates"]) {
+            [self displayProgressBar];
+            [rates loadRates];
+        }else if ([confirmInd isEqualToString:@"receiver"]){
+            [self displayProgressBar];
+            [getReceiver getReceiverWalletNo:walletno];
+        }
     }
     else if (buttonIndex == 1) {
-        
+        if ([confirmInd isEqualToString:@"rates"] || [confirmInd isEqualToString:@"receiver"]) {
+            self.navigationController.navigationBarHidden = YES;
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 

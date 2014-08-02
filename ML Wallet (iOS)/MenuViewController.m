@@ -330,6 +330,7 @@
     
     MLRatesTableViewController *rates = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
     
+    rates.indicator = @"menu";
     
     [self.navigationController pushViewController:rates animated:YES];
     self.navigationController.navigationBarHidden = NO;

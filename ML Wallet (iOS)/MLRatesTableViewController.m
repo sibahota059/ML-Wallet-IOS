@@ -68,6 +68,13 @@
     //Call the loadRates method of KpRates to retrieve data from webservice
     [rate loadRates];
     
+    
+    self.tabBarController.navigationItem.title = @"MLKP RATES";
+    self.tabBarController.navigationItem.hidesBackButton = YES;
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    
+    
     //Register a notification to check  if Transaction is finished
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(chooseTab:) name:@"CheckView" object:nil];
@@ -231,8 +238,21 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.navigationItem.title = @"MLKP RATES";
+    if ([_indicator isEqualToString:@"login"] || [_indicator isEqualToString:@"menu"])
+    {
+        self.navigationItem.title = @"MLKP RATES";
+    }else
+    {
+        self.tabBarController.navigationItem.title = @"MLKP RATES";
+        self.tabBarController.navigationItem.hidesBackButton = YES;
+        self.tabBarController.navigationItem.leftBarButtonItem = nil;
+        self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    }
+    
+    
+    
 
 }
+
 
 @end

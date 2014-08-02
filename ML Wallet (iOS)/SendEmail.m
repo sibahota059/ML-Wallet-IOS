@@ -22,7 +22,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     //NSLog(@"Bad: %@", [error description]);
-    [self.delegate didFinishLoadingEmail:@"0"];
+    [self.delegate didFinishLoadingEmail:@"error" andError:error.localizedDescription];
     conn = nil;
 }
 
@@ -47,7 +47,7 @@
     self.respcode    = repscode;
     self.respmessage = repsmessage;
     
-    [self.delegate didFinishLoadingEmail:@"1"];
+    [self.delegate didFinishLoadingEmail:@"1" andError:@""];
     
 }
 

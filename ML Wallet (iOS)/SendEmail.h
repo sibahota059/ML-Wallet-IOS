@@ -12,7 +12,7 @@
 @protocol SendKptnDelegate <NSObject>
 
 @required
--(void)didFinishLoadingEmail:(NSString *)indicator;
+-(void)didFinishLoadingEmail:(NSString *)indicator andError:(NSString *)getError;
 
 @end
 
