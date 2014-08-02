@@ -465,12 +465,22 @@
 - (void)btnPin{
     
     confirmInd = @"pin";
-    //Display the Progress Dialog
-    [self displayProgressBar];
     
     NSString *pin = [NSString stringWithFormat:@"%@%@%@%@", _tf_pin1.text, _tf_pin2.text, _tf_pin3.text, _tf_pin4.text];
     
-    [chk getReceiverWalletNo:walletno andReceiverPinNo:pin];
+    NSUInteger pinCount = pin.length;
+    
+    if (pinCount == 4) {
+        
+        //call webservice to check if inputted pin is correct
+        [chk getReceiverWalletNo:walletno andReceiverPinNo:pin];
+        
+        //display progress dialog
+        [self displayProgressBar];
+        
+    }else{
+        [getUI displayAlert:@"Message" message:@"Pin must be 4 characters"];
+    }
    
 }
 

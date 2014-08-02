@@ -207,6 +207,7 @@
 		F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B4C197F8ABE00E47198 /* SendEmail.m */; };
 		F00DD40C198C845B003D82B5 /* payment_bg.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F00DD40A198C845B003D82B5 /* payment_bg.PNG */; };
 		F00DD40D198C845B003D82B5 /* payment_bg_ipad.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F00DD40B198C845B003D82B5 /* payment_bg_ipad.PNG */; };
+		F00DD40F198CF13A003D82B5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00DD40E198CF13A003D82B5 /* MessageUI.framework */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
 		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
 		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
@@ -516,6 +517,7 @@
 		F00D4B4C197F8ABE00E47198 /* SendEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmail.m; sourceTree = "<group>"; };
 		F00DD40A198C845B003D82B5 /* payment_bg.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg.PNG; sourceTree = "<group>"; };
 		F00DD40B198C845B003D82B5 /* payment_bg_ipad.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg_ipad.PNG; sourceTree = "<group>"; };
+		F00DD40E198CF13A003D82B5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
 		F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
 		F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00DD40F198CF13A003D82B5 /* MessageUI.framework in Frameworks */,
 				3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */,
 				3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */,
 				3012DC4E197DF62400AA5F6F /* OpenGLES.framework in Frameworks */,
@@ -731,6 +734,7 @@
 		3BA7CC9918B1D6B900B9FC4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F00DD40E198CF13A003D82B5 /* MessageUI.framework */,
 				F0E3C739197FCCDD004F44F9 /* GoogleMaps.bundle */,
 				F0E3C737197FCCD4004F44F9 /* GoogleMaps.framework */,
 				3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */,

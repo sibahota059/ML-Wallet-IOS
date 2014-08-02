@@ -18,6 +18,7 @@
     KpRates *rate;
     NSMutableArray *amount, *charges, *getValueRates;
     MBProgressHUD *HUD;
+    NSString *confirmInd;
     
 }
 @end
@@ -147,7 +148,9 @@
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
     }else if ([indicator isEqualToString:@"error"]){
-        [getUI displayAlert:@"Message" message:getError];
+        confirmInd = @"rates";
+        [self dismissProgressBar];
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
     }
@@ -249,10 +252,53 @@
         self.tabBarController.navigationItem.rightBarButtonItem = nil;
     }
     
-    
-    
-
 }
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+    
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
+
+- (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    [alert show];
+    
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        if ([confirmInd isEqualToString:@"rates"]) {
+            [self displayProgressBar];
+            [rate loadRates];
+        }
+    }
+    else if (buttonIndex == 1) {
+        if ([_indicator isEqualToString:@"login"]) {
+            self.navigationController.navigationBarHidden = YES;
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            self.navigationController.navigationBarHidden = YES;
+            [self.navigationController popViewControllerAnimated:NO];
+        }
+    }
+}
+
 
 
 @end
