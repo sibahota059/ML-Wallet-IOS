@@ -64,13 +64,7 @@
 //TODO
 //Timeout Selector
 -(void)applicationDidTimeout:(NSNotification *) notif
-{
-    //check for Alertview is Showing
-    if (![self checkIfAllerViewisOpen])
-    {
-        return;
-    }
-    
+{    
     //goto Timeout
     NSLog (@"time exceeded!!");
     if (self.viewController.isViewLoaded && self.viewController.view.window)
@@ -83,21 +77,6 @@
    
 }
 
-- (BOOL)checkIfAllerViewisOpen
-{
-    for (UIWindow* window in [UIApplication sharedApplication].windows) {
-        NSArray* subviews = window.subviews;
-        if ([subviews count] > 0) {
-            
-            BOOL alert = [[subviews objectAtIndex:0] isKindOfClass:[UIAlertView class]];
-            BOOL action = [[subviews objectAtIndex:0] isKindOfClass:[UIActionSheet class]];
-            
-            if (alert || action)
-                return YES;
-        }
-    }
-    return NO;
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

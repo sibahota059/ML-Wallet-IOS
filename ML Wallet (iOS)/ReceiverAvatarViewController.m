@@ -96,7 +96,9 @@
     nameLabel.text = receiver.ReceiverName;
     addressLabel.text = receiver.Address;
     relationLabel.text = receiver.Relation;
-    imageView.image = receiver.ReceiverImage;
+    if (receiver.ReceiverImage != [UIImage imageNamed:@"noImage.png"]) {
+        imageView.image = receiver.ReceiverImage;
+    }
     receiverno = receiver.receiverNo;
 }
 
@@ -169,7 +171,7 @@
     //Show Animated
     HUD.labelText = @"Please wait";
     HUD.square = YES;
-    [HUD show:YES];
+    [HUD show:YES navigatorItem:self.navigationItem];
     
     
     //Rest Service
