@@ -106,7 +106,6 @@
 		3BB42E0318D6B6C60011792E /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DED18D6B6C60011792E /* next.png */; };
 		3BB42E0418D6B6C60011792E /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DEE18D6B6C60011792E /* noImage.png */; };
 		3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DEF18D6B6C60011792E /* pad_bg.png */; };
-		3BB42E0618D6B6C60011792E /* payment_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DF018D6B6C60011792E /* payment_bg.png */; };
 		3BB42E0718D6B6C60011792E /* pin_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DF118D6B6C60011792E /* pin_bg.png */; };
 		3BB42E0818D6B6C60011792E /* preview_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DF218D6B6C60011792E /* preview_bg.png */; };
 		3BB42E0918D6B6C60011792E /* profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BB42DF318D6B6C60011792E /* profile.jpg */; };
@@ -245,7 +244,6 @@
 		F081A05C19776F89004568EF /* MLHistoryTableViewCell~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F081A05819776F89004568EF /* MLHistoryTableViewCell~iphone.xib */; };
 		F081A05D19776F89004568EF /* MLHistoryViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F081A05919776F89004568EF /* MLHistoryViewController~ipad.xib */; };
 		F081A05E19776F89004568EF /* MLHistoryTableViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F081A05A19776F89004568EF /* MLHistoryTableViewCell~ipad.xib */; };
-		F081A06019777613004568EF /* payment_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F081A05F19777613004568EF /* payment_bg_ipad.png */; };
 		F081A0631977A6C7004568EF /* CheckPin.m in Sources */ = {isa = PBXBuildFile; fileRef = F081A0621977A6C7004568EF /* CheckPin.m */; };
 		F0BE7CA4198336C300D0946B /* LoadHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = F0BE7CA3198336C300D0946B /* LoadHistory.m */; };
 		F0BE7CA71983771500D0946B /* ic_seal_cancelled.png in Resources */ = {isa = PBXBuildFile; fileRef = F0BE7CA51983771500D0946B /* ic_seal_cancelled.png */; };
@@ -379,7 +377,6 @@
 		3BB42DED18D6B6C60011792E /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		3BB42DEE18D6B6C60011792E /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage.png; sourceTree = "<group>"; };
 		3BB42DEF18D6B6C60011792E /* pad_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_bg.png; sourceTree = "<group>"; };
-		3BB42DF018D6B6C60011792E /* payment_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg.png; sourceTree = "<group>"; };
 		3BB42DF118D6B6C60011792E /* pin_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin_bg.png; sourceTree = "<group>"; };
 		3BB42DF218D6B6C60011792E /* preview_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_bg.png; sourceTree = "<group>"; };
 		3BB42DF318D6B6C60011792E /* profile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile.jpg; sourceTree = "<group>"; };
@@ -570,7 +567,6 @@
 		F081A05819776F89004568EF /* MLHistoryTableViewCell~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLHistoryTableViewCell~iphone.xib"; sourceTree = "<group>"; };
 		F081A05919776F89004568EF /* MLHistoryViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLHistoryViewController~ipad.xib"; sourceTree = "<group>"; };
 		F081A05A19776F89004568EF /* MLHistoryTableViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLHistoryTableViewCell~ipad.xib"; sourceTree = "<group>"; };
-		F081A05F19777613004568EF /* payment_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg_ipad.png; sourceTree = "<group>"; };
 		F081A0611977A6C7004568EF /* CheckPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckPin.h; sourceTree = "<group>"; };
 		F081A0621977A6C7004568EF /* CheckPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckPin.m; sourceTree = "<group>"; };
 		F0BE7CA2198336C300D0946B /* LoadHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadHistory.h; sourceTree = "<group>"; };
@@ -1033,7 +1029,6 @@
 				F007CC351985D7D20022FFF2 /* ic_all.png */,
 				F007CC361985D7D20022FFF2 /* ic_pending.png */,
 				F007CC371985D7D20022FFF2 /* ic_print.png */,
-				F081A05F19777613004568EF /* payment_bg_ipad.png */,
 				F081A03919776D64004568EF /* preview_bg_ipad.png */,
 				F081A03719776D57004568EF /* content_bg_ipad.png */,
 				7006622218DA823D00A0F05C /* black_check_credentials.png */,
@@ -1065,7 +1060,6 @@
 				F0BE7CA61983771500D0946B /* ic_seal_claimed.png */,
 				3BB42DEE18D6B6C60011792E /* noImage.png */,
 				3BB42DEF18D6B6C60011792E /* pad_bg.png */,
-				3BB42DF018D6B6C60011792E /* payment_bg.png */,
 				3BB42DF118D6B6C60011792E /* pin_bg.png */,
 				3BB42DF218D6B6C60011792E /* preview_bg.png */,
 				3BB42DF318D6B6C60011792E /* profile.jpg */,
@@ -1434,7 +1428,6 @@
 				F081A05B19776F89004568EF /* MLHistoryViewController~iphone.xib in Resources */,
 				7006620A18DA78EF00A0F05C /* AccountInformation.xib in Resources */,
 				F081A05219776E55004568EF /* MLTermsConditionViewController~iphone.xib in Resources */,
-				3BB42E0618D6B6C60011792E /* payment_bg.png in Resources */,
 				3BA7CCFB18B213BE00B9FC4B /* line.png in Resources */,
 				30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */,
 				F081A05019776E55004568EF /* MLRatesTableViewCell~iphone.xib in Resources */,
@@ -1461,7 +1454,6 @@
 				3BA8A232197570DF0052FA2F /* down.png in Resources */,
 				7006622518DA823D00A0F05C /* black_credentials.png in Resources */,
 				F007CC391985D7D20022FFF2 /* ic_pending.png in Resources */,
-				F081A06019777613004568EF /* payment_bg_ipad.png in Resources */,
 				3011287A19838600007EC190 /* MLhuillierWebViewController~ipad.xib in Resources */,
 				F081A05419776E55004568EF /* MLMenuViewController.xib in Resources */,
 				707C03BB18D9CFE100EC1B12 /* account_profile.png in Resources */,
