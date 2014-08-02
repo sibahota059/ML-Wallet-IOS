@@ -7,13 +7,13 @@
 //
 
 #import "SoCancel.h"
-#import "TempConnection.h"
+#import "ServiceConnection.h"
 
 @implementation SoCancel
 {
     NSMutableData *contentData;
     NSURLConnection *conn;
-    TempConnection *con;
+    ServiceConnection *con;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -21,9 +21,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    //NSLog(@"Bad: %@", [error description]);
-    [self.delegate didFinishLoadingCancellation:@"0"];
     conn = nil;
+    [self.delegate didFinishLoadingCancellation:@"error" andError:error.localizedDescription];
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -47,7 +47,7 @@
     self.respcode    = repscode;
     self.respmessage = repsmessage;
     
-    [self.delegate didFinishLoadingCancellation:@"1"];
+    [self.delegate didFinishLoadingCancellation:@"1" andError:@""];
     
 }
 
@@ -55,23 +55,12 @@
 // ------------ ByPass ssl starts ----------
 -(BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:
 (NSURLProtectionSpace *)protectionSpace {
-    return [protectionSpace.authenticationMethod
-            isEqualToString:NSURLAuthenticationMethodServerTrust];
+    return YES;
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:
 (NSURLAuthenticationChallenge *)challenge {
-    if (([challenge.protectionSpace.authenticationMethod
-          isEqualToString:NSURLAuthenticationMethodServerTrust])) {
-        if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
-            NSLog(@"Allowing bypass...");
-            NSURLCredential *credential = [NSURLCredential credentialForTrust:
-                                           challenge.protectionSpace.serverTrust];
-            [challenge.sender useCredential:credential
-                 forAuthenticationChallenge:challenge];
-        }
-    }
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 }
 // -------------------ByPass ssl ends
 
@@ -80,13 +69,13 @@
 {
     
     contentData = [NSMutableData data];
-    con         = [TempConnection new];
+    con         = [ServiceConnection new];
     
     NSString *jsonRequest = [NSString stringWithFormat:@"{\"walletno\":\"%@\",\"kptn\":\"%@\",\"latitude\":\"%@\",\"longitude\":\"%@\",\"deviceid\":\"%@\",\"location\":\"%@\"}", walletNo, kptn, lat, lon, deviceId, location];
     
     NSString *serviceMethods = @"SOCancel";
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@:%@%@%@", con.getHttp, con.getUrl, con.getPort, con.getPath, serviceMethods]];
+
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSData *requestData = [NSData dataWithBytes:[jsonRequest UTF8String] length:[jsonRequest length]];
@@ -94,7 +83,7 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[requestData length]] forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody: requestData];
     
     [NSURLConnection connectionWithRequest:request delegate:self];

@@ -19,7 +19,7 @@
     
     UITapGestureRecognizer *tapRecognizer;
     double inputPrint, conv, bal, total, amountValue;
-    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname;
+    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname, *confirmInd;
     NSArray *checkdot;
     UIImage *right, *wrong;
     MLUI *getUI;
@@ -63,10 +63,7 @@
     HUD.delegate = self;
     
     //Display the Progress Dialog
-    HUD.labelText = @"Please wait";
-    HUD.square = YES;
-    [HUD show:YES];
-    [self.view endEditing:YES];
+    [self displayProgressBar];
     
     //Create object of MLUI, KpRates, GetReceiver, and DeviceID class
     getUI          =  [MLUI new];
@@ -83,8 +80,16 @@
     right = [UIImage imageNamed:@"right.png"];
     
     //Create a NavigationBar Left & Right Button and add link
-    next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
+    //next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
     home = [getUI navBarButton:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
+    
+    next = [[UIBarButtonItem alloc]
+                                initWithTitle:@"Next"
+                                style:UIBarButtonItemStyleBordered
+                                target:self
+                                action:@selector(btn_preview:)];
+    self.navigationItem.rightBarButtonItem = next;
+    
     
     //Set Up the Receivers View area
     [self setUpReceivers];
@@ -93,10 +98,6 @@
     self.view_main.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     
-    //Setting fontsize of a label
-    //_label_balance.font = [UIFont boldSystemFontOfSize:24.0f];
-    //_chargeValue.font = [UIFont boldSystemFontOfSize:24.0f];
-    //_totalValue.font = [UIFont boldSystemFontOfSize:24.0f];
     
     //Check if device is iphone or ipad and create object of UIImage and add image on it
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -229,7 +230,7 @@
 }
 
 #pragma mark - Retrieving Rates Done
-- (void)didFinishLoadingRates:(NSString *)indicator{
+- (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
     
     //Store the rates data return from webservice into static array
     NSArray *ratess = [rates.getRates objectForKey:@"getChargeValuesResult"];
@@ -246,20 +247,29 @@
         
         //store the NSDicationary rates data to mutable array
         getCharges = rates.getRates;
+        //Call Webservice to get the list of receiver
+        [getReceiver getReceiverWalletNo:walletno];
         
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else if([indicator isEqualToString:@"error"]){
+
+        confirmInd = @"rates";
+        [self dismissProgressBar];
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
+        
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
-    //Call Webservice to get the list of receiver
-    [getReceiver getReceiverWalletNo:walletno];
+    
 
 }
 
 #pragma Retrieving Receivers Done
-- (void)didFinishLoadingReceiver:(NSString *)indicator{
+- (void)didFinishLoadingReceiver:(NSString *)indicator andError:(NSString *)getError{
     
     //Store the NSDicationary receivers data to static array
     NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
@@ -280,8 +290,14 @@
     
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+    }else if ([indicator isEqualToString:@"error"]){
+        [self dismissProgressBar];
+        confirmInd = @"receiver";
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
     //Set the number of receiver in a label
@@ -293,8 +309,7 @@
     }
     
     //dismiss the progress dialog
-    [HUD hide:YES];
-    [HUD show:NO];
+    [self dismissProgressBar];
 }
 
 #pragma mark - Hide Status Bar
@@ -418,12 +433,12 @@
         
         //Create object of MLPreviewViewController and pass data to it
         MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
-        preview._senderLname    =  [self capitalizeFirstChar:[[dic objectForKey:@"lname"] lowercaseString]];
-        preview._senderFname    =  [self capitalizeFirstChar:[[dic objectForKey:@"fname"] lowercaseString]];
-        preview._senderMname    =  smname;
+        preview._senderLname    =  [[dic objectForKey:@"lname"] uppercaseString];
+        preview._senderFname    =  [[dic objectForKey:@"fname"] uppercaseString];
+        preview._senderMname    =  [smname uppercaseString];
         preview._senderImage    =  [dic objectForKey:@"photo"];
-        preview._receiverLname  =  getRlname;
-        preview._receiverFname  =  getRfname;
+        preview._receiverLname  =  [self capitalizeFirstChar:getRlname];
+        preview._receiverFname  =  [self capitalizeFirstChar:getRfname];
         preview._receiverMname  =  getRmname;
         preview._receiver_image =  getRimage;
         preview._amount         = _tf_amount.text;
@@ -516,9 +531,9 @@
         NSString *ch  = [items valueForKey:@"chargeValue"];
         
         //Set corresponding value
-        int charge = [ch integerValue];
-        int min = [minAmount integerValue];
-        int max = [maxAmount integerValue];
+        NSInteger charge = [ch integerValue];
+        NSInteger min = [minAmount integerValue];
+        NSInteger max = [maxAmount integerValue];
         
         //User sending to it's own
         if ([[NSString stringWithFormat:@"%@", [getRlname uppercaseString]] isEqualToString:[[dic objectForKey:@"lname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRfname uppercaseString]] isEqualToString:[[dic objectForKey:@"fname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRmname uppercaseString]] isEqualToString:[[dic objectForKey:@"mname"]uppercaseString]]) {
@@ -629,5 +644,49 @@
     
 }
 
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+    
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
+
+- (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    [alert show];
+    
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        if ([confirmInd isEqualToString:@"rates"]) {
+            [self displayProgressBar];
+            [rates loadRates];
+        }else if ([confirmInd isEqualToString:@"receiver"]){
+            [self displayProgressBar];
+            [getReceiver getReceiverWalletNo:walletno];
+        }
+    }
+    else if (buttonIndex == 1) {
+        if ([confirmInd isEqualToString:@"rates"] || [confirmInd isEqualToString:@"receiver"]) {
+            self.navigationController.navigationBarHidden = YES;
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
 
 @end

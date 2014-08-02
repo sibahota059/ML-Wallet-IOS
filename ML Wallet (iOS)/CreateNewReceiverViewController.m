@@ -56,6 +56,10 @@
         self.txtAddress.text    = self.addrs;
         [self.txtRelation setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         self.txtRelation.titleLabel.text = self.rlate;
+        if (self.image != [UIImage imageNamed:@"noImage.png"]) {
+           self.rec_image.image    = self.image;
+        }
+        
     }
 
     //relationView
@@ -70,7 +74,7 @@
     //Set Navigator
     [self navigator];
     [self.MyScrollview setScrollEnabled:YES];
-    [self.MyScrollview setContentSize:CGSizeMake(320, 600)];
+    
     
     //Set Background
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -78,11 +82,13 @@
         
         if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
         {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+            [self.MyScrollview setContentSize:CGSizeMake(320, 568)];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
         }
         else //4 inc below
         {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+            [self.MyScrollview setContentSize:CGSizeMake(320, 500)];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
         }
     }
     else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -132,19 +138,6 @@
     return NO;
 }
 
-//TODO
-#pragma mark - Get Photo
-- (void) getPhoto
-{
-    UIImagePickerController *imagePicker = [UIImagePickerController new];
-    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    [imagePicker setAllowsEditing:YES];
- 
-    [self.navigationController presentViewController:imagePicker animated:YES completion:^{
-        NSLog(@"DoNe");
-    }];
-    
-}
 
 
 #pragma Start #Navigator
@@ -155,6 +148,53 @@
     self.navigationItem.rightBarButtonItem = buttonAddReceiver;
 }
 
+#pragma mark - Encode Image to String & Resize Image
+- (NSString *)encodeToBase64String:(UIImage *)image {
+    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+- (UIImage*)imageWithImage:(UIImage*)image
+              scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext( newSize );
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+/*
+- (void) imageRequest {
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.myurltouploadimage.com/services/v1/upload.json"]];
+    
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [NSString stringWithFormat:@"%@/design%i.png",docDir, designNum];
+    NSLog(@"%@",path);
+    
+    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:path]);
+    [Base64 initialize];
+    NSString *imageString = [Base64 encode:imageData];
+    
+    NSArray *keys = [NSArray arrayWithObjects:@"design",nil];
+    NSArray *objects = [NSArray arrayWithObjects:imageString,nil];
+    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:kNilOptions error:&error];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:[NSString stringWithFormat:@"%d",[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:jsonData];
+    
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    NSLog(@"Image uploaded");
+    
+}
+*/
+
 #pragma Start #Save New Receiver
 - (void)saveReceiver
 {
@@ -163,21 +203,34 @@
     NSString *fname     = self.txtFirstName.text;
     NSString *address   = self.txtAddress.text;
     NSString *relation  = self.txtRelation.titleLabel.text;
+    UIImage *recImage   = self.rec_image.image;
+    NSString *strImage;
+    NSArray *arrayString;
+    CGSize size = CGSizeMake(200, 200);
+    
+    NSArray *keys ;
+    NSArray *objects ;
+    NSDictionary *jsonDictionary ;
+    
+    if (self.rec_image.image != [UIImage imageNamed:@"noImage.png"]) {
+        recImage = [self imageWithImage:recImage scaledToSize:size];
+        strImage = [self encodeToBase64String:recImage];
+        arrayString = [NSArray arrayWithObject:strImage];
+    } else {
+        arrayString = [NSArray arrayWithObjects:@"", nil];
+    }
     
     //Validation NuLL Value
     if ([lname isEqualToString:@""]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Lastname must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
         return;
-//    } else if ([mname isEqualToString:@""]) {
-//        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Middlename must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
-//        return;
     } else if ([fname isEqualToString:@""]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Firstname must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
         return;
     } else if ([address isEqualToString:@""]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Address must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
         return;
-    } else if ([relation isEqualToString:@""]) {
+    } else if ([relation isEqualToString:@"Relation"]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Relation must have value" delegate:nil cancelButton:nil otherButtons:@"Ok"];
         return;
     }
@@ -186,51 +239,48 @@
     //Show Animated
     HUD.labelText = @"Please wait";
     HUD.square = YES;
-    [HUD show:YES];
+    [HUD show:YES navigatorItem:self.navigationItem];
     
     self.responseData = [NSMutableData data];
     if (self.isEdit)
     {
-        NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"receiverno\" : \"%@\",\"fname\" : \"%@\",\"mname\" : \"%@\",\"lname\" : \"%@\",\"relation\" : \"%@\",\"photo\" : \"%@\", \"address\" : \"%@\"}",
-                          walletno,
-                          self.recNo,
-                          fname,
-                          mname,
-                          lname,
-                          relation,
-                          @"", //Photo TODO
-                          address];
+        keys = [NSArray arrayWithObjects:@"walletno",@"receiverno",@"fname",@"mname",@"lname",@"relation",@"photo",@"address",nil];
+        objects = [NSArray arrayWithObjects:walletno,self.recNo,fname,mname,lname,relation,arrayString,address ,nil];
+        jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         
         NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"updateReceiver"];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-        NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+        
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:kNilOptions error:&error];
         
         [request setHTTPMethod:@"PUT"];
+        [request setValue:[NSString stringWithFormat:@"%d",[jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-        [request setHTTPBody:requestData];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:jsonData];
         [NSURLConnection connectionWithRequest:request delegate:self];
+
     } else {
         //Rest Service
-        NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"fname\" : \"%@\",\"mname\" : \"%@\",\"lname\" : \"%@\",\"relation\" : \"%@\",\"photo\" : \"%@\",\"address\" : \"%@\"}",
-                      walletno,
-                      fname,
-                      mname,
-                      lname,
-                      relation,
-                      @"", //Photo TODO
-                      address];
-    
+        keys = [NSArray arrayWithObjects:@"walletno",@"fname",@"mname",@"lname",@"relation",@"photo",@"address",nil];
+        objects = [NSArray arrayWithObjects:walletno,fname,mname,lname,relation,arrayString,address ,nil];
+        jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+        
         NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"addReceiverList"];
     
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-        NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
-    
+        
+        
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:kNilOptions error:&error];
+        
         [request setHTTPMethod:@"POST"];
+        [request setValue:[NSString stringWithFormat:@"%d",[jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-        [request setHTTPBody:requestData];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:jsonData];
         [NSURLConnection connectionWithRequest:request delegate:self];
     }
 }
@@ -334,5 +384,37 @@
     [self.txtRelation setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.txtRelation.titleLabel.text = @"Friend";    
     [self hideRelationView];
+}
+
+#pragma mark - Get Photo
+- (IBAction)btnGetPhoto:(id)sender {
+   
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	picker.delegate         = self;
+    picker.allowsEditing    = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	[self.navigationController presentViewController:picker animated:YES completion:nil];
+}
+
+#pragma mark - UIImagePicker Delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *buttonImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    self.rec_image.image = buttonImage;
+    
+    NSLog(@"H and W : %f %f",buttonImage.size.height, buttonImage.size.width);
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 @end

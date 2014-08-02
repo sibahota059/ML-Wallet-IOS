@@ -64,17 +64,18 @@
     HUD.delegate = self;
     
     [self navigator];
+    
     //Set Background
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         
         if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
         {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
         }
         else //4 inc below
         {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
         }
     }
     else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -95,7 +96,9 @@
     nameLabel.text = receiver.ReceiverName;
     addressLabel.text = receiver.Address;
     relationLabel.text = receiver.Relation;
-    imageView.image = receiver.ReceiverImage;
+    if (receiver.ReceiverImage != [UIImage imageNamed:@"noImage.png"]) {
+        imageView.image = receiver.ReceiverImage;
+    }
     receiverno = receiver.receiverNo;
 }
 
@@ -155,6 +158,7 @@
             gotoCreate.addrs    = receiver.Address;
             gotoCreate.rlate    = receiver.Relation;
             gotoCreate.recNo    = receiver.receiverNo;
+            gotoCreate.image    = receiver.ReceiverImage;
             [self.navigationController pushViewController:gotoCreate animated:YES];
         }
     }
@@ -167,7 +171,7 @@
     //Show Animated
     HUD.labelText = @"Please wait";
     HUD.square = YES;
-    [HUD show:YES];
+    [HUD show:YES navigatorItem:self.navigationItem];
     
     
     //Rest Service

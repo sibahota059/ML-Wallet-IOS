@@ -8,15 +8,14 @@
 
 #import "KpRates.h"
 #import "MLRatesTableViewController.h"
-#import "TempConnection.h"
-//#define TRUSTED_HOST @"192.168.12.204"
+#import "ServiceConnection.h"
 
 @implementation KpRates
 {
     
     NSMutableData *contentData;
     NSURLConnection *conn;
-    TempConnection *con;
+    ServiceConnection *con;
     
 }
 
@@ -26,7 +25,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     conn = nil;
-    [self.delegate didFinishLoadingRates:@"0"];
+    [self.delegate didFinishLoadingRates:@"error" andError:error.localizedDescription];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -37,30 +36,19 @@
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.getRates = jsonResponse;
-    [self.delegate didFinishLoadingRates:@"1"];
+    [self.delegate didFinishLoadingRates:@"1" andError:@""];
 }
 
 
 // ------------ ByPass ssl starts ----------
 -(BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:
 (NSURLProtectionSpace *)protectionSpace {
-    return [protectionSpace.authenticationMethod
-            isEqualToString:NSURLAuthenticationMethodServerTrust];
+    return YES;
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:
 (NSURLAuthenticationChallenge *)challenge {
-    if (([challenge.protectionSpace.authenticationMethod
-          isEqualToString:NSURLAuthenticationMethodServerTrust])) {
-        if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
-            NSLog(@"Allowing bypass...");
-            NSURLCredential *credential = [NSURLCredential credentialForTrust:
-                                           challenge.protectionSpace.serverTrust];
-            [challenge.sender useCredential:credential
-                 forAuthenticationChallenge:challenge];
-        }
-    }
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 }
 // -------------------ByPass ssl ends
 
@@ -68,11 +56,11 @@
 - (void)loadRates
 {
     contentData = [NSMutableData data];
-    con         = [TempConnection new];
+    con         = [ServiceConnection new];
     
     NSString *serviceMethods = @"getChargeValues";
     
-    NSString *contentURL = [NSString stringWithFormat:@"%@%@:%@%@%@", con.getHttp, con.getUrl, con.getPort, con.getPath, serviceMethods];
+    NSString *contentURL = [NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods];
     
     conn = [[NSURLConnection alloc] initWithRequest:
             [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];

@@ -12,7 +12,7 @@
 @protocol PrintTransactionDelegate <NSObject>
 
 @required
--(void)didFinishLoadingTransaction:(NSString *)indicator;
+-(void)didFinishLoadingTransaction:(NSString *)indicator andError:(NSString *)getError;
 
 @end
 @interface PrintTransaction : NSObject

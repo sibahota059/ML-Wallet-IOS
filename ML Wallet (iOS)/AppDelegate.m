@@ -61,9 +61,11 @@
     return YES;
 }
 
+//TODO
 //Timeout Selector
 -(void)applicationDidTimeout:(NSNotification *) notif
-{
+{    
+    //goto Timeout
     NSLog (@"time exceeded!!");
     if (self.viewController.isViewLoaded && self.viewController.view.window)
     {} else {
@@ -74,6 +76,7 @@
     }
    
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

@@ -184,7 +184,7 @@
         cell.receiverImage.image = [UIImage imageWithData:data];
     }
     
-    cell.receiverName.text= receiverName;
+    cell.receiverName.text= [receiverName uppercaseString];
     cell.receiverAddress.text = rAddress;
     cell.receiverRelation.text = rRelation;
     return cell;

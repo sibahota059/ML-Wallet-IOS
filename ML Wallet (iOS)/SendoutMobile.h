@@ -12,7 +12,7 @@
 @protocol SendoutMobileDelegate <NSObject>
 
 @required
--(void)didFinishLoading:(NSString *)indicator;
+-(void)didFinishLoading:(NSString *)indicator andEror:(NSString *)getError;
 
 @end
 

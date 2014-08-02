@@ -13,6 +13,8 @@
 #import "DeviceID.h"
 #import "LoginViewController.h"
 #import "UITextfieldAnimate.h"
+#import "NSDictionary+LoadWalletData.h"
+#import "SaveWalletData.h"
 
 #import <CoreLocation/CoreLocation.h>
 
@@ -24,6 +26,10 @@
 {    
     CLLocationManager *locationManager;
     UITextfieldAnimate *textAnimate;
+    NSString *walletno;
+    NSString *userFname;
+    NSString *userLname;
+    NSString *userLocat;
 }
 
 @synthesize responseData;
@@ -43,6 +49,13 @@
 {
     [super viewDidLoad];
     
+    //Wallet nO
+    NSDictionary *dic = [NSDictionary initRead_LoadWallet_Data];
+    walletno    = [dic objectForKey:@"walletno"];
+    userFname   = [dic objectForKey:@"fname"];
+    userLname   = [dic objectForKey:@"lname"];
+    userLocat   = [dic objectForKey:@"address"];
+    
     [self navigationView];
     
     //Set Background
@@ -51,11 +64,11 @@
         
         if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
         {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
         }
         else //4 inc below
         {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
         }
     }
     else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -160,6 +173,7 @@
 
 
 - (IBAction)btnSubmit:(id)sender {
+    [self.view endEditing:YES];
     
     strKPTN = self.txtKPTN.text;
     
@@ -171,11 +185,11 @@
     //Show Animated
     HUD.labelText = @"Please wait";
     HUD.square = YES;
-    [HUD show:YES];
+    [HUD show:YES navigatorItem:self.navigationItem];
     
     //TODO : NO Wallet
     NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"searchKPTN/?"];
-    NSString *srvcURL = [NSString stringWithFormat: @"%@kptn=%@&walletno=%@", srvcURL1, strKPTN, @"14030000000123"];
+    NSString *srvcURL = [NSString stringWithFormat: @"%@kptn=%@&walletno=%@", srvcURL1, strKPTN, walletno];
     
     self.responseData = [NSMutableData data];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
@@ -240,13 +254,16 @@
                     self.idd = 2;
                     break;
                 case 2:
-                    //TODO
+                    [self saveBalance:[result valueForKey:@"principal"]];
                     self.idd = 1;
                     break;
                 default:
                     break;
             }
         } else {
+            //Clear KPTN
+            self.txtKPTN.text = @"";
+            
             NSRange rangeValue = [respMesg rangeOfString:@"attempt" options:NSCaseInsensitiveSearch];
 
             if (rangeValue.length <= 0) //false
@@ -269,7 +286,23 @@
     
     }
 }
+-(void) saveBalance :(NSString*)bal
+{
+    SaveWalletData *saveData = [SaveWalletData new];
+    [saveData initSaveData:bal forKey:@"balance"];
 
+    
+    //close Loader when success
+    //Hide Loader
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+    //KPTN will nil
+    self.txtKPTN.text = @"";
+    
+    
+    [UIAlertView myCostumeAlert:@"Payout" alertMessage:@"Successfully payout. You may check your balance now" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+}
 
 - (void) searchResponse_NSArray :(NSArray *) res {
     NSString *rec_FName = [res valueForKeyPath:@"rcvrfname"];
@@ -279,16 +312,16 @@
     double lng = [self Longtitude];
     double lat = [self Latitude];
     NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
-    NSString *location = @"IOS_CANT_LOCATE";
+    NSString *location = userLocat;
     
-    //TODO : NO Wallet
+    
     //Check for Valid Receiver..
     if ([self checkIfUserAndReceiver_isTheSame:rec_FName ReceiverLname:rec_LName])
     {
         //Rest Service PAYOUT Mobile
         NSString *post = [NSString stringWithFormat:@"{\"kptn\" : \"%@\",\"walletno\" : \"%@\",\"principal\" : \"%@\",\"custid\" : \"%@\",\"latitude\" : \"%f\",\"longtitude\" : \"%f\",\"deviceid\" : \"%@\", \"location\" : \"%@\"}",
                           strKPTN,
-                          @"14030000000123",
+                          walletno,
                           principal,
                           rec_CustID,
                           lat,
@@ -317,7 +350,7 @@
 - (BOOL) checkIfUserAndReceiver_isTheSame : (NSString *)receiverFname ReceiverLname: (NSString *)receiverLname {
 
     //TODO: This will equal to User Firstname and Lastname
-    if ([[receiverFname uppercaseString] isEqualToString:@"JERRY"] && [[receiverLname uppercaseString] isEqualToString:@"LOPEZ"])
+    if ([[receiverFname uppercaseString] isEqualToString:[userFname uppercaseString]] && [[receiverLname uppercaseString] isEqualToString:[userLname uppercaseString]])
     {
         return TRUE;
     }
@@ -357,25 +390,4 @@
         [self.navigationController pushViewController:loginPage animated:YES];
     }
 }
-
-/*
- Printing description of result:
- {
- cancdate = "<null>";
- controlno = "MS1-3-169-0514-000001";
- custId = 14020003419114;
- kptn = MLW051169178420205;
- principal = 350;
- rcvrfname = RONAMAE;
- rcvrlname = TORION;
- rcvrmname = C;
- rcvrname = "TORION, RONAMAE C";
- respcode = 1;
- respmessage = "Transaction Found.";
- sndrfname = JERRY;
- sndrlname = LOPEZ;
- sndrmname = N;
- sndrname = "LOPEZ, JERRY N";
- }
-*/
 @end

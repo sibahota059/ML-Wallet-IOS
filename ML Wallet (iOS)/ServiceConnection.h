@@ -13,5 +13,7 @@
 - (NSString *)NSgetURLService;
 - (NSString *) NSgetLocationService;
 - (NSString *) NSGetMapService;
+//Albert Added
+- (NSString *) NSGetMobilePdf;
 
 @end

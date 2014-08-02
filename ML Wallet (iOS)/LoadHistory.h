@@ -12,7 +12,7 @@
 @protocol LoadHistoryDelegate <NSObject>
 
 @required
--(void)didFinishLoadingHistory:(NSString *)indicator;
+-(void)didFinishLoadingHistory:(NSString *)indicator andError:(NSString *)getError;
 
 @end
 @interface LoadHistory : NSObject

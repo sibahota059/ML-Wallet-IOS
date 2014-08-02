@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface CreateNewReceiverViewController : UIViewController <MBProgressHUDDelegate, NSURLConnectionDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate>
+@interface CreateNewReceiverViewController : UIViewController <MBProgressHUDDelegate, NSURLConnectionDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
     MBProgressHUD *HUD;
 }
 
 @property (strong, nonatomic) NSMutableData *responseData;
 
+@property (strong, nonatomic) IBOutlet UIImageView *rec_image;
 @property (strong, nonatomic) IBOutlet UIScrollView *MyScrollview;
 
 @property (strong, nonatomic) IBOutlet UIView *relationView;
@@ -24,6 +25,7 @@
 - (IBAction)btnRelation:(id)sender;
 - (IBAction)btnFamily:(id)sender;
 - (IBAction)btnFriend:(id)sender;
+- (IBAction)btnGetPhoto:(id)sender;
 
 
 //TextFields
@@ -40,5 +42,5 @@
 @property (assign, nonatomic) NSString *mname;
 @property (assign, nonatomic) NSString *addrs;
 @property (assign, nonatomic) NSString *rlate;
-
+@property (assign, nonatomic) UIImage  *image;
 @end

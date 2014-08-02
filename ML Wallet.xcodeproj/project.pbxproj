@@ -204,8 +204,9 @@
 		F007CC3A1985D7D20022FFF2 /* ic_print.png in Resources */ = {isa = PBXBuildFile; fileRef = F007CC371985D7D20022FFF2 /* ic_print.png */; };
 		F008272B1987634800C80571 /* SoCancel.m in Sources */ = {isa = PBXBuildFile; fileRef = F008272A1987634800C80571 /* SoCancel.m */; };
 		F008272E198772D100C80571 /* PrintTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = F008272D198772D100C80571 /* PrintTransaction.m */; };
-		F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B49197F53AE00E47198 /* TempConnection.m */; };
 		F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B4C197F8ABE00E47198 /* SendEmail.m */; };
+		F00DD40C198C845B003D82B5 /* payment_bg.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F00DD40A198C845B003D82B5 /* payment_bg.PNG */; };
+		F00DD40D198C845B003D82B5 /* payment_bg_ipad.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F00DD40B198C845B003D82B5 /* payment_bg_ipad.PNG */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
 		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
 		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
@@ -511,10 +512,10 @@
 		F008272A1987634800C80571 /* SoCancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCancel.m; sourceTree = "<group>"; };
 		F008272C198772D100C80571 /* PrintTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintTransaction.h; sourceTree = "<group>"; };
 		F008272D198772D100C80571 /* PrintTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintTransaction.m; sourceTree = "<group>"; };
-		F00D4B48197F53AE00E47198 /* TempConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempConnection.h; sourceTree = "<group>"; };
-		F00D4B49197F53AE00E47198 /* TempConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempConnection.m; sourceTree = "<group>"; };
 		F00D4B4B197F8ABE00E47198 /* SendEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmail.h; sourceTree = "<group>"; };
 		F00D4B4C197F8ABE00E47198 /* SendEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmail.m; sourceTree = "<group>"; };
+		F00DD40A198C845B003D82B5 /* payment_bg.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg.PNG; sourceTree = "<group>"; };
+		F00DD40B198C845B003D82B5 /* payment_bg_ipad.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg_ipad.PNG; sourceTree = "<group>"; };
 		F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
 		F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
 		F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -965,8 +966,6 @@
 				F081A02F19776BF7004568EF /* SendoutMobile.m */,
 				F081A0611977A6C7004568EF /* CheckPin.h */,
 				F081A0621977A6C7004568EF /* CheckPin.m */,
-				F00D4B48197F53AE00E47198 /* TempConnection.h */,
-				F00D4B49197F53AE00E47198 /* TempConnection.m */,
 				F00D4B4B197F8ABE00E47198 /* SendEmail.h */,
 				F00D4B4C197F8ABE00E47198 /* SendEmail.m */,
 			);
@@ -1047,6 +1046,8 @@
 				707C03BA18D9CFE100EC1B12 /* account_profile.png */,
 				7006620518DA77E900A0F05C /* profile_frame.jpg */,
 				707C03B818D9CFD500EC1B12 /* profile_profile.png */,
+				F00DD40A198C845B003D82B5 /* payment_bg.PNG */,
+				F00DD40B198C845B003D82B5 /* payment_bg_ipad.PNG */,
 				F05C5F4318E12C70002F2EE1 /* ic_home.png */,
 				F05C5F3D18E12C62002F2EE1 /* ic_preview.png */,
 				3BB42DE718D6B6C60011792E /* back.png */,
@@ -1387,6 +1388,7 @@
 				F081A04F19776E55004568EF /* MLReceiverTableViewCell.xib in Resources */,
 				F081A05E19776F89004568EF /* MLHistoryTableViewCell~ipad.xib in Resources */,
 				3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */,
+				F00DD40C198C845B003D82B5 /* payment_bg.PNG in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
 				3BC3828C18C0958900270567 /* InfoViewController~iphone.xib in Resources */,
 				7006622018DA81DD00A0F05C /* radio_button_selected.png in Resources */,
@@ -1421,6 +1423,7 @@
 				70AA0592198B293C00B0C52A /* disclosureIndicator.png in Resources */,
 				3BC3828318C0359B00270567 /* ban.png in Resources */,
 				3BB42E0018D6B6C60011792E /* content_bg.png in Resources */,
+				F00DD40D198C845B003D82B5 /* payment_bg_ipad.PNG in Resources */,
 				3BB924EC196FDCE9007E76A5 /* ReceiverAvatarViewController~ipad.xib in Resources */,
 				3BB42E0F18D6B6C60011792E /* tabbar_bg.png in Resources */,
 				70CBA8F9198A37D4005D845E /* EditInformation.xib in Resources */,
@@ -1556,7 +1559,6 @@
 				3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */,
 				3B15D2A519869C5700AD69AE /* TimerUIApplication.m in Sources */,
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
-				F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */,
 				F081A0631977A6C7004568EF /* CheckPin.m in Sources */,
 				7006621918DA813800A0F05C /* UpdateInformation.m in Sources */,
 				3BA7CCA718B1D6B900B9FC4B /* main.m in Sources */,
@@ -1658,6 +1660,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1696,6 +1699,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;

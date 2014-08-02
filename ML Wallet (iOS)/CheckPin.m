@@ -7,7 +7,7 @@
 //
 
 #import "CheckPin.h"
-#import "TempConnection.h"
+#import "ServiceConnection.h"
 
 //#define TRUSTED_HOST @"192.168.12.204"
 
@@ -16,7 +16,7 @@
     
     NSMutableData *contentData;
     NSURLConnection *conn;
-    TempConnection *con;
+    ServiceConnection *con;
     
 }
 
@@ -25,9 +25,8 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Bad: %@", [error description]);
     conn = nil;
-    [self.delegate didFinishLoadingPin:@"0"];
+    [self.delegate didFinishLoadingPin:@"error" andError:error.localizedDescription];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -38,7 +37,7 @@
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.getPin= jsonResponse;
-    [self.delegate didFinishLoadingPin:@"1"];
+    [self.delegate didFinishLoadingPin:@"1" andError:@""];
     
 }
 
@@ -46,23 +45,12 @@
 // ------------ ByPass ssl starts ----------
 -(BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:
 (NSURLProtectionSpace *)protectionSpace {
-    return [protectionSpace.authenticationMethod
-            isEqualToString:NSURLAuthenticationMethodServerTrust];
+    return YES;
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:
 (NSURLAuthenticationChallenge *)challenge {
-    if (([challenge.protectionSpace.authenticationMethod
-          isEqualToString:NSURLAuthenticationMethodServerTrust])) {
-        if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
-            NSLog(@"Allowing bypass...");
-            NSURLCredential *credential = [NSURLCredential credentialForTrust:
-                                           challenge.protectionSpace.serverTrust];
-            [challenge.sender useCredential:credential
-                 forAuthenticationChallenge:challenge];
-        }
-    }
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 }
 // -------------------ByPass ssl ends
 
@@ -70,11 +58,11 @@
 - (void)getReceiverWalletNo:(NSString *)walleno andReceiverPinNo:(NSString *)pin
 {
     contentData = [NSMutableData data];
-    con         = [TempConnection new];
+    con         = [ServiceConnection new];
     
     NSString *serviceMethods = @"checkPin";
     
-    NSString *contentURL = [NSString stringWithFormat:@"%@%@:%@%@%@/?walletno=%@&pin=%@", con.getHttp, con.getUrl, con.getPort, con.getPath, serviceMethods, walleno, pin];
+    NSString *contentURL = [NSString stringWithFormat:@"%@%@/?walletno=%@&pin=%@", con.NSgetURLService,serviceMethods, walleno, pin];
 
     conn = [[NSURLConnection alloc] initWithRequest:
             [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];
