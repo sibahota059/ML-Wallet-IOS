@@ -9,6 +9,7 @@
 #import "AccountMain.h"
 #import "ProfileInformation.h"
 #import "AccountInformation.h"
+#import "MenuViewController.h"
 
 
 @interface AccountMain ()
@@ -31,20 +32,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
-    
-    UIImageView *designTopLeft = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 50, 50)];
-    [designTopLeft setImage:[UIImage imageNamed:@"design_top_left.png"]];
-    
-    UIImageView *designTopRight = [[UIImageView alloc] initWithFrame:CGRectMake(265, 5, 50, 50)];
-    [designTopRight setImage:[UIImage imageNamed:@"design_top_right.png"]];
-    
-    UIImageView *designBottomLeft = [[UIImageView alloc] initWithFrame:CGRectMake(5, 360, 50, 50)];
-    [designBottomLeft setImage:[UIImage imageNamed:@"design_buttom_left.png"]];
-    
-    UIImageView *designButtomRight = [[UIImageView alloc] initWithFrame:CGRectMake(265, 360, 50, 50)];
-    [designButtomRight setImage:[UIImage imageNamed:@"design_buttom_right.png"]];
-
    
     
     //IMAGE
@@ -58,35 +45,37 @@
     
     
     
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 225, 300, 40)];
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 205, 300, 40)];
     nameLabel.textAlignment = NSTextAlignmentCenter;
     [nameLabel setText:@"Harry Lingad"];
     
-    UILabel *bdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 245, 300, 40)];
+    UILabel *bdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 225, 300, 40)];
     bdayLabel.textAlignment = NSTextAlignmentCenter;
     [bdayLabel setText:@"November 1, 1985"];
     
-    UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 265, 300, 40)];
+    UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 245, 300, 40)];
     countryLabel.textAlignment = NSTextAlignmentCenter;    [countryLabel setText:@"Phillipines"];
     
     
     
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(120, 325, 100, 30)];
-    [backButton setBackgroundColor:[UIColor redColor]];
-    [backButton setTitle:@"Home" forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *accountButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 325, 100, 30)];
+    [accountButton setBackgroundColor:[UIColor redColor]];
+    [accountButton setTitle:@"Account" forState:UIControlStateNormal];
+    [accountButton addTarget:self action:@selector(accountButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton *profileButton = [[UIButton alloc] initWithFrame:CGRectMake(170, 325, 100, 30)];
+    [profileButton setBackgroundColor:[UIColor redColor]];
+    [profileButton setTitle:@"Profile" forState:UIControlStateNormal];
+    [profileButton addTarget:self action:@selector(profileButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:designTopLeft];
-    [self.view addSubview:designTopRight];
-    [self.view addSubview:designBottomLeft];
-    [self.view addSubview:designButtomRight];
+
     
     [self.view addSubview:nameLabel];
     [self.view addSubview:bdayLabel];
     [self.view addSubview:countryLabel];
     
-    [self.view addSubview:backButton];
+    [self.view addSubview:accountButton];
+    [self.view addSubview:profileButton];
     
     [self.view addSubview:imageFrameView];
     [self.view addSubview:profileImageView];
@@ -136,38 +125,25 @@
     
     // LEFT NAVIGATION BUTTON
     
-    UIView *profileView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     
-    UIButton *profileButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [profileButton setImage:[UIImage imageNamed:@"account_profile.png"] forState:UIControlStateNormal];
-    [profileButton addTarget:self action:@selector(accountButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    UIView *profileView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+//    
+//    UIButton *profileButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+//    [profileButton setImage:[UIImage imageNamed:@"home.png"] forState:UIControlStateNormal];
+//    [profileButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [profileView addSubview:profileButton];
+//    
+//    UIBarButtonItem *profileNavButton = [[UIBarButtonItem alloc] initWithCustomView:profileView];
+//    [profileNavButton setStyle:UIBarButtonItemStyleBordered];
     
-    [profileView addSubview:profileButton];
-    
-    UIBarButtonItem *profileNavButton = [[UIBarButtonItem alloc] initWithCustomView:profileView];
-    [profileNavButton setStyle:UIBarButtonItemStyleBordered];
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //RIGHT NAVIGATION BUTTON
-    
-    UIView *accountView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    
-    UIButton *accountButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [accountButton setImage:[UIImage imageNamed:@"profile_profile.png"] forState:UIControlStateNormal];
-    [accountButton addTarget:self action:@selector(profileButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-
-   
-    [accountView addSubview:accountButton];
-    
-    UIBarButtonItem *accountNavButton = [[UIBarButtonItem alloc] initWithCustomView:accountView];
-    [accountNavButton setStyle:UIBarButtonItemStyleBordered];
+    self.navigationController.navigationBarHidden = NO;
+    self.title = @"My Information";
+    UIBarButtonItem *buttonHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home.png"]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(backPressed:)];
+  
     
     
     
@@ -178,16 +154,16 @@
     
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
-    [self.navigationItem setRightBarButtonItem:accountNavButton];
-    [self.navigationItem setLeftBarButtonItem:profileNavButton];
+    [self.navigationItem setLeftBarButtonItem:buttonHome];
 
     
 }
 
 -(void)backPressed:(id)sender{
     
-    [self.navigationController  popViewControllerAnimated:YES];
     self.navigationController.navigationBarHidden = YES;
+    MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+    [self.navigationController pushViewController:menuPage animated:YES];
     
 }
 

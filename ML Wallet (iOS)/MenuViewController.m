@@ -495,14 +495,17 @@
 
 
 - (IBAction)btn_Myprofile:(id)sender {
-  /*
+
     AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
 
     
     [self.navigationController pushViewController:accountMain animated:YES];
     
-    */
-    [UIAlertView myCostumeAlert:@"My Profile" alertMessage:@"Todo." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    
+    
+    
+    
+//    [UIAlertView myCostumeAlert:@"My Profile" alertMessage:@"Todo." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     
 }
 

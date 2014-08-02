@@ -14,10 +14,26 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
+        UIView *innerView = [[UIView alloc] initWithFrame:CGRectMake(2, 2, (frame.size.width - 4), (frame.size.height - 4))];
+        [innerView setBackgroundColor:[UIColor blueColor]];
+        
+        [self setBackgroundColor:[UIColor yellowColor]];
+        [innerView  addSubview:self];
     }
     return self;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 - (id)initWithFrame:(CGRect)frame word:(NSString *)word
 {
@@ -47,7 +63,7 @@
 // called when clear button pressed. return NO to ignore (no notifications)
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    [textField resignFirstResponder];
+    [self resignFirstResponder];
     return  YES;
 }
 
