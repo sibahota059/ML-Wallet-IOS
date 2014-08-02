@@ -7,14 +7,14 @@
 //
 
 #import "PrintTransaction.h"
-#import "TempConnection.h"
+#import "ServiceConnection.h"
 
 @implementation PrintTransaction
 {
     
     NSMutableData *contentData;
     NSURLConnection *conn;
-    TempConnection *con;
+    ServiceConnection *con;
     
 }
 
@@ -47,23 +47,12 @@
 // ------------ ByPass ssl starts ----------
 -(BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:
 (NSURLProtectionSpace *)protectionSpace {
-    return [protectionSpace.authenticationMethod
-            isEqualToString:NSURLAuthenticationMethodServerTrust];
+    return YES;
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:
 (NSURLAuthenticationChallenge *)challenge {
-    if (([challenge.protectionSpace.authenticationMethod
-          isEqualToString:NSURLAuthenticationMethodServerTrust])) {
-        if ([challenge.protectionSpace.host isEqualToString:con.getUrl]) {
-
-            NSURLCredential *credential = [NSURLCredential credentialForTrust:
-                                           challenge.protectionSpace.serverTrust];
-            [challenge.sender useCredential:credential
-                 forAuthenticationChallenge:challenge];
-        }
-    }
-    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 }
 // -------------------ByPass ssl ends
 
@@ -71,11 +60,11 @@
 - (void)getUserWalletNo:(NSString *)walleno
 {
     contentData = [NSMutableData data];
-    con         = [TempConnection new];
+    con         = [ServiceConnection new];
     
     NSString *serviceMethods = @"topdf";
-    
-    NSString *contentURL = [NSString stringWithFormat:@"%@%@:%@%@%@/?accountid=%@", con.getHttp, con.getUrl, con.getPort, con.getPdfPath, serviceMethods, walleno];
+
+    NSString *contentURL = [NSString stringWithFormat:@"%@%@/?accountid=%@", con.NSGetMobilePdf, serviceMethods, walleno];
     
     
     conn = [[NSURLConnection alloc] initWithRequest:

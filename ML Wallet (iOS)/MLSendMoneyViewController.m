@@ -260,6 +260,8 @@
         
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
     
@@ -294,6 +296,8 @@
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else{
         [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
     //Set the number of receiver in a label
@@ -646,6 +650,8 @@
     HUD.square = YES;
     [HUD show:YES];
     [self.view endEditing:YES];
+    
+    
     
 }
 

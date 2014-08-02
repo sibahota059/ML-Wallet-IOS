@@ -763,9 +763,17 @@
         self.navigationItem.rightBarButtonItems = nil;
         
         self.title = @"ENTER YOUR PIN";
-        UIBarButtonItem *nexts = [getUI navBarButtonHistory:self navLink:@selector(btnPin) imageNamed:@"next.png"];
-        
-        [self.navigationItem setRightBarButtonItem:nexts];
+//        UIBarButtonItem *nexts = [getUI navBarButtonHistory:self navLink:@selector(btnPin) imageNamed:@"next.png"];
+//        
+//        [self.navigationItem setRightBarButtonItem:nexts];
+            
+        UIBarButtonItem *next = [[UIBarButtonItem alloc]
+                    initWithTitle:@"Next"
+                    style:UIBarButtonItemStyleBordered
+                    target:self
+                    action:@selector(btnPin)];
+        self.navigationItem.rightBarButtonItem = next;
+            
         _view_pinInput.hidden = NO;
         _view_inputted.hidden = NO;
             

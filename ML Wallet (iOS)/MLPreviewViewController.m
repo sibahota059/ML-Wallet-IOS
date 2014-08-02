@@ -54,11 +54,8 @@
     //set title for navigation bar
     self.title = @"PREVIEW";
     
-    //customize the icon for back button and call the btn_back method
-    //UIBarButtonItem *home = [getUI navBarButtonPreview:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
-    
-    //set the bar button home to left
-    //[self.navigationItem setLeftBarButtonItem:home];
+    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
+                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     //set background image of each view
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
@@ -94,7 +91,7 @@
     
     //setting sender and receiver information on it's label
     _lbl_sname.text   = [NSString stringWithFormat:@"%@, %@ %@", __senderLname, __senderFname, __senderMname];
-    _lbl_rname.text   = [NSString stringWithFormat:@"%@, %@ %@", __receiverLname, __receiverFname, __receiverMname];
+    _lbl_rname.text   = [[NSString stringWithFormat:@"%@, %@ %@", __receiverLname, __receiverFname, __receiverMname] uppercaseString];
     _lbl_amount.text  = [NSString stringWithFormat:@"%0.2f", [__amount doubleValue]];
     _lbl_charge.text  = __charge;
     _lbl_total.text   = __total;
@@ -174,7 +171,29 @@
     //if requesting pin is successful go to next page, else display error message
     if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"1"]) {
         [self.navigationController pushViewController:tc animated:YES];
+        
+        [self.preview_scroll setContentSize:CGSizeMake(320, 400)];
+        self.view_pinInput.alpha = 1.0;
+        self.view_keyboard.alpha = 1.0;
+        self.view_content.alpha = 0.0;
+        self.btn_pin.hidden = NO;
+        self.btn_pin.alpha = 0.0;
         [self reset];
+        
+        [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            _view_keyboard.hidden = NO;
+            self.view_pinInput.alpha = 0.0;
+            self.view_keyboard.alpha = 0.0;
+            self.btn_pin.alpha = 1.0;
+            self.view_content.alpha = 1;
+        }completion:^(BOOL finished) {
+            
+        }];
+        
+        [_view_content setAlpha:1];
+        self.title = @"PREVIEW";
+        [self.navigationItem setRightBarButtonItem:nil];
+        
     }else if ([indicator isEqualToString:@"error"]){
         confirmInd = @"pin";	
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];

@@ -343,6 +343,7 @@
                     <rect key="frame" x="5" y="0.0" width="310" height="412"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="w3H-8w-cmY" appends="YES" id="YSO-p4-SEK"/>

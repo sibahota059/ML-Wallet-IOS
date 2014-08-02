@@ -17,6 +17,9 @@
 //MAP Service
 #define URLLocationService @"Http://maps.google.com/maps/api/geocode/json?"
 
+//Albert Added MobilePdf
+#define URLMobilePdf @"/Mobile/Client/Mobilepdf/Mobilepdf.svc/"
+
 @implementation ServiceConnection
 
 #pragma mark - Return URL Service
@@ -34,4 +37,11 @@
 {
     return URLLocationService;
 }
+
+//Albert Added
+- (NSString *) NSGetMobilePdf
+{
+    return [NSString stringWithFormat:@"%@%@", URLHttps_IP, URLMobilePdf];
+}
+
 @end

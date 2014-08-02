@@ -189,7 +189,6 @@
 		F007CC3A1985D7D20022FFF2 /* ic_print.png in Resources */ = {isa = PBXBuildFile; fileRef = F007CC371985D7D20022FFF2 /* ic_print.png */; };
 		F008272B1987634800C80571 /* SoCancel.m in Sources */ = {isa = PBXBuildFile; fileRef = F008272A1987634800C80571 /* SoCancel.m */; };
 		F008272E198772D100C80571 /* PrintTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = F008272D198772D100C80571 /* PrintTransaction.m */; };
-		F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B49197F53AE00E47198 /* TempConnection.m */; };
 		F00D4B4D197F8ABE00E47198 /* SendEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = F00D4B4C197F8ABE00E47198 /* SendEmail.m */; };
 		F00DD40C198C845B003D82B5 /* payment_bg.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F00DD40A198C845B003D82B5 /* payment_bg.PNG */; };
 		F00DD40D198C845B003D82B5 /* payment_bg_ipad.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F00DD40B198C845B003D82B5 /* payment_bg_ipad.PNG */; };
@@ -476,8 +475,6 @@
 		F008272A1987634800C80571 /* SoCancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCancel.m; sourceTree = "<group>"; };
 		F008272C198772D100C80571 /* PrintTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintTransaction.h; sourceTree = "<group>"; };
 		F008272D198772D100C80571 /* PrintTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintTransaction.m; sourceTree = "<group>"; };
-		F00D4B48197F53AE00E47198 /* TempConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempConnection.h; sourceTree = "<group>"; };
-		F00D4B49197F53AE00E47198 /* TempConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempConnection.m; sourceTree = "<group>"; };
 		F00D4B4B197F8ABE00E47198 /* SendEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendEmail.h; sourceTree = "<group>"; };
 		F00D4B4C197F8ABE00E47198 /* SendEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendEmail.m; sourceTree = "<group>"; };
 		F00DD40A198C845B003D82B5 /* payment_bg.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg.PNG; sourceTree = "<group>"; };
@@ -932,8 +929,6 @@
 				F081A02F19776BF7004568EF /* SendoutMobile.m */,
 				F081A0611977A6C7004568EF /* CheckPin.h */,
 				F081A0621977A6C7004568EF /* CheckPin.m */,
-				F00D4B48197F53AE00E47198 /* TempConnection.h */,
-				F00D4B49197F53AE00E47198 /* TempConnection.m */,
 				F00D4B4B197F8ABE00E47198 /* SendEmail.h */,
 				F00D4B4C197F8ABE00E47198 /* SendEmail.m */,
 			);
@@ -1496,7 +1491,6 @@
 				3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */,
 				3B15D2A519869C5700AD69AE /* TimerUIApplication.m in Sources */,
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
-				F00D4B4A197F53AE00E47198 /* TempConnection.m in Sources */,
 				F081A0631977A6C7004568EF /* CheckPin.m in Sources */,
 				7006621918DA813800A0F05C /* UpdateInformation.m in Sources */,
 				3BA7CCA718B1D6B900B9FC4B /* main.m in Sources */,
