@@ -10,6 +10,8 @@
 #import "SendoutMobile.h"
 #import "MBProgressHUD.h"
 #import "SendEmail.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMessageComposeViewController.h>
 
 @protocol MLTermsConditionViewControllerDelegate <NSObject>
 
@@ -17,7 +19,7 @@
 
 @end
 
-@interface MLTermsConditionViewController : UIViewController<SendoutMobileDelegate, MBProgressHUDDelegate, SendKptnDelegate>
+@interface MLTermsConditionViewController : UIViewController<SendoutMobileDelegate, MBProgressHUDDelegate, SendKptnDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (weak, nonatomic) id<MLTermsConditionViewControllerDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UITextView *tv_termsCondition;

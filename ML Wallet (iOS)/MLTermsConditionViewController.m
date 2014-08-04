@@ -14,6 +14,7 @@
 #import "MenuViewController.h"
 #import "NSDictionary+LoadWalletData.h"
 
+
 @interface MLTermsConditionViewController (){
     MLUI *getUI;
     SendoutMobile *sendout;
@@ -182,9 +183,67 @@
     
 }
 - (IBAction)btnSms:(id)sender {
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:+1234567890"]];
+
+    //[getUI displayAlert:@"Message" message:@"This will redirect kptn to your sms."];
     
-    [getUI displayAlert:@"Message" message:@"This will send kptn to your email and function it later."];
+//    if([MFMessageComposeViewController canSendText]) {
+//        MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+//        controller.body = [self formatKptn:sendout.getKptn];
+//        controller.recipients = [NSArray arrayWithObjects:@"", nil];
+//        controller.messageComposeDelegate = self;
+//        //[self presentViewController:controller animated:YES completion:nil];
+//        [self.navigationController pushViewController:controller animated:YES];
+//    }else{
+//        [getUI displayAlert:@"Message" message:@"Your device doesn't support Messages."];
+//    }
+    
+    if([MFMessageComposeViewController canSendText]){
+        MFMessageComposeViewController *smsComposer =
+        [[MFMessageComposeViewController alloc] init];
+        
+        smsComposer.recipients = [NSArray arrayWithObject:@""];
+        smsComposer.body = [self formatKptn:sendout.getKptn];
+        
+        smsComposer.messageComposeDelegate = self;
+        
+        [self.navigationController pushViewController:smsComposer animated:YES];
+    }
+    else{
+        //You probably want to show a UILocalNotification here.
+        [getUI displayAlert:@"Message" message:@"Your device doesn't support Messages."];
+    }
 }
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result{
+    
+    /* You can use the MessageComposeResult to determine what happened to the
+     message. I believe it tells you about sent, stored for sending later, failed
+     or cancelled. */
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+//- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+//                 didFinishWithResult:(MessageComposeResult)result {
+//    switch(result) {
+//        case MessageComposeResultCancelled:
+//            // user canceled sms
+//            [self dismissViewControllerAnimated:YES completion:nil];
+//            break;
+//        case MessageComposeResultSent:
+//            // user sent sms
+//            //perhaps put an alert here and dismiss the view on one of the alerts buttons
+//            break;
+//        case MessageComposeResultFailed:
+//            // sms send failed
+//            //perhaps put an alert here and dismiss the view when the alert is canceled
+//            break;
+//        default:
+//            break;
+//    }
+//}
 
 - (IBAction)btnEmail:(id)sender {
     
@@ -235,6 +294,7 @@
         }
     }
 }
+
 
 
 @end
