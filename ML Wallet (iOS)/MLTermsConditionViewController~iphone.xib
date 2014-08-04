@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -23,11 +23,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXl-6B-4X0">
-                    <rect key="frame" x="6" y="70" width="308" height="428"/>
+                    <rect key="frame" x="6" y="9" width="308" height="489"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-7Q-okR">
-                            <rect key="frame" x="3" y="37" width="302" height="376"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-7Q-okR">
+                            <rect key="frame" x="3" y="7" width="302" height="472"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -37,8 +37,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="428" id="0O0-IF-1vq"/>
-                        <constraint firstAttribute="width" constant="308" id="cUC-wT-Jd3"/>
+                        <constraint firstAttribute="bottom" secondItem="a7k-7Q-okR" secondAttribute="bottom" constant="10" id="4In-34-tZG"/>
+                        <constraint firstItem="a7k-7Q-okR" firstAttribute="top" secondItem="WXl-6B-4X0" secondAttribute="top" constant="7" id="8WW-8w-Vcj"/>
+                        <constraint firstAttribute="trailing" secondItem="a7k-7Q-okR" secondAttribute="trailing" constant="3" id="FMa-x9-ctq"/>
+                        <constraint firstItem="a7k-7Q-okR" firstAttribute="leading" secondItem="WXl-6B-4X0" secondAttribute="leading" constant="3" id="J3l-5u-VBj"/>
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n57-eJ-mWf">
@@ -50,7 +52,7 @@
                         <constraint firstAttribute="width" constant="320" id="ypP-MX-92X"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-bA-Age">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-bA-Age">
                     <rect key="frame" x="20" y="100" width="280" height="200"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -145,13 +147,21 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="WXl-6B-4X0" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="6" id="2Lo-rs-fck"/>
                 <constraint firstItem="WXl-6B-4X0" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="329-bE-M19"/>
                 <constraint firstAttribute="bottom" secondItem="2NE-DG-d7F" secondAttribute="bottom" constant="20" symbolic="YES" id="3zQ-5e-grV"/>
+                <constraint firstItem="WXl-6B-4X0" firstAttribute="top" secondItem="1" secondAttribute="top" constant="9" id="62P-bm-gb9"/>
                 <constraint firstAttribute="trailing" secondItem="2NE-DG-d7F" secondAttribute="trailing" constant="20" symbolic="YES" id="6xl-AQ-KkY"/>
                 <constraint firstItem="2NE-DG-d7F" firstAttribute="baseline" secondItem="chT-Ot-srK" secondAttribute="baseline" id="HCj-bj-TZL"/>
+                <constraint firstAttribute="bottom" secondItem="WXl-6B-4X0" secondAttribute="bottom" constant="70" id="M6O-0x-fUl"/>
+                <constraint firstAttribute="bottom" secondItem="AhG-bA-Age" secondAttribute="bottom" constant="268" id="N5Q-g0-rfb"/>
+                <constraint firstItem="AhG-bA-Age" firstAttribute="trailing" secondItem="2NE-DG-d7F" secondAttribute="trailing" id="Xxj-cy-BzO"/>
+                <constraint firstItem="WXl-6B-4X0" firstAttribute="centerX" secondItem="AhG-bA-Age" secondAttribute="centerX" id="bjf-M1-8yW"/>
                 <constraint firstItem="n57-eJ-mWf" firstAttribute="centerX" secondItem="WXl-6B-4X0" secondAttribute="centerX" id="cmg-gf-5Ua"/>
                 <constraint firstItem="2NE-DG-d7F" firstAttribute="top" secondItem="WXl-6B-4X0" secondAttribute="bottom" constant="12" id="e7Y-Hg-Ego"/>
                 <constraint firstItem="2NE-DG-d7F" firstAttribute="leading" secondItem="chT-Ot-srK" secondAttribute="trailing" constant="8" id="jPl-TZ-WnR"/>
+                <constraint firstItem="AhG-bA-Age" firstAttribute="top" secondItem="1" secondAttribute="top" constant="100" id="mAa-4c-VbP"/>
+                <constraint firstAttribute="trailing" secondItem="WXl-6B-4X0" secondAttribute="trailing" constant="6" id="ubC-Gi-AgH"/>
                 <constraint firstItem="n57-eJ-mWf" firstAttribute="top" secondItem="1" secondAttribute="top" id="wC8-H6-y7g"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

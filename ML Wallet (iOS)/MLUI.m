@@ -55,6 +55,11 @@
     
 }
 
+- (void)navMessageAppearance{
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
+}
+
 - (UILabel *)navTitle:(NSString *)navtitle{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];

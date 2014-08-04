@@ -770,6 +770,7 @@
             
         }];
         
+        [_view_pinInput setAlpha:0.9f];
         self.navigationItem.rightBarButtonItems = nil;
         
         self.title = @"ENTER YOUR PIN";
