@@ -8,17 +8,26 @@
 
 #import "ServiceConnection.h"
 
+//-- Local
 #define URLHttps_IP @"https://192.168.12.204:4443"
 
-
 #define URLService @"/mobile/client/mobilekp_wcf/service.svc/"
+#define URLMobilePdf @"/Mobile/Client/Mobilepdf/Mobilepdf.svc/"
 #define URLMapService @"/mobile/Client/MapService/MapService.svc/getCoordinates/"
+
+
+//- Production
+/*
+#define URLHttps_IP @"https://mlmobileweb.mlhuillier1.com"
+ 
+#define URLService @"/mobile/client/1.3/mobilekp_wcf/service.svc/"
+#define URLMobilePdf @"/Mobile/Client/1.3/Mobilepdf/Mobilepdf.svc/"
+#define URLMapService @"/mobile/Client/1.2/MapService/MapService.svc/getCoordinates/"
+*/
 
 //MAP Service
 #define URLLocationService @"Http://maps.google.com/maps/api/geocode/json?"
 
-//Albert Added MobilePdf
-#define URLMobilePdf @"/Mobile/Client/Mobilepdf/Mobilepdf.svc/"
 
 @implementation ServiceConnection
 
