@@ -1311,10 +1311,10 @@
 			children = (
 				7006621B18DA817900A0F05C /* ProfileImage.h */,
 				7006621C18DA817900A0F05C /* ProfileImage.m */,
-				70EEA19318D9C6E800719BF7 /* ProfileButton.m */,
 				70EEA19418D9C6E800719BF7 /* ProfileButton.h */,
-				70EEA18D18D9C64C00719BF7 /* ProfileTextField.m */,
+				70EEA19318D9C6E800719BF7 /* ProfileButton.m */,
 				70EEA18E18D9C64C00719BF7 /* ProfileTextField.h */,
+				70EEA18D18D9C64C00719BF7 /* ProfileTextField.m */,
 				70EEA18A18D9C56300719BF7 /* ProfileLabel.h */,
 				70EEA18B18D9C56300719BF7 /* ProfileLabel.m */,
 				70EEA18718D9C54900719BF7 /* ProfileOutline.h */,

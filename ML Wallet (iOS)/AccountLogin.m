@@ -12,7 +12,8 @@
 #import "ProfileLabel.h"
 #import "ProfileTextField.h"
 #import "StartViewController.h"
-
+#define IDIOM    UI_USER_INTERFACE_IDIOM()
+#define IPAD     UIUserInterfaceIdiomPad
 @interface AccountLogin ()
 
 @end
@@ -20,6 +21,10 @@
 @implementation AccountLogin
 
 ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
+CGRect screenRect;
+CGFloat screenWidth;
+CGFloat screenHeight;
+UIScrollView *scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,8 +39,17 @@ ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBarHidden = NO;
+    screenRect = [[UIScreen mainScreen] bounds];
+    screenWidth = screenRect.size.width;
+    screenHeight = screenRect.size.height;
+    NSLog(@"Account Login %f------%f",screenWidth,screenHeight);
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+    [scrollView setScrollEnabled:YES];
+    [scrollView setContentSize:CGSizeMake(screenWidth, screenHeight)];
     [self addNavigationBar];
     [self createLoginAccount];
+    [self.view addSubview:scrollView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,23 +65,31 @@ ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
     
     ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:-10 width:180];
     
-    ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
-    
+   // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
+    UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,100,screenWidth,screenHeight)];
     
     userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
+    userNameTF.layer.cornerRadius=0.0f;
+    userNameTF.layer.masksToBounds=YES;
+    userNameTF.layer.borderColor=[[UIColor redColor]CGColor];
+    userNameTF.layer.borderWidth= 2.0f;
+    
     passwordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 80, 280, 30) word:@"Password"];
+    passwordTF.layer.cornerRadius=0.0f;
+    passwordTF.layer.masksToBounds=YES;
+    passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
+    passwordTF.layer.borderWidth= 2.0f;
+    
     retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 130, 280, 30) word:@"Retype Password"];
+    retypePasswordTF.layer.cornerRadius=0.0f;
+    retypePasswordTF.layer.masksToBounds=YES;
+    retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
+    retypePasswordTF.layer.borderWidth= 2.0f;
     
     
-    
-
-    
-    
-    
-    
-    
-    
-    
+    userNameTF.delegate = self;
+    passwordTF.delegate = self;
+    retypePasswordTF.delegate = self;
     
     [loginOutline addSubview:loginHeader];
     
@@ -75,35 +97,9 @@ ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
     [loginOutline addSubview:userNameTF];
     [loginOutline addSubview:passwordTF];
     [loginOutline addSubview:retypePasswordTF];
+    [scrollView addSubview:loginOutline];
     
     
-    
-    
-    
-    [self.view addSubview:loginOutline];
-    
-    
-}
-
-
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    //    [UIView animateWithDuration:0.5
-    //                          delay:0.0
-    //                        options:UIViewAnimationOptionCurveEaseIn
-    //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
-    //                     completion:^(BOOL finished){}];
-    
-    
-    
-    [userNameTF resignFirstResponder];
-    [passwordTF resignFirstResponder];
-    [retypePasswordTF resignFirstResponder];
-    
-    
-    return YES;
 }
 
 
@@ -124,8 +120,32 @@ ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
 -(void) nextPressed{
     
   //toDo
+    NSLog(@"Para Register Ni!");
     
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
+    [scrollView setContentOffset:scrollPoint animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [scrollView setContentOffset:CGPointZero animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+    //    [UIView animateWithDuration:0.5
+    //                          delay:0.0
+    //                        options:UIViewAnimationOptionCurveEaseIn
+    //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
+    //                     completion:^(BOOL finished){}];
+    
+    [userNameTF resignFirstResponder];
+    [passwordTF resignFirstResponder];
+    [retypePasswordTF resignFirstResponder];
+    
+    return YES;
 }
 
 - (BOOL)prefersStatusBarHidden{
