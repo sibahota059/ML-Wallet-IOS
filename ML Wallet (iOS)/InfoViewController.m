@@ -40,15 +40,10 @@
 {
     self.navigationController.navigationBarHidden = NO;
     self.title= @"Information";
-    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"]
-                                                                style:UIBarButtonItemStylePlain
+    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                style:UIBarButtonItemStyleBordered
                                                                target:self
                                                                action:@selector(gotoHome)];
-    
-//    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithTitle:@"Back"
-//                                                                style:UIBarButtonItemStyleBordered
-//                                                               target:self
-//                                                               action:@selector(gotoHome)];
     
     self.navigationItem.leftBarButtonItem = btnHome;
     
