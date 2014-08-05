@@ -168,14 +168,14 @@
 }
 
 - (IBAction)btnRegister:(id)sender {
-    [UIAlertView myCostumeAlert:@"Todo" alertMessage:@"Under development" delegate:nil cancelButton:@"Ok" otherButtons:nil];
-    /*
+    
+    
     EnterCustomerID *enterCustomer = [[EnterCustomerID alloc] initWithNibName:@"EnterCustomerID" bundle:nil];
     
     
     [self.navigationController pushViewController:enterCustomer animated:YES];
     self.navigationController.navigationBarHidden = NO;
-*/
+
 
 }
 
@@ -442,7 +442,7 @@
     
     //if all OK... then procced
     NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
-    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
     
     NSString *post = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",

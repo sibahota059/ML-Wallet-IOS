@@ -760,9 +760,9 @@
 		3BA7CCA018B1D6B900B9FC4B /* ML Wallet (iOS) */ = {
 			isa = PBXGroup;
 			children = (
-				3B38F7721952CDDC00EC3948 /* NSURLConnection */,
-				3BCFE2CC19580956008C4E6F /* Objects */,
 				3012DC2F197DF34000AA5F6F /* com.mlkpwallet.location */,
+				3BCFE2CC19580956008C4E6F /* Objects */,
+				3B38F7721952CDDC00EC3948 /* NSURLConnection */,
 				700661A518DA71C400A0F05C /* com.mlkptogo.account */,
 				708327DF18D938E40033856C /* com.mlkptogo.registration */,
 				3BB42DD618D6B22A0011792E /* com.mlkpwallet.history */,
@@ -1734,7 +1734,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1757,7 +1757,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
 				INFOPLIST_FILE = "ML Wallet (iOS)/ML Wallet (iOS)-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
