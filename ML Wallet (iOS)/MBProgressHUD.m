@@ -6,6 +6,7 @@
 
 #import "MBProgressHUD.h"
 #import <tgmath.h>
+#import "AppDelegate.h"
 
 
 #if __has_feature(objc_arc)
@@ -287,6 +288,10 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
         ButtonItems.leftBarButtonItem.enabled = YES;
         buttonNavigatorEnable = NO;
     }
+    
+     //check if progress is Showing and Set YES or NO;
+    AppDelegate * myAppDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    myAppDelegate. isShowing= animated;
 }
 
 - (void)show:(BOOL)animated {
@@ -311,6 +316,10 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
         navButtonItems.leftBarButtonItem.enabled = YES;
         buttonNavigatorEnable = NO;
     }
+    
+    //check if progress is Showing and Set YES or NO;
+    AppDelegate * myAppDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    myAppDelegate. isShowing= animated;
 }
 
 - (void)hide:(BOOL)animated {

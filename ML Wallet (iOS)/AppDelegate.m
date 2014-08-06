@@ -61,10 +61,12 @@
     return YES;
 }
 
-//TODO
 //Timeout Selector
 -(void)applicationDidTimeout:(NSNotification *) notif
-{    
+{
+    if (self.isShowing) {
+        return;
+    } else {
     //goto Timeout
     NSLog (@"time exceeded!!");
     if (self.viewController.isViewLoaded && self.viewController.view.window)
@@ -74,9 +76,8 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
         self.navigationController.navigationBarHidden =YES;
     }
-   
+    }
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
