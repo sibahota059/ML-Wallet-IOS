@@ -79,6 +79,38 @@
     //Register a notification to check  if Transaction is finished
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(chooseTab:) name:@"CheckView" object:nil];
+    
+    // Initialize the refresh control.
+//    self.refreshControl = [[UIRefreshControl alloc] init];
+//    self.refreshControl.backgroundColor = [UIColor purpleColor];
+//    self.refreshControl.tintColor = [UIColor whiteColor];
+//    [self.refreshControl addTarget:self
+//                            action:@selector(refresher)
+//                  forControlEvents:UIControlEventValueChanged];
+    
+    
+    // Background Color
+    UIColor *bgRefreshColor = [UIColor whiteColor];
+    
+    // Creating refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresher) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl setBackgroundColor:bgRefreshColor];
+    self.refreshControl = self.refreshControl;
+    
+    // Creating view for extending background color
+    CGRect frame = self.tableView.bounds;
+    frame.origin.y = -frame.size.height;
+    UIView* bgView = [[UIView alloc] initWithFrame:frame];
+    bgView.backgroundColor = bgRefreshColor;
+    
+    // Adding the view below the refresh control
+    [self.tableView insertSubview:bgView atIndex:0];
+    
+}
+
+- (void)refresher{
+    [rate loadRates];
 }
 
 #pragma mark - Notification Called when Transaction is successful
@@ -114,6 +146,20 @@
 
 #pragma mark - Retrieve Rates Data from Webservice
 - (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
+    
+    // End the refreshing
+    if (self.refreshControl) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor darkGrayColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+        
+        [self.refreshControl endRefreshing];
+    }
     
     //Store the NSDictionary rates data into static array
     NSArray *ratess       = [rate.getRates objectForKey:@"getChargeValuesResult"];
