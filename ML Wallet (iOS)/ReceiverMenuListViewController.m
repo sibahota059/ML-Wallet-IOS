@@ -90,10 +90,19 @@
     [self RetrieveReceiverList];
 
 }
+#pragma mark - UIViewAlertDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self RetrieveReceiverList];
+    } else {
+        [self homeClick];
+    }
+}
+
 
 #pragma mark - NSURLConnection Delegate
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[error localizedDescription] delegate:self cancelButton:@"Cancel" otherButtons:@"Retry"];
     //Hide Loader
     [HUD hide:YES];
     [HUD show:NO];
