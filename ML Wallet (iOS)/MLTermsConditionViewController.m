@@ -233,26 +233,26 @@
         case MessageComposeResultCancelled:
             // user canceled sms
             [getUI navigationAppearance];
-            [self dismissView];
             [getUI displayAlert:@"Message" message:@"Your message has been cancelled."];
             [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissView];
             
             break;
         case MessageComposeResultSent:
             // user sent sms
             //perhaps put an alert here and dismiss the view on one of the alerts buttons
             [getUI navigationAppearance];
-            [self dismissView];
             [getUI displayAlert:@"Message" message:@"Your message has been sent."];
             [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissView];
             break;
         case MessageComposeResultFailed:
             // sms send failed
             //perhaps put an alert here and dismiss the view when the alert is canceled
             [getUI navigationAppearance];
-            [self dismissView];
             [getUI displayAlert:@"Message" message:@"Failed to send message."];
             [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissView];
             break;
         default:
             break;
