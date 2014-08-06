@@ -70,26 +70,26 @@ UIScrollView *scrollView;
         UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,100,screenWidth,screenHeight)];
         
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 400, 40) word:@"Username/Login ID"];
-        userNameTF.layer.cornerRadius=0.0f;
+        userNameTF.layer.cornerRadius=8.0f;
         userNameTF.layer.masksToBounds=YES;
         userNameTF.layer.borderColor=[[UIColor redColor]CGColor];
-        userNameTF.layer.borderWidth= 2.0f;
+        userNameTF.layer.borderWidth= 1.0f;
         float userNameTF_Co = (screenWidth - 400)/2;
         [userNameTF setFrame:CGRectMake(userNameTF_Co, 30, 400, 40)];
         
         passwordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 100, 400, 40) word:@"Password"];
-        passwordTF.layer.cornerRadius=0.0f;
+        passwordTF.layer.cornerRadius=8.0f;
         passwordTF.layer.masksToBounds=YES;
         passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
-        passwordTF.layer.borderWidth= 2.0f;
+        passwordTF.layer.borderWidth= 1.0f;
         float passwordTF_Co = (screenWidth - 400)/2;
         [passwordTF setFrame:CGRectMake(passwordTF_Co, 100, 400, 40)];
         
         retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 170, 400, 40) word:@"Retype Password"];
-        retypePasswordTF.layer.cornerRadius=0.0f;
+        retypePasswordTF.layer.cornerRadius=8.0f;
         retypePasswordTF.layer.masksToBounds=YES;
         retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
-        retypePasswordTF.layer.borderWidth= 2.0f;
+        retypePasswordTF.layer.borderWidth= 1.0f;
         float retypePasswordTF_Co = (screenWidth - 400)/2;
         [retypePasswordTF setFrame:CGRectMake(retypePasswordTF_Co, 170, 400, 40)];
         
@@ -117,22 +117,22 @@ UIScrollView *scrollView;
         UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,100,screenWidth,screenHeight)];
         
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
-        userNameTF.layer.cornerRadius=0.0f;
+        userNameTF.layer.cornerRadius=8.0f;
         userNameTF.layer.masksToBounds=YES;
         userNameTF.layer.borderColor=[[UIColor redColor]CGColor];
-        userNameTF.layer.borderWidth= 2.0f;
+        userNameTF.layer.borderWidth= 1.0f;
         
         passwordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 80, 280, 30) word:@"Password"];
-        passwordTF.layer.cornerRadius=0.0f;
+        passwordTF.layer.cornerRadius=8.0f;
         passwordTF.layer.masksToBounds=YES;
         passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
-        passwordTF.layer.borderWidth= 2.0f;
+        passwordTF.layer.borderWidth= 1.0f;
         
         retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 130, 280, 30) word:@"Retype Password"];
-        retypePasswordTF.layer.cornerRadius=0.0f;
+        retypePasswordTF.layer.cornerRadius=8.0f;
         retypePasswordTF.layer.masksToBounds=YES;
         retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
-        retypePasswordTF.layer.borderWidth= 2.0f;
+        retypePasswordTF.layer.borderWidth= 1.0f;
         
         
         userNameTF.delegate = self;
@@ -156,10 +156,10 @@ UIScrollView *scrollView;
 
 
 -(void) addNavigationBar{
-    
+    self.title = @"Login";
     UIView *submitView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [submitButton setImage:[UIImage imageNamed:@"submit_profile.png"] forState:UIControlStateNormal];
+    [submitButton setImage:[UIImage imageNamed:@"next.png"] forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(nextPressed) forControlEvents:UIControlEventTouchUpInside];
     
     [submitView addSubview:submitButton];

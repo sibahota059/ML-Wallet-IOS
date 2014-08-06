@@ -59,7 +59,7 @@ UITextfieldAnimate *textAnimate;
     
     RegistrationInformation *registraionInformation = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
     
-    [self setNextViewController:registraionInformation myImage:[UIImage imageNamed:@"profile_profile.png"]];
+    [self setNextViewController:registraionInformation myImage:[UIImage imageNamed:@"next.png"]];
     
     [self addNavigationBar];
     [self createCustomerID];
@@ -97,27 +97,27 @@ UITextfieldAnimate *textAnimate;
         float customerID_Co = ((screenWidth - 170)/2)-150;
         [customerID setFrame:CGRectMake(customerID_Co, 20, 170, 30)];
         firstNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 50, 120, 30) word:@""];
-        firstNumberTF.layer.cornerRadius=0.0f;
+        firstNumberTF.layer.cornerRadius=8.0f;
         firstNumberTF.layer.masksToBounds=YES;
         firstNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
-        firstNumberTF.layer.borderWidth= 2.0f;
+        firstNumberTF.layer.borderWidth= 1.0f;
         float firstNumberTF_Co = ((screenWidth - 120)/2)-140;
         [firstNumberTF setFrame:CGRectMake(firstNumberTF_Co, 50, 120, 30)];
         
         secondNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 50, 120, 30) word:@""];
-        secondNumberTF.layer.cornerRadius=0.0f;
+        secondNumberTF.layer.cornerRadius=8.0f;
         secondNumberTF.layer.masksToBounds=YES;
         secondNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
-        secondNumberTF.layer.borderWidth= 2.0f;
+        secondNumberTF.layer.borderWidth= 1.0f;
         float secondNumberTF_Co = (screenWidth - 120)/2;
         [secondNumberTF setFrame:CGRectMake(secondNumberTF_Co, 50, 120, 30)];
         
         thirdNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 50, 120, 30) word:@""];
         
-        thirdNumberTF.layer.cornerRadius=0.0f;
+        thirdNumberTF.layer.cornerRadius=8.0f;
         thirdNumberTF.layer.masksToBounds=YES;
         thirdNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
-        thirdNumberTF.layer.borderWidth= 2.0f;
+        thirdNumberTF.layer.borderWidth= 1.0f;
         float thirdNumberTF_Co = ((screenWidth - 120)/2)+140;
         [thirdNumberTF setFrame:CGRectMake(thirdNumberTF_Co, 50, 120, 30)];
         NSLog(@"%f",thirdNumberTF_Co);
@@ -126,10 +126,10 @@ UITextfieldAnimate *textAnimate;
         float phoneNumber_Co = ((screenWidth - 170)/2)-150;
         [phoneNumber setFrame:CGRectMake(phoneNumber_Co, 100, 170, 30)];
         phoneNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(12, 130, 400, 30) word:self.customer.firstName];
-        phoneNumberTF.layer.cornerRadius=0.0f;
+        phoneNumberTF.layer.cornerRadius=8.0f;
         phoneNumberTF.layer.masksToBounds=YES;
         phoneNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
-        phoneNumberTF.layer.borderWidth= 2.0f;
+        phoneNumberTF.layer.borderWidth= 1.0f;
         float phoneNumberTF_Co = (screenWidth - 400)/2;
         [phoneNumberTF setFrame:CGRectMake(phoneNumberTF_Co, 130, 400, 30)];
         
@@ -153,34 +153,34 @@ UITextfieldAnimate *textAnimate;
     else {
         NSLog(@"IPHONE NI");
         firstNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(12, 50, 84, 30) word:@""];
-        firstNumberTF.layer.cornerRadius=0.0f;
+        firstNumberTF.layer.cornerRadius=8.0f;
         firstNumberTF.layer.masksToBounds=YES;
         firstNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
-        firstNumberTF.layer.borderWidth= 2.0f;
+        firstNumberTF.layer.borderWidth= 1.0f;
         
         secondNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(108, 50, 84, 30) word:@""];
         
-        secondNumberTF.layer.cornerRadius=0.0f;
+        secondNumberTF.layer.cornerRadius=8.0f;
         secondNumberTF.layer.masksToBounds=YES;
         secondNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
-        secondNumberTF.layer.borderWidth= 2.0f;
+        secondNumberTF.layer.borderWidth= 1.0f;
         
         thirdNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 50, 84, 30) word:@""];
         
-        thirdNumberTF.layer.cornerRadius=0.0f;
+        thirdNumberTF.layer.cornerRadius=8.0f;
         thirdNumberTF.layer.masksToBounds=YES;
         thirdNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
-        thirdNumberTF.layer.borderWidth= 2.0f;
+        thirdNumberTF.layer.borderWidth= 1.0f;
         
         
         
         ProfileLabel *phoneNumber = [[ProfileLabel alloc] initWithStatus:@"Enter your Phone Number" x:10 y:100 myColor:[UIColor grayColor] width:170];
         
         phoneNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(12, 130, 275, 30) word:self.customer.firstName];
-        phoneNumberTF.layer.cornerRadius=0.0f;
+        phoneNumberTF.layer.cornerRadius=8.0f;
         phoneNumberTF.layer.masksToBounds=YES;
         phoneNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
-        phoneNumberTF.layer.borderWidth= 2.0f;
+        phoneNumberTF.layer.borderWidth= 1.0f;
         
         
         firstNumberTF.delegate = self;
@@ -230,10 +230,10 @@ UITextfieldAnimate *textAnimate;
 
 
 -(void) addNavigationBar{
-
+self.title = @"Customer ID";
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchUpInside];
     
     [backView addSubview:backButton];
@@ -253,7 +253,5 @@ UITextfieldAnimate *textAnimate;
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
-
-
 
 @end
