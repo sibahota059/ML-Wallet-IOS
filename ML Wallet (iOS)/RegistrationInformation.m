@@ -116,173 +116,367 @@ CGFloat screenHeight;
     //ProfileOutline *personalOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, personalY, outlineWidth, 280)];
     
     UIView* personalOutline = [[UIView alloc] initWithFrame:CGRectMake(outlineX,personalY,outlineWidth,280)];
-    
-    
-    //PERSONAL INFORMATION
-    
-    fullName = [[ProfileLabel alloc] initWithStatus:@"Full Name" x:labelX y:20];
-    
-    fullNameO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 40, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Harry C. Lingad"];
-    fullNameO.layer.borderColor = [UIColor redColor].CGColor;
-    fullNameO.layer.borderWidth = 2.0f;
-    
-    
-    gender = [[ProfileLabel alloc] initWithStatus:@"Gender" x:labelX y:70];
-    
-    genderO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 90, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Male"];
-    genderO.layer.borderColor = [UIColor redColor].CGColor;
-    genderO.layer.borderWidth = 2.0f;
-    
-    
-    birthdate = [[ProfileLabel alloc] initWithStatus:@"Birthdate" x:labelX y:120];
-    
-    birthdateO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 140, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"November 1, 1122"];
-    birthdateO.layer.borderColor = [UIColor redColor].CGColor;
-    birthdateO.layer.borderWidth = 2.0f;
-    
-    
-    nationality = [[ProfileLabel alloc] initWithStatus:@"Nationality" x:labelX y:170];
-    
-    nationalityO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 190, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Filipino"];
-    nationalityO.layer.borderColor = [UIColor redColor].CGColor;
-    nationalityO.layer.borderWidth = 2.0f;
-    
-    
-    
-    work = [[ProfileLabel alloc] initWithStatus:@"Nature of Work" x:labelX y:220];
-    
-    workO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 240, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Programmer"];
-    workO.layer.borderColor = [UIColor redColor].CGColor;
-    workO.layer.borderWidth = 2.0f;
-    
-    
-    //ADDING THE COMPONENTS
-    
-    [personalOutline addSubview:fullName];
-    [personalOutline addSubview:fullNameO];
-    
-    
-    [personalOutline addSubview:genderO];
-    [personalOutline addSubview:gender];
-    
-    [personalOutline addSubview:birthdateO];
-    [personalOutline addSubview:birthdate];
-    
-    [personalOutline addSubview:ageO];
-    [personalOutline addSubview:age];
-    
-    [personalOutline addSubview:nationalityO];
-    [personalOutline addSubview:nationality];
-    
-    [personalOutline addSubview:workO];
-    [personalOutline addSubview:work];
-    
-    [personalOutline addSubview:personalHeader];
-    [profileScroll addSubview:personalOutline];
-    
-    
-    
+    if ( IDIOM == IPAD ) {
+        profileOutlineWidth = 400;
+        profileOutlineHeight = 40;
+        NSLog(@"IPAD NI");
+        //PERSONAL INFORMATION
+        
+        fullName = [[ProfileLabel alloc] initWithStatus:@"Full Name" x:labelX y:20];
+        
+        fullNameO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 40, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Harry C. Lingad"];
+        fullNameO.layer.borderColor = [UIColor redColor].CGColor;
+        fullNameO.layer.borderWidth = 2.0f;
+        float fullNameO_Co = (screenWidth - profileOutlineWidth)/2;
+        [fullNameO setFrame:CGRectMake(fullNameO_Co, 40, profileOutlineWidth, profileOutlineHeight)];
+        
+        gender = [[ProfileLabel alloc] initWithStatus:@"Gender" x:labelX y:80];
+        
+        genderO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 100, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Male"];
+        genderO.layer.borderColor = [UIColor redColor].CGColor;
+        genderO.layer.borderWidth = 2.0f;
+        float genderO_Co = (screenWidth - profileOutlineWidth)/2;
+        [genderO setFrame:CGRectMake(genderO_Co, 100, profileOutlineWidth, profileOutlineHeight)];
+        
+        birthdate = [[ProfileLabel alloc] initWithStatus:@"Birthdate" x:labelX y:140];
+        
+        birthdateO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 160, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"November 1, 1122"];
+        birthdateO.layer.borderColor = [UIColor redColor].CGColor;
+        birthdateO.layer.borderWidth = 2.0f;
+        float birthdateO_Co = (screenWidth - profileOutlineWidth)/2;
+        [birthdateO setFrame:CGRectMake(birthdateO_Co, 160, profileOutlineWidth, profileOutlineHeight)];
+        
+        nationality = [[ProfileLabel alloc] initWithStatus:@"Nationality" x:labelX y:200];
+        
+        nationalityO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 220, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Filipino"];
+        nationalityO.layer.borderColor = [UIColor redColor].CGColor;
+        nationalityO.layer.borderWidth = 2.0f;
+        float nationalityO_Co = (screenWidth - profileOutlineWidth)/2;
+        [nationalityO setFrame:CGRectMake(nationalityO_Co, 220, profileOutlineWidth, profileOutlineHeight)];
+        
+        
+        work = [[ProfileLabel alloc] initWithStatus:@"Nature of Work" x:labelX y:260];
+        
+        workO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 280, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Programmer"];
+        workO.layer.borderColor = [UIColor redColor].CGColor;
+        workO.layer.borderWidth = 2.0f;
+        float workO_Co = (screenWidth - profileOutlineWidth)/2;
+        [workO setFrame:CGRectMake(workO_Co, 280, profileOutlineWidth, profileOutlineHeight)];
+        
+        //ADDING THE COMPONENTS
+        
+        [personalOutline addSubview:fullName];
+        [personalOutline addSubview:fullNameO];
+        
+        
+        [personalOutline addSubview:genderO];
+        [personalOutline addSubview:gender];
+        
+        [personalOutline addSubview:birthdateO];
+        [personalOutline addSubview:birthdate];
+        
+        [personalOutline addSubview:ageO];
+        [personalOutline addSubview:age];
+        
+        [personalOutline addSubview:nationalityO];
+        [personalOutline addSubview:nationality];
+        
+        [personalOutline addSubview:workO];
+        [personalOutline addSubview:work];
+        
+        [personalOutline addSubview:personalHeader];
+        [profileScroll addSubview:personalOutline];
+        
+        
+        
+        
+
+    }
+    else{
+        NSLog(@"IPHONE NI");
+        //PERSONAL INFORMATION
+        
+        fullName = [[ProfileLabel alloc] initWithStatus:@"Full Name" x:labelX y:20];
+        
+        fullNameO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 40, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Harry C. Lingad"];
+        fullNameO.layer.borderColor = [UIColor redColor].CGColor;
+        fullNameO.layer.borderWidth = 2.0f;
+        
+        
+        gender = [[ProfileLabel alloc] initWithStatus:@"Gender" x:labelX y:70];
+        
+        genderO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 90, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Male"];
+        genderO.layer.borderColor = [UIColor redColor].CGColor;
+        genderO.layer.borderWidth = 2.0f;
+        
+        
+        birthdate = [[ProfileLabel alloc] initWithStatus:@"Birthdate" x:labelX y:120];
+        
+        birthdateO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 140, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"November 1, 1122"];
+        birthdateO.layer.borderColor = [UIColor redColor].CGColor;
+        birthdateO.layer.borderWidth = 2.0f;
+        
+        
+        nationality = [[ProfileLabel alloc] initWithStatus:@"Nationality" x:labelX y:170];
+        
+        nationalityO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 190, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Filipino"];
+        nationalityO.layer.borderColor = [UIColor redColor].CGColor;
+        nationalityO.layer.borderWidth = 2.0f;
+        
+        
+        
+        work = [[ProfileLabel alloc] initWithStatus:@"Nature of Work" x:labelX y:220];
+        
+        workO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 240, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Programmer"];
+        workO.layer.borderColor = [UIColor redColor].CGColor;
+        workO.layer.borderWidth = 2.0f;
+        
+        
+        //ADDING THE COMPONENTS
+        
+        [personalOutline addSubview:fullName];
+        [personalOutline addSubview:fullNameO];
+        
+        
+        [personalOutline addSubview:genderO];
+        [personalOutline addSubview:gender];
+        
+        [personalOutline addSubview:birthdateO];
+        [personalOutline addSubview:birthdate];
+        
+        [personalOutline addSubview:ageO];
+        [personalOutline addSubview:age];
+        
+        [personalOutline addSubview:nationalityO];
+        [personalOutline addSubview:nationality];
+        
+        [personalOutline addSubview:workO];
+        [personalOutline addSubview:work];
+        
+        [personalOutline addSubview:personalHeader];
+        [profileScroll addSubview:personalOutline];
+        
+        
+        
+        
+
+    }
     
     
 }
 
 -(void) createLocationInfo{
-    
-    
-    ProfileHeader *locationHeader = [[ProfileHeader alloc] initWithValue:@" Location Information" x:5 y:-10 width:170];
-    
-  // ProfileOutline *locationOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, locationY, outlineWidth, 230)];
-    
-    UIView* locationOutline = [[UIView alloc] initWithFrame:CGRectMake(outlineX,locationY,outlineWidth,230)];
-    
-    country = [[ProfileLabel alloc] initWithStatus:@"Country" x:labelX y:20];
-    
-    countryO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 40, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Philippines"];
-    countryO.layer.borderColor = [UIColor redColor].CGColor;
-    countryO.layer.borderWidth = 2.0f;
-    
-    
-    province = [[ProfileLabel alloc] initWithStatus:@"Province" x:labelX y:70];
-    
-    provinceO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 90, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Lanao del Norte"];
-    provinceO.layer.borderColor = [UIColor redColor].CGColor;
-    provinceO.layer.borderWidth = 2.0f;
-    
-    
-    address = [[ProfileLabel alloc] initWithStatus:@"Permanent Address" x:labelX y:120 width:130];
-    
-    addressO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 140, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Mabolo, Cebu City"];
-    addressO.layer.borderColor = [UIColor redColor].CGColor;
-    addressO.layer.borderWidth = 2.0f;
-    
+    if ( IDIOM == IPAD ) {
+        profileOutlineWidth = 400;
+        profileOutlineHeight = 40;
+        
+        
+        ProfileHeader *locationHeader = [[ProfileHeader alloc] initWithValue:@" Location Information" x:5 y:50 width:170];
+        
+        // ProfileOutline *locationOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, locationY, outlineWidth, 230)];
+        
+        UIView* locationOutline = [[UIView alloc] initWithFrame:CGRectMake(outlineX,locationY,outlineWidth,230)];
+        
+        country = [[ProfileLabel alloc] initWithStatus:@"Country" x:labelX y:80];
+        
+        countryO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 100, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Philippines"];
+        countryO.layer.borderColor = [UIColor redColor].CGColor;
+        countryO.layer.borderWidth = 2.0f;
+        float countryO_Co = (screenWidth - profileOutlineWidth)/2;
+        [countryO setFrame:CGRectMake(countryO_Co, 100, profileOutlineWidth, profileOutlineHeight)];
+        
+        
+        province = [[ProfileLabel alloc] initWithStatus:@"Province" x:labelX y:140];
+        
+        provinceO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 160, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Lanao del Norte"];
+        provinceO.layer.borderColor = [UIColor redColor].CGColor;
+        provinceO.layer.borderWidth = 2.0f;
+        float provinceO_Co = (screenWidth - profileOutlineWidth)/2;
+        [provinceO setFrame:CGRectMake(provinceO_Co, 160, profileOutlineWidth, profileOutlineHeight)];
+        
+        
+        address = [[ProfileLabel alloc] initWithStatus:@"Permanent Address" x:labelX y:200 width:130];
+        
+        addressO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 220, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Mabolo, Cebu City"];
+        addressO.layer.borderColor = [UIColor redColor].CGColor;
+        addressO.layer.borderWidth = 2.0f;
+        float addressO_Co = (screenWidth - profileOutlineWidth)/2;
+        [addressO setFrame:CGRectMake(addressO_Co, 220, profileOutlineWidth, profileOutlineHeight)];
+        
+        
+        
+        zipcode = [[ProfileLabel alloc] initWithStatus:@"Zipcode" x:labelX y:260];
+        
+        zipcodeO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 280, profileOutlineWidth, profileOutlineHeight) color:[UIColor redColor] word:@"6000"];
+        zipcodeO.layer.borderColor = [UIColor redColor].CGColor;
+        zipcodeO.layer.borderWidth = 2.0f;
+        float zipcodeO_Co = (screenWidth - profileOutlineWidth)/2;
+        [zipcodeO setFrame:CGRectMake(zipcodeO_Co, 280, profileOutlineWidth, profileOutlineHeight)];
+        
+        
+        [locationOutline addSubview:countryO];
+        [locationOutline addSubview:country];
+        
+        [locationOutline addSubview:provinceO];
+        [locationOutline addSubview:province];
+        
+        [locationOutline addSubview:addressO];
+        [locationOutline addSubview:address];
+        
+        [locationOutline addSubview:zipcodeO];
+        [locationOutline addSubview:zipcode];
+        
+        
+        [locationOutline addSubview:locationHeader];
+        [profileScroll addSubview:locationOutline];
 
+    }
+    else{
+        
+        ProfileHeader *locationHeader = [[ProfileHeader alloc] initWithValue:@" Location Information" x:5 y:-10 width:170];
+        
+        // ProfileOutline *locationOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, locationY, outlineWidth, 230)];
+        
+        UIView* locationOutline = [[UIView alloc] initWithFrame:CGRectMake(outlineX,locationY,outlineWidth,230)];
+        
+        country = [[ProfileLabel alloc] initWithStatus:@"Country" x:labelX y:20];
+        
+        countryO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 40, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Philippines"];
+        countryO.layer.borderColor = [UIColor redColor].CGColor;
+        countryO.layer.borderWidth = 2.0f;
+        
+        
+        province = [[ProfileLabel alloc] initWithStatus:@"Province" x:labelX y:70];
+        
+        provinceO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 90, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Lanao del Norte"];
+        provinceO.layer.borderColor = [UIColor redColor].CGColor;
+        provinceO.layer.borderWidth = 2.0f;
+        
+        
+        address = [[ProfileLabel alloc] initWithStatus:@"Permanent Address" x:labelX y:120 width:130];
+        
+        addressO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 140, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"Mabolo, Cebu City"];
+        addressO.layer.borderColor = [UIColor redColor].CGColor;
+        addressO.layer.borderWidth = 2.0f;
+        
+        
+        
+        zipcode = [[ProfileLabel alloc] initWithStatus:@"Zipcode" x:labelX y:170];
+        
+        zipcodeO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 190, profileOutlineWidth, profileOutlineHeight) color:[UIColor redColor] word:@"6000"];
+        zipcodeO.layer.borderColor = [UIColor redColor].CGColor;
+        zipcodeO.layer.borderWidth = 2.0f;
+        
+        
+        [locationOutline addSubview:countryO];
+        [locationOutline addSubview:country];
+        
+        [locationOutline addSubview:provinceO];
+        [locationOutline addSubview:province];
+        
+        [locationOutline addSubview:addressO];
+        [locationOutline addSubview:address];
+        
+        [locationOutline addSubview:zipcodeO];
+        [locationOutline addSubview:zipcode];
+        
+        
+        [locationOutline addSubview:locationHeader];
+        [profileScroll addSubview:locationOutline];
+
+    }
     
-    zipcode = [[ProfileLabel alloc] initWithStatus:@"Zipcode" x:labelX y:170];
-    
-    zipcodeO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 190, profileOutlineWidth, profileOutlineHeight) color:[UIColor redColor] word:@"6000"];
-    zipcodeO.layer.borderColor = [UIColor redColor].CGColor;
-    zipcodeO.layer.borderWidth = 2.0f;
-    
-    
-    [locationOutline addSubview:countryO];
-    [locationOutline addSubview:country];
-    
-    [locationOutline addSubview:provinceO];
-    [locationOutline addSubview:province];
-    
-    [locationOutline addSubview:addressO];
-    [locationOutline addSubview:address];
-    
-    [locationOutline addSubview:zipcodeO];
-    [locationOutline addSubview:zipcode];
-    
-    
-    [locationOutline addSubview:locationHeader];
-    [profileScroll addSubview:locationOutline];
     
 }
 
 -(void) createContactInfo{
+    if ( IDIOM == IPAD ) {
+        profileOutlineWidth = 400;
+        profileOutlineHeight = 40;
+        ProfileHeader *contactHeader = [[ProfileHeader alloc] initWithValue:@" Contact Information" x:5 y:90 width:170];
+        
+        //ProfileOutline *contactOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, contactY, outlineWidth, 130)];
+        
+        UIView* contactOutline = [[UIView alloc] initWithFrame:CGRectMake(outlineX,contactY,outlineWidth,290)];
+        
+        
+        email = [[ProfileLabel alloc] initWithStatus:@"Emaill Address" x:labelX y:120];
+        
+        emailO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 140, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"harry@yahoo.com"];
+        emailO.layer.borderColor = [UIColor redColor].CGColor;
+        emailO.layer.borderWidth = 2.0f;
+        float emailO_Co = (screenWidth - profileOutlineWidth)/2;
+        [emailO setFrame:CGRectMake(emailO_Co, 140, profileOutlineWidth, profileOutlineHeight)];
+
+        
+        mobileNumber = [[ProfileLabel alloc] initWithStatus:@"Mobile Number" x:labelX y:180];
+        
+        mobileNumberO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 200, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"09273444456"];
+        mobileNumberO.layer.borderColor = [UIColor redColor].CGColor;
+        mobileNumberO.layer.borderWidth = 2.0f;
+        float mobileNumberO_Co = (screenWidth - profileOutlineWidth)/2;
+        [mobileNumberO setFrame:CGRectMake(mobileNumberO_Co, 200, profileOutlineWidth, profileOutlineHeight)];
+
+        
+        
+        
+        [contactOutline addSubview:emailO];
+        [contactOutline addSubview:email];
+        
+        [contactOutline addSubview:mobileNumber];
+        [contactOutline addSubview:mobileNumberO];
+        
+        
+        
+        
+        
+        
+        
+        [contactOutline addSubview:contactHeader];
+        
+        [profileScroll addSubview:contactOutline];
+    }
+    else {
+        ProfileHeader *contactHeader = [[ProfileHeader alloc] initWithValue:@" Contact Information" x:5 y:-10 width:170];
+        
+        //ProfileOutline *contactOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, contactY, outlineWidth, 130)];
+        
+        UIView* contactOutline = [[UIView alloc] initWithFrame:CGRectMake(outlineX,contactY,outlineWidth,130)];
+        
+        
+        email = [[ProfileLabel alloc] initWithStatus:@"Emaill Address" x:labelX y:20];
+        
+        emailO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 40, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"harry@yahoo.com"];
+        emailO.layer.borderColor = [UIColor redColor].CGColor;
+        emailO.layer.borderWidth = 2.0f;
+        
+        
+        mobileNumber = [[ProfileLabel alloc] initWithStatus:@"Mobile Number" x:labelX y:70];
+        
+        mobileNumberO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 90, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"09273444456"];
+        mobileNumberO.layer.borderColor = [UIColor redColor].CGColor;
+        mobileNumberO.layer.borderWidth = 2.0f;
+        
+        
+        
+        
+        [contactOutline addSubview:emailO];
+        [contactOutline addSubview:email];
+        
+        [contactOutline addSubview:mobileNumber];
+        [contactOutline addSubview:mobileNumberO];
+        
+        
+        
+        
+        
+        
+        
+        [contactOutline addSubview:contactHeader];
+        
+        [profileScroll addSubview:contactOutline];
+    }
     
-    
-    ProfileHeader *contactHeader = [[ProfileHeader alloc] initWithValue:@" Contact Information" x:5 y:-10 width:170];
-    
-    //ProfileOutline *contactOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, contactY, outlineWidth, 130)];
-    
-    UIView* contactOutline = [[UIView alloc] initWithFrame:CGRectMake(outlineX,contactY,outlineWidth,130)];
-    
-    
-    email = [[ProfileLabel alloc] initWithStatus:@"Emaill Address" x:labelX y:20];
-    
-    emailO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 40, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"harry@yahoo.com"];
-    emailO.layer.borderColor = [UIColor redColor].CGColor;
-    emailO.layer.borderWidth = 2.0f;
-    
-    
-    mobileNumber = [[ProfileLabel alloc] initWithStatus:@"Mobile Number" x:labelX y:70];
-    
-    mobileNumberO = [[ProfileOutline alloc] initWithFrame:CGRectMake(labelX, 90, profileOutlineWidth, profileOutlineHeight) color:[UIColor lightGrayColor] word:@"09273444456"];
-    mobileNumberO.layer.borderColor = [UIColor redColor].CGColor;
-    mobileNumberO.layer.borderWidth = 2.0f;
-    
-    
-    
-    
-    [contactOutline addSubview:emailO];
-    [contactOutline addSubview:email];
-    
-    [contactOutline addSubview:mobileNumber];
-    [contactOutline addSubview:mobileNumberO];
-    
-    
-    
-    
-    
-    
-    
-    [contactOutline addSubview:contactHeader];
-    
-    [profileScroll addSubview:contactOutline];
     
 }
 

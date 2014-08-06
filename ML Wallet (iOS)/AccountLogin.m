@@ -61,43 +61,95 @@ UIScrollView *scrollView;
 
 
 -(void) createLoginAccount{
+    if ( IDIOM == IPAD ) {
+        NSLog(@"IPAD NI");
+        
+        ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:-10 width:180];
+        
+        // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
+        UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,100,screenWidth,screenHeight)];
+        
+        userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 400, 40) word:@"Username/Login ID"];
+        userNameTF.layer.cornerRadius=0.0f;
+        userNameTF.layer.masksToBounds=YES;
+        userNameTF.layer.borderColor=[[UIColor redColor]CGColor];
+        userNameTF.layer.borderWidth= 2.0f;
+        float userNameTF_Co = (screenWidth - 400)/2;
+        [userNameTF setFrame:CGRectMake(userNameTF_Co, 30, 400, 40)];
+        
+        passwordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 100, 400, 40) word:@"Password"];
+        passwordTF.layer.cornerRadius=0.0f;
+        passwordTF.layer.masksToBounds=YES;
+        passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
+        passwordTF.layer.borderWidth= 2.0f;
+        float passwordTF_Co = (screenWidth - 400)/2;
+        [passwordTF setFrame:CGRectMake(passwordTF_Co, 100, 400, 40)];
+        
+        retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 170, 400, 40) word:@"Retype Password"];
+        retypePasswordTF.layer.cornerRadius=0.0f;
+        retypePasswordTF.layer.masksToBounds=YES;
+        retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
+        retypePasswordTF.layer.borderWidth= 2.0f;
+        float retypePasswordTF_Co = (screenWidth - 400)/2;
+        [retypePasswordTF setFrame:CGRectMake(retypePasswordTF_Co, 170, 400, 40)];
+        
+        userNameTF.delegate = self;
+        passwordTF.delegate = self;
+        retypePasswordTF.delegate = self;
+        
+        [loginOutline addSubview:loginHeader];
+        
+        
+        [loginOutline addSubview:userNameTF];
+        [loginOutline addSubview:passwordTF];
+        [loginOutline addSubview:retypePasswordTF];
+        [scrollView addSubview:loginOutline];
+        
+        
+    }
+    else {
+        NSLog(@"IPHONE NI");
+        
+        
+        ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:-10 width:180];
+        
+        // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
+        UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,100,screenWidth,screenHeight)];
+        
+        userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
+        userNameTF.layer.cornerRadius=0.0f;
+        userNameTF.layer.masksToBounds=YES;
+        userNameTF.layer.borderColor=[[UIColor redColor]CGColor];
+        userNameTF.layer.borderWidth= 2.0f;
+        
+        passwordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 80, 280, 30) word:@"Password"];
+        passwordTF.layer.cornerRadius=0.0f;
+        passwordTF.layer.masksToBounds=YES;
+        passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
+        passwordTF.layer.borderWidth= 2.0f;
+        
+        retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 130, 280, 30) word:@"Retype Password"];
+        retypePasswordTF.layer.cornerRadius=0.0f;
+        retypePasswordTF.layer.masksToBounds=YES;
+        retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
+        retypePasswordTF.layer.borderWidth= 2.0f;
+        
+        
+        userNameTF.delegate = self;
+        passwordTF.delegate = self;
+        retypePasswordTF.delegate = self;
+        
+        [loginOutline addSubview:loginHeader];
+        
+        
+        [loginOutline addSubview:userNameTF];
+        [loginOutline addSubview:passwordTF];
+        [loginOutline addSubview:retypePasswordTF];
+        [scrollView addSubview:loginOutline];
+        
     
+    }
     
-    ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:-10 width:180];
-    
-   // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
-    UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,100,screenWidth,screenHeight)];
-    
-    userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
-    userNameTF.layer.cornerRadius=0.0f;
-    userNameTF.layer.masksToBounds=YES;
-    userNameTF.layer.borderColor=[[UIColor redColor]CGColor];
-    userNameTF.layer.borderWidth= 2.0f;
-    
-    passwordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 80, 280, 30) word:@"Password"];
-    passwordTF.layer.cornerRadius=0.0f;
-    passwordTF.layer.masksToBounds=YES;
-    passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
-    passwordTF.layer.borderWidth= 2.0f;
-    
-    retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 130, 280, 30) word:@"Retype Password"];
-    retypePasswordTF.layer.cornerRadius=0.0f;
-    retypePasswordTF.layer.masksToBounds=YES;
-    retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
-    retypePasswordTF.layer.borderWidth= 2.0f;
-    
-    
-    userNameTF.delegate = self;
-    passwordTF.delegate = self;
-    retypePasswordTF.delegate = self;
-    
-    [loginOutline addSubview:loginHeader];
-    
-    
-    [loginOutline addSubview:userNameTF];
-    [loginOutline addSubview:passwordTF];
-    [loginOutline addSubview:retypePasswordTF];
-    [scrollView addSubview:loginOutline];
     
     
 }
