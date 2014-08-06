@@ -103,12 +103,12 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         image = [UIImage imageNamed:@"content_bg"];
-        payment = [UIImage imageNamed:@"payment_bg"];
+        payment = [UIImage imageNamed:@"payment_bg.png"];
     }
     else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         image = [UIImage imageNamed:@"content_bg_ipad"];
-        payment = [UIImage imageNamed:@"payment_bg_ipad"];
+        payment = [UIImage imageNamed:@"payment_bg_ipad.png"];
     }
     
     //Setting background image of a view
