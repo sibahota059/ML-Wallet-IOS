@@ -67,7 +67,7 @@ UIScrollView *scrollView;
         ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:-10 width:180];
         
         // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
-        UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,100,screenWidth,screenHeight)];
+        UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
         
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 400, 40) word:@"Username/Login ID"];
         userNameTF.layer.cornerRadius=8.0f;
@@ -111,10 +111,10 @@ UIScrollView *scrollView;
         NSLog(@"IPHONE NI");
         
         
-        ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:-10 width:180];
+        ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:5 width:180];
         
         // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
-        UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,100,screenWidth,screenHeight)];
+        UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
         
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
         userNameTF.layer.cornerRadius=8.0f;

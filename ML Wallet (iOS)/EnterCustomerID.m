@@ -86,12 +86,13 @@ UITextfieldAnimate *textAnimate;
     ProfileHeader *personalHeader = [[ProfileHeader alloc] initWithValue:@" Enter all fields" x:5 y:-10 width:120];
     
 //  ProfileOutline *personalOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
-    UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.15,screenWidth,screenHeight)];
+    UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
 
-    ProfileLabel *customerID = [[ProfileLabel alloc] initWithStatus:@"Enter your CustomerID" x:10 y:20 myColor:[UIColor grayColor] width:140];
+    ProfileLabel *customerID;
 
     if ( IDIOM == IPAD ) {
         NSLog(@"IPAD NI");
+        customerID = [[ProfileLabel alloc] initWithStatus:@"Enter your CustomerID" x:10 y:20 myColor:[UIColor grayColor] width:140];
         float personalHeader_Co = ((screenWidth - 170)/2)-170;
         [personalHeader setFrame:CGRectMake(personalHeader_Co, -10, 170, 30)];
         float customerID_Co = ((screenWidth - 170)/2)-150;
@@ -152,6 +153,7 @@ UITextfieldAnimate *textAnimate;
     }
     else {
         NSLog(@"IPHONE NI");
+        customerID = [[ProfileLabel alloc] initWithStatus:@"Enter your CustomerID" x:10 y:20 myColor:[UIColor grayColor] width:140];
         firstNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(12, 50, 84, 30) word:@""];
         firstNumberTF.layer.cornerRadius=8.0f;
         firstNumberTF.layer.masksToBounds=YES;

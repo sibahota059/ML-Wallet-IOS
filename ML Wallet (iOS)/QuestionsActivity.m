@@ -94,6 +94,7 @@ SelectQuestionDialog *questionDialog;
     if ( IDIOM == IPAD ) {
         /* do something specifically for iPad. */
         NSLog(@"IPAD");
+        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,screenHeight*.05,screenWidth,screenHeight)];
         ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
         
         //QUESTION 1
@@ -141,7 +142,7 @@ SelectQuestionDialog *questionDialog;
         
         NSLog(@"%f-------%f",screenWidth,screenHeight);
         
-        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,10,screenWidth,screenHeight)];
+        
         
         [simpleView addSubview:questionHeader];
         [simpleView addSubview:button1];
@@ -159,6 +160,7 @@ SelectQuestionDialog *questionDialog;
     } else {
         /* do something specifically for iPhone or iPod touch. */
         NSLog(@"IPHONE");
+        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,screenHeight*.05,screenWidth,screenHeight)];
         ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
         
         //QUESTION 1
@@ -246,7 +248,7 @@ SelectQuestionDialog *questionDialog;
         CGFloat screenHeight = screenRect.size.height;
         NSLog(@"%f-------%f",screenWidth,screenHeight);
         
-        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,10,screenWidth,screenHeight)];
+        
         
         [simpleView addSubview:questionHeader];
         [simpleView addSubview:button1];

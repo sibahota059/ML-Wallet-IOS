@@ -79,7 +79,7 @@ CGFloat screenHeight;
     locationY = 330;
     contactY = 580;
 
-    self.title = @"Registration Information";
+    self.title = @"User Information";
     
     QuestionsActivity *questionsActivity = [[QuestionsActivity alloc] initWithNibName:@"QuestionsActivity" bundle:nil];
     [self setNextViewController:questionsActivity myImage:[UIImage imageNamed:@"next.png"]];
@@ -109,7 +109,7 @@ CGFloat screenHeight;
     
     
     
-    ProfileHeader *personalHeader = [[ProfileHeader alloc] initWithValue:@" Personal Information" x:5 y:-10 width:170];
+//    ProfileHeader *personalHeader = [[ProfileHeader alloc] initWithValue:@" Personal Information" x:5 y:-10 width:170];
     
     //ProfileOutline *personalOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, personalY, outlineWidth, 280)];
     
@@ -184,7 +184,7 @@ CGFloat screenHeight;
         [personalOutline addSubview:workO];
 
         
-        [personalOutline addSubview:personalHeader];
+//        [personalOutline addSubview:personalHeader];
         [profileScroll addSubview:personalOutline];
         
         
@@ -252,7 +252,7 @@ CGFloat screenHeight;
         [personalOutline addSubview:workO];
 
         
-        [personalOutline addSubview:personalHeader];
+//        [personalOutline addSubview:personalHeader];
         [profileScroll addSubview:personalOutline];
         
         
@@ -275,7 +275,7 @@ CGFloat screenHeight;
         profileOutlineHeight = 40;
         
         
-        ProfileHeader *locationHeader = [[ProfileHeader alloc] initWithValue:@" Location Information" x:5 y:50 width:170];
+//        ProfileHeader *locationHeader = [[ProfileHeader alloc] initWithValue:@" Location Information" x:5 y:50 width:170];
         
         // ProfileOutline *locationOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, locationY, outlineWidth, 230)];
         
@@ -332,13 +332,13 @@ CGFloat screenHeight;
 
         
         
-        [locationOutline addSubview:locationHeader];
+  //      [locationOutline addSubview:locationHeader];
         [profileScroll addSubview:locationOutline];
 
     }
     else{
         
-        ProfileHeader *locationHeader = [[ProfileHeader alloc] initWithValue:@" Location Information" x:5 y:-10 width:170];
+  //      ProfileHeader *locationHeader = [[ProfileHeader alloc] initWithValue:@" Location Information" x:5 y:-10 width:170];
         
         // ProfileOutline *locationOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, locationY, outlineWidth, 230)];
         
@@ -388,7 +388,7 @@ CGFloat screenHeight;
 
         
         
-        [locationOutline addSubview:locationHeader];
+ //       [locationOutline addSubview:locationHeader];
         [profileScroll addSubview:locationOutline];
 
     }
@@ -403,7 +403,7 @@ CGFloat screenHeight;
     if ( IDIOM == IPAD ) {
         profileOutlineWidth = 400;
         profileOutlineHeight = 40;
-        ProfileHeader *contactHeader = [[ProfileHeader alloc] initWithValue:@" Contact Information" x:5 y:90 width:170];
+   //     ProfileHeader *contactHeader = [[ProfileHeader alloc] initWithValue:@" Contact Information" x:5 y:90 width:170];
         
         //ProfileOutline *contactOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, contactY, outlineWidth, 130)];
         
@@ -437,12 +437,12 @@ CGFloat screenHeight;
         
         
         
-        [contactOutline addSubview:contactHeader];
+  //      [contactOutline addSubview:contactHeader];
         
         [profileScroll addSubview:contactOutline];
     }
     else {
-        ProfileHeader *contactHeader = [[ProfileHeader alloc] initWithValue:@" Contact Information" x:5 y:-10 width:170];
+  //      ProfileHeader *contactHeader = [[ProfileHeader alloc] initWithValue:@" Contact Information" x:5 y:-10 width:170];
         
         //ProfileOutline *contactOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(outlineX, contactY, outlineWidth, 130)];
         
@@ -474,7 +474,7 @@ CGFloat screenHeight;
         
         
         
-        [contactOutline addSubview:contactHeader];
+   //     [contactOutline addSubview:contactHeader];
         
         [profileScroll addSubview:contactOutline];
     }
