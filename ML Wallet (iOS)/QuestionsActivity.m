@@ -67,7 +67,7 @@ SelectQuestionDialog *questionDialog;
     [scrollView setContentSize:CGSizeMake(screenWidth, screenHeight)];
     
     AccountLogin *accountLogin = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-    [self setNextViewController:accountLogin myImage:[UIImage imageNamed:@"next.png"]];
+    [self setNextViewController:accountLogin myImage:[UIImage imageNamed:@"lock_profile.png"]];
     
     
     disableBackground = [[UIView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
@@ -76,7 +76,7 @@ SelectQuestionDialog *questionDialog;
     [disableBackground setAlpha:0.5f];
     
     [self createQuestion];
-    self.title = @"Questions";
+    
     [self.view addSubview:scrollView];
     [self.view addSubview: disableBackground];
     
@@ -94,7 +94,6 @@ SelectQuestionDialog *questionDialog;
     if ( IDIOM == IPAD ) {
         /* do something specifically for iPad. */
         NSLog(@"IPAD");
-        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,screenHeight*.05,screenWidth,screenHeight)];
         ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
         
         //QUESTION 1
@@ -103,10 +102,10 @@ SelectQuestionDialog *questionDialog;
         [button1 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
         questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:screenWidth/3 y:30 myColor:[UIColor blackColor] width:260];
         answerTF1 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4, 70, screenWidth/2, 30) word:@"answer 1"];
-        answerTF1.layer.cornerRadius=8.0f;
+        answerTF1.layer.cornerRadius=0.0f;
         answerTF1.layer.masksToBounds=YES;
         answerTF1.layer.borderColor=[[UIColor redColor]CGColor];
-        answerTF1.layer.borderWidth= 1.0f;
+        answerTF1.layer.borderWidth= 2.0f;
         
         //QUESTION 2
         
@@ -114,10 +113,10 @@ SelectQuestionDialog *questionDialog;
         [button2 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
         questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:screenWidth/3 y:120 myColor:[UIColor blackColor] width:260];
         answerTF2 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4,160, screenWidth/2, 30) word:@"answer 2"];
-        answerTF2.layer.cornerRadius=8.0f;
+        answerTF2.layer.cornerRadius=0.0f;
         answerTF2.layer.masksToBounds=YES;
         answerTF2.layer.borderColor=[[UIColor redColor]CGColor];
-        answerTF2.layer.borderWidth= 1.0f;
+        answerTF2.layer.borderWidth= 2.0f;
         
         
         //QUESITON 3
@@ -127,10 +126,10 @@ SelectQuestionDialog *questionDialog;
         questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:screenWidth/3 y:210 myColor:[UIColor blackColor] width:260];
         answerTF3 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4, 250, screenWidth/2, 30) word:@"answer 3"];
         
-        answerTF3.layer.cornerRadius=8.0f;
+        answerTF3.layer.cornerRadius=0.0f;
         answerTF3.layer.masksToBounds=YES;
         answerTF3.layer.borderColor=[[UIColor redColor]CGColor];
-        answerTF3.layer.borderWidth= 1.0f;
+        answerTF3.layer.borderWidth= 2.0f;
         
         
         
@@ -142,7 +141,7 @@ SelectQuestionDialog *questionDialog;
         
         NSLog(@"%f-------%f",screenWidth,screenHeight);
         
-        
+        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,10,screenWidth,screenHeight)];
         
         [simpleView addSubview:questionHeader];
         [simpleView addSubview:button1];
@@ -160,7 +159,6 @@ SelectQuestionDialog *questionDialog;
     } else {
         /* do something specifically for iPhone or iPod touch. */
         NSLog(@"IPHONE");
-        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,screenHeight*.05,screenWidth,screenHeight)];
         ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
         
         //QUESTION 1
@@ -169,10 +167,10 @@ SelectQuestionDialog *questionDialog;
         [questionLbl1 setFrame:CGRectMake(questionLbl1_Co, 30, 260, 30)];
         
         answerTF1 = [[ProfileTextField alloc] initWithFrame:CGRectMake(0, 0, 285, 30) word:@"answer 1"];
-        answerTF1.layer.cornerRadius=8.0f;
+        answerTF1.layer.cornerRadius=0.0f;
         answerTF1.layer.masksToBounds=YES;
         answerTF1.layer.borderColor=[[UIColor redColor]CGColor];
-        answerTF1.layer.borderWidth= 1.0f;
+        answerTF1.layer.borderWidth= 2.0f;
         float answerTF1_Co = (self.view.frame.size.width - 285)/2;
         [answerTF1 setFrame:CGRectMake(answerTF1_Co, 70, 285, 30)];
         
@@ -192,10 +190,10 @@ SelectQuestionDialog *questionDialog;
         [button2 setFrame:CGRectMake(button2_Co, 120, 30, 30)];
         questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:45 y:120 myColor:[UIColor blackColor] width:260];
         answerTF2 = [[ProfileTextField alloc] initWithFrame:CGRectMake(15, 160, 285, 30) word:@"answer 2"];
-        answerTF2.layer.cornerRadius=8.0f;
+        answerTF2.layer.cornerRadius=0.0f;
         answerTF2.layer.masksToBounds=YES;
         answerTF2.layer.borderColor=[[UIColor redColor]CGColor];
-        answerTF2.layer.borderWidth= 1.0f;
+        answerTF2.layer.borderWidth= 2.0f;
         float answerTF2_CO = (self.view.frame.size.width - 285)/2;
         [answerTF2 setFrame:CGRectMake(answerTF2_CO, 160, 285, 30)];
         
@@ -208,10 +206,10 @@ SelectQuestionDialog *questionDialog;
         questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:45 y:210 myColor:[UIColor blackColor] width:260];
         answerTF3 = [[ProfileTextField alloc] initWithFrame:CGRectMake(15, 250, 285, 30) word:@"answer 3"];
         
-        answerTF3.layer.cornerRadius=8.0f;
+        answerTF3.layer.cornerRadius=0.0f;
         answerTF3.layer.masksToBounds=YES;
         answerTF3.layer.borderColor=[[UIColor redColor]CGColor];
-        answerTF3.layer.borderWidth= 1.0f;
+        answerTF3.layer.borderWidth= 2.0f;
         
         float answerTF3_CO = (self.view.frame.size.width - 285)/2;
         [answerTF3 setFrame:CGRectMake(answerTF3_CO, 250, 285, 30)];
@@ -248,7 +246,7 @@ SelectQuestionDialog *questionDialog;
         CGFloat screenHeight = screenRect.size.height;
         NSLog(@"%f-------%f",screenWidth,screenHeight);
         
-        
+        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,10,screenWidth,screenHeight)];
         
         [simpleView addSubview:questionHeader];
         [simpleView addSubview:button1];
