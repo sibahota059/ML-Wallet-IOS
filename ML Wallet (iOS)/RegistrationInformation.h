@@ -8,6 +8,6 @@
 
 #import "MLViewController.h"
 
-@interface RegistrationInformation : MLViewController
+@interface RegistrationInformation : MLViewController <UITextFieldDelegate>
 
 @end
