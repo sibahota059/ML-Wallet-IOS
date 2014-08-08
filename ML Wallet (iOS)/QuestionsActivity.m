@@ -81,6 +81,9 @@ SelectQuestionDialog *questionDialog;
     [self.view addSubview: disableBackground];
     
 }
+-(void)viewDidAppear:(BOOL)animated{
+
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -367,11 +370,12 @@ SelectQuestionDialog *questionDialog;
     [questionDialog removeFromSuperview];
     
 }
+/*
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    /*
+ 
     CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
     [scrollView setContentOffset:scrollPoint animated:YES];
-     */
+ 
     [textAnimate animateTextField:textField up:YES SelfView:self.view];
 }
 
@@ -379,6 +383,15 @@ SelectQuestionDialog *questionDialog;
    // [scrollView setContentOffset:CGPointZero animated:YES];
     [textAnimate animateTextField:textField up:NO SelfView:self.view];
     [self.view endEditing:YES];
+}
+*/
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
+    [scrollView setContentOffset:scrollPoint animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [scrollView setContentOffset:CGPointZero animated:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

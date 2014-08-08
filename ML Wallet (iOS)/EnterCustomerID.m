@@ -62,12 +62,17 @@ UITextfieldAnimate *textAnimate;
     [self setNextViewController:registraionInformation myImage:[UIImage imageNamed:@"next.png"]];
     
     [self addNavigationBar];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self createCustomerID];
     
     [self.view addSubview:scrollView];
-    
     textAnimate = [UITextfieldAnimate new];
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+[scrollView setContentOffset:CGPointZero animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -209,6 +214,7 @@ UITextfieldAnimate *textAnimate;
 
 
 }
+/*
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [textAnimate animateTextField:textField up:YES SelfView:self.view];
     //CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
@@ -220,6 +226,18 @@ UITextfieldAnimate *textAnimate;
     [textAnimate animateTextField:textField up:NO SelfView:self.view];
     [self.view endEditing:YES];
 }
+ */
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
+    [scrollView setContentOffset:scrollPoint animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [scrollView setContentOffset:CGPointZero animated:YES];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [firstNumberTF resignFirstResponder];
@@ -233,6 +251,7 @@ UITextfieldAnimate *textAnimate;
 
 -(void) addNavigationBar{
 self.title = @"Customer ID";
+    
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -242,6 +261,8 @@ self.title = @"Customer ID";
     
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backView];
     [self.navigationItem setLeftBarButtonItem:back];
+    
+self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 

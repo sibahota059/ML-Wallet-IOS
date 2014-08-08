@@ -80,9 +80,6 @@ CGFloat screenHeight;
     personalY = 30;
     locationY = 330;
     contactY = 580;
-    
-    
-    
     QuestionsActivity *questionsActivity = [[QuestionsActivity alloc] initWithNibName:@"QuestionsActivity" bundle:nil];
     [self setNextViewController:questionsActivity myImage:[UIImage imageNamed:@"next.png"]];
     
