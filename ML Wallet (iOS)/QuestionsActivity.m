@@ -76,7 +76,7 @@ SelectQuestionDialog *questionDialog;
     [disableBackground setAlpha:0.5f];
     
     [self createQuestion];
-    self.title = @"Questions";
+    self.title = @"Security Questions";
     [self.view addSubview:scrollView];
     [self.view addSubview: disableBackground];
     
@@ -160,8 +160,8 @@ SelectQuestionDialog *questionDialog;
     } else {
         /* do something specifically for iPhone or iPod touch. */
         NSLog(@"IPHONE");
-        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,screenHeight*.05,screenWidth,screenHeight)];
-        ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
+        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,-10,screenWidth,screenHeight)];
+     //   ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
         
         //QUESTION 1
         questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:45 y:30 myColor:[UIColor blackColor] width:260];
@@ -250,7 +250,7 @@ SelectQuestionDialog *questionDialog;
         
         
         
-        [simpleView addSubview:questionHeader];
+   //    [simpleView addSubview:questionHeader];
         [simpleView addSubview:button1];
         [simpleView addSubview:questionLbl1];
         [simpleView addSubview: answerTF1];

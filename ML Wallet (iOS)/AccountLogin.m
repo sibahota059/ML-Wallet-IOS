@@ -114,7 +114,7 @@ UIScrollView *scrollView;
         ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:5 width:180];
         
         // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
-        UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
+        UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,10,screenWidth,screenHeight)];
         
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
         userNameTF.layer.cornerRadius=8.0f;
@@ -156,7 +156,7 @@ UIScrollView *scrollView;
 
 
 -(void) addNavigationBar{
-    self.title = @"Login";
+    self.title = @"User Account";
     UIView *submitView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     [submitButton setImage:[UIImage imageNamed:@"next.png"] forState:UIControlStateNormal];
