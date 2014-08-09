@@ -17,6 +17,9 @@
                 <outlet property="lblNoAttempts" destination="KQm-JM-CnV" id="VMC-Do-hgr"/>
                 <outlet property="lblUserName" destination="sVO-2a-tZW" id="OIX-fS-CCL"/>
                 <outlet property="lblWalletno" destination="fjN-k2-Rt7" id="OBr-Zr-pwE"/>
+                <outlet property="logout" destination="R4X-Sh-64h" id="FI6-mm-kLs"/>
+                <outlet property="mlSite" destination="xmq-Su-XKe" id="g9t-4B-5f8"/>
+                <outlet property="others" destination="Xw1-CY-5Kk" id="dxF-Du-dhy"/>
                 <outlet property="pop_btnInfo" destination="D7C-ee-iXt" id="Ta1-VI-PMn"/>
                 <outlet property="pop_btnLocator" destination="gBw-b2-K9X" id="yO4-Z7-4Xv"/>
                 <outlet property="pop_btnRate" destination="BHF-Kd-MFw" id="Ike-IC-FCf"/>
@@ -223,9 +226,22 @@
                                     <gestureRecognizers/>
                                 </view>
                                 <view contentMode="scaleToFill" id="O7u-0e-G7K">
-                                    <rect key="frame" x="0.0" y="480" width="320" height="55"/>
+                                    <rect key="frame" x="0.0" y="480" width="320" height="88"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xmq-Su-XKe">
+                                            <rect key="frame" x="0.0" y="63" width="320" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                            <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <state key="normal" title="www.mlhuillier.com" backgroundImage="transparent.png">
+                                                <color key="titleColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="bntWebview:" destination="-1" eventType="touchUpInside" id="voC-5t-dra"/>
+                                            </connections>
+                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Xw1-CY-5Kk">
                                             <rect key="frame" x="40" y="20" width="80" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -251,19 +267,6 @@
                                         </button>
                                     </subviews>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xmq-Su-XKe">
-                                    <rect key="frame" x="0.0" y="543" width="320" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <state key="normal" title="www.mlhuillier.com" backgroundImage="transparent.png">
-                                        <color key="titleColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="bntWebview:" destination="-1" eventType="touchUpInside" id="voC-5t-dra"/>
-                                    </connections>
-                                </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popup_img.png" id="Qyr-7E-Ska">
                                     <rect key="frame" x="67" y="441" width="150" height="72"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>

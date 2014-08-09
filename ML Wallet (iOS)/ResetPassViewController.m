@@ -36,7 +36,7 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = NO;
-    
+    self.title= @"Forgot Password";
     //WaitScreen
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];

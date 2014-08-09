@@ -16,5 +16,7 @@
 	<string>0</string>
 	<key>address</key>
 	<string></string>
+	<key>password</key>
+	<string></string>
 </dict>
 </plist>
