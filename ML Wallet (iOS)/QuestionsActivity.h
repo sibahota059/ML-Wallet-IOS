@@ -9,5 +9,7 @@
 #import "MLViewController.h"
 
 @interface QuestionsActivity : UIViewController <UITextFieldDelegate>
+{
 
+}
 @end

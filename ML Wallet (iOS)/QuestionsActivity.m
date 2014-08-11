@@ -404,10 +404,6 @@ SelectQuestionDialog *questionDialog;
 
     
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     //    [UIView animateWithDuration:0.5
