@@ -8,6 +8,6 @@
 
 #import "MLViewController.h"
 
-@interface AccountLogin : MLViewController <UITextFieldDelegate>
+@interface AccountLogin : UIViewController <UITextFieldDelegate>
 
 @end

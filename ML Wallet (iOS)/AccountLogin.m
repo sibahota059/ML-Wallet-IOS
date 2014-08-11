@@ -157,6 +157,10 @@ UIScrollView *scrollView;
 
 -(void) addNavigationBar{
     self.title = @"User Account";
+    
+    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
+                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+/*
     UIView *submitView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     [submitButton setImage:[UIImage imageNamed:@"next.png"] forState:UIControlStateNormal];
@@ -166,7 +170,26 @@ UIScrollView *scrollView;
     
     UIBarButtonItem *submit = [[UIBarButtonItem alloc] initWithCustomView:submitView];
     [self.navigationItem setRightBarButtonItem:submit];
-}
+*/
+    //next navigation button
+    UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithTitle:
+                                @"Next"
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(nextPressed)];
+    self.navigationItem.rightBarButtonItem = btnNext;
+    
+    //Set Background
+    if ([UIScreen mainScreen].bounds.size.height >= 568) //4 inch 568
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+    }
+    else //4 inc below
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
+    }
+
+ }
 
 
 -(void) nextPressed{
@@ -192,12 +215,11 @@ UIScrollView *scrollView;
     //                        options:UIViewAnimationOptionCurveEaseIn
     //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
     //                     completion:^(BOOL finished){}];
-    
     [userNameTF resignFirstResponder];
     [passwordTF resignFirstResponder];
     [retypePasswordTF resignFirstResponder];
     
-    return YES;
+    return NO;
 }
 
 - (BOOL)prefersStatusBarHidden{

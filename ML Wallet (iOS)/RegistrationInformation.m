@@ -80,13 +80,16 @@ CGFloat screenHeight;
     personalY = 30;
     locationY = 330;
     contactY = 580;
+    /*
     QuestionsActivity *questionsActivity = [[QuestionsActivity alloc] initWithNibName:@"QuestionsActivity" bundle:nil];
     [self setNextViewController:questionsActivity myImage:[UIImage imageNamed:@"next.png"]];
     
+     */
+    [self addNavigationBar];
     [self createPersonalLabel];
     [self createPersonalValue];
     //
-    self.title = @"User Information";
+
     [self.view addSubview:profileScroll];
     
 }
@@ -478,6 +481,52 @@ CGFloat screenHeight;
     
     
 }
+
+-(void) addNavigationBar{
+        self.title = @"User Information";
+    /*
+    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self
+                                                               action:@selector(backPressed)];
+    
+    self.navigationItem.leftBarButtonItem = btnHome;
+    */
+    
+    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
+                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //next navigation button
+    UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithTitle:
+                                @"Next"
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(gotoNextView)];
+    self.navigationItem.rightBarButtonItem = btnNext;
+    
+    //Set Background
+    if ([UIScreen mainScreen].bounds.size.height >= 568) //4 inch 568
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+    }
+    else //4 inc below
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
+    }
+    
+}
+-(void) backPressed{
+    
+   // self.navigationController.navigationBarHidden = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+-(void) gotoNextView{
+    NSLog(@"Next ni Bai!");
+    QuestionsActivity *questAct = [[QuestionsActivity alloc] initWithNibName:@"QuestionsActivity" bundle:nil];
+    [self.navigationController pushViewController:questAct animated:YES];
+    
+    
+}
+
 
 - (BOOL)prefersStatusBarHidden{
     return YES;

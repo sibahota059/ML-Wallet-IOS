@@ -57,29 +57,32 @@ UITextfieldAnimate *textAnimate;
     [scrollView setScrollEnabled:YES];
     [scrollView setContentSize:CGSizeMake(screenWidth, screenHeight)];
     
-    RegistrationInformation *registraionInformation = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+    //RegistrationInformation *registraionInformation = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
     
-    [self setNextViewController:registraionInformation myImage:[UIImage imageNamed:@"next.png"]];
+    //[self setNextViewController:registraionInformation myImage:[UIImage imageNamed:@"next.png"]];
     
+    //[self addNavigationBar];
+//    
+//    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
+//                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self addNavigationBar];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self createCustomerID];
     
     [self.view addSubview:scrollView];
+    
     textAnimate = [UITextfieldAnimate new];
 }
-
--(void)viewWillAppear:(BOOL)animated{
-[scrollView setContentOffset:CGPointZero animated:YES];
-}
-
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)gotoHome
+{
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void) createCustomerID{
 
@@ -214,30 +217,19 @@ UITextfieldAnimate *textAnimate;
 
 
 }
-/*
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [textAnimate animateTextField:textField up:YES SelfView:self.view];
-    //CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
-    //[scrollView setContentOffset:scrollPoint animated:YES];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-   // [scrollView setContentOffset:CGPointZero animated:YES];
-    [textAnimate animateTextField:textField up:NO SelfView:self.view];
-    [self.view endEditing:YES];
-}
- */
-
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    //[textAnimate animateTextField:textField up:YES SelfView:self.view];
     CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
     [scrollView setContentOffset:scrollPoint animated:YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [scrollView setContentOffset:CGPointZero animated:YES];
+  //  [textAnimate animateTextField:textField up:NO SelfView:self.view];
+    [self.view endEditing:YES];
 }
-
+ 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [firstNumberTF resignFirstResponder];
@@ -251,7 +243,7 @@ UITextfieldAnimate *textAnimate;
 
 -(void) addNavigationBar{
 self.title = @"Customer ID";
-    
+    /*
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -259,18 +251,68 @@ self.title = @"Customer ID";
     
     [backView addSubview:backButton];
     
+    
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backView];
     [self.navigationItem setLeftBarButtonItem:back];
+    */
+    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home.png"]
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(gotoHome)];
     
-self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-}
+    self.navigationItem.leftBarButtonItem = btnHome;
+    
+    
+    
+    //next navigation button
+    UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithTitle:
+                                @"Next"
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(gotoNextView)];
+    self.navigationItem.rightBarButtonItem = btnNext;
+    
+    //Set Background
+    if ([UIScreen mainScreen].bounds.size.height >= 568) //4 inch 568
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+    }
+    else //4 inc below
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
+    }
 
+}
+-(void) gotoNextView{
+    NSLog(@"Next ni Bai!");
+    if([firstNumberTF resignFirstResponder]==YES||
+       [secondNumberTF resignFirstResponder]==YES||
+       [thirdNumberTF resignFirstResponder]==YES||
+       [phoneNumberTF resignFirstResponder]==YES){
+        NSLog(@"Keyboard Visible");
+    [scrollView setContentOffset:CGPointZero animated:YES];
+    }
+    else{
+        NSLog(@"Keyboard not Visible");
+    }
+    RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+    [self.navigationController pushViewController:regInfo animated:YES];
+    
+    
+}
 
 -(void) backPressed{
     
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
     
+}
+- (void)keyboardDidShow: (NSNotification *) notif{
+    // Do something here
+}
+
+- (void)keyboardDidHide: (NSNotification *) notif{
+    // Do something here
 }
 
 - (BOOL)prefersStatusBarHidden{

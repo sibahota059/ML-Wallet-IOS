@@ -66,17 +66,19 @@ SelectQuestionDialog *questionDialog;
     [scrollView setScrollEnabled:YES];
     [scrollView setContentSize:CGSizeMake(screenWidth, screenHeight)];
     
+    
+/*
     AccountLogin *accountLogin = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
     [self setNextViewController:accountLogin myImage:[UIImage imageNamed:@"next.png"]];
-    
+  */  
     
     disableBackground = [[UIView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
     [disableBackground setBackgroundColor:[UIColor blackColor]];
     [disableBackground setHidden:YES];
     [disableBackground setAlpha:0.5f];
     
+    [self addNavigationBar];
     [self createQuestion];
-    self.title = @"Security Questions";
     [self.view addSubview:scrollView];
     [self.view addSubview: disableBackground];
     
@@ -385,13 +387,25 @@ SelectQuestionDialog *questionDialog;
     [self.view endEditing:YES];
 }
 */
+
+
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    NSLog(@"DidBeginEditing");
     CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
     [scrollView setContentOffset:scrollPoint animated:YES];
-}
+
+    
+    }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"DidEndEditing");
     [scrollView setContentOffset:CGPointZero animated:YES];
+
+    
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -401,9 +415,6 @@ SelectQuestionDialog *questionDialog;
     //                        options:UIViewAnimationOptionCurveEaseIn
     //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
     //                     completion:^(BOOL finished){}];
-    
-    
-    
     [answerTF1 resignFirstResponder];
     [answerTF2 resignFirstResponder];
     [answerTF3 resignFirstResponder];
@@ -411,6 +422,43 @@ SelectQuestionDialog *questionDialog;
     return NO;
 }
 
+-(void) addNavigationBar{
+    self.title = @"Security Questions";
+    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
+                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //next navigation button
+    UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithTitle:
+                                @"Next"
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(gotoNextView)];
+    self.navigationItem.rightBarButtonItem = btnNext;
+    
+    //Set Background
+    if ([UIScreen mainScreen].bounds.size.height >= 568) //4 inch 568
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+    }
+    else //4 inc below
+    {
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
+    }
+    
+}
+-(void) backPressed{
+    
+    // self.navigationController.navigationBarHidden = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+-(void) gotoNextView{
+    NSLog(@"Next ni Bai!");
+    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+    [self.navigationController pushViewController:accLog animated:YES];
+    
+    
+}
 
 
 

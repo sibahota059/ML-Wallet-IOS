@@ -8,6 +8,6 @@
 
 #import "MLViewController.h"
 
-@interface QuestionsActivity : MLViewController <UITextFieldDelegate>
+@interface QuestionsActivity : UIViewController <UITextFieldDelegate>
 
 @end
