@@ -273,14 +273,25 @@ self.title = @"Customer ID";
     self.navigationItem.rightBarButtonItem = btnNext;
     
     //Set Background
-    if ([UIScreen mainScreen].bounds.size.height >= 568) //4 inch 568
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+        
+        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
+        {
+            [scrollView setContentSize:CGSizeMake(320, 568)];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
+        }
+        else //4 inc below
+        {
+            [scrollView setContentSize:CGSizeMake(320, 400)];
+            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
+        }
     }
-    else //4 inc below
+    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground4.png"]]];
     }
+
 
 }
 -(void) gotoNextView{
