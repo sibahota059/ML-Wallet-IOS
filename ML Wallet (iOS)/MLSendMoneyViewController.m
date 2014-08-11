@@ -14,6 +14,7 @@
 #import "NSDictionary+LoadWalletData.h"
 #import "DeviceID.h"
 #import "SaveWalletData.h"
+#import "UIAlertView+alertMe.h"
 
 @interface MLSendMoneyViewController (){
     
@@ -251,7 +252,7 @@
         [getReceiver getReceiverWalletNo:walletno];
         
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if([indicator isEqualToString:@"error"]){
 
         confirmInd = @"rates";
@@ -259,7 +260,7 @@
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
         
     }else{
-        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
         self.navigationController.navigationBarHidden = YES;
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -289,13 +290,13 @@
         getReceivers = getReceiver.getReceiver;
     
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if ([indicator isEqualToString:@"error"]){
         [self dismissProgressBar];
         confirmInd = @"receiver";
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else{
-        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
         self.navigationController.navigationBarHidden = YES;
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -422,15 +423,15 @@
     
     //Validating user input
     if (getRlname == nil && getRfname == nil) {
-         [getUI displayAlert:@"Message" message:@"Please provide a receiver!"];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please provide a receiver!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] isEqualToString:@""]){
-         [getUI displayAlert:@"Message" message:@"Please enter an amount!"];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please enter an amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if ([[_tf_amount.text componentsSeparatedByString:@"."] count]>2) {
-         [getUI displayAlert:@"Message" message:@"Invalid Ammount!"];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Invalid Amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if (total > bal) {
-        [getUI displayAlert:@"Validation Error" message:@"Insuficient Balance!"];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Insuficient Balance!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] doubleValue] < 0.01){
-        [getUI displayAlert:@"Validation Error" message:@"Amount must be greater than zero."];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Amount must be greater than zero!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else{
         
@@ -583,14 +584,14 @@
     
     //Check if total is greater than balance
     if (total > bal) {
-        [getUI displayAlert:@"Validation Error" message:@"Insuficient Balance!"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Insuficient Balance!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
         _tf_amount.rightView = [[UIImageView alloc] initWithImage:wrong];
     }
     
     //Validating valid amoutn input
     if([checkdot count] >=3){
         _tf_amount.rightView = [[UIImageView alloc] initWithImage:wrong];
-        [getUI displayAlert:@"Validation Error" message:@"Invalid Amount!"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Invalid Amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
 }
@@ -675,8 +676,18 @@
 - (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    
+    [self performSelector:@selector(dismiss:) withObject:alert afterDelay:60.0];
+    
     [alert show];
     
+}
+
+- (void)dismiss:(UIAlertView*)alert
+{
+    [alert dismissWithClickedButtonIndex:-1 animated:YES];
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

@@ -13,6 +13,7 @@
 #import "MLRatesTableViewController.h"
 #import "MenuViewController.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "UIAlertView+alertMe.h"
 
 
 @interface MLTermsConditionViewController (){
@@ -105,13 +106,13 @@
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.leftBarButtonItem = nil;
     }else if ([[NSString stringWithFormat:@"%@", sendout.getRespcode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", sendout.getRespmessage]];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", sendout.getRespmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if ([indicator isEqualToString:@"error"]){
         confirmInd = @"sendout";
         [self dismissProgressBar];
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else{
-        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     
@@ -165,12 +166,10 @@
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", se.respcode]isEqualToString:@"1"]){
         
         [self dismissView];
-        [getUI displayAlert:@"Message" message:@"KPTN successfully sent to your email."];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"KPTN successfully sent to your email." delegate:nil cancelButton:@"Ok" otherButtons:nil];
         
     }else if ([[NSString stringWithFormat:@"%@", se.respcode] isEqualToString:@"0"]){
-        
-        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", se.respmessage]];
-        
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", se.respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if ([indicator isEqualToString:@"error"]){
         confirmInd = @"email";
         [self dismissProgressBar];
@@ -178,7 +177,7 @@
     
     }else{
         
-        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     
@@ -222,7 +221,7 @@
     }
     else{
         //You probably want to show a UILocalNotification here.
-        [getUI displayAlert:@"Message" message:@"Your device doesn't support Messages."];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Your device doesn't support Messages." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
 }
 
@@ -233,7 +232,7 @@
         case MessageComposeResultCancelled:
             // user canceled sms
             [getUI navigationAppearance];
-            [getUI displayAlert:@"Message" message:@"Your message has been cancelled."];
+            [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Your message has been cancelled." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             [self dismissViewControllerAnimated:YES completion:nil];
             [self dismissView];
             
@@ -242,7 +241,7 @@
             // user sent sms
             //perhaps put an alert here and dismiss the view on one of the alerts buttons
             [getUI navigationAppearance];
-            [getUI displayAlert:@"Message" message:@"Your message has been sent."];
+            [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Your message has been sent." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             [self dismissViewControllerAnimated:YES completion:nil];
             [self dismissView];
             break;
@@ -250,7 +249,7 @@
             // sms send failed
             //perhaps put an alert here and dismiss the view when the alert is canceled
             [getUI navigationAppearance];
-            [getUI displayAlert:@"Message" message:@"Failed to send message."];
+            [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Failed to send message." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             [self dismissViewControllerAnimated:YES completion:nil];
             [self dismissView];
             break;
@@ -286,8 +285,16 @@
 - (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    
+    [self performSelector:@selector(dismiss:) withObject:alert afterDelay:60.0];
+    
     [alert show];
     
+}
+
+- (void)dismiss:(UIAlertView*)alert
+{
+    [alert dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
 

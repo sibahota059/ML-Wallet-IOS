@@ -646,8 +646,6 @@
 		3B17585118B301BE005A7805 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				3B17584E18B301B8005A7805 /* UIAlertView+alertMe.h */,
-				3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */,
 				3B1B36C918B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.h */,
 				3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */,
 			);
@@ -1155,6 +1153,8 @@
 		3BCFE2CC19580956008C4E6F /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				3B17584E18B301B8005A7805 /* UIAlertView+alertMe.h */,
+				3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */,
 				3B9FC060196CC2970035446F /* MBProgressHUD.h */,
 				3B9FC061196CC2970035446F /* MBProgressHUD.m */,
 				3BCFE2D619580A8A008C4E6F /* UIAlertView+WaitAlertView.h */,
