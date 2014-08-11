@@ -17,6 +17,7 @@
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
 #import "UITextfieldAnimate.h"
+#import "UIAlertView+alertMe.h"
 @interface QuestionsActivity ()
 
 @end
@@ -112,6 +113,7 @@ SelectQuestionDialog *questionDialog;
         answerTF1.layer.masksToBounds=YES;
         answerTF1.layer.borderColor=[[UIColor redColor]CGColor];
         answerTF1.layer.borderWidth= 1.0f;
+        answerTF1.delegate = self;
         
         //QUESTION 2
         
@@ -123,7 +125,7 @@ SelectQuestionDialog *questionDialog;
         answerTF2.layer.masksToBounds=YES;
         answerTF2.layer.borderColor=[[UIColor redColor]CGColor];
         answerTF2.layer.borderWidth= 1.0f;
-        
+        answerTF2.delegate = self;
         
         //QUESITON 3
         
@@ -136,12 +138,6 @@ SelectQuestionDialog *questionDialog;
         answerTF3.layer.masksToBounds=YES;
         answerTF3.layer.borderColor=[[UIColor redColor]CGColor];
         answerTF3.layer.borderWidth= 1.0f;
-        
-        
-        
-        
-        answerTF1.delegate = self;
-        answerTF2.delegate = self;
         answerTF3.delegate = self;
         
         
@@ -346,7 +342,36 @@ SelectQuestionDialog *questionDialog;
     
 }
 
+-(void) finishSelectingQuestion3:(id)sender{
+    
+    [disableBackground setHidden:YES];
+    [questionLbl3 setText:[questionDialog getSelectedQuestion]];
+    [questionDialog removeFromSuperview];
+    
+}
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
+    [scrollView setContentOffset:scrollPoint animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [scrollView setContentOffset:CGPointZero animated:YES];
+    
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    //    [UIView animateWithDuration:0.5
+    //                          delay:0.0
+    //                        options:UIViewAnimationOptionCurveEaseIn
+    //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
+    //                     completion:^(BOOL finished){}];
+    [answerTF1 resignFirstResponder];
+    [answerTF2 resignFirstResponder];
+    [answerTF3 resignFirstResponder];
+    
+    return NO;
+}
 
 
 -(void) finishSelectingQuestion1:(id)sender{
@@ -365,58 +390,7 @@ SelectQuestionDialog *questionDialog;
     
 }
 
--(void) finishSelectingQuestion3:(id)sender{
-    
-    [disableBackground setHidden:YES];
-    [questionLbl3 setText:[questionDialog getSelectedQuestion]];
-    [questionDialog removeFromSuperview];
-    
-}
-/*
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
- 
-    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
-    [scrollView setContentOffset:scrollPoint animated:YES];
- 
-    [textAnimate animateTextField:textField up:YES SelfView:self.view];
-}
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-   // [scrollView setContentOffset:CGPointZero animated:YES];
-    [textAnimate animateTextField:textField up:NO SelfView:self.view];
-    [self.view endEditing:YES];
-}
-*/
-
-
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"DidBeginEditing");
-    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
-    [scrollView setContentOffset:scrollPoint animated:YES];
-
-    
-    }
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"DidEndEditing");
-    [scrollView setContentOffset:CGPointZero animated:YES];
-
-    
-}
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    //    [UIView animateWithDuration:0.5
-    //                          delay:0.0
-    //                        options:UIViewAnimationOptionCurveEaseIn
-    //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
-    //                     completion:^(BOOL finished){}];
-    [answerTF1 resignFirstResponder];
-    [answerTF2 resignFirstResponder];
-    [answerTF3 resignFirstResponder];
-    
-    return NO;
-}
 
 -(void) addNavigationBar{
     self.title = @"Security Questions";
@@ -457,10 +431,21 @@ SelectQuestionDialog *questionDialog;
 }
 
 -(void) gotoNextView{
-    NSLog(@"Next ni Bai!");
-    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-    [self.navigationController pushViewController:accLog animated:YES];
     
+    if(answerTF1.text.length>=1&&answerTF2.text.length>=1&&answerTF3.text.length>=1&&questionLbl1.text.length>=1&&questionLbl2.text.length>=1&&questionLbl3.text.length>=1&&![questionLbl1.text isEqualToString:@"Question 1"]&&![questionLbl2.text isEqualToString:@"Question 2"]&&![questionLbl3.text isEqualToString:@"Question 3"])
+    {
+        NSLog(@"Next ni Bai!");
+        AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+        [self.navigationController pushViewController:accLog animated:YES];
+        
+    }
+    else{
+        NSLog(@"Error ni Bai!");
+        if([questionLbl1.text isEqualToString:@"Question 1"]&&[questionLbl2.text isEqualToString:@"Question 2"]&&[questionLbl3.text isEqualToString:@"Question 3"])
+        {
+            [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+    }
     
 }
 

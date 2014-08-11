@@ -19,7 +19,10 @@
 @end
 
 @implementation RegistrationInformation
-
+@synthesize custIDfirstNumber;
+@synthesize custIDsecondNumber;
+@synthesize custIDthirdNumber;
+@synthesize custIDphoneNumber;
 UIScrollView *profileScroll;
 
 int profileOutlineWidth;
@@ -38,7 +41,7 @@ int locationY;
 int contactY;
 
 
-ProfileLabel *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *email, *work, *nationality;
+UITextField *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *email, *work, *nationality,*number;
 
 
 ProfileOutline *firstNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *addressO, *zipcodeO, *genderO, *birthdateO, *ageO, *mobileNumberO, *emailO, *workO, *nationalityO;
@@ -51,6 +54,7 @@ CGFloat screenHeight;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -64,7 +68,7 @@ CGFloat screenHeight;
     screenHeight = screenRect.size.height;
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
     [profileScroll setScrollEnabled:YES];
-    [profileScroll setContentSize:CGSizeMake(320, 800)];
+    [profileScroll setContentSize:CGSizeMake(320, 600)];
     
     labelX = 10;
     labelValueX = 0;
@@ -91,7 +95,7 @@ CGFloat screenHeight;
     //
     
     [self.view addSubview:profileScroll];
-    
+    NSLog(@"Customer ID = %@ %@ %@ = Phone Number: %@",custIDfirstNumber,custIDsecondNumber,custIDthirdNumber,custIDphoneNumber);
 }
 
 - (void)didReceiveMemoryWarning
@@ -213,11 +217,6 @@ CGFloat screenHeight;
         
         
         
-        
-        
-        
-        
-        
         [profileScroll addSubview:personalInfo];
         [profileScroll addSubview:locationInfo];
         [profileScroll addSubview:contactInfo];
@@ -236,14 +235,19 @@ CGFloat screenHeight;
         [profileScroll addSubview:profileWork];
         [profileScroll addSubview:profileNationality];
         
+        
+        
+        
+        
+        
     }
     else {
         NSLog(@"IPHONE NI");
-        UILabel *accountInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.3, 10, 100, 25)];
-        [accountInfoLabel setFont:[UIFont fontWithName:nil size:15.0f]];
-        [accountInfoLabel setTextAlignment:NSTextAlignmentCenter];
-        [accountInfoLabel setTextColor:[UIColor redColor]];
-        [accountInfoLabel setText:@"Profile Information"];
+        UILabel *personalInfo = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 150, 25)];
+        [personalInfo setFont:[UIFont fontWithName:nil size:15.0f]];
+        [personalInfo setTextAlignment:NSTextAlignmentCenter];
+        [personalInfo setTextColor:[UIColor redColor]];
+        [personalInfo setText:@"Profile Information"];
         
         
         UILabel *profileFirstName = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 100, 25)];
@@ -251,73 +255,88 @@ CGFloat screenHeight;
         [profileFirstName setTextColor:[UIColor grayColor]];
         [profileFirstName setText:@"First Name: "];
         
-        UILabel *profileMiddleName = [[UILabel alloc] initWithFrame:CGRectMake(20, 50, 100, 25)];
+        UILabel *profileMiddleName = [[UILabel alloc] initWithFrame:CGRectMake(20, 60, 100, 25)];
         [profileMiddleName setFont:[UIFont fontWithName:nil size:13.0f]];
         [profileMiddleName setTextColor:[UIColor grayColor]];
         [profileMiddleName setText:@"Middle Name: "];
         
-        UILabel *profileLastName = [[UILabel alloc] initWithFrame:CGRectMake(20, 70, 100, 25)];
+        UILabel *profileLastName = [[UILabel alloc] initWithFrame:CGRectMake(20, 90, 100, 25)];
         [profileLastName setFont:[UIFont fontWithName:nil size:13.0f]];
         [profileLastName setTextColor:[UIColor grayColor]];
         [profileLastName setText:@"Last Name: "];
         
-        UILabel *profileCountry = [[UILabel alloc] initWithFrame:CGRectMake(20, 90, 100, 25)];
-        [profileCountry setFont:[UIFont fontWithName:nil size:13.0f]];
-        [profileCountry setTextColor:[UIColor grayColor]];
-        [profileCountry setText:@"Country: "];
-        
-        UILabel *profileProvince = [[UILabel alloc] initWithFrame:CGRectMake(20, 110, 100, 25)];
-        [profileProvince setFont:[UIFont fontWithName:nil size:13.0f]];
-        [profileProvince setTextColor:[UIColor grayColor]];
-        [profileProvince setText:@"Province: "];
-        
-        UILabel *profileAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, 130, 100, 25)];
-        [profileAddress setFont:[UIFont fontWithName:nil size:13.0f]];
-        [profileAddress setTextColor:[UIColor grayColor]];
-        [profileAddress setText:@"Address: "];
-        
-        UILabel *profileZipcode = [[UILabel alloc] initWithFrame:CGRectMake(20, 150, 100, 25)];
-        [profileZipcode setFont:[UIFont fontWithName:nil size:13.0f]];
-        [profileZipcode setTextColor:[UIColor grayColor]];
-        [profileZipcode setText:@"Zipcode: "];
-        
-        UILabel *profileGender = [[UILabel alloc] initWithFrame:CGRectMake(20, 170, 100, 25)];
+        UILabel *profileGender = [[UILabel alloc] initWithFrame:CGRectMake(20, 120, 100, 25)];
         [profileGender setFont:[UIFont fontWithName:nil size:13.0f]];
         [profileGender setTextColor:[UIColor grayColor]];
         [profileGender setText:@"Gender: "];
         
-        UILabel *profileBirthdate = [[UILabel alloc] initWithFrame:CGRectMake(20, 190, 100, 25)];
+        UILabel *profileBirthdate = [[UILabel alloc] initWithFrame:CGRectMake(20, 150, 100, 25)];
         [profileBirthdate setFont:[UIFont fontWithName:nil size:13.0f]];
         [profileBirthdate setTextColor:[UIColor grayColor]];
         [profileBirthdate setText:@"Birthdate: "];
         
-        UILabel *profileAge = [[UILabel alloc] initWithFrame:CGRectMake(20, 210, 180, 25)];
-        [profileAge setFont:[UIFont fontWithName:nil size:13.0f]];
-        [profileAge setTextColor:[UIColor grayColor]];
-        [profileAge setText:@"Age: "];
-        
-        UILabel *profileNumber = [[UILabel alloc] initWithFrame:CGRectMake(20, 230, 100, 25)];
-        [profileNumber setFont:[UIFont fontWithName:nil size:13.0f]];
-        [profileNumber setTextColor:[UIColor grayColor]];
-        [profileNumber setText:@"Mobile Number: "];
-        
-        UILabel *profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(20, 250, 100, 25)];
-        [profileEmail setFont:[UIFont fontWithName:nil size:13.0f]];
-        [profileEmail setTextColor:[UIColor grayColor]];
-        [profileEmail setText:@"Email Address: "];
-        
-        UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(20, 270, 100, 25)];
-        [profileWork setFont:[UIFont fontWithName:nil size:13.0f]];
-        [profileWork setTextColor:[UIColor grayColor]];
-        [profileWork setText:@"Nature of Work: "];
-        
-        UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(20, 290, 100, 25)];
+        UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(20, 180, 100, 25)];
         [profileNationality setFont:[UIFont fontWithName:nil size:13.0f]];
         [profileNationality setTextColor:[UIColor grayColor]];
         [profileNationality setText:@"Nationality: "];
         
+        UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(20, 210, 100, 25)];
+        [profileWork setFont:[UIFont fontWithName:nil size:13.0f]];
+        [profileWork setTextColor:[UIColor grayColor]];
+        [profileWork setText:@"Nature of Work: "];
         
-        [profileScroll addSubview:accountInfoLabel];
+        //Location Information
+        UILabel *locationInfo = [[UILabel alloc] initWithFrame:CGRectMake(5, 240, 150, 25)];
+        [locationInfo setFont:[UIFont fontWithName:nil size:15.0f]];
+        [locationInfo setTextAlignment:NSTextAlignmentCenter];
+        [locationInfo setTextColor:[UIColor redColor]];
+        [locationInfo setText:@"Location Information"];
+        
+        
+        UILabel *profileCountry = [[UILabel alloc] initWithFrame:CGRectMake(20, 270, 100, 25)];
+        [profileCountry setFont:[UIFont fontWithName:nil size:13.0f]];
+        [profileCountry setTextColor:[UIColor grayColor]];
+        [profileCountry setText:@"Country: "];
+        
+        UILabel *profileProvince = [[UILabel alloc] initWithFrame:CGRectMake(20, 300, 100, 25)];
+        [profileProvince setFont:[UIFont fontWithName:nil size:13.0f]];
+        [profileProvince setTextColor:[UIColor grayColor]];
+        [profileProvince setText:@"Province: "];
+        
+        UILabel *profileAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, 330, 100, 25)];
+        [profileAddress setFont:[UIFont fontWithName:nil size:13.0f]];
+        [profileAddress setTextColor:[UIColor grayColor]];
+        [profileAddress setText:@"Address: "];
+        
+        UILabel *profileZipcode = [[UILabel alloc] initWithFrame:CGRectMake(20, 360, 100, 25)];
+        [profileZipcode setFont:[UIFont fontWithName:nil size:13.0f]];
+        [profileZipcode setTextColor:[UIColor grayColor]];
+        [profileZipcode setText:@"Zipcode: "];
+        
+        //Contact Information
+        
+        UILabel *contactInfo = [[UILabel alloc] initWithFrame:CGRectMake(5, 390, 150, 25)];
+        [contactInfo setFont:[UIFont fontWithName:nil size:15.0f]];
+        [contactInfo setTextAlignment:NSTextAlignmentCenter];
+        [contactInfo setTextColor:[UIColor redColor]];
+        [contactInfo setText:@"Contact Information"];
+        
+        UILabel *profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(20, 420, 100, 25)];
+        [profileEmail setFont:[UIFont fontWithName:nil size:13.0f]];
+        [profileEmail setTextColor:[UIColor grayColor]];
+        [profileEmail setText:@"Email Address: "];
+        
+        
+        
+        UILabel *profileNumber = [[UILabel alloc] initWithFrame:CGRectMake(20, 450, 100, 25)];
+        [profileNumber setFont:[UIFont fontWithName:nil size:13.0f]];
+        [profileNumber setTextColor:[UIColor grayColor]];
+        [profileNumber setText:@"Mobile Number: "];
+        
+        
+        [profileScroll addSubview:personalInfo];
+        [profileScroll addSubview:locationInfo];
+        [profileScroll addSubview:contactInfo];
         
         [profileScroll addSubview:profileFirstName];
         [profileScroll addSubview:profileMiddleName];
@@ -328,7 +347,6 @@ CGFloat screenHeight;
         [profileScroll addSubview:profileZipcode];
         [profileScroll addSubview:profileGender];
         [profileScroll addSubview:profileBirthdate];
-        [profileScroll addSubview:profileAge];
         [profileScroll addSubview:profileNumber];
         [profileScroll addSubview:profileEmail];
         [profileScroll addSubview:profileWork];
@@ -410,16 +428,6 @@ CGFloat screenHeight;
         [number setFont:[UIFont fontWithName:nil size:18.0f]];
         [number setText:@"09273444456"];
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         [profileScroll addSubview:firstName];
         [profileScroll addSubview:middleName];
         [profileScroll addSubview:lastName];
@@ -440,61 +448,144 @@ CGFloat screenHeight;
         
         //ProfileInformationLabel
         
-        UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake(130, 10, 180, 25)];
+        firstName = [[UITextField alloc] initWithFrame:CGRectMake(130, 30, 180, 25)];
         [firstName setFont:[UIFont fontWithName:nil size:13.0f]];
         [firstName setText:@"Harry"];
+        firstName.layer.cornerRadius=8.0f;
+        firstName.layer.masksToBounds=YES;
+        firstName.layer.borderColor=[[UIColor redColor]CGColor];
+        firstName.layer.borderWidth= 1.0f;
+        firstName.delegate = self;
+        firstName.textAlignment = NSTextAlignmentCenter;
         
-        UILabel *middleName = [[UILabel alloc] initWithFrame:CGRectMake(130, 30, 180, 25)];
+        middleName = [[UITextField alloc] initWithFrame:CGRectMake(130, 60, 180, 25)];
         [middleName setFont:[UIFont fontWithName:nil size:13.0f]];
         [middleName setText:@"Cobrado"];
+        middleName.layer.cornerRadius=8.0f;
+        middleName.layer.masksToBounds=YES;
+        middleName.layer.borderColor=[[UIColor redColor]CGColor];
+        middleName.layer.borderWidth= 1.0f;
+        middleName.delegate = self;
+        middleName.textAlignment = NSTextAlignmentCenter;
         
-        UILabel *lastName = [[UILabel alloc] initWithFrame:CGRectMake(130, 50, 180, 25)];
+        lastName = [[UITextField alloc] initWithFrame:CGRectMake(130, 90, 180, 25)];
         [lastName setFont:[UIFont fontWithName:nil size:13.0f]];
         [lastName setText:@"Lingad"];
+        lastName.layer.cornerRadius=8.0f;
+        lastName.layer.masksToBounds=YES;
+        lastName.layer.borderColor=[[UIColor redColor]CGColor];
+        lastName.layer.borderWidth= 1.0f;
+        lastName.delegate = self;
+        lastName.textAlignment = NSTextAlignmentCenter;
         
-        UILabel *country = [[UILabel alloc] initWithFrame:CGRectMake(130, 70, 180, 25)];
-        [country setFont:[UIFont fontWithName:nil size:13.0f]];
-        [country setText:@"Phillipines"];
-        
-        UILabel *province = [[UILabel alloc] initWithFrame:CGRectMake(130, 90, 180, 25)];
-        [province setFont:[UIFont fontWithName:nil size:13.0f]];
-        [province setText:@"Davao"];
-        
-        UILabel *address = [[UILabel alloc] initWithFrame:CGRectMake(130, 110, 180, 25)];
-        [address setFont:[UIFont fontWithName:nil size:13.0f]];
-        [address setText:@"Manalili Cebu City"];
-        
-        UILabel *zipcode = [[UILabel alloc] initWithFrame:CGRectMake(130, 130, 180, 25)];
-        [zipcode setFont:[UIFont fontWithName:nil size:13.0f]];
-        [zipcode setText:@"6000"];
-        
-        UILabel *gender = [[UILabel alloc] initWithFrame:CGRectMake(130, 150, 180, 25)];
+        gender = [[UITextField alloc] initWithFrame:CGRectMake(130, 120, 180, 25)];
         [gender setFont:[UIFont fontWithName:nil size:13.0f]];
         [gender setText:@"Male"];
+        gender.layer.cornerRadius=8.0f;
+        gender.layer.masksToBounds=YES;
+        gender.layer.borderColor=[[UIColor redColor]CGColor];
+        gender.layer.borderWidth= 1.0f;
+        gender.delegate = self;
+        gender.textAlignment = NSTextAlignmentCenter;
         
-        UILabel *birthdate = [[UILabel alloc] initWithFrame:CGRectMake(130, 170, 180, 25)];
+        birthdate = [[UITextField alloc] initWithFrame:CGRectMake(130, 150, 180, 25)];
         [birthdate setFont:[UIFont fontWithName:nil size:13.0f]];
         [birthdate setText:@"Nov. 11, 1985"];
+        birthdate.layer.cornerRadius=8.0f;
+        birthdate.layer.masksToBounds=YES;
+        birthdate.layer.borderColor=[[UIColor redColor]CGColor];
+        birthdate.layer.borderWidth= 1.0f;
+        birthdate.delegate = self;
+        birthdate.textAlignment = NSTextAlignmentCenter;
         
-        UILabel *age = [[UILabel alloc] initWithFrame:CGRectMake(130, 190, 180, 25)];
-        [age setFont:[UIFont fontWithName:nil size:13.0f]];
-        [age setText:@"19"];
-        
-        UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(130, 210, 180, 25)];
-        [number setFont:[UIFont fontWithName:nil size:13.0f]];
-        [number setText:@"09273444456"];
-        
-        UILabel *email = [[UILabel alloc] initWithFrame:CGRectMake(130, 230, 180, 25)];
-        [email setFont:[UIFont fontWithName:nil size:13.0f]];
-        [email setText:@"harry@yahoo.com"];
-        
-        UILabel *work = [[UILabel alloc] initWithFrame:CGRectMake(130, 250, 180, 25)];
-        [work setFont:[UIFont fontWithName:nil size:13.0f]];
-        [work setText:@"Programmer"];
-        
-        UILabel *nationality = [[UILabel alloc] initWithFrame:CGRectMake(130, 270, 180, 25)];
+        nationality = [[UITextField alloc] initWithFrame:CGRectMake(130, 180, 180, 25)];
         [nationality setFont:[UIFont fontWithName:nil size:13.0f]];
         [nationality setText:@"Phillipines"];
+        nationality.layer.cornerRadius=8.0f;
+        nationality.layer.masksToBounds=YES;
+        nationality.layer.borderColor=[[UIColor redColor]CGColor];
+        nationality.layer.borderWidth= 1.0f;
+        nationality.delegate = self;
+        nationality.textAlignment = NSTextAlignmentCenter;
+        
+        work = [[UITextField alloc] initWithFrame:CGRectMake(130, 210, 180, 25)];
+        [work setFont:[UIFont fontWithName:nil size:13.0f]];
+        [work setText:@"Programmer"];
+        work.layer.cornerRadius=8.0f;
+        work.layer.masksToBounds=YES;
+        work.layer.borderColor=[[UIColor redColor]CGColor];
+        work.layer.borderWidth= 1.0f;
+        work.delegate = self;
+        work.textAlignment = NSTextAlignmentCenter;
+        
+        //Location Information
+        
+        
+        country = [[UITextField alloc] initWithFrame:CGRectMake(130, 270, 180, 25)];
+        [country setFont:[UIFont fontWithName:nil size:13.0f]];
+        [country setText:@"Phillipines"];
+        country.layer.cornerRadius=8.0f;
+        country.layer.masksToBounds=YES;
+        country.layer.borderColor=[[UIColor redColor]CGColor];
+        country.layer.borderWidth= 1.0f;
+        country.delegate = self;
+        country.textAlignment = NSTextAlignmentCenter;
+        
+        province = [[UITextField alloc] initWithFrame:CGRectMake(130, 300, 180, 25)];
+        [province setFont:[UIFont fontWithName:nil size:13.0f]];
+        [province setText:@"Davao"];
+        province.layer.cornerRadius=8.0f;
+        province.layer.masksToBounds=YES;
+        province.layer.borderColor=[[UIColor redColor]CGColor];
+        province.layer.borderWidth= 1.0f;
+        province.delegate = self;
+        province.textAlignment = NSTextAlignmentCenter;
+        
+        address = [[UITextField alloc] initWithFrame:CGRectMake(130, 330, 180, 25)];
+        [address setFont:[UIFont fontWithName:nil size:13.0f]];
+        [address setText:@"Manalili Cebu City"];
+        address.layer.cornerRadius=8.0f;
+        address.layer.masksToBounds=YES;
+        address.layer.borderColor=[[UIColor redColor]CGColor];
+        address.layer.borderWidth= 1.0f;
+        address.delegate = self;
+        address.textAlignment = NSTextAlignmentCenter;
+        
+        zipcode = [[UITextField alloc] initWithFrame:CGRectMake(130, 360, 180, 25)];
+        [zipcode setFont:[UIFont fontWithName:nil size:13.0f]];
+        [zipcode setText:@"6000"];
+        zipcode.layer.cornerRadius=8.0f;
+        zipcode.layer.masksToBounds=YES;
+        zipcode.layer.borderColor=[[UIColor redColor]CGColor];
+        zipcode.layer.borderWidth= 1.0f;
+        zipcode.delegate = self;
+        zipcode.textAlignment = NSTextAlignmentCenter;
+        
+        //Contact Information
+        
+        email = [[UITextField alloc] initWithFrame:CGRectMake(130, 420, 180, 25)];
+        [email setFont:[UIFont fontWithName:nil size:13.0f]];
+        [email setText:@"harry@yahoo.com"];
+        email.layer.cornerRadius=8.0f;
+        email.layer.masksToBounds=YES;
+        email.layer.borderColor=[[UIColor redColor]CGColor];
+        email.layer.borderWidth= 1.0f;
+        email.delegate = self;
+        email.textAlignment = NSTextAlignmentCenter;
+        
+        
+        number = [[UITextField alloc] initWithFrame:CGRectMake(130, 450, 180, 25)];
+        [number setFont:[UIFont fontWithName:nil size:13.0f]];
+        [number setText:@"09273444456"];
+        number.layer.cornerRadius=8.0f;
+        number.layer.masksToBounds=YES;
+        number.layer.borderColor=[[UIColor redColor]CGColor];
+        number.layer.borderWidth= 1.0f;
+        number.delegate = self;
+        number.textAlignment = NSTextAlignmentCenter;
+        
+        
+        
         
         
         [profileScroll addSubview:firstName];
@@ -519,6 +610,35 @@ CGFloat screenHeight;
     
     
     
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
+    [profileScroll setContentOffset:scrollPoint animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [profileScroll setContentOffset:CGPointZero animated:YES];
+
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    [firstName resignFirstResponder];
+    [middleName resignFirstResponder];
+    [lastName resignFirstResponder];
+    [country resignFirstResponder];
+    [province resignFirstResponder];
+    [address resignFirstResponder];
+    [zipcode resignFirstResponder];
+    [gender resignFirstResponder];
+    [birthdate resignFirstResponder];
+    [age resignFirstResponder];
+    [number resignFirstResponder];
+    [email resignFirstResponder];
+    [work resignFirstResponder];
+    [nationality resignFirstResponder];
+    
+    return NO;
 }
 
 -(void) addNavigationBar{
@@ -560,8 +680,6 @@ CGFloat screenHeight;
     
 }
 -(void) backPressed{
-    
-    // self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
     
 }

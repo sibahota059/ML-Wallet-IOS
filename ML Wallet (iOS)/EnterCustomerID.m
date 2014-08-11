@@ -20,6 +20,7 @@
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
 #import "UITextfieldAnimate.h"
+#import "UIAlertView+alertMe.h"
 @interface EnterCustomerID ()
 
 @end
@@ -62,9 +63,9 @@ UITextfieldAnimate *textAnimate;
     //[self setNextViewController:registraionInformation myImage:[UIImage imageNamed:@"next.png"]];
     
     //[self addNavigationBar];
-//    
-//    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
-//                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //
+    //    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
+    //                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self addNavigationBar];
     [self createCustomerID];
     
@@ -85,19 +86,19 @@ UITextfieldAnimate *textAnimate;
 }
 
 -(void) createCustomerID{
-
     
-//  RegistrationInformation *registrationInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-//    
-//  [self setNextViewController:registrationInfo myImage:[UIImage imageNamed:@"profile.png"]];
-//    
+    
+    //  RegistrationInformation *registrationInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+    //
+    //  [self setNextViewController:registrationInfo myImage:[UIImage imageNamed:@"profile.png"]];
+    //
     ProfileHeader *personalHeader = [[ProfileHeader alloc] initWithValue:@" Enter all fields" x:5 y:-10 width:120];
     
-//  ProfileOutline *personalOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
+    //  ProfileOutline *personalOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
     UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
-
+    
     ProfileLabel *customerID;
-
+    
     if ( IDIOM == IPAD ) {
         NSLog(@"IPAD NI");
         customerID = [[ProfileLabel alloc] initWithStatus:@"Enter your CustomerID" x:10 y:20 myColor:[UIColor grayColor] width:140];
@@ -214,8 +215,8 @@ UITextfieldAnimate *textAnimate;
     
     
     
-
-
+    
+    
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -226,35 +227,35 @@ UITextfieldAnimate *textAnimate;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [scrollView setContentOffset:CGPointZero animated:YES];
-  //  [textAnimate animateTextField:textField up:NO SelfView:self.view];
-    [self.view endEditing:YES];
+    //  [textAnimate animateTextField:textField up:NO SelfView:self.view];
+    //  [self.view endEditing:YES];
 }
+/*
+ - (BOOL)textFieldShouldReturn:(UITextField *)textField{
  
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    [firstNumberTF resignFirstResponder];
-    [secondNumberTF resignFirstResponder];
-    [thirdNumberTF resignFirstResponder];
-    [phoneNumberTF resignFirstResponder];
-
-    return NO;
-}
-
+ [firstNumberTF resignFirstResponder];
+ [secondNumberTF resignFirstResponder];
+ [thirdNumberTF resignFirstResponder];
+ [phoneNumberTF resignFirstResponder];
+ 
+ return NO;
+ }
+ */
 
 -(void) addNavigationBar{
-self.title = @"Customer ID";
+    self.title = @"Customer ID";
     /*
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchUpInside];
-    
-    [backView addSubview:backButton];
-    
-    
-    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backView];
-    [self.navigationItem setLeftBarButtonItem:back];
-    */
+     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+     [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchUpInside];
+     
+     [backView addSubview:backButton];
+     
+     
+     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backView];
+     [self.navigationItem setLeftBarButtonItem:back];
+     */
     UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home.png"]
                                                                 style:UIBarButtonItemStyleBordered
                                                                target:self
@@ -267,9 +268,9 @@ self.title = @"Customer ID";
     //next navigation button
     UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithTitle:
                                 @"Next"
-                                                                      style:UIBarButtonItemStyleBordered
-                                                                     target:self
-                                                                     action:@selector(gotoNextView)];
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(gotoNextView)];
     self.navigationItem.rightBarButtonItem = btnNext;
     
     //Set Background
@@ -291,25 +292,37 @@ self.title = @"Customer ID";
     {
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground4.png"]]];
     }
-
-
+    
+    
 }
 -(void) gotoNextView{
-    NSLog(@"Next ni Bai!");
-    if([firstNumberTF resignFirstResponder]==YES||
-       [secondNumberTF resignFirstResponder]==YES||
-       [thirdNumberTF resignFirstResponder]==YES||
-       [phoneNumberTF resignFirstResponder]==YES){
-        NSLog(@"Keyboard Visible");
-    [scrollView setContentOffset:CGPointZero animated:YES];
+    if(firstNumberTF.text.length==5&&secondNumberTF.text.length==5&&thirdNumberTF.text.length==4&&phoneNumberTF.text.length>=1)
+    {
+        NSLog(@"Next ni Bai!");
+        if([firstNumberTF resignFirstResponder]==YES||
+           [secondNumberTF resignFirstResponder]==YES||
+           [thirdNumberTF resignFirstResponder]==YES||
+           [phoneNumberTF resignFirstResponder]==YES){
+            NSLog(@"Keyboard Visible");
+            [scrollView setContentOffset:CGPointZero animated:YES];
+        }
+        else{
+            NSLog(@"Keyboard not Visible");
+        }
+        RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+        regInfo.custIDfirstNumber = firstNumberTF.text;
+        regInfo.custIDsecondNumber = secondNumberTF.text;
+        regInfo.custIDthirdNumber = thirdNumberTF.text;
+        regInfo.custIDphoneNumber = phoneNumberTF.text;
+        
+        [self.navigationController pushViewController:regInfo animated:YES];
+        
     }
     else{
-        NSLog(@"Keyboard not Visible");
+        NSLog(@"Empty man Bai!!");
+        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        
     }
-    RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-    [self.navigationController pushViewController:regInfo animated:YES];
-    
-    
 }
 
 -(void) backPressed{
@@ -318,12 +331,85 @@ self.title = @"Customer ID";
     [self.navigationController popViewControllerAnimated:YES];
     
 }
-- (void)keyboardDidShow: (NSNotification *) notif{
-    // Do something here
+
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    [firstNumberTF resignFirstResponder];
+    [secondNumberTF resignFirstResponder];
+    [thirdNumberTF resignFirstResponder];
+    [phoneNumberTF resignFirstResponder];
+    if (textField == firstNumberTF)
+    {
+        [secondNumberTF becomeFirstResponder];
+    }
+    else if (textField == secondNumberTF)
+    {
+        [thirdNumberTF becomeFirstResponder];
+    }
+    //    else if (textField == thirdNumberTF)
+    //    {
+    //        [phoneNumberTF becomeFirstResponder];
+    //    }
+    
+    
+    return NO;
 }
 
-- (void)keyboardDidHide: (NSNotification *) notif{
-    // Do something here
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // This allows numeric text only, but also backspace for deletes
+    if (string.length > 0 && ![[NSScanner scannerWithString:string] scanInt:NULL])
+        return NO;
+    
+    NSUInteger oldLength = [textField.text length];
+    NSUInteger replacementLength = [string length];
+    NSUInteger rangeLength = range.length;
+    
+    NSUInteger newLength = oldLength - rangeLength + replacementLength;
+    NSUInteger textLength=0;
+    
+    // This 'tabs' to next field when entering digits
+    if (newLength >= 5&&textField == firstNumberTF)
+    {
+        [self performSelector:@selector(setNextResponder:) withObject:secondNumberTF afterDelay:0.0];
+        
+        textLength = 5;
+    }
+    
+    else if(newLength >= 5&&textField == secondNumberTF){
+        [self performSelector:@selector(setNextResponder:) withObject:thirdNumberTF afterDelay:0.0];
+        textLength = 5;
+        
+    }
+    else if(newLength >= 4&&textField == thirdNumberTF){
+        [self performSelector:@selector(setNextResponder:) withObject:phoneNumberTF afterDelay:0.0];
+        textLength = 25;
+        
+    }
+    
+    //this goes to previous field as you backspace through them, so you don't have to tap into them individually
+    else if (oldLength > 0 && newLength == 0) {
+        if (textField == phoneNumberTF)
+        {
+            [self performSelector:@selector(setNextResponder:) withObject:thirdNumberTF afterDelay:0.1];
+        }
+        else if (textField == thirdNumberTF)
+        {
+            [self performSelector:@selector(setNextResponder:) withObject:secondNumberTF afterDelay:0.1];
+        }
+        else if (textField == secondNumberTF)
+        {
+            [self performSelector:@selector(setNextResponder:) withObject:firstNumberTF afterDelay:0.1];
+        }
+    }
+    
+    return newLength <= 20;
+}
+
+- (void)setNextResponder:(UITextField *)nextResponder
+{
+    [nextResponder becomeFirstResponder];
 }
 
 - (BOOL)prefersStatusBarHidden{

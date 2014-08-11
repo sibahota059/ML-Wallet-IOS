@@ -9,5 +9,16 @@
 #import "MLViewController.h"
 
 @interface RegistrationInformation : UIViewController <UITextFieldDelegate>
+{
+    NSString *custIDfirstNumber;
+    NSString *custIDsecondNumber;
+    NSString *custIDthirdNumber;
+    NSString *custIDphoneNumber;
+}
+
+@property (nonatomic, retain) NSString *custIDfirstNumber;
+@property (nonatomic, retain) NSString *custIDsecondNumber;
+@property (nonatomic, retain) NSString *custIDthirdNumber;
+@property (nonatomic, retain) NSString *custIDphoneNumber;
 
 @end
