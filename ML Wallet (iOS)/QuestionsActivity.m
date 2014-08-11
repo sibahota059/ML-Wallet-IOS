@@ -23,7 +23,24 @@
 @end
 
 @implementation QuestionsActivity
+@synthesize custIDfirstNumber;
+@synthesize custIDsecondNumber;
+@synthesize custIDthirdNumber;
+@synthesize custIDphoneNumber;
 
+@synthesize firstName;
+@synthesize middleName;
+@synthesize lastName;
+@synthesize country;
+@synthesize province;
+@synthesize address;
+@synthesize zipcode;
+@synthesize gender;
+@synthesize birthdate;
+@synthesize number;
+@synthesize email;
+@synthesize work;
+@synthesize nationality;
 UIScrollView *scrollView;
 UIView *disableBackground;
 
@@ -82,7 +99,7 @@ SelectQuestionDialog *questionDialog;
     [self createQuestion];
     [self.view addSubview:scrollView];
     [self.view addSubview: disableBackground];
-    
+    NSLog(@"Sa Questions Controller ==== Customer ID = %@ %@ %@ = Phone Number: %@ Birthdate = %@",custIDfirstNumber,custIDsecondNumber,custIDthirdNumber,custIDphoneNumber,birthdate);
 }
 -(void)viewDidAppear:(BOOL)animated{
 

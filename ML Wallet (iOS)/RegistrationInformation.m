@@ -685,6 +685,26 @@ CGFloat screenHeight;
 -(void) gotoNextView{
     NSLog(@"Next ni Bai!");
     QuestionsActivity *questAct = [[QuestionsActivity alloc] initWithNibName:@"QuestionsActivity" bundle:nil];
+    questAct.custIDfirstNumber = custIDfirstNumber;
+    questAct.custIDsecondNumber = custIDsecondNumber;
+    questAct.custIDthirdNumber = custIDthirdNumber;
+    questAct.custIDphoneNumber = custIDphoneNumber;
+    
+    questAct.firstName = firstName.text;
+    questAct.middleName = middleName.text;
+    questAct.lastName = lastName.text;
+    questAct.country = country.text;
+    questAct.province = province.text;
+    questAct.address = address.text;
+    questAct.zipcode = zipcode.text;
+    questAct.gender = gender.text;
+    questAct.birthdate = birthdate.text;
+    questAct.number = number.text;
+    questAct.email = email.text;
+    questAct.work = work.text;
+    questAct.nationality = nationality.text;
+
+    
     [self.navigationController pushViewController:questAct animated:YES];
     
     

@@ -19,7 +19,6 @@
 @end
 
 @implementation AccountLogin
-
 ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
 CGRect screenRect;
 CGFloat screenWidth;
