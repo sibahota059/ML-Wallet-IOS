@@ -56,7 +56,7 @@ UITextfieldAnimate *textAnimate;
     screenHeight = screenRect.size.height;
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
     [scrollView setScrollEnabled:YES];
-    [scrollView setContentSize:CGSizeMake(screenWidth, screenHeight)];
+    [scrollView setContentSize:CGSizeMake(320, 500)];
     
     //RegistrationInformation *registraionInformation = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
     
@@ -68,10 +68,8 @@ UITextfieldAnimate *textAnimate;
     //                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self addNavigationBar];
     [self createCustomerID];
-    
     [self.view addSubview:scrollView];
-    
-    textAnimate = [UITextfieldAnimate new];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -220,27 +218,13 @@ UITextfieldAnimate *textAnimate;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    //[textAnimate animateTextField:textField up:YES SelfView:self.view];
     CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
     [scrollView setContentOffset:scrollPoint animated:YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [scrollView setContentOffset:CGPointZero animated:YES];
-    //  [textAnimate animateTextField:textField up:NO SelfView:self.view];
-    //  [self.view endEditing:YES];
 }
-/*
- - (BOOL)textFieldShouldReturn:(UITextField *)textField{
- 
- [firstNumberTF resignFirstResponder];
- [secondNumberTF resignFirstResponder];
- [thirdNumberTF resignFirstResponder];
- [phoneNumberTF resignFirstResponder];
- 
- return NO;
- }
- */
 
 -(void) addNavigationBar{
     self.title = @"Customer ID";
@@ -347,11 +331,7 @@ UITextfieldAnimate *textAnimate;
     {
         [thirdNumberTF becomeFirstResponder];
     }
-    //    else if (textField == thirdNumberTF)
-    //    {
-    //        [phoneNumberTF becomeFirstResponder];
-    //    }
-    
+   
     
     return NO;
 }

@@ -397,12 +397,12 @@ SelectQuestionDialog *questionDialog;
     self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
                                                                          initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     //next navigation button
-    UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithTitle:
+    UIBarButtonItem *btnNextAccLog = [[UIBarButtonItem alloc] initWithTitle:
                                 @"Next"
                                                                 style:UIBarButtonItemStyleBordered
                                                                target:self
                                                                action:@selector(gotoNextView)];
-    self.navigationItem.rightBarButtonItem = btnNext;
+    self.navigationItem.rightBarButtonItem = btnNextAccLog;
     
     //Set Background
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -424,9 +424,7 @@ SelectQuestionDialog *questionDialog;
     
 }
 -(void) backPressed{
-    
-    // self.navigationController.navigationBarHidden = YES;
-    [self.navigationController popViewControllerAnimated:YES];
+  [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -441,10 +439,12 @@ SelectQuestionDialog *questionDialog;
     }
     else{
         NSLog(@"Error ni Bai!");
+        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        /*
         if([questionLbl1.text isEqualToString:@"Question 1"]&&[questionLbl2.text isEqualToString:@"Question 2"]&&[questionLbl3.text isEqualToString:@"Question 3"])
         {
             [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        }
+        }*/
     }
     
 }

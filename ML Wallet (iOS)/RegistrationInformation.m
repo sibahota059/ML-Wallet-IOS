@@ -41,7 +41,7 @@ int locationY;
 int contactY;
 
 
-UITextField *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *email, *work, *nationality,*number;
+UITextField *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *mobileNumber, *email, *work, *nationality,*number;
 
 
 ProfileOutline *firstNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *addressO, *zipcodeO, *genderO, *birthdateO, *ageO, *mobileNumberO, *emailO, *workO, *nationalityO;
@@ -597,7 +597,6 @@ CGFloat screenHeight;
         [profileScroll addSubview:zipcode];
         [profileScroll addSubview:gender];
         [profileScroll addSubview:birthdate];
-        [profileScroll addSubview:age];
         [profileScroll addSubview:number];
         [profileScroll addSubview:email];
         [profileScroll addSubview:work];
@@ -632,7 +631,6 @@ CGFloat screenHeight;
     [zipcode resignFirstResponder];
     [gender resignFirstResponder];
     [birthdate resignFirstResponder];
-    [age resignFirstResponder];
     [number resignFirstResponder];
     [email resignFirstResponder];
     [work resignFirstResponder];

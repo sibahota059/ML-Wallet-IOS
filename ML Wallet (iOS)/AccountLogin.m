@@ -201,9 +201,13 @@ UIScrollView *scrollView;
 
 
 -(void) nextPressed{
-    
-  //toDo
     NSLog(@"Para Register Ni!");
+    if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF==0){
+        NSLog(@"Failed'");
+    }
+    else{
+        NSLog(@"Success");
+    }
     
 }
 
