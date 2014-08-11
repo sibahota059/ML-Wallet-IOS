@@ -59,8 +59,11 @@
                                                                target:self
                                                                action:@selector(gotoHome)];
     
-    UIBarButtonItem *btnBack = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(webViewGoBack)];
-    
+    UIBarButtonItem *btnBack = [[UIBarButtonItem alloc] initWithTitle:@"Refresh"
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(webViewGoBack)];
+                                
     self.navigationItem.leftBarButtonItem = btnHome;
     self.navigationItem.rightBarButtonItem = btnBack;
     

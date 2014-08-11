@@ -359,6 +359,7 @@
             [saveData initSaveData:photo forKey:@"photo"];
             [saveData initSaveData:bal forKey:@"balance"];
             [saveData initSaveData:mname forKey:@"mname"];
+            [saveData initSaveData:pass forKey:@"password"];
             if ([self.location isEqualToString:@""] || self.location.length == 0 || self.location == nil) {
                 self.location = @"";
             }
