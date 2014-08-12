@@ -159,6 +159,7 @@
 		7006622118DA81DD00A0F05C /* radio_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 7006621F18DA81DD00A0F05C /* radio_button.png */; };
 		7006622418DA823D00A0F05C /* black_check_credentials.png in Resources */ = {isa = PBXBuildFile; fileRef = 7006622218DA823D00A0F05C /* black_check_credentials.png */; };
 		7006622518DA823D00A0F05C /* black_credentials.png in Resources */ = {isa = PBXBuildFile; fileRef = 7006622318DA823D00A0F05C /* black_credentials.png */; };
+		705654D51995F901002F81C7 /* my_save.png in Resources */ = {isa = PBXBuildFile; fileRef = 705654D41995F901002F81C7 /* my_save.png */; };
 		707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */; };
 		707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B618D9CD8100EC1B12 /* lock_profile.png */; };
 		707C03B918D9CFD500EC1B12 /* profile_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B818D9CFD500EC1B12 /* profile_profile.png */; };
@@ -167,6 +168,7 @@
 		707C03BF18D9D40F00EC1B12 /* back_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03BE18D9D40F00EC1B12 /* back_profile.png */; };
 		708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */ = {isa = PBXBuildFile; fileRef = 708327E618D93AEB0033856C /* EnterCustomerID.m */; };
 		708327E918D93AFB0033856C /* EnterCustomerID.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708327E818D93AFB0033856C /* EnterCustomerID.xib */; };
+		7093EAAA1991DFC9000F84D9 /* AccountMobilePad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7093EAA91991DFC9000F84D9 /* AccountMobilePad.m */; };
 		70AA0589198B137A00B0C52A /* EditInformationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AA0588198B137A00B0C52A /* EditInformationCell.xib */; };
 		70AA058C198B141800B0C52A /* EditInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA058B198B141800B0C52A /* EditInformationCell.m */; };
 		70AA0592198B293C00B0C52A /* disclosureIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 70AA0591198B293C00B0C52A /* disclosureIndicator.png */; };
@@ -182,6 +184,30 @@
 		70AA05AE198B3B0F00B0C52A /* EditQuestions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AA05AC198B3B0F00B0C52A /* EditQuestions.xib */; };
 		70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AD601F18DBC6EA00E392BF /* QuestionVerificationDialog.m */; };
 		70AD602418DBC74F00E392BF /* UICreationMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AD602318DBC74F00E392BF /* UICreationMethods.m */; };
+		70ADA8F41990740400075CB7 /* EditAccountInformationPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ADA8F21990740400075CB7 /* EditAccountInformationPad.m */; };
+		70ADA8F51990740400075CB7 /* EditAccountInformationPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ADA8F31990740400075CB7 /* EditAccountInformationPad.xib */; };
+		70ADA8F919908BAE00075CB7 /* EditPasswordPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ADA8F719908BAE00075CB7 /* EditPasswordPad.m */; };
+		70ADA8FA19908BAE00075CB7 /* EditPasswordPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ADA8F819908BAE00075CB7 /* EditPasswordPad.xib */; };
+		70ADA8FE199092CC00075CB7 /* EditUsernamePad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ADA8FC199092CC00075CB7 /* EditUsernamePad.m */; };
+		70ADA8FF199092CC00075CB7 /* EditUsernamePad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ADA8FD199092CC00075CB7 /* EditUsernamePad.xib */; };
+		70ADA9031990979700075CB7 /* EditEmailPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ADA9011990979700075CB7 /* EditEmailPad.m */; };
+		70ADA9041990979700075CB7 /* EditEmailPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ADA9021990979700075CB7 /* EditEmailPad.xib */; };
+		70ADA90819909DC200075CB7 /* EditQuestionsPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ADA90619909DC200075CB7 /* EditQuestionsPad.m */; };
+		70ADA90919909DC200075CB7 /* EditQuestionsPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ADA90719909DC200075CB7 /* EditQuestionsPad.xib */; };
+		70ADA90C1990A52500075CB7 /* SelectQuestionDialogPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ADA90B1990A52500075CB7 /* SelectQuestionDialogPad.m */; };
+		70ADA9151990DD3600075CB7 /* AccountInformationPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70ADA9131990DD3600075CB7 /* AccountInformationPad.m */; };
+		70ADA9161990DD3600075CB7 /* AccountInformationPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70ADA9141990DD3600075CB7 /* AccountInformationPad.xib */; };
+		70AE8CB1198FB154002F570D /* QuestionVerificationDialogPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE8CB0198FB154002F570D /* QuestionVerificationDialogPad.m */; };
+		70AE8CBA198FBE4C002F570D /* EditInformationPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE8CB8198FBE4C002F570D /* EditInformationPad.m */; };
+		70AE8CBB198FBE4C002F570D /* EditInformationPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AE8CB9198FBE4C002F570D /* EditInformationPad.xib */; };
+		70AE8CBD198FC067002F570D /* EditInformationPadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AE8CBC198FC067002F570D /* EditInformationPadCell.xib */; };
+		70AE8CC3198FC361002F570D /* EditInformationPadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE8CC2198FC361002F570D /* EditInformationPadCell.m */; };
+		70CA18F6198F26D200515FF1 /* ic_action_edit_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CA18F5198F26D200515FF1 /* ic_action_edit_press.png */; };
+		70CA18F8198F2C3F00515FF1 /* my_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CA18F7198F2C3F00515FF1 /* my_edit.png */; };
+		70CA1901198F49D800515FF1 /* AccountMainPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CA18FF198F49D800515FF1 /* AccountMainPad.m */; };
+		70CA1902198F49D800515FF1 /* AccountMainPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CA1900198F49D800515FF1 /* AccountMainPad.xib */; };
+		70CA1906198F7FFF00515FF1 /* ProfileInformationPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CA1904198F7FFF00515FF1 /* ProfileInformationPad.m */; };
+		70CA1907198F7FFF00515FF1 /* ProfileInformationPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CA1905198F7FFF00515FF1 /* ProfileInformationPad.xib */; };
 		70CBA8F8198A37D4005D845E /* EditInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CBA8F6198A37D4005D845E /* EditInformation.m */; };
 		70CBA8F9198A37D4005D845E /* EditInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CBA8F7198A37D4005D845E /* EditInformation.xib */; };
 		70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */; };
@@ -445,6 +471,7 @@
 		7006621F18DA81DD00A0F05C /* radio_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio_button.png; sourceTree = "<group>"; };
 		7006622218DA823D00A0F05C /* black_check_credentials.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_check_credentials.png; sourceTree = "<group>"; };
 		7006622318DA823D00A0F05C /* black_credentials.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black_credentials.png; sourceTree = "<group>"; };
+		705654D41995F901002F81C7 /* my_save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_save.png; sourceTree = "<group>"; };
 		707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationInformation.xib; sourceTree = "<group>"; };
 		707C03B618D9CD8100EC1B12 /* lock_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_profile.png; sourceTree = "<group>"; };
 		707C03B818D9CFD500EC1B12 /* profile_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_profile.png; sourceTree = "<group>"; };
@@ -454,6 +481,8 @@
 		708327E518D93AEB0033856C /* EnterCustomerID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCustomerID.h; sourceTree = "<group>"; };
 		708327E618D93AEB0033856C /* EnterCustomerID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCustomerID.m; sourceTree = "<group>"; };
 		708327E818D93AFB0033856C /* EnterCustomerID.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterCustomerID.xib; sourceTree = "<group>"; };
+		7093EAA81991DFC9000F84D9 /* AccountMobilePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountMobilePad.h; sourceTree = "<group>"; };
+		7093EAA91991DFC9000F84D9 /* AccountMobilePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountMobilePad.m; sourceTree = "<group>"; };
 		70AA0588198B137A00B0C52A /* EditInformationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformationCell.xib; sourceTree = "<group>"; };
 		70AA058A198B141800B0C52A /* EditInformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationCell.h; sourceTree = "<group>"; };
 		70AA058B198B141800B0C52A /* EditInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationCell.m; sourceTree = "<group>"; };
@@ -477,6 +506,42 @@
 		70AD602118DBC70500E392BF /* QuestionVerificationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionVerificationDialog.h; sourceTree = "<group>"; };
 		70AD602218DBC74F00E392BF /* UICreationMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICreationMethods.h; sourceTree = "<group>"; };
 		70AD602318DBC74F00E392BF /* UICreationMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICreationMethods.m; sourceTree = "<group>"; };
+		70ADA8F11990740400075CB7 /* EditAccountInformationPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountInformationPad.h; sourceTree = "<group>"; };
+		70ADA8F21990740400075CB7 /* EditAccountInformationPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountInformationPad.m; sourceTree = "<group>"; };
+		70ADA8F31990740400075CB7 /* EditAccountInformationPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAccountInformationPad.xib; sourceTree = "<group>"; };
+		70ADA8F619908BAE00075CB7 /* EditPasswordPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPasswordPad.h; sourceTree = "<group>"; };
+		70ADA8F719908BAE00075CB7 /* EditPasswordPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPasswordPad.m; sourceTree = "<group>"; };
+		70ADA8F819908BAE00075CB7 /* EditPasswordPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPasswordPad.xib; sourceTree = "<group>"; };
+		70ADA8FB199092CC00075CB7 /* EditUsernamePad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUsernamePad.h; sourceTree = "<group>"; };
+		70ADA8FC199092CC00075CB7 /* EditUsernamePad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUsernamePad.m; sourceTree = "<group>"; };
+		70ADA8FD199092CC00075CB7 /* EditUsernamePad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditUsernamePad.xib; sourceTree = "<group>"; };
+		70ADA9001990979700075CB7 /* EditEmailPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEmailPad.h; sourceTree = "<group>"; };
+		70ADA9011990979700075CB7 /* EditEmailPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEmailPad.m; sourceTree = "<group>"; };
+		70ADA9021990979700075CB7 /* EditEmailPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditEmailPad.xib; sourceTree = "<group>"; };
+		70ADA90519909DC200075CB7 /* EditQuestionsPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditQuestionsPad.h; sourceTree = "<group>"; };
+		70ADA90619909DC200075CB7 /* EditQuestionsPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditQuestionsPad.m; sourceTree = "<group>"; };
+		70ADA90719909DC200075CB7 /* EditQuestionsPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditQuestionsPad.xib; sourceTree = "<group>"; };
+		70ADA90A1990A52500075CB7 /* SelectQuestionDialogPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectQuestionDialogPad.h; sourceTree = "<group>"; };
+		70ADA90B1990A52500075CB7 /* SelectQuestionDialogPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectQuestionDialogPad.m; sourceTree = "<group>"; };
+		70ADA9121990DD3600075CB7 /* AccountInformationPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInformationPad.h; sourceTree = "<group>"; };
+		70ADA9131990DD3600075CB7 /* AccountInformationPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInformationPad.m; sourceTree = "<group>"; };
+		70ADA9141990DD3600075CB7 /* AccountInformationPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInformationPad.xib; sourceTree = "<group>"; };
+		70AE8CAF198FB154002F570D /* QuestionVerificationDialogPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionVerificationDialogPad.h; sourceTree = "<group>"; };
+		70AE8CB0198FB154002F570D /* QuestionVerificationDialogPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionVerificationDialogPad.m; sourceTree = "<group>"; };
+		70AE8CB7198FBE4C002F570D /* EditInformationPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationPad.h; sourceTree = "<group>"; };
+		70AE8CB8198FBE4C002F570D /* EditInformationPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationPad.m; sourceTree = "<group>"; };
+		70AE8CB9198FBE4C002F570D /* EditInformationPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformationPad.xib; sourceTree = "<group>"; };
+		70AE8CBC198FC067002F570D /* EditInformationPadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformationPadCell.xib; sourceTree = "<group>"; };
+		70AE8CC1198FC361002F570D /* EditInformationPadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationPadCell.h; sourceTree = "<group>"; };
+		70AE8CC2198FC361002F570D /* EditInformationPadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationPadCell.m; sourceTree = "<group>"; };
+		70CA18F5198F26D200515FF1 /* ic_action_edit_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_edit_press.png; sourceTree = "<group>"; };
+		70CA18F7198F2C3F00515FF1 /* my_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_edit.png; sourceTree = "<group>"; };
+		70CA18FE198F49D800515FF1 /* AccountMainPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountMainPad.h; sourceTree = "<group>"; };
+		70CA18FF198F49D800515FF1 /* AccountMainPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountMainPad.m; sourceTree = "<group>"; };
+		70CA1900198F49D800515FF1 /* AccountMainPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountMainPad.xib; sourceTree = "<group>"; };
+		70CA1903198F7FFF00515FF1 /* ProfileInformationPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileInformationPad.h; sourceTree = "<group>"; };
+		70CA1904198F7FFF00515FF1 /* ProfileInformationPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileInformationPad.m; sourceTree = "<group>"; };
+		70CA1905198F7FFF00515FF1 /* ProfileInformationPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileInformationPad.xib; sourceTree = "<group>"; };
 		70CBA8F5198A37D4005D845E /* EditInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformation.h; sourceTree = "<group>"; };
 		70CBA8F6198A37D4005D845E /* EditInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformation.m; sourceTree = "<group>"; };
 		70CBA8F7198A37D4005D845E /* EditInformation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformation.xib; sourceTree = "<group>"; };
@@ -854,6 +919,7 @@
 		3BA7CCD118B1D96D00B9FC4B /* images */ = {
 			isa = PBXGroup;
 			children = (
+				705654D41995F901002F81C7 /* my_save.png */,
 				302FA63E197E56F900B46F7A /* ml_1.png */,
 				302FA63F197E56F900B46F7A /* username.png */,
 				3BA8A231197570DF0052FA2F /* down.png */,
@@ -1024,6 +1090,8 @@
 		3BB42DE618D6B6C60011792E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				70CA18F7198F2C3F00515FF1 /* my_edit.png */,
+				70CA18F5198F26D200515FF1 /* ic_action_edit_press.png */,
 				70AA0591198B293C00B0C52A /* disclosureIndicator.png */,
 				3B1BD6A21980D7AA00E234C5 /* MLBackground5.png */,
 				3B1BD6A01980D57100E234C5 /* MLBackground4.png */,
@@ -1186,6 +1254,7 @@
 		700661A618DA71DF00A0F05C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				70E251231991C6C70091AB3D /* webservice */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1193,6 +1262,12 @@
 		700661A718DA71E900A0F05C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				70ADA9141990DD3600075CB7 /* AccountInformationPad.xib */,
+				70ADA90719909DC200075CB7 /* EditQuestionsPad.xib */,
+				70ADA9021990979700075CB7 /* EditEmailPad.xib */,
+				70CA1905198F7FFF00515FF1 /* ProfileInformationPad.xib */,
+				70AE8CB9198FBE4C002F570D /* EditInformationPad.xib */,
+				70CA1900198F49D800515FF1 /* AccountMainPad.xib */,
 				7006621118DA797C00A0F05C /* UpdateInformation.xib */,
 				7006621218DA797C00A0F05C /* AccountQuestion.xib */,
 				7006620718DA78EF00A0F05C /* ProfileInformation.xib */,
@@ -1205,6 +1280,10 @@
 				70AA05A2198B3ADD00B0C52A /* EditUsername.xib */,
 				70AA05A7198B3AF600B0C52A /* EditEmail.xib */,
 				70AA05AC198B3B0F00B0C52A /* EditQuestions.xib */,
+				70AE8CBC198FC067002F570D /* EditInformationPadCell.xib */,
+				70ADA8F31990740400075CB7 /* EditAccountInformationPad.xib */,
+				70ADA8F819908BAE00075CB7 /* EditPasswordPad.xib */,
+				70ADA8FD199092CC00075CB7 /* EditUsernamePad.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1212,30 +1291,8 @@
 		700661A818DA71F100A0F05C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7006621518DA813800A0F05C /* UpdateInformation.h */,
-				7006621618DA813800A0F05C /* UpdateInformation.m */,
-				7006621718DA813800A0F05C /* AccountQuestion.h */,
-				7006621818DA813800A0F05C /* AccountQuestion.m */,
-				7006620B18DA791600A0F05C /* ProfileInformation.h */,
-				7006620C18DA791600A0F05C /* ProfileInformation.m */,
-				7006620D18DA791600A0F05C /* AccountInformation.h */,
-				7006620E18DA791600A0F05C /* AccountInformation.m */,
-				700661B918DA74DD00A0F05C /* AccountMain.h */,
-				700661BA18DA74DD00A0F05C /* AccountMain.m */,
-				70CBA8F5198A37D4005D845E /* EditInformation.h */,
-				70CBA8F6198A37D4005D845E /* EditInformation.m */,
-				70AA058A198B141800B0C52A /* EditInformationCell.h */,
-				70AA058B198B141800B0C52A /* EditInformationCell.m */,
-				70AA0596198B316600B0C52A /* EditAccountInformation.h */,
-				70AA0597198B316600B0C52A /* EditAccountInformation.m */,
-				70AA059B198B385F00B0C52A /* EditPassword.h */,
-				70AA059C198B385F00B0C52A /* EditPassword.m */,
-				70AA05A0198B3ADD00B0C52A /* EditUsername.h */,
-				70AA05A1198B3ADD00B0C52A /* EditUsername.m */,
-				70AA05A5198B3AF600B0C52A /* EditEmail.h */,
-				70AA05A6198B3AF600B0C52A /* EditEmail.m */,
-				70AA05AA198B3B0F00B0C52A /* EditQuestions.h */,
-				70AA05AB198B3B0F00B0C52A /* EditQuestions.m */,
+				70CA18FA198F471000515FF1 /* ipad */,
+				70CA18F9198F465900515FF1 /* iphone */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1300,8 +1357,12 @@
 			children = (
 				70AD602118DBC70500E392BF /* QuestionVerificationDialog.h */,
 				70AD601F18DBC6EA00E392BF /* QuestionVerificationDialog.m */,
+				70AE8CAF198FB154002F570D /* QuestionVerificationDialogPad.h */,
+				70AE8CB0198FB154002F570D /* QuestionVerificationDialogPad.m */,
 				70EEA17B18D9C47800719BF7 /* SelectQuestionDialog.h */,
 				70EEA17C18D9C47800719BF7 /* SelectQuestionDialog.m */,
+				70ADA90A1990A52500075CB7 /* SelectQuestionDialogPad.h */,
+				70ADA90B1990A52500075CB7 /* SelectQuestionDialogPad.m */,
 			);
 			name = ProfileDialogs;
 			sourceTree = "<group>";
@@ -1327,6 +1388,73 @@
 				70EEA18118D9C48A00719BF7 /* MLViewController.m */,
 			);
 			name = ProfileObjects;
+			sourceTree = "<group>";
+		};
+		70CA18F9198F465900515FF1 /* iphone */ = {
+			isa = PBXGroup;
+			children = (
+				70AA059B198B385F00B0C52A /* EditPassword.h */,
+				70AA059C198B385F00B0C52A /* EditPassword.m */,
+				70AA05A0198B3ADD00B0C52A /* EditUsername.h */,
+				70AA05A1198B3ADD00B0C52A /* EditUsername.m */,
+				70AA05A5198B3AF600B0C52A /* EditEmail.h */,
+				70AA05A6198B3AF600B0C52A /* EditEmail.m */,
+				70AA05AA198B3B0F00B0C52A /* EditQuestions.h */,
+				70AA05AB198B3B0F00B0C52A /* EditQuestions.m */,
+				7006620D18DA791600A0F05C /* AccountInformation.h */,
+				7006620E18DA791600A0F05C /* AccountInformation.m */,
+				70CBA8F5198A37D4005D845E /* EditInformation.h */,
+				70CBA8F6198A37D4005D845E /* EditInformation.m */,
+				70AA058A198B141800B0C52A /* EditInformationCell.h */,
+				70AA058B198B141800B0C52A /* EditInformationCell.m */,
+				70AA0596198B316600B0C52A /* EditAccountInformation.h */,
+				70AA0597198B316600B0C52A /* EditAccountInformation.m */,
+				7006621718DA813800A0F05C /* AccountQuestion.h */,
+				7006621818DA813800A0F05C /* AccountQuestion.m */,
+				7006620B18DA791600A0F05C /* ProfileInformation.h */,
+				7006620C18DA791600A0F05C /* ProfileInformation.m */,
+				7006621518DA813800A0F05C /* UpdateInformation.h */,
+				7006621618DA813800A0F05C /* UpdateInformation.m */,
+				700661B918DA74DD00A0F05C /* AccountMain.h */,
+				700661BA18DA74DD00A0F05C /* AccountMain.m */,
+			);
+			name = iphone;
+			sourceTree = "<group>";
+		};
+		70CA18FA198F471000515FF1 /* ipad */ = {
+			isa = PBXGroup;
+			children = (
+				70CA1903198F7FFF00515FF1 /* ProfileInformationPad.h */,
+				70CA1904198F7FFF00515FF1 /* ProfileInformationPad.m */,
+				70ADA9121990DD3600075CB7 /* AccountInformationPad.h */,
+				70ADA9131990DD3600075CB7 /* AccountInformationPad.m */,
+				70ADA8F11990740400075CB7 /* EditAccountInformationPad.h */,
+				70ADA8F21990740400075CB7 /* EditAccountInformationPad.m */,
+				70ADA8F619908BAE00075CB7 /* EditPasswordPad.h */,
+				70ADA8F719908BAE00075CB7 /* EditPasswordPad.m */,
+				70AE8CC1198FC361002F570D /* EditInformationPadCell.h */,
+				70AE8CC2198FC361002F570D /* EditInformationPadCell.m */,
+				70ADA8FB199092CC00075CB7 /* EditUsernamePad.h */,
+				70ADA8FC199092CC00075CB7 /* EditUsernamePad.m */,
+				70ADA9001990979700075CB7 /* EditEmailPad.h */,
+				70ADA9011990979700075CB7 /* EditEmailPad.m */,
+				70ADA90519909DC200075CB7 /* EditQuestionsPad.h */,
+				70ADA90619909DC200075CB7 /* EditQuestionsPad.m */,
+				70AE8CB7198FBE4C002F570D /* EditInformationPad.h */,
+				70AE8CB8198FBE4C002F570D /* EditInformationPad.m */,
+				70CA18FE198F49D800515FF1 /* AccountMainPad.h */,
+				70CA18FF198F49D800515FF1 /* AccountMainPad.m */,
+			);
+			name = ipad;
+			sourceTree = "<group>";
+		};
+		70E251231991C6C70091AB3D /* webservice */ = {
+			isa = PBXGroup;
+			children = (
+				7093EAA81991DFC9000F84D9 /* AccountMobilePad.h */,
+				7093EAA91991DFC9000F84D9 /* AccountMobilePad.m */,
+			);
+			name = webservice;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1395,6 +1523,7 @@
 				F00DD40C198C845B003D82B5 /* payment_bg.PNG in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
 				3BC3828C18C0958900270567 /* InfoViewController~iphone.xib in Resources */,
+				705654D51995F901002F81C7 /* my_save.png in Resources */,
 				7006622018DA81DD00A0F05C /* radio_button_selected.png in Resources */,
 				3BC3828118C0330A00270567 /* mlcard.png in Resources */,
 				3BB42E1218D6B6C60011792E /* wrong.png in Resources */,
@@ -1432,6 +1561,7 @@
 				3BB42E0F18D6B6C60011792E /* tabbar_bg.png in Resources */,
 				70CBA8F9198A37D4005D845E /* EditInformation.xib in Resources */,
 				3B30285E1981E8FE007825CE /* ResetPassViewController~ipad.xib in Resources */,
+				70ADA8FA19908BAE00075CB7 /* EditPasswordPad.xib in Resources */,
 				F081A05B19776F89004568EF /* MLHistoryViewController~iphone.xib in Resources */,
 				7006620A18DA78EF00A0F05C /* AccountInformation.xib in Resources */,
 				F081A05219776E55004568EF /* MLTermsConditionViewController~iphone.xib in Resources */,
@@ -1440,6 +1570,7 @@
 				F081A05019776E55004568EF /* MLRatesTableViewCell~iphone.xib in Resources */,
 				70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */,
 				700661E618DA766800A0F05C /* design_buttom_left.png in Resources */,
+				70CA18F8198F2C3F00515FF1 /* my_edit.png in Resources */,
 				3BB42E1118D6B6C60011792E /* view_bg.png in Resources */,
 				707C03BD18D9D00900EC1B12 /* submit_profile.png in Resources */,
 				3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */,
@@ -1450,6 +1581,7 @@
 				F081A03819776D57004568EF /* content_bg_ipad.png in Resources */,
 				7006622118DA81DD00A0F05C /* radio_button.png in Resources */,
 				70AA05AE198B3B0F00B0C52A /* EditQuestions.xib in Resources */,
+				70ADA90919909DC200075CB7 /* EditQuestionsPad.xib in Resources */,
 				707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */,
 				F081A05D19776F89004568EF /* MLHistoryViewController~ipad.xib in Resources */,
 				F081A05519776E55004568EF /* MLRatesTableViewCell~ipad.xib in Resources */,
@@ -1460,7 +1592,10 @@
 				70AA0589198B137A00B0C52A /* EditInformationCell.xib in Resources */,
 				3BA8A232197570DF0052FA2F /* down.png in Resources */,
 				7006622518DA823D00A0F05C /* black_credentials.png in Resources */,
+				70ADA9161990DD3600075CB7 /* AccountInformationPad.xib in Resources */,
+				70ADA8F51990740400075CB7 /* EditAccountInformationPad.xib in Resources */,
 				F007CC391985D7D20022FFF2 /* ic_pending.png in Resources */,
+				70ADA8FF199092CC00075CB7 /* EditUsernamePad.xib in Resources */,
 				3011287A19838600007EC190 /* MLhuillierWebViewController~ipad.xib in Resources */,
 				F081A05419776E55004568EF /* MLMenuViewController.xib in Resources */,
 				707C03BB18D9CFE100EC1B12 /* account_profile.png in Resources */,
@@ -1473,6 +1608,7 @@
 				302FA640197E56F900B46F7A /* ml_1.png in Resources */,
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController~iphone.xib in Resources */,
 				F081A05619776E55004568EF /* MLRatesTableViewController~ipad.xib in Resources */,
+				70AE8CBD198FC067002F570D /* EditInformationPadCell.xib in Resources */,
 				F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */,
 				3011287819838585007EC190 /* MLhuillierWebViewController~iphone.xib in Resources */,
 				3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */,
@@ -1504,6 +1640,7 @@
 				F05C5F4618E137AF002F2EE1 /* ic_seal_pending.png in Resources */,
 				3BB42E0418D6B6C60011792E /* noImage.png in Resources */,
 				3BB42E0718D6B6C60011792E /* pin_bg.png in Resources */,
+				70ADA9041990979700075CB7 /* EditEmailPad.xib in Resources */,
 				3BC3829218C095D200270567 /* ic_about.9.png in Resources */,
 				F081A04C19776E55004568EF /* MLRatesTableViewController~iphone.xib in Resources */,
 				F081A04B19776E55004568EF /* MLSendMoneyViewController~ipad.xib in Resources */,
@@ -1522,12 +1659,14 @@
 				3BA7CCAD18B1D6B900B9FC4B /* Images.xcassets in Resources */,
 				3B8090BA18B5FB6700A11CB8 /* back2.png in Resources */,
 				3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */,
+				70CA1902198F49D800515FF1 /* AccountMainPad.xib in Resources */,
 				3B19518D18B6F5260061969F /* MLBackground1.png in Resources */,
 				3B1B36C818B4ADA1006DA5BB /* icon_my_receiver.jpg in Resources */,
 				3BB42E0918D6B6C60011792E /* profile.jpg in Resources */,
 				3BB42E0C18D6B6C60011792E /* right.png in Resources */,
 				F007CC3A1985D7D20022FFF2 /* ic_print.png in Resources */,
 				3B17584D18B2FC09005A7805 /* popup_img.png in Resources */,
+				70CA18F6198F26D200515FF1 /* ic_action_edit_press.png in Resources */,
 				3BA8A23019756F810052FA2F /* button_back.png in Resources */,
 				3B1D2A1A1985E282004A70FC /* InfoViewController~ipad.xib in Resources */,
 				3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */,
@@ -1536,9 +1675,11 @@
 				3B9FC06D196D40750035446F /* LoginViewController~iphone.xib in Resources */,
 				700661B818DA74CF00A0F05C /* AccountMain.xib in Resources */,
 				3BA7CCE318B1E27F00B9FC4B /* new_kprate.png in Resources */,
+				70CA1907198F7FFF00515FF1 /* ProfileInformationPad.xib in Resources */,
 				3BA7CD1418B23A7000B9FC4B /* so.9.png in Resources */,
 				70AA05A4198B3ADD00B0C52A /* EditUsername.xib in Resources */,
 				3BA7CCE518B1E28400B9FC4B /* new_locator.png in Resources */,
+				70AE8CBB198FBE4C002F570D /* EditInformationPad.xib in Resources */,
 				3BB42E0118D6B6C60011792E /* navbar_bg.png in Resources */,
 				3BB42DFF18D6B6C60011792E /* btnReceiver_bg.png in Resources */,
 				3B8B9EF518BC341400639142 /* textbox2.png in Resources */,
@@ -1559,7 +1700,9 @@
 				3BA7CCAB18B1D6B900B9FC4B /* AppDelegate.m in Sources */,
 				70EEA18618D9C53200719BF7 /* ProfileHeader.m in Sources */,
 				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
+				70ADA9151990DD3600075CB7 /* AccountInformationPad.m in Sources */,
 				70AA059E198B385F00B0C52A /* EditPassword.m in Sources */,
+				70AE8CB1198FB154002F570D /* QuestionVerificationDialogPad.m in Sources */,
 				3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */,
 				3B15D2A519869C5700AD69AE /* TimerUIApplication.m in Sources */,
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
@@ -1572,10 +1715,13 @@
 				3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */,
 				70AA05AD198B3B0F00B0C52A /* EditQuestions.m in Sources */,
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
+				70ADA90C1990A52500075CB7 /* SelectQuestionDialogPad.m in Sources */,
 				F0BE7CA4198336C300D0946B /* LoadHistory.m in Sources */,
 				3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
+				70AE8CC3198FC361002F570D /* EditInformationPadCell.m in Sources */,
 				3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */,
+				70CA1906198F7FFF00515FF1 /* ProfileInformationPad.m in Sources */,
 				70AD602418DBC74F00E392BF /* UICreationMethods.m in Sources */,
 				3BA7CCCD18B1D73B00B9FC4B /* LoginViewController.m in Sources */,
 				70EEA18918D9C54900719BF7 /* ProfileOutline.m in Sources */,
@@ -1584,17 +1730,20 @@
 				F081A03019776BF7004568EF /* SendoutMobile.m in Sources */,
 				F05C5F3118E12C0D002F2EE1 /* MLRatesTableViewCell.m in Sources */,
 				3BC3828B18C0958900270567 /* InfoViewController.m in Sources */,
+				70ADA8FE199092CC00075CB7 /* EditUsernamePad.m in Sources */,
 				3BC3827B18C02C6C00270567 /* TopupViewController.m in Sources */,
 				3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */,
 				70AA05A8198B3AF600B0C52A /* EditEmail.m in Sources */,
 				F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */,
 				70EEA18218D9C48A00719BF7 /* Customer.m in Sources */,
+				7093EAAA1991DFC9000F84D9 /* AccountMobilePad.m in Sources */,
 				7006621018DA791600A0F05C /* AccountInformation.m in Sources */,
 				70EEA18318D9C48A00719BF7 /* MLViewController.m in Sources */,
 				70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */,
 				3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */,
 				F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */,
 				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
+				70ADA8F919908BAE00075CB7 /* EditPasswordPad.m in Sources */,
 				3BF0B26D197A616400AC2C76 /* SaveWalletData.m in Sources */,
 				70AA05A3198B3ADD00B0C52A /* EditUsername.m in Sources */,
 				70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */,
@@ -1602,10 +1751,13 @@
 				70AA0599198B316600B0C52A /* EditAccountInformation.m in Sources */,
 				F05C5F3318E12C0D002F2EE1 /* MLTermsConditionViewController.m in Sources */,
 				3BB5268918BCB8F600D0A5EA /* ReceiverObject.m in Sources */,
+				70ADA90819909DC200075CB7 /* EditQuestionsPad.m in Sources */,
+				70ADA8F41990740400075CB7 /* EditAccountInformationPad.m in Sources */,
 				3B38F7751952CE0600EC3948 /* ServiceConnection.m in Sources */,
 				F081A03319776CDF004568EF /* KpRates.m in Sources */,
 				70AA058C198B141800B0C52A /* EditInformationCell.m in Sources */,
 				708327E718D93AEB0033856C /* EnterCustomerID.m in Sources */,
+				70ADA9031990979700075CB7 /* EditEmailPad.m in Sources */,
 				700661BB18DA74DD00A0F05C /* AccountMain.m in Sources */,
 				3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */,
 				F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */,
@@ -1618,11 +1770,13 @@
 				3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */,
 				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
 				70CBA8F8198A37D4005D845E /* EditInformation.m in Sources */,
+				70CA1901198F49D800515FF1 /* AccountMainPad.m in Sources */,
 				F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */,
 				3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */,
 				3012DC38197DF43300AA5F6F /* MapViewController.m in Sources */,
 				3B38F7781952CE3700EC3948 /* DeviceID.m in Sources */,
 				7006621D18DA817900A0F05C /* ProfileImage.m in Sources */,
+				70AE8CBA198FBE4C002F570D /* EditInformationPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1738,7 +1892,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1761,7 +1915,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

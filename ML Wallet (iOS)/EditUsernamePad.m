@@ -1,18 +1,18 @@
 //
-//  EditUsername.m
+//  EditUsernamePad.m
 //  ML Wallet
 //
-//  Created by mm20-18 on 8/1/14.
+//  Created by mm20-18 on 8/5/14.
 //  Copyright (c) 2014 ML Lhuillier. All rights reserved.
 //
 
-#import "EditUsername.h"
+#import "EditUsernamePad.h"
 
-@interface EditUsername ()
+@interface EditUsernamePad ()
 
 @end
 
-@implementation EditUsername
+@implementation EditUsernamePad
 
 
 
@@ -34,9 +34,9 @@ UIScrollView *profileScroll;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
+    profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 768, 500)];
     [profileScroll setScrollEnabled:YES];
-    [profileScroll setContentSize:CGSizeMake(320, 400)];
+    [profileScroll setContentSize:CGSizeMake(768, 400)];
     
     
     
@@ -53,23 +53,25 @@ UIScrollView *profileScroll;
 
 
 -(void) createUsernameLabel{
+
+   
     
     
     //Old Username
-    UILabel *oldUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 280, 25)];
-    [oldUsernameLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+    UILabel *oldUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(167, 200, 250, 30)];
+    [oldUsernameLabel setFont:[UIFont fontWithName:nil size:19.0f]];
     [oldUsernameLabel setText:@"Type your old username"];
     
     
     //New Username
-    UILabel *newUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 80, 280, 25)];
-    [newUsernameLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+    UILabel *newUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(167, 270, 250, 30)];
+    [newUsernameLabel setFont:[UIFont fontWithName:nil size:19.0f]];
     [newUsernameLabel setText:@"Type your new username"];
     
     
     //Confirm Username
-    UILabel *confirmUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 140, 280, 25)];
-    [confirmUsernameLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+    UILabel *confirmUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(167, 340, 250, 30)];
+    [confirmUsernameLabel setFont:[UIFont fontWithName:nil size:19.0f]];
     [confirmUsernameLabel setText:@"Confirm your new username"];
     
     
@@ -81,31 +83,39 @@ UIScrollView *profileScroll;
 
 -(void) createUsernameValue{
     
+ 
+
+    
+    
+    
     
     //Old Username
-    UIView *oldUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 45, 280, 30)];
+    UIView *oldUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 230, 434, 35)];
     [oldUsernameOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *oldUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UITextField *oldUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [oldUsername setBackgroundColor:[UIColor whiteColor]];
+    [oldUsername setFont:[UIFont systemFontOfSize:19.0f]];
     [oldUsername setPlaceholder:@" Old username"];
     [oldUsernameOutline addSubview:oldUsername];
     
     
     
     //New Username
-    UIView *newUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 105, 280, 30)];
+    UIView *newUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 300, 434, 35)];
     [newUsernameOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *newUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UITextField *newUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [newUsername setBackgroundColor:[UIColor whiteColor]];
+    [newUsername setFont:[UIFont systemFontOfSize:19.0f]];
     [newUsername setPlaceholder:@" New username"];
     [newUsernameOutline addSubview:newUsername];
     
     
     //Username
-    UIView *confirmUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 165, 280, 30)];
+    UIView *confirmUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 370, 434, 35)];
     [confirmUsernameOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *confirmUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UITextField *confirmUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [confirmUsername setBackgroundColor:[UIColor whiteColor]];
+    [confirmUsername setFont:[UIFont systemFontOfSize:19.0f]];
     [confirmUsername setPlaceholder:@" Confirm username"];
     [confirmUsernameOutline addSubview:confirmUsername];
     
@@ -133,7 +143,7 @@ UIScrollView *profileScroll;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+    //    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     

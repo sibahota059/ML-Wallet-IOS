@@ -324,7 +324,8 @@ UIScrollView *profileScroll;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [backView addSubview:backButton];
