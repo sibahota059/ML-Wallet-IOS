@@ -476,7 +476,7 @@ NSString *firstNameValue, *middleNameValue, *lastNameValue, *countryValue, *prov
 
 -(void)savePressed:(id)sender{
     
-    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"SAVE" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:@"EditAccountInformation" message:@"SAVE" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
     [saveAlert show];
     
