@@ -24,6 +24,7 @@
 #import "SaveWalletData.h"
 #import "MLhuillierWebViewController.h"
 #import "UIImage+DecodeStringToImage.h"
+#import "AccountMainPad.h"
 
 
 #define  VIEW_HIDDEN -320
@@ -519,18 +520,32 @@
 
 - (IBAction)btn_Myprofile:(id)sender {
 
-    AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
-
     
-    [self.navigationController pushViewController:accountMain animated:YES];
-    
-    
-    
+    [self checkDevice];
     
     
 //    [UIAlertView myCostumeAlert:@"My Profile" alertMessage:@"Todo." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     
 }
+
+
+-(void)checkDevice{
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
+        [self.navigationController pushViewController:accountMain animated:YES];
+    }
+    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        AccountMainPad *accountMainPad = [[AccountMainPad alloc] initWithNibName:@"AccountMainPad" bundle:nil];
+        [self.navigationController pushViewController:accountMainPad animated:YES];
+        
+    }
+    
+}
+
+
 
 
 

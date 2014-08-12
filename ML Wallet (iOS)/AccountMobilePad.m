@@ -1,16 +1,19 @@
 //
-//  KpRates.m
+//  AccountMobilePad.m
 //  ML Wallet
 //
-//  Created by mm20 on 7/16/14.
+//  Created by mm20-18 on 8/6/14.
 //  Copyright (c) 2014 ML Lhuillier. All rights reserved.
 //
 
-#import "KpRates.h"
-#import "MLRatesTableViewController.h"
+#import "AccountMobilePad.h"
 #import "ServiceConnection.h"
+#import "AccountMainPad.h"
 
-@implementation KpRates
+
+@implementation AccountMobilePad
+
+
 {
     
     NSMutableData *contentData;
@@ -35,7 +38,7 @@
     
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    self.getRates = jsonResponse;
+    self.getAccount = jsonResponse;
     [self.delegate didFinishLoadingRates:@"1" andError:@""];
 }
 
@@ -54,18 +57,29 @@
 // -------------------ByPass ssl ends
 
 
-- (void)loadRates
+- (void)loadAccount
 {
     contentData = [NSMutableData data];
     con         = [ServiceConnection new];
     
-    NSString *serviceMethods = @"getChargeValues";
     
-    NSString *contentURL = [NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods];
+    
+    NSString *serviceMethods = @"retrieveMobileAccount";
+    
+    
+    NSString *walletNo = @"?walletno=";
+    NSString *walletNoValue =@"14030000000123";
+    
+    
+    NSString *contentURL = [NSString stringWithFormat:@"%@%@%@%@", con.NSgetURLService, serviceMethods, walletNo, walletNoValue];
+    
+    
+    
+    
     
     conn = [[NSURLConnection alloc] initWithRequest:
             [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];
-
+    
 }
 
 

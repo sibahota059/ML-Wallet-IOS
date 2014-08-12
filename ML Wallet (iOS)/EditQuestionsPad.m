@@ -1,22 +1,21 @@
 //
-//  EditQuestions.m
+//  EditQuestionsPad.m
 //  ML Wallet
 //
-//  Created by mm20-18 on 8/1/14.
+//  Created by mm20-18 on 8/5/14.
 //  Copyright (c) 2014 ML Lhuillier. All rights reserved.
 //
 
-#import "EditQuestions.h"
+#import "EditQuestionsPad.h"
 #import "ProfileButton.h"
 #import "ProfileLabel.h"
-#import "ProfileTextField.h"
-#import "SelectQuestionDialog.h"
+#import "SelectQuestionDialogPad.h"
 
-@interface EditQuestions ()
+@interface EditQuestionsPad ()
 
 @end
 
-@implementation EditQuestions
+@implementation EditQuestionsPad
 
 UIScrollView *scrollView;
 UIView *disableBackground;
@@ -28,7 +27,7 @@ ProfileButton *button1, *button2, *button3;
 ProfileLabel *questionLbl1, *questionLbl2, *questionLbl3;
 UITextField *firstAnswer, *secondAnswer, *thirdAnswer;
 
-SelectQuestionDialog *questionDialog;
+SelectQuestionDialogPad *questionDialog;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,11 +50,21 @@ SelectQuestionDialog *questionDialog;
     questions3 = [[NSArray alloc] initWithObjects:@"What was your dream job?", @"What is your pet's name?", @"What is your musical genre?", @"Where is your dream vacation?", @"Who was your childhood hero?", nil];
     
     
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
-    [scrollView setScrollEnabled:YES];
-    [scrollView setContentSize:CGSizeMake(320, 300)];
+    
     
 
+
+
+    
+    
+    
+    
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 768, 500)];
+    [scrollView setScrollEnabled:YES];
+    [scrollView setContentSize:CGSizeMake(768, 500)];
+    
+    
     
     
     disableBackground = [[UIView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
@@ -70,6 +79,7 @@ SelectQuestionDialog *questionDialog;
     [self.view addSubview:scrollView];
     [self.view addSubview: disableBackground];
     
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,32 +92,33 @@ SelectQuestionDialog *questionDialog;
 
 -(void) createQuestion{
     
-  
+    
     
     //QUESTION 1
     
-    button1 = [[ProfileButton alloc] initWithString:@"?" x:20 y:30];
+    button1 = [[ProfileButton alloc] initWithString:@"?" x:167 y:190];
     [button1 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
     
-    questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:45 y:30 myColor:[UIColor blackColor] width:260];
-   
-
+    questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:205 y:190 myColor:[UIColor blackColor] width:260];
+    
+    
     
     //QUESTION 2
     
-    button2 = [[ProfileButton alloc] initWithString:@"?" x:20 y:120];
+    button2 = [[ProfileButton alloc] initWithString:@"?" x:167 y:285];
     [button2 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-    questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:45 y:120 myColor:[UIColor blackColor] width:260];
-
+    questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:205 y:285 myColor:[UIColor blackColor] width:260];
+    
+    
     //QUESITON 3
     
-    button3 = [[ProfileButton alloc] initWithString:@"?" x:20 y:210];
+    button3 = [[ProfileButton alloc] initWithString:@"?" x:167 y:380];
     [button3 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-    questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:45 y:210 myColor:[UIColor blackColor] width:260];
-
+    questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:205 y:380 myColor:[UIColor blackColor] width:260];
     
     
-
+    
+    
     
     
     
@@ -116,13 +127,13 @@ SelectQuestionDialog *questionDialog;
     
     [scrollView addSubview:button1];
     [scrollView addSubview:questionLbl1];
-
+    
     [scrollView addSubview:button2];
     [scrollView addSubview:questionLbl2];
-
+    
     [scrollView addSubview:button3];
     [scrollView addSubview:questionLbl3];
-
+    
     
     
     
@@ -132,47 +143,52 @@ SelectQuestionDialog *questionDialog;
     
     
     
+    
+    
     //QUESTION 1
-    UIView *firstAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 70, 280, 30)];
+    UIView *firstAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 230, 434, 35)];
     [firstAnswerOutline setBackgroundColor:[UIColor redColor]];
     
-    firstAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    firstAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [firstAnswer setBackgroundColor:[UIColor whiteColor]];
+    [firstAnswer setFont:[UIFont systemFontOfSize:19.0f]];
     [firstAnswer setPlaceholder:@" Answer 1"];
     [firstAnswerOutline addSubview:firstAnswer];
     
     
     //QUESTION 2
-    UIView *secondAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 160, 280, 30)];
+    UIView *secondAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 325, 434, 35)];
     [secondAnswerOutline setBackgroundColor:[UIColor redColor]];
     
-    secondAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    secondAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [secondAnswer setBackgroundColor:[UIColor whiteColor]];
+    [secondAnswer setFont:[UIFont systemFontOfSize:19.0f]];
     [secondAnswer setPlaceholder:@" Answer 2"];
     [secondAnswerOutline addSubview:secondAnswer];
     
     
     //QUESITON 3
-    UIView *thirdAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 250, 280, 30)];
+    UIView *thirdAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 420, 434, 35)];
     [thirdAnswerOutline setBackgroundColor:[UIColor redColor]];
     
-    thirdAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    thirdAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [thirdAnswer setBackgroundColor:[UIColor whiteColor]];
+    [thirdAnswer setFont:[UIFont systemFontOfSize:19.0f]];
     [thirdAnswer setPlaceholder:@" Answer 3"];
     [thirdAnswerOutline addSubview:thirdAnswer];
     
-
+    
     
     firstAnswer.delegate = self;
     secondAnswer.delegate = self;
     thirdAnswer.delegate = self;
-
+    
     //ADDING THE COMPONENTS
-
+    
     [scrollView addSubview: firstAnswerOutline];
     [scrollView addSubview:secondAnswerOutline];
     [scrollView addSubview:thirdAnswerOutline];
-
+    
 }
 
 
@@ -194,27 +210,38 @@ SelectQuestionDialog *questionDialog;
     
     if(sender == button1)
     {
-        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions1];
+        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 10, 768, 500) stringArray:questions1];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion1:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [questionDialog setHidden:NO];
+        
+        [self.view addSubview:questionDialog];
+        
+
         
         
     }
     else if(sender == button2)
     {
-        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions2];
+        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 10, 768, 500) stringArray:questions2];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion2:) forControlEvents:UIControlEventTouchUpInside];
         
+        [self fadeInAnimation:disableBackground];
+        
+
     }
     else
     {
-        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions3];
+        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 10, 768 , 500) stringArray:questions3];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion3:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self fadeInAnimation:disableBackground];
         
     }
     
@@ -230,6 +257,10 @@ SelectQuestionDialog *questionDialog;
     [disableBackground setHidden:YES];
     [questionLbl1 setText:[questionDialog getSelectedQuestion]];
     [questionDialog removeFromSuperview];
+    [self fadeInAnimation:disableBackground];
+    [self fadeInAnimation:questionDialog];
+    
+ 
     
 }
 
@@ -239,6 +270,7 @@ SelectQuestionDialog *questionDialog;
     [questionLbl2 setText:[questionDialog getSelectedQuestion]];
     [questionDialog removeFromSuperview];
     
+    
 }
 
 -(void) finishSelectingQuestion3:(id)sender{
@@ -246,13 +278,11 @@ SelectQuestionDialog *questionDialog;
     [disableBackground setHidden:YES];
     [questionLbl3 setText:[questionDialog getSelectedQuestion]];
     [questionDialog removeFromSuperview];
-    
 }
 
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
     
     
     [firstAnswer resignFirstResponder];
@@ -294,8 +324,8 @@ SelectQuestionDialog *questionDialog;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
-     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    //    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [backView addSubview:backButton];
@@ -320,5 +350,9 @@ SelectQuestionDialog *questionDialog;
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
+
+
+    
+
 
 @end

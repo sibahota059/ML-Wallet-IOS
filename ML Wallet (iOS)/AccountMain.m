@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+
    
     
     //IMAGE
@@ -81,6 +81,7 @@
     [self.view addSubview:profileImageView];
 
     self.navigationController.navigationBarHidden = NO;
+    
     [self addNavigationBarButton];
 }
 
@@ -153,7 +154,6 @@
     //ADDING THE LEFT AND RIGHT BUTTON
     
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
     [self.navigationItem setLeftBarButtonItem:buttonHome];
 
     
@@ -166,7 +166,6 @@
     [self.navigationController pushViewController:menuPage animated:YES];
     
 }
-
 
 
 

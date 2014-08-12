@@ -1,25 +1,26 @@
 //
-//  EditInformation.m
+//  EditInformationPad.m
 //  ML Wallet
 //
-//  Created by mm20-18 on 7/31/14.
+//  Created by mm20-18 on 8/4/14.
 //  Copyright (c) 2014 ML Lhuillier. All rights reserved.
 //
 
-#import "EditInformation.h"
+#import "EditInformationPad.h"
 #import "EditInformationCell.h"
-#import "EditAccountInformation.h"
-#import "EditPassword.h"
-#import "EditUsername.h"
-#import "EditEmail.h"
-#import "EditQuestions.h"
+#import "EditAccountInformationPad.h"
+#import "EditPasswordPad.h"
+#import "EditUsernamePad.h"
+#import "EditEmailPad.h"
+#import "EditQuestionsPad.h"
+#import "EditInformationPadCell.h"
 
 
-@interface EditInformation ()
+@interface EditInformationPad ()
 
 @end
 
-@implementation EditInformation
+@implementation EditInformationPad
 {
     NSArray *tableData;
 }
@@ -53,20 +54,18 @@
 }
 
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
+    
     
     return [tableData count];
-
+    
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
     
-    static NSString *simpleTableIdentifier = @"EditInformationCell";
+    
+    static NSString *simpleTableIdentifier = @"EditInformationPadCell";
     
     UIView *accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 24, 50)];
     UIImageView *accessoryViewImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosureIndicator.png"]];
@@ -75,11 +74,11 @@
     
     
     
-    EditInformationCell *cell = (EditInformationCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    EditInformationPadCell *cell = (EditInformationPadCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil)
     {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"EditInformationCell" owner:self options:nil];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"EditInformationPadCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     
@@ -98,36 +97,36 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-   
+    
+    
     
     if(indexPath.row == 0)
     {
-    
-        EditAccountInformation *editAccountInformation = [[EditAccountInformation alloc] initWithNibName:@"EditAccountInformation" bundle:nil];
-        [self.navigationController pushViewController:editAccountInformation animated:YES];
+        
+        EditAccountInformationPad *editAccountInformationPad = [[EditAccountInformationPad alloc] initWithNibName:@"EditAccountInformationPad" bundle:nil];
+        [self.navigationController pushViewController:editAccountInformationPad animated:YES];
     }
     else if(indexPath.row == 1)
     {
-        EditPassword *editPassword = [[EditPassword alloc] initWithNibName:@"EditPassword" bundle:nil];
+        EditPasswordPad *editPassword = [[EditPasswordPad alloc] initWithNibName:@"EditPasswordPad" bundle:nil];
         [self.navigationController pushViewController:editPassword animated:YES];
     }
     else if(indexPath.row == 2)
     {
-        EditUsername *editUsername = [[EditUsername alloc] initWithNibName:@"EditUsername" bundle:nil];
+        EditUsernamePad *editUsername = [[EditUsernamePad alloc] initWithNibName:@"EditUsernamePad" bundle:nil];
         [self.navigationController pushViewController:editUsername animated:YES];
     }
     else if(indexPath.row == 3)
     {
-        EditEmail *editEmail = [[EditEmail alloc] initWithNibName:@"EditEmail" bundle:nil];
+        EditEmailPad *editEmail = [[EditEmailPad alloc] initWithNibName:@"EditEmailPad" bundle:nil];
         [self.navigationController pushViewController:editEmail animated:YES];
     }
     else
     {
-        EditQuestions *editQuestion = [[EditQuestions alloc] initWithNibName:@"EditQuestions" bundle:nil];
+        EditQuestionsPad *editQuestion = [[EditQuestionsPad alloc] initWithNibName:@"EditQuestionsPad" bundle:nil];
         [self.navigationController pushViewController:editQuestion animated:YES];
     }
-
+    
 }
 
 
@@ -150,7 +149,7 @@
     //RIGHT NAVIGATION BUTTON
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+    //    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -158,7 +157,7 @@
     
     UIBarButtonItem *backNavButton = [[UIBarButtonItem alloc] initWithCustomView:backView];
     [backNavButton setStyle:UIBarButtonItemStyleBordered];
-
+    
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationItem setLeftBarButtonItem:backNavButton];
     
@@ -175,4 +174,6 @@
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
+
+
 @end
