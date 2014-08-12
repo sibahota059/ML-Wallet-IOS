@@ -19,6 +19,7 @@
 
 - (void)customTabBar:(UITabBarController *)tabController;
 - (void)navigationAppearance;
+- (void)navMessageAppearance;
 - (UILabel *)navTitle:(NSString *)navtitle;
 - (UIBarButtonItem *)navBarButton:(MLSendMoneyViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
 - (UIBarButtonItem *)navBarButtonPreview:(MLPreviewViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;

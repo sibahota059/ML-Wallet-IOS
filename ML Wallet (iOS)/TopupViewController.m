@@ -177,8 +177,15 @@
     
     strKPTN = self.txtKPTN.text;
     
-    if ([strKPTN isEqualToString:@""] || strKPTN == nil) {
+    if ([strKPTN isEqualToString:@""])
+    {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Type your KPTN" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        return;
+    }
+    NSArray *componentsSeparatedByWhiteSpace = [strKPTN componentsSeparatedByString:@" "];
+    if ([componentsSeparatedByWhiteSpace count] > 1) {
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"KPTN must have no space" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        self.txtKPTN.text = @"";
         return;
     }
     
@@ -216,6 +223,12 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [responseData appendData:data];
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[error localizedDescription] delegate:self cancelButton:@"Cancel" otherButtons:@"Retry"];
+    //Hide Loader
+    [HUD hide:YES];
+    [HUD show:NO];
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
@@ -286,6 +299,7 @@
     
     }
 }
+
 -(void) saveBalance :(NSString*)bal
 {
     SaveWalletData *saveData = [SaveWalletData new];
@@ -380,6 +394,7 @@
     
 }
 
+#pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *title = [alertView title];
@@ -388,6 +403,13 @@
         LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil navigationHidden:YES ];
         
         [self.navigationController pushViewController:loginPage animated:YES];
+    } else {
+        if (buttonIndex == 1) {
+            [self btnSubmit:self];
+        } else {
+            self.txtKPTN.text = @"";
+        }
     }
 }
+#pragma end
 @end

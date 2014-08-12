@@ -103,12 +103,12 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         image = [UIImage imageNamed:@"content_bg"];
-        payment = [UIImage imageNamed:@"payment_bg"];
+        payment = [UIImage imageNamed:@"payment_bg.png"];
     }
     else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         image = [UIImage imageNamed:@"content_bg_ipad"];
-        payment = [UIImage imageNamed:@"payment_bg_ipad"];
+        payment = [UIImage imageNamed:@"payment_bg_ipad.png"];
     }
     
     //Setting background image of a view
@@ -429,7 +429,10 @@
          [getUI displayAlert:@"Message" message:@"Invalid Ammount!"];
     }else if (total > bal) {
         [getUI displayAlert:@"Validation Error" message:@"Insuficient Balance!"];
-    }else{
+    }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] doubleValue] < 0.01){
+        [getUI displayAlert:@"Validation Error" message:@"Amount must be greater than zero."];
+    }
+    else{
         
         //Create object of MLPreviewViewController and pass data to it
         MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
@@ -505,8 +508,15 @@
     getRimage   = rimage;
     getRnumber  = rnumber;
     
+    //Check if user middlename is empty and if not get the first character of a middlename and add dot and display
+    if ([rmname isEqualToString:@""]) {
+        rmname = @"";
+    }else{
+        rmname = [NSString stringWithFormat:@"%@.", [self capitalizeFirstChar:[[rmname substringToIndex:1] lowercaseString]]];
+    }
+    
     //setting the name of a receiver to a label
-    _receiverName.text = [NSString stringWithFormat:@"%@, %@ %@", rlname, rfname, rmname];
+    _receiverName.text = [NSString stringWithFormat:@"%@, %@ %@", [self capitalizeFirstChar:rlname], [self capitalizeFirstChar:rfname], rmname];
     _receiverAddress.text = raddress;
     
     //setup receivers view

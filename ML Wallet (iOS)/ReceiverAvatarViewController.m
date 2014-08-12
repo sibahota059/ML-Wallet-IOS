@@ -123,7 +123,7 @@
     //toDO
 }
 
-#pragma mark - UIAlertView Delegate
+#pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *titleView     = [alertView title];
     NSString *titleButton   = [alertView buttonTitleAtIndex:buttonIndex];
@@ -203,6 +203,12 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [responseData appendData:data];
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[error localizedDescription] delegate:self cancelButton:@"Ok" otherButtons:nil];
+    //Hide Loader
+    [HUD hide:YES];
+    [HUD show:NO];
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     

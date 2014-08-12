@@ -52,7 +52,7 @@
     
     _tv_termsCondition.text = [getUI termsConditions];
     _tv_termsCondition.editable = NO;
-    [getUI shadowView:_view_tc];
+    //[getUI shadowView:_view_tc];
     //    self.view_dialogHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navbar_bg.png"]];
     
     //UIBarButtonItem *home = [getUI navBarButtonTc:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
@@ -139,6 +139,7 @@
 
 - (IBAction)btnAgree:(id)sender {
     [self displayProgressBar];
+    [self.navigationItem setHidesBackButton:YES];
     [sendout postDataToUrl];
 }
 - (IBAction)btnClose:(id)sender {
@@ -197,17 +198,27 @@
 //    }else{
 //        [getUI displayAlert:@"Message" message:@"Your device doesn't support Messages."];
 //    }
-    
+ 
     if([MFMessageComposeViewController canSendText]){
+        
+        [[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        [getUI navMessageAppearance];
+        
         MFMessageComposeViewController *smsComposer =
         [[MFMessageComposeViewController alloc] init];
         
-        smsComposer.recipients = [NSArray arrayWithObject:@""];
+        //smsComposer.recipients = [NSArray arrayWithObject:@""];
         smsComposer.body = [self formatKptn:sendout.getKptn];
         
         smsComposer.messageComposeDelegate = self;
         
-        [self.navigationController pushViewController:smsComposer animated:YES];
+        [[smsComposer navigationBar] setBarTintColor:[UIColor whiteColor]];
+        [[smsComposer navigationBar] setTintColor: [UIColor redColor]]; //color
+        [self presentViewController: smsComposer animated:YES completion:^{
+            [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
+        }];
+        
+        [self presentViewController:smsComposer animated:YES completion:nil];
     }
     else{
         //You probably want to show a UILocalNotification here.
@@ -215,35 +226,38 @@
     }
 }
 
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
-                 didFinishWithResult:(MessageComposeResult)result{
-    
-    /* You can use the MessageComposeResult to determine what happened to the
-     message. I believe it tells you about sent, stored for sending later, failed
-     or cancelled. */
-    
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
 
-//- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
-//                 didFinishWithResult:(MessageComposeResult)result {
-//    switch(result) {
-//        case MessageComposeResultCancelled:
-//            // user canceled sms
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//            break;
-//        case MessageComposeResultSent:
-//            // user sent sms
-//            //perhaps put an alert here and dismiss the view on one of the alerts buttons
-//            break;
-//        case MessageComposeResultFailed:
-//            // sms send failed
-//            //perhaps put an alert here and dismiss the view when the alert is canceled
-//            break;
-//        default:
-//            break;
-//    }
-//}
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result {
+    switch(result) {
+        case MessageComposeResultCancelled:
+            // user canceled sms
+            [getUI navigationAppearance];
+            [getUI displayAlert:@"Message" message:@"Your message has been cancelled."];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissView];
+            
+            break;
+        case MessageComposeResultSent:
+            // user sent sms
+            //perhaps put an alert here and dismiss the view on one of the alerts buttons
+            [getUI navigationAppearance];
+            [getUI displayAlert:@"Message" message:@"Your message has been sent."];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissView];
+            break;
+        case MessageComposeResultFailed:
+            // sms send failed
+            //perhaps put an alert here and dismiss the view when the alert is canceled
+            [getUI navigationAppearance];
+            [getUI displayAlert:@"Message" message:@"Failed to send message."];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissView];
+            break;
+        default:
+            break;
+    }
+}
 
 - (IBAction)btnEmail:(id)sender {
     
@@ -294,7 +308,6 @@
         }
     }
 }
-
 
 
 @end

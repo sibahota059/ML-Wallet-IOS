@@ -106,6 +106,7 @@
     
     self.view_keyboard.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.view_pinInput.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
+    
 }
 
 #pragma mark - Done loading transaction
@@ -770,6 +771,7 @@
             
         }];
         
+        [_view_pinInput setAlpha:0.9f];
         self.navigationItem.rightBarButtonItems = nil;
         
         self.title = @"ENTER YOUR PIN";
