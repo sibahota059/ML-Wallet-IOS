@@ -7,9 +7,6 @@
 //
 
 #import "EnterCustomerID.h"
-//#import "RegistrationInformation.h"
-//#import "QuestionsActivity.h"
-
 #import "ProfileOutline.h"
 #import "ProfileHeader.h"
 #import "ProfileLabel.h"
@@ -21,12 +18,15 @@
 #define IPAD     UIUserInterfaceIdiomPad
 #import "UITextfieldAnimate.h"
 #import "UIAlertView+alertMe.h"
+#import "ServiceConnection.h"
 @interface EnterCustomerID ()
-
+@property (nonatomic, strong) NSMutableData *responseData;
 @end
 
 @implementation EnterCustomerID
-
+{
+    MBProgressHUD *HUD;
+}
 @synthesize customer;
 CGRect screenRect;
 CGFloat screenWidth;
@@ -69,7 +69,7 @@ UITextfieldAnimate *textAnimate;
     [self addNavigationBar];
     [self createCustomerID];
     [self.view addSubview:scrollView];
-
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -293,14 +293,16 @@ UITextfieldAnimate *textAnimate;
         else{
             NSLog(@"Keyboard not Visible");
         }
-        RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-        regInfo.custIDfirstNumber = firstNumberTF.text;
-        regInfo.custIDsecondNumber = secondNumberTF.text;
-        regInfo.custIDthirdNumber = thirdNumberTF.text;
-        regInfo.custIDphoneNumber = phoneNumberTF.text;
-        
-        [self.navigationController pushViewController:regInfo animated:YES];
-        
+        /*
+         RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+         regInfo.custIDfirstNumber = firstNumberTF.text;
+         regInfo.custIDsecondNumber = secondNumberTF.text;
+         regInfo.custIDthirdNumber = thirdNumberTF.text;
+         regInfo.custIDphoneNumber = phoneNumberTF.text;
+         
+         [self.navigationController pushViewController:regInfo animated:YES];
+         */
+        [self customerIDService];
     }
     else{
         NSLog(@"Empty man Bai!!");
@@ -331,7 +333,7 @@ UITextfieldAnimate *textAnimate;
     {
         [thirdNumberTF becomeFirstResponder];
     }
-   
+    
     
     return NO;
 }
@@ -395,5 +397,240 @@ UITextfieldAnimate *textAnimate;
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
+
+-(void) customerIDService{
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    //Get Branch Coordinate
+    self.responseData = [NSMutableData data];
+    ServiceConnection *str = [ServiceConnection new];
+    //#define URLCustomerIDService @"SearchCustId/?custid={%@}&mobileno={%@}"
+    NSString *custID = [NSString stringWithFormat:@"SearchCustId/?custid={%@%@%@}&mobileno={%@}", firstNumberTF.text,secondNumberTF.text,thirdNumberTF.text,phoneNumberTF.text];
+    NSString *url = [NSString stringWithFormat:@"%@%@", [str NSGetCustomerIDService],custID];
+    
+    NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    
+    NSLog(@"URL - %@", encodedUrl);              // Checking the url
+    
+    NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
+                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                         timeoutInterval:10.0];
+    
+    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
+    [theConnection start];
+    
+}
+
+#pragma mark - NSURLConnection Delegate
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"didReceiveResponse");
+    [self.responseData setLength:0];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.responseData appendData:data];
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError : %@",error);
+    
+    
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"connectionDidFinishLoading");
+    // convert to JSON
+    NSError *myError = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    if (myError == nil) {
+        
+        NSDictionary *resultCoordinates = [res objectForKey:@"SearchCustIdMobileResult"];
+        NSString *strResponseCode = [resultCoordinates objectForKey:@"respcode"];
+        NSString *strResponseMessage = [resultCoordinates objectForKey:@"respmessage"];
+        NSString *strbdate = [resultCoordinates objectForKey:@"bdate"];
+        NSString *strcountry = [resultCoordinates objectForKey:@"country"];
+        NSString *stremailadd = [resultCoordinates objectForKey:@"emailadd"];
+        NSString *strfname = [resultCoordinates objectForKey:@"fname"];
+        NSString *strgender = [resultCoordinates objectForKey:@"gender"];
+        NSString *strlname = [resultCoordinates objectForKey:@"lname"];
+        NSString *strmname = [resultCoordinates objectForKey:@"mname"];
+        NSString *strmobileno = [resultCoordinates objectForKey:@"mobileno"];
+        NSString *strnationality = [resultCoordinates objectForKey:@"nationality"];
+        NSString *strnatureOfWork = [resultCoordinates objectForKey:@"natureOfWork"];
+        NSString *strpermanentAdd = [resultCoordinates objectForKey:@"permanentAdd"];
+        NSString *strprovinceCity = [resultCoordinates objectForKey:@"provinceCity"];
+        NSString *strzipcode = [resultCoordinates objectForKey:@"zipcode"];
+        NSString *strphoto1 = [resultCoordinates objectForKey:@"photo1"];
+        NSString *strphoto2 = [resultCoordinates objectForKey:@"photo2"];
+        NSString *strphoto3 = [resultCoordinates objectForKey:@"photo3"];
+        NSString *strphoto4 = [resultCoordinates objectForKey:@"photo4"];
+        NSString *strbalance = [resultCoordinates objectForKey:@"balance"];
+        NSString *strsecanswer1 = [resultCoordinates objectForKey:@"secanswer1"];
+        NSString *strsecanswer2 = [resultCoordinates objectForKey:@"secanswer2"];
+        NSString *strsecanswer3 = [resultCoordinates objectForKey:@"secanswer3"];
+        NSString *strsecquestion1 = [resultCoordinates objectForKey:@"secquestion1"];
+        NSString *strsecquestion2 = [resultCoordinates objectForKey:@"secquestion2"];
+        NSString *strsecquestion3 = [resultCoordinates objectForKey:@"secquestion3"];
+        NSString *strwalletno = [resultCoordinates objectForKey:@"walletno"];
+        NSLog(@"Response Code : %@",strResponseCode);
+        NSLog(@"Response Message : %@",strResponseMessage);
+        
+
+
+        
+        
+        
+        //if string is null do something
+        //        if([strzipcode isKindOfClass:[NSNull class]]){
+        //            strzipcode = nil;
+        //        }
+        //        else if([strpermanentAdd isKindOfClass:[NSNull class]]){
+        //            strpermanentAdd = @"null";
+        //        }
+        //        else if([strbdate isKindOfClass:[NSNull class]]){
+        //            strbdate = @"null";
+        //        }
+        //        else if([strcountry isKindOfClass:[NSNull class]]){
+        //            strcountry = @"null";
+        //        }
+        //        else if([stremailadd isKindOfClass:[NSNull class]]){
+        //            stremailadd = @"null";
+        //        }
+        //        else if([strfname isKindOfClass:[NSNull class]]){
+        //            strfname = @"null";
+        //        }
+        //        else if([strgender isKindOfClass:[NSNull class]]){
+        //            strgender = @"null";
+        //        }
+        //        else if([strlname isKindOfClass:[NSNull class]]){
+        //            strlname = @"null";
+        //        }
+        //        else if([strmname isKindOfClass:[NSNull class]]){
+        //            strmname = @"null";
+        //        }
+        //        else if([strnationality isKindOfClass:[NSNull class]]){
+        //            strnationality = @"null";
+        //        }
+        //        else if([strmobileno isKindOfClass:[NSNull class]]){
+        //            strmobileno = @"null";
+        //        }
+        //        else if([strprovinceCity isKindOfClass:[NSNull class]]){
+        //            strprovinceCity = @"null";
+        //        }
+        //        else if([strnatureOfWork isKindOfClass:[NSNull class]]){
+        //        strnatureOfWork = @"null";
+        //        }
+        
+        
+        
+        if([strResponseMessage isEqualToString:@"CustID not found."]){
+            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+            regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
+            regInfo.reg_info_custIDsecondNumber = secondNumberTF.text;
+            regInfo.reg_info_custIDthirdNumber = thirdNumberTF.text;
+            regInfo.reg_info_custIDphoneNumber = phoneNumberTF.text;
+            
+            regInfo.reg_info_str_address = strpermanentAdd;
+            regInfo.reg_info_str_birthdate = strbdate;
+            regInfo.reg_info_str_country = strcountry;
+            regInfo.reg_info_str_email = stremailadd;
+            regInfo.reg_info_str_firstName = strfname;
+            regInfo.reg_info_str_gender = strgender;
+            regInfo.reg_info_str_lastName = strlname;
+            regInfo.reg_info_str_middleName = strmname;
+            regInfo.reg_info_str_nationality = strnationality;
+            regInfo.reg_info_str_number = strmobileno;
+            regInfo.reg_info_str_province = strprovinceCity;
+            regInfo.reg_info_str_work = strnatureOfWork;
+            regInfo.reg_info_str_zipcode = strzipcode;
+            
+            
+            regInfo.reg_info_str_photo1 = strphoto1;
+            regInfo.reg_info_str_photo2 = strphoto2;
+            regInfo.reg_info_str_photo3 = strphoto3;
+            regInfo.reg_info_str_photo4 = strphoto4;
+            regInfo.reg_info_str_balance = strbalance;
+            regInfo.reg_info_str_secanswer1 = strsecanswer1;
+            regInfo.reg_info_str_secanswer2 = strsecanswer2;
+            regInfo.reg_info_str_secanswer3 = strsecanswer3;
+            regInfo.reg_info_str_secquestion1 = strsecquestion1;
+            regInfo.reg_info_str_secquestion2 = strsecquestion2;
+            regInfo.reg_info_str_secquestion3 = strsecquestion3;
+            regInfo.reg_info_str_walletno = strwalletno;
+            
+            [self.navigationController pushViewController:regInfo animated:YES];
+            
+        }
+        
+        else if(![strResponseMessage isEqualToString:@"CustID not found."]){
+            
+            RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+            regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
+            regInfo.reg_info_custIDsecondNumber = secondNumberTF.text;
+            regInfo.reg_info_custIDthirdNumber = thirdNumberTF.text;
+            regInfo.reg_info_custIDphoneNumber = phoneNumberTF.text;
+            
+            regInfo.reg_info_str_address = strpermanentAdd;
+            regInfo.reg_info_str_birthdate = strbdate;
+            regInfo.reg_info_str_country = strcountry;
+            regInfo.reg_info_str_email = stremailadd;
+            regInfo.reg_info_str_firstName = strfname;
+            regInfo.reg_info_str_gender = strgender;
+            regInfo.reg_info_str_lastName = strlname;
+            regInfo.reg_info_str_middleName = strmname;
+            regInfo.reg_info_str_nationality = strnationality;
+            regInfo.reg_info_str_number = strmobileno;
+            regInfo.reg_info_str_province = strprovinceCity;
+            regInfo.reg_info_str_work = strnatureOfWork;
+            regInfo.reg_info_str_zipcode = strzipcode;
+            
+            regInfo.reg_info_str_photo1 = strphoto1;
+            regInfo.reg_info_str_photo2 = strphoto2;
+            regInfo.reg_info_str_photo3 = strphoto3;
+            regInfo.reg_info_str_photo4 = strphoto4;
+            regInfo.reg_info_str_balance = strbalance;
+            regInfo.reg_info_str_secanswer1 = strsecanswer1;
+            regInfo.reg_info_str_secanswer2 = strsecanswer2;
+            regInfo.reg_info_str_secanswer3 = strsecanswer3;
+            regInfo.reg_info_str_secquestion1 = strsecquestion1;
+            regInfo.reg_info_str_secquestion2 = strsecquestion2;
+            regInfo.reg_info_str_secquestion3 = strsecquestion3;
+            regInfo.reg_info_str_walletno = strwalletno;
+            
+            [self.navigationController pushViewController:regInfo animated:YES];
+            
+            
+            
+        }
+        
+        [HUD hide:YES];
+        [HUD show:NO];
+    }//end if
+    
+    else {
+        NSLog(@"Error : %@",myError.localizedDescription);
+        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [HUD hide:YES];
+        [HUD show:NO];
+    }//end else
+    
+    
+    
+    
+    
+}//end connectionDidFinishLoading
+
+
+
 
 @end

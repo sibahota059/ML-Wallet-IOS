@@ -23,24 +23,37 @@
 @end
 
 @implementation QuestionsActivity
-@synthesize custIDfirstNumber;
-@synthesize custIDsecondNumber;
-@synthesize custIDthirdNumber;
-@synthesize custIDphoneNumber;
+@synthesize quest_act_custIDfirstNumber;
+@synthesize quest_act_custIDsecondNumber;
+@synthesize quest_act_custIDthirdNumber;
+@synthesize quest_act_custIDphoneNumber;
 
-@synthesize firstName;
-@synthesize middleName;
-@synthesize lastName;
-@synthesize country;
-@synthesize province;
-@synthesize address;
-@synthesize zipcode;
-@synthesize gender;
-@synthesize birthdate;
-@synthesize number;
-@synthesize email;
-@synthesize work;
-@synthesize nationality;
+@synthesize quest_act_firstName;
+@synthesize quest_act_middleName;
+@synthesize quest_act_lastName;
+@synthesize quest_act_country;
+@synthesize quest_act_province;
+@synthesize quest_act_address;
+@synthesize quest_act_zipcode;
+@synthesize quest_act_gender;
+@synthesize quest_act_birthdate;
+@synthesize quest_act_number;
+@synthesize quest_act_email;
+@synthesize quest_act_work;
+@synthesize quest_act_nationality;
+
+@synthesize quest_act_str_photo1;
+@synthesize quest_act_str_photo2;
+@synthesize quest_act_str_photo3;
+@synthesize quest_act_str_photo4;
+@synthesize quest_act_str_balance;
+@synthesize quest_act_str_secanswer1;
+@synthesize quest_act_str_secanswer2;
+@synthesize quest_act_str_secanswer3;
+@synthesize quest_act_str_secquestion1;
+@synthesize quest_act_str_secquestion2;
+@synthesize quest_act_str_secquestion3;
+@synthesize quest_act_str_walletno;
 UIScrollView *scrollView;
 UIView *disableBackground;
 
@@ -99,7 +112,7 @@ SelectQuestionDialog *questionDialog;
     [self createQuestion];
     [self.view addSubview:scrollView];
     [self.view addSubview: disableBackground];
-    NSLog(@"Sa Questions Controller ==== Customer ID = %@ %@ %@ = Phone Number: %@ Birthdate = %@",custIDfirstNumber,custIDsecondNumber,custIDthirdNumber,custIDphoneNumber,birthdate);
+    NSLog(@"Sa Questions Controller ==== Customer ID = %@ %@ %@ = Phone Number: %@ Birthdate = %@",quest_act_custIDfirstNumber,quest_act_custIDsecondNumber,quest_act_custIDthirdNumber,quest_act_custIDphoneNumber,quest_act_birthdate);
 }
 -(void)viewDidAppear:(BOOL)animated{
 
@@ -451,6 +464,50 @@ SelectQuestionDialog *questionDialog;
     {
         NSLog(@"Next ni Bai!");
         AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+        
+        accLog.act_log_custIDfirstNumber = quest_act_custIDfirstNumber;
+        accLog.act_log_custIDsecondNumber = quest_act_custIDsecondNumber;
+        accLog.act_log_custIDthirdNumber = quest_act_custIDthirdNumber;
+        accLog.act_log_custIDphoneNumber = quest_act_custIDphoneNumber;
+        
+        accLog.act_log_firstName = quest_act_firstName;
+        accLog.act_log_middleName = quest_act_middleName;
+        accLog.act_log_lastName = quest_act_lastName;
+        accLog.act_log_country = quest_act_country;
+        accLog.act_log_province = quest_act_province;
+        accLog.act_log_address = quest_act_address;
+        accLog.act_log_zipcode = quest_act_zipcode;
+        accLog.act_log_gender = quest_act_gender;
+        accLog.act_log_birthdate = quest_act_birthdate;
+        accLog.act_log_number = quest_act_number;
+        accLog.act_log_email = quest_act_email;
+        accLog.act_log_work = quest_act_work;
+        accLog.act_log_nationality = quest_act_nationality;
+        
+        
+        accLog.act_log_str_photo1 = quest_act_str_photo1;
+        accLog.act_log_str_photo2 = quest_act_str_photo2;
+        accLog.act_log_str_photo3 = quest_act_str_photo3;
+        accLog.act_log_str_photo4 = quest_act_str_photo4;
+        accLog.act_log_str_balance = quest_act_str_balance;
+//        accLog.act_log_str_secanswer1 = quest_act_str_secanswer1;
+//        accLog.act_log_str_secanswer2 = quest_act_str_secanswer2;
+//        accLog.act_log_str_secanswer3 = quest_act_str_secanswer3;
+        accLog.act_log_str_secanswer1 = answerTF1.text;
+        accLog.act_log_str_secanswer2 = answerTF2.text;
+        accLog.act_log_str_secanswer3 = answerTF3.text;
+        
+        //questionLbl1
+//        accLog.act_log_str_secquestion1 = quest_act_str_secquestion1;
+//        accLog.act_log_str_secquestion2 = quest_act_str_secquestion2;
+//        accLog.act_log_str_secquestion3 = quest_act_str_secquestion3;
+        accLog.act_log_str_secquestion1 = questionLbl1.text;
+        accLog.act_log_str_secquestion2 = questionLbl2.text;
+        accLog.act_log_str_secquestion3 = questionLbl3.text;
+        accLog.act_log_str_walletno = quest_act_str_walletno;
+        
+        
+        
         [self.navigationController pushViewController:accLog animated:YES];
         
     }

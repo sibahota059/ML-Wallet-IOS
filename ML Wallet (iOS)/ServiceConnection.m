@@ -13,13 +13,13 @@
 
 #define URLService @"/mobile/client/mobilekp_wcf/service.svc/"
 #define URLMapService @"/mobile/Client/MapService/MapService.svc/getCoordinates/"
-
 //MAP Service
 #define URLLocationService @"Http://maps.google.com/maps/api/geocode/json?"
 
 //Albert Added MobilePdf
 #define URLMobilePdf @"/Mobile/Client/Mobilepdf/Mobilepdf.svc/"
 
+#define URLCreateAccountService @"/insertMobileAccounts"
 @implementation ServiceConnection
 
 #pragma mark - Return URL Service
@@ -44,4 +44,10 @@
     return [NSString stringWithFormat:@"%@%@", URLHttps_IP, URLMobilePdf];
 }
 
+-(NSString *) NSGetCustomerIDService{
+    return [NSString stringWithFormat:@"%@%@",URLHttps_IP,URLService];
+}
+-(NSString *) NSCreateAccountService{
+    return [NSString stringWithFormat:@"%@%@%@",URLHttps_IP,URLService,URLCreateAccountService];
+}
 @end

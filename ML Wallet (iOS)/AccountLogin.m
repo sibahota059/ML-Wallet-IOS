@@ -14,11 +14,46 @@
 #import "StartViewController.h"
 #define IDIOM    UI_USER_INTERFACE_IDIOM()
 #define IPAD     UIUserInterfaceIdiomPad
+#import "UIAlertView+alertMe.h"
+#import "ServiceConnection.h"
 @interface AccountLogin ()
-
+@property (nonatomic, strong) NSMutableData *responseData;
 @end
 
+
 @implementation AccountLogin
+@synthesize act_log_custIDfirstNumber;
+@synthesize act_log_custIDsecondNumber;
+@synthesize act_log_custIDthirdNumber;
+@synthesize act_log_custIDphoneNumber;
+
+@synthesize act_log_firstName;
+@synthesize act_log_middleName;
+@synthesize act_log_lastName;
+@synthesize act_log_country;
+@synthesize act_log_province;
+@synthesize act_log_address;
+@synthesize act_log_zipcode;
+@synthesize act_log_gender;
+@synthesize act_log_birthdate;
+@synthesize act_log_number;
+@synthesize act_log_email;
+@synthesize act_log_work;
+@synthesize act_log_nationality;
+
+@synthesize act_log_str_photo1;
+@synthesize act_log_str_photo2;
+@synthesize act_log_str_photo3;
+@synthesize act_log_str_photo4;
+@synthesize act_log_str_balance;
+@synthesize act_log_str_secanswer1;
+@synthesize act_log_str_secanswer2;
+@synthesize act_log_str_secanswer3;
+@synthesize act_log_str_secquestion1;
+@synthesize act_log_str_secquestion2;
+@synthesize act_log_str_secquestion3;
+@synthesize act_log_str_walletno;
+
 ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
 CGRect screenRect;
 CGFloat screenWidth;
@@ -201,6 +236,8 @@ UIScrollView *scrollView;
 
 -(void) nextPressed{
     NSLog(@"Para Register Ni!");
+    NSLog(@"Question ug answer ni %@ %@",act_log_str_secquestion1,act_log_str_secanswer1);
+    NSLog(@"Phone ni %@",act_log_custIDphoneNumber);
     if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF==0){
         NSLog(@"Failed'");
     }
@@ -232,6 +269,51 @@ UIScrollView *scrollView;
     
     return NO;
 }
+-(void)createAccount{
+
+}
+
+#pragma mark - NSURLConnection Delegate
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"didReceiveResponse");
+    [self.responseData setLength:0];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.responseData appendData:data];
+}
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError : %@",error);
+    
+    
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"connectionDidFinishLoading");
+    // convert to JSON
+    NSError *myError = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    if (myError == nil) {
+        
+    }
+    else{
+        
+    }
+    
+    
+    
+    
+    
+}//end connectionDidFinishLoading
+
+
+
+
+
 
 - (BOOL)prefersStatusBarHidden{
     return YES;

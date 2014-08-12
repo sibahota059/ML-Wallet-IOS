@@ -9,8 +9,8 @@
 //#import "MLViewController.h"
 //@interface EnterCustomerID : MLViewController <UITextFieldDelegate>
 #import "Customer.h"
-
-@interface EnterCustomerID : UIViewController <UITextFieldDelegate>
+#import "MBProgressHUD.h"
+@interface EnterCustomerID : UIViewController <UITextFieldDelegate,MBProgressHUDDelegate,UIAlertViewDelegate>
 
 
 @property (strong, nonatomic) Customer *customer;
