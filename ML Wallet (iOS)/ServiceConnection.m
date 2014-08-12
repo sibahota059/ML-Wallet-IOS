@@ -19,7 +19,7 @@
 //Albert Added MobilePdf
 #define URLMobilePdf @"/Mobile/Client/Mobilepdf/Mobilepdf.svc/"
 
-#define URLCreateAccountService @"/insertMobileAccounts"
+#define URLCreateAccountService @"insertMobileAccounts"
 @implementation ServiceConnection
 
 #pragma mark - Return URL Service

@@ -21,7 +21,9 @@
 @end
 
 
-@implementation AccountLogin
+@implementation AccountLogin{
+ MBProgressHUD *HUD;
+}
 @synthesize act_log_custIDfirstNumber;
 @synthesize act_log_custIDsecondNumber;
 @synthesize act_log_custIDthirdNumber;
@@ -240,6 +242,7 @@ UIScrollView *scrollView;
     NSLog(@"Phone ni %@",act_log_custIDphoneNumber);
     if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF==0){
         NSLog(@"Failed'");
+        [self createAccount];
     }
     else{
         NSLog(@"Success");
@@ -270,46 +273,129 @@ UIScrollView *scrollView;
     return NO;
 }
 -(void)createAccount{
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    //Get Branch Coordinate
+    self.responseData = [NSMutableData data];
+    ServiceConnection *str = [ServiceConnection new];
+    double walletVersion = 1.2;
+    NSString *url = [NSString stringWithFormat:@"%@", [str NSCreateAccountService]];
+    NSString *body =  [NSString stringWithFormat:@"custid=%@%@%@,username=%@,password=%@,mobileno=%@,emailadd=%@,fname=%@,mname=%@,lname=%@,gender=%@,bdate=%@,nationality=%@,natureOfWork=%@,provinceCity=%@,permanentAdd=%@,country=%@,zipcode=%@,secquestion1=%@,secanswer1=%@,secquestion2=%@,secanswer2=%@,secquestion3=%@,secanswer3=%@,photo1=%@,photo2=%@,photo3=%@,photo4=%@,version=%f",act_log_custIDfirstNumber,act_log_custIDsecondNumber,act_log_custIDthirdNumber,userNameTF.text,passwordTF.text,act_log_number,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,walletVersion];
+    NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    
+    NSLog(@"URL - %@", encodedUrl);              // Checking the url
+    
+//    NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
+//                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+//                                                         timeoutInterval:10.0];
+//    
+//    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
+//    [theConnection start];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]];
+    //sets the receiver’s timeout interval, in seconds
+    [urlRequest setTimeoutInterval:30.0f];
+    //sets the receiver’s HTTP request method
+    [urlRequest setHTTPMethod:@"POST"];
+    //sets the request body of the receiver to the specified data.
+    [urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    //Loads the data for a URL request and executes a handler block on an
+    //operation queue when the request completes or fails.
+    [NSURLConnection
+     sendAsynchronousRequest:urlRequest
+     queue:queue
+     completionHandler:^(NSURLResponse *response,
+                         NSData *data,
+                         NSError *error) {
+         if ([data length] >0 && error == nil){
+             //process the JSON response
+             //use the main queue so that we can interact with the screen
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self parseResponse:data];
+             });
+         }
+         else if ([data length] == 0 && error == nil){
+             NSLog(@"Empty Response, not sure why?");
+         }
+         else if (error != nil){
+             NSLog(@"Not again, what is the error = %@", error);
+         }
+     }];
+
 
 }
 
-#pragma mark - NSURLConnection Delegate
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
-    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
-}
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-}
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"didReceiveResponse");
-    [self.responseData setLength:0];
-}
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
-}
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError : %@",error);
+- (void) parseResponse:(NSData *) data {
     
+    NSString *myData = [[NSString alloc] initWithData:data
+                                             encoding:NSUTF8StringEncoding];
+    NSLog(@"JSON data = %@", myData);
+    NSError *error = nil;
     
-}
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"connectionDidFinishLoading");
-    // convert to JSON
-    NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    if (myError == nil) {
+    //parsing the JSON response
+    id jsonObject = [NSJSONSerialization
+                     JSONObjectWithData:data
+                     options:NSJSONReadingAllowFragments
+                     error:&error];
+    if (jsonObject != nil && error == nil){
+        NSLog(@"Successfully deserialized...");
+        
+        //check if the country code was valid
+        NSNumber *success = [jsonObject objectForKey:@"success"];
+        if([success boolValue] == YES){
+ NSLog(@"Success");
+        }
+        else {
+            NSLog(@"Failed");
+        }
         
     }
-    else{
-        
-    }
     
-    
-    
-    
-    
-}//end connectionDidFinishLoading
+}
 
+//#pragma mark - NSURLConnection Delegate
+//- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+//    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+//}
+//- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+//    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+//}
+//- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+//    NSLog(@"didReceiveResponse");
+//    [self.responseData setLength:0];
+//}
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+//    [self.responseData appendData:data];
+//}
+//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+//    NSLog(@"didFailWithError : %@",error);
+//    
+//    
+//}
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+//    NSLog(@"connectionDidFinishLoading");
+//    // convert to JSON
+//    NSError *myError = nil;
+//    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+//    if (myError == nil) {
+//        
+//    }
+//    else{
+//        
+//    }
+//    
+//    
+//    
+//    
+//    
+//}//end connectionDidFinishLoading
+//
 
 
 
