@@ -61,10 +61,12 @@
     return YES;
 }
 
-//TODO
 //Timeout Selector
 -(void)applicationDidTimeout:(NSNotification *) notif
-{    
+{
+    if (self.isShowing) {
+        return;
+    } else {
     //goto Timeout
     NSLog (@"time exceeded!!");
     if (self.viewController.isViewLoaded && self.viewController.view.window)
@@ -74,9 +76,8 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
         self.navigationController.navigationBarHidden =YES;
     }
-   
+    }
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -86,6 +87,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    NSLog(@"GOing background");
+    [self.navigationController.view endEditing:YES];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }

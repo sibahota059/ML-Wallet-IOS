@@ -348,7 +348,6 @@
             balance     = [result valueForKeyPath:@"balance"];
             mname       = [result valueForKeyPath:@"mname"];
             
-            
             NSString *bal = [NSString stringWithFormat:@"%@", balance];
             
             //Saving Data Plist
@@ -359,6 +358,8 @@
             [saveData initSaveData:photo forKey:@"photo"];
             [saveData initSaveData:bal forKey:@"balance"];
             [saveData initSaveData:mname forKey:@"mname"];
+            [saveData initSaveData:pass forKey:@"password"];
+            [saveData initSaveData:user forKey:@"username"];
             if ([self.location isEqualToString:@""] || self.location.length == 0 || self.location == nil) {
                 self.location = @"";
             }

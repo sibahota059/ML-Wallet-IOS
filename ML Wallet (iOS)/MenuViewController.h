@@ -54,6 +54,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblBalance;
 @property (strong, nonatomic) IBOutlet UILabel *lblWalletno;
 @property (strong, nonatomic) IBOutlet UILabel *lblDate;
+@property (strong, nonatomic) IBOutlet UIButton *logout;
+@property (strong, nonatomic) IBOutlet UIButton *mlSite;
+@property (strong, nonatomic) IBOutlet UIButton *others;
 
 //Assign From LoginviewController
 @property (assign, nonatomic) NSString *fullname;

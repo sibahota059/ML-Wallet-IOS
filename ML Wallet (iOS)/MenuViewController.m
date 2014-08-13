@@ -24,6 +24,7 @@
 #import "SaveWalletData.h"
 #import "MLhuillierWebViewController.h"
 #import "UIImage+DecodeStringToImage.h"
+#import "AccountMainPad.h"
 
 
 #define  VIEW_HIDDEN -320
@@ -145,6 +146,19 @@
         }
         else //4 inc below
         {
+            self.logout.frame = CGRectMake(self.logout.frame.origin.x + 40,
+                                           self.logout.frame.origin.y + 38,
+                                           self.logout.frame.size.width,
+                                           self.logout.frame.size.height);
+            self.others.frame = CGRectMake(self.others.frame.origin.x - 38,
+                                           self.others.frame.origin.y + 38,
+                                           self.others.frame.size.width,
+                                           self.others.frame.size.height);
+//            self.mlSite.frame = CGRectMake(self.mlSite.frame.origin.x + 80,
+//                                           self.mlSite.frame.origin.y,
+//                                           self.mlSite.frame.size.width - 200,
+//                                           self.mlSite.frame.size.height);
+            
             [self.scrollView setContentSize:CGSizeMake(320, 400)];
             [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
         }
@@ -239,6 +253,7 @@
                 [self.lblAccount setHidden:NO];
                 self.lblMain.text = @"MENU";
                 self.lblMenu.text = @"";
+
             }else{
                 [self animateLayerToPoint: VIEW_HIDDEN];
             
@@ -246,8 +261,11 @@
                 [self.lblAccount setHidden:YES];
                 self.lblMain.text = @"ACCOUNT";
                 self.lblMenu.text = @"MENU";
-            }
+                
+              }
         }
+        
+        
     } else { //iPad User
         if (pan.state == UIGestureRecognizerStateChanged){
             CGPoint point = [pan translationInView:self.topLayer];
@@ -502,18 +520,32 @@
 
 - (IBAction)btn_Myprofile:(id)sender {
 
-    AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
-
     
-    [self.navigationController pushViewController:accountMain animated:YES];
-    
-    
-    
+    [self checkDevice];
     
     
 //    [UIAlertView myCostumeAlert:@"My Profile" alertMessage:@"Todo." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     
 }
+
+
+-(void)checkDevice{
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
+        [self.navigationController pushViewController:accountMain animated:YES];
+    }
+    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        AccountMainPad *accountMainPad = [[AccountMainPad alloc] initWithNibName:@"AccountMainPad" bundle:nil];
+        [self.navigationController pushViewController:accountMainPad animated:YES];
+        
+    }
+    
+}
+
+
 
 
 

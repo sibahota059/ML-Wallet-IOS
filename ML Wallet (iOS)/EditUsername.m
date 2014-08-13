@@ -87,7 +87,7 @@ UIScrollView *profileScroll;
     [oldUsernameOutline setBackgroundColor:[UIColor redColor]];
     UITextField *oldUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [oldUsername setBackgroundColor:[UIColor whiteColor]];
-    [oldUsername setPlaceholder:@"Old username"];
+    [oldUsername setPlaceholder:@" Old username"];
     [oldUsernameOutline addSubview:oldUsername];
     
     
@@ -97,7 +97,7 @@ UIScrollView *profileScroll;
     [newUsernameOutline setBackgroundColor:[UIColor redColor]];
     UITextField *newUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [newUsername setBackgroundColor:[UIColor whiteColor]];
-    [newUsername setPlaceholder:@"New username"];
+    [newUsername setPlaceholder:@" New username"];
     [newUsernameOutline addSubview:newUsername];
     
     
@@ -106,7 +106,7 @@ UIScrollView *profileScroll;
     [confirmUsernameOutline setBackgroundColor:[UIColor redColor]];
     UITextField *confirmUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [confirmUsername setBackgroundColor:[UIColor whiteColor]];
-    [confirmUsername setPlaceholder:@"Confirm username"];
+    [confirmUsername setPlaceholder:@" Confirm username"];
     [confirmUsernameOutline addSubview:confirmUsername];
     
     
@@ -133,7 +133,8 @@ UIScrollView *profileScroll;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [backView addSubview:backButton];

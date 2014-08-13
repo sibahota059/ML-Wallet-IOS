@@ -16,6 +16,8 @@
 
 @end
 
+
+
 @interface KpRates : NSObject
 @property (weak, nonatomic) id<KpRatesDelegate>delegate;
 @property(weak, nonatomic) NSDictionary *getRates;

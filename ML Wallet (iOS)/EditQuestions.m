@@ -26,8 +26,7 @@ NSArray *questions1, *questions2, *questions3;
 
 ProfileButton *button1, *button2, *button3;
 ProfileLabel *questionLbl1, *questionLbl2, *questionLbl3;
-ProfileTextField *answerTF1, *answerTF2, *answerTF3;
-
+UITextField *firstAnswer, *secondAnswer, *thirdAnswer;
 
 SelectQuestionDialog *questionDialog;
 
@@ -87,7 +86,7 @@ SelectQuestionDialog *questionDialog;
     
     //QUESTION 1
     
-    button1 = [[ProfileButton alloc] initWithString:@"?" x:10 y:30];
+    button1 = [[ProfileButton alloc] initWithString:@"?" x:20 y:30];
     [button1 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
     
     questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:45 y:30 myColor:[UIColor blackColor] width:260];
@@ -96,21 +95,19 @@ SelectQuestionDialog *questionDialog;
     
     //QUESTION 2
     
-    button2 = [[ProfileButton alloc] initWithString:@"?" x:10 y:120];
+    button2 = [[ProfileButton alloc] initWithString:@"?" x:20 y:120];
     [button2 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
     questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:45 y:120 myColor:[UIColor blackColor] width:260];
 
     //QUESITON 3
     
-    button3 = [[ProfileButton alloc] initWithString:@"?" x:10 y:210];
+    button3 = [[ProfileButton alloc] initWithString:@"?" x:20 y:210];
     [button3 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
     questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:45 y:210 myColor:[UIColor blackColor] width:260];
 
     
     
-    answerTF1.delegate = self;
-    answerTF2.delegate = self;
-    answerTF3.delegate = self;
+
     
     
     
@@ -131,35 +128,50 @@ SelectQuestionDialog *questionDialog;
     
 }
 
-
-
-
-
 -(void) createAnswer{
     
     
     
     //QUESTION 1
-    answerTF1 = [[ProfileTextField alloc] initWithFrame:CGRectMake(5, 70, 285, 30) word:@"answer 1"];
+    UIView *firstAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 70, 280, 30)];
+    [firstAnswerOutline setBackgroundColor:[UIColor redColor]];
+    
+    firstAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    [firstAnswer setBackgroundColor:[UIColor whiteColor]];
+    [firstAnswer setPlaceholder:@" Answer 1"];
+    [firstAnswerOutline addSubview:firstAnswer];
     
     
     //QUESTION 2
-    answerTF2 = [[ProfileTextField alloc] initWithFrame:CGRectMake(5, 160, 285, 30) word:@"answer 2"];
-
+    UIView *secondAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 160, 280, 30)];
+    [secondAnswerOutline setBackgroundColor:[UIColor redColor]];
+    
+    secondAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    [secondAnswer setBackgroundColor:[UIColor whiteColor]];
+    [secondAnswer setPlaceholder:@" Answer 2"];
+    [secondAnswerOutline addSubview:secondAnswer];
+    
     
     //QUESITON 3
-    answerTF3 = [[ProfileTextField alloc] initWithFrame:CGRectMake(5, 250, 285, 30) word:@"answer 3"];
+    UIView *thirdAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 250, 280, 30)];
+    [thirdAnswerOutline setBackgroundColor:[UIColor redColor]];
+    
+    thirdAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    [thirdAnswer setBackgroundColor:[UIColor whiteColor]];
+    [thirdAnswer setPlaceholder:@" Answer 3"];
+    [thirdAnswerOutline addSubview:thirdAnswer];
+    
 
     
-    answerTF1.delegate = self;
-    answerTF2.delegate = self;
-    answerTF3.delegate = self;
+    firstAnswer.delegate = self;
+    secondAnswer.delegate = self;
+    thirdAnswer.delegate = self;
 
     //ADDING THE COMPONENTS
 
-    [scrollView addSubview: answerTF1];
-    [scrollView addSubview:answerTF2];
-    [scrollView addSubview:answerTF3];
+    [scrollView addSubview: firstAnswerOutline];
+    [scrollView addSubview:secondAnswerOutline];
+    [scrollView addSubview:thirdAnswerOutline];
 
 }
 
@@ -182,7 +194,7 @@ SelectQuestionDialog *questionDialog;
     
     if(sender == button1)
     {
-        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 50, 320, 500) stringArray:questions1];
+        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions1];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion1:) forControlEvents:UIControlEventTouchUpInside];
@@ -191,7 +203,7 @@ SelectQuestionDialog *questionDialog;
     }
     else if(sender == button2)
     {
-        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 50, 320, 500) stringArray:questions2];
+        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions2];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion2:) forControlEvents:UIControlEventTouchUpInside];
@@ -199,7 +211,7 @@ SelectQuestionDialog *questionDialog;
     }
     else
     {
-        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 50, 320, 500) stringArray:questions3];
+        questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions3];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion3:) forControlEvents:UIControlEventTouchUpInside];
@@ -241,17 +253,11 @@ SelectQuestionDialog *questionDialog;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    //    [UIView animateWithDuration:0.5
-    //                          delay:0.0
-    //                        options:UIViewAnimationOptionCurveEaseIn
-    //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
-    //                     completion:^(BOOL finished){}];
     
     
-    
-    [answerTF1 resignFirstResponder];
-    [answerTF2 resignFirstResponder];
-    [answerTF3 resignFirstResponder];
+    [firstAnswer resignFirstResponder];
+    [secondAnswer resignFirstResponder];
+    [thirdAnswer resignFirstResponder];
     
     return YES;
 }
@@ -265,7 +271,14 @@ SelectQuestionDialog *questionDialog;
 
 
 
-
+-(void)fadeInAnimation:(UIView *) aView{
+    CATransition *transition = [CATransition animation];
+    transition.type = kCAAnimationRotateAuto;
+    transition.duration = 0.5f;
+    transition.delegate = self;
+    [aView.layer addAnimation:transition forKey:nil];
+    
+}
 
 
 
@@ -281,7 +294,8 @@ SelectQuestionDialog *questionDialog;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [backView addSubview:backButton];

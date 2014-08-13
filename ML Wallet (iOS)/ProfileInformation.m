@@ -136,6 +136,16 @@ ProfileOutline *firstNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *ad
     
 }
 
+-(void) viewWillAppear:(BOOL)animated{
+
+    if(![dialog isHidden])
+    {
+        [dialog setHidden:YES];
+    }
+
+
+}
+
 
 
 
@@ -178,21 +188,25 @@ ProfileOutline *firstNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *ad
     self.title = @"My Profile";
     
     //RIGHT NAVIGATION BUTTON
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+//      [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [backView addSubview:backButton];
     
-    [backView addSubview:backButton];
     
-    UIBarButtonItem *backNavButton = [[UIBarButtonItem alloc] initWithCustomView:backView];
-    [backNavButton setStyle:UIBarButtonItemStyleBordered];
+//    UIBarButtonItem *backNavButton = [[UIBarButtonItem alloc] initWithCustomView:backView];
+//    [backNavButton setStyle:UIBarButtonItemStyleBordered];
 
 
     //RIGHT NAVIGATION BUTTON
     UIView *editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [editButton setImage:[UIImage imageNamed:@"edit_profile.png"] forState:UIControlStateNormal];
+   [editButton setImage:[UIImage imageNamed:@"my_edit.png"] forState:UIControlStateNormal];
+    
+  //[editButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
     [editButton addTarget:self action:@selector(editPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [editView addSubview:editButton];
@@ -203,9 +217,7 @@ ProfileOutline *firstNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *ad
     [editNavButton setAction:@selector(editPressed:)];
     
 
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setTintColor:[UIColor redColor]];
-    [self.navigationItem setLeftBarButtonItem:backNavButton];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];//    [self.navigationItem setLeftBarButtonItem:backNavButton];
     [self.navigationItem setRightBarButtonItem:editNavButton];
     
 }

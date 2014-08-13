@@ -80,7 +80,7 @@ UIScrollView *profileScroll;
     [oldEmailOutline setBackgroundColor:[UIColor redColor]];
     UITextField *oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [oldEmail setBackgroundColor:[UIColor whiteColor]];
-    [oldEmail setPlaceholder:@"Old e-mail"];
+    [oldEmail setPlaceholder:@" Old e-mail"];
     [oldEmailOutline addSubview:oldEmail];
     
     
@@ -90,7 +90,7 @@ UIScrollView *profileScroll;
     [newEmailOutline setBackgroundColor:[UIColor redColor]];
     UITextField *newEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [newEmail setBackgroundColor:[UIColor whiteColor]];
-    [newEmail setPlaceholder:@"New e-mail"];
+    [newEmail setPlaceholder:@" New e-mail"];
     [newEmailOutline addSubview:newEmail];
     
     
@@ -99,7 +99,7 @@ UIScrollView *profileScroll;
     [confirmEmailOutline setBackgroundColor:[UIColor redColor]];
     UITextField *confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [confirmEmail setBackgroundColor:[UIColor whiteColor]];
-    [confirmEmail setPlaceholder:@"Confirm e-mail"];
+    [confirmEmail setPlaceholder:@" Confirm e-mail"];
     [confirmEmailOutline addSubview:confirmEmail];
     
     
@@ -146,7 +146,8 @@ UIScrollView *profileScroll;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
+     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     [backView addSubview:backButton];
