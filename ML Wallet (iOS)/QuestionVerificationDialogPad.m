@@ -188,6 +188,7 @@ UIView *dimLight;
     answer = [[UITextField alloc] initWithFrame:CGRectMake(15, 200, 250, 30)];
     [answer setBackgroundColor:[UIColor whiteColor]];
     [answer setBorderStyle:UITextBorderStyleRoundedRect];
+    [answer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [answer setPlaceholder:@" Enter your answer..."];
     
     
@@ -384,10 +385,6 @@ UIView *dimLight;
     
     
 }
-
-
-
-
 
 
 

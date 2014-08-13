@@ -19,7 +19,7 @@ UIScrollView *profileScroll;
 
 NSDictionary *loadData;
 
-NSString *USERNAME_VAL_ERROR = @"Validation Error";
+NSString *USERNAMEPAD_VAL_ERROR = @"Validation Error";
 
 NSString *userName;
 
@@ -104,6 +104,7 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     [oldUsername setBackgroundColor:[UIColor whiteColor]];
     [oldUsername setFont:[UIFont systemFontOfSize:19.0f]];
     [oldUsername setPlaceholder:@" Old username"];
+    [oldUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldUsernameOutline addSubview:oldUsername];
     
     
@@ -115,6 +116,7 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     [newUsername setBackgroundColor:[UIColor whiteColor]];
     [newUsername setFont:[UIFont systemFontOfSize:19.0f]];
     [newUsername setPlaceholder:@" New username"];
+    [newUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newUsernameOutline addSubview:newUsername];
     
     
@@ -125,6 +127,7 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     [confirmUsername setBackgroundColor:[UIColor whiteColor]];
     [confirmUsername setFont:[UIFont systemFontOfSize:19.0f]];
     [confirmUsername setPlaceholder:@" Confirm username"];
+    [confirmUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmUsernameOutline addSubview:confirmUsername];
     
     
@@ -192,7 +195,7 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
 
 -(void)savePressed:(id)sender{
     
-    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:USERNAME_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:USERNAMEPAD_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
 
     NSString *userInputOldUserName = oldUsername.text;
@@ -239,7 +242,8 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     {
         //TO DO
         [saveAlert setMessage:@"Success."];
-}
+        
+    }
     
     
    

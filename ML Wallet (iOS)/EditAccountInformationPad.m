@@ -140,13 +140,6 @@ NSString *firstNameValue, *middleNameValue, *lastNameValue, *countryValue, *prov
     
 }
 
-
-
-
-
-
-
-
 -(void) createImageInfo{
     
 
