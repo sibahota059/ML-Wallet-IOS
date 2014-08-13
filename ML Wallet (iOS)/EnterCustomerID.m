@@ -307,7 +307,8 @@ UITextfieldAnimate *textAnimate;
     else{
         NSLog(@"Empty man Bai!!");
         [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        
+        RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+        [self.navigationController pushViewController:regInfo animated:YES];
     }
 }
 
@@ -485,54 +486,51 @@ UITextfieldAnimate *textAnimate;
         NSLog(@"Response Message : %@",strResponseMessage);
         
 
-
-        
-        
-        
         //if string is null do something
-        //        if([strzipcode isKindOfClass:[NSNull class]]){
-        //            strzipcode = nil;
-        //        }
-        //        else if([strpermanentAdd isKindOfClass:[NSNull class]]){
-        //            strpermanentAdd = @"null";
-        //        }
-        //        else if([strbdate isKindOfClass:[NSNull class]]){
-        //            strbdate = @"null";
-        //        }
-        //        else if([strcountry isKindOfClass:[NSNull class]]){
-        //            strcountry = @"null";
-        //        }
-        //        else if([stremailadd isKindOfClass:[NSNull class]]){
-        //            stremailadd = @"null";
-        //        }
-        //        else if([strfname isKindOfClass:[NSNull class]]){
-        //            strfname = @"null";
-        //        }
-        //        else if([strgender isKindOfClass:[NSNull class]]){
-        //            strgender = @"null";
-        //        }
-        //        else if([strlname isKindOfClass:[NSNull class]]){
-        //            strlname = @"null";
-        //        }
-        //        else if([strmname isKindOfClass:[NSNull class]]){
-        //            strmname = @"null";
-        //        }
-        //        else if([strnationality isKindOfClass:[NSNull class]]){
-        //            strnationality = @"null";
-        //        }
-        //        else if([strmobileno isKindOfClass:[NSNull class]]){
-        //            strmobileno = @"null";
-        //        }
-        //        else if([strprovinceCity isKindOfClass:[NSNull class]]){
-        //            strprovinceCity = @"null";
-        //        }
-        //        else if([strnatureOfWork isKindOfClass:[NSNull class]]){
-        //        strnatureOfWork = @"null";
-        //        }
+//                if([strzipcode isKindOfClass:[NSNull class]]){
+//                    strzipcode = @"null";
+//                }
+//                else if([strpermanentAdd isKindOfClass:[NSNull class]]){
+//                    strpermanentAdd = @"null";
+//                }
+//                else if([strbdate isKindOfClass:[NSNull class]]){
+//                    strbdate = @"null";
+//                }
+//                else if([strcountry isKindOfClass:[NSNull class]]){
+//                   strcountry = @"null";
+//                }
+//                else if([stremailadd isKindOfClass:[NSNull class]]){
+//                    stremailadd = @"null";
+//                }
+//                else if([strfname isKindOfClass:[NSNull class]]){
+//                    strfname = @"null";
+//                }
+//                else if([strgender isKindOfClass:[NSNull class]]){
+//                    strgender = @"null";
+//                }
+//                else if([strlname isKindOfClass:[NSNull class]]){
+//                    strlname = @"null";
+//                }
+//                else if([strmname isKindOfClass:[NSNull class]]){
+//                    strmname = @"null";
+//                }
+//                else if([strnationality isKindOfClass:[NSNull class]]){
+//                    strnationality = @"null";
+//                }
+//                else if([strmobileno isKindOfClass:[NSNull class]]){
+//                    strmobileno = @"null";
+//                }
+//                else if([strprovinceCity isKindOfClass:[NSNull class]]){
+//                    strprovinceCity = @"null";
+//                }
+//                else if([strnatureOfWork isKindOfClass:[NSNull class]]){
+//                strnatureOfWork = @"null";
+//                }
         
         
         
         if([strResponseMessage isEqualToString:@"CustID not found."]){
+           
             [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
             RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
             regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
@@ -608,7 +606,6 @@ UITextfieldAnimate *textAnimate;
             regInfo.reg_info_str_walletno = strwalletno;
             
             [self.navigationController pushViewController:regInfo animated:YES];
-            
             
             
         }

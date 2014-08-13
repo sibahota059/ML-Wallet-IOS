@@ -163,13 +163,14 @@ UIScrollView *scrollView;
         passwordTF.layer.masksToBounds=YES;
         passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
         passwordTF.layer.borderWidth= 1.0f;
+        passwordTF.secureTextEntry = YES;
         
         retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 130, 280, 30) word:@"Retype Password"];
         retypePasswordTF.layer.cornerRadius=8.0f;
         retypePasswordTF.layer.masksToBounds=YES;
         retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
         retypePasswordTF.layer.borderWidth= 1.0f;
-        
+        retypePasswordTF.secureTextEntry = YES;
         
         userNameTF.delegate = self;
         passwordTF.delegate = self;
@@ -246,6 +247,8 @@ UIScrollView *scrollView;
     }
     else{
         NSLog(@"Success");
+       // [self insertMobileAcc];
+        //[self createAccount];
     }
     
 }
@@ -272,6 +275,28 @@ UIScrollView *scrollView;
     
     return NO;
 }
+-(void)insertMobileAcc{
+    self.responseData = [NSMutableData data];
+    ServiceConnection *str = [ServiceConnection new];
+    //#define URLCustomerIDService @"SearchCustId/?custid={%@}&mobileno={%@}"
+    double walletVersion = 1.2;
+    NSString *customerID = [NSString stringWithFormat:@"%@%@%@",act_log_custIDfirstNumber,act_log_custIDsecondNumber,act_log_custIDthirdNumber];
+ //   NSString *body =  [NSString stringWithFormat:@"custid=%@&username=%@&password=%@&mobileno=%@&emailadd=%@&fname=%@&mname=%@&lname=%@&gender=%@&bdate=%@&nationality=%@&natureOfWork=%@&provinceCity=%@&permanentAdd=%@&country=%@&zipcode=%@&secquestion1=%@&secanswer1=%@&secquestion2=%@&secanswer2=%@&secquestion3=%@&secanswer3=%@&photo1=%@&photo2=%@&photo3=%@&photo4=%@&version=%f",customerID,userNameTF.text,passwordTF.text,act_log_number,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,walletVersion];
+ NSString *body =  [NSString stringWithFormat:@"custid=%@&username=%@&password=%@&mobileno=%@&emailadd=%@&fname=%@&mname=%@&lname=%@&gender=%@&bdate=%@&nationality=%@&natureOfWork=%@&provinceCity=%@&permanentAdd=%@&country=%@&zipcode=%@&secquestion1=%@&secanswer1=%@&secquestion2=%@&secanswer2=%@&secquestion3=%@&secanswer3=%@&photo1=%@&photo2=%@&photo3=%@&photo4=%@&version=%f",customerID,userNameTF.text,passwordTF.text,act_log_number,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,walletVersion];
+    NSString *url = [NSString stringWithFormat:@"%@", [str NSCreateAccountService]];
+    
+    NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    
+    NSLog(@"URL - %@", encodedUrl);              // Checking the url
+    
+    NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
+                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                         timeoutInterval:10.0];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
+    [theConnection start];
+}
 -(void)createAccount{
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -284,25 +309,112 @@ UIScrollView *scrollView;
     self.responseData = [NSMutableData data];
     ServiceConnection *str = [ServiceConnection new];
     double walletVersion = 1.2;
+//    NSString *customerID = [NSString stringWithFormat:@"%@%@%@",act_log_custIDfirstNumber,act_log_custIDsecondNumber,act_log_custIDthirdNumber];
     NSString *url = [NSString stringWithFormat:@"%@", [str NSCreateAccountService]];
-    NSString *body =  [NSString stringWithFormat:@"custid=%@%@%@,username=%@,password=%@,mobileno=%@,emailadd=%@,fname=%@,mname=%@,lname=%@,gender=%@,bdate=%@,nationality=%@,natureOfWork=%@,provinceCity=%@,permanentAdd=%@,country=%@,zipcode=%@,secquestion1=%@,secanswer1=%@,secquestion2=%@,secanswer2=%@,secquestion3=%@,secanswer3=%@,photo1=%@,photo2=%@,photo3=%@,photo4=%@,version=%f",act_log_custIDfirstNumber,act_log_custIDsecondNumber,act_log_custIDthirdNumber,userNameTF.text,passwordTF.text,act_log_number,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,walletVersion];
+    NSString *body =  [NSString stringWithFormat:@"custid=%@&username=%@&password=%@&mobileno=%@&emailadd=%@&fname=%@&mname=%@&lname=%@&gender=%@&bdate=%@&nationality=%@&natureOfWork=%@&provinceCity=%@&permanentAdd=%@&country=%@&zipcode=%@&secquestion1=%@&secanswer1=%@&secquestion2=%@&secanswer2=%@&secquestion3=%@&secanswer3=%@&photo1=%@&photo2=%@&photo3=%@&photo4=%@&version=%f",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",@"haha",walletVersion];
+    
+//    NSDictionary *value1 = @{@"custid" : @"customerID",
+//                             @"username"  : @"haha",
+//                             @"password"  : @"male",
+//                             @"mobileno"  : @"male",
+//                             @"emailadd"  : @"male",
+//                             @"fname"  : @"male",
+//                             @"mname"  : @"male",
+//                             @"lname"  : @"male",
+//                             @"gender"  : @"male",
+//                             @"bdate"  : @"male",
+//                             @"nationality"  : @"male",
+//                             @"natureOfWork"  : @"male",
+//                             @"provinceCity"  : @"male",
+//                             @"permanentAdd"  : @"male",
+//                             @"country"  : @"male",
+//                             @"zipcode"  : @"male",
+//                             @"secquestion1"  : @"male",
+//                             @"secanswer1"  : @"male",
+//                             @"secquestion2"  : @"male",
+//                             @"secanswer2"  : @"male",
+//                             @"secquestion3"  : @"male",
+//                             @"secanswer3"  : @"male",
+//                             @"photo1"  : @"male",
+//                             @"photo2"  : @"male",
+//                             @"photo3"  : @"male",
+//                             @"photo4"  : @"male",
+//                             @"version"  : @"1.2"};
+    
+    
+//    NSDictionary *tmp = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                         @"custid",@"customerID",
+//                         @"username",@"haha",
+//                         @"password",@"male",
+//                         @"mobileno",@"male",
+//                         @"emailadd",@"male",
+//                         @"fname",@"male",
+//                         @"mname",@"male",
+//                         @"lname",@"male",
+//                         @"gender"  , @"male",
+//                         @"bdate"  , @"male",
+//                         @"nationality"  , @"male",
+//                         @"natureOfWork" , @"male",
+//                         @"provinceCity"  , @"male",
+//                         @"permanentAdd"   @"male",
+//                         @"country"  , @"male",
+//                         @"zipcode"  , @"male",
+//                         @"secquestion1"  , @"male",
+//                         @"secanswer1"  , @"male",
+//                         @"secquestion2"  , @"male",
+//                         @"secanswer2"  , @"male",
+//                         @"secquestion3"  , @"male",
+//                         @"secanswer3"  , @"male",
+//                         @"photo1"  , @"male",
+//                         @"photo2"  , @"male",
+//                         @"photo3"  , @"male",
+//                         @"photo4"  , @"male",
+//                         @"version"  , @"1.2",
+//                         nil];
+    NSError *jsonError;
+//    NSData *bodyz = [NSJSONSerialization dataWithJSONObject:value1 options:0 error:&jsonError];
+
+    
+    
+    NSData *postData = [body dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+ //   NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    NSLog(@"URL - %@", url);              // Checking the url
+    NSLog(@"Aaawaa ni!!!-%@",body);
+
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+cachePolicy:NSURLRequestUseProtocolCachePolicy
+   timeoutInterval:10.0];
     
-    NSLog(@"URL - %@", encodedUrl);              // Checking the url
-    
-//    NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
-//                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
-//                                                         timeoutInterval:10.0];
-//    
-//    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
-//    [theConnection start];
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]];
-    //sets the receiver’s timeout interval, in seconds
-    [urlRequest setTimeoutInterval:30.0f];
-    //sets the receiver’s HTTP request method
     [urlRequest setHTTPMethod:@"POST"];
-    //sets the request body of the receiver to the specified data.
+    
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [urlRequest setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
     [urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    
+
+
+    
+//    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
+//                                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+//                                                          timeoutInterval:10.0];
+    //sets the receiver’s timeout interval, in seconds
+    
+    
+   // [urlRequest setHTTPMethod:@"POST"];
+   // [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+
+   // [urlRequest setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
+    //sets the request body of the receiver to the specified data.
+    //[urlRequest setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
+//    [urlRequest setHTTPBody:bodyz];
+    
+    NSURLResponse *response;
+    NSData *POSTReply = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:nil];
+    NSString *theReply = [[NSString alloc] initWithBytes:[POSTReply bytes] length:[POSTReply length] encoding: NSASCIIStringEncoding];
+    NSLog(@"Reply: %@", theReply);
+    
+    
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     //Loads the data for a URL request and executes a handler block on an
@@ -335,9 +447,11 @@ UIScrollView *scrollView;
     
     NSString *myData = [[NSString alloc] initWithData:data
                                              encoding:NSUTF8StringEncoding];
-    NSLog(@"JSON data = %@", myData);
-    NSError *error = nil;
     
+    NSLog(@"JSON data = %@", myData);
+    [HUD hide:YES];
+    [HUD show:NO];
+    NSError *error = nil;
     //parsing the JSON response
     id jsonObject = [NSJSONSerialization
                      JSONObjectWithData:data
@@ -349,7 +463,7 @@ UIScrollView *scrollView;
         //check if the country code was valid
         NSNumber *success = [jsonObject objectForKey:@"success"];
         if([success boolValue] == YES){
- NSLog(@"Success");
+            NSLog(@"Success");
         }
         else {
             NSLog(@"Failed");
@@ -358,6 +472,9 @@ UIScrollView *scrollView;
     }
     
 }
+
+
+
 
 //#pragma mark - NSURLConnection Delegate
 //- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
@@ -383,11 +500,12 @@ UIScrollView *scrollView;
 //    // convert to JSON
 //    NSError *myError = nil;
 //    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+//    NSLog(@"Service Response %@",res);
 //    if (myError == nil) {
-//        
+//        NSLog(@"Account Service No error");
 //    }
 //    else{
-//        
+//        NSLog(@"Account Service Error == %@",myError.localizedDescription);
 //    }
 //    
 //    
@@ -396,10 +514,27 @@ UIScrollView *scrollView;
 //    
 //}//end connectionDidFinishLoading
 //
+//
+//
 
+- (void) connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    {
+        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
+             forAuthenticationChallenge:challenge];
+    }
+    
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
 
-
-
+- (void) connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+    if([[protectionSpace authenticationMethod] isEqualToString:NSURLAuthenticationMethodServerTrust])
+    {
+    
+    }
+}
 
 - (BOOL)prefersStatusBarHidden{
     return YES;
