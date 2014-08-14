@@ -8,7 +8,7 @@
 
 #import "MLViewController.h"
 #import "MBProgressHUD.h"
-@interface AccountLogin : UIViewController <UITextFieldDelegate,MBProgressHUDDelegate,UIAlertViewDelegate>
+@interface AccountLogin : UIViewController <UITextFieldDelegate,MBProgressHUDDelegate,UIAlertViewDelegate,NSURLConnectionDelegate>
 {
     NSString *act_log_custIDfirstNumber;
     NSString *act_log_custIDsecondNumber;

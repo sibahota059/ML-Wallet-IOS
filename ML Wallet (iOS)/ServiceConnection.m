@@ -48,6 +48,6 @@
     return [NSString stringWithFormat:@"%@%@",URLHttps_IP,URLService];
 }
 -(NSString *) NSCreateAccountService{
-    return [NSString stringWithFormat:@"%@%@%@",URLHttps_IP,URLService,URLCreateAccountService];
+    return [NSString stringWithFormat:@"%@%@",URLHttps_IP,URLService];
 }
 @end
