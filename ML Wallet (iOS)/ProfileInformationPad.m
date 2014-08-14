@@ -30,13 +30,11 @@ UIImageView *radioButtonImage1;
 UIImageView *radioButtonImage2;
 UIImageView *radioButtonImage3;
 
-
 UILabel *selectedQuestion;
 
 UIImageView *profileImage;
 
 QuestionVerificationDialogPad *dialog;
-
 
 UIImageView *userImage, *image1, *image2, *image3, *image4;
 
@@ -47,22 +45,6 @@ NSString *correctAnswer;
 //DECLARE VARIABLES
 
 UIScrollView *profileScroll;
-
-int profileOutlineWidth;
-int profileOutlineHeight;
-
-int labelX;
-int labelValueX;
-
-int outlineX;
-int outlineWidth;
-int outlineHeight;
-
-int imageY;
-int personalY;
-int locationY;
-int contactY;
-
 
 UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *email, *work, *nationality;
 
@@ -75,97 +57,23 @@ UILabel *profileEmail, *profileName, *profilePhone;
 
 
 
--(void) goToEdit:(id)sender{
-    
-    if(dialog.finalQuestion == question1)
-    {
-        correctAnswer = answer1;
-    }
-    else if(dialog.finalQuestion == question2)
-    {
-        correctAnswer = answer2;
-    }
-    else
-    {
-        correctAnswer = answer3;
-    }
-    
-    NSString *usersAnswer = dialog.answer.text;
-    
-    if([usersAnswer isEqualToString:correctAnswer])
-    {
-        EditInformationPad *editInformation = [[EditInformationPad alloc] initWithNibName:@"EditInformationPad" bundle:nil];
-        [self fadeInAnimation:dialog];
-        [self.navigationController pushViewController:editInformation animated:YES];
-
-    }
-    else
-    {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Secret question" message:@"Sorry! Your answer is wrong." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        
-        [alertView show];
-    }
-    
-
-    
-    
-    
-    
-    
-}
-
-
-
-
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    
-    
+
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 768, 1000)];
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(768, 1000)];
     
-    
-    
-    //INTANTIATE THE VARIABLES
-    
-    
-    
+    loadData = [NSDictionary initRead_LoadWallet_Data];
+    [self loadFromPlaylist];
     
     [self createImageInfo];
     [self createPersonalLabel];
     [self createPersonalValue];
-    
-   
-    
-    loadData = [NSDictionary initRead_LoadWallet_Data];
-    
-    
-     [self loadFromPlaylist];
+  
     [self setInfo];
-    //CREATE DIALOG
-    
 
-    
-
-    
-    //CREATE DIALOG END
-    
-    
     [self.view addSubview:profileScroll];
     [self.view addSubview:dialog];
     
@@ -211,158 +119,12 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
 }
 
--(void) setInfo{
-    [firstName setText:firstNameValue];
-    [middleName setText:middleNameValue];
-    [lastName setText:lastNameValue];
-    [country setText:countryValue];
-    [province setText:provinceValue];
-    [address setText:addressValue];
-    [zipcode setText:zipcodeValue];
-    [gender setText:genderValue];
-    
-    //FORMAT DATE====================================================
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *date = [dateFormatter dateFromString:birthdateValue];
-    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
-    NSString *finalDateString = [dateFormatter stringFromDate:date];
-    //End Format Date===============================================
-    
-    [birthdate setText:finalDateString];
-    [age setText:ageValue];
-    [mobileNumber setText:mobileNumberValue];
-    [email setText:emailValue];
-    [work setText:workValue];
-    [nationality setText:nationalityValue];
-    
-
-    
-    
-    //CONVERTING STRING INTO IMAGE=================================================
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [profileImage setImage:[UIImage imageWithData:data]];
-    
-    NSData *data1 = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image1 setImage:[UIImage imageWithData:data1]];
-
-    
-    NSData *data2 = [[NSData alloc]initWithBase64EncodedString:photo2Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image2 setImage:[UIImage imageWithData:data2]];
-
-    
-    NSData *data3 = [[NSData alloc]initWithBase64EncodedString:photo3Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image3 setImage:[UIImage imageWithData:data3]];
-
-    
-    NSData *data4 = [[NSData alloc]initWithBase64EncodedString:photo4Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image4 setImage:[UIImage imageWithData:data4]];
-
-    //================================================================================
-    
-    
-    
-    dialog = [[QuestionVerificationDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
-    
-    
-    [dialog setHidden:YES];
-    
-    
-    
-    
-    
-    [profileName setText:[NSString stringWithFormat:@"%@ %@. %@",firstNameValue, middleNameValue, lastNameValue]];
-    [profilePhone setText:mobileNumberValue];
-    [profileEmail setText:emailValue];
-    
- 
-    
- }
-
-
-
-
-
-
-
--(void) viewWillAppear:(BOOL)animated{
-    
-    if(![dialog isHidden])
-    {
-        [dialog setHidden:YES];
-    }
-    
-    
-}
-
-
-
-
-
-
-
-#pragma OTHER METHODS
-// FINISHED METHODS
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
--(void)editPressed:(id)sender{
-    
-    [dialog setHidden:!dialog.hidden];
-    
-    [self fadeInAnimation:dialog];
-    
-}
-
--(void) addNavigationBarButton{
-    
-    
-    
-    self.title = @"My Profile";
-
-    
-    //RIGHT NAVIGATION BUTTON
-    UIView *editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    
-    UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    [editButton setImage:[UIImage imageNamed:@"my_edit.png"] forState:UIControlStateNormal];
-    
-    //[editButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
-    [editButton addTarget:self action:@selector(editPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [editView addSubview:editButton];
-    
-    UIBarButtonItem *editNavButton = [[UIBarButtonItem alloc] initWithCustomView:editView];
-    [editNavButton setStyle:UIBarButtonItemStyleBordered];
-    [editNavButton setTarget:self];
-    [editNavButton setAction:@selector(editPressed:)];
-    
-    
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];//    [self.navigationItem setLeftBarButtonItem:backNavButton];
-    [self.navigationItem setRightBarButtonItem:editNavButton];
-    
-}
-
--(void)backPressed:(id)sender{
-    
-    [self.navigationController  popViewControllerAnimated:YES];
-    
-}
-//=======================================
-
-
-
-
-#pragma mark - CREATE UI
-
 -(void) createImageInfo{
-
+    
     
     UIView *imageFrameView = [[UIView alloc] initWithFrame:CGRectMake(167, 44, 150, 150)];
     [imageFrameView setBackgroundColor:[UIColor redColor]];
-
+    
     profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 146, 146)];
     
     
@@ -375,7 +137,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
     profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(327, 136, 400, 25)];
     [profileEmail setFont:[UIFont fontWithName:nil size:19.0f]];
-   
+    
     
     ProfileOutline *imageCollectionView = [[ProfileOutline alloc] initWithFrame:CGRectMake(167, 225, 434, 110)];
     
@@ -410,8 +172,6 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
     
 }
-
-
 
 -(void) createPersonalLabel{
     
@@ -517,10 +277,9 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
 }
 
-
 -(void) createPersonalValue{
     
-
+    
     
     
     
@@ -564,7 +323,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
     work = [[UILabel alloc] initWithFrame:CGRectMake(317, 775, 300, 25)];
     [work setFont:[UIFont fontWithName:nil size:19.0f]];
-     
+    
     
     nationality = [[UILabel alloc] initWithFrame:CGRectMake(317, 805, 300, 25)];
     [nationality setFont:[UIFont fontWithName:nil size:19.0f]];
@@ -592,6 +351,197 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
     
 }
+
+-(void) setInfo{
+    [firstName setText:firstNameValue];
+    [middleName setText:middleNameValue];
+    [lastName setText:lastNameValue];
+    [country setText:countryValue];
+    [province setText:provinceValue];
+    [address setText:addressValue];
+    [zipcode setText:zipcodeValue];
+    [gender setText:genderValue];
+    
+    //FORMAT DATE====================================================
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormatter dateFromString:birthdateValue];
+    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
+    NSString *finalDateString = [dateFormatter stringFromDate:date];
+    //End Format Date===============================================
+    
+    [birthdate setText:finalDateString];
+    [age setText:ageValue];
+    [mobileNumber setText:mobileNumberValue];
+    [email setText:emailValue];
+    [work setText:workValue];
+    [nationality setText:nationalityValue];
+    
+
+    
+    
+    //CONVERTING STRING INTO IMAGE=================================================
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    [profileImage setImage:[UIImage imageWithData:data]];
+    
+    NSData *data1 = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    [image1 setImage:[UIImage imageWithData:data1]];
+
+    
+    NSData *data2 = [[NSData alloc]initWithBase64EncodedString:photo2Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    [image2 setImage:[UIImage imageWithData:data2]];
+
+    
+    NSData *data3 = [[NSData alloc]initWithBase64EncodedString:photo3Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    [image3 setImage:[UIImage imageWithData:data3]];
+
+    
+    NSData *data4 = [[NSData alloc]initWithBase64EncodedString:photo4Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    [image4 setImage:[UIImage imageWithData:data4]];
+
+    //================================================================================
+    
+    
+    
+    dialog = [[QuestionVerificationDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
+    
+    
+    [dialog setHidden:YES];
+    
+    
+    
+    
+    
+    [profileName setText:[NSString stringWithFormat:@"%@ %@. %@",firstNameValue, middleNameValue, lastNameValue]];
+    [profilePhone setText:mobileNumberValue];
+    [profileEmail setText:emailValue];
+    
+ 
+    
+ }
+
+
+
+
+
+
+
+-(void) viewWillAppear:(BOOL)animated{
+    
+    if(![dialog isHidden])
+    {
+        [dialog setHidden:YES];
+    }
+    
+    
+}
+
+
+
+
+-(void) goToEdit:(id)sender{
+    
+    if(dialog.finalQuestion == question1)
+    {
+        correctAnswer = answer1;
+    }
+    else if(dialog.finalQuestion == question2)
+    {
+        correctAnswer = answer2;
+    }
+    else
+    {
+        correctAnswer = answer3;
+    }
+    
+    NSString *usersAnswer = dialog.answer.text;
+    
+    if([usersAnswer isEqualToString:correctAnswer])
+    {
+        
+        EditInformationPad *editInformation = [[EditInformationPad alloc] initWithNibName:@"EditInformationPad" bundle:nil];
+        [self fadeInAnimation:dialog];
+        [self.navigationController pushViewController:editInformation animated:YES];
+        
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Secret question" message:@"Sorry! Your answer is wrong." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        
+        [alertView show];
+    }
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+
+
+
+#pragma OTHER METHODS
+// FINISHED METHODS
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)editPressed:(id)sender{
+    
+    [dialog setHidden:!dialog.hidden];
+    
+    [self fadeInAnimation:dialog];
+    
+}
+
+-(void) addNavigationBarButton{
+    
+    
+    
+    self.title = @"My Profile";
+
+    
+    //RIGHT NAVIGATION BUTTON
+    UIView *editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    
+    UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    [editButton setImage:[UIImage imageNamed:@"my_edit.png"] forState:UIControlStateNormal];
+    
+    //[editButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
+    [editButton addTarget:self action:@selector(editPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [editView addSubview:editButton];
+    
+    UIBarButtonItem *editNavButton = [[UIBarButtonItem alloc] initWithCustomView:editView];
+    [editNavButton setStyle:UIBarButtonItemStyleBordered];
+    [editNavButton setTarget:self];
+    [editNavButton setAction:@selector(editPressed:)];
+    
+    
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];//    [self.navigationItem setLeftBarButtonItem:backNavButton];
+    [self.navigationItem setRightBarButtonItem:editNavButton];
+    
+}
+
+-(void)backPressed:(id)sender{
+    
+    [self.navigationController  popViewControllerAnimated:YES];
+    
+}
+//=======================================
 
 
 
