@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class PrintTransaction;
 @protocol PrintTransactionDelegate <NSObject>
 
 @required

@@ -156,7 +156,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationMessageEvent" object:sm];
     MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
     [self.navigationController popToViewController:smv.tabBarController animated:NO];
-  
 }
 
 - (void) didFinishLoadingEmail:(NSString *)indicator andError:(NSString *)getError{
@@ -315,6 +314,7 @@
         }
     }
 }
+
 
 
 @end
