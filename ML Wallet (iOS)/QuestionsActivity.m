@@ -513,15 +513,17 @@ SelectQuestionDialog *questionDialog;
     }
     else{
         NSLog(@"Error ni Bai!");
-        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+ 
        
-        AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-         [self.navigationController pushViewController:accLog animated:YES];
-        /*
+//        AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+//         [self.navigationController pushViewController:accLog animated:YES];
+        
         if([questionLbl1.text isEqualToString:@"Question 1"]&&[questionLbl2.text isEqualToString:@"Question 2"]&&[questionLbl3.text isEqualToString:@"Question 3"])
         {
-            [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        }*/
+//            [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+ [self.navigationController pushViewController:accLog animated:YES];
+        }
     }
     
 }

@@ -148,13 +148,9 @@ UIScrollView *scrollView;
     }
     else {
         NSLog(@"IPHONE NI");
-        
-        
         ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:5 width:180];
-        
-        // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
+         // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
         UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,10,screenWidth,screenHeight)];
-        
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
         userNameTF.layer.cornerRadius=8.0f;
         userNameTF.layer.masksToBounds=YES;
@@ -200,17 +196,6 @@ UIScrollView *scrollView;
     
     self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
                                                                          initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-    /*
-     UIView *submitView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-     UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-     [submitButton setImage:[UIImage imageNamed:@"next.png"] forState:UIControlStateNormal];
-     [submitButton addTarget:self action:@selector(nextPressed) forControlEvents:UIControlEventTouchUpInside];
-     
-     [submitView addSubview:submitButton];
-     
-     UIBarButtonItem *submit = [[UIBarButtonItem alloc] initWithCustomView:submitView];
-     [self.navigationItem setRightBarButtonItem:submit];
-     */
     //next navigation button
     UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithTitle:
                                 @"Next"
@@ -246,12 +231,11 @@ UIScrollView *scrollView;
     NSLog(@"Phone ni %@",act_log_custIDphoneNumber);
     if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF==0){
         NSLog(@"Failed'");
-        //[self regAcc];
-        [self createAccount];
+//        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+[self createAccount];
     }
     else{
         NSLog(@"Success");
-        //[self regAcc];
         [self createAccount];
     }
     
@@ -267,12 +251,6 @@ UIScrollView *scrollView;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    //    [UIView animateWithDuration:0.5
-    //                          delay:0.0
-    //                        options:UIViewAnimationOptionCurveEaseIn
-    //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
-    //                     completion:^(BOOL finished){}];
     [userNameTF resignFirstResponder];
     [passwordTF resignFirstResponder];
     [retypePasswordTF resignFirstResponder];
@@ -284,14 +262,9 @@ UIScrollView *scrollView;
     contentData = [NSMutableData data];
     con         = [ServiceConnection new];
     
-    NSString *body =  [NSString stringWithFormat:@"{\"custid\":\"%@\",\"username\":\"%@\",\"password\":\"%@\",\"mobileno\":\"%@\",\"emailadd\":\"%@\",\"fname\":\"%@\",\"mname\":\"%@\",\"lname\":\"%@\",\"gender\":\"%@\",\"bdate\":\"%@\",\"nationality\":\"%@\",\"natureOfWork\":\"%@\",\"provinceCity\":\"%@\",\"permanentAdd\":\"%@\",\"country\":\"%@\",\"zipcode\":\"%@\",\"secquestion1\":\"%@\",\"secanswer1\":\"%@\",\"secquestion2\":\"%@\",\"secanswer2\":\"%@\",\"secquestion3\":\"%@\",\"secanswer3\":\"%@\",\"photo1\":\"%@\",\"photo2\":\"%@\",\"photo3\":\"%@\",\"photo4\":\"%@\",\"version\":\"%.2f\"}",@"13110003419024",@"username1",@"password1",@"09474999226",@"test@gmail.com",@"DAVID",@"B",@"DUPREE",@"MALE",@"1985-11-23",@"FILIPINO",@"BANKING",@"CEBU",@"",@"PHILIPPINES",@"",@"What's your childhood nickname?",@"harry",@"What is your favorite TV program?",@"naruto",@"What was your dream job?",@"programmer",@"",@"",@"",@"",1.3];
+    NSString *body =  [NSString stringWithFormat:@"{\"custid\":\"%@\",\"username\":\"%@\",\"password\":\"%@\",\"mobileno\":\"%@\",\"emailadd\":\"%@\",\"fname\":\"%@\",\"mname\":\"%@\",\"lname\":\"%@\",\"gender\":\"%@\",\"bdate\":\"%@\",\"nationality\":\"%@\",\"natureOfWork\":\"%@\",\"provinceCity\":\"%@\",\"permanentAdd\":\"%@\",\"country\":\"%@\",\"zipcode\":\"%@\",\"secquestion1\":\"%@\",\"secanswer1\":\"%@\",\"secquestion2\":\"%@\",\"secanswer2\":\"%@\",\"secquestion3\":\"%@\",\"secanswer3\":\"%@\",\"photo1\":\"%@\",\"photo2\":\"%@\",\"photo3\":\"%@\",\"photo4\":\"%@\",\"version\":\"%.2f\"}",@"13110003419030",@"uzernem1",@"pasword1",@"09479992265",@"alexhann@hotmail.com",@"ALEX",@"",@"HANNUM",@"MALE",@"1985-11-23",@"",@"",@"",@"",@"",@"",@"What's your childhood nickname?",@"harry",@"What is your favorite TV program?",@"naruto",@"What was your dream job?",@"programmer",@"",@"",@"",@"",1.3];
     
     NSString *serviceMethods = @"insertMobileAccounts";
-    
-    
-    //NSURL *url = [NSURL URLWithString:@"https://192.168.12.204:4443/Mobile/Client/mobileKP_WCF/service.svc/insertMobileAccounts"];
-    
-    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -309,6 +282,7 @@ UIScrollView *scrollView;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [contentData appendData:data];
+    NSLog(@"didReceiveData");
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -318,21 +292,45 @@ UIScrollView *scrollView;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
-    NSString *loadedContent = [[NSString alloc] initWithData:
-                               contentData encoding:NSUTF8StringEncoding];
+//    NSString *loadedContent = [[NSString alloc] initWithData:
+//                               contentData encoding:NSUTF8StringEncoding];
+//    
+//    NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
+//    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data
+//                                                                 options:kNilOptions
+//                                                                   error:nil];
+//    
+//    NSLog(@"%@", jsonResponse);
     
-    NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data
-                                                                 options:kNilOptions
-                                                                   error:nil];
-    
-    NSLog(@"%@", jsonResponse);
+    NSLog(@"connectionDidFinishLoading");
+    NSError *myError = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:contentData options:NSJSONReadingMutableLeaves error:&myError];
+    if (myError == nil) {
+        
+        NSDictionary *resultCoordinates = [res objectForKey:@"insertMobileAccountsResult"];
+        NSString *strResponseCode = [resultCoordinates objectForKey:@"respcode"];
+        NSString *strResponseMessage = [resultCoordinates objectForKey:@"respmessage"];
+        NSLog(@"Response %@",strResponseCode);
+        int value = [strResponseCode intValue];
+        if(value==1){
+        [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        
+        }
+        else if(value==2){
+        [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+        else if (value==0){
+            [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+    }
+    else{
+        NSLog(@"Error");
+    }
  
     
 }
-
-
 // ------------ ByPass ssl starts ----------
+
 -(BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:
 (NSURLProtectionSpace *)protectionSpace {
     return YES;
@@ -347,16 +345,4 @@ UIScrollView *scrollView;
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
-
-
-
-//NSString *body =  [NSString stringWithFormat:@"{\"permanentAdd\":\"%@\",\"photo1\":\"%@\",\"secquestion2\":\"%@\",\"secquestion1\":\"%@\",\"secquestion3\":\"%@\",\"password\":\"%@\",\"version\":\"%@\",\"username\":\"%@\",\"gender\":\"%@\",\"secanswer3\":\"%@\",\"secanswer1\":\"%@\",\"secanswer2\":\"%@\",\"fname\":\"%@\",\"custid\":\"%@\",\"mname\":\"%@\",\"lname\":\"%@\",\"natureOfWork\":\"%@\",\"zipcode\":\"%@\",\"country\":\"%@\",\"mobileno\":\"%@\",\"provinceCity\":\"%@\",\"nationality\":\"%@\",\"emailadd\":\"%@\",\"photo2\":\"%@\",\"bdate\":\"%@\",\"photo3\":\"%@\",\"photo4\":\"%@\"}",@"",@"",
-//                   @"What is your favorite TV program?",@"What's your childhood nickname?",@"What was your dream job?",@"password1",@"1.3",@"username1",@"MALE",@"programmer",@"harry",@"naruto",@"DAVID",@"13110003419024",@"B",@"DUPREE",@"BANKING",@"PHILIPPINES",@"09474999226",@"CEBU",@"FILIPINO",@"test@gmail.com",@"",@"1985-11-23",@"",@"",@""];
-
-//NSString *serviceMethods = @"insertMobileAccounts";
-
-
-//NSURL *url = [NSURL URLWithString:@"https://192.168.12.204:4443/Mobile/Client/mobileKP_WCF/service.svc/insertMobileAccounts"];
-
-
 @end

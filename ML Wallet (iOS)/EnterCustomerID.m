@@ -306,9 +306,9 @@ UITextfieldAnimate *textAnimate;
     }
     else{
         NSLog(@"Empty man Bai!!");
-        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-        [self.navigationController pushViewController:regInfo animated:YES];
+//        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+     [self customerIDService];
+    
     }
 }
 
@@ -417,7 +417,7 @@ UITextfieldAnimate *textAnimate;
     
     NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
     
-    NSLog(@"URL - %@", encodedUrl);              // Checking the url
+    NSLog(@"URL - %@", url);              // Checking the url
     
     NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
                                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -444,6 +444,9 @@ UITextfieldAnimate *textAnimate;
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError : %@",error);
+    [HUD hide:YES];
+    [HUD show:NO];
+    
     
     
 }
@@ -531,7 +534,7 @@ UITextfieldAnimate *textAnimate;
         
         if([strResponseMessage isEqualToString:@"CustID not found."]){
            
-            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+//            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
             RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
             regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
             regInfo.reg_info_custIDsecondNumber = secondNumberTF.text;
@@ -616,7 +619,7 @@ UITextfieldAnimate *textAnimate;
     
     else {
         NSLog(@"Error : %@",myError.localizedDescription);
-        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+//        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [HUD hide:YES];
         [HUD show:NO];
     }//end else
