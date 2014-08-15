@@ -8,7 +8,7 @@
 
 #import "MLViewController.h"
 
-@interface RegistrationInformation : UIViewController <UITextFieldDelegate>
+@interface RegistrationInformation : UIViewController <UITextFieldDelegate,UIAlertViewDelegate>
 {
     NSString *reg_info_custIDfirstNumber;
     NSString *reg_info_custIDsecondNumber;

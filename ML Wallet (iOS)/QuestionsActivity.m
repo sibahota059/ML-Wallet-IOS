@@ -254,26 +254,6 @@ SelectQuestionDialog *questionDialog;
         answerTF3.delegate = self;
         
         
-        
-        
-        //ADDING THE COMPONENTS
-        /*
-         [questionOutline addSubview:questionHeader];
-         [questionOutline addSubview:button1];
-         [questionOutline addSubview:questionLbl1];
-         [questionOutline addSubview: answerTF1];
-         
-         [questionOutline addSubview:button2];
-         [questionOutline addSubview:questionLbl2];
-         [questionOutline addSubview:answerTF2];
-         
-         [questionOutline addSubview:button3];
-         [questionOutline addSubview:questionLbl3];
-         [questionOutline addSubview:answerTF3];
-         [scrollView addSubview:questionOutline];
-         */
-        
-        
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
         CGFloat screenHeight = screenRect.size.height;

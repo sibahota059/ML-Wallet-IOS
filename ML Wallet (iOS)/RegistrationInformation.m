@@ -70,14 +70,12 @@ int personalY;
 int locationY;
 int contactY;
 
-
-//UITextField *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *mobileNumber, *email, *work, *nationality,*number;
-
-
 ProfileOutline *firstNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *addressO, *zipcodeO, *genderO, *birthdateO, *ageO, *mobileNumberO, *emailO, *workO, *nationalityO;
 CGRect screenRect;
 CGFloat screenWidth;
 CGFloat screenHeight;
+UILabel *email;
+NSString *str_email_add;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -125,6 +123,7 @@ CGFloat screenHeight;
     //
     
     [self.view addSubview:profileScroll];
+    [self checkEmail];
     NSLog(@"Customer ID = %@ %@ %@ = Phone Number: %@",reg_info_custIDfirstNumber,reg_info_custIDsecondNumber,reg_info_custIDthirdNumber,reg_info_custIDphoneNumber);
 }
 
@@ -449,7 +448,7 @@ CGFloat screenHeight;
         
         //Contact Information
         
-        UILabel *email = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 290, 180, 25)];
+        email = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 290, 180, 25)];
         [email setFont:[UIFont fontWithName:nil size:18.0f]];
         [email setText:[NSString stringWithFormat:@"%@",reg_info_str_email]];
         
@@ -527,8 +526,8 @@ CGFloat screenHeight;
         [zipcode setText:[NSString stringWithFormat:@"%@",reg_info_str_zipcode]];
         
         //Contact Information
-        
-        UILabel *email = [[UILabel alloc] initWithFrame:CGRectMake(130, 420, 180, 25)];
+        email = [[UILabel alloc] initWithFrame:CGRectMake(130, 420, 180, 25)];
+//        UILabel *email = [[UILabel alloc] initWithFrame:CGRectMake(130, 420, 180, 25)];
         [email setFont:[UIFont fontWithName:nil size:13.0f]];
         [email setText:[NSString stringWithFormat:@"%@",reg_info_str_email]];
         
@@ -558,21 +557,13 @@ CGFloat screenHeight;
     }
     
     
-    
-    
+
     
     
 }
 
 -(void) addNavigationBar{
     self.title = @"Registration Information";
-    /*
-     UIBarButtonItem *btnHome = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self
-     action:@selector(backPressed)];
-     
-     self.navigationItem.leftBarButtonItem = btnHome;
-     */
-    
     self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
                                                                          initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     //next navigation button
@@ -648,6 +639,51 @@ CGFloat screenHeight;
     
     
 }
+
+-(void)checkEmail{
+    if([reg_info_str_email isEqualToString:@""]){
+//        [UIAlertView myCostumeAlert:@"Update" alertMessage:@"Your account has currently no email. Please enter your email below." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update"
+                                                        message:@"Your account has currently no email. Please enter your email below."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Done"
+                                              otherButtonTitles:nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+        
+    }
+
+}
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = YES;
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"%@", [alertView textFieldAtIndex:0].text);
+    
+    str_email_add = [alertView textFieldAtIndex:0].text;
+    if([self NSStringIsValidEmail:str_email_add]){
+       [email setText:[NSString stringWithFormat:@"%@",[alertView textFieldAtIndex:0].text]];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Invalid Email."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Done"
+                                              otherButtonTitles:nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }
+}
+
 
 - (BOOL)prefersStatusBarHidden{
     return YES;

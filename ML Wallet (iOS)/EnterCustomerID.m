@@ -249,7 +249,7 @@ UITextfieldAnimate *textAnimate;
     
 }
 -(void) gotoNextView{
-    if(firstNumberTF.text.length==5&&secondNumberTF.text.length==5&&thirdNumberTF.text.length==4&&phoneNumberTF.text.length>=1)
+    if(firstNumberTF.text.length>=1&&secondNumberTF.text.length>=1&&phoneNumberTF.text.length>=1)
     {
         NSLog(@"Next ni Bai!");
         if([firstNumberTF resignFirstResponder]==YES||
@@ -372,7 +372,7 @@ UITextfieldAnimate *textAnimate;
     self.responseData = [NSMutableData data];
     ServiceConnection *str = [ServiceConnection new];
     //#define URLCustomerIDService @"SearchCustId/?custid={%@}&mobileno={%@}"
-    NSString *custID = [NSString stringWithFormat:@"SearchCustId/?custid={%@%@%@}&mobileno={%@}", firstNumberTF.text,secondNumberTF.text,thirdNumberTF.text,phoneNumberTF.text];
+    NSString *custID = [NSString stringWithFormat:@"SearchCustId/?custid=%@%@%@&mobileno=%@", firstNumberTF.text,secondNumberTF.text,thirdNumberTF.text,phoneNumberTF.text];
     NSString *url = [NSString stringWithFormat:@"%@%@", [str NSGetCustomerIDService],custID];
     
     NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
@@ -387,6 +387,9 @@ UITextfieldAnimate *textAnimate;
     [theConnection start];
     
 }
+
+
+
 
 #pragma mark - NSURLConnection Delegate
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
@@ -448,6 +451,8 @@ UITextfieldAnimate *textAnimate;
         NSLog(@"Response Code : %@",strResponseCode);
         NSLog(@"Response Message : %@",strResponseMessage);
         
+        NSLog(@"Ang response ni!! = %@",jsonResult);
+        
         
         // if string is null do something
         if([strzipcode isKindOfClass:[NSNull class]]){
@@ -506,42 +511,9 @@ UITextfieldAnimate *textAnimate;
         
         if([strResponseMessage isEqualToString:@"CustID not found."]){
             
-            //            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
-            RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-            regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
-            regInfo.reg_info_custIDsecondNumber = secondNumberTF.text;
-            regInfo.reg_info_custIDthirdNumber = thirdNumberTF.text;
-            regInfo.reg_info_custIDphoneNumber = phoneNumberTF.text;
+            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Customer ID not found." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             
-            regInfo.reg_info_str_address = strpermanentAdd;
-            regInfo.reg_info_str_birthdate = strbdate;
-            regInfo.reg_info_str_country = strcountry;
-            regInfo.reg_info_str_email = stremailadd;
-            regInfo.reg_info_str_firstName = strfname;
-            regInfo.reg_info_str_gender = strgender;
-            regInfo.reg_info_str_lastName = strlname;
-            regInfo.reg_info_str_middleName = strmname;
-            regInfo.reg_info_str_nationality = strnationality;
-            regInfo.reg_info_str_number = strmobileno;
-            regInfo.reg_info_str_province = strprovinceCity;
-            regInfo.reg_info_str_work = strnatureOfWork;
-            regInfo.reg_info_str_zipcode = strzipcode;
-            
-            
-            regInfo.reg_info_str_photo1 = strphoto1;
-            regInfo.reg_info_str_photo2 = strphoto2;
-            regInfo.reg_info_str_photo3 = strphoto3;
-            regInfo.reg_info_str_photo4 = strphoto4;
-            regInfo.reg_info_str_balance = strbalance;
-            regInfo.reg_info_str_secanswer1 = strsecanswer1;
-            regInfo.reg_info_str_secanswer2 = strsecanswer2;
-            regInfo.reg_info_str_secanswer3 = strsecanswer3;
-            regInfo.reg_info_str_secquestion1 = strsecquestion1;
-            regInfo.reg_info_str_secquestion2 = strsecquestion2;
-            regInfo.reg_info_str_secquestion3 = strsecquestion3;
-            regInfo.reg_info_str_walletno = strwalletno;
-            
-            [self.navigationController pushViewController:regInfo animated:YES];
+
             
         }
         
