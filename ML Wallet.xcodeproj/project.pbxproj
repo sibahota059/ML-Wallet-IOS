@@ -26,6 +26,8 @@
 		302FA640197E56F900B46F7A /* ml_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63E197E56F900B46F7A /* ml_1.png */; };
 		302FA641197E56F900B46F7A /* username.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63F197E56F900B46F7A /* username.png */; };
 		30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */; };
+		3B0CABE9199DAAB6008C3FF0 /* ml_logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0CABE8199DAAB6008C3FF0 /* ml_logo_ipad.png */; };
+		3B0CABEB199DAB3B008C3FF0 /* ml_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0CABEA199DAB3B008C3FF0 /* ml_logo_iphone.png */; };
 		3B15D2A519869C5700AD69AE /* TimerUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B15D2A419869C5700AD69AE /* TimerUIApplication.m */; };
 		3B17584718B2EC6B005A7805 /* btn1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584618B2EC6B005A7805 /* btn1.png */; };
 		3B17584D18B2FC09005A7805 /* popup_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17584C18B2FC09005A7805 /* popup_img.png */; };
@@ -33,9 +35,6 @@
 		3B17585318B34EE3005A7805 /* bg_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17585218B34EE3005A7805 /* bg_header.png */; };
 		3B17585718B35CDB005A7805 /* peso_signr.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B17585618B35CDB005A7805 /* peso_signr.png */; };
 		3B19518718B6EA630061969F /* receiver_add_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19518618B6EA630061969F /* receiver_add_person.png */; };
-		3B19518D18B6F5260061969F /* MLBackground1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19518A18B6F5260061969F /* MLBackground1.png */; };
-		3B19518E18B6F5260061969F /* MLBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19518B18B6F5260061969F /* MLBackground2.png */; };
-		3B19518F18B6F5260061969F /* MLBackground3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19518C18B6F5260061969F /* MLBackground3.png */; };
 		3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B19519518B7213A0061969F /* CreateNewReceiverViewController.m */; };
 		3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B19519618B7213A0061969F /* CreateNewReceiverViewController~iphone.xib */; };
 		3B19519E18B732030061969F /* textbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19519D18B732030061969F /* textbox.png */; };
@@ -46,10 +45,6 @@
 		3B1B36C718B4ADA1006DA5BB /* icon_my_receiver_press.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B36C518B4ADA1006DA5BB /* icon_my_receiver_press.jpg */; };
 		3B1B36C818B4ADA1006DA5BB /* icon_my_receiver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B36C618B4ADA1006DA5BB /* icon_my_receiver.jpg */; };
 		3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */; };
-		3B1BD6A11980D57100E234C5 /* MLBackground4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A01980D57100E234C5 /* MLBackground4.png */; };
-		3B1BD6A31980D7AA00E234C5 /* MLBackground5.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1BD6A21980D7AA00E234C5 /* MLBackground5.png */; };
-		3B1CE09F197E3F2E00F2AF31 /* ml_logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */; };
-		3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */; };
 		3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */; };
 		3B1D2A1A1985E282004A70FC /* InfoViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D2A191985E282004A70FC /* InfoViewController~ipad.xib */; };
 		3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3028571981E8C9007825CE /* ResetPassViewController.m */; };
@@ -307,6 +302,8 @@
 		302FA63E197E56F900B46F7A /* ml_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_1.png; sourceTree = "<group>"; };
 		302FA63F197E56F900B46F7A /* username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = username.png; sourceTree = "<group>"; };
 		30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~ipad.xib"; sourceTree = "<group>"; };
+		3B0CABE8199DAAB6008C3FF0 /* ml_logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_ipad.png; sourceTree = "<group>"; };
+		3B0CABEA199DAB3B008C3FF0 /* ml_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_iphone.png; sourceTree = "<group>"; };
 		3B15D2A319869C5700AD69AE /* TimerUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerUIApplication.h; sourceTree = "<group>"; };
 		3B15D2A419869C5700AD69AE /* TimerUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerUIApplication.m; sourceTree = "<group>"; };
 		3B17584618B2EC6B005A7805 /* btn1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn1.png; sourceTree = "<group>"; };
@@ -317,9 +314,6 @@
 		3B17585618B35CDB005A7805 /* peso_signr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peso_signr.png; sourceTree = "<group>"; };
 		3B19518418B6E8CE0061969F /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3B19518618B6EA630061969F /* receiver_add_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receiver_add_person.png; sourceTree = "<group>"; };
-		3B19518A18B6F5260061969F /* MLBackground1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground1.png; sourceTree = "<group>"; };
-		3B19518B18B6F5260061969F /* MLBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground2.png; sourceTree = "<group>"; };
-		3B19518C18B6F5260061969F /* MLBackground3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground3.png; sourceTree = "<group>"; };
 		3B19519418B7213A0061969F /* CreateNewReceiverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewReceiverViewController.h; sourceTree = "<group>"; };
 		3B19519518B7213A0061969F /* CreateNewReceiverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewReceiverViewController.m; sourceTree = "<group>"; };
 		3B19519618B7213A0061969F /* CreateNewReceiverViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CreateNewReceiverViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -332,10 +326,6 @@
 		3B1B36C618B4ADA1006DA5BB /* icon_my_receiver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_my_receiver.jpg; sourceTree = "<group>"; };
 		3B1B36C918B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MenuAnimationUIVIew.h"; sourceTree = "<group>"; };
 		3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MenuAnimationUIVIew.m"; sourceTree = "<group>"; };
-		3B1BD6A01980D57100E234C5 /* MLBackground4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground4.png; sourceTree = "<group>"; };
-		3B1BD6A21980D7AA00E234C5 /* MLBackground5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLBackground5.png; sourceTree = "<group>"; };
-		3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_ipad.png; sourceTree = "<group>"; };
-		3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_logo_iphone.png; sourceTree = "<group>"; };
 		3B1D166F197CA4270006DF0D /* UITextfieldAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextfieldAnimate.h; sourceTree = "<group>"; };
 		3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextfieldAnimate.m; sourceTree = "<group>"; };
 		3B1D2A191985E282004A70FC /* InfoViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InfoViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -949,10 +939,7 @@
 				3B71BBB418BD8B5C0094543C /* edit_image.png */,
 				3B8B9EF618BC4B3300639142 /* save.png */,
 				3B19519D18B732030061969F /* textbox.png */,
-				3B19518A18B6F5260061969F /* MLBackground1.png */,
 				3B8B9EF418BC341400639142 /* textbox2.png */,
-				3B19518B18B6F5260061969F /* MLBackground2.png */,
-				3B19518C18B6F5260061969F /* MLBackground3.png */,
 				3B19518618B6EA630061969F /* receiver_add_person.png */,
 				3B19518418B6E8CE0061969F /* home.png */,
 				3B8090C318B6152E00A11CB8 /* header_navi.png */,
@@ -1106,10 +1093,8 @@
 				70CA18F7198F2C3F00515FF1 /* my_edit.png */,
 				70CA18F5198F26D200515FF1 /* ic_action_edit_press.png */,
 				70AA0591198B293C00B0C52A /* disclosureIndicator.png */,
-				3B1BD6A21980D7AA00E234C5 /* MLBackground5.png */,
-				3B1BD6A01980D57100E234C5 /* MLBackground4.png */,
-				3B1CE0A2197E425B00F2AF31 /* ml_logo_iphone.png */,
-				3B1CE09E197E3F2E00F2AF31 /* ml_logo_ipad.png */,
+				3B0CABEA199DAB3B008C3FF0 /* ml_logo_iphone.png */,
+				3B0CABE8199DAAB6008C3FF0 /* ml_logo_ipad.png */,
 				F007CC351985D7D20022FFF2 /* ic_all.png */,
 				F007CC361985D7D20022FFF2 /* ic_pending.png */,
 				F007CC371985D7D20022FFF2 /* ic_print.png */,
@@ -1539,12 +1524,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BF04C7319764DF4002C2FCC /* TopupViewController~ipad.xib in Resources */,
-				3B1CE09F197E3F2E00F2AF31 /* ml_logo_ipad.png in Resources */,
 				3BB42E0D18D6B6C60011792E /* sendmoney_default.png in Resources */,
 				3BA7CCE118B1E13200B9FC4B /* headerbackground.png in Resources */,
 				F081A04F19776E55004568EF /* MLReceiverTableViewCell.xib in Resources */,
 				F081A05E19776F89004568EF /* MLHistoryTableViewCell~ipad.xib in Resources */,
-				3B1CE0A3197E425B00F2AF31 /* ml_logo_iphone.png in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
 				3BC3828C18C0958900270567 /* InfoViewController~iphone.xib in Resources */,
 				705654D51995F901002F81C7 /* my_save.png in Resources */,
@@ -1563,14 +1546,12 @@
 				F081A05119776E55004568EF /* MLReceiverTableViewController.xib in Resources */,
 				707C03BF18D9D40F00EC1B12 /* back_profile.png in Resources */,
 				F081A03A19776D64004568EF /* preview_bg_ipad.png in Resources */,
-				3B1BD6A31980D7AA00E234C5 /* MLBackground5.png in Resources */,
 				3BB42E0E18D6B6C60011792E /* sendmoney_selected.png in Resources */,
 				3BB924F0196FF864007E76A5 /* CreateNewReceiverViewController~ipad.xib in Resources */,
 				3B9FC104196E4D3E0035446F /* MenuViewController~ipad.xib in Resources */,
 				F081A05319776E55004568EF /* MLTermsConditionViewController~ipad.xib in Resources */,
 				7006620618DA77E900A0F05C /* profile_frame.jpg in Resources */,
 				3B30285A1981E8C9007825CE /* ResetPassViewController~iphone.xib in Resources */,
-				3B19518E18B6F5260061969F /* MLBackground2.png in Resources */,
 				70AA05A9198B3AF600B0C52A /* EditEmail.xib in Resources */,
 				F007CC381985D7D20022FFF2 /* ic_all.png in Resources */,
 				3B19519E18B732030061969F /* textbox.png in Resources */,
@@ -1593,6 +1574,7 @@
 				30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */,
 				F081A05019776E55004568EF /* MLRatesTableViewCell~iphone.xib in Resources */,
 				70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */,
+				3B0CABEB199DAB3B008C3FF0 /* ml_logo_iphone.png in Resources */,
 				700661E618DA766800A0F05C /* design_buttom_left.png in Resources */,
 				70CA18F8198F2C3F00515FF1 /* my_edit.png in Resources */,
 				3BB42E1118D6B6C60011792E /* view_bg.png in Resources */,
@@ -1600,7 +1582,6 @@
 				3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */,
 				3BB42E0318D6B6C60011792E /* next.png in Resources */,
 				3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */,
-				3B1BD6A11980D57100E234C5 /* MLBackground4.png in Resources */,
 				302FA641197E56F900B46F7A /* username.png in Resources */,
 				F081A03819776D57004568EF /* content_bg_ipad.png in Resources */,
 				7006622118DA81DD00A0F05C /* radio_button.png in Resources */,
@@ -1629,6 +1610,7 @@
 				707C03B918D9CFD500EC1B12 /* profile_profile.png in Resources */,
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
 				F05C5F4418E12C70002F2EE1 /* ic_home.png in Resources */,
+				3B0CABE9199DAAB6008C3FF0 /* ml_logo_ipad.png in Resources */,
 				3BA7CCDD18B1DF6000B9FC4B /* new_key.png in Resources */,
 				302FA640197E56F900B46F7A /* ml_1.png in Resources */,
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController~iphone.xib in Resources */,
@@ -1656,7 +1638,6 @@
 				3012DC35197DF42000AA5F6F /* MapViewController~iphone.xib in Resources */,
 				3BA7CCA518B1D6B900B9FC4B /* InfoPlist.strings in Resources */,
 				3BC3827C18C02C6C00270567 /* TopupViewController~iphone.xib in Resources */,
-				3B19518F18B6F5260061969F /* MLBackground3.png in Resources */,
 				3BB42DFE18D6B6C60011792E /* bradpit.jpg in Resources */,
 				F081A04D19776E55004568EF /* MLPreviewViewController~iphone.xib in Resources */,
 				F05C5F5018E13C6C002F2EE1 /* send_default.png in Resources */,
@@ -1685,7 +1666,6 @@
 				3B8090BA18B5FB6700A11CB8 /* back2.png in Resources */,
 				3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */,
 				70CA1902198F49D800515FF1 /* AccountMainPad.xib in Resources */,
-				3B19518D18B6F5260061969F /* MLBackground1.png in Resources */,
 				3B1B36C818B4ADA1006DA5BB /* icon_my_receiver.jpg in Resources */,
 				3BB42E0918D6B6C60011792E /* profile.jpg in Resources */,
 				3BB42E0C18D6B6C60011792E /* right.png in Resources */,
