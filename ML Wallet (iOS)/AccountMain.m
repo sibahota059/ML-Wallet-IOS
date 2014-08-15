@@ -10,13 +10,28 @@
 #import "ProfileInformation.h"
 #import "AccountInformation.h"
 #import "MenuViewController.h"
-
+#import "SaveWalletData.h"
 
 @interface AccountMain ()
-
+{
+    AccountMobilePad *account;
+}
 @end
 
 @implementation AccountMain
+
+
+NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zipcode, *gender, *bdate, *age, *mobileno, *emailadd, *nationality, *work, *answer1, *answer2, *answer3, *question1, *question2, *question3,
+*walletNo, *respMessage, *resCode, *photo1, *photo2, *photo3, *photo4;
+
+//USER BDAY USE IN GETTING AGE
+NSDate *date;
+
+UIImageView *profileImageView;
+
+UIView *imageFrameView;
+
+UILabel *nameLabel, *bdayLabel, *countryLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,30 +47,31 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    [self createUI];
+    account = [AccountMobilePad new];
+    account.delegate = self;
+    [account loadAccount];
    
     
+   }
+
+
+-(void)createUI{
+    
     //IMAGE
-    UIImageView *imageFrameView = [[UIImageView alloc] initWithFrame:CGRectMake(95, 60, 130, 130)];
-    [imageFrameView setImage:[UIImage imageNamed:@"profile_frame.jpg"]];
+    imageFrameView = [[UIView alloc] initWithFrame:CGRectMake(95, 60, 130, 130)];
+    [imageFrameView setBackgroundColor:[UIColor redColor]];
     
-    UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 75, 100, 100)];
-    [profileImageView setImage:[UIImage imageNamed:@"rene.jpg"]];
+    profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(97, 62, 126, 126)];
     
-    
-    
-    
-    
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 205, 300, 40)];
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 205, 300, 40)];
     nameLabel.textAlignment = NSTextAlignmentCenter;
-    [nameLabel setText:@"Harry Lingad"];
     
-    UILabel *bdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 225, 300, 40)];
+    bdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 225, 300, 40)];
     bdayLabel.textAlignment = NSTextAlignmentCenter;
-    [bdayLabel setText:@"November 1, 1985"];
     
-    UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 245, 300, 40)];
-    countryLabel.textAlignment = NSTextAlignmentCenter;    [countryLabel setText:@"Phillipines"];
-    
+    countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 245, 300, 40)];
+    countryLabel.textAlignment = NSTextAlignmentCenter;
     
     
     UIButton *accountButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 325, 100, 30)];
@@ -68,7 +84,7 @@
     [profileButton setTitle:@"Profile" forState:UIControlStateNormal];
     [profileButton addTarget:self action:@selector(profileButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-
+    
     
     [self.view addSubview:nameLabel];
     [self.view addSubview:bdayLabel];
@@ -79,11 +95,132 @@
     
     [self.view addSubview:imageFrameView];
     [self.view addSubview:profileImageView];
-
+    
     self.navigationController.navigationBarHidden = NO;
     
     [self addNavigationBarButton];
+    
 }
+
+
+
+
+- (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
+    
+    
+    //Store the NSDictionary rates data into static array
+    NSArray *accountArray       = [account.getAccount objectForKey:@"retrieveMobileAccountResult"];
+    
+    firstName = [accountArray valueForKey:@"fname"];
+    middleName = [accountArray valueForKey:@"mname"];
+    lastName = [accountArray valueForKey:@"lname"];
+    country = [accountArray valueForKey:@"country"];
+    province = [accountArray valueForKey:@"provinceCity"];
+    address = [accountArray valueForKey:@"permanentAdd"];
+    zipcode = [accountArray valueForKey:@"zipcode"];
+    gender = [accountArray valueForKey:@"gender"];
+    bdate = [accountArray valueForKey:@"bdate"];
+    mobileno = [accountArray valueForKey:@"mobileno"];
+    emailadd = [accountArray valueForKey:@"emailadd"];
+    nationality = [accountArray valueForKey:@"nationality"];
+    work = [accountArray valueForKey:@"natureOfWork"];
+    
+    
+    
+    answer1 = [accountArray valueForKey:@"secanswer1"];
+    answer2 = [accountArray valueForKey:@"secanswer2"];
+    answer3 = [accountArray valueForKey:@"secanswer3"];
+    question1 = [accountArray valueForKey:@"secquestion1"];
+    question2 = [accountArray valueForKey:@"secquestion2"];
+    question3 = [accountArray valueForKey:@"secquestion3"];
+    
+    walletNo = [accountArray valueForKey:@"walletno"];
+    
+    respMessage = [accountArray valueForKey:@"respmessage"];
+    resCode = [accountArray valueForKey:@"respcode"];
+    
+    photo1 = [accountArray valueForKey:@"photo1"];
+    photo2 = [accountArray valueForKey:@"photo2"];
+    photo3 = [accountArray valueForKey:@"photo3"];
+    photo4 = [accountArray valueForKey:@"photo4"];
+    
+    
+    
+    //Format date====================================================
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    date = [dateFormatter dateFromString:bdate];
+    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
+    NSString *finalDateString = [dateFormatter stringFromDate:date];
+    //End Format Date===============================================
+    
+    
+    
+    [self saveToPaylist];
+    
+    
+    //CONVERT STRING TO IMAGE===========================================
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    [profileImageView setImage:[UIImage imageWithData:data]];
+    //==================================================================
+    
+    
+    
+    
+    //DISPLAY ACCOUNT INFORMATION LABEL===============================
+    [nameLabel setText:[NSString stringWithFormat:@"%@ %@. %@", firstName, middleName, lastName]];
+    [bdayLabel setText:[NSString stringWithFormat:@"%@", finalDateString]];
+    [countryLabel setText:[NSString stringWithFormat:@"%@", country]];
+    //================================================================
+    
+    
+    
+    
+}
+
+-(void) saveToPaylist{
+    
+    SaveWalletData *saveData = [SaveWalletData new];
+    
+    int userAge = [self userAge:date];
+    
+    [saveData initSaveData:firstName forKey:@"fname"];
+    [saveData initSaveData:middleName forKey:@"mname"];
+    [saveData initSaveData:lastName forKey:@"lname"];
+    [saveData initSaveData:country forKey:@"country"];
+    [saveData initSaveData:province forKey:@"provinceCity"];
+    [saveData initSaveData:address forKey:@"permanentAdd"];
+    [saveData initSaveData:zipcode forKey:@"zipcode"];
+    [saveData initSaveData:gender forKey:@"gender"];
+    [saveData initSaveData:bdate forKey:@"bdate"];
+    
+    [saveData initSaveData:[NSString stringWithFormat:@"%i", userAge] forKey:@"age"];
+    [saveData initSaveData:mobileno forKey:@"mobileno"];
+    [saveData initSaveData:emailadd forKey:@"emailadd"];
+    [saveData initSaveData:nationality forKey:@"nationality"];
+    [saveData initSaveData:work forKey:@"natureOfWork"];
+    
+    
+    [saveData initSaveData:answer1 forKey:@"secanswer1"];
+    [saveData initSaveData:answer2 forKey:@"secanswer2"];
+    [saveData initSaveData:answer3 forKey:@"secanswer3"];
+    [saveData initSaveData:question1 forKey:@"secquestion1"];
+    [saveData initSaveData:question2 forKey:@"secquestion2"];
+    [saveData initSaveData:question3 forKey:@"secquestion3"];
+    
+    
+    [saveData initSaveData:walletNo forKey:@"walletno"];
+    
+    
+    [saveData initSaveData:photo1 forKey:@"photo1"];
+    [saveData initSaveData:photo2 forKey:@"photo2"];
+    [saveData initSaveData:photo3 forKey:@"photo3"];
+    [saveData initSaveData:photo4 forKey:@"photo4"];
+    
+    
+}
+
 
 - (BOOL)prefersStatusBarHidden{
     return YES;
@@ -169,6 +306,14 @@
 
 
 
+-(int) userAge:(NSDate *)birthDay{
+    
+    NSDate* currentDate = [NSDate date];
+    NSTimeInterval secondsBetween = [currentDate timeIntervalSinceDate:birthDay];
+    int days = secondsBetween / 86400;
+    int  age = days/ 364 ;
+    return age;
+}
 
 
 @end

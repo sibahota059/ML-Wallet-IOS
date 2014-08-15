@@ -7,6 +7,7 @@
 //
 
 #import "EditPassword.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface EditPassword ()
 
@@ -15,6 +16,13 @@
 @implementation EditPassword
 
 UIScrollView *profileScroll;
+
+NSDictionary *loadData;
+NSString *password;
+
+NSString *PASSWORD_VAL_ERROR = @"Validation Error";
+
+UITextField *oldPassword, *newPassword, *confirmPassword;
 
 - (void)viewDidLoad
 {
@@ -26,6 +34,8 @@ UIScrollView *profileScroll;
     [profileScroll setContentSize:CGSizeMake(320, 400)];
     
 
+    loadData = [NSDictionary initRead_LoadWallet_Data];
+    password = [loadData objectForKey:@"password"];
     
     
     [self.view addSubview:profileScroll];
@@ -72,7 +82,8 @@ UIScrollView *profileScroll;
     //Old Password
     UIView *oldPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 45, 280, 30)];
     [oldPasswordOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *oldPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    oldPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    oldPassword.secureTextEntry = YES;
     [oldPassword setBackgroundColor:[UIColor whiteColor]];
     [oldPassword setPlaceholder:@" Old Password"];
     [oldPasswordOutline addSubview:oldPassword];
@@ -82,7 +93,8 @@ UIScrollView *profileScroll;
     //New Password
     UIView *newPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 105, 280, 30)];
     [newPasswordOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *newPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    newPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    newPassword.secureTextEntry = YES;
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setPlaceholder:@" New Password"];
     [newPasswordOutline addSubview:newPassword];
@@ -91,7 +103,8 @@ UIScrollView *profileScroll;
     //Address
     UIView *confirmPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 165, 280, 30)];
     [confirmPasswordOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *confirmPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    confirmPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    confirmPassword.secureTextEntry = YES;
     [confirmPassword setBackgroundColor:[UIColor whiteColor]];
     [confirmPassword setPlaceholder:@" Confirm Password"];
     [confirmPasswordOutline addSubview:confirmPassword];
@@ -146,8 +159,27 @@ UIScrollView *profileScroll;
     [backNavButton setStyle:UIBarButtonItemStyleBordered];
     
     
+    
+    
+    //RIGHT NAVIGATION BUTTON
+    UIView *saveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    [saveButton setImage:[UIImage imageNamed:@"my_save.png"] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(savePressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [saveView addSubview:saveButton];
+    
+    
+    UIBarButtonItem *saveNavButton = [[UIBarButtonItem alloc] initWithCustomView:saveView];
+    [saveNavButton setStyle:UIBarButtonItemStyleBordered];
+    
+    
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationItem setLeftBarButtonItem:backNavButton];
+    [self.navigationItem setRightBarButtonItem:saveNavButton];
+
+
+    
     
 }
 
@@ -157,6 +189,50 @@ UIScrollView *profileScroll;
     [self.navigationController  popViewControllerAnimated:YES];
     
 }
+
+
+-(void)savePressed:(id)sender{
+    
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:PASSWORD_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    
+    NSString *userInputOldPassword = oldPassword.text;
+    NSString *userInputNewPassword = newPassword.text;
+    NSString *userInputConfirmPassword = confirmPassword.text;
+    
+    if([userInputOldPassword isEqualToString:@""] || [userInputNewPassword isEqualToString:@""] || [userInputConfirmPassword isEqualToString:@""])
+    {
+        [saveAlert setMessage:@"Input all fields."];
+        
+    }
+    else if (![userInputOldPassword isEqualToString:password])
+    {
+        [saveAlert setMessage:@"Your old Password is incorrect."];
+    }
+    else if(userInputNewPassword.length < 6)
+    {
+        [saveAlert setMessage:@"Password must have 6 or more characters."];
+    }
+    else if(![userInputConfirmPassword isEqualToString:userInputNewPassword])
+    {
+        [saveAlert setMessage:@"Password does not match."];
+        newPassword.text = @"";
+        confirmPassword.text = @"";
+    }
+    else if([userInputNewPassword isEqualToString:userInputOldPassword])
+    {
+        [saveAlert setMessage:@"New Password should not be same as old Password."];
+    }
+    else
+    {
+        [saveAlert setMessage:@"Success!"];
+    }
+    
+    
+    
+    [saveAlert show];
+    
+}
+
 
 
 - (BOOL)prefersStatusBarHidden{

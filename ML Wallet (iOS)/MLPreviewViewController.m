@@ -10,6 +10,7 @@
 #import "MLUI.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MLTermsConditionViewController.h"
+#import "UIAlertView+alertMe.h"
 
 @interface MLPreviewViewController (){
     MLUI *getUI;
@@ -198,15 +199,15 @@
         confirmInd = @"pin";	
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:respmessage];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:respmessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"3"]){
-        [getUI displayAlert:@"Message" message:respmessage];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:respmessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [self dismissProgressBar];
         [self.navigationController popToRootViewControllerAnimated:YES];
         self.navigationController.navigationBarHidden = YES;
         
     }else{
-        [getUI displayAlert:@"Message" message:respmessage];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:respmessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [self reset];
     }
 }
@@ -228,7 +229,7 @@
         [self displayProgressBar];
         
     }else{
-        [getUI displayAlert:@"Message" message:@"Pin must be 4 characters"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Pin must be 4 characters!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
 }
 
@@ -424,8 +425,16 @@
 - (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    
+    [self performSelector:@selector(dismiss:) withObject:alert afterDelay:60.0];
+    
     [alert show];
     
+}
+
+- (void)dismiss:(UIAlertView*)alert
+{
+    [alert dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
 

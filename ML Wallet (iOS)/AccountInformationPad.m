@@ -61,32 +61,17 @@ UILabel *wallet, *balance, *address, *email;
     
     
     photo1Value =[loadData objectForKey:@"photo1"];
-    NSLog(@"test: %@", photo1Value);
     
     firstNameValue = [loadData objectForKey:@"fname"];
-    NSLog(@"test: %@", firstNameValue);
     
     middleNameValue = [loadData objectForKey:@"mname"];
-    NSLog(@"test: %@", middleNameValue);
     
     lastNameValue = [loadData objectForKey:@"lname"];
-    NSLog(@"test: %@", lastNameValue);
-    
     mobileNumberValue =[loadData objectForKey:@"mobileno"];
-    NSLog(@"test: %@", mobileNumberValue);
-    
     walletValue = [loadData objectForKey:@"walletno"];
-    NSLog(@"test: %@", firstNameValue);
-    
     balanceValue = [loadData objectForKey:@"balance"];
-    NSLog(@"test: %@", balanceValue);
-    
-    
     addressValue =[loadData objectForKey:@"permanentAdd"];
-    NSLog(@"test: %@", firstNameValue);
-    
     emailValue =[loadData objectForKey:@"emailadd"];
-    NSLog(@"test: %@", emailValue);
 
     
     
@@ -115,6 +100,8 @@ UILabel *wallet, *balance, *address, *email;
     
 }
 
+
+
 -(void)createInfo
 {
     
@@ -122,7 +109,6 @@ UILabel *wallet, *balance, *address, *email;
     [profileImageView setBackgroundColor:[UIColor redColor]];
     
     profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 146, 146)];
-    
     
     profileName = [[UILabel alloc] initWithFrame:CGRectMake(327, 90, 400, 30)];
     [profileName setFont:[UIFont fontWithName:nil size:22.0f]];

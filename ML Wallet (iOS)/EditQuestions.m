@@ -11,6 +11,7 @@
 #import "ProfileLabel.h"
 #import "ProfileTextField.h"
 #import "SelectQuestionDialog.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface EditQuestions ()
 
@@ -30,6 +31,12 @@ UITextField *firstAnswer, *secondAnswer, *thirdAnswer;
 
 SelectQuestionDialog *questionDialog;
 
+NSString *QUESTION_VAL_ERROR = @"Validation Error";
+
+NSDictionary *loadData;
+
+
+NSString *question1, *question2, *question3, *answer1, *answer2, *answer3;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +62,14 @@ SelectQuestionDialog *questionDialog;
     [scrollView setScrollEnabled:YES];
     [scrollView setContentSize:CGSizeMake(320, 300)];
     
+    loadData = [NSDictionary initRead_LoadWallet_Data];
+    question1 = [loadData objectForKey:@"secquestion1"];
+    question2 = [loadData objectForKey:@"secquestion2"];
+    question3  = [loadData objectForKey:@"secquestion3"];
+    
+    answer1 = [loadData objectForKey:@"secanswer1"];
+    answer2 = [loadData objectForKey:@"secanswer2"];
+    answer3 = [loadData objectForKey:@"secanswer3"];
 
     
     
@@ -89,7 +104,9 @@ SelectQuestionDialog *questionDialog;
     button1 = [[ProfileButton alloc] initWithString:@"?" x:20 y:30];
     [button1 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
     
-    questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:45 y:30 myColor:[UIColor blackColor] width:260];
+    questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:53 y:30 myColor:[UIColor blackColor] width:260];
+    
+    [questionLbl1 setText:question1];
    
 
     
@@ -97,14 +114,17 @@ SelectQuestionDialog *questionDialog;
     
     button2 = [[ProfileButton alloc] initWithString:@"?" x:20 y:120];
     [button2 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-    questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:45 y:120 myColor:[UIColor blackColor] width:260];
+    questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:53 y:120 myColor:[UIColor blackColor] width:260];
+    
+    [questionLbl2 setText:question2];
 
     //QUESITON 3
     
     button3 = [[ProfileButton alloc] initWithString:@"?" x:20 y:210];
     [button3 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-    questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:45 y:210 myColor:[UIColor blackColor] width:260];
-
+    questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:53 y:210 myColor:[UIColor blackColor] width:260];
+    
+    [questionLbl3 setText:question3];
     
     
 
@@ -138,7 +158,7 @@ SelectQuestionDialog *questionDialog;
     
     firstAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [firstAnswer setBackgroundColor:[UIColor whiteColor]];
-    [firstAnswer setPlaceholder:@" Answer 1"];
+    [firstAnswer setPlaceholder:answer1];
     [firstAnswerOutline addSubview:firstAnswer];
     
     
@@ -148,7 +168,7 @@ SelectQuestionDialog *questionDialog;
     
     secondAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [secondAnswer setBackgroundColor:[UIColor whiteColor]];
-    [secondAnswer setPlaceholder:@" Answer 2"];
+    [secondAnswer setPlaceholder:answer2];
     [secondAnswerOutline addSubview:secondAnswer];
     
     
@@ -158,7 +178,7 @@ SelectQuestionDialog *questionDialog;
     
     thirdAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [thirdAnswer setBackgroundColor:[UIColor whiteColor]];
-    [thirdAnswer setPlaceholder:@" Answer 3"];
+    [thirdAnswer setPlaceholder:answer3];
     [thirdAnswerOutline addSubview:thirdAnswer];
     
 
@@ -294,7 +314,6 @@ SelectQuestionDialog *questionDialog;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
      [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -303,9 +322,20 @@ SelectQuestionDialog *questionDialog;
     UIBarButtonItem *backNavButton = [[UIBarButtonItem alloc] initWithCustomView:backView];
     [backNavButton setStyle:UIBarButtonItemStyleBordered];
     
+    //RIGHT NAVIGATION BUTTON
+    UIView *saveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    [saveButton setImage:[UIImage imageNamed:@"my_save.png"] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(savePressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [saveView addSubview:saveButton];
+    
+    UIBarButtonItem *saveNavButton = [[UIBarButtonItem alloc] initWithCustomView:saveView];
+    [saveNavButton setStyle:UIBarButtonItemStyleBordered];
     
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationItem setLeftBarButtonItem:backNavButton];
+    [self.navigationItem setRightBarButtonItem:saveNavButton];
     
 }
 
@@ -315,6 +345,34 @@ SelectQuestionDialog *questionDialog;
     [self.navigationController  popViewControllerAnimated:YES];
     
 }
+
+
+-(void)savePressed:(id)sender{
+    
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:QUESTION_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    
+    
+    NSString *userInputFirstAnswer = firstAnswer.text;
+    NSString *userInputSecondAnswer = secondAnswer.text;
+    NSString *userInputThirdAnswer = thirdAnswer.text;
+    
+    if([userInputFirstAnswer isEqualToString:@""] || [userInputSecondAnswer isEqualToString:@""] || [userInputThirdAnswer isEqualToString:@""])
+    {
+        [saveAlert setMessage:@"Input all fields."];
+    }
+    else
+    {
+        
+        [saveAlert setMessage:@"To do"];
+
+    }
+    
+
+    [saveAlert show];
+}
+
+
+
 
 
 - (BOOL)prefersStatusBarHidden{
