@@ -130,8 +130,8 @@ SelectQuestionDialog *questionDialog;
     if ( IDIOM == IPAD ) {
         /* do something specifically for iPad. */
         NSLog(@"IPAD");
-        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,screenHeight*.05,screenWidth,screenHeight)];
-        ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
+        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,10,screenWidth,screenHeight)];
+        ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:screenWidth*.2 y:5 width:140];
         
         //QUESTION 1
         
@@ -191,8 +191,8 @@ SelectQuestionDialog *questionDialog;
     } else {
         /* do something specifically for iPhone or iPod touch. */
         NSLog(@"IPHONE");
-        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,-10,screenWidth,screenHeight)];
-     //   ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
+        UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,screenWidth,screenHeight)];
+        ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:5 y:5 width:140];
         
         //QUESTION 1
         questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:45 y:30 myColor:[UIColor blackColor] width:260];
@@ -281,7 +281,7 @@ SelectQuestionDialog *questionDialog;
         
         
         
-   //    [simpleView addSubview:questionHeader];
+        [simpleView addSubview:questionHeader];
         [simpleView addSubview:button1];
         [simpleView addSubview:questionLbl1];
         [simpleView addSubview: answerTF1];
@@ -318,7 +318,7 @@ SelectQuestionDialog *questionDialog;
         }
         else if(sender == button2)
         {
-            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, -30, 320, 500) stringArray:questions2];
+            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, -30, 320, 500) stringArray:questions2];
             [disableBackground setHidden:NO];
             [self.view addSubview:questionDialog];
             [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion2:) forControlEvents:UIControlEventTouchUpInside];
@@ -326,7 +326,7 @@ SelectQuestionDialog *questionDialog;
         }
         else
         {
-            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, -30, 320, 500) stringArray:questions3];
+            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, -30, 320, 500) stringArray:questions3];
             [disableBackground setHidden:NO];
             [self.view addSubview:questionDialog];
             [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion3:) forControlEvents:UIControlEventTouchUpInside];
@@ -506,7 +506,10 @@ SelectQuestionDialog *questionDialog;
         accLog.act_log_str_secquestion3 = questionLbl3.text;
         accLog.act_log_str_walletno = quest_act_str_walletno;
         
-        
+        accLog.act_log_str_photo1 = quest_act_str_photo1;
+        accLog.act_log_str_photo2 = quest_act_str_photo2;
+        accLog.act_log_str_photo3 = quest_act_str_photo3;
+        accLog.act_log_str_photo4 = quest_act_str_photo4;
         
         [self.navigationController pushViewController:accLog animated:YES];
 
@@ -520,9 +523,9 @@ SelectQuestionDialog *questionDialog;
         
         if([questionLbl1.text isEqualToString:@"Question 1"]&&[questionLbl2.text isEqualToString:@"Question 2"]&&[questionLbl3.text isEqualToString:@"Question 3"])
         {
-//            [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-            AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
- [self.navigationController pushViewController:accLog animated:YES];
+            [UIAlertView myCostumeAlert:@"Please" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+//            AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+// [self.navigationController pushViewController:accLog animated:YES];
         }
     }
     

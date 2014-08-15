@@ -58,14 +58,6 @@ UITextfieldAnimate *textAnimate;
     [scrollView setScrollEnabled:YES];
     [scrollView setContentSize:CGSizeMake(320, 500)];
     
-    //RegistrationInformation *registraionInformation = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-    
-    //[self setNextViewController:registraionInformation myImage:[UIImage imageNamed:@"next.png"]];
-    
-    //[self addNavigationBar];
-    //
-    //    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
-    //                                                                         initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self addNavigationBar];
     [self createCustomerID];
     [self.view addSubview:scrollView];
@@ -84,15 +76,7 @@ UITextfieldAnimate *textAnimate;
 }
 
 -(void) createCustomerID{
-    
-    
-    //  RegistrationInformation *registrationInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-    //
-    //  [self setNextViewController:registrationInfo myImage:[UIImage imageNamed:@"profile.png"]];
-    //
     ProfileHeader *personalHeader = [[ProfileHeader alloc] initWithValue:@" Enter all fields" x:5 y:-10 width:120];
-    
-    //  ProfileOutline *personalOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
     UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
     
     ProfileLabel *customerID;
@@ -197,9 +181,6 @@ UITextfieldAnimate *textAnimate;
         thirdNumberTF.delegate = self;
         phoneNumberTF.delegate = self;
         
-        
-        
-        
         [simpleView addSubview:personalHeader];
         [simpleView addSubview:customerID];
         [simpleView addSubview:firstNumberTF];
@@ -228,18 +209,6 @@ UITextfieldAnimate *textAnimate;
 
 -(void) addNavigationBar{
     self.title = @"Customer ID";
-    /*
-     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-     [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchUpInside];
-     
-     [backView addSubview:backButton];
-     
-     
-     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backView];
-     [self.navigationItem setLeftBarButtonItem:back];
-     */
     UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home.png"]
                                                                 style:UIBarButtonItemStyleBordered
                                                                target:self
@@ -293,22 +262,13 @@ UITextfieldAnimate *textAnimate;
         else{
             NSLog(@"Keyboard not Visible");
         }
-        /*
-         RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-         regInfo.custIDfirstNumber = firstNumberTF.text;
-         regInfo.custIDsecondNumber = secondNumberTF.text;
-         regInfo.custIDthirdNumber = thirdNumberTF.text;
-         regInfo.custIDphoneNumber = phoneNumberTF.text;
-         
-         [self.navigationController pushViewController:regInfo animated:YES];
-         */
         [self customerIDService];
     }
     else{
         NSLog(@"Empty man Bai!!");
-//        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-     [self customerIDService];
-    
+        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        
+        
     }
 }
 
@@ -457,84 +417,96 @@ UITextfieldAnimate *textAnimate;
     NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     if (myError == nil) {
         
-        NSDictionary *resultCoordinates = [res objectForKey:@"SearchCustIdMobileResult"];
-        NSString *strResponseCode = [resultCoordinates objectForKey:@"respcode"];
-        NSString *strResponseMessage = [resultCoordinates objectForKey:@"respmessage"];
-        NSString *strbdate = [resultCoordinates objectForKey:@"bdate"];
-        NSString *strcountry = [resultCoordinates objectForKey:@"country"];
-        NSString *stremailadd = [resultCoordinates objectForKey:@"emailadd"];
-        NSString *strfname = [resultCoordinates objectForKey:@"fname"];
-        NSString *strgender = [resultCoordinates objectForKey:@"gender"];
-        NSString *strlname = [resultCoordinates objectForKey:@"lname"];
-        NSString *strmname = [resultCoordinates objectForKey:@"mname"];
-        NSString *strmobileno = [resultCoordinates objectForKey:@"mobileno"];
-        NSString *strnationality = [resultCoordinates objectForKey:@"nationality"];
-        NSString *strnatureOfWork = [resultCoordinates objectForKey:@"natureOfWork"];
-        NSString *strpermanentAdd = [resultCoordinates objectForKey:@"permanentAdd"];
-        NSString *strprovinceCity = [resultCoordinates objectForKey:@"provinceCity"];
-        NSString *strzipcode = [resultCoordinates objectForKey:@"zipcode"];
-        NSString *strphoto1 = [resultCoordinates objectForKey:@"photo1"];
-        NSString *strphoto2 = [resultCoordinates objectForKey:@"photo2"];
-        NSString *strphoto3 = [resultCoordinates objectForKey:@"photo3"];
-        NSString *strphoto4 = [resultCoordinates objectForKey:@"photo4"];
-        NSString *strbalance = [resultCoordinates objectForKey:@"balance"];
-        NSString *strsecanswer1 = [resultCoordinates objectForKey:@"secanswer1"];
-        NSString *strsecanswer2 = [resultCoordinates objectForKey:@"secanswer2"];
-        NSString *strsecanswer3 = [resultCoordinates objectForKey:@"secanswer3"];
-        NSString *strsecquestion1 = [resultCoordinates objectForKey:@"secquestion1"];
-        NSString *strsecquestion2 = [resultCoordinates objectForKey:@"secquestion2"];
-        NSString *strsecquestion3 = [resultCoordinates objectForKey:@"secquestion3"];
-        NSString *strwalletno = [resultCoordinates objectForKey:@"walletno"];
+        NSDictionary *jsonResult = [res objectForKey:@"SearchCustIdMobileResult"];
+        NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
+        NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
+        NSString *strbdate = [jsonResult objectForKey:@"bdate"];
+        NSString *strcountry = [jsonResult objectForKey:@"country"];
+        NSString *stremailadd = [jsonResult objectForKey:@"emailadd"];
+        NSString *strfname = [jsonResult objectForKey:@"fname"];
+        NSString *strgender = [jsonResult objectForKey:@"gender"];
+        NSString *strlname = [jsonResult objectForKey:@"lname"];
+        NSString *strmname = [jsonResult objectForKey:@"mname"];
+        NSString *strmobileno = [jsonResult objectForKey:@"mobileno"];
+        NSString *strnationality = [jsonResult objectForKey:@"nationality"];
+        NSString *strnatureOfWork = [jsonResult objectForKey:@"natureOfWork"];
+        NSString *strpermanentAdd = [jsonResult objectForKey:@"permanentAdd"];
+        NSString *strprovinceCity = [jsonResult objectForKey:@"provinceCity"];
+        NSString *strzipcode = [jsonResult objectForKey:@"zipcode"];
+        NSString *strphoto1 = [jsonResult objectForKey:@"photo1"];
+        NSString *strphoto2 = [jsonResult objectForKey:@"photo2"];
+        NSString *strphoto3 = [jsonResult objectForKey:@"photo3"];
+        NSString *strphoto4 = [jsonResult objectForKey:@"photo4"];
+        NSString *strbalance = [jsonResult objectForKey:@"balance"];
+        NSString *strsecanswer1 = [jsonResult objectForKey:@"secanswer1"];
+        NSString *strsecanswer2 = [jsonResult objectForKey:@"secanswer2"];
+        NSString *strsecanswer3 = [jsonResult objectForKey:@"secanswer3"];
+        NSString *strsecquestion1 = [jsonResult objectForKey:@"secquestion1"];
+        NSString *strsecquestion2 = [jsonResult objectForKey:@"secquestion2"];
+        NSString *strsecquestion3 = [jsonResult objectForKey:@"secquestion3"];
+        NSString *strwalletno = [jsonResult objectForKey:@"walletno"];
         NSLog(@"Response Code : %@",strResponseCode);
         NSLog(@"Response Message : %@",strResponseMessage);
         
-
-        //if string is null do something
-//                if([strzipcode isKindOfClass:[NSNull class]]){
-//                    strzipcode = @"null";
-//                }
-//                else if([strpermanentAdd isKindOfClass:[NSNull class]]){
-//                    strpermanentAdd = @"null";
-//                }
-//                else if([strbdate isKindOfClass:[NSNull class]]){
-//                    strbdate = @"null";
-//                }
-//                else if([strcountry isKindOfClass:[NSNull class]]){
-//                   strcountry = @"null";
-//                }
-//                else if([stremailadd isKindOfClass:[NSNull class]]){
-//                    stremailadd = @"null";
-//                }
-//                else if([strfname isKindOfClass:[NSNull class]]){
-//                    strfname = @"null";
-//                }
-//                else if([strgender isKindOfClass:[NSNull class]]){
-//                    strgender = @"null";
-//                }
-//                else if([strlname isKindOfClass:[NSNull class]]){
-//                    strlname = @"null";
-//                }
-//                else if([strmname isKindOfClass:[NSNull class]]){
-//                    strmname = @"null";
-//                }
-//                else if([strnationality isKindOfClass:[NSNull class]]){
-//                    strnationality = @"null";
-//                }
-//                else if([strmobileno isKindOfClass:[NSNull class]]){
-//                    strmobileno = @"null";
-//                }
-//                else if([strprovinceCity isKindOfClass:[NSNull class]]){
-//                    strprovinceCity = @"null";
-//                }
-//                else if([strnatureOfWork isKindOfClass:[NSNull class]]){
-//                strnatureOfWork = @"null";
-//                }
+        
+        // if string is null do something
+        if([strzipcode isKindOfClass:[NSNull class]]){
+            strzipcode = @"";
+        }
+        if([strpermanentAdd isKindOfClass:[NSNull class]]){
+            strpermanentAdd = @"";
+        }
+        if([strbdate isKindOfClass:[NSNull class]]){
+            strbdate = @"";
+        }
+        if([strcountry isKindOfClass:[NSNull class]]){
+            strcountry = @"";
+        }
+        if([stremailadd isKindOfClass:[NSNull class]]){
+            stremailadd = @"";
+        }
+        if([strfname isKindOfClass:[NSNull class]]){
+            strfname = @"";
+        }
+        if([strgender isKindOfClass:[NSNull class]]){
+            strgender = @"";
+        }
+        if([strlname isKindOfClass:[NSNull class]]){
+            strlname = @"";
+        }
+        if([strmname isKindOfClass:[NSNull class]]){
+            strmname = @"";
+        }
+        if([strnationality isKindOfClass:[NSNull class]]){
+            strnationality = @"";
+        }
+        if([strmobileno isKindOfClass:[NSNull class]]){
+            strmobileno = @"";
+        }
+        if([strprovinceCity isKindOfClass:[NSNull class]]){
+            strprovinceCity = @"";
+        }
+        if([strnatureOfWork isKindOfClass:[NSNull class]]){
+            strnatureOfWork = @"";
+        }
+        if([strphoto1 isKindOfClass:[NSNull class]]){
+            strphoto1 = @"";
+        }
+        if([strphoto2 isKindOfClass:[NSNull class]]){
+            strphoto2 = @"";
+        }
+        if([strphoto3 isKindOfClass:[NSNull class]]){
+            strphoto3 = @"";
+        }
+        if([strphoto4 isKindOfClass:[NSNull class]]){
+            strphoto4 = @"";
+        }
         
         
         
         if([strResponseMessage isEqualToString:@"CustID not found."]){
-           
-//            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            
+            //            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
             RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
             regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
             regInfo.reg_info_custIDsecondNumber = secondNumberTF.text;
@@ -619,7 +591,7 @@ UITextfieldAnimate *textAnimate;
     
     else {
         NSLog(@"Error : %@",myError.localizedDescription);
-//        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [HUD hide:YES];
         [HUD show:NO];
     }//end else
