@@ -15,10 +15,11 @@
 
 @implementation EditPassword
 
+EditPasswordWebService *editPasswordWS;
 UIScrollView *profileScroll;
 
 NSDictionary *loadData;
-NSString *password;
+NSString *password, *wallet;
 
 NSString *PASSWORD_VAL_ERROR = @"Validation Error";
 
@@ -33,10 +34,14 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(320, 400)];
     
-
+    editPasswordWS = [EditPasswordWebService new];
+    
     loadData = [NSDictionary initRead_LoadWallet_Data];
     password = [loadData objectForKey:@"password"];
     
+    wallet = [loadData objectForKey:@"walletno"];
+    
+    editPasswordWS.delegate = self;
     
     [self.view addSubview:profileScroll];
     
@@ -119,12 +124,6 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
 
 
 
-
-
-
-
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -134,6 +133,37 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     return self;
 }
 
+- (void) didFinishEditingPassword:(NSString *)indicator andError:(NSString *)getError{
+    
+    UIAlertView *resultAlertView = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editPasswordWS.respcode]isEqualToString:@"1"]){
+        
+        [resultAlertView setMessage:editPasswordWS.respmessage];
+        oldPassword.text = @"";
+        newPassword.text = @"";
+        confirmPassword.text = @"";
+        
+    }
+    else if ([[NSString stringWithFormat:@"%@", editPasswordWS.respcode] isEqualToString:@"0"])
+        
+    {
+        [resultAlertView setMessage:editPasswordWS.respmessage];
+        
+    }
+    else if ([indicator isEqualToString:@"error"])
+    {
+        [resultAlertView setMessage:@"Error in editing your password."];
+    }else{
+        
+        [resultAlertView setMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" ];
+    }
+    
+    [resultAlertView show];
+    
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -202,34 +232,38 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     if([userInputOldPassword isEqualToString:@""] || [userInputNewPassword isEqualToString:@""] || [userInputConfirmPassword isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
-        
+        [saveAlert show];
     }
     else if (![userInputOldPassword isEqualToString:password])
     {
         [saveAlert setMessage:@"Your old Password is incorrect."];
+        [saveAlert show];
     }
     else if(userInputNewPassword.length < 6)
     {
         [saveAlert setMessage:@"Password must have 6 or more characters."];
+        [saveAlert show];
     }
     else if(![userInputConfirmPassword isEqualToString:userInputNewPassword])
     {
         [saveAlert setMessage:@"Password does not match."];
         newPassword.text = @"";
         confirmPassword.text = @"";
+        [saveAlert show];
     }
     else if([userInputNewPassword isEqualToString:userInputOldPassword])
     {
         [saveAlert setMessage:@"New Password should not be same as old Password."];
+        [saveAlert show];
     }
     else
     {
-        [saveAlert setMessage:@"Success!"];
+        [editPasswordWS wallet:wallet password:userInputNewPassword];
     }
     
     
     
-    [saveAlert show];
+    
     
 }
 

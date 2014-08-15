@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditPasswordWebService.h"
 
-@interface EditPassword : UIViewController
+@interface EditPassword : UIViewController <EditPasswordDelegate>
 
 @end

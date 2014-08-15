@@ -15,9 +15,11 @@
 
 @implementation EditUsername
 
+EditUserNameWebService *editUsernameWS;
+
 NSString *USERNAME_VAL_ERROR = @"Validation Error";
 
-NSString *userName;
+NSString *userName, *wallet;
 
 UIScrollView *profileScroll;
 
@@ -44,9 +46,13 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(320, 400)];
     
+    editUsernameWS = [EditUserNameWebService new];
+    
     loadData = [NSDictionary initRead_LoadWallet_Data];
     userName = [loadData objectForKey:@"username"];
+     wallet = [loadData objectForKey:@"walletno"];
     
+    editUsernameWS.delegate = self;
     
     [self.view addSubview:profileScroll];
     
@@ -194,46 +200,86 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     if([userInputOldUserName isEqualToString:@""] || [userInputNewUserName isEqualToString:@""] |[userInputConfirmUserName isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
+        [saveAlert show];
     }
     else if(![userInputOldUserName isEqualToString:userName])
     {
         [saveAlert setMessage:@"Your old Username is incorrect."];
+        [saveAlert show];
     }
     else if([self validateStringContainsAlphabetsOnly:userInputNewUserName])
     {
         [saveAlert setMessage:@"Username must be a combination of letters and numbers."];
+        [saveAlert show];
     }
     else if([self validateStringContainsNumbersOnly:userInputNewUserName])
     {
         [saveAlert setMessage:@"Username must be a combination of letters and numbers."];
+        [saveAlert show];
     }
     else if (userInputNewUserName.length < 6)
     {
         [saveAlert setMessage:@"Username must have a 6 or more characters."];
+        [saveAlert show];
     }
     else if (![userInputNewUserName isEqualToString:userInputConfirmUserName])
     {
         [saveAlert setMessage:@"Username does not match."];
         newUsername.text = @"";
         confirmUsername.text = @"";
+        [saveAlert show];
     }
     else if([userInputNewUserName isEqualToString:userInputOldUserName])
     {
         [saveAlert setMessage:@"Username must not the same from Old Username."];
         newUsername.text = @"";
         confirmUsername.text = @"";
+        [saveAlert show];
         
     }
     else
         
     {
-        //TO DO
-        [saveAlert setMessage:@"Success."];
+        [editUsernameWS wallet:wallet username:userInputNewUserName];
         
     }
     
     
-    [saveAlert show];
+    
+    
+}
+
+
+
+- (void) didFinishEditingUserName:(NSString *)indicator andError:(NSString *)getError{
+    
+    UIAlertView *resultAlertView = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editUsernameWS.respcode]isEqualToString:@"1"]){
+        
+        [resultAlertView setMessage:editUsernameWS.respmessage];
+        oldUsername.text = @"";
+        newUsername.text = @"";
+        confirmUsername.text = @"";
+        
+    }
+    else if ([[NSString stringWithFormat:@"%@", editUsernameWS.respcode] isEqualToString:@"0"])
+        
+    {
+        [resultAlertView setMessage:editUsernameWS.respmessage];
+        
+    }
+    else if ([indicator isEqualToString:@"error"])
+    {
+        [resultAlertView setMessage:@"Error in editing your password."];
+    }else{
+        
+        [resultAlertView setMessage:editUsernameWS.respmessage];
+    }
+    
+    [resultAlertView show];
+    
     
 }
 

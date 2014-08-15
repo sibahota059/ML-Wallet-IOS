@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditAccountInfoWebService.h"
 
-@interface EditAccountInformation : UIViewController
+@interface EditAccountInformation : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, EditAccountInfoDelegate>
 
 @end

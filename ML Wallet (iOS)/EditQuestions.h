@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditSecretQuestionsWebService.h"
 
-@interface EditQuestions : UIViewController <UITextFieldDelegate>
+@interface EditQuestions : UIViewController <UITextFieldDelegate, EditSecretQuestionsDelegate>
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditUserNameWebService.h"
 
-@interface EditUsername : UIViewController
+@interface EditUsername : UIViewController <EditUserNameDelegate>
 
 @end

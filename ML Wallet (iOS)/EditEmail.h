@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditEmailWebService.h"
 
-@interface EditEmail : UIViewController
+@interface EditEmail : UIViewController <EditEmailDelegate>
 
 @end

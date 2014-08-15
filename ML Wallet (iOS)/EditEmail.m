@@ -15,6 +15,8 @@
 
 @implementation EditEmail
 
+EditEmailWebService *editEmailWS;
+
 
 UIScrollView *profileScroll;
 
@@ -25,7 +27,7 @@ NSString *EMAIL_VAL_ERROR = @"Validation Error";
 
 NSDictionary *loadData;
 
-NSString *email;
+NSString *email, *wallet;
 
 
 
@@ -38,10 +40,14 @@ NSString *email;
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(320, 400)];
     
+    editEmailWS = [EditEmailWebService new];
+    
+    
     loadData = [NSDictionary initRead_LoadWallet_Data];
     email = [loadData objectForKey:@"emailadd"];
+    wallet = [loadData objectForKey:@"walletno"];
     
-    
+    editEmailWS.delegate = self;
     [self.view addSubview:profileScroll];
     
     [self createEmailLabel];
@@ -190,8 +196,6 @@ NSString *email;
     
 }
 
-
-
 -(void)savePressed:(id)sender{
     
     UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:EMAIL_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -205,44 +209,69 @@ NSString *email;
     if([userInputOldEmail isEqualToString:@""] || [userInputNewEmail isEqualToString:@""] |[userInputConfirmEmail isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
+        [saveAlert show];
     }
     
     else if(![userInputOldEmail isEqualToString:email])
     {
         [saveAlert setMessage:@"Your old Email is incorrect."];
+        [saveAlert show];
     }
     else  if(![self NSStringIsValidEmail:userInputNewEmail])
     {
         [saveAlert setMessage:@"Email Address is in Invalid Format."];
+        [saveAlert show];
     }
     else if (![userInputNewEmail isEqualToString:userInputConfirmEmail])
     {
         [saveAlert setMessage:@"Email does not match."];
         newEmail.text = @"";
         confirmEmail.text = @"";
+        [saveAlert show];
     }
     else if([userInputNewEmail isEqualToString:userInputOldEmail])
     {
         [saveAlert setMessage:@"Email must not the same from Old Username."];
         newEmail.text = @"";
         confirmEmail.text = @"";
+        [saveAlert show];
         
     }
     else
         
     {
-        //TO DO
-        [saveAlert setMessage:@"Success."];
-        
+         [editEmailWS wallet:wallet theEmail:userInputNewEmail];
     }
     
+}
+
+- (void) didFinishEditingEmail:(NSString *)indicator andError:(NSString *)getError{
+    
+    UIAlertView *resultAlertView = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     
     
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editEmailWS.respcode]isEqualToString:@"1"]){
+        
+        [resultAlertView setMessage:@"Successfully saved."];
+        
+    }
+    else if ([[NSString stringWithFormat:@"%@", editEmailWS.respcode] isEqualToString:@"0"])
+    
+    {
+        [resultAlertView setMessage:editEmailWS.respmessage];
+
+    }
+    else if ([indicator isEqualToString:@"error"])
+    {
+        [resultAlertView setMessage:@"Error in editing your email."];
+    }else{
+        
+        [resultAlertView setMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" ];
+    }
+    
+    [resultAlertView show];
     
     
-    
-    //TO DO
-    [saveAlert show];
 }
 
 
