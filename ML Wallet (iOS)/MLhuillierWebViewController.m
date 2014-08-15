@@ -68,14 +68,7 @@
     self.navigationItem.rightBarButtonItem = btnBack;
     
     //Set Background
-    if ([UIScreen mainScreen].bounds.size.height >= 568) //4 inch 568
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
-    }
-    else //4 inc below
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
-    }
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
 }
 #pragma Start goto Home View

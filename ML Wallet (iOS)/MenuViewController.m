@@ -142,7 +142,6 @@
         if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
         {
             [self.scrollView setContentSize:CGSizeMake(320, 568)];
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
         }
         else //4 inc below
         {
@@ -154,19 +153,12 @@
                                            self.others.frame.origin.y + 38,
                                            self.others.frame.size.width,
                                            self.others.frame.size.height);
-//            self.mlSite.frame = CGRectMake(self.mlSite.frame.origin.x + 80,
-//                                           self.mlSite.frame.origin.y,
-//                                           self.mlSite.frame.size.width - 200,
-//                                           self.mlSite.frame.size.height);
             
             [self.scrollView setContentSize:CGSizeMake(320, 400)];
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
         }
     }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground4.png"]]];
-    }
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     
     self.lblMain.textAlignment      = NSTextAlignmentCenter;
     self.lblUserName.textAlignment  = NSTextAlignmentCenter;
