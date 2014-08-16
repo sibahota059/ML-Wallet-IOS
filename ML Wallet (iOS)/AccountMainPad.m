@@ -54,7 +54,7 @@ NSDate *date;
 
 
 
-#pragma mark - Retrieve Rates Data from Webservice
+#pragma mark - Retrieve Retrieve User Information Webservice
 - (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
     
     

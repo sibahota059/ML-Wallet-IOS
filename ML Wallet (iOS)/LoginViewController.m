@@ -86,22 +86,8 @@
     HUD.delegate = self;
     
     //Set Background
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-
-        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
-        }
-        else //4 inc below
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
-        }
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground4.png"]]];
-    }
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     
     [self.loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_img.png"]]];
     [self.scrollView setScrollEnabled:YES];
@@ -348,7 +334,6 @@
             balance     = [result valueForKeyPath:@"balance"];
             mname       = [result valueForKeyPath:@"mname"];
             
-            
             NSString *bal = [NSString stringWithFormat:@"%@", balance];
             
             //Saving Data Plist
@@ -360,6 +345,7 @@
             [saveData initSaveData:bal forKey:@"balance"];
             [saveData initSaveData:mname forKey:@"mname"];
             [saveData initSaveData:pass forKey:@"password"];
+            [saveData initSaveData:user forKey:@"username"];
             if ([self.location isEqualToString:@""] || self.location.length == 0 || self.location == nil) {
                 self.location = @"";
             }

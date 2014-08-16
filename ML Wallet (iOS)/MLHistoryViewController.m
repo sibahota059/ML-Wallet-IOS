@@ -13,6 +13,7 @@
 #import "NSDictionary+LoadWalletData.h"
 #import <CoreLocation/CoreLocation.h>
 #import "DeviceID.h"
+#import "UIAlertView+alertMe.h"
 
 @interface MLHistoryViewController (){
 
@@ -179,14 +180,14 @@
         transCounter += 1;
         
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:@"You have no transaction for this month."];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"You have no transaction for this month." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if ([indicator isEqualToString:@"error"]){
         
         confirmInd = @"loadHistory";
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
         
     }else{
-        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     //reload tableview after retrieving
@@ -223,13 +224,13 @@
     [self dismissProgressBar];
     
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", pt.respcode] isEqualToString:@"1"]) {
-        [getUI displayAlert:@"Message" message:pt.respmessage];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:pt.respmessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if([[NSString stringWithFormat:@"%@", pt.respcode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:pt.respmessage];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:pt.respmessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if([indicator isEqualToString:@"error"]){
-        [getUI displayAlert:@"Message" message:getError];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:getError delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else{
-        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
 }
@@ -479,7 +480,7 @@
         [self displayProgressBar];
         
     }else{
-        [getUI displayAlert:@"Message" message:@"Pin must be 4 characters"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Pin must be 4 characters!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
    
 }
@@ -505,18 +506,18 @@
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
         
     }else if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:respmessage];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:respmessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [self dismissProgressBar];
         [self reset];
     }else if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"3"]){
-        [getUI displayAlert:@"Message" message:respmessage];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:respmessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [self dismissProgressBar];
         [self.navigationController popToRootViewControllerAnimated:YES];
         self.navigationController.navigationBarHidden = YES;
 
     }else{
         [self dismissProgressBar];
-        [getUI displayAlert:@"Message" message:respmessage];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:respmessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [self reset];
     }
     
@@ -527,8 +528,8 @@
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", sc.respcode]isEqualToString:@"1"]){
         
         [loadHistory getUserWalletNo:walletno];
-        
-        [getUI displayAlert:@"Message" message:@"Sendout Successfully Cancelled. Just kindly check your balance."];
+
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Sendout Successfully Cancelled. Just kindly check your balance." delegate:nil cancelButton:@"Ok" otherButtons:nil];
         
         self.view_pinInput.alpha = 1.0;
         self.view_keyboard.alpha = 1.0;
@@ -567,7 +568,7 @@
         
     }else if ([[NSString stringWithFormat:@"%@", sc.respcode] isEqualToString:@"0"]){
         
-        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", sc.respmessage]];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", sc.respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
         
     }else if([indicator isEqualToString:@"error"]){
         
@@ -576,7 +577,7 @@
     
     }else{
         
-        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
 
 }
@@ -746,8 +747,16 @@
 - (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    
+    [self performSelector:@selector(dismiss:) withObject:alert afterDelay:60.0];
+    
     [alert show];
     
+}
+
+- (void)dismiss:(UIAlertView*)alert
+{
+    [alert dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -774,9 +783,6 @@
         self.navigationItem.rightBarButtonItems = nil;
         
         self.title = @"ENTER YOUR PIN";
-//        UIBarButtonItem *nexts = [getUI navBarButtonHistory:self navLink:@selector(btnPin) imageNamed:@"next.png"];
-//        
-//        [self.navigationItem setRightBarButtonItem:nexts];
             
         UIBarButtonItem *next = [[UIBarButtonItem alloc]
                     initWithTitle:@"Next"
@@ -811,7 +817,7 @@
                     button.enabled = NO;
                 }
             } else {
-                [getUI displayAlert:@"Message" message:@"You have no transactions yet."];
+                [UIAlertView myCostumeAlert:@"Message" alertMessage:@"You have no transactions yet." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             }
             
         }

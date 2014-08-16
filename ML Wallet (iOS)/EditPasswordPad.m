@@ -18,6 +18,11 @@
 UIScrollView *profileScroll;
 
 NSDictionary *loadData;
+NSString *password;
+
+NSString *VAL_ERROR = @"Validation Error";
+
+UITextField *oldPassword, *newPassword, *confirmPassword;
 
 - (void)viewDidLoad
 {
@@ -28,8 +33,9 @@ NSDictionary *loadData;
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(768, 400)];
     
-    
     loadData = [NSDictionary initRead_LoadWallet_Data];
+    password = [loadData objectForKey:@"password"];
+    
     
     
     [self.view addSubview:profileScroll];
@@ -40,129 +46,6 @@ NSDictionary *loadData;
     
     [self addNavigationBarButton];
 }
-
-
-
-
-
-//-(void) loadFromPlaylist{
-//    
-//    firstNameValue = [loadData objectForKey:@"fname"];
-//    middleNameValue = [loadData objectForKey:@"mname"];
-//    lastNameValue = [loadData objectForKey:@"lname"];
-//    countryValue =[loadData objectForKey:@"country"];
-//    provinceValue =[loadData objectForKey:@"provinceCity"];
-//    addressValue =[loadData objectForKey:@"permanentAdd"];
-//    zipcodeValue =[loadData objectForKey:@"zipcode"];
-//    genderValue =[loadData objectForKey:@"gender"];
-//    birthdateValue =[loadData objectForKey:@"bdate"];
-//    ageValue =[loadData objectForKey:@"age"];
-//    mobileNumberValue =[loadData objectForKey:@"mobileno"];
-//    
-//    emailValue =[loadData objectForKey:@"emailadd"];
-//    workValue =[loadData objectForKey:@"natureOfWork"];
-//    nationalityValue =[loadData objectForKey:@"nationality"];
-//    
-//    photo1Value =[loadData objectForKey:@"photo1"];
-//    photo2Value =[loadData objectForKey:@"photo2"];
-//    photo3Value =[loadData objectForKey:@"photo3"];
-//    photo4Value =[loadData objectForKey:@"photo2"];
-//    
-//    
-//    question1 =[loadData objectForKey:@"secquestion1"];
-//    question2 =[loadData objectForKey:@"secquestion2"];
-//    question3 =[loadData objectForKey:@"secquestion3"];
-//    answer1 =[loadData objectForKey:@"secanswer1"];
-//    answer2 =[loadData objectForKey:@"secanswer2"];
-//    answer3 =[loadData objectForKey:@"secanswer3"];
-//    
-//    
-//    
-//    
-//}
-
-//-(void) setInfo{
-//    [firstName setText:firstNameValue];
-//    [middleName setText:middleNameValue];
-//    [lastName setText:lastNameValue];
-//    [country setText:countryValue];
-//    [province setText:provinceValue];
-//    [address setText:addressValue];
-//    [zipcode setText:zipcodeValue];
-//    [gender setText:genderValue];
-//    
-//    //FORMAT DATE====================================================
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//    NSDate *date = [dateFormatter dateFromString:birthdateValue];
-//    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
-//    NSString *finalDateString = [dateFormatter stringFromDate:date];
-//    //End Format Date===============================================
-//    
-//    [birthdate setText:finalDateString];
-//    [age setText:ageValue];
-//    [mobileNumber setText:mobileNumberValue];
-//    [email setText:emailValue];
-//    [work setText:workValue];
-//    [nationality setText:nationalityValue];
-//    
-//    
-//    
-//    
-//    //CONVERTING STRING INTO IMAGE=================================================
-//    NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-//    [profileImage setImage:[UIImage imageWithData:data]];
-//    
-//    NSData *data1 = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-//    [image1 setImage:[UIImage imageWithData:data1]];
-//    
-//    
-//    NSData *data2 = [[NSData alloc]initWithBase64EncodedString:photo2Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-//    [image2 setImage:[UIImage imageWithData:data2]];
-//    
-//    
-//    NSData *data3 = [[NSData alloc]initWithBase64EncodedString:photo3Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-//    [image3 setImage:[UIImage imageWithData:data3]];
-//    
-//    
-//    NSData *data4 = [[NSData alloc]initWithBase64EncodedString:photo4Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-//    [image4 setImage:[UIImage imageWithData:data4]];
-//    
-//    //================================================================================
-//    
-//    
-//    
-//    dialog = [[QuestionVerificationDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
-//    
-//    
-//    [dialog setHidden:YES];
-//    
-//    
-//    
-//    
-//    
-//    [profileName setText:[NSString stringWithFormat:@"%@ %@. %@",firstNameValue, middleNameValue, lastNameValue]];
-//    [profilePhone setText:mobileNumberValue];
-//    [profileEmail setText:emailValue];
-//    
-//    
-//    
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -(void) createPasswordLabel{
     
     
@@ -199,7 +82,7 @@ NSDictionary *loadData;
     //Old Password
     UIView *oldPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 230, 434, 35)];
     [oldPasswordOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *oldPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    oldPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [oldPassword setBackgroundColor:[UIColor whiteColor]];
     [oldPassword setFont:[UIFont systemFontOfSize:19.0f]];
     [oldPassword setPlaceholder:@" Old Password"];
@@ -210,7 +93,7 @@ NSDictionary *loadData;
     //New Password
     UIView *newPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 300, 434, 35)];
     [newPasswordOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *newPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    newPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setFont:[UIFont systemFontOfSize:19.0f]];
     [newPassword setPlaceholder:@" New Password"];
@@ -220,7 +103,7 @@ NSDictionary *loadData;
     //Address
     UIView *confirmPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 370, 434, 35)];
     [confirmPasswordOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *confirmPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    confirmPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [confirmPassword setBackgroundColor:[UIColor whiteColor]];
     [confirmPassword setFont:[UIFont systemFontOfSize:19.0f]];
     [confirmPassword setPlaceholder:@" Confirm Password"];
@@ -251,7 +134,6 @@ NSDictionary *loadData;
     return self;
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -276,8 +158,23 @@ NSDictionary *loadData;
     [backNavButton setStyle:UIBarButtonItemStyleBordered];
     
     
+    
+    //RIGHT NAVIGATION BUTTON
+    
+    UIView *saveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    [saveButton setImage:[UIImage imageNamed:@"my_save.png"] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(savePressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [saveView addSubview:saveButton];
+    
+    UIBarButtonItem *saveNavButton = [[UIBarButtonItem alloc] initWithCustomView:saveView];
+    [saveNavButton setStyle:UIBarButtonItemStyleBordered];
+    
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationItem setLeftBarButtonItem:backNavButton];
+    [self.navigationItem setRightBarButtonItem:saveNavButton];
+
     
 }
 
@@ -287,6 +184,49 @@ NSDictionary *loadData;
     [self.navigationController  popViewControllerAnimated:YES];
     
 }
+
+-(void)savePressed:(id)sender{
+    
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    
+    NSString *userInputOldPassword = oldPassword.text;
+    NSString *userInputNewPassword = newPassword.text;
+    NSString *userInputConfirmPassword = confirmPassword.text;
+    
+    if([userInputOldPassword isEqualToString:@""] || [userInputNewPassword isEqualToString:@""] || [userInputConfirmPassword isEqualToString:@""])
+    {
+        [saveAlert setMessage:@"Input all fields."];
+    
+    }
+    else if (![userInputOldPassword isEqualToString:password])
+    {
+        [saveAlert setMessage:@"Your old Password is incorrect."];
+    }
+    else if(userInputNewPassword.length < 6)
+    {
+         [saveAlert setMessage:@"Password must have 6 or more characters."];
+    }
+    else if(![userInputConfirmPassword isEqualToString:userInputNewPassword])
+    {
+        [saveAlert setMessage:@"Password does not match."];
+        newPassword.text = @"";
+        confirmPassword.text = @"";
+    }
+    else if([userInputNewPassword isEqualToString:userInputOldPassword])
+    {
+        [saveAlert setMessage:@"New Password should not be same as old Password."];
+    }
+    else
+    {
+        [saveAlert setMessage:@"Success!"];
+    }
+    
+    
+    
+    [saveAlert show];
+    
+}
+
 
 
 - (BOOL)prefersStatusBarHidden{

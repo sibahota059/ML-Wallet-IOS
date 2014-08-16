@@ -7,6 +7,7 @@
 //
 
 #import "EditEmailPad.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface EditEmailPad ()
 
@@ -18,9 +19,13 @@
 
 UIScrollView *profileScroll;
 
+UITextField *oldEmail, *newEmail, *confirmEmail;
 
+NSString *EMAILPAD_VAL_ERROR = @"Validation Error";
 
+NSDictionary *loadData;
 
+NSString *email;
 
 
 - (void)viewDidLoad
@@ -33,6 +38,8 @@ UIScrollView *profileScroll;
     [profileScroll setContentSize:CGSizeMake(768, 400)];
     
     
+    loadData = [NSDictionary initRead_LoadWallet_Data];
+    email = [loadData objectForKey:@"emailadd"];
     
     
     [self.view addSubview:profileScroll];
@@ -80,9 +87,10 @@ UIScrollView *profileScroll;
     //Old Email
     UIView *oldEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 230, 434, 35)];
     [oldEmailOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [oldEmail setBackgroundColor:[UIColor whiteColor]];
     [oldEmail setFont:[UIFont systemFontOfSize:19.0f]];
+    [oldEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldEmail setPlaceholder:@" Old e-mail"];
     [oldEmailOutline addSubview:oldEmail];
     
@@ -91,9 +99,10 @@ UIScrollView *profileScroll;
     //New Username
     UIView *newEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 300, 434, 35)];
     [newEmailOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *newEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    newEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [newEmail setBackgroundColor:[UIColor whiteColor]];
     [newEmail setFont:[UIFont systemFontOfSize:19.0f]];
+    [newEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newEmail setPlaceholder:@" New e-mail"];
     [newEmailOutline addSubview:newEmail];
     
@@ -101,9 +110,10 @@ UIScrollView *profileScroll;
     //Username
     UIView *confirmEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 370, 434, 35)];
     [confirmEmailOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
     [confirmEmail setBackgroundColor:[UIColor whiteColor]];
     [confirmEmail setFont:[UIFont systemFontOfSize:19.0f]];
+    [confirmEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmEmail setPlaceholder:@" Confirm e-mail"];
     [confirmEmailOutline addSubview:confirmEmail];
     
@@ -161,8 +171,22 @@ UIScrollView *profileScroll;
     [backNavButton setStyle:UIBarButtonItemStyleBordered];
     
     
+    //RIGHT NAVIGATION BUTTON
+    UIView *saveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    [saveButton setImage:[UIImage imageNamed:@"my_save.png"] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(savePressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [saveView addSubview:saveButton];
+    
+    UIBarButtonItem *saveNavButton = [[UIBarButtonItem alloc] initWithCustomView:saveView];
+    [saveNavButton setStyle:UIBarButtonItemStyleBordered];
+
+    
+    
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationItem setLeftBarButtonItem:backNavButton];
+    [self.navigationItem setRightBarButtonItem:saveNavButton];
     
 }
 
@@ -173,6 +197,70 @@ UIScrollView *profileScroll;
     
 }
 
+
+-(void)savePressed:(id)sender{
+    
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:EMAILPAD_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    
+    
+    NSString *userInputOldEmail = oldEmail.text;
+    NSString *userInputNewEmail = newEmail.text;
+    NSString *userInputConfirmEmail = confirmEmail.text;
+    
+    
+    if(![userInputOldEmail isEqualToString:email])
+    {
+        [saveAlert setMessage:@"Your old Email is incorrect."];
+    }
+    else if([userInputOldEmail isEqualToString:@""] || [userInputNewEmail isEqualToString:@""] |[userInputConfirmEmail isEqualToString:@""])
+    {
+        [saveAlert setMessage:@"Input all fields."];
+    }
+    
+    else if(![self NSStringIsValidEmail:userInputNewEmail])
+    {
+        [saveAlert setMessage:@"Email must be a combination of letters and numbers."];
+    }
+    else if (![userInputNewEmail isEqualToString:userInputConfirmEmail])
+    {
+        [saveAlert setMessage:@"Email does not match."];
+        newEmail.text = @"";
+        confirmEmail.text = @"";
+    }
+    else if([userInputNewEmail isEqualToString:userInputOldEmail])
+    {
+        [saveAlert setMessage:@"Email must not the same from Old Username."];
+        newEmail.text = @"";
+        confirmEmail.text = @"";
+        
+    }
+    else
+        
+    {
+        //TO DO
+        [saveAlert setMessage:@"Success."];
+        
+    }
+
+    
+
+
+    
+    
+    //TO DO
+    [saveAlert setMessage:@"Success."];
+}
+
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = YES;
+    
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
 
 - (BOOL)prefersStatusBarHidden{
     return YES;

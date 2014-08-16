@@ -11,6 +11,7 @@
 #import "MLRatesTableViewCell.h"
 #import "MenuViewController.h"
 #import "LoginViewController.h"
+#import "UIAlertView+alertMe.h"
 
 @interface MLRatesTableViewController (){
     
@@ -146,13 +147,13 @@
         }
         
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
-        [getUI displayAlert:@"Message" message:[NSString stringWithFormat:@"%@", respmessage]];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if ([indicator isEqualToString:@"error"]){
         confirmInd = @"rates";
         [self dismissProgressBar];
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else{
-        [getUI displayAlert:@"Message" message:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948"];
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     //reload tableview after retrieving
@@ -275,8 +276,16 @@
 - (void)confirmDialog:(NSString *)title andMessage:(NSString *)message andButtonNameOK:(NSString *)btnOne andButtonNameCancel:(NSString *)btnTwo{
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:btnOne otherButtonTitles:btnTwo,nil];
+    
+    [self performSelector:@selector(dismiss:) withObject:alert afterDelay:60.0];
+    
     [alert show];
     
+}
+
+- (void)dismiss:(UIAlertView*)alert
+{
+    [alert dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
 

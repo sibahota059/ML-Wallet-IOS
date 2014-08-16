@@ -44,6 +44,8 @@
         self.location        = location;
         self.deviceId        = deviceId;
         
+        
+        
     }
     
     

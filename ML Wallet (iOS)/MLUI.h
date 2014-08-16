@@ -26,7 +26,6 @@
 - (UIBarButtonItem *)navBarButtonTc:(MLTermsConditionViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
 - (UIBarButtonItem *)navBarButtonHistory:(MLHistoryViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
 - (UIBarButtonItem *)navBarButtonRates:(MLRatesTableViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
-- (void)displayAlert:(NSString *)title message:(NSString *)message;
 - (NSString *)termsConditions;
 - (UIView *)shadowView:(UIView*)viewContent;
 @end

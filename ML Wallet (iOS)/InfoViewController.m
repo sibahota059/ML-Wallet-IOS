@@ -54,22 +54,8 @@
     
     
     //Set Background
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        
-        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
-        }
-        else //4 inc below
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground3.png"]]];
-        }
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground5.png"]]];
-    }
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+
 }
 
 - (void)gotoHome

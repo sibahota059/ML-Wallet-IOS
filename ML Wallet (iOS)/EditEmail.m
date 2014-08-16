@@ -7,6 +7,7 @@
 //
 
 #import "EditEmail.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface EditEmail ()
 
@@ -18,7 +19,13 @@
 UIScrollView *profileScroll;
 
 
+UITextField *oldEmail, *newEmail, *confirmEmail;
 
+NSString *EMAIL_VAL_ERROR = @"Validation Error";
+
+NSDictionary *loadData;
+
+NSString *email;
 
 
 
@@ -31,7 +38,8 @@ UIScrollView *profileScroll;
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(320, 400)];
     
-    
+    loadData = [NSDictionary initRead_LoadWallet_Data];
+    email = [loadData objectForKey:@"emailadd"];
     
     
     [self.view addSubview:profileScroll];
@@ -78,8 +86,9 @@ UIScrollView *profileScroll;
     //Old Username
     UIView *oldEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 45, 280, 30)];
     [oldEmailOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [oldEmail setBackgroundColor:[UIColor whiteColor]];
+    [oldEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldEmail setPlaceholder:@" Old e-mail"];
     [oldEmailOutline addSubview:oldEmail];
     
@@ -88,8 +97,9 @@ UIScrollView *profileScroll;
     //New Username
     UIView *newEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 105, 280, 30)];
     [newEmailOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *newEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    newEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [newEmail setBackgroundColor:[UIColor whiteColor]];
+    [newEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newEmail setPlaceholder:@" New e-mail"];
     [newEmailOutline addSubview:newEmail];
     
@@ -97,8 +107,9 @@ UIScrollView *profileScroll;
     //Username
     UIView *confirmEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 165, 280, 30)];
     [confirmEmailOutline setBackgroundColor:[UIColor redColor]];
-    UITextField *confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [confirmEmail setBackgroundColor:[UIColor whiteColor]];
+    [confirmEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmEmail setPlaceholder:@" Confirm e-mail"];
     [confirmEmailOutline addSubview:confirmEmail];
     
@@ -146,7 +157,6 @@ UIScrollView *profileScroll;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-//    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
      [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -155,9 +165,21 @@ UIScrollView *profileScroll;
     UIBarButtonItem *backNavButton = [[UIBarButtonItem alloc] initWithCustomView:backView];
     [backNavButton setStyle:UIBarButtonItemStyleBordered];
     
+    //RIGHT NAVIGATION BUTTON
+    UIView *saveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
+    [saveButton setImage:[UIImage imageNamed:@"my_save.png"] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(savePressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [saveView addSubview:saveButton];
+    
+    UIBarButtonItem *saveNavButton = [[UIBarButtonItem alloc] initWithCustomView:saveView];
+    [saveNavButton setStyle:UIBarButtonItemStyleBordered];
+
     
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationItem setLeftBarButtonItem:backNavButton];
+    [self.navigationItem setRightBarButtonItem:saveNavButton];
     
 }
 
@@ -169,8 +191,77 @@ UIScrollView *profileScroll;
 }
 
 
+
+-(void)savePressed:(id)sender{
+    
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:EMAIL_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    
+    
+    NSString *userInputOldEmail = oldEmail.text;
+    NSString *userInputNewEmail = newEmail.text;
+    NSString *userInputConfirmEmail = confirmEmail.text;
+    
+    
+    if([userInputOldEmail isEqualToString:@""] || [userInputNewEmail isEqualToString:@""] |[userInputConfirmEmail isEqualToString:@""])
+    {
+        [saveAlert setMessage:@"Input all fields."];
+    }
+    
+    else if(![userInputOldEmail isEqualToString:email])
+    {
+        [saveAlert setMessage:@"Your old Email is incorrect."];
+    }
+    else  if(![self NSStringIsValidEmail:userInputNewEmail])
+    {
+        [saveAlert setMessage:@"Email Address is in Invalid Format."];
+    }
+    else if (![userInputNewEmail isEqualToString:userInputConfirmEmail])
+    {
+        [saveAlert setMessage:@"Email does not match."];
+        newEmail.text = @"";
+        confirmEmail.text = @"";
+    }
+    else if([userInputNewEmail isEqualToString:userInputOldEmail])
+    {
+        [saveAlert setMessage:@"Email must not the same from Old Username."];
+        newEmail.text = @"";
+        confirmEmail.text = @"";
+        
+    }
+    else
+        
+    {
+        //TO DO
+        [saveAlert setMessage:@"Success."];
+        
+    }
+    
+    
+    
+    
+    
+    
+    //TO DO
+    [saveAlert show];
+}
+
+
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
+
+
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = YES;
+    
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
+
+
 
 @end

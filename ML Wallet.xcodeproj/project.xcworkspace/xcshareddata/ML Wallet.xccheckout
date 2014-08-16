@@ -10,29 +10,29 @@
 	<string>ML Wallet</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8ED0E021-F7D2-4C3E-978E-53EACBAB97B3</key>
+		<key>39E985F7260E56C86A78AC819174D8FC190C88E6</key>
 		<string>https://github.com/ybanezmarjune/ML-Wallet-IOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ML Wallet.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8ED0E021-F7D2-4C3E-978E-53EACBAB97B3</key>
+		<key>39E985F7260E56C86A78AC819174D8FC190C88E6</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ybanezmarjune/ML-Wallet-IOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8ED0E021-F7D2-4C3E-978E-53EACBAB97B3</string>
+	<string>39E985F7260E56C86A78AC819174D8FC190C88E6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8ED0E021-F7D2-4C3E-978E-53EACBAB97B3</string>
+			<string>39E985F7260E56C86A78AC819174D8FC190C88E6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ML-Wallet-IOS</string>
 		</dict>

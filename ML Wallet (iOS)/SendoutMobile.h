@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class SendoutMobile;
 @protocol SendoutMobileDelegate <NSObject>
 
 @required
