@@ -501,7 +501,7 @@ SelectQuestionDialog *questionDialog;
 //        AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
 //         [self.navigationController pushViewController:accLog animated:YES];
         
-        if([questionLbl1.text isEqualToString:@"Question 1"]&&[questionLbl2.text isEqualToString:@"Question 2"]&&[questionLbl3.text isEqualToString:@"Question 3"])
+        if([questionLbl1.text isEqualToString:@"Question 1"]||[questionLbl2.text isEqualToString:@"Question 2"]||[questionLbl3.text isEqualToString:@"Question 3"]||answerTF1.text.length==0||answerTF2.text.length==0||answerTF3.text.length==0)
         {
             [UIAlertView myCostumeAlert:@"Please" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
 //            AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];

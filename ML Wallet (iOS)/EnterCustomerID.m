@@ -82,12 +82,14 @@ UITextfieldAnimate *textAnimate;
     ProfileLabel *customerID;
     
     if ( IDIOM == IPAD ) {
+        personalHeader.font = [UIFont systemFontOfSize:24.0f];
         NSLog(@"IPAD NI");
         customerID = [[ProfileLabel alloc] initWithStatus:@"Enter your CustomerID" x:10 y:20 myColor:[UIColor grayColor] width:140];
+        customerID.font = [UIFont systemFontOfSize:24.0f];
         float personalHeader_Co = ((screenWidth - 170)/2)-170;
         [personalHeader setFrame:CGRectMake(personalHeader_Co, -10, 170, 30)];
         float customerID_Co = ((screenWidth - 170)/2)-150;
-        [customerID setFrame:CGRectMake(customerID_Co, 20, 170, 30)];
+        [customerID setFrame:CGRectMake(customerID_Co, 20, 300, 30)];
         firstNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 50, 120, 30) word:@""];
         firstNumberTF.layer.cornerRadius=8.0f;
         firstNumberTF.layer.masksToBounds=YES;
@@ -116,12 +118,14 @@ UITextfieldAnimate *textAnimate;
         
         ProfileLabel *phoneNumber = [[ProfileLabel alloc] initWithStatus:@"Enter your Phone Number" x:10 y:100 myColor:[UIColor grayColor] width:170];
         float phoneNumber_Co = ((screenWidth - 170)/2)-150;
-        [phoneNumber setFrame:CGRectMake(phoneNumber_Co, 100, 170, 30)];
+        [phoneNumber setFrame:CGRectMake(phoneNumber_Co, 100, 300, 30)];
+        phoneNumber.font = [UIFont systemFontOfSize:24.0f];
         phoneNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(12, 130, 400, 30) word:self.customer.firstName];
         phoneNumberTF.layer.cornerRadius=8.0f;
         phoneNumberTF.layer.masksToBounds=YES;
         phoneNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
         phoneNumberTF.layer.borderWidth= 1.0f;
+        
         float phoneNumberTF_Co = (screenWidth - 400)/2;
         [phoneNumberTF setFrame:CGRectMake(phoneNumberTF_Co, 130, 400, 30)];
         
@@ -131,7 +135,10 @@ UITextfieldAnimate *textAnimate;
         phoneNumberTF.delegate = self;
         
         
-        
+        firstNumberTF.font = [UIFont systemFontOfSize:24.0f];
+        secondNumberTF.font = [UIFont systemFontOfSize:24.0f];
+        thirdNumberTF.font = [UIFont systemFontOfSize:24.0f];
+        phoneNumberTF.font = [UIFont systemFontOfSize:24.0f];
         
         [simpleView addSubview:personalHeader];
         [simpleView addSubview:customerID];
