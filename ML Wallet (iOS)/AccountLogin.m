@@ -18,16 +18,28 @@
 #import "ServiceConnection.h"
 #define ACCEPTABLE_CHARECTERS @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 @interface AccountLogin ()
-//@property (nonatomic, strong) NSMutableData *responseData;
+
 @end
 
 
 @implementation AccountLogin{
     MBProgressHUD *HUD;
     NSMutableData *contentData;
+    NSMutableData *pinData;
     NSURLConnection *conn;
+    NSURLConnection *pinconn;
     ServiceConnection *con;
+    
+    NSURL *first_connection_url;
+    NSURLRequest *first_connection_request;
+    NSURLConnection *first_connection;
+    
+    NSURL *second_connection_url;
+    NSURLRequest *second_connection_request;
+    NSURLConnection *second_connection;
+
 }
+
 @synthesize act_log_custIDfirstNumber;
 @synthesize act_log_custIDsecondNumber;
 @synthesize act_log_custIDthirdNumber;
@@ -66,6 +78,12 @@ CGFloat screenWidth;
 CGFloat screenHeight;
 UIScrollView *scrollView;
 MBProgressHUD *HUD;
+NSURL *second_connection_url;
+NSURLRequest *second_connection_request;
+NSURLConnection *second_connection;
+
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -93,7 +111,7 @@ MBProgressHUD *HUD;
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
-    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -107,8 +125,9 @@ MBProgressHUD *HUD;
     if ( IDIOM == IPAD ) {
         NSLog(@"IPAD NI");
         
-        ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:-10 width:180];
-        
+        ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@"Create Login Account" x:40 y:-35 width:300];
+        [loginHeader setFrame:CGRectMake(40, -35, 300, 40)];
+        loginHeader.font = [UIFont systemFontOfSize:24.0f];
         // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
         UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
         
@@ -117,24 +136,27 @@ MBProgressHUD *HUD;
         userNameTF.layer.masksToBounds=YES;
         userNameTF.layer.borderColor=[[UIColor redColor]CGColor];
         userNameTF.layer.borderWidth= 1.0f;
-        float userNameTF_Co = (screenWidth - 400)/2;
-        [userNameTF setFrame:CGRectMake(userNameTF_Co, 30, 400, 40)];
+        userNameTF.font = [UIFont systemFontOfSize:24.0f];
+        float userNameTF_Co = (screenWidth - (screenWidth/1.5))-((screenWidth/1.5)/4);
+        [userNameTF setFrame:CGRectMake(userNameTF_Co, 30, screenWidth/1.5, 40)];
         
         passwordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 100, 400, 40) word:@"Password"];
         passwordTF.layer.cornerRadius=8.0f;
         passwordTF.layer.masksToBounds=YES;
         passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
         passwordTF.layer.borderWidth= 1.0f;
-        float passwordTF_Co = (screenWidth - 400)/2;
-        [passwordTF setFrame:CGRectMake(passwordTF_Co, 100, 400, 40)];
+        passwordTF.font = [UIFont systemFontOfSize:24.0f];
+        float passwordTF_Co = (screenWidth - (screenWidth/1.5))-((screenWidth/1.5)/4);
+        [passwordTF setFrame:CGRectMake(passwordTF_Co, 100, screenWidth/1.5, 40)];
         
         retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 170, 400, 40) word:@"Retype Password"];
         retypePasswordTF.layer.cornerRadius=8.0f;
         retypePasswordTF.layer.masksToBounds=YES;
         retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
         retypePasswordTF.layer.borderWidth= 1.0f;
-        float retypePasswordTF_Co = (screenWidth - 400)/2;
-        [retypePasswordTF setFrame:CGRectMake(retypePasswordTF_Co, 170, 400, 40)];
+        retypePasswordTF.font = [UIFont systemFontOfSize:24.0f];
+        float retypePasswordTF_Co = (screenWidth - (screenWidth/1.5))-((screenWidth/1.5)/4);
+        [retypePasswordTF setFrame:CGRectMake(retypePasswordTF_Co, 170, screenWidth/1.5, 40)];
         
         userNameTF.delegate = self;
         passwordTF.delegate = self;
@@ -153,7 +175,7 @@ MBProgressHUD *HUD;
     else {
         NSLog(@"IPHONE NI");
         ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:5 width:180];
-         // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
+        // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
         UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,10,screenWidth,screenHeight)];
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
         userNameTF.layer.cornerRadius=8.0f;
@@ -166,14 +188,15 @@ MBProgressHUD *HUD;
         passwordTF.layer.masksToBounds=YES;
         passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
         passwordTF.layer.borderWidth= 1.0f;
-        passwordTF.secureTextEntry = YES;
+//        passwordTF.secureTextEntry = YES;
         
         retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 130, 280, 30) word:@"Retype Password"];
         retypePasswordTF.layer.cornerRadius=8.0f;
         retypePasswordTF.layer.masksToBounds=YES;
         retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
         retypePasswordTF.layer.borderWidth= 1.0f;
-        retypePasswordTF.secureTextEntry = YES;
+//        retypePasswordTF.secureTextEntry = YES;
+        
         
         userNameTF.delegate = self;
         passwordTF.delegate = self;
@@ -251,7 +274,16 @@ MBProgressHUD *HUD;
     }
     
 }
-
+-(void)userPin{
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Pin."
+                                                      message:@""
+                                                     delegate:self
+                                            cancelButtonTitle:nil
+                                            otherButtonTitles:@"Resend Pin",@"Retry", nil];
+    
+    [message show];
+    
+}
 #pragma mark - Custom alert
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -259,10 +291,27 @@ MBProgressHUD *HUD;
     if([title isEqualToString:@"Accept"])
     {
         NSLog(@"Register");
-        [self createAccount];
+        [self userPin];
     }
-
-
+    else if([title isEqualToString:@"Resend Pin"])
+    {
+        NSLog(@"Resend Pin");
+//        first_connection_request = [NSURLRequest requestWithURL:first_connection_url]
+//        first_connection_url = [NSURL URLWithString:@"http://mujercanariasigloxxi.appgestion.eu/app_php_files/empresastodaslist.php"];
+//        first_connection=[[NSURLConnection alloc]initWithRequest:first_connection_request delegate:self];
+        
+//        NSString *ahw = [NSString stringWithFormat:@"1212"];
+        pinData = [[NSMutableData alloc]init];        
+        second_connection_url = [NSURL URLWithString:@"https://192.168.12.204:4443/mobile/client/mobilekp_wcf/service.svc/ResendPIN/?walletno=14030000000123"];
+        second_connection_request = [NSURLRequest requestWithURL:second_connection_url];
+        second_connection=[[NSURLConnection alloc]initWithRequest:second_connection_request delegate:self];
+        
+    }
+    else if([title isEqualToString:@"Retry"])
+    {
+        NSLog(@"Retry");
+        //[self createAccount];
+    }
 }
 
 
@@ -287,7 +336,7 @@ MBProgressHUD *HUD;
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];
-
+    
     contentData = [NSMutableData data];
     con         = [ServiceConnection new];
     
@@ -319,54 +368,106 @@ MBProgressHUD *HUD;
 }
 
 
+-(void)connection: (NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"Did Receive Response");
+    if(connection==second_connection){
+        pinData = [[NSMutableData alloc]init];
+        NSLog(@"Did Receive Response Pin Data");
+    }
+    else{
+        NSLog(@"Did Receive Response Content Data");
+    contentData = [[NSMutableData alloc]init];
+    }
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [contentData appendData:data];
+    if(connection==second_connection){
+        NSLog(@"Did Receive Data Pin Data");
+        [pinData appendData:data];
+    }
+    else{
+        NSLog(@"Did Receive Data Content Data");
+        [contentData appendData:data];
+    }
+    //[contentData appendData:data];
     NSLog(@"didReceiveData");
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Bad: %@", [error description]);
-
+    
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  {
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
+    
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    passwordTF.secureTextEntry = YES;
+    retypePasswordTF.secureTextEntry = YES;
+    return [string isEqualToString:filtered];
+}//remove special Characters
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
-//    NSString *loadedContent = [[NSString alloc] initWithData:
-//                               contentData encoding:NSUTF8StringEncoding];
-//    
-//    NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
-//    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data
-//                                                                 options:kNilOptions
-//                                                                   error:nil];
-//    
-//    NSLog(@"%@", jsonResponse);
+    //    NSString *loadedContent = [[NSString alloc] initWithData:
+    //                               contentData encoding:NSUTF8StringEncoding];
+    //
+    //    NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
+    //    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data
+    //                                                                 options:kNilOptions
+    //                                                                   error:nil];
+    //
+    //    NSLog(@"%@", jsonResponse);
     
     NSLog(@"connectionDidFinishLoading");
     NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:contentData options:NSJSONReadingMutableLeaves error:&myError];
+    NSDictionary *res;
+
+
     if (myError == nil) {
+    
         
-        NSDictionary *jsonResult = [res objectForKey:@"insertMobileAccountsResult"];
-        NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
-        NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
-        NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
-        int value = [strResponseCode intValue];
         
-        if(value==1){
-        [UIAlertView myCostumeAlert:@"Success!" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        
+        if(connection==second_connection)
+        {
+            res = [NSJSONSerialization JSONObjectWithData:pinData options:NSJSONReadingMutableLeaves error:&myError];
+            NSLog(@"Response sa PIN = %@",res);
         }
-        else if(value==2){
-        [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        }//end if lse if(value==2)
-        else if (value==0){
-            [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        }//end else if (value==0)
+        else{
+            res = [NSJSONSerialization JSONObjectWithData:contentData options:NSJSONReadingMutableLeaves error:&myError];
+            NSDictionary *jsonResult = [res objectForKey:@"insertMobileAccountsResult"];
+            NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
+            NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
+            NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
+            int value = [strResponseCode intValue];
+            
+            if(value==1){
+                [UIAlertView myCostumeAlert:@"Success!" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+                
+            }
+            else if(value==2){
+                [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            }//end if lse if(value==2)
+            else if (value==0){
+                [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            }//end else if (value==0)
+        }
+        
+        
+        
+        
+        
+        
+        
+
     }//end if(myError == nil)
     else{
         [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
         NSLog(@"Error");
     }//end else
+
+    
     [HUD hide:YES];
     [HUD show:NO];
     
@@ -384,16 +485,6 @@ MBProgressHUD *HUD;
     [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 }
 // -------------------ByPass ssl ends
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSCharacterSet *acceptedInput = [NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS];
-    
-    if (![[string componentsSeparatedByCharactersInSet:acceptedInput] count] > 1)
-        return NO;
-    else
-        return YES;
-}//remove special characters
 
 
 - (BOOL)prefersStatusBarHidden{

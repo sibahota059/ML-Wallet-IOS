@@ -154,93 +154,93 @@ NSString *str_email_add;
     
     if ( IDIOM == IPAD ) {
         NSLog(@"IPAD NI");
-        UILabel *personalInfo = [[UILabel alloc] initWithFrame:CGRectMake(-45, 10, 500, 25)];
-        [personalInfo setFont:[UIFont fontWithName:nil size:20.0f]];
+        UILabel *personalInfo = [[UILabel alloc] initWithFrame:CGRectMake(-45, 10, 500, 40)];
+        [personalInfo setFont:[UIFont fontWithName:nil size:24.0f]];
         [personalInfo setTextAlignment:NSTextAlignmentCenter];
         [personalInfo setTextColor:[UIColor redColor]];
         [personalInfo setText:@"Profile Information"];
         
         
         
-        UILabel *profileFirstName = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 30, 500, 25)];
-        [profileFirstName setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileFirstName = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 50, 500, 40)];
+        [profileFirstName setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileFirstName setTextColor:[UIColor grayColor]];
         [profileFirstName setText:@"First Name: "];
         
-        UILabel *profileMiddleName = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 50, 500, 25)];
-        [profileMiddleName setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileMiddleName = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 90, 500, 40)];
+        [profileMiddleName setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileMiddleName setTextColor:[UIColor grayColor]];
         [profileMiddleName setText:@"Middle Name: "];
         
-        UILabel *profileLastName = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 70, 500, 25)];
-        [profileLastName setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileLastName = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 130, 500, 40)];
+        [profileLastName setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileLastName setTextColor:[UIColor grayColor]];
         [profileLastName setText:@"Last Name: "];
         
-        UILabel *profileGender = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 90, 500, 25)];
-        [profileGender setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileGender = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 170, 500, 40)];
+        [profileGender setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileGender setTextColor:[UIColor grayColor]];
         [profileGender setText:@"Gender: "];
         
-        UILabel *profileBirthdate = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 110, 500, 25)];
-        [profileBirthdate setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileBirthdate = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 210, 500, 40)];
+        [profileBirthdate setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileBirthdate setTextColor:[UIColor grayColor]];
         [profileBirthdate setText:@"Birthdate: "];
         
-        UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 130, 500, 25)];
-        [profileNationality setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 250, 500, 40)];
+        [profileNationality setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileNationality setTextColor:[UIColor grayColor]];
         [profileNationality setText:@"Nationality: "];
         
-        UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 150, 500, 25)];
-        [profileWork setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 290, 500, 40)];
+        [profileWork setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileWork setTextColor:[UIColor grayColor]];
         [profileWork setText:@"Nature of Work: "];
         
         
         //Location Information
         
-        UILabel *locationInfo = [[UILabel alloc] initWithFrame:CGRectMake(-35, 170, 500, 25)];
-        [locationInfo setFont:[UIFont fontWithName:nil size:20.0f]];
+        UILabel *locationInfo = [[UILabel alloc] initWithFrame:CGRectMake(-35, 330, 500, 40)];
+        [locationInfo setFont:[UIFont fontWithName:nil size:24.0f]];
         [locationInfo setTextAlignment:NSTextAlignmentCenter];
         [locationInfo setTextColor:[UIColor redColor]];
         [locationInfo setText:@"Location Information"];
         
-        UILabel *profileCountry = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 190, 500, 25)];
-        [profileCountry setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileCountry = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 370, 500, 40)];
+        [profileCountry setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileCountry setTextColor:[UIColor grayColor]];
         [profileCountry setText:@"Country: "];
         
-        UILabel *profileProvince = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 210, 500, 25)];
-        [profileProvince setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileProvince = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 410, 500, 40)];
+        [profileProvince setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileProvince setTextColor:[UIColor grayColor]];
         [profileProvince setText:@"Province: "];
         
-        UILabel *profileAddress = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 230, 500, 25)];
-        [profileAddress setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileAddress = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 450, 500, 40)];
+        [profileAddress setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileAddress setTextColor:[UIColor grayColor]];
         [profileAddress setText:@"Address: "];
         
-        UILabel *profileZipcode = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 250, 500, 25)];
-        [profileZipcode setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileZipcode = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 490, 500, 40)];
+        [profileZipcode setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileZipcode setTextColor:[UIColor grayColor]];
         [profileZipcode setText:@"Zipcode: "];
         
         //Contact Information
         
-        UILabel *contactInfo = [[UILabel alloc] initWithFrame:CGRectMake(-38, 270, 500, 25)];
-        [contactInfo setFont:[UIFont fontWithName:nil size:20.0f]];
+        UILabel *contactInfo = [[UILabel alloc] initWithFrame:CGRectMake(-38, 530, 500, 40)];
+        [contactInfo setFont:[UIFont fontWithName:nil size:24.0f]];
         [contactInfo setTextAlignment:NSTextAlignmentCenter];
         [contactInfo setTextColor:[UIColor redColor]];
         [contactInfo setText:@"Contact Information"];
         
-        UILabel *profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 290, 500, 25)];
-        [profileEmail setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 570, 500, 40)];
+        [profileEmail setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileEmail setTextColor:[UIColor grayColor]];
         [profileEmail setText:@"Email Address: "];
         
-        UILabel *profileNumber = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 310, 500, 25)];
-        [profileNumber setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *profileNumber = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth*.27, 610, 500, 40)];
+        [profileNumber setFont:[UIFont fontWithName:nil size:24.0f]];
         [profileNumber setTextColor:[UIColor grayColor]];
         [profileNumber setText:@"Mobile Number: "];
         
@@ -400,61 +400,61 @@ NSString *str_email_add;
         
         //ProfileInformationLabel
         
-        UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 30, 180, 25)];
-        [firstName setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 50, 180, 40)];
+        [firstName setFont:[UIFont fontWithName:nil size:24.0f]];
         [firstName setText:[NSString stringWithFormat:@"%@",reg_info_str_firstName]];
         
-        UILabel *middleName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 50, 180, 25)];
-        [middleName setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *middleName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 90, 180, 40)];
+        [middleName setFont:[UIFont fontWithName:nil size:24.0f]];
         [middleName setText:[NSString stringWithFormat:@"%@",reg_info_str_middleName]];
         
-        UILabel *lastName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 70, 180, 25)];
-        [lastName setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *lastName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 130, 180, 40)];
+        [lastName setFont:[UIFont fontWithName:nil size:24.0f]];
         [lastName setText:[NSString stringWithFormat:@"%@",reg_info_str_lastName]];
         
-        UILabel *gender = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 90, 180, 25)];
-        [gender setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *gender = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 170, 180, 40)];
+        [gender setFont:[UIFont fontWithName:nil size:24.0f]];
         [gender setText:[NSString stringWithFormat:@"%@",reg_info_str_gender]];
         
-        UILabel *birthdate = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 110, 180, 25)];
-        [birthdate setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *birthdate = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 210, 180, 40)];
+        [birthdate setFont:[UIFont fontWithName:nil size:24.0f]];
         [birthdate setText:[NSString stringWithFormat:@"%@",reg_info_str_birthdate]];
         
-        UILabel *nationality = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 130, 180, 25)];
-        [nationality setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *nationality = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 250, 180, 40)];
+        [nationality setFont:[UIFont fontWithName:nil size:24.0f]];
         [nationality setText:[NSString stringWithFormat:@"%@",reg_info_str_nationality]];
         
-        UILabel *work = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 150, 180, 25)];
-        [work setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *work = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 290, 180, 40)];
+        [work setFont:[UIFont fontWithName:nil size:24.0f]];
         [work setText:[NSString stringWithFormat:@"%@",reg_info_str_work]];
         
         
         //Location Information
-        UILabel *country = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 190, 180, 25)];
-        [country setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *country = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 370, 180, 40)];
+        [country setFont:[UIFont fontWithName:nil size:24.0f]];
         [country setText:[NSString stringWithFormat:@"%@",reg_info_str_country]];
         
-        UILabel *province = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 210, 180, 25)];
-        [province setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *province = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 410, 180, 40)];
+        [province setFont:[UIFont fontWithName:nil size:24.0f]];
         [province setText:[NSString stringWithFormat:@"%@",reg_info_str_province]];
         
-        UILabel *address = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 230, 180, 25)];
-        [address setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *address = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 450, 180, 40)];
+        [address setFont:[UIFont fontWithName:nil size:24.0f]];
         [address setText:[NSString stringWithFormat:@"%@",reg_info_str_address]];
         
-        UILabel *zipcode = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 250, 180, 25)];
-        [zipcode setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *zipcode = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 490, 180, 40)];
+        [zipcode setFont:[UIFont fontWithName:nil size:24.0f]];
         [zipcode setText:[NSString stringWithFormat:@"%@",reg_info_str_zipcode]];
         
         //Contact Information
         
-        email = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 290, 180, 25)];
-        [email setFont:[UIFont fontWithName:nil size:18.0f]];
+        email = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 570, 180, 40)];
+        [email setFont:[UIFont fontWithName:nil size:24.0f]];
         [email setText:[NSString stringWithFormat:@"%@",reg_info_str_email]];
         
         
-        UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 310, 180, 25)];
-        [number setFont:[UIFont fontWithName:nil size:18.0f]];
+        UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 610, 180, 40)];
+        [number setFont:[UIFont fontWithName:nil size:24.0f]];
         [number setText:[NSString stringWithFormat:@"%@",reg_info_str_number]];
         
         [profileScroll addSubview:firstName];
@@ -477,62 +477,62 @@ NSString *str_email_add;
         
         //ProfileInformationLabel
         
-        UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake(130, 30, 180, 25)];
+        UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake(140, 30, 180, 25)];
         [firstName setFont:[UIFont fontWithName:nil size:13.0f]];
         [firstName setText:[NSString stringWithFormat:@"%@",reg_info_str_firstName]];
 
         
-        UILabel *middleName = [[UILabel alloc] initWithFrame:CGRectMake(130, 60, 180, 25)];
+        UILabel *middleName = [[UILabel alloc] initWithFrame:CGRectMake(140, 60, 180, 25)];
         [middleName setFont:[UIFont fontWithName:nil size:13.0f]];
         [middleName setText:[NSString stringWithFormat:@"%@",reg_info_str_middleName]];
         
-        UILabel *lastName = [[UILabel alloc] initWithFrame:CGRectMake(130, 90, 180, 25)];
+        UILabel *lastName = [[UILabel alloc] initWithFrame:CGRectMake(140, 90, 180, 25)];
         [lastName setFont:[UIFont fontWithName:nil size:13.0f]];
         [lastName setText:[NSString stringWithFormat:@"%@",reg_info_str_lastName]];
         
-        UILabel *gender = [[UILabel alloc] initWithFrame:CGRectMake(130, 120, 180, 25)];
+        UILabel *gender = [[UILabel alloc] initWithFrame:CGRectMake(140, 120, 180, 25)];
         [gender setFont:[UIFont fontWithName:nil size:13.0f]];
         [gender setText:[NSString stringWithFormat:@"%@",reg_info_str_gender]];
         
-        UILabel *birthdate = [[UILabel alloc] initWithFrame:CGRectMake(130, 150, 180, 25)];
+        UILabel *birthdate = [[UILabel alloc] initWithFrame:CGRectMake(140, 150, 180, 25)];
         [birthdate setFont:[UIFont fontWithName:nil size:13.0f]];
         [birthdate setText:[NSString stringWithFormat:@"%@",reg_info_str_birthdate]];
         
-        UILabel *nationality = [[UILabel alloc] initWithFrame:CGRectMake(130, 180, 180, 25)];
+        UILabel *nationality = [[UILabel alloc] initWithFrame:CGRectMake(140, 180, 180, 25)];
         [nationality setFont:[UIFont fontWithName:nil size:13.0f]];
         [nationality setText:[NSString stringWithFormat:@"%@",reg_info_str_nationality]];
         
-        UILabel *work = [[UILabel alloc] initWithFrame:CGRectMake(130, 210, 180, 25)];
+        UILabel *work = [[UILabel alloc] initWithFrame:CGRectMake(140, 210, 180, 25)];
         [work setFont:[UIFont fontWithName:nil size:13.0f]];
         [work setText:[NSString stringWithFormat:@"%@",reg_info_str_work]];
         
         //Location Information
         
         
-        UILabel *country = [[UILabel alloc] initWithFrame:CGRectMake(130, 270, 180, 25)];
+        UILabel *country = [[UILabel alloc] initWithFrame:CGRectMake(140, 270, 180, 25)];
         [country setFont:[UIFont fontWithName:nil size:13.0f]];
         [country setText:[NSString stringWithFormat:@"%@",reg_info_str_country]];
         
-        UILabel *province = [[UILabel alloc] initWithFrame:CGRectMake(130, 300, 180, 25)];
+        UILabel *province = [[UILabel alloc] initWithFrame:CGRectMake(140, 300, 180, 25)];
         [province setFont:[UIFont fontWithName:nil size:13.0f]];
         [province setText:[NSString stringWithFormat:@"%@",reg_info_str_province]];
         
-        UILabel *address = [[UILabel alloc] initWithFrame:CGRectMake(130, 330, 180, 25)];
+        UILabel *address = [[UILabel alloc] initWithFrame:CGRectMake(140, 330, 180, 25)];
         [address setFont:[UIFont fontWithName:nil size:13.0f]];
         [address setText:[NSString stringWithFormat:@"%@",reg_info_str_address]];
         
-        UILabel *zipcode = [[UILabel alloc] initWithFrame:CGRectMake(130, 360, 180, 25)];
+        UILabel *zipcode = [[UILabel alloc] initWithFrame:CGRectMake(140, 360, 180, 25)];
         [zipcode setFont:[UIFont fontWithName:nil size:13.0f]];
         [zipcode setText:[NSString stringWithFormat:@"%@",reg_info_str_zipcode]];
         
         //Contact Information
-        email = [[UILabel alloc] initWithFrame:CGRectMake(130, 420, 180, 25)];
+        email = [[UILabel alloc] initWithFrame:CGRectMake(140, 420, 180, 25)];
 //        UILabel *email = [[UILabel alloc] initWithFrame:CGRectMake(130, 420, 180, 25)];
         [email setFont:[UIFont fontWithName:nil size:13.0f]];
         [email setText:[NSString stringWithFormat:@"%@",reg_info_str_email]];
         
         
-        UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(130, 450, 180, 25)];
+        UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(140, 450, 180, 25)];
         [number setFont:[UIFont fontWithName:nil size:13.0f]];
         [number setText:[NSString stringWithFormat:@"%@",reg_info_str_number]];
         
@@ -601,38 +601,38 @@ NSString *str_email_add;
 -(void) gotoNextView{
     NSLog(@"Next ni Bai!");
     QuestionsActivity *questAct = [[QuestionsActivity alloc] initWithNibName:@"QuestionsActivity" bundle:nil];
-    questAct.quest_act_custIDfirstNumber = reg_info_custIDfirstNumber;
-    questAct.quest_act_custIDsecondNumber = reg_info_custIDsecondNumber;
-    questAct.quest_act_custIDthirdNumber = reg_info_custIDthirdNumber;
-    questAct.quest_act_custIDphoneNumber = reg_info_custIDphoneNumber;
-    
-    questAct.quest_act_firstName = reg_info_str_firstName;
-    questAct.quest_act_middleName = reg_info_str_middleName;
-    questAct.quest_act_lastName = reg_info_str_lastName;
-    questAct.quest_act_country = reg_info_str_country;
-    questAct.quest_act_province = reg_info_str_province;
-    questAct.quest_act_address = reg_info_str_address;
-    questAct.quest_act_zipcode = reg_info_str_zipcode;
-    questAct.quest_act_gender = reg_info_str_gender;
-    questAct.quest_act_birthdate = reg_info_str_birthdate;
-    questAct.quest_act_number = reg_info_str_number;
-    questAct.quest_act_email = reg_info_str_email;
-    questAct.quest_act_work = reg_info_str_work;
-    questAct.quest_act_nationality = reg_info_str_nationality;
-
-    
-    questAct.quest_act_str_photo1 = reg_info_str_photo1;
-    questAct.quest_act_str_photo2 = reg_info_str_photo2;
-    questAct.quest_act_str_photo3 = reg_info_str_photo3;
-    questAct.quest_act_str_photo4 = reg_info_str_photo4;
-    questAct.quest_act_str_balance = reg_info_str_balance;
-    questAct.quest_act_str_secanswer1 = reg_info_str_secanswer1;
-    questAct.quest_act_str_secanswer2 = reg_info_str_secanswer2;
-    questAct.quest_act_str_secanswer3 = reg_info_str_secanswer3;
-    questAct.quest_act_str_secquestion1 = reg_info_str_secquestion1;
-    questAct.quest_act_str_secquestion2 = reg_info_str_secquestion2;
-    questAct.quest_act_str_secquestion3 = reg_info_str_secquestion3;
-    questAct.quest_act_str_walletno = reg_info_str_walletno;
+//    questAct.quest_act_custIDfirstNumber = reg_info_custIDfirstNumber;
+//    questAct.quest_act_custIDsecondNumber = reg_info_custIDsecondNumber;
+//    questAct.quest_act_custIDthirdNumber = reg_info_custIDthirdNumber;
+//    questAct.quest_act_custIDphoneNumber = reg_info_custIDphoneNumber;
+//    
+//    questAct.quest_act_firstName = reg_info_str_firstName;
+//    questAct.quest_act_middleName = reg_info_str_middleName;
+//    questAct.quest_act_lastName = reg_info_str_lastName;
+//    questAct.quest_act_country = reg_info_str_country;
+//    questAct.quest_act_province = reg_info_str_province;
+//    questAct.quest_act_address = reg_info_str_address;
+//    questAct.quest_act_zipcode = reg_info_str_zipcode;
+//    questAct.quest_act_gender = reg_info_str_gender;
+//    questAct.quest_act_birthdate = reg_info_str_birthdate;
+//    questAct.quest_act_number = reg_info_str_number;
+//    questAct.quest_act_email = reg_info_str_email;
+//    questAct.quest_act_work = reg_info_str_work;
+//    questAct.quest_act_nationality = reg_info_str_nationality;
+//
+//    
+//    questAct.quest_act_str_photo1 = reg_info_str_photo1;
+//    questAct.quest_act_str_photo2 = reg_info_str_photo2;
+//    questAct.quest_act_str_photo3 = reg_info_str_photo3;
+//    questAct.quest_act_str_photo4 = reg_info_str_photo4;
+//    questAct.quest_act_str_balance = reg_info_str_balance;
+//    questAct.quest_act_str_secanswer1 = reg_info_str_secanswer1;
+//    questAct.quest_act_str_secanswer2 = reg_info_str_secanswer2;
+//    questAct.quest_act_str_secanswer3 = reg_info_str_secanswer3;
+//    questAct.quest_act_str_secquestion1 = reg_info_str_secquestion1;
+//    questAct.quest_act_str_secquestion2 = reg_info_str_secquestion2;
+//    questAct.quest_act_str_secquestion3 = reg_info_str_secquestion3;
+//    questAct.quest_act_str_walletno = reg_info_str_walletno;
     
 
     [self.navigationController pushViewController:questAct animated:YES];

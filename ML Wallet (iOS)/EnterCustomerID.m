@@ -76,64 +76,71 @@ UITextfieldAnimate *textAnimate;
 }
 
 -(void) createCustomerID{
-    ProfileHeader *personalHeader = [[ProfileHeader alloc] initWithValue:@" Enter all fields" x:5 y:-10 width:120];
-    UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
+    ProfileHeader *personalHeader;
+    UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,screenWidth,screenHeight)];
     
     ProfileLabel *customerID;
     
     if ( IDIOM == IPAD ) {
+        float personalHeader_Co = ((screenWidth - 170)/2)-170;
+        personalHeader  = [[ProfileHeader alloc] initWithValue:@"Enter all fields" x:40 y:20 width:170];
+        
+        //[personalHeader setFrame:CGRectMake(personalHeader_Co, 10, 170, 30)];
         personalHeader.font = [UIFont systemFontOfSize:24.0f];
         NSLog(@"IPAD NI");
-        customerID = [[ProfileLabel alloc] initWithStatus:@"Enter your CustomerID" x:10 y:20 myColor:[UIColor grayColor] width:140];
+        customerID = [[ProfileLabel alloc] initWithStatus:@"Enter your CustomerID" x:50 y:50 myColor:[UIColor grayColor] width:300];
         customerID.font = [UIFont systemFontOfSize:24.0f];
-        float personalHeader_Co = ((screenWidth - 170)/2)-170;
-        [personalHeader setFrame:CGRectMake(personalHeader_Co, -10, 170, 30)];
-        float customerID_Co = ((screenWidth - 170)/2)-150;
-        [customerID setFrame:CGRectMake(customerID_Co, 20, 300, 30)];
-        firstNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 50, 120, 30) word:@""];
+        
+        
+        //float customerID_Co = ((screenWidth - 170)/2)-150;
+        [customerID setFrame:CGRectMake(50, 50, 300, 40)];
+        firstNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 100, 170, 40) word:@""];
         firstNumberTF.layer.cornerRadius=8.0f;
         firstNumberTF.layer.masksToBounds=YES;
         firstNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
         firstNumberTF.layer.borderWidth= 1.0f;
-        float firstNumberTF_Co = ((screenWidth - 120)/2)-140;
-        [firstNumberTF setFrame:CGRectMake(firstNumberTF_Co, 50, 120, 30)];
+        float firstNumberTF_Co = ((screenWidth - 170)/2)-190;
+        [firstNumberTF setFrame:CGRectMake(firstNumberTF_Co, 100, 170, 40)];
         
-        secondNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 50, 120, 30) word:@""];
+        secondNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 100, 170, 40) word:@""];
         secondNumberTF.layer.cornerRadius=8.0f;
         secondNumberTF.layer.masksToBounds=YES;
         secondNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
         secondNumberTF.layer.borderWidth= 1.0f;
-        float secondNumberTF_Co = (screenWidth - 120)/2;
-        [secondNumberTF setFrame:CGRectMake(secondNumberTF_Co, 50, 120, 30)];
+        float secondNumberTF_Co = (screenWidth - 170)/2;
+        [secondNumberTF setFrame:CGRectMake(secondNumberTF_Co, 100, 170, 40)];
         
-        thirdNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 50, 120, 30) word:@""];
+        thirdNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(204, 100, 170, 40) word:@""];
         
         thirdNumberTF.layer.cornerRadius=8.0f;
         thirdNumberTF.layer.masksToBounds=YES;
         thirdNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
         thirdNumberTF.layer.borderWidth= 1.0f;
-        float thirdNumberTF_Co = ((screenWidth - 120)/2)+140;
-        [thirdNumberTF setFrame:CGRectMake(thirdNumberTF_Co, 50, 120, 30)];
+        float thirdNumberTF_Co = ((screenWidth - 170)/2)+190;
+        [thirdNumberTF setFrame:CGRectMake(thirdNumberTF_Co, 100, 170, 40)];
         NSLog(@"%f",thirdNumberTF_Co);
         
-        ProfileLabel *phoneNumber = [[ProfileLabel alloc] initWithStatus:@"Enter your Phone Number" x:10 y:100 myColor:[UIColor grayColor] width:170];
-        float phoneNumber_Co = ((screenWidth - 170)/2)-150;
-        [phoneNumber setFrame:CGRectMake(phoneNumber_Co, 100, 300, 30)];
+        ProfileLabel *phoneNumber = [[ProfileLabel alloc] initWithStatus:@"Enter your Phone Number" x:50 y:150 myColor:[UIColor grayColor] width:300];
+        //float phoneNumber_Co = ((screenWidth - 170)/2)-150;
+        [phoneNumber setFrame:CGRectMake(50, 150, 300, 40)];
         phoneNumber.font = [UIFont systemFontOfSize:24.0f];
-        phoneNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(12, 130, 400, 30) word:self.customer.firstName];
+        phoneNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(12, 200, 400, 40) word:self.customer.firstName];
         phoneNumberTF.layer.cornerRadius=8.0f;
         phoneNumberTF.layer.masksToBounds=YES;
         phoneNumberTF.layer.borderColor=[[UIColor redColor]CGColor];
         phoneNumberTF.layer.borderWidth= 1.0f;
         
-        float phoneNumberTF_Co = (screenWidth - 400)/2;
-        [phoneNumberTF setFrame:CGRectMake(phoneNumberTF_Co, 130, 400, 30)];
+        float phoneNumberTF_Co = (screenWidth - 550)/2;
+        [phoneNumberTF setFrame:CGRectMake(phoneNumberTF_Co, 200, 550, 40)];
         
         firstNumberTF.delegate = self;
         secondNumberTF.delegate = self;
         thirdNumberTF.delegate = self;
         phoneNumberTF.delegate = self;
-        
+        firstNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+        secondNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+        thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+        thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
         
         firstNumberTF.font = [UIFont systemFontOfSize:24.0f];
         secondNumberTF.font = [UIFont systemFontOfSize:24.0f];
@@ -151,6 +158,8 @@ UITextfieldAnimate *textAnimate;
     }
     else {
         NSLog(@"IPHONE NI");
+        simpleView = [[UIView alloc] initWithFrame:CGRectMake(10,0,screenWidth,screenHeight)];
+        personalHeader  = [[ProfileHeader alloc] initWithValue:@"Enter all fields" x:5 y:5 width:170];
         customerID = [[ProfileLabel alloc] initWithStatus:@"Enter your CustomerID" x:10 y:20 myColor:[UIColor grayColor] width:140];
         firstNumberTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(12, 50, 84, 30) word:@""];
         firstNumberTF.layer.cornerRadius=8.0f;
@@ -232,51 +241,50 @@ UITextfieldAnimate *textAnimate;
                                                                target:self
                                                                action:@selector(gotoNextView)];
     self.navigationItem.rightBarButtonItem = btnNext;
-    
     //Set Background
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         
         if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
         {
-            [scrollView setContentSize:CGSizeMake(320, 568)];
             [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
         }
         else //4 inc below
         {
-            [scrollView setContentSize:CGSizeMake(320, 400)];
             [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
         }
     }
     else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground4.png"]]];
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground5.png"]]];
     }
-    
     
 }
 -(void) gotoNextView{
-    if(firstNumberTF.text.length>=1&&secondNumberTF.text.length>=1&&phoneNumberTF.text.length>=1)
-    {
-        NSLog(@"Next ni Bai!");
-        if([firstNumberTF resignFirstResponder]==YES||
-           [secondNumberTF resignFirstResponder]==YES||
-           [thirdNumberTF resignFirstResponder]==YES||
-           [phoneNumberTF resignFirstResponder]==YES){
-            NSLog(@"Keyboard Visible");
-            [scrollView setContentOffset:CGPointZero animated:YES];
-        }
-        else{
-            NSLog(@"Keyboard not Visible");
-        }
-        [self customerIDService];
-    }
-    else{
-        NSLog(@"Empty man Bai!!");
-        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        
-        
-    }
+//    if(firstNumberTF.text.length>=1&&secondNumberTF.text.length>=1&&phoneNumberTF.text.length>=1)
+//    {
+//        NSLog(@"Next ni Bai!");
+//        if([firstNumberTF resignFirstResponder]==YES||
+//           [secondNumberTF resignFirstResponder]==YES||
+//           [thirdNumberTF resignFirstResponder]==YES||
+//           [phoneNumberTF resignFirstResponder]==YES){
+//            NSLog(@"Keyboard Visible");
+//            [scrollView setContentOffset:CGPointZero animated:YES];
+//        }
+//        else{
+//            NSLog(@"Keyboard not Visible");
+//        }
+//        [self customerIDService];
+//    }
+//    else{
+//        NSLog(@"Empty man Bai!!");
+//        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+//        
+//        
+//    }
+    RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+    
+    [self.navigationController pushViewController:regInfo animated:YES];
 }
 
 -(void) backPressed{

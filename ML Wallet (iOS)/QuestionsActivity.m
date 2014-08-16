@@ -131,43 +131,61 @@ SelectQuestionDialog *questionDialog;
         /* do something specifically for iPad. */
         NSLog(@"IPAD");
         UIView* simpleView = [[UIView alloc] initWithFrame:CGRectMake(0,10,screenWidth,screenHeight)];
-        ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:screenWidth*.2 y:5 width:140];
-        
+        ProfileHeader *questionHeader = [[ProfileHeader alloc] initWithValue:@" Secret Questions" x:40 y:5 width:300];
+        questionHeader.font = [UIFont systemFontOfSize:24.0f];
         //QUESTION 1
         
-        button1 = [[ProfileButton alloc] initWithString:@"?" x:screenWidth/3.9 y:30];
+        button1 = [[ProfileButton alloc] initWithString:@"?" x:screenWidth/6 y:50];
         [button1 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-        questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:screenWidth/3 y:30 myColor:[UIColor blackColor] width:260];
-        answerTF1 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4, 70, screenWidth/2, 30) word:@"answer 1"];
+        [button1 setFrame:CGRectMake(screenWidth/6,50, 40, 40)];
+        questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:screenWidth/4.8 y:50 myColor:[UIColor blackColor] width:260];
+        questionLbl1.font = [UIFont systemFontOfSize:24.0f];
+        [questionLbl1 setFrame:CGRectMake(screenWidth/4.5,50, 260, 40)];
+        answerTF1 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4, 100, screenWidth/2, 40) word:@"answer 1"];
         answerTF1.layer.cornerRadius=8.0f;
         answerTF1.layer.masksToBounds=YES;
         answerTF1.layer.borderColor=[[UIColor redColor]CGColor];
         answerTF1.layer.borderWidth= 1.0f;
+        answerTF1.font = [UIFont systemFontOfSize:24.0f];
+        float answerTF1_Co = (screenWidth - (screenWidth/1.5))-((screenWidth/1.5)/4);
+        [answerTF1 setFrame:CGRectMake(answerTF1_Co,100, screenWidth/1.5, 40)];
         answerTF1.delegate = self;
         
         //QUESTION 2
         
-        button2 = [[ProfileButton alloc] initWithString:@"?" x:screenWidth/3.9 y:120];
+        button2 = [[ProfileButton alloc] initWithString:@"?" x:screenWidth/6 y:150];
         [button2 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-        questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:screenWidth/3 y:120 myColor:[UIColor blackColor] width:260];
-        answerTF2 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4,160, screenWidth/2, 30) word:@"answer 2"];
+        [button2 setFrame:CGRectMake(screenWidth/6,150, 40, 40)];
+        questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:screenWidth/4.8 y:150 myColor:[UIColor blackColor] width:260];
+        questionLbl2.font = [UIFont systemFontOfSize:24.0f];
+        [questionLbl2 setFrame:CGRectMake(screenWidth/4.5,150, 260, 40)];
+        answerTF2 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4,200, screenWidth/2, 40) word:@"answer 2"];
         answerTF2.layer.cornerRadius=8.0f;
         answerTF2.layer.masksToBounds=YES;
         answerTF2.layer.borderColor=[[UIColor redColor]CGColor];
         answerTF2.layer.borderWidth= 1.0f;
+        answerTF2.font = [UIFont systemFontOfSize:24.0f];
+        float answerTF2_Co = (screenWidth - (screenWidth/1.5))-((screenWidth/1.5)/4);
+        [answerTF2 setFrame:CGRectMake(answerTF2_Co,200, screenWidth/1.5, 40)];
         answerTF2.delegate = self;
         
         //QUESITON 3
         
-        button3 = [[ProfileButton alloc] initWithString:@"?" x:screenWidth/3.9 y:210];
+        button3 = [[ProfileButton alloc] initWithString:@"?" x:screenWidth/6 y:250];
         [button3 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-        questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:screenWidth/3 y:210 myColor:[UIColor blackColor] width:260];
-        answerTF3 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4, 250, screenWidth/2, 30) word:@"answer 3"];
+        [button3 setFrame:CGRectMake(screenWidth/6,250, 40, 40)];
+        questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:screenWidth/4.8 y:250 myColor:[UIColor blackColor] width:260];
+        questionLbl3.font = [UIFont systemFontOfSize:24.0f];
+        [questionLbl3 setFrame:CGRectMake(screenWidth/4.5,250, 260, 40)];
+        answerTF3 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4, 300, screenWidth/2, 40) word:@"answer 3"];
         
         answerTF3.layer.cornerRadius=8.0f;
         answerTF3.layer.masksToBounds=YES;
         answerTF3.layer.borderColor=[[UIColor redColor]CGColor];
         answerTF3.layer.borderWidth= 1.0f;
+        answerTF3.font = [UIFont systemFontOfSize:24.0f];
+        float answerTF3_Co = (screenWidth - (screenWidth/1.5))-((screenWidth/1.5)/4);
+        [answerTF3 setFrame:CGRectMake(answerTF3_Co,300, screenWidth/1.5, 40)];
         answerTF3.delegate = self;
         
         
@@ -290,6 +308,7 @@ SelectQuestionDialog *questionDialog;
         if(sender == button1)
         {
             questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, -30, 320, 500) stringArray:questions1];
+            
             [disableBackground setHidden:NO];
             [self.view addSubview:questionDialog];
             [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion1:) forControlEvents:UIControlEventTouchUpInside];
@@ -439,7 +458,7 @@ SelectQuestionDialog *questionDialog;
 }
 
 -(void) gotoNextView{
-    
+/*
     if(answerTF1.text.length>=1&&answerTF2.text.length>=1&&answerTF3.text.length>=1&&questionLbl1.text.length>=1&&questionLbl2.text.length>=1&&questionLbl3.text.length>=1&&![questionLbl1.text isEqualToString:@"Question 1"]&&![questionLbl2.text isEqualToString:@"Question 2"]&&![questionLbl3.text isEqualToString:@"Question 3"])
     {
         NSLog(@"Next ni Bai!");
@@ -470,17 +489,9 @@ SelectQuestionDialog *questionDialog;
         accLog.act_log_str_photo3 = quest_act_str_photo3;
         accLog.act_log_str_photo4 = quest_act_str_photo4;
         accLog.act_log_str_balance = quest_act_str_balance;
-//        accLog.act_log_str_secanswer1 = quest_act_str_secanswer1;
-//        accLog.act_log_str_secanswer2 = quest_act_str_secanswer2;
-//        accLog.act_log_str_secanswer3 = quest_act_str_secanswer3;
         accLog.act_log_str_secanswer1 = answerTF1.text;
         accLog.act_log_str_secanswer2 = answerTF2.text;
         accLog.act_log_str_secanswer3 = answerTF3.text;
-        
-        //questionLbl1
-//        accLog.act_log_str_secquestion1 = quest_act_str_secquestion1;
-//        accLog.act_log_str_secquestion2 = quest_act_str_secquestion2;
-//        accLog.act_log_str_secquestion3 = quest_act_str_secquestion3;
         accLog.act_log_str_secquestion1 = questionLbl1.text;
         accLog.act_log_str_secquestion2 = questionLbl2.text;
         accLog.act_log_str_secquestion3 = questionLbl3.text;
@@ -508,6 +519,9 @@ SelectQuestionDialog *questionDialog;
 // [self.navigationController pushViewController:accLog animated:YES];
         }
     }
+  */
+    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+    [self.navigationController pushViewController:accLog animated:YES];
     
 }
 
