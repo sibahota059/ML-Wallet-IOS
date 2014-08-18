@@ -74,4 +74,7 @@
 @property (nonatomic, retain) NSString *act_log_str_secquestion2;
 @property (nonatomic, retain) NSString *act_log_str_secquestion3;
 @property (nonatomic, retain) NSString *act_log_str_walletno;
+@property (strong, nonatomic) IBOutlet UIView *termsAndConditionsView;
+@property (strong, nonatomic) IBOutlet UITextView *termsTxtView;
+@property (strong, nonatomic) IBOutlet UIView *pinConfirmationView;
 @end
