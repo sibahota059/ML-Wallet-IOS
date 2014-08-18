@@ -20,6 +20,8 @@
 
 EditAccountInfoWebService *editAccountInfoWS;
 
+MBProgressHUD *HUD;
+
 UIImageView *profileImage;
 UIImageView *userImage;
 
@@ -32,17 +34,19 @@ NSData *data1, *data2, *data3, *data4;
 
 NSString *wallet, *firstNameValue, *middleNameValue, *lastNameValue, *countryValue, *provinceValue, *addressValue, *zipcodeValue, *genderValue, *birthdateValue, *ageValue, *mobileNumberValue, *emailValue, *workValue, *nationalityValue, *photo1Value, *photo2Value, *photo3Value, *photo4Value, *answer1, *answer2, *answer3, *question1, *question2, *question3;
 
-UITextField *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *email, *work, *nationality;
+NSString *finalCountry, *finalProvince, *finalAddress, *finalZipcode, *finalGender, *finalNumber, *finalWork, *finalNationality;
+
+UITextField *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *work, *nationality;
 
  UILabel *profileName, *profilePhone, *profileEmail;
 
 int whichImage1, whichImage2, whichImage3, whichImage4;
 
 
+
 NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -52,6 +56,14 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
     editAccountInfoWS = [EditAccountInfoWebService new];
     loadData = [NSDictionary initRead_LoadWallet_Data];
+    
+    
+    //create object of MBProgressHUD class, set delegate, and add loader view
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    
+
     
     [self initializeImageIndicator];
     
@@ -67,33 +79,6 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     editAccountInfoWS.delegate = self;
 }
 
-
--(void) loadFromPlaylist{
-    
-    
-    wallet = [loadData objectForKey:@"walletno"];
-    firstNameValue = [loadData objectForKey:@"fname"];
-    middleNameValue = [loadData objectForKey:@"mname"];
-    lastNameValue = [loadData objectForKey:@"lname"];
-    
-    countryValue =[loadData objectForKey:@"country"];
-    provinceValue =[loadData objectForKey:@"provinceCity"];
-    addressValue =[loadData objectForKey:@"permanentAdd"];
-    zipcodeValue =[loadData objectForKey:@"zipcode"];
-    genderValue =[loadData objectForKey:@"gender"];
-    
-    mobileNumberValue =[loadData objectForKey:@"mobileno"];
-    
-    emailValue =[loadData objectForKey:@"emailadd"];
-    workValue =[loadData objectForKey:@"natureOfWork"];
-    nationalityValue =[loadData objectForKey:@"nationality"];
-    
-    photo1Value =[loadData objectForKey:@"photo1"];
-    photo2Value =[loadData objectForKey:@"photo2"];
-    photo3Value =[loadData objectForKey:@"photo3"];
-    photo4Value =[loadData objectForKey:@"photo2"];
-
-}
 
 
 -(void) createImageInfo{
@@ -174,39 +159,6 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
 }
 
-
-
-
--(void)imageClicked1:(id)sender{
-    
-    [profileImage setImage:[UIImage imageWithData:data1]];
-    [self initializeImageIndicator];
-    whichImage1 = 1;
-}
-
--(void)imageClicked2:(id)sender{
-    
-    [profileImage setImage:[UIImage imageWithData:data2]];
-    [self initializeImageIndicator];
-    whichImage2 = 1;
-}
-
--(void)imageClicked3:(id)sender{
-    
-    [profileImage setImage:[UIImage imageWithData:data3]];
-    [self initializeImageIndicator];
-    whichImage3 = 1;
-}
-
--(void)imageClicked4:(id)sender{
-    
-    [profileImage setImage:[UIImage imageWithData:data4]];
-    [self initializeImageIndicator];
-    whichImage4 = 1;
-}
-
-
-
 -(void) createAccountLabel{
     
     
@@ -219,7 +171,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
     //ProfileInformationLabel
     
-
+    
     
     //Country
     UILabel *profileCountry = [[UILabel alloc] initWithFrame:CGRectMake(20, 265, 100, 25)];
@@ -232,7 +184,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [profileProvince setFont:[UIFont fontWithName:nil size:13.0f]];
     [profileProvince setText:@"Province: "];
     
-   
+    
     //Address
     UILabel *profileAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, 385, 100, 25)];
     [profileAddress setFont:[UIFont fontWithName:nil size:13.0f]];
@@ -250,26 +202,20 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [profileGender setFont:[UIFont fontWithName:nil size:13.0f]];
     [profileGender setText:@"Gender: "];
     
-   //Number
+    //Number
     UILabel *profileNumber = [[UILabel alloc] initWithFrame:CGRectMake(20, 565, 100, 25)];
     [profileNumber setFont:[UIFont fontWithName:nil size:13.0f]];
     [profileNumber setText:@"Mobile Number: "];
     
     
-    //Email
-    UILabel *profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(20, 625, 100, 25)];
-    [profileEmail setFont:[UIFont fontWithName:nil size:13.0f]];
-    [profileEmail setText:@"Email Address: "];
-    
-    
     //Work
-    UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(20, 685, 100, 25)];
+    UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(20, 625, 100, 25)];
     [profileWork setFont:[UIFont fontWithName:nil size:13.0f]];
     [profileWork setText:@"Nature of Work: "];
     
     
     //Nationality
-    UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(20, 745, 100, 25)];
+    UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(20, 685, 100, 25)];
     [profileNationality setFont:[UIFont fontWithName:nil size:13.0f]];
     [profileNationality setText:@"Nationality: "];
     
@@ -282,7 +228,6 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [profileScroll addSubview:profileZipcode];
     [profileScroll addSubview:profileGender];
     [profileScroll addSubview:profileNumber];
-    [profileScroll addSubview:profileEmail];
     [profileScroll addSubview:profileWork];
     [profileScroll addSubview:profileNationality];
     
@@ -290,7 +235,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
 -(void) createAccountValue{
     
-
+    
     
     //Country
     UIView *countryOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 290, 280, 30)];
@@ -344,17 +289,8 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [numberOutline addSubview:mobileNumber];
     
     
-    //Email
-    UIView *emailOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 650, 280, 30)];
-    [emailOutline setBackgroundColor:[UIColor redColor]];
-    email = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
-    [email setBackgroundColor:[UIColor whiteColor]];
-    [emailOutline addSubview:email];
-    
-    
-    
     //Work
-    UIView *workOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 710, 280, 30)];
+    UIView *workOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 650, 280, 30)];
     [workOutline setBackgroundColor:[UIColor redColor]];
     work = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [work setBackgroundColor:[UIColor whiteColor]];
@@ -363,15 +299,18 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
     
     //Nationality
-    UIView *nationalityOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 770, 280, 30)];
+    UIView *nationalityOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 710, 280, 30)];
     [nationalityOutline setBackgroundColor:[UIColor redColor]];
     nationality = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [nationality setBackgroundColor:[UIColor whiteColor]];
     [nationalityOutline addSubview:nationality];
     
-    
+    country.delegate = self;
+    province.delegate = self;
+    address.delegate = self;
+    zipcode.delegate = self;
+    gender.delegate = self;
     mobileNumber.delegate = self;
-    email.delegate = self;
     work.delegate = self;
     nationality.delegate = self;
     
@@ -381,12 +320,74 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [profileScroll addSubview:zipcodeOutline];
     [profileScroll addSubview:genderOutline];
     [profileScroll addSubview:numberOutline];
-    [profileScroll addSubview:emailOutline];
     [profileScroll addSubview:workOutline];
     [profileScroll addSubview:nationalityOutline];
     
 }
 
+
+
+
+
+
+
+-(void)imageClicked1:(id)sender{
+    
+    [profileImage setImage:[UIImage imageWithData:data1]];
+    [self initializeImageIndicator];
+    whichImage1 = 1;
+}
+
+-(void)imageClicked2:(id)sender{
+    
+    [profileImage setImage:[UIImage imageWithData:data2]];
+    [self initializeImageIndicator];
+    whichImage2 = 1;
+}
+
+-(void)imageClicked3:(id)sender{
+    
+    [profileImage setImage:[UIImage imageWithData:data3]];
+    [self initializeImageIndicator];
+    whichImage3 = 1;
+}
+
+-(void)imageClicked4:(id)sender{
+    
+    [profileImage setImage:[UIImage imageWithData:data4]];
+    [self initializeImageIndicator];
+    whichImage4 = 1;
+}
+
+
+
+
+
+-(void) loadFromPlaylist{
+    
+    
+    wallet = [loadData objectForKey:@"walletno"];
+    firstNameValue = [loadData objectForKey:@"fname"];
+    middleNameValue = [loadData objectForKey:@"mname"];
+    lastNameValue = [loadData objectForKey:@"lname"];
+    
+    countryValue =[loadData objectForKey:@"country"];
+    provinceValue =[loadData objectForKey:@"provinceCity"];
+    addressValue =[loadData objectForKey:@"permanentAdd"];
+    zipcodeValue =[loadData objectForKey:@"zipcode"];
+    genderValue =[loadData objectForKey:@"gender"];
+    
+    mobileNumberValue =[loadData objectForKey:@"mobileno"];
+    
+    workValue =[loadData objectForKey:@"natureOfWork"];
+    nationalityValue =[loadData objectForKey:@"nationality"];
+    
+    photo1Value =[loadData objectForKey:@"photo1"];
+    photo2Value =[loadData objectForKey:@"photo2"];
+    photo3Value =[loadData objectForKey:@"photo3"];
+    photo4Value =[loadData objectForKey:@"photo4"];
+    
+}
 
 -(void) setInfo{
     
@@ -420,20 +421,33 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [profilePhone setText:mobileNumberValue];
     [profileEmail setText:emailValue];
     
-    [country setPlaceholder:[NSString stringWithFormat:@" %@", countryValue]];
-    [province setPlaceholder:[NSString stringWithFormat:@" %@", provinceValue]];
-    [address setPlaceholder:[NSString stringWithFormat:@" %@", addressValue]];
-    [zipcode setPlaceholder:[NSString stringWithFormat:@" %@", zipcodeValue]];
-    [gender setPlaceholder:[NSString stringWithFormat:@" %@", genderValue]];
-    [email setPlaceholder:[NSString stringWithFormat:@" %@", emailValue]];
-    [mobileNumber setPlaceholder:[NSString stringWithFormat:@" %@", mobileNumberValue]];
-    [work setPlaceholder:[NSString stringWithFormat:@" %@", workValue]];
-    [nationality setPlaceholder:[NSString stringWithFormat:@" %@", nationalityValue]];
+    [country setText:[NSString stringWithFormat:@"%@", countryValue]];
+    [province setText:[NSString stringWithFormat:@"%@", provinceValue]];
+    [address setText:[NSString stringWithFormat:@"%@", addressValue]];
+    [zipcode setText:[NSString stringWithFormat:@"%@", zipcodeValue]];
+    
+    NSString *finalGenderDisplay;
+    if([genderValue isEqualToString:@"F"] )
+        {
+            finalGenderDisplay = @"Female";
+        }
+    else if([genderValue isEqualToString:@"M"] )
+        {
+            finalGenderDisplay = @"Male";
+        }
+    else
+        {
+            finalGenderDisplay = @"Please spicify your gender.";
+        }
+    
+    [gender setText:[NSString stringWithFormat:@"%@", finalGenderDisplay]];
+    [mobileNumber setText:[NSString stringWithFormat:@"%@", mobileNumberValue]];
+    [work setText:[NSString stringWithFormat:@"%@", workValue]];
+    [nationality setText:[NSString stringWithFormat:@"%@", nationalityValue]];
     
     
     
 }
-
 
 -(void) selectPicture:(id)sender{
     
@@ -449,38 +463,52 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 #pragma mark - UIImagePicker Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
+    CGSize size = CGSizeMake(150, 150);
+    
     UIImage *resultImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    resultImage = [self imageWithImage:resultImage scaledToSize:size];
+    
+    NSData *imgData= UIImageJPEGRepresentation(resultImage,0.0);
+    
     if(whichImage1 == 1)
     {
-        [imageView1 setImage:resultImage];
-        image1 = resultImage;
+        data1 = imgData;
+        image1 = [[UIImage alloc] initWithData:data1];
+        imageView1.image = image1;
+
     }
     else if(whichImage2 == 1)
     {
-        [imageView2 setImage:resultImage];
-        image2 = resultImage;
+        data2 = imgData;
+        image2 = [[UIImage alloc] initWithData:data2];
+        imageView2.image = image2;
 
     }
     else if(whichImage3 == 1)
     {
-        [imageView3 setImage:resultImage];
-        image3 = resultImage;
+        data3 = imgData;
+        image3 = [[UIImage alloc] initWithData:data3];
+        imageView3.image = image3;
 
     }
     else if(whichImage4 == 1)
     {
-        [imageView4 setImage:resultImage];
-        image4 = resultImage;
+        data4 = imgData;
+        image4 = [[UIImage alloc] initWithData:data4];
+        imageView4.image = image4;
 
     }
     
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (void)navigationController:(UINavigationController *)navigationController
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated {
@@ -488,23 +516,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -512,8 +524,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -552,36 +563,68 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
 }
 
-
 -(void)backPressed:(id)sender{
     
     [self.navigationController  popViewControllerAnimated:YES];
     
 }
 
-
 -(void)savePressed:(id)sender{
     
      UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:EDITACCOUNT_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
-    if([country.text isEqualToString:@""] || [province.text isEqualToString:@""] || [address.text isEqualToString:@""] || [zipcode.text isEqualToString:@""] || [gender.text isEqualToString:@""] || [mobileNumber.text isEqualToString:@""] || [work.text isEqualToString:@""] || [nationality.text isEqualToString:@""])
+
+    
+    finalCountry = country.text;
+    finalProvince = province.text;
+    finalAddress = address.text;
+    finalZipcode = zipcode.text;
+    finalGender = gender.text;
+    finalNumber = mobileNumber.text;
+    finalWork = work.text;
+    finalNationality = nationality.text;
+    
+    if([finalGender isEqualToString:@"Female"])
+    {
+        finalGender = @"F";
+    }
+    else if([finalGender isEqualToString:@"Male"])
+    {
+        finalGender = @"M";
+
+    }
+    else
+    {
+        finalGender = @"X";
+
+    }
+    
+
+    
+    if([finalCountry isEqualToString:@""] || [finalProvince isEqualToString:@""] || [finalAddress isEqualToString:@""] || [finalZipcode isEqualToString:@""] || [finalGender isEqualToString:@""] || [finalNumber isEqualToString:@""] || [finalWork isEqualToString:@""] || [finalNationality isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
         [saveAlert show];
     }
-    else if([[mobileNumberValue substringFromIndex:2] isEqualToString:@"09"])
+    else if([[finalNumber substringFromIndex:2] isEqualToString:@"09"])
     {
         [saveAlert setMessage:@"Mobile Number must begin with 09"];
         [saveAlert show];
     }
-    else if (mobileNumberValue.length < 10)
+    else if(![gender.text isEqualToString:@"Male"] && ![gender.text isEqualToString:@"Female"])
+    {
+        [saveAlert setMessage:@"Gender must only be \"Male\" or \"Female\"."];
+        [saveAlert show];
+    }
+    else if (finalNumber.length < 10)
     {
         [saveAlert setMessage:@"Mobile Number must have 10 digits."];
         [saveAlert show];
     }
     else
     {
-        [editAccountInfoWS wallet:wallet country:countryValue province:provinceValue address:addressValue zipcode:zipcodeValue gender:genderValue mnumber:mobileNumberValue work:workValue nationality:nationalityValue photo1:image1 photo2:image2 photo3:image3 photo4:image4];
+        [editAccountInfoWS wallet:wallet country:finalCountry province:finalProvince address:finalAddress zipcode:finalZipcode gender:finalGender mnumber:finalNumber work:finalWork nationality:finalNationality photo1:image1 photo2:image2 photo3:image3 photo4:image4];
+        	[self displayProgressBar];
 
     }
     
@@ -595,6 +638,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 -(void)didFinishEditingAccount:(NSString *)indicator andError:(NSString *)getError{
     UIAlertView *resultAlertView = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     
+      [self dismissProgressBar];
     
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editAccountInfoWS.respcode]isEqualToString:@"1"]){
         
@@ -623,14 +667,57 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     return YES;
 }
 
+- (void) initializeImageIndicator{
+    whichImage1 = 0;
+    whichImage2 = 0;
+    whichImage3 = 0;
+    whichImage4 = 0;
+}
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
+
+- (UIImage*)imageWithImage:(UIImage*)image
+              scaledToSize:(CGSize)newSize
+{
+    UIGraphicsBeginImageContext( newSize );
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+
+
+
+
+
+
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
-        
-        [UIView animateWithDuration:0.5
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{self.view.frame = CGRectMake(0, -100, 320, 568); }
-                         completion:^(BOOL finished){}];
+    
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, -100, 320, 568); }
+                     completion:^(BOOL finished){}];
+    
     
     return YES;
 }
@@ -640,7 +727,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 568); }
+                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 750); }
                      completion:^(BOOL finished){}];
     
     
@@ -652,10 +739,5 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
 }
 
-- (void) initializeImageIndicator{
-    whichImage1 = 0;
-    whichImage2 = 0;
-    whichImage3 = 0;
-    whichImage4 = 0;
-}
+
 @end

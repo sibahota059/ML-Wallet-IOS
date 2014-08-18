@@ -8,6 +8,7 @@
 
 #import "EditUsername.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "SaveWalletData.h"
 
 @interface EditUsername ()
 
@@ -16,6 +17,8 @@
 @implementation EditUsername
 
 EditUserNameWebService *editUsernameWS;
+
+MBProgressHUD *HUD;
 
 NSString *USERNAME_VAL_ERROR = @"Validation Error";
 
@@ -27,18 +30,10 @@ NSDictionary *loadData;
 
 UITextField *oldUsername, *newUsername, *confirmUsername;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -52,6 +47,12 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     userName = [loadData objectForKey:@"username"];
      wallet = [loadData objectForKey:@"walletno"];
     
+    //create object of MBProgressHUD class, set delegate, and add loader view
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    
+    
     editUsernameWS.delegate = self;
     
     [self.view addSubview:profileScroll];
@@ -62,8 +63,6 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     
     [self addNavigationBarButton];
 }
-
-
 
 -(void) createUsernameLabel{
     
@@ -135,8 +134,15 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
 
 
 
-- (void)didReceiveMemoryWarning
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -178,58 +184,56 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     
 }
 
-
 -(void)backPressed:(id)sender{
     
     [self.navigationController  popViewControllerAnimated:YES];
     
 }
 
-
 -(void)savePressed:(id)sender{
     
     UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:USERNAME_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
     
-    NSString *userInputOldUserName = oldUsername.text;
-    NSString *userInputNewUserName = newUsername.text;
-    NSString *userInputConfirmUserName = confirmUsername.text;
+    finalOldUserName = oldUsername.text;
+    finalNewUserName = newUsername.text;
+    finalConfirmUserName = confirmUsername.text;
     
     
     
-    if([userInputOldUserName isEqualToString:@""] || [userInputNewUserName isEqualToString:@""] |[userInputConfirmUserName isEqualToString:@""])
+    if([finalOldUserName isEqualToString:@""] || [finalNewUserName isEqualToString:@""] |[finalConfirmUserName isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
         [saveAlert show];
     }
-    else if(![userInputOldUserName isEqualToString:userName])
+    else if(![finalOldUserName isEqualToString:userName])
     {
         [saveAlert setMessage:@"Your old Username is incorrect."];
         [saveAlert show];
     }
-    else if([self validateStringContainsAlphabetsOnly:userInputNewUserName])
+    else if([self validateStringContainsAlphabetsOnly:finalNewUserName])
     {
         [saveAlert setMessage:@"Username must be a combination of letters and numbers."];
         [saveAlert show];
     }
-    else if([self validateStringContainsNumbersOnly:userInputNewUserName])
+    else if([self validateStringContainsNumbersOnly:finalNewUserName])
     {
         [saveAlert setMessage:@"Username must be a combination of letters and numbers."];
         [saveAlert show];
     }
-    else if (userInputNewUserName.length < 6)
+    else if (finalNewUserName.length < 6)
     {
         [saveAlert setMessage:@"Username must have a 6 or more characters."];
         [saveAlert show];
     }
-    else if (![userInputNewUserName isEqualToString:userInputConfirmUserName])
+    else if (![finalNewUserName isEqualToString:finalConfirmUserName])
     {
         [saveAlert setMessage:@"Username does not match."];
         newUsername.text = @"";
         confirmUsername.text = @"";
         [saveAlert show];
     }
-    else if([userInputNewUserName isEqualToString:userInputOldUserName])
+    else if([finalNewUserName isEqualToString:finalOldUserName])
     {
         [saveAlert setMessage:@"Username must not the same from Old Username."];
         newUsername.text = @"";
@@ -240,11 +244,20 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     else
         
     {
-        [editUsernameWS wallet:wallet username:userInputNewUserName];
-        
+        [editUsernameWS wallet:wallet username:finalNewUserName];
+        [self displayProgressBar];
     }
     
     
+    
+    
+}
+
+-(void) saveToPaylist{
+    
+    SaveWalletData *saveData = [SaveWalletData new];
+    
+    [saveData initSaveData:finalNewUserName forKey:@"username"];
     
     
 }
@@ -259,6 +272,8 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editUsernameWS.respcode]isEqualToString:@"1"]){
         
         [resultAlertView setMessage:editUsernameWS.respmessage];
+        [self dismissProgressBar];
+        [self saveToPaylist];
         oldUsername.text = @"";
         newUsername.text = @"";
         confirmUsername.text = @"";
@@ -283,15 +298,11 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
     
 }
 
-
-
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
 
-
--(BOOL) validateStringContainsAlphabetsOnly:(NSString*)strng
-{
+-(BOOL) validateStringContainsAlphabetsOnly:(NSString*)strng{
     NSCharacterSet *strCharSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];//1234567890_"];
     
     strCharSet = [strCharSet invertedSet];
@@ -305,9 +316,7 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
         return YES;
 }
 
-
--(BOOL) validateStringContainsNumbersOnly:(NSString*)strng
-{
+-(BOOL) validateStringContainsNumbersOnly:(NSString*)strng{
     NSCharacterSet *strCharSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890_"];
     
     strCharSet = [strCharSet invertedSet];
@@ -321,6 +330,21 @@ UITextField *oldUsername, *newUsername, *confirmUsername;
         return YES;
 }
 
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
 
 
 

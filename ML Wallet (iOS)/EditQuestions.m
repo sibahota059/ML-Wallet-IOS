@@ -12,6 +12,8 @@
 #import "ProfileTextField.h"
 #import "SelectQuestionDialog.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "SaveWalletData.h"
+
 
 @interface EditQuestions ()
 
@@ -24,6 +26,7 @@ EditSecretQuestionsWebService *editSecretQuestionWS;
 UIScrollView *scrollView;
 UIView *disableBackground;
 
+MBProgressHUD *HUD;
 
 NSArray *questions1, *questions2, *questions3;
 
@@ -45,15 +48,6 @@ NSString *question1, *question2, *question3, *answer1, *answer2, *answer3;
 NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *finalAnswer2, *finalAnswer3;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -63,12 +57,14 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     questions2 = [[NSArray alloc] initWithObjects:@"What is your favorite TV program?", @"What city were you born?", @"Where did your parent's meet?", @"What's your dad's middle name?", @"What is your favorite book?", nil];
     
     questions3 = [[NSArray alloc] initWithObjects:@"What was your dream job?", @"What is your pet's name?", @"What is your musical genre?", @"Where is your dream vacation?", @"Who was your childhood hero?", nil];
-    
-//    [firstAnswer resignFirstResponder];
-//    [secondAnswer resignFirstResponder];
-//    [thirdAnswer resignFirstResponder];
+
     editSecretQuestionWS = [EditSecretQuestionsWebService new];
     editSecretQuestionWS.delegate = self;
+    
+    //create object of MBProgressHUD class, set delegate, and add loader view
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
     [scrollView setScrollEnabled:YES];
@@ -85,7 +81,7 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     answer1 = [loadData objectForKey:@"secanswer1"];
     answer2 = [loadData objectForKey:@"secanswer2"];
     answer3 = [loadData objectForKey:@"secanswer3"];
-
+    
     
     
     disableBackground = [[UIView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
@@ -102,28 +98,20 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
 -(void) createQuestion{
     
-  
+    
     
     //QUESTION 1
     
     button1 = [[ProfileButton alloc] initWithString:@"?" x:20 y:30];
     [button1 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-  
+    
     questionLbl1 = [[UILabel alloc] initWithFrame:CGRectMake(53, 30, 260, 30)];
     [questionLbl1 setFont:[UIFont fontWithName:nil size:13.0f]];
     [questionLbl1 setText:question1];
-   
-
+    
+    
     
     //QUESTION 2
     
@@ -134,19 +122,19 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     [questionLbl2 setFont:[UIFont fontWithName:nil size:13.0f]];
     
     [questionLbl2 setText:question2];
-
+    
     //QUESITON 3
     
     button3 = [[ProfileButton alloc] initWithString:@"?" x:20 y:210];
     [button3 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-   
+    
     questionLbl3 = [[UILabel alloc] initWithFrame:CGRectMake(53, 210, 260, 30)];
     [questionLbl3 setFont:[UIFont fontWithName:nil size:13.0f]];
     
     [questionLbl3 setText:question3];
     
     
-
+    
     
     
     
@@ -155,13 +143,13 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
     [scrollView addSubview:button1];
     [scrollView addSubview:questionLbl1];
-
+    
     [scrollView addSubview:button2];
     [scrollView addSubview:questionLbl2];
-
+    
     [scrollView addSubview:button3];
     [scrollView addSubview:questionLbl3];
-
+    
     
     
     
@@ -178,7 +166,7 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     firstAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [firstAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [firstAnswer setBackgroundColor:[UIColor whiteColor]];
-    [firstAnswer setPlaceholder:answer1];
+    [firstAnswer setText:answer1];
     [firstAnswerOutline addSubview:firstAnswer];
     
     
@@ -189,7 +177,7 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     secondAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [secondAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [secondAnswer setBackgroundColor:[UIColor whiteColor]];
-    [secondAnswer setPlaceholder:answer2];
+    [secondAnswer setText:answer2];
     [secondAnswerOutline addSubview:secondAnswer];
     
     
@@ -200,22 +188,32 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     thirdAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
     [thirdAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [thirdAnswer setBackgroundColor:[UIColor whiteColor]];
-    [thirdAnswer setPlaceholder:answer3];
+    [thirdAnswer setText:answer3];
     [thirdAnswerOutline addSubview:thirdAnswer];
     
-
+    
     
     firstAnswer.delegate = self;
     secondAnswer.delegate = self;
     thirdAnswer.delegate = self;
-
+    
     //ADDING THE COMPONENTS
-
+    
     [scrollView addSubview: firstAnswerOutline];
     [scrollView addSubview:secondAnswerOutline];
     [scrollView addSubview:thirdAnswerOutline];
-
+    
 }
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 
 
 
@@ -252,9 +250,6 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
     
 }
-
-
-
 
 -(void) finishSelectingQuestion1:(id)sender{
     
@@ -307,19 +302,6 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 -(void)fadeInAnimation:(UIView *) aView{
     CATransition *transition = [CATransition animation];
     transition.type = kCAAnimationRotateAuto;
@@ -329,15 +311,8 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
 }
 
-
-
-
-
-
-
 -(void) addNavigationBarButton {
-    
-    
+
     self.title =@"Secret Questions";
     //LEFT NAVIGATION BUTTON
     
@@ -368,13 +343,11 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
 }
 
-
 -(void)backPressed:(id)sender{
     
     [self.navigationController  popViewControllerAnimated:YES];
     
 }
-
 
 -(void) getAnswer{
     
@@ -423,6 +396,7 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     }
 
 }
+
 -(void)savePressed:(id)sender{
 
     UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:QUESTION_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
@@ -448,47 +422,28 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     {
 
         [editSecretQuestionWS wallet:wallet secQuestion1:finalQuestion1 secQuestion2:finalQuestion2 secQuestion3:finalQuestion3 secAns1:finalAnswer1 secAns2:finalAnswer2 secAns3:finalAnswer3];
+        
+        [self displayProgressBar];
     }
-
-
 
 }
 
+-(void) saveToPaylist{
+    
+    SaveWalletData *saveData = [SaveWalletData new];
+
+    [saveData initSaveData:finalAnswer1 forKey:@"secanswer1"];
+    [saveData initSaveData:finalAnswer2 forKey:@"secanswer2"];
+    [saveData initSaveData:finalAnswer3 forKey:@"secanswer3"];
+    [saveData initSaveData:finalQuestion1 forKey:@"secquestion1"];
+    [saveData initSaveData:finalQuestion2 forKey:@"secquestion2"];
+    [saveData initSaveData:finalQuestion3 forKey:@"secquestion3"];
+    
+    
+}
 
 - (BOOL)prefersStatusBarHidden{
     return YES;
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
-    if(textField == thirdAnswer)
-    {
- 
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, -10, 320, 568); }
-                     completion:^(BOOL finished){}];
-    }
-
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 568); }
-                     completion:^(BOOL finished){}];
-    
- 
-    
-    
-    [textField resignFirstResponder];
-    
-    return YES;
-    
 }
 
 -(void)didFinishEditingQuestions:(NSString *)indicator andError:(NSString *)getError{
@@ -498,6 +453,8 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editSecretQuestionWS.respcode]isEqualToString:@"1"]){
         
         [resultAlertView setMessage:editSecretQuestionWS.respmessage];
+        [self saveToPaylist];
+        [self dismissProgressBar];
         
     }
     else if ([[NSString stringWithFormat:@"%@", editSecretQuestionWS.respcode] isEqualToString:@"0"])
@@ -517,6 +474,66 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     [resultAlertView show];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
+
+
+
+
+
+
+
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if(textField == thirdAnswer)
+    {
+        
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{self.view.frame = CGRectMake(0, -10, 320, 568); }
+                         completion:^(BOOL finished){}];
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
+                     completion:^(BOOL finished){}];
+    
+    
+    
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+    
+}
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
 
 @end

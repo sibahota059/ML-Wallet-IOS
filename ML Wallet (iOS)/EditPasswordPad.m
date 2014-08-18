@@ -8,6 +8,7 @@
 
 #import "EditPasswordPad.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "SaveWalletData.h"
 
 @interface EditPasswordPad ()
 
@@ -17,12 +18,18 @@
 
 UIScrollView *profileScroll;
 
+EditPasswordWebService *editPasswordWS;
+
+MBProgressHUD *HUD;
+
 NSDictionary *loadData;
-NSString *password;
+NSString *password, *wallet;
 
 NSString *VAL_ERROR = @"Validation Error";
 
 UITextField *oldPassword, *newPassword, *confirmPassword;
+
+NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
 
 - (void)viewDidLoad
 {
@@ -33,11 +40,20 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(768, 400)];
     
+    //create object of MBProgressHUD class, set delegate, and add loader view
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    
+    
+    editPasswordWS = [EditPasswordWebService new];
+    
     loadData = [NSDictionary initRead_LoadWallet_Data];
     password = [loadData objectForKey:@"password"];
     
+    wallet = [loadData objectForKey:@"walletno"];
     
-    
+    editPasswordWS.delegate = self;
     [self.view addSubview:profileScroll];
     
     [self createPasswordLabel];
@@ -46,6 +62,8 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     
     [self addNavigationBarButton];
 }
+
+
 -(void) createPasswordLabel{
     
     
@@ -83,17 +101,17 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     UIView *oldPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 230, 434, 35)];
     [oldPasswordOutline setBackgroundColor:[UIColor redColor]];
     oldPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    oldPassword.secureTextEntry = YES;
     [oldPassword setBackgroundColor:[UIColor whiteColor]];
     [oldPassword setFont:[UIFont systemFontOfSize:19.0f]];
     [oldPassword setPlaceholder:@" Old Password"];
     [oldPasswordOutline addSubview:oldPassword];
     
-    
-    
     //New Password
     UIView *newPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 300, 434, 35)];
     [newPasswordOutline setBackgroundColor:[UIColor redColor]];
     newPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    newPassword.secureTextEntry = YES;
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setFont:[UIFont systemFontOfSize:19.0f]];
     [newPassword setPlaceholder:@" New Password"];
@@ -104,6 +122,7 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     UIView *confirmPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 370, 434, 35)];
     [confirmPasswordOutline setBackgroundColor:[UIColor redColor]];
     confirmPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    confirmPassword.secureTextEntry = YES;
     [confirmPassword setBackgroundColor:[UIColor whiteColor]];
     [confirmPassword setFont:[UIFont systemFontOfSize:19.0f]];
     [confirmPassword setPlaceholder:@" Confirm Password"];
@@ -119,12 +138,6 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
 
 
 
-
-
-
-
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -132,6 +145,42 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
         // Custom initialization
     }
     return self;
+}
+
+- (void) didFinishEditingPassword:(NSString *)indicator andError:(NSString *)getError{
+    
+    UIAlertView *resultAlertView = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editPasswordWS.respcode]isEqualToString:@"1"]){
+        
+        [resultAlertView setMessage:editPasswordWS.respmessage];
+        oldPassword.text = @"";
+        newPassword.text = @"";
+        confirmPassword.text = @"";
+        [self dismissProgressBar];
+        [self saveToPaylist];
+        
+        
+        
+    }
+    else if ([[NSString stringWithFormat:@"%@", editPasswordWS.respcode] isEqualToString:@"0"])
+        
+    {
+        [resultAlertView setMessage:editPasswordWS.respmessage];
+        
+    }
+    else if ([indicator isEqualToString:@"error"])
+    {
+        [resultAlertView setMessage:@"Error in editing your password."];
+    }else{
+        
+        [resultAlertView setMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" ];
+    }
+    
+    [resultAlertView show];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -159,8 +208,8 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     
     
     
-    //RIGHT NAVIGATION BUTTON
     
+    //RIGHT NAVIGATION BUTTON
     UIView *saveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     [saveButton setImage:[UIImage imageNamed:@"my_save.png"] forState:UIControlStateNormal];
@@ -168,13 +217,17 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     
     [saveView addSubview:saveButton];
     
+    
     UIBarButtonItem *saveNavButton = [[UIBarButtonItem alloc] initWithCustomView:saveView];
     [saveNavButton setStyle:UIBarButtonItemStyleBordered];
+    
     
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationItem setLeftBarButtonItem:backNavButton];
     [self.navigationItem setRightBarButtonItem:saveNavButton];
-
+    
+    
+    
     
 }
 
@@ -185,53 +238,78 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     
 }
 
+
 -(void)savePressed:(id)sender{
     
-    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:@"Validation Error" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
-    NSString *userInputOldPassword = oldPassword.text;
-    NSString *userInputNewPassword = newPassword.text;
-    NSString *userInputConfirmPassword = confirmPassword.text;
+    finalOldPassword = oldPassword.text;
+    finalNewPassword = newPassword.text;
+    finalConfirmPassword = confirmPassword.text;
     
-    if([userInputOldPassword isEqualToString:@""] || [userInputNewPassword isEqualToString:@""] || [userInputConfirmPassword isEqualToString:@""])
+    if([finalOldPassword isEqualToString:@""] || [finalNewPassword isEqualToString:@""] || [finalConfirmPassword isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
-    
+        [saveAlert show];
     }
-    else if (![userInputOldPassword isEqualToString:password])
+    else if (![finalOldPassword isEqualToString:password])
     {
         [saveAlert setMessage:@"Your old Password is incorrect."];
+        [saveAlert show];
     }
-    else if(userInputNewPassword.length < 6)
+    else if(finalNewPassword.length < 6)
     {
-         [saveAlert setMessage:@"Password must have 6 or more characters."];
+        [saveAlert setMessage:@"Password must have 6 or more characters."];
+        [saveAlert show];
     }
-    else if(![userInputConfirmPassword isEqualToString:userInputNewPassword])
+    else if(![finalConfirmPassword isEqualToString:finalNewPassword])
     {
         [saveAlert setMessage:@"Password does not match."];
         newPassword.text = @"";
         confirmPassword.text = @"";
+        [saveAlert show];
     }
-    else if([userInputNewPassword isEqualToString:userInputOldPassword])
+    else if([finalNewPassword isEqualToString:finalOldPassword])
     {
         [saveAlert setMessage:@"New Password should not be same as old Password."];
+        [saveAlert show];
     }
     else
     {
-        [saveAlert setMessage:@"Success!"];
+        [editPasswordWS wallet:wallet password:finalNewPassword];
+        [self displayProgressBar];
     }
-    
-    
-    
-    [saveAlert show];
-    
 }
 
-
+-(void) saveToPaylist{
+    
+    SaveWalletData *saveData = [SaveWalletData new];
+    
+    [saveData initSaveData:finalNewPassword forKey:@"password"];
+    
+    
+}
 
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
+
 
 
 @end

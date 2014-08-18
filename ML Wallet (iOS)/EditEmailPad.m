@@ -8,6 +8,7 @@
 
 #import "EditEmailPad.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "SaveWalletData.h"
 
 @interface EditEmailPad ()
 
@@ -15,7 +16,10 @@
 
 @implementation EditEmailPad
 
+EditEmailWebService *editEmailWS;
 
+
+MBProgressHUD *HUD;
 
 UIScrollView *profileScroll;
 
@@ -25,22 +29,32 @@ NSString *EMAILPAD_VAL_ERROR = @"Validation Error";
 
 NSDictionary *loadData;
 
-NSString *email;
+NSString *email, *wallet;
+
+NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 768, 500)];
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(768, 400)];
+    editEmailWS = [EditEmailWebService new];
     
     
     loadData = [NSDictionary initRead_LoadWallet_Data];
     email = [loadData objectForKey:@"emailadd"];
+    wallet = [loadData objectForKey:@"walletno"];
     
+    editEmailWS.delegate = self;
+    
+    //create object of MBProgressHUD class, set delegate, and add loader view
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+       HUD.delegate = self;
     
     [self.view addSubview:profileScroll];
     
@@ -50,8 +64,6 @@ NSString *email;
     
     [self addNavigationBarButton];
 }
-
-
 
 -(void) createEmailLabel{
     
@@ -134,9 +146,7 @@ NSString *email;
 
 
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -144,11 +154,7 @@ NSString *email;
     return self;
 }
 
-
-
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -161,7 +167,6 @@ NSString *email;
     
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
-    //    [backButton setImage:[UIImage imageNamed:@"back_profile.png"] forState:UIControlStateNormal];
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -169,7 +174,6 @@ NSString *email;
     
     UIBarButtonItem *backNavButton = [[UIBarButtonItem alloc] initWithCustomView:backView];
     [backNavButton setStyle:UIBarButtonItemStyleBordered];
-    
     
     //RIGHT NAVIGATION BUTTON
     UIView *saveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 42, 30)];
@@ -181,7 +185,6 @@ NSString *email;
     
     UIBarButtonItem *saveNavButton = [[UIBarButtonItem alloc] initWithCustomView:saveView];
     [saveNavButton setStyle:UIBarButtonItemStyleBordered];
-
     
     
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
@@ -190,69 +193,104 @@ NSString *email;
     
 }
 
-
 -(void)backPressed:(id)sender{
     
     [self.navigationController  popViewControllerAnimated:YES];
     
 }
 
-
 -(void)savePressed:(id)sender{
     
-    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:EMAILPAD_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:@"Validation Error" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
     
-    NSString *userInputOldEmail = oldEmail.text;
-    NSString *userInputNewEmail = newEmail.text;
-    NSString *userInputConfirmEmail = confirmEmail.text;
+    finalOldEmail = oldEmail.text;
+    finalNewEmail = newEmail.text;
+    finalConfirmEmail = confirmEmail.text;
     
     
-    if(![userInputOldEmail isEqualToString:email])
-    {
-        [saveAlert setMessage:@"Your old Email is incorrect."];
-    }
-    else if([userInputOldEmail isEqualToString:@""] || [userInputNewEmail isEqualToString:@""] |[userInputConfirmEmail isEqualToString:@""])
+    if([finalOldEmail isEqualToString:@""] || [finalNewEmail isEqualToString:@""] |[finalConfirmEmail isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
+        [saveAlert show];
     }
     
-    else if(![self NSStringIsValidEmail:userInputNewEmail])
+    else if(![finalOldEmail isEqualToString:email])
     {
-        [saveAlert setMessage:@"Email must be a combination of letters and numbers."];
+        [saveAlert setMessage:@"Your old Email is incorrect."];
+        [saveAlert show];
     }
-    else if (![userInputNewEmail isEqualToString:userInputConfirmEmail])
+    else  if(![self NSStringIsValidEmail:finalNewEmail])
+    {
+        [saveAlert setMessage:@"Email Address is in Invalid Format."];
+        [saveAlert show];
+    }
+    else if (![finalNewEmail isEqualToString:finalConfirmEmail])
     {
         [saveAlert setMessage:@"Email does not match."];
         newEmail.text = @"";
         confirmEmail.text = @"";
+        [saveAlert show];
     }
-    else if([userInputNewEmail isEqualToString:userInputOldEmail])
+    else if([finalNewEmail isEqualToString:finalOldEmail])
     {
         [saveAlert setMessage:@"Email must not the same from Old Username."];
         newEmail.text = @"";
         confirmEmail.text = @"";
+        [saveAlert show];
         
     }
     else
         
     {
-        //TO DO
-        [saveAlert setMessage:@"Success."];
-        
+        [editEmailWS wallet:wallet theEmail:finalNewEmail];
+        [self displayProgressBar];
     }
-
     
-
-
-    
-    
-    //TO DO
-    [saveAlert setMessage:@"Success."];
 }
 
--(BOOL) NSStringIsValidEmail:(NSString *)checkString
-{
+-(void) saveToPaylist{
+    
+    SaveWalletData *saveData = [SaveWalletData new];
+    [saveData initSaveData:finalNewEmail forKey:@"emailadd"];
+    
+}
+
+- (void) didFinishEditingEmail:(NSString *)indicator andError:(NSString *)getError{
+    
+    UIAlertView *resultAlertView = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editEmailWS.respcode]isEqualToString:@"1"]){
+        
+        [resultAlertView setMessage:@"Successfully saved."];
+        [self dismissProgressBar];
+        [self saveToPaylist];
+        oldEmail.text = @"";
+        newEmail.text = @"";
+        confirmEmail.text = @"";
+    }
+    else if ([[NSString stringWithFormat:@"%@", editEmailWS.respcode] isEqualToString:@"0"])
+    {
+        [resultAlertView setMessage:editEmailWS.respmessage];
+        
+    }
+    else if ([indicator isEqualToString:@"error"])
+    {
+        [resultAlertView setMessage:@"Error in editing your email."];
+    }else{
+        
+        [resultAlertView setMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" ];
+    }
+    
+    [resultAlertView show];
+
+}
+
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString{
     BOOL stricterFilter = YES;
     
     NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
@@ -262,9 +300,21 @@ NSString *email;
     return [emailTest evaluateWithObject:checkString];
 }
 
-- (BOOL)prefersStatusBarHidden{
-    return YES;
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
 }
 
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
 
 @end

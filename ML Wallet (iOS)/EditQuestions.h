@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "EditSecretQuestionsWebService.h"
+#import "MBProgressHUD.h"
 
-@interface EditQuestions : UIViewController <UITextFieldDelegate, EditSecretQuestionsDelegate>
+
+@interface EditQuestions : UIViewController <UITextFieldDelegate, EditSecretQuestionsDelegate, MBProgressHUDDelegate>
+
 
 @end

@@ -1393,14 +1393,14 @@
 		70CA18F9198F465900515FF1 /* iphone */ = {
 			isa = PBXGroup;
 			children = (
-				70AA05AA198B3B0F00B0C52A /* EditQuestions.h */,
-				70AA05AB198B3B0F00B0C52A /* EditQuestions.m */,
-				70AA05A5198B3AF600B0C52A /* EditEmail.h */,
-				70AA05A6198B3AF600B0C52A /* EditEmail.m */,
-				70AA059B198B385F00B0C52A /* EditPassword.h */,
-				70AA059C198B385F00B0C52A /* EditPassword.m */,
 				70AA05A0198B3ADD00B0C52A /* EditUsername.h */,
 				70AA05A1198B3ADD00B0C52A /* EditUsername.m */,
+				70AA05A5198B3AF600B0C52A /* EditEmail.h */,
+				70AA05A6198B3AF600B0C52A /* EditEmail.m */,
+				70AA05AA198B3B0F00B0C52A /* EditQuestions.h */,
+				70AA05AB198B3B0F00B0C52A /* EditQuestions.m */,
+				70AA059B198B385F00B0C52A /* EditPassword.h */,
+				70AA059C198B385F00B0C52A /* EditPassword.m */,
 				70CBA8F5198A37D4005D845E /* EditInformation.h */,
 				70CBA8F6198A37D4005D845E /* EditInformation.m */,
 				70AA058A198B141800B0C52A /* EditInformationCell.h */,
@@ -1424,8 +1424,6 @@
 		70CA18FA198F471000515FF1 /* ipad */ = {
 			isa = PBXGroup;
 			children = (
-				70ADA8F11990740400075CB7 /* EditAccountInformationPad.h */,
-				70ADA8F21990740400075CB7 /* EditAccountInformationPad.m */,
 				70ADA8F619908BAE00075CB7 /* EditPasswordPad.h */,
 				70ADA8F719908BAE00075CB7 /* EditPasswordPad.m */,
 				70AE8CC1198FC361002F570D /* EditInformationPadCell.h */,
@@ -1438,12 +1436,14 @@
 				70ADA9131990DD3600075CB7 /* AccountInformationPad.m */,
 				70CA1903198F7FFF00515FF1 /* ProfileInformationPad.h */,
 				70CA1904198F7FFF00515FF1 /* ProfileInformationPad.m */,
-				70ADA8FB199092CC00075CB7 /* EditUsernamePad.h */,
-				70ADA8FC199092CC00075CB7 /* EditUsernamePad.m */,
-				70ADA9001990979700075CB7 /* EditEmailPad.h */,
-				70ADA9011990979700075CB7 /* EditEmailPad.m */,
 				70ADA90519909DC200075CB7 /* EditQuestionsPad.h */,
 				70ADA90619909DC200075CB7 /* EditQuestionsPad.m */,
+				70ADA9001990979700075CB7 /* EditEmailPad.h */,
+				70ADA9011990979700075CB7 /* EditEmailPad.m */,
+				70ADA8FB199092CC00075CB7 /* EditUsernamePad.h */,
+				70ADA8FC199092CC00075CB7 /* EditUsernamePad.m */,
+				70ADA8F11990740400075CB7 /* EditAccountInformationPad.h */,
+				70ADA8F21990740400075CB7 /* EditAccountInformationPad.m */,
 			);
 			name = ipad;
 			sourceTree = "<group>";

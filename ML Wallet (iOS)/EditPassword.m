@@ -8,12 +8,15 @@
 
 #import "EditPassword.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "SaveWalletData.h"
 
 @interface EditPassword ()
 
 @end
 
 @implementation EditPassword
+
+MBProgressHUD *HUD;
 
 EditPasswordWebService *editPasswordWS;
 UIScrollView *profileScroll;
@@ -25,14 +28,21 @@ NSString *PASSWORD_VAL_ERROR = @"Validation Error";
 
 UITextField *oldPassword, *newPassword, *confirmPassword;
 
-- (void)viewDidLoad
-{
+NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
+
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(320, 400)];
+    
+    //create object of MBProgressHUD class, set delegate, and add loader view
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    
     
     editPasswordWS = [EditPasswordWebService new];
     
@@ -51,8 +61,6 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     
     [self addNavigationBarButton];
 }
-
-
 
 -(void) createPasswordLabel{
     
@@ -144,6 +152,10 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
         oldPassword.text = @"";
         newPassword.text = @"";
         confirmPassword.text = @"";
+        [self dismissProgressBar];
+        [self saveToPaylist];
+        
+
         
     }
     else if ([[NSString stringWithFormat:@"%@", editPasswordWS.respcode] isEqualToString:@"0"])
@@ -225,52 +237,73 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
     
     UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:PASSWORD_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
-    NSString *userInputOldPassword = oldPassword.text;
-    NSString *userInputNewPassword = newPassword.text;
-    NSString *userInputConfirmPassword = confirmPassword.text;
+    finalOldPassword = oldPassword.text;
+    finalNewPassword = newPassword.text;
+    finalConfirmPassword = confirmPassword.text;
     
-    if([userInputOldPassword isEqualToString:@""] || [userInputNewPassword isEqualToString:@""] || [userInputConfirmPassword isEqualToString:@""])
+    if([finalOldPassword isEqualToString:@""] || [finalNewPassword isEqualToString:@""] || [finalConfirmPassword isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
         [saveAlert show];
     }
-    else if (![userInputOldPassword isEqualToString:password])
+    else if (![finalOldPassword isEqualToString:password])
     {
         [saveAlert setMessage:@"Your old Password is incorrect."];
         [saveAlert show];
     }
-    else if(userInputNewPassword.length < 6)
+    else if(finalNewPassword.length < 6)
     {
         [saveAlert setMessage:@"Password must have 6 or more characters."];
         [saveAlert show];
     }
-    else if(![userInputConfirmPassword isEqualToString:userInputNewPassword])
+    else if(![finalConfirmPassword isEqualToString:finalNewPassword])
     {
         [saveAlert setMessage:@"Password does not match."];
         newPassword.text = @"";
         confirmPassword.text = @"";
         [saveAlert show];
     }
-    else if([userInputNewPassword isEqualToString:userInputOldPassword])
+    else if([finalNewPassword isEqualToString:finalOldPassword])
     {
         [saveAlert setMessage:@"New Password should not be same as old Password."];
         [saveAlert show];
     }
     else
     {
-        [editPasswordWS wallet:wallet password:userInputNewPassword];
+        [editPasswordWS wallet:wallet password:finalNewPassword];
+        [self displayProgressBar];
     }
+}
+
+-(void) saveToPaylist{
     
+    SaveWalletData *saveData = [SaveWalletData new];
     
-    
+    [saveData initSaveData:finalNewPassword forKey:@"password"];
     
     
 }
-
-
 
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
+
+
 
 @end

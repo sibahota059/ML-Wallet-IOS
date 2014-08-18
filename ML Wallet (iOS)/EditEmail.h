@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "EditEmailWebService.h"
+#import "MBProgressHUD.h"
 
-@interface EditEmail : UIViewController <EditEmailDelegate>
+@interface EditEmail : UIViewController <EditEmailDelegate, MBProgressHUDDelegate>
 
 @end

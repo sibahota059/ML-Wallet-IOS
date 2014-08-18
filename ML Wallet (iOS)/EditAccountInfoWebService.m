@@ -84,40 +84,6 @@
     NSArray *photoArray4 = [NSArray arrayWithObject:strImage4];
    
     
-//    NSData *data2 = [photo2Par dataUsingEncoding:NSUTF8StringEncoding];
-//    NSArray *photoValue2 = [NSJSONSerialization JSONObjectWithData:data2 options:NSJSONReadingMutableContainers error:nil];
-//
-//    
-//    NSData *data3 = [photo3Par dataUsingEncoding:NSUTF8StringEncoding];
-//    NSArray *photoValue3 = [NSJSONSerialization JSONObjectWithData:data3 options:NSJSONReadingMutableContainers error:nil];
-//
-//    
-//    NSData *data4 = [photo4Par dataUsingEncoding:NSUTF8StringEncoding];
-//    NSArray *photoValue4 = [NSJSONSerialization JSONObjectWithData:data4 options:NSJSONReadingMutableContainers error:nil];
-//
-    
-//    NSString *jsonRequest = [NSString stringWithFormat:@"{\"walletno\":\"%@\", \"country\":\"%@\", \"province\":\"%@\", \"permaAddress\":\"%@\", \"zipcode\":\"%@\", \"gender\":\"%@\", \"mNumber\":\"%@\", \"natureWork\":\"%@\", \"nationality\":\"%@\", \"photo1\":\"%@\", \"photo2\":\"%@\", \"photo3\":\"%@\", \"photo4\":\"%@\"}", walletNo, provincePar, countryPar, addressPar, zipcodePar, genderPar, mnumberPar, workPar, nationalityPar, photoArray1, photoArray2, photoArray3, photoArray4];
-    
-
-    
-    /*
-    NSString *serviceMethods = @"ChangeAccountInfo";
-    
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods]];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    NSData *requestData = [NSData dataWithBytes:[jsonRequest UTF8String] length:[jsonRequest length]];
-    
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[requestData length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody: requestData];
-    
-    [NSURLConnection connectionWithRequest:request delegate:self];
-    */
-    
     NSArray *keys ;
     NSArray *objects ;
     NSDictionary *jsonDictionary ;
