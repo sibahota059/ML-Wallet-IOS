@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EditSecretQuestionsWebService.h"
-#import "MBProgressHUD.h"
 
-
-@interface EditQuestionsPad : UIViewController <UITextFieldDelegate, EditSecretQuestionsDelegate, MBProgressHUDDelegate>
+@interface EditQuestionsPad : UIViewController <UITextFieldDelegate>
 
 @end

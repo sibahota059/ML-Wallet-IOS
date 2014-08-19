@@ -46,7 +46,7 @@ NSString *correctAnswer;
 
 UIScrollView *profileScroll;
 
-UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *email, *mobileNumber, *work, *nationality;
+UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *email, *work, *nationality;
 
 NSString *firstNameValue, *middleNameValue, *lastNameValue, *countryValue, *provinceValue, *addressValue, *zipcodeValue, *genderValue, *birthdateValue, *ageValue, *mobileNumberValue, *emailValue, *workValue, *nationalityValue, *photo1Value, *photo2Value, *photo3Value, *photo4Value, *answer1, *answer2, *answer3, *question1, *question2, *question3;
 
@@ -104,7 +104,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     photo1Value =[loadData objectForKey:@"photo1"];
     photo2Value =[loadData objectForKey:@"photo2"];
     photo3Value =[loadData objectForKey:@"photo3"];
-    photo4Value =[loadData objectForKey:@"photo4"];
+    photo4Value =[loadData objectForKey:@"photo2"];
 
     
     question1 =[loadData objectForKey:@"secquestion1"];
@@ -135,7 +135,9 @@ UILabel *profileEmail, *profileName, *profilePhone;
     profilePhone = [[UILabel alloc] initWithFrame:CGRectMake(327, 115, 400, 25)];
     [profilePhone setFont:[UIFont fontWithName:nil size:19.0f]];
     
-
+    profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(327, 136, 400, 25)];
+    [profileEmail setFont:[UIFont fontWithName:nil size:19.0f]];
+    
     
     ProfileOutline *imageCollectionView = [[ProfileOutline alloc] initWithFrame:CGRectMake(167, 225, 434, 110)];
     
@@ -163,6 +165,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     [profileScroll addSubview:imageFrameView];
     [profileScroll addSubview:profileName];
     [profileScroll addSubview:profilePhone];
+    [profileScroll addSubview:profileEmail];
     
     
     [profileScroll addSubview:imageCollectionView];
@@ -315,7 +318,8 @@ UILabel *profileEmail, *profileName, *profilePhone;
     mobileNumber = [[UILabel alloc] initWithFrame:CGRectMake(317, 715, 300, 25)];
     [mobileNumber setFont:[UIFont fontWithName:nil size:19.0f]];
     
-   
+    email = [[UILabel alloc] initWithFrame:CGRectMake(317, 745, 300, 25)];
+    [email setFont:[UIFont fontWithName:nil size:19.0f]];
     
     work = [[UILabel alloc] initWithFrame:CGRectMake(317, 775, 300, 25)];
     [work setFont:[UIFont fontWithName:nil size:19.0f]];
@@ -340,6 +344,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     [profileScroll addSubview:birthdate];
     [profileScroll addSubview:age];
     [profileScroll addSubview:mobileNumber];
+    [profileScroll addSubview:email];
     [profileScroll addSubview:work];
     [profileScroll addSubview:nationality];
     
@@ -416,41 +421,20 @@ UILabel *profileEmail, *profileName, *profilePhone;
  }
 
 
--(void) viewWillAppear:(BOOL)animated{
-    
-    NSDictionary *loadEmail = [NSDictionary initRead_LoadWallet_Data];
-    
-    NSString *emailAgain = [loadEmail objectForKey:@"emailadd"];
-    
-    email = [[UILabel alloc] initWithFrame:CGRectMake(317, 745, 300, 25)];
-    [email setFont:[UIFont fontWithName:nil size:19.0f]];
 
-    profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(327, 136, 400, 25)];
-    [profileEmail setFont:[UIFont fontWithName:nil size:19.0f]];
-    
-    [email setText:emailAgain];
-    [profileEmail setText:emailAgain];
-   
-    [profileScroll addSubview:email];
-    [profileScroll addSubview:profileEmail];
+
+
+
+
+-(void) viewWillAppear:(BOOL)animated{
     
     if(![dialog isHidden])
     {
         [dialog setHidden:YES];
     }
     
+    
 }
-
--(void) viewDidDisappear:(BOOL)animated{
-    [email removeFromSuperview];
-    [profileEmail removeFromSuperview];
-}
-
-
-
-
-
-
 
 
 

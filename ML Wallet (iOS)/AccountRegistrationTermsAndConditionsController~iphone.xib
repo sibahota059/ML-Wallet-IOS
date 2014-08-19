@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountRegistrationTermsAndConditionsController">
+            <connections>
+                <outlet property="tv_termsCondition" destination="a7k-7Q-okR" id="yaD-fD-d8A"/>
+                <outlet property="view" destination="1" id="3"/>
+                <outlet property="view_dialogHeader" destination="48F-2j-9as" id="LBh-YF-sFq"/>
+                <outlet property="view_success" destination="n57-eJ-mWf" id="lKS-zY-1W6"/>
+                <outlet property="view_successOption" destination="AhG-bA-Age" id="tfo-Rw-NAI"/>
+                <outlet property="view_tc" destination="WXl-6B-4X0" id="Lrh-kc-K4y"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="AccountRegis">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXl-6B-4X0">
+                    <rect key="frame" x="6" y="9" width="308" height="489"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-7Q-okR">
+                            <rect key="frame" x="3" y="7" width="302" height="462"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="a7k-7Q-okR" secondAttribute="bottom" constant="20" id="4In-34-tZG"/>
+                        <constraint firstItem="a7k-7Q-okR" firstAttribute="top" secondItem="WXl-6B-4X0" secondAttribute="top" constant="7" id="8WW-8w-Vcj"/>
+                        <constraint firstAttribute="trailing" secondItem="a7k-7Q-okR" secondAttribute="trailing" constant="3" id="FMa-x9-ctq"/>
+                        <constraint firstItem="a7k-7Q-okR" firstAttribute="leading" secondItem="WXl-6B-4X0" secondAttribute="leading" constant="3" id="J3l-5u-VBj"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n57-eJ-mWf">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="568" id="Da3-XS-zmf"/>
+                        <constraint firstAttribute="width" constant="320" id="ypP-MX-92X"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-bA-Age">
+                    <rect key="frame" x="20" y="150" width="280" height="200"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPl-l4-cY1">
+                            <rect key="frame" x="23" y="140" width="107" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="SMS" backgroundImage="navbar_bg.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnSms:" destination="-1" eventType="touchUpInside" id="60u-ty-lz7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUy-LW-gDA">
+                            <rect key="frame" x="150" y="139" width="107" height="41"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="EMAIL" backgroundImage="navbar_bg.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnEmail:" destination="-1" eventType="touchUpInside" id="7iD-2R-TaF"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="48F-2j-9as">
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Transaction Success" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MiP-f9-HMB">
+                                    <rect key="frame" x="13" y="11" width="190" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xv8-VA-vaP">
+                                    <rect key="frame" x="245" y="11" width="35" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    <state key="normal" title="X">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnClose:" destination="-1" eventType="touchUpInside" id="yFi-i5-4Uv"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money Successfuly Sent\nKPTN:\n 0042-71M-LW24-876-9202" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="265" translatesAutoresizingMaskIntoConstraints="NO" id="92J-qj-o4w">
+                            <rect key="frame" x="8" y="43" width="265" height="83"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="BnA-y0-dU6"/>
+                        <constraint firstAttribute="height" constant="200" id="JbD-cv-gaO"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="Ow2-Ej-Jww"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="U7S-6g-xeU"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chT-Ot-srK">
+                    <rect key="frame" x="132" y="510" width="80" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="7I6-2c-OeK"/>
+                        <constraint firstAttribute="width" constant="80" id="SlE-8K-Vuf"/>
+                    </constraints>
+                    <state key="normal" title="I Decline" backgroundImage="navbar_bg.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnDecline:" destination="-1" eventType="touchUpInside" id="k2e-yn-u0n"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NE-DG-d7F">
+                    <rect key="frame" x="220" y="510" width="80" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="5eJ-aW-lec"/>
+                        <constraint firstAttribute="width" constant="80" id="8x5-GC-Nsl"/>
+                    </constraints>
+                    <state key="normal" title="I Agree" backgroundImage="navbar_bg.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnAgree:" destination="-1" eventType="touchUpInside" id="gW8-h6-Cdt"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="WXl-6B-4X0" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="6" id="2Lo-rs-fck"/>
+                <constraint firstItem="WXl-6B-4X0" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" id="329-bE-M19"/>
+                <constraint firstAttribute="bottom" secondItem="2NE-DG-d7F" secondAttribute="bottom" constant="20" symbolic="YES" id="3zQ-5e-grV"/>
+                <constraint firstItem="WXl-6B-4X0" firstAttribute="top" secondItem="1" secondAttribute="top" constant="9" id="62P-bm-gb9"/>
+                <constraint firstAttribute="trailing" secondItem="2NE-DG-d7F" secondAttribute="trailing" constant="20" symbolic="YES" id="6xl-AQ-KkY"/>
+                <constraint firstItem="AhG-bA-Age" firstAttribute="centerY" secondItem="n57-eJ-mWf" secondAttribute="centerY" constant="-34" id="Gx6-s4-H4e"/>
+                <constraint firstItem="2NE-DG-d7F" firstAttribute="baseline" secondItem="chT-Ot-srK" secondAttribute="baseline" id="HCj-bj-TZL"/>
+                <constraint firstAttribute="centerY" secondItem="AhG-bA-Age" secondAttribute="centerY" constant="34" id="IlX-fO-EYS"/>
+                <constraint firstAttribute="bottom" secondItem="WXl-6B-4X0" secondAttribute="bottom" constant="70" id="M6O-0x-fUl"/>
+                <constraint firstAttribute="centerX" secondItem="AhG-bA-Age" secondAttribute="centerX" id="Uoa-4D-VIW"/>
+                <constraint firstItem="n57-eJ-mWf" firstAttribute="centerX" secondItem="WXl-6B-4X0" secondAttribute="centerX" id="cmg-gf-5Ua"/>
+                <constraint firstItem="2NE-DG-d7F" firstAttribute="top" secondItem="WXl-6B-4X0" secondAttribute="bottom" constant="12" id="e7Y-Hg-Ego"/>
+                <constraint firstItem="2NE-DG-d7F" firstAttribute="leading" secondItem="chT-Ot-srK" secondAttribute="trailing" constant="8" id="jPl-TZ-WnR"/>
+                <constraint firstItem="AhG-bA-Age" firstAttribute="trailing" secondItem="2NE-DG-d7F" secondAttribute="trailing" id="lUQ-P5-B7n"/>
+                <constraint firstAttribute="trailing" secondItem="WXl-6B-4X0" secondAttribute="trailing" constant="6" id="ubC-Gi-AgH"/>
+                <constraint firstItem="n57-eJ-mWf" firstAttribute="top" secondItem="1" secondAttribute="top" id="wC8-H6-y7g"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="navbar_bg.png" width="320" height="44"/>
+    </resources>
+</document>

@@ -414,6 +414,10 @@ UIView *dimLight;
                      animations:^{dialog.frame = CGRectMake(20, 30, 280, 300); }
                      completion:^(BOOL finished){}];
     
+   
+    
+    
+
     
     [textField resignFirstResponder];
     

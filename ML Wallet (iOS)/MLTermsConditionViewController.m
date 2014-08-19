@@ -21,7 +21,6 @@
     SendoutMobile *sendout;
     MBProgressHUD *HUD;
     SendEmail *se;
-    
     MLSendMoneyViewController *sm;
     NSString *confirmInd;
 }
@@ -308,7 +307,6 @@
             [self displayProgressBar];
             [se sendEmail:__walletNo andKptn:[self formatKptn:sendout.getKptn]];
         }
-        
     }
     else if (buttonIndex == 1) {
         if ([confirmInd isEqualToString:@"sendout"] || [confirmInd isEqualToString:@"email"]) {
