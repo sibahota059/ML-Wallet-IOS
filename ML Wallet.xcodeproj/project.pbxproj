@@ -23,8 +23,9 @@
 		3012DC4E197DF62400AA5F6F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4D197DF62400AA5F6F /* OpenGLES.framework */; };
 		3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */; };
 		3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */; };
-		301663D1199DFC1800B26C30 /* AccountRegistrationTermsAndConditionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 301663CF199DFC1800B26C30 /* AccountRegistrationTermsAndConditionsController.m */; };
-		301663D4199DFFBB00B26C30 /* AccountRegistrationTermsAndConditionsController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 301663D3199DFFBB00B26C30 /* AccountRegistrationTermsAndConditionsController~iphone.xib */; };
+		3015F02419A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3015F02219A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController.m */; };
+		3015F02519A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3015F02319A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController~iphone.xib */; };
+		3015F02719A2DE7300CC7AE6 /* AccountCreationTermsAndConditionsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3015F02619A2DE7300CC7AE6 /* AccountCreationTermsAndConditionsController~ipad.xib */; };
 		302FA640197E56F900B46F7A /* ml_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63E197E56F900B46F7A /* ml_1.png */; };
 		302FA641197E56F900B46F7A /* username.png in Resources */ = {isa = PBXBuildFile; fileRef = 302FA63F197E56F900B46F7A /* username.png */; };
 		30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */; };
@@ -296,9 +297,10 @@
 		3012DC4D197DF62400AA5F6F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3012DC4F197DF62F00AA5F6F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3012DC51197DF63500AA5F6F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		301663CE199DFC1800B26C30 /* AccountRegistrationTermsAndConditionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountRegistrationTermsAndConditionsController.h; sourceTree = "<group>"; };
-		301663CF199DFC1800B26C30 /* AccountRegistrationTermsAndConditionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountRegistrationTermsAndConditionsController.m; sourceTree = "<group>"; };
-		301663D3199DFFBB00B26C30 /* AccountRegistrationTermsAndConditionsController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AccountRegistrationTermsAndConditionsController~iphone.xib"; sourceTree = "<group>"; };
+		3015F02119A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCreationTermsAndConditionsController.h; sourceTree = "<group>"; };
+		3015F02219A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCreationTermsAndConditionsController.m; sourceTree = "<group>"; };
+		3015F02319A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AccountCreationTermsAndConditionsController~iphone.xib"; sourceTree = "<group>"; };
+		3015F02619A2DE7300CC7AE6 /* AccountCreationTermsAndConditionsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AccountCreationTermsAndConditionsController~ipad.xib"; sourceTree = "<group>"; };
 		302FA63E197E56F900B46F7A /* ml_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ml_1.png; sourceTree = "<group>"; };
 		302FA63F197E56F900B46F7A /* username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = username.png; sourceTree = "<group>"; };
 		30D693DA197DFC4900F6AA1D /* MapViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MapViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -1319,6 +1321,8 @@
 		708327E318D939570033856C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3015F02119A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController.h */,
+				3015F02219A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController.m */,
 				70EEA17218D9C46000719BF7 /* AccountLogin.h */,
 				70EEA17318D9C46000719BF7 /* AccountLogin.m */,
 				70EEA17418D9C46000719BF7 /* QuestionsActivity.h */,
@@ -1327,8 +1331,6 @@
 				70EEA17718D9C46000719BF7 /* RegistrationInformation.m */,
 				708327E518D93AEB0033856C /* EnterCustomerID.h */,
 				708327E618D93AEB0033856C /* EnterCustomerID.m */,
-				301663CE199DFC1800B26C30 /* AccountRegistrationTermsAndConditionsController.h */,
-				301663CF199DFC1800B26C30 /* AccountRegistrationTermsAndConditionsController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1336,7 +1338,8 @@
 		708327E418D939C30033856C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				301663D3199DFFBB00B26C30 /* AccountRegistrationTermsAndConditionsController~iphone.xib */,
+				3015F02319A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController~iphone.xib */,
+				3015F02619A2DE7300CC7AE6 /* AccountCreationTermsAndConditionsController~ipad.xib */,
 				707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */,
 				70EEA17018D9C44200719BF7 /* AccountLogin.xib */,
 				70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */,
@@ -1512,6 +1515,7 @@
 				F081A04F19776E55004568EF /* MLReceiverTableViewCell.xib in Resources */,
 				F081A05E19776F89004568EF /* MLHistoryTableViewCell~ipad.xib in Resources */,
 				3B8B9EF718BC4B3300639142 /* save.png in Resources */,
+				3015F02519A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController~iphone.xib in Resources */,
 				3BC3828C18C0958900270567 /* InfoViewController~iphone.xib in Resources */,
 				705654D51995F901002F81C7 /* my_save.png in Resources */,
 				7006622018DA81DD00A0F05C /* radio_button_selected.png in Resources */,
@@ -1555,6 +1559,7 @@
 				3BA7CCFB18B213BE00B9FC4B /* line.png in Resources */,
 				F00D64101991CE7B00A1BD67 /* payment_bg_ipad.png in Resources */,
 				30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */,
+				3015F02719A2DE7300CC7AE6 /* AccountCreationTermsAndConditionsController~ipad.xib in Resources */,
 				F081A05019776E55004568EF /* MLRatesTableViewCell~iphone.xib in Resources */,
 				70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */,
 				3B0CABEB199DAB3B008C3FF0 /* ml_logo_iphone.png in Resources */,
@@ -1599,7 +1604,6 @@
 				3B8090B318B5970900A11CB8 /* ReceiverMenuListViewController~iphone.xib in Resources */,
 				F081A05619776E55004568EF /* MLRatesTableViewController~ipad.xib in Resources */,
 				70AE8CBD198FC067002F570D /* EditInformationPadCell.xib in Resources */,
-				301663D4199DFFBB00B26C30 /* AccountRegistrationTermsAndConditionsController~iphone.xib in Resources */,
 				F05C5F4118E12C62002F2EE1 /* ic_preview.png in Resources */,
 				3011287819838585007EC190 /* MLhuillierWebViewController~iphone.xib in Resources */,
 				3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */,
@@ -1697,6 +1701,7 @@
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
 				F081A0631977A6C7004568EF /* CheckPin.m in Sources */,
 				7006621918DA813800A0F05C /* UpdateInformation.m in Sources */,
+				3015F02419A2DE4F00CC7AE6 /* AccountCreationTermsAndConditionsController.m in Sources */,
 				3BA7CCA718B1D6B900B9FC4B /* main.m in Sources */,
 				F081A03619776CEA004568EF /* GetReceiver.m in Sources */,
 				F05C5F3218E12C0D002F2EE1 /* MLReceiverTableViewController.m in Sources */,
@@ -1752,7 +1757,6 @@
 				F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */,
 				F05C5F2F18E12C0D002F2EE1 /* MLPreviewViewController.m in Sources */,
 				F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */,
-				301663D1199DFC1800B26C30 /* AccountRegistrationTermsAndConditionsController.m in Sources */,
 				70EEA17D18D9C47800719BF7 /* SelectQuestionDialog.m in Sources */,
 				70EEA17918D9C46000719BF7 /* QuestionsActivity.m in Sources */,
 				F008272B1987634800C80571 /* SoCancel.m in Sources */,

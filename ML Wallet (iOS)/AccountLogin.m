@@ -17,6 +17,7 @@
 #import "UIAlertView+alertMe.h"
 #import "ServiceConnection.h"
 #define ACCEPTABLE_CHARECTERS @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+#import "AccountCreationTermsAndConditionsController.h"
 @interface AccountLogin ()
 
 @end
@@ -258,7 +259,14 @@ NSURLConnection *second_connection;
     NSLog(@"Phone ni %@",act_log_custIDphoneNumber);
     if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF==0){
         NSLog(@"Failed'");
-        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+//        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+
+        
+        
+        AccountCreationTermsAndConditionsController *accLog = [[AccountCreationTermsAndConditionsController alloc] initWithNibName:@"AccountCreationTermsAndConditionsController" bundle:nil];
+        [self.navigationController pushViewController:accLog animated:YES];
+    
+    
     }
     else{
         NSLog(@"Success");
