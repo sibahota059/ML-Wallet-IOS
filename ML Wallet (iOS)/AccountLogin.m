@@ -31,13 +31,6 @@
     NSURLConnection *pinconn;
     ServiceConnection *con;
     
-    NSURL *first_connection_url;
-    NSURLRequest *first_connection_request;
-    NSURLConnection *first_connection;
-    
-    NSURL *second_connection_url;
-    NSURLRequest *second_connection_request;
-    NSURLConnection *second_connection;
     
 }
 
@@ -79,9 +72,9 @@ CGFloat screenWidth;
 CGFloat screenHeight;
 UIScrollView *scrollView;
 MBProgressHUD *HUD;
-NSURL *second_connection_url;
-NSURLRequest *second_connection_request;
-NSURLConnection *second_connection;
+NSURL *resendPin_url;
+NSURLRequest *resendPin_request;
+NSURLConnection *resendPin_connection;
 
 
 
@@ -298,9 +291,9 @@ NSURLConnection *second_connection;
     NSString *walletNum = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
     NSString *resendPinUrl = [NSString stringWithFormat:@"%@%@",url,walletNum];
     pinData = [[NSMutableData alloc]init];
-    second_connection_url = [NSURL URLWithString:resendPinUrl];
-    second_connection_request = [NSURLRequest requestWithURL:second_connection_url];
-    second_connection=[[NSURLConnection alloc]initWithRequest:second_connection_request delegate:self];
+    resendPin_url = [NSURL URLWithString:resendPinUrl];
+    resendPin_request = [NSURLRequest requestWithURL:resendPin_url];
+    resendPin_connection =[[NSURLConnection alloc]initWithRequest:resendPin_request delegate:self];
     NSLog(@"URL REQUEST PIN --- %@",resendPinUrl);
 
 }
@@ -395,7 +388,7 @@ NSURLConnection *second_connection;
 -(void)connection: (NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSLog(@"Did Receive Response");
-    if(connection==second_connection){
+    if(connection==resendPin_connection){
         pinData = [[NSMutableData alloc]init];
         NSLog(@"Did Receive Response Pin Data");
     }
@@ -406,7 +399,7 @@ NSURLConnection *second_connection;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if(connection==second_connection){
+    if(connection==resendPin_connection){
         NSLog(@"Did Receive Data Pin Data");
         [pinData appendData:data];
     }
@@ -453,7 +446,7 @@ NSURLConnection *second_connection;
         
         
         
-        if(connection==second_connection)
+        if(connection==resendPin_connection)
         {
             res = [NSJSONSerialization JSONObjectWithData:pinData options:NSJSONReadingMutableLeaves error:&myError];
             NSLog(@"Response sa PIN = %@",res);\

@@ -217,6 +217,10 @@ UITextfieldAnimate *textAnimate;
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
     [scrollView setContentOffset:scrollPoint animated:YES];
+    firstNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    secondNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    phoneNumberTF.keyboardType = UIKeyboardTypeNumberPad;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
