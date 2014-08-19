@@ -17,7 +17,7 @@
 #import "UIAlertView+alertMe.h"
 #import "ServiceConnection.h"
 #define ACCEPTABLE_CHARECTERS @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-#import "AccountCreationTermsAndConditionsController.h"
+#import "LoginViewController.h"
 @interface AccountLogin ()
 
 @end
@@ -38,7 +38,7 @@
     NSURL *second_connection_url;
     NSURLRequest *second_connection_request;
     NSURLConnection *second_connection;
-
+    
 }
 
 @synthesize act_log_custIDfirstNumber;
@@ -189,14 +189,14 @@ NSURLConnection *second_connection;
         passwordTF.layer.masksToBounds=YES;
         passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
         passwordTF.layer.borderWidth= 1.0f;
-//        passwordTF.secureTextEntry = YES;
+        //        passwordTF.secureTextEntry = YES;
         
         retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 130, 280, 30) word:@"Retype Password"];
         retypePasswordTF.layer.cornerRadius=8.0f;
         retypePasswordTF.layer.masksToBounds=YES;
         retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
         retypePasswordTF.layer.borderWidth= 1.0f;
-//        retypePasswordTF.secureTextEntry = YES;
+        //        retypePasswordTF.secureTextEntry = YES;
         
         
         userNameTF.delegate = self;
@@ -259,14 +259,7 @@ NSURLConnection *second_connection;
     NSLog(@"Phone ni %@",act_log_custIDphoneNumber);
     if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF==0){
         NSLog(@"Failed'");
-//        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-
-        
-        
-        AccountCreationTermsAndConditionsController *accLog = [[AccountCreationTermsAndConditionsController alloc] initWithNibName:@"AccountCreationTermsAndConditionsController" bundle:nil];
-        [self.navigationController pushViewController:accLog animated:YES];
-    
-    
+        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else{
         NSLog(@"Success");
@@ -287,10 +280,29 @@ NSURLConnection *second_connection;
                                                       message:@""
                                                      delegate:self
                                             cancelButtonTitle:nil
-                                            otherButtonTitles:@"Resend Pin",@"Retry", nil];
+                                            otherButtonTitles:@"Resend Pin",@"Login", nil];
     
     [message show];
     
+}
+
+-(void)resendPin{
+
+    NSLog(@"Resend Pin");
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    
+    con = [ServiceConnection new];
+    NSString *url = [NSString stringWithFormat:@"%@", [con NSGetCustomerIDService]];
+    NSString *walletNum = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
+    NSString *resendPinUrl = [NSString stringWithFormat:@"%@%@",url,walletNum];
+    pinData = [[NSMutableData alloc]init];
+    second_connection_url = [NSURL URLWithString:resendPinUrl];
+    second_connection_request = [NSURLRequest requestWithURL:second_connection_url];
+    second_connection=[[NSURLConnection alloc]initWithRequest:second_connection_request delegate:self];
+    NSLog(@"URL REQUEST PIN --- %@",resendPinUrl);
+
 }
 #pragma mark - Custom alert
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -299,26 +311,30 @@ NSURLConnection *second_connection;
     if([title isEqualToString:@"Accept"])
     {
         NSLog(@"Register");
-        [self userPin];
+        //[self createAccount];
+         [self resendPin];
     }
     else if([title isEqualToString:@"Resend Pin"])
     {
-        NSLog(@"Resend Pin");
-//        first_connection_request = [NSURLRequest requestWithURL:first_connection_url]
-//        first_connection_url = [NSURL URLWithString:@"http://mujercanariasigloxxi.appgestion.eu/app_php_files/empresastodaslist.php"];
-//        first_connection=[[NSURLConnection alloc]initWithRequest:first_connection_request delegate:self];
-        
-//        NSString *ahw = [NSString stringWithFormat:@"1212"];
-        pinData = [[NSMutableData alloc]init];        
-        second_connection_url = [NSURL URLWithString:@"https://192.168.12.204:4443/mobile/client/mobilekp_wcf/service.svc/ResendPIN/?walletno=14030000000123"];
-        second_connection_request = [NSURLRequest requestWithURL:second_connection_url];
-        second_connection=[[NSURLConnection alloc]initWithRequest:second_connection_request delegate:self];
+       
+        [self resendPin];
         
     }
     else if([title isEqualToString:@"Retry"])
     {
         NSLog(@"Retry");
-        //[self createAccount];
+       [self createAccount];
+    }
+    else if([title isEqualToString:@"Retry "])
+    {
+        NSLog(@"Retry_");
+        [self resendPin];
+    }
+    else if([title isEqualToString:@"Login"])
+    {
+        LoginViewController *loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        
+         [self.navigationController pushViewController:loginController  animated:YES];
     }
 }
 
@@ -385,7 +401,7 @@ NSURLConnection *second_connection;
     }
     else{
         NSLog(@"Did Receive Response Content Data");
-    contentData = [[NSMutableData alloc]init];
+        contentData = [[NSMutableData alloc]init];
     }
 }
 
@@ -431,16 +447,57 @@ NSURLConnection *second_connection;
     NSLog(@"connectionDidFinishLoading");
     NSError *myError = nil;
     NSDictionary *res;
-
-
-    if (myError == nil) {
     
+    
+    if (myError == nil) {
+        
         
         
         if(connection==second_connection)
         {
             res = [NSJSONSerialization JSONObjectWithData:pinData options:NSJSONReadingMutableLeaves error:&myError];
-            NSLog(@"Response sa PIN = %@",res);
+            NSLog(@"Response sa PIN = %@",res);\
+            
+            NSDictionary *jsonResult = [res objectForKey:@"ResendPINResult"];
+            NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
+            NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
+//            NSString *strNoofAttempt = [jsonResult objectForKey:@"noofattempt"];
+//            NSString *strWalletNo = [jsonResult objectForKey:@"walletno"];
+            NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
+            int value = [strResponseCode intValue];
+            
+            if(value==1){
+                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
+                                                                   message:strResponseMessage
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Resend Pin"
+                                                         otherButtonTitles:@"Login", nil];
+                
+                [errorMsg show];
+                
+            }
+            else if(value==2){
+                
+                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+                                                                   message:strResponseMessage
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Cancel"
+                                                         otherButtonTitles:@"Retry ", nil];
+                
+                [errorMsg show];
+                
+                
+            }//end if lse if(value==2)
+            else if (value==0){
+                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+                                                                   message:strResponseMessage
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Cancel"
+                                                         otherButtonTitles:@"Retry ", nil];
+                
+                [errorMsg show];
+            }//end else if (value==0)
+
         }
         else{
             res = [NSJSONSerialization JSONObjectWithData:contentData options:NSJSONReadingMutableLeaves error:&myError];
@@ -455,10 +512,25 @@ NSURLConnection *second_connection;
                 
             }
             else if(value==2){
-                [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+                
+                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+                                                                  message:strResponseMessage
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                        otherButtonTitles:@"Retry", nil];
+                
+                [errorMsg show];
+
+                
             }//end if lse if(value==2)
             else if (value==0){
-                [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+                                                                   message:strResponseMessage
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Cancel"
+                                                         otherButtonTitles:@"Retry", nil];
+                
+                [errorMsg show];
             }//end else if (value==0)
         }
         
@@ -468,13 +540,13 @@ NSURLConnection *second_connection;
         
         
         
-
+        
     }//end if(myError == nil)
     else{
         [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
         NSLog(@"Error");
     }//end else
-
+    
     
     [HUD hide:YES];
     [HUD show:NO];

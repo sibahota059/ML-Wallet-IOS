@@ -601,38 +601,38 @@ NSString *str_email_add;
 -(void) gotoNextView{
     NSLog(@"Next ni Bai!");
     QuestionsActivity *questAct = [[QuestionsActivity alloc] initWithNibName:@"QuestionsActivity" bundle:nil];
-//    questAct.quest_act_custIDfirstNumber = reg_info_custIDfirstNumber;
-//    questAct.quest_act_custIDsecondNumber = reg_info_custIDsecondNumber;
-//    questAct.quest_act_custIDthirdNumber = reg_info_custIDthirdNumber;
-//    questAct.quest_act_custIDphoneNumber = reg_info_custIDphoneNumber;
-//    
-//    questAct.quest_act_firstName = reg_info_str_firstName;
-//    questAct.quest_act_middleName = reg_info_str_middleName;
-//    questAct.quest_act_lastName = reg_info_str_lastName;
-//    questAct.quest_act_country = reg_info_str_country;
-//    questAct.quest_act_province = reg_info_str_province;
-//    questAct.quest_act_address = reg_info_str_address;
-//    questAct.quest_act_zipcode = reg_info_str_zipcode;
-//    questAct.quest_act_gender = reg_info_str_gender;
-//    questAct.quest_act_birthdate = reg_info_str_birthdate;
-//    questAct.quest_act_number = reg_info_str_number;
-//    questAct.quest_act_email = reg_info_str_email;
-//    questAct.quest_act_work = reg_info_str_work;
-//    questAct.quest_act_nationality = reg_info_str_nationality;
-//
-//    
-//    questAct.quest_act_str_photo1 = reg_info_str_photo1;
-//    questAct.quest_act_str_photo2 = reg_info_str_photo2;
-//    questAct.quest_act_str_photo3 = reg_info_str_photo3;
-//    questAct.quest_act_str_photo4 = reg_info_str_photo4;
-//    questAct.quest_act_str_balance = reg_info_str_balance;
-//    questAct.quest_act_str_secanswer1 = reg_info_str_secanswer1;
-//    questAct.quest_act_str_secanswer2 = reg_info_str_secanswer2;
-//    questAct.quest_act_str_secanswer3 = reg_info_str_secanswer3;
-//    questAct.quest_act_str_secquestion1 = reg_info_str_secquestion1;
-//    questAct.quest_act_str_secquestion2 = reg_info_str_secquestion2;
-//    questAct.quest_act_str_secquestion3 = reg_info_str_secquestion3;
-//    questAct.quest_act_str_walletno = reg_info_str_walletno;
+    questAct.quest_act_custIDfirstNumber = reg_info_custIDfirstNumber;
+    questAct.quest_act_custIDsecondNumber = reg_info_custIDsecondNumber;
+    questAct.quest_act_custIDthirdNumber = reg_info_custIDthirdNumber;
+    questAct.quest_act_custIDphoneNumber = reg_info_custIDphoneNumber;
+    
+    questAct.quest_act_firstName = reg_info_str_firstName;
+    questAct.quest_act_middleName = reg_info_str_middleName;
+    questAct.quest_act_lastName = reg_info_str_lastName;
+    questAct.quest_act_country = reg_info_str_country;
+    questAct.quest_act_province = reg_info_str_province;
+    questAct.quest_act_address = reg_info_str_address;
+    questAct.quest_act_zipcode = reg_info_str_zipcode;
+    questAct.quest_act_gender = reg_info_str_gender;
+    questAct.quest_act_birthdate = reg_info_str_birthdate;
+    questAct.quest_act_number = reg_info_str_number;
+    questAct.quest_act_email = reg_info_str_email;
+    questAct.quest_act_work = reg_info_str_work;
+    questAct.quest_act_nationality = reg_info_str_nationality;
+
+    
+    questAct.quest_act_str_photo1 = reg_info_str_photo1;
+    questAct.quest_act_str_photo2 = reg_info_str_photo2;
+    questAct.quest_act_str_photo3 = reg_info_str_photo3;
+    questAct.quest_act_str_photo4 = reg_info_str_photo4;
+    questAct.quest_act_str_balance = reg_info_str_balance;
+    questAct.quest_act_str_secanswer1 = reg_info_str_secanswer1;
+    questAct.quest_act_str_secanswer2 = reg_info_str_secanswer2;
+    questAct.quest_act_str_secanswer3 = reg_info_str_secanswer3;
+    questAct.quest_act_str_secquestion1 = reg_info_str_secquestion1;
+    questAct.quest_act_str_secquestion2 = reg_info_str_secquestion2;
+    questAct.quest_act_str_secquestion3 = reg_info_str_secquestion3;
+    questAct.quest_act_str_walletno = reg_info_str_walletno;
     
 
     [self.navigationController pushViewController:questAct animated:YES];

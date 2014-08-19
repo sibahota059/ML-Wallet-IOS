@@ -458,7 +458,7 @@ SelectQuestionDialog *questionDialog;
 }
 
 -(void) gotoNextView{
-/*
+
     if(answerTF1.text.length>=1&&answerTF2.text.length>=1&&answerTF3.text.length>=1&&questionLbl1.text.length>=1&&questionLbl2.text.length>=1&&questionLbl3.text.length>=1&&![questionLbl1.text isEqualToString:@"Question 1"]&&![questionLbl2.text isEqualToString:@"Question 2"]&&![questionLbl3.text isEqualToString:@"Question 3"])
     {
         NSLog(@"Next ni Bai!");
@@ -519,9 +519,9 @@ SelectQuestionDialog *questionDialog;
 // [self.navigationController pushViewController:accLog animated:YES];
         }
     }
-  */
-    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-    [self.navigationController pushViewController:accLog animated:YES];
+  
+//    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+//    [self.navigationController pushViewController:accLog animated:YES];
     
 }
 

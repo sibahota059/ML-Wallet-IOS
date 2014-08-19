@@ -82,7 +82,7 @@ UITextfieldAnimate *textAnimate;
     ProfileLabel *customerID;
     
     if ( IDIOM == IPAD ) {
-        float personalHeader_Co = ((screenWidth - 170)/2)-170;
+     //   float personalHeader_Co = ((screenWidth - 170)/2)-170;
         personalHeader  = [[ProfileHeader alloc] initWithValue:@"Enter all fields" x:40 y:20 width:170];
         
         //[personalHeader setFrame:CGRectMake(personalHeader_Co, 10, 170, 30)];
@@ -261,30 +261,30 @@ UITextfieldAnimate *textAnimate;
     
 }
 -(void) gotoNextView{
-//    if(firstNumberTF.text.length>=1&&secondNumberTF.text.length>=1&&phoneNumberTF.text.length>=1)
-//    {
-//        NSLog(@"Next ni Bai!");
-//        if([firstNumberTF resignFirstResponder]==YES||
-//           [secondNumberTF resignFirstResponder]==YES||
-//           [thirdNumberTF resignFirstResponder]==YES||
-//           [phoneNumberTF resignFirstResponder]==YES){
-//            NSLog(@"Keyboard Visible");
-//            [scrollView setContentOffset:CGPointZero animated:YES];
-//        }
-//        else{
-//            NSLog(@"Keyboard not Visible");
-//        }
-//        [self customerIDService];
-//    }
-//    else{
-//        NSLog(@"Empty man Bai!!");
-//        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-//        
-//        
-//    }
-    RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-    
-    [self.navigationController pushViewController:regInfo animated:YES];
+    if(firstNumberTF.text.length>=1&&secondNumberTF.text.length>=1&&phoneNumberTF.text.length>=1)
+    {
+        NSLog(@"Next ni Bai!");
+        if([firstNumberTF resignFirstResponder]==YES||
+           [secondNumberTF resignFirstResponder]==YES||
+           [thirdNumberTF resignFirstResponder]==YES||
+           [phoneNumberTF resignFirstResponder]==YES){
+            NSLog(@"Keyboard Visible");
+            [scrollView setContentOffset:CGPointZero animated:YES];
+        }
+        else{
+            NSLog(@"Keyboard not Visible");
+        }
+        [self customerIDService];
+    }
+    else{
+        NSLog(@"Empty man Bai!!");
+        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        
+        
+    }
+//    RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
+//    
+//    [self.navigationController pushViewController:regInfo animated:YES];
 }
 
 -(void) backPressed{
