@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditPasswordWebService.h"
+#import "MBProgressHUD.h"
 
-@interface EditPassword : UIViewController
+@interface EditPassword : UIViewController <EditPasswordDelegate, MBProgressHUDDelegate>
 
 @end

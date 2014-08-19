@@ -103,8 +103,6 @@ UILabel *nameLabel, *bdayLabel, *countryLabel;
 }
 
 
-
-
 - (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
     
     
