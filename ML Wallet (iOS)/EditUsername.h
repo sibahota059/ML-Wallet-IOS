@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditUserNameWebService.h"
+#import "MBProgressHUD.h"
 
-@interface EditUsername : UIViewController
+@interface EditUsername : UIViewController <EditUserNameDelegate, MBProgressHUDDelegate>
 
 @end
