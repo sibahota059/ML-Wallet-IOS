@@ -685,6 +685,7 @@ NSString *str_email_add;
 }
 
 
+
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
