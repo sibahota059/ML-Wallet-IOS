@@ -6,8 +6,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="NewPIN" destination="gYO-iu-41f" id="kJh-wJ-m5c"/>
+                <outlet property="NewPINView" destination="8SS-s6-I27" id="BhV-xD-M0r"/>
+                <outlet property="OldPIN" destination="tIi-Po-F3N" id="r96-nY-3LO"/>
+                <outlet property="ReNewPIN" destination="cfD-m3-950" id="mhP-AV-2pW"/>
+                <outlet property="btnInfo" destination="MO8-05-eU8" id="lTs-dN-3ki"/>
+                <outlet property="btnLocation" destination="or3-bv-z4g" id="SsK-cq-ccQ"/>
+                <outlet property="btnRate" destination="04D-WM-3JN" id="c2y-1Z-FfQ"/>
                 <outlet property="loginView" destination="Jqi-aw-9Ry" id="7Qo-Sk-Ahr"/>
-                <outlet property="scrollView" destination="24N-TH-F8N" id="dPa-S7-Bei"/>
+                <outlet property="scrollView" destination="24N-TH-F8N" id="mRm-Vi-Nzr"/>
                 <outlet property="txtPass" destination="L0h-if-pmb" id="M4l-P9-MVM"/>
                 <outlet property="txtUser" destination="1j2-kQ-AOM" id="ADo-gm-g2p"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -31,6 +38,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
                             </subviews>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="krt-eH-YAQ" appends="YES" id="g2y-q2-7MD"/>
+                            </connections>
                         </view>
                         <view contentMode="scaleToFill" id="WY1-31-SoR">
                             <rect key="frame" x="0.0" y="115" width="320" height="366"/>
@@ -136,7 +146,7 @@
                             </subviews>
                         </view>
                         <view contentMode="scaleToFill" id="iCf-7W-57g">
-                            <rect key="frame" x="0.0" y="489" width="320" height="95"/>
+                            <rect key="frame" x="0.0" y="470" width="320" height="95"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locator" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XBX-45-qY4">
@@ -188,14 +198,118 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="krt-eH-YAQ" appends="YES" id="074-mv-Am1"/>
+                            </connections>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" id="8SS-s6-I27">
+                            <rect key="frame" x="15" y="100" width="290" height="300"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You need to enter your Activition PIN and change to new one." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ViR-uE-WWz">
+                                    <rect key="frame" x="14" y="49" width="282" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to ML Wallet." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p5c-Kl-VKP">
+                                    <rect key="frame" x="14" y="20" width="171" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lyt-ou-ijk">
+                                    <rect key="frame" x="14" y="87" width="68" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.60479113520408156" green="0.055610179927287645" blue="0.017922156749746915" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your Activition PIN" textAlignment="center" minimumFontSize="17" id="tIi-Po-F3N">
+                                    <rect key="frame" x="14" y="110" width="263" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                </textField>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wus-5y-RDD">
+                                    <rect key="frame" x="14" y="156" width="68" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.60479113520000005" green="0.055610179930000003" blue="0.017922156750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your New PIN" textAlignment="center" minimumFontSize="17" id="gYO-iu-41f">
+                                    <rect key="frame" x="14" y="179" width="263" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-type your PIN" textAlignment="center" minimumFontSize="17" id="cfD-m3-950">
+                                    <rect key="frame" x="14" y="212" width="263" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                </textField>
+                                <view contentMode="scaleToFill" id="Tdd-sx-doq">
+                                    <rect key="frame" x="0.0" y="149" width="296" height="2"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ocs-FU-mv1">
+                                    <rect key="frame" x="14" y="261" width="80" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="Now now" backgroundImage="headerbackground.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnNotNow:" destination="-1" eventType="touchUpInside" id="kEh-4A-96T"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Z1S-Zx-2P1">
+                                    <rect key="frame" x="105" y="261" width="80" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="Resend PIN" backgroundImage="headerbackground.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnRePIN:" destination="-1" eventType="touchUpInside" id="bqI-E1-Uax"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ioc-aC-kCh">
+                                    <rect key="frame" x="197" y="261" width="80" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="Submit" backgroundImage="headerbackground.png">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnSubmit:" destination="-1" eventType="touchUpInside" id="eaD-ZE-aIf"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
+                    <gestureRecognizers/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <tapGestureRecognizer numberOfTapsRequired="2" id="krt-eH-YAQ">
+            <connections>
+                <action selector="onTouch:" destination="-1" id="hnl-rQ-KbK"/>
+                <outlet property="delegate" destination="iCf-7W-57g" id="aik-Qm-aNU"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="headerbackground.png" width="320" height="50"/>
