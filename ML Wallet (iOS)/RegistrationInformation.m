@@ -633,7 +633,7 @@ NSString *str_email_add;
     questAct.quest_act_str_secquestion2 = reg_info_str_secquestion2;
     questAct.quest_act_str_secquestion3 = reg_info_str_secquestion3;
     questAct.quest_act_str_walletno = reg_info_str_walletno;
-    
+     NSLog(@"Ang Wallet Number ----- %@",reg_info_str_walletno);
 
     [self.navigationController pushViewController:questAct animated:YES];
     

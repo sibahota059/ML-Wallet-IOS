@@ -624,6 +624,8 @@ UITextField *flagTextField;
             regInfo.reg_info_str_secquestion3 = strsecquestion3;
             regInfo.reg_info_str_walletno = strwalletno;
             
+            NSLog(@"Ang Wallet Number ----- %@",strwalletno);
+            
             [self.navigationController pushViewController:regInfo animated:YES];
             
             

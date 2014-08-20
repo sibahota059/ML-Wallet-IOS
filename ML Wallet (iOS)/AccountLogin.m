@@ -46,6 +46,11 @@
     NSString *balance;
     NSString *mname;
     NSMutableData *responseData;
+    UIAlertView *accountCreationSuccessAV;
+    UIAlertView *accountCreationErrorAV;
+    UIAlertView *pinResendSuccessAV;
+    UIAlertView *pinResendErrorAV;
+    NSString *alertViewMessage;
     
 }
 
@@ -124,7 +129,7 @@ NSURLConnection *resendPin_connection;
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
     
-    
+    NSLog(@"Ang Wallet Number ----- %@",act_log_str_walletno);
     //Set UP Location
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
@@ -316,21 +321,53 @@ NSURLConnection *resendPin_connection;
 -(void)resendPin{
 
     NSLog(@"Resend Pin");
+//    HUD.labelText = @"Please wait";
+//    HUD.square = YES;
+//    [HUD show:YES];
+//    NSLog(@"Ang wallet Number -- %@",act_log_str_walletno);
+//    con = [ServiceConnection new];
+//    NSString *url = [NSString stringWithFormat:@"%@", [con NSGetCustomerIDService]];
+//    NSString *walletNum = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
+//    NSString *resendPinUrl = [NSString stringWithFormat:@"%@%@",url,walletNum];
+//    pinData = [[NSMutableData alloc]init];
+//    resendPin_url = [NSURL URLWithString:resendPinUrl];
+//    resendPin_request = [NSURLRequest requestWithURL:resendPin_url];
+//    resendPin_connection =[[NSURLConnection alloc]initWithRequest:resendPin_request delegate:self];
+//    NSLog(@"URL REQUEST PIN --- %@",resendPinUrl);
+    
+    
+    
+    
+   
+
+    
+    
+    
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];
+    [self.view endEditing:YES];
+    //Get Branch Coordinate
+    self.responseData = [NSMutableData data];
+    NSString *custID = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
+    NSString *url = [NSString stringWithFormat:@"%@%@", [con NSGetCustomerIDService],custID];
     
-    con = [ServiceConnection new];
-    NSString *url = [NSString stringWithFormat:@"%@", [con NSGetCustomerIDService]];
-    NSString *walletNum = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
-    NSString *resendPinUrl = [NSString stringWithFormat:@"%@%@",url,walletNum];
-    pinData = [[NSMutableData alloc]init];
-    resendPin_url = [NSURL URLWithString:resendPinUrl];
-    resendPin_request = [NSURLRequest requestWithURL:resendPin_url];
-    resendPin_connection =[[NSURLConnection alloc]initWithRequest:resendPin_request delegate:self];
-    NSLog(@"URL REQUEST PIN --- %@",resendPinUrl);
-    self.idd = 4;
-
+    NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    
+    NSLog(@"URL - %@", url);              // Checking the url
+    
+    NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
+                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                         timeoutInterval:10.0];
+    
+    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
+    [theConnection start];
+    
+     self.idd = 4;
 }
 #pragma mark - Custom alert
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -339,12 +376,18 @@ NSURLConnection *resendPin_connection;
     if([title isEqualToString:@"Accept"])
     {
         NSLog(@"Register");
-        //[self createAccount];
-         [self resendPin];
+        [self createAccount];
+        
+        
+         //[self resendPin];
     }
     else if([title isEqualToString:@"Resend Pin"])
     {
-       
+//        accountCreationSuccessAV
+//        accountCreationErrorAV
+//        pinResendSuccessAV
+//        pinResendErrorAV
+//        accountCreationSuccessAV.don
         [self resendPin];
         
     }
@@ -358,11 +401,22 @@ NSURLConnection *resendPin_connection;
         NSLog(@"Retry_");
         [self resendPin];
     }
+    else if([title isEqualToString:@"OK"]){
+        NSLog(@"OK------");
+        accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
+                                                              message:alertViewMessage
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                                    otherButtonTitles:@"Resend Pin",@"Login", nil];
+        [accountCreationSuccessAV show];
+    }
     else if([title isEqualToString:@"Login"])
     {
         LoginViewController *loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        
-         [self.navigationController pushViewController:loginController  animated:YES];
+        //self.navigationController.navigationBarHidden = YES;
+//        [self.navigationController setNavigationBarHidden:YES];
+         [self.navigationController popToViewController:loginController  animated:YES];
+
     }
     else if([title isEqualToString:@"AutoLogin"])
     {
@@ -536,31 +590,40 @@ NSLog(@"AutoLogin");
             NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
             NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
             int value = [strResponseCode intValue];
-            
+            alertViewMessage = strResponseMessage;
             if(value==1){
-                [UIAlertView myCostumeAlert:@"Success!" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+                accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
+                                                                   message:strResponseMessage
+                                                                  delegate:self
+                                                         cancelButtonTitle:nil
+                                                         otherButtonTitles:@"Resend Pin",@"Login", nil];
                 
+                [accountCreationSuccessAV show];
+
+              //  [self resendPin];
             }
+            
             else if(value==2){
                 
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
                                                                    message:strResponseMessage
                                                                   delegate:self
                                                          cancelButtonTitle:@"Cancel"
                                                          otherButtonTitles:@"Retry", nil];
                 
-                [errorMsg show];
+                [accountCreationErrorAV show];
                 
                 
             }//end if lse if(value==2)
+            
             else if (value==0){
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
                                                                    message:strResponseMessage
                                                                   delegate:self
                                                          cancelButtonTitle:@"Cancel"
                                                          otherButtonTitles:@"Retry", nil];
                 
-                [errorMsg show];
+                [accountCreationErrorAV show];
             }//end else if (value==0)
         }//end self idd3
         else if(self.idd==4){
@@ -575,35 +638,35 @@ NSLog(@"AutoLogin");
             int value = [strResponseCode intValue];
             
             if(value==1){
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Pin Resend Success."
+                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Success."
                                                                    message:strResponseMessage
                                                                   delegate:self
-                                                         cancelButtonTitle:@"AutoLogin"
-                                                         otherButtonTitles:@"Login", nil];
+                                                         cancelButtonTitle:nil
+                                                         otherButtonTitles:@"OK",nil];
                 
-                [errorMsg show];
+                [pinResendSuccessAV show];
                 
             }
             else if(value==2){
                 
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
                                                                    message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Retry ", nil];
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                                    otherButtonTitles:@"OK",nil];
                 
-                [errorMsg show];
+                [pinResendErrorAV show];
                 
                 
             }//end if lse if(value==2)
             else if (value==0){
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
                                                                    message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Retry ", nil];
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                                    otherButtonTitles:@"OK",nil];
                 
-                [errorMsg show];
+                [pinResendErrorAV show];
             }//end else if (value==0)
 
         }//self idd 4
