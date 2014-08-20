@@ -16,4 +16,6 @@
 //Albert Added
 - (NSString *) NSGetMobilePdf;
 
+-(NSString *) NSGetCustomerIDService;
+-(NSString *) NSCreateAccountService;
 @end

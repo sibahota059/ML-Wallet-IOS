@@ -105,7 +105,7 @@
         HUD.delegate = self;
         HUD.labelText = @"Please wait";
         HUD.square = YES;
-        [HUD show:YES navigatorItem:self.navigationItem];
+        [HUD show:YES];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -221,7 +221,7 @@
     HUD.delegate = self;
     HUD.labelText = @"Please wait";
     HUD.square = YES;
-    [HUD show:YES navigatorItem:self.navigationItem];
+    [HUD show:YES];
     [self.view endEditing:YES];
     //Get Branch Coordinate
     self.responseData = [NSMutableData data];
@@ -496,7 +496,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.title = @"MY LOCATION";
     
-    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"]
+    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home.png"]
                                                                 style:UIBarButtonItemStyleBordered
                                                                target:self
                                                                action:@selector(gotoHome)];

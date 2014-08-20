@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditAccountInfoWebService.h"
+#import "MBProgressHUD.h"
+@interface EditAccountInformationPad : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,
+UITextFieldDelegate, EditAccountInfoDelegate, MBProgressHUDDelegate>
 
-@interface EditAccountInformationPad : UIViewController
 
 @end
