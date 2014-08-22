@@ -455,7 +455,7 @@ NSString *str_email_add;
         
         UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 610, 180, 40)];
         [number setFont:[UIFont fontWithName:nil size:24.0f]];
-        [number setText:[NSString stringWithFormat:@"%@",reg_info_str_number]];
+        [number setText:[NSString stringWithFormat:@"%@",reg_info_custIDphoneNumber]];
         
         [profileScroll addSubview:firstName];
         [profileScroll addSubview:middleName];
@@ -480,7 +480,7 @@ NSString *str_email_add;
         UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake(140, 30, 180, 25)];
         [firstName setFont:[UIFont fontWithName:nil size:13.0f]];
         [firstName setText:[NSString stringWithFormat:@"%@",reg_info_str_firstName]];
-
+        
         
         UILabel *middleName = [[UILabel alloc] initWithFrame:CGRectMake(140, 60, 180, 25)];
         [middleName setFont:[UIFont fontWithName:nil size:13.0f]];
@@ -527,14 +527,14 @@ NSString *str_email_add;
         
         //Contact Information
         email = [[UILabel alloc] initWithFrame:CGRectMake(140, 420, 180, 25)];
-//        UILabel *email = [[UILabel alloc] initWithFrame:CGRectMake(130, 420, 180, 25)];
+        //        UILabel *email = [[UILabel alloc] initWithFrame:CGRectMake(130, 420, 180, 25)];
         [email setFont:[UIFont fontWithName:nil size:13.0f]];
         [email setText:[NSString stringWithFormat:@"%@",reg_info_str_email]];
         
         
         UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(140, 450, 180, 25)];
         [number setFont:[UIFont fontWithName:nil size:13.0f]];
-        [number setText:[NSString stringWithFormat:@"%@",reg_info_str_number]];
+        [number setText:[NSString stringWithFormat:@"%@",reg_info_custIDphoneNumber]];
         
         
         
@@ -557,7 +557,7 @@ NSString *str_email_add;
     }
     
     
-
+    
     
     
 }
@@ -615,11 +615,11 @@ NSString *str_email_add;
     questAct.quest_act_zipcode = reg_info_str_zipcode;
     questAct.quest_act_gender = reg_info_str_gender;
     questAct.quest_act_birthdate = reg_info_str_birthdate;
-    questAct.quest_act_number = reg_info_str_number;
+    questAct.quest_act_number = reg_info_custIDphoneNumber;
     questAct.quest_act_email = email.text;
     questAct.quest_act_work = reg_info_str_work;
     questAct.quest_act_nationality = reg_info_str_nationality;
-
+    
     
     questAct.quest_act_str_photo1 = reg_info_str_photo1;
     questAct.quest_act_str_photo2 = reg_info_str_photo2;
@@ -633,8 +633,8 @@ NSString *str_email_add;
     questAct.quest_act_str_secquestion2 = reg_info_str_secquestion2;
     questAct.quest_act_str_secquestion3 = reg_info_str_secquestion3;
     questAct.quest_act_str_walletno = reg_info_str_walletno;
-     NSLog(@"Ang Wallet Number ----- %@",reg_info_str_walletno);
-
+    NSLog(@"Ang Wallet Number ----- %@",reg_info_str_walletno);
+    
     [self.navigationController pushViewController:questAct animated:YES];
     
     
@@ -642,7 +642,7 @@ NSString *str_email_add;
 
 -(void)checkEmail{
     if([reg_info_str_email isEqualToString:@""]){
-//        [UIAlertView myCostumeAlert:@"Update" alertMessage:@"Your account has currently no email. Please enter your email below." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        //        [UIAlertView myCostumeAlert:@"Update" alertMessage:@"Your account has currently no email. Please enter your email below." delegate:nil cancelButton:@"Ok" otherButtons:nil];
         
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update"
@@ -654,7 +654,7 @@ NSString *str_email_add;
         [alert show];
         
     }
-
+    
 }
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString
 {
@@ -671,7 +671,7 @@ NSString *str_email_add;
     
     str_email_add = [alertView textFieldAtIndex:0].text;
     if([self NSStringIsValidEmail:str_email_add]){
-       [email setText:[NSString stringWithFormat:@"%@",[alertView textFieldAtIndex:0].text]];
+        [email setText:[NSString stringWithFormat:@"%@",[alertView textFieldAtIndex:0].text]];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"

@@ -144,7 +144,7 @@ NSURLConnection *resendPin_connection;
 }
 
 
-
+//User Interface creation
 -(void) createLoginAccount{
     if ( IDIOM == IPAD ) {
         NSLog(@"IPAD NI");
@@ -152,7 +152,6 @@ NSURLConnection *resendPin_connection;
         ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@"Create Login Account" x:40 y:-35 width:300];
         [loginHeader setFrame:CGRectMake(40, -35, 300, 40)];
         loginHeader.font = [UIFont systemFontOfSize:24.0f];
-        // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
         UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,screenHeight*.05,screenWidth,screenHeight)];
         
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 400, 40) word:@"Username/Login ID"];
@@ -199,7 +198,6 @@ NSURLConnection *resendPin_connection;
     else {
         NSLog(@"IPHONE NI");
         ProfileHeader *loginHeader = [[ProfileHeader alloc] initWithValue:@" Create Login Account" x:5 y:5 width:180];
-        // ProfileOutline *loginOutline = [[ProfileOutline alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
         UIView* loginOutline = [[UIView alloc] initWithFrame:CGRectMake(10,10,screenWidth,screenHeight)];
         userNameTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 30, 280, 30) word:@"Username/Login ID"];
         userNameTF.layer.cornerRadius=8.0f;
@@ -212,14 +210,12 @@ NSURLConnection *resendPin_connection;
         passwordTF.layer.masksToBounds=YES;
         passwordTF.layer.borderColor=[[UIColor redColor]CGColor];
         passwordTF.layer.borderWidth= 1.0f;
-        //        passwordTF.secureTextEntry = YES;
         
         retypePasswordTF = [[ProfileTextField alloc] initWithFrame:CGRectMake(10, 130, 280, 30) word:@"Retype Password"];
         retypePasswordTF.layer.cornerRadius=8.0f;
         retypePasswordTF.layer.masksToBounds=YES;
         retypePasswordTF.layer.borderColor=[[UIColor redColor]CGColor];
         retypePasswordTF.layer.borderWidth= 1.0f;
-        //        retypePasswordTF.secureTextEntry = YES;
         
         
         userNameTF.delegate = self;
@@ -275,20 +271,14 @@ NSURLConnection *resendPin_connection;
     
 }
 
-
+//Create Account method
 -(void) nextPressed{
-    NSLog(@"Para Register Ni!");
-    NSLog(@"Question ug answer ni %@ %@",act_log_str_secquestion1,act_log_str_secanswer1);
-    NSLog(@"Phone ni %@",act_log_custIDphoneNumber);
     NSString *str_username = userNameTF.text;
     NSString *str_password = passwordTF.text;
     NSString *str_reTypePassword = retypePasswordTF.text;
-    NSLog(@"User Account %@ --- %@",str_password,str_reTypePassword);
-//    if([userNameTF.text rangeOfCharacterFromSet:[[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"] invertedSet]].location == !NSNotFound){
-//    [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-//    }
-    if ([[userNameTF.text stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:userNameTF.text]
-        &&![[userNameTF.text stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:userNameTF.text]) {
+    
+    if ([[str_username stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:str_username]
+        &&![[str_username stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:str_username]) {
 [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF.text.length==0){
@@ -333,7 +323,10 @@ NSURLConnection *resendPin_connection;
         
             }
     
-}
+}//end of create Account method
+
+
+//resend Pin AlertView
 -(void)userPin{
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Pin."
                                                       message:@""
@@ -344,6 +337,7 @@ NSURLConnection *resendPin_connection;
     [message show];
     
 }
+//resend Pin Access AlertView
 -(void)userPinSuccess{
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Pin."
                                                       message:@""
@@ -354,6 +348,7 @@ NSURLConnection *resendPin_connection;
     [message show];
 }
 
+//resendPin Method
 -(void)resendPin{
 
     NSLog(@"Resend Pin");
@@ -365,7 +360,6 @@ NSURLConnection *resendPin_connection;
     HUD.square = YES;
     [HUD show:YES];
     [self.view endEditing:YES];
-    //Get Branch Coordinate
     self.responseData = [NSMutableData data];
     NSString *custID = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
     NSString *url = [NSString stringWithFormat:@"%@%@", [con NSGetCustomerIDService],custID];
@@ -383,6 +377,7 @@ NSURLConnection *resendPin_connection;
     
      self.idd = 4;
 }
+
 #pragma mark - Custom alert
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -417,16 +412,13 @@ NSURLConnection *resendPin_connection;
     }
     else if([title isEqualToString:@"Login"])
     {
-//        LoginViewController *logViewCont = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-//        NSLog(@"Ni agi sa login");
-//[self.navigationController pushViewController:logViewCont animated:YES];
         self.navigationController.navigationBarHidden = YES;
         [self.navigationController popToRootViewControllerAnimated:YES];
         
     }
 }
 
-
+//textField Listeners
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
     [scrollView setContentOffset:scrollPoint animated:YES];
@@ -443,7 +435,10 @@ NSURLConnection *resendPin_connection;
     
     return NO;
 }
+//end of textField Listeners
 
+
+//account Creation method
 -(void)createAccount{
     HUD.labelText = @"Please wait";
     HUD.square = YES;

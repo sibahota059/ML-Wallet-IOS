@@ -98,10 +98,10 @@ SelectQuestionDialog *questionDialog;
     [scrollView setContentSize:CGSizeMake(screenWidth, screenHeight)];
     
     
-/*
-    AccountLogin *accountLogin = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-    [self setNextViewController:accountLogin myImage:[UIImage imageNamed:@"next.png"]];
-  */  
+    /*
+     AccountLogin *accountLogin = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+     [self setNextViewController:accountLogin myImage:[UIImage imageNamed:@"next.png"]];
+     */
     
     disableBackground = [[UIView alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
     [disableBackground setBackgroundColor:[UIColor blackColor]];
@@ -115,7 +115,7 @@ SelectQuestionDialog *questionDialog;
     NSLog(@"Sa Questions Controller ==== Customer ID = %@ %@ %@ = Phone Number: %@ Birthdate = %@",quest_act_custIDfirstNumber,quest_act_custIDsecondNumber,quest_act_custIDthirdNumber,quest_act_custIDphoneNumber,quest_act_birthdate);
 }
 -(void)viewDidAppear:(BOOL)animated{
-
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -332,10 +332,10 @@ SelectQuestionDialog *questionDialog;
             
             
         }
-    
+        
     }
     else{
-    
+        
         if(sender == button1)
         {
             questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, -30, 320, 500) stringArray:questions1];
@@ -427,10 +427,10 @@ SelectQuestionDialog *questionDialog;
                                                                          initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     //next navigation button
     UIBarButtonItem *btnNextAccLog = [[UIBarButtonItem alloc] initWithTitle:
-                                @"Next"
-                                                                style:UIBarButtonItemStyleBordered
-                                                               target:self
-                                                               action:@selector(gotoNextView)];
+                                      @"Next"
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(gotoNextView)];
     self.navigationItem.rightBarButtonItem = btnNextAccLog;
     
     //Set Background
@@ -452,17 +452,20 @@ SelectQuestionDialog *questionDialog;
     }
     
 }
+
+
 -(void) backPressed{
-  [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
+//goto Next view method
 -(void) gotoNextView{
     NSString *str_sec_Answer1 = answerTF1.text;
     NSString *str_sec_Answer2 = answerTF2.text;
     NSString *str_sec_Answer3 = answerTF3.text;
     if(str_sec_Answer1.length<=3&&str_sec_Answer1.length>=1){
-    [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 1 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 1 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     else if([questionLbl1.text isEqualToString:@"Question 1"]||questionLbl1.text.length<=3){
@@ -478,18 +481,18 @@ SelectQuestionDialog *questionDialog;
     }
     
     else if(str_sec_Answer2.length<=3&&str_sec_Answer2.length>=1){
-    [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 2 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 2 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     else if(str_sec_Answer3.length<=3&&str_sec_Answer3.length>=1){
-    [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 3 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 3 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     else if([str_sec_Answer1 isEqualToString:str_sec_Answer2]||[str_sec_Answer1 isEqualToString:str_sec_Answer3]||[str_sec_Answer2 isEqualToString:str_sec_Answer1]||[str_sec_Answer2 isEqualToString:str_sec_Answer3]||[str_sec_Answer3 isEqualToString:str_sec_Answer1]||[str_sec_Answer3 isEqualToString:str_sec_Answer2]){
-    [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Answer's must not be the same." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Answer's must not be the same." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
-   else if(answerTF1.text.length>=4&&answerTF2.text.length>=4&&answerTF3.text.length>=4&&questionLbl1.text.length>=4&&questionLbl2.text.length>=4&&questionLbl3.text.length>=4&&![questionLbl1.text isEqualToString:@"Question 1"]&&![questionLbl2.text isEqualToString:@"Question 2"]&&![questionLbl3.text isEqualToString:@"Question 3"])
+    else if(answerTF1.text.length>=4&&answerTF2.text.length>=4&&answerTF3.text.length>=4&&questionLbl1.text.length>=4&&questionLbl2.text.length>=4&&questionLbl3.text.length>=4&&![questionLbl1.text isEqualToString:@"Question 1"]&&![questionLbl2.text isEqualToString:@"Question 2"]&&![questionLbl3.text isEqualToString:@"Question 3"])
     {
         NSLog(@"Next ni Bai!");
         AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
@@ -533,15 +536,15 @@ SelectQuestionDialog *questionDialog;
         accLog.act_log_str_photo4 = quest_act_str_photo4;
         NSLog(@"Ang Wallet Number ----- %@",quest_act_str_walletno);
         [self.navigationController pushViewController:accLog animated:YES];
-
+        
     }
-   
+    
     else if(answerTF1.text.length==0||answerTF2.text.length==0||answerTF3.text.length==0||questionLbl1.text.length==0||questionLbl2.text.length==0||questionLbl3.text.length==0||questionLbl1.text.length<=3||questionLbl2.text.length<=3||questionLbl3.text.length<=3){
         NSLog(@"Error ni Bai!");
         
-            [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
-
+    
     
 }
 

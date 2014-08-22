@@ -84,7 +84,7 @@ UITextField *flagTextField;
     ProfileLabel *customerID;
     
     if ( IDIOM == IPAD ) {
-     //   float personalHeader_Co = ((screenWidth - 170)/2)-170;
+        //   float personalHeader_Co = ((screenWidth - 170)/2)-170;
         personalHeader  = [[ProfileHeader alloc] initWithValue:@"Enter all fields" x:40 y:20 width:170];
         
         //[personalHeader setFrame:CGRectMake(personalHeader_Co, 10, 170, 30)];
@@ -215,53 +215,63 @@ UITextField *flagTextField;
     
     
 }
-- (IBAction)doneClicked:(id)sender
+//iphone numeric keypad next button function
+- (IBAction)nextClick:(id)sender
 {
-    NSLog(@"Done Clicked.");
-
+    NSLog(@"Next Clicked.");
+    
     if (flagTextField == firstNumberTF)
     {
         [self performSelector:@selector(setNextResponder:) withObject:secondNumberTF afterDelay:0.0];
-
+        
     }
     
     else if(flagTextField == secondNumberTF){
         [self performSelector:@selector(setNextResponder:) withObject:thirdNumberTF afterDelay:0.0];
-
+        
         
     }
     else if(flagTextField == thirdNumberTF){
         [self performSelector:@selector(setNextResponder:) withObject:phoneNumberTF afterDelay:0.0];
-
+        
         
     }
     else if(flagTextField == phoneNumberTF){
-[self.view endEditing:YES];
+        [self.view endEditing:YES];
         
     }
+    
+    
+    
+}//end of iphone numeric keypad next button function
 
 
+//iphone numeric keypad done button function
+-(void)doneClick{
+     NSLog(@"Done Clicked.");
+[self.view endEditing:YES];
+}//end of iphone numeric keypad done button function
 
-}
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     flagTextField = textField;
-    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
-    [scrollView setContentOffset:scrollPoint animated:YES];
-    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
-    [keyboardDoneButtonView sizeToFit];
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                   style:UIBarButtonItemStyleBordered target:self
-                                                                  action:@selector(doneClicked:)];
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
-    firstNumberTF.keyboardType = UIKeyboardTypeNumberPad;
-    secondNumberTF.keyboardType = UIKeyboardTypeNumberPad;
-    thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
-    phoneNumberTF.keyboardType = UIKeyboardTypeNumberPad;
-    if ( IDIOM != IPAD ) {
-        firstNumberTF.inputAccessoryView = keyboardDoneButtonView;
-        secondNumberTF.inputAccessoryView = keyboardDoneButtonView;
-        thirdNumberTF.inputAccessoryView = keyboardDoneButtonView;
-        phoneNumberTF.inputAccessoryView = keyboardDoneButtonView;
+    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    numberToolbar.barStyle = UIBarStyleDefault;
+    numberToolbar.items = [NSArray arrayWithObjects:
+                           [[UIBarButtonItem alloc]initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(nextClick:)],
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneClick)],
+                           nil];
+    [numberToolbar sizeToFit];
+        firstNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+        secondNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+        thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+        phoneNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    if(IDIOM != IPAD){
+        firstNumberTF.inputAccessoryView = numberToolbar;
+        secondNumberTF.inputAccessoryView = numberToolbar;
+        thirdNumberTF.inputAccessoryView = numberToolbar;
+        phoneNumberTF.inputAccessoryView = numberToolbar;
     }
     
     
@@ -309,17 +319,17 @@ UITextField *flagTextField;
     
 }
 -(void) gotoNextView{
-//    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-//
-//    
-//    [self.navigationController pushViewController:accLog animated:YES];
+    //    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+    //
+    //
+    //    [self.navigationController pushViewController:accLog animated:YES];
     if(firstNumberTF.text.length>=1&&phoneNumberTF.text.length==11&&[[phoneNumberTF.text substringToIndex:2] isEqualToString:@"09"])
     {
-
-
-
-
-
+        
+        
+        
+        
+        
         NSLog(@"Next ni Bai!");
         if([firstNumberTF resignFirstResponder]==YES||
            [secondNumberTF resignFirstResponder]==YES||
@@ -338,13 +348,13 @@ UITextField *flagTextField;
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Phone Number Incorrect Length" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(firstNumberTF.text.length==0||phoneNumberTF.text.length==0){
-    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please Fill All Fields" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please Fill All Fields" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(![[phoneNumberTF.text substringToIndex:2] isEqualToString:@"09"]&&firstNumberTF.text.length>=1) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Phone Number must start with '09'" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
-
+    
 }
 
 
@@ -526,12 +536,7 @@ UITextField *flagTextField;
         NSString *strsecquestion3 = [jsonResult objectForKey:@"secquestion3"];
         NSString *strwalletno = [jsonResult objectForKey:@"walletno"];
         
-        if([strgender isEqualToString:@"1"]){
-        strgender = @"F";
-        }
-        else if([strgender isEqualToString:@"2"]){
-        strgender = @"M";
-        }
+        
         
         NSLog(@"Response Code : %@",strResponseCode);
         NSLog(@"Response Message : %@",strResponseMessage);
@@ -591,24 +596,68 @@ UITextField *flagTextField;
         if([strphoto4 isKindOfClass:[NSNull class]]){
             strphoto4 = @"";
         }
+        if([strfname isKindOfClass:[NSNull class]]){
+            strfname = @"";
+        }
+        if([strlname isKindOfClass:[NSNull class]]){
+            strlname = @"";
+        }
+        if([strmname isKindOfClass:[NSNull class]]){
+            strmname = @"";
+        }
+        if([strbalance isKindOfClass:[NSNull class]]){
+            strbalance = @"";
+        }
+        if([strsecquestion1 isKindOfClass:[NSNull class]]){
+            strsecquestion1 = @"";
+        }
+        if([strsecquestion2 isKindOfClass:[NSNull class]]){
+            strsecquestion2 = @"";
+        }
+        if([strsecquestion3 isKindOfClass:[NSNull class]]){
+            strsecquestion3 = @"";
+        }
+        if([strwalletno isKindOfClass:[NSNull class]]){
+            strwalletno = @"";
+        }
+        if([stremailadd isKindOfClass:[NSNull class]]){
+            stremailadd = @"";
+        }
+        if([strnationality isKindOfClass:[NSNull class]]){
+            strnationality = @"";
+        }
+        if([strnatureOfWork isKindOfClass:[NSNull class]]){
+            strnatureOfWork = @"";
+        }//end of if string is null do something
         
         
         
-        if([strResponseMessage isEqualToString:@"CustID not found."]){
+        //gender validation
+        if([strgender isEqualToString:@"1"]){
+            strgender = @"F";
+        }
+        else if([strgender isEqualToString:@"2"]){
+            strgender = @"M";
+        }
+        
+        int value = [strResponseCode intValue];
+        
+         
+        if(value==0){
             
             [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Customer ID not found." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             
-
             
-        }
+            
+        }//end if [strResponseCode isEqualToString:@"0"]
         
-        else if(![strResponseMessage isEqualToString:@"CustID not found."]){
+        else if(value==1){
             
             RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
             regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
             regInfo.reg_info_custIDsecondNumber = secondNumberTF.text;
             regInfo.reg_info_custIDthirdNumber = thirdNumberTF.text;
-            regInfo.reg_info_custIDphoneNumber = phoneNumberTF.text;
+            regInfo.reg_info_custIDphoneNumber = strmobileno;
             
             regInfo.reg_info_str_address = strpermanentAdd;
             regInfo.reg_info_str_birthdate = strbdate;
@@ -642,6 +691,10 @@ UITextField *flagTextField;
             [self.navigationController pushViewController:regInfo animated:YES];
             
             
+        }//end else if [strResponseCode isEqualToString:@"1"]
+        
+        else{
+            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
         }
         
         [HUD hide:YES];
