@@ -448,7 +448,7 @@ NSString *str_email_add;
         
         //Contact Information
         
-        email = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 570, 180, 40)];
+        email = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 570, 500, 40)];
         [email setFont:[UIFont fontWithName:nil size:24.0f]];
         [email setText:[NSString stringWithFormat:@"%@",reg_info_str_email]];
         
@@ -599,7 +599,7 @@ NSString *str_email_add;
 }
 
 -(void) gotoNextView{
-    NSLog(@"Next ni Bai!");
+    NSLog(@"Next ni Bai! -- %@",email.text);
     QuestionsActivity *questAct = [[QuestionsActivity alloc] initWithNibName:@"QuestionsActivity" bundle:nil];
     questAct.quest_act_custIDfirstNumber = reg_info_custIDfirstNumber;
     questAct.quest_act_custIDsecondNumber = reg_info_custIDsecondNumber;
@@ -616,7 +616,7 @@ NSString *str_email_add;
     questAct.quest_act_gender = reg_info_str_gender;
     questAct.quest_act_birthdate = reg_info_str_birthdate;
     questAct.quest_act_number = reg_info_str_number;
-    questAct.quest_act_email = reg_info_str_email;
+    questAct.quest_act_email = email.text;
     questAct.quest_act_work = reg_info_str_work;
     questAct.quest_act_nationality = reg_info_str_nationality;
 

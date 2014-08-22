@@ -19,6 +19,7 @@
 #import "UITextfieldAnimate.h"
 #import "UIAlertView+alertMe.h"
 #import "ServiceConnection.h"
+#import "AccountLogin.h"
 @interface EnterCustomerID ()
 @property (nonatomic, strong) NSMutableData *responseData;
 @end
@@ -308,13 +309,17 @@ UITextField *flagTextField;
     
 }
 -(void) gotoNextView{
+//    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
+//
+//    
+//    [self.navigationController pushViewController:accLog animated:YES];
     if(firstNumberTF.text.length>=1&&phoneNumberTF.text.length==11&&[[phoneNumberTF.text substringToIndex:2] isEqualToString:@"09"])
     {
-        
-        
-        
 
-        
+
+
+
+
         NSLog(@"Next ni Bai!");
         if([firstNumberTF resignFirstResponder]==YES||
            [secondNumberTF resignFirstResponder]==YES||
@@ -520,6 +525,14 @@ UITextField *flagTextField;
         NSString *strsecquestion2 = [jsonResult objectForKey:@"secquestion2"];
         NSString *strsecquestion3 = [jsonResult objectForKey:@"secquestion3"];
         NSString *strwalletno = [jsonResult objectForKey:@"walletno"];
+        
+        if([strgender isEqualToString:@"1"]){
+        strgender = @"F";
+        }
+        else if([strgender isEqualToString:@"2"]){
+        strgender = @"M";
+        }
+        
         NSLog(@"Response Code : %@",strResponseCode);
         NSLog(@"Response Message : %@",strResponseMessage);
         

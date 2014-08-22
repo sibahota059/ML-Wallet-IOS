@@ -140,7 +140,7 @@ SelectQuestionDialog *questionDialog;
         [button1 setFrame:CGRectMake(screenWidth/6,50, 40, 40)];
         questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:screenWidth/4.8 y:50 myColor:[UIColor blackColor] width:260];
         questionLbl1.font = [UIFont systemFontOfSize:24.0f];
-        [questionLbl1 setFrame:CGRectMake(screenWidth/4.5,50, 260, 40)];
+        [questionLbl1 setFrame:CGRectMake(screenWidth/4.5,50, 500, 40)];
         answerTF1 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4, 100, screenWidth/2, 40) word:@"answer 1"];
         answerTF1.layer.cornerRadius=8.0f;
         answerTF1.layer.masksToBounds=YES;
@@ -158,7 +158,7 @@ SelectQuestionDialog *questionDialog;
         [button2 setFrame:CGRectMake(screenWidth/6,150, 40, 40)];
         questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:screenWidth/4.8 y:150 myColor:[UIColor blackColor] width:260];
         questionLbl2.font = [UIFont systemFontOfSize:24.0f];
-        [questionLbl2 setFrame:CGRectMake(screenWidth/4.5,150, 260, 40)];
+        [questionLbl2 setFrame:CGRectMake(screenWidth/4.5,150, 500, 40)];
         answerTF2 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4,200, screenWidth/2, 40) word:@"answer 2"];
         answerTF2.layer.cornerRadius=8.0f;
         answerTF2.layer.masksToBounds=YES;
@@ -176,7 +176,7 @@ SelectQuestionDialog *questionDialog;
         [button3 setFrame:CGRectMake(screenWidth/6,250, 40, 40)];
         questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:screenWidth/4.8 y:250 myColor:[UIColor blackColor] width:260];
         questionLbl3.font = [UIFont systemFontOfSize:24.0f];
-        [questionLbl3 setFrame:CGRectMake(screenWidth/4.5,250, 260, 40)];
+        [questionLbl3 setFrame:CGRectMake(screenWidth/4.5,250, 500, 40)];
         answerTF3 = [[ProfileTextField alloc] initWithFrame:CGRectMake(screenWidth/4, 300, screenWidth/2, 40) word:@"answer 3"];
         
         answerTF3.layer.cornerRadius=8.0f;
@@ -458,8 +458,38 @@ SelectQuestionDialog *questionDialog;
 }
 
 -(void) gotoNextView{
-
-    if(answerTF1.text.length>=1&&answerTF2.text.length>=1&&answerTF3.text.length>=1&&questionLbl1.text.length>=1&&questionLbl2.text.length>=1&&questionLbl3.text.length>=1&&![questionLbl1.text isEqualToString:@"Question 1"]&&![questionLbl2.text isEqualToString:@"Question 2"]&&![questionLbl3.text isEqualToString:@"Question 3"])
+    NSString *str_sec_Answer1 = answerTF1.text;
+    NSString *str_sec_Answer2 = answerTF2.text;
+    NSString *str_sec_Answer3 = answerTF3.text;
+    if(str_sec_Answer1.length<=3&&str_sec_Answer1.length>=1){
+    [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 1 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+    else if([questionLbl1.text isEqualToString:@"Question 1"]||questionLbl1.text.length<=3){
+        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Please select a question in Question 1." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+    else if([questionLbl2.text isEqualToString:@"Question 2"]||questionLbl1.text.length<=3){
+        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Please select a question in Question 2." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+    else if([questionLbl3.text isEqualToString:@"Question 3"]||questionLbl1.text.length<=3){
+        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Please select a question in Question 3." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+    else if(str_sec_Answer2.length<=3&&str_sec_Answer2.length>=1){
+    [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 2 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+    else if(str_sec_Answer3.length<=3&&str_sec_Answer3.length>=1){
+    [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 3 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+    else if([str_sec_Answer1 isEqualToString:str_sec_Answer2]||[str_sec_Answer1 isEqualToString:str_sec_Answer3]||[str_sec_Answer2 isEqualToString:str_sec_Answer1]||[str_sec_Answer2 isEqualToString:str_sec_Answer3]||[str_sec_Answer3 isEqualToString:str_sec_Answer1]||[str_sec_Answer3 isEqualToString:str_sec_Answer2]){
+    [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Answer's must not be the same." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+   else if(answerTF1.text.length>=4&&answerTF2.text.length>=4&&answerTF3.text.length>=4&&questionLbl1.text.length>=4&&questionLbl2.text.length>=4&&questionLbl3.text.length>=4&&![questionLbl1.text isEqualToString:@"Question 1"]&&![questionLbl2.text isEqualToString:@"Question 2"]&&![questionLbl3.text isEqualToString:@"Question 3"])
     {
         NSLog(@"Next ni Bai!");
         AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
@@ -505,23 +535,13 @@ SelectQuestionDialog *questionDialog;
         [self.navigationController pushViewController:accLog animated:YES];
 
     }
-    else{
+   
+    else if(answerTF1.text.length==0||answerTF2.text.length==0||answerTF3.text.length==0||questionLbl1.text.length==0||questionLbl2.text.length==0||questionLbl3.text.length==0||questionLbl1.text.length<=3||questionLbl2.text.length<=3||questionLbl3.text.length<=3){
         NSLog(@"Error ni Bai!");
- 
-       
-//        AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-//         [self.navigationController pushViewController:accLog animated:YES];
         
-        if([questionLbl1.text isEqualToString:@"Question 1"]||[questionLbl2.text isEqualToString:@"Question 2"]||[questionLbl3.text isEqualToString:@"Question 3"]||answerTF1.text.length==0||answerTF2.text.length==0||answerTF3.text.length==0)
-        {
-            [UIAlertView myCostumeAlert:@"Please" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-//            AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-// [self.navigationController pushViewController:accLog animated:YES];
-        }
+            [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
-  
-//    AccountLogin *accLog = [[AccountLogin alloc] initWithNibName:@"AccountLogin" bundle:nil];
-//    [self.navigationController pushViewController:accLog animated:YES];
+
     
 }
 

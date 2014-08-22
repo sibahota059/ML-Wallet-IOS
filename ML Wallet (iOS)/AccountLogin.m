@@ -280,22 +280,58 @@ NSURLConnection *resendPin_connection;
     NSLog(@"Para Register Ni!");
     NSLog(@"Question ug answer ni %@ %@",act_log_str_secquestion1,act_log_str_secanswer1);
     NSLog(@"Phone ni %@",act_log_custIDphoneNumber);
-    if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF==0){
+    NSString *str_username = userNameTF.text;
+    NSString *str_password = passwordTF.text;
+    NSString *str_reTypePassword = retypePasswordTF.text;
+    NSLog(@"User Account %@ --- %@",str_password,str_reTypePassword);
+//    if([userNameTF.text rangeOfCharacterFromSet:[[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"] invertedSet]].location == !NSNotFound){
+//    [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+//    }
+    if ([[userNameTF.text stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:userNameTF.text]
+        &&![[userNameTF.text stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:userNameTF.text]) {
+[UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    else if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF.text.length==0){
         NSLog(@"Failed'");
-        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Please fill all fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
-    else{
-        NSLog(@"Success");
-        //[self createAccount];
-        
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Terms and Conditions."
-                                                          message:@"1. Sender must comply with the Know Your Customer (KYC) form, present valid identification, and must subscribe to the AMLC rules and regulations and other applicable laws in making the transaction.\n\n2. The Sender must register the fullname of the receiver inclucing full middle name. Should the Sender fail to give the full middle name of the receiver, it shall be considered a waiver on this part to include his information in verifying the transaction, MLI shall not be held liable for any paid transactions to a receiver whose full middle name information was waived by the Sender. Incorrect spelling of the receiver's name(s) may cause delay in paying out the transaction.\n\n3. The Sender hereby agrees that the transaction shall be released to the claimant receiver if the latter can present the correct Kwarta Padala Transaction Number (KPTN) and comply with the valid ID, KYC and all other requirements as may be required by law.\n\n4. The sender must relay to the receiver the complete and correct KPTN and must advise the receiver to bring a valid ID for additional verification purposes.\n\n5. The Sender may waive the age requirement of the receiver. However, a minor receiver can only claim the money provided said minor is a relative of the sender to the 4th civil degree or godchild/ward/beneficiary of the sender or whose relationship with the sender is such that it does not violate the Child Trafficking Law. The said minor receiver must comply with the identification requirements mentioned herein. Minors below 12 years old must be accompanied by his/her guardian. Tha said guardian must comply with the requirements in Item No. 3 herein.\n\n6. The money is available for pickup in any MLFSI subject to hours of operation of the selected payout branch including closures without prior notice, its communications facility, its connectivity to the ML Wallet and MLKP Systems, and other conditions, including but not limited to power and telecommunications failure, computer or gadget failure, inclement weather and the like.\n\n7. Should the sender decides to cancel sendout, he/she must submit a written request to MLFSI for the cancellation of the said transaction. MLFSI will refund the principal amount of the money transfer only. MLFSI will refund the charges upon written request of the sender, only if the money transfer is not available at the recipient within seven (7) days from the time it was sent. To the extent allowed by law, MLFSI may deduct a service fee of FIVE HUNDRED PESOS (Php500) per month from money transfer that are not picked up after one month from the time it was sent.\n\n8. Changes to the original entries of the sendout will be made only at any MLFSI branches.\n\n9. In case of delay, non-payment or underpayment of this money transfer whether by fault or negligence of the company or its employees, neither shall be liable for damages beyond the sum of FIVE THOUSAND PESOS (P5,000), in addition to the refund of the principal amount of the money transfer and the service fee. In no event will the company or it's employees be liable for any indirect, special, incidental or consequential damages.\n\n10. MLFSI reserves the right to deactivate customer account in cases of three times login failure, however, the customer may request activation by calling our Customer Care.\n\n11. MLFSI may not accept, process or pay any money transfer that any of them determines, in their sole discretion, to be in violation of any MLFSI policy or applicable law.\n\n12. All claims or suits regarding this transaction shall be filed in the courts of Cebu City only.\n"
-                                                         delegate:self
-                                                cancelButtonTitle:@"Decline"
-                                                otherButtonTitles:@"Accept", nil];
-        
-        [message show];
+    else if(userNameTF.text.length<=5&&userNameTF.text.length>=1){
+        NSLog(@"Failed'");
+        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username Length must be greater than 6." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
+    else if(str_password.length<=5&&str_password.length>=1){
+        NSLog(@"Failed'");
+        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Password Length must be greater than 6." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    else if(![str_password isEqualToString:str_reTypePassword]){
+        NSLog(@"Failed'");
+        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    else if(userNameTF.text.length>=6&&passwordTF.text.length>=6&&retypePasswordTF.text.length>=6){
+        if([str_password isEqualToString:str_reTypePassword]){
+            
+            NSLog(@"Success");
+            //[self createAccount];
+            
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Terms and Conditions."
+                                                              message:@"1. Sender must comply with the Know Your Customer (KYC) form, present valid identification, and must subscribe to the AMLC rules and regulations and other applicable laws in making the transaction.\n\n2. The Sender must register the fullname of the receiver inclucing full middle name. Should the Sender fail to give the full middle name of the receiver, it shall be considered a waiver on this part to include his information in verifying the transaction, MLI shall not be held liable for any paid transactions to a receiver whose full middle name information was waived by the Sender. Incorrect spelling of the receiver's name(s) may cause delay in paying out the transaction.\n\n3. The Sender hereby agrees that the transaction shall be released to the claimant receiver if the latter can present the correct Kwarta Padala Transaction Number (KPTN) and comply with the valid ID, KYC and all other requirements as may be required by law.\n\n4. The sender must relay to the receiver the complete and correct KPTN and must advise the receiver to bring a valid ID for additional verification purposes.\n\n5. The Sender may waive the age requirement of the receiver. However, a minor receiver can only claim the money provided said minor is a relative of the sender to the 4th civil degree or godchild/ward/beneficiary of the sender or whose relationship with the sender is such that it does not violate the Child Trafficking Law. The said minor receiver must comply with the identification requirements mentioned herein. Minors below 12 years old must be accompanied by his/her guardian. Tha said guardian must comply with the requirements in Item No. 3 herein.\n\n6. The money is available for pickup in any MLFSI subject to hours of operation of the selected payout branch including closures without prior notice, its communications facility, its connectivity to the ML Wallet and MLKP Systems, and other conditions, including but not limited to power and telecommunications failure, computer or gadget failure, inclement weather and the like.\n\n7. Should the sender decides to cancel sendout, he/she must submit a written request to MLFSI for the cancellation of the said transaction. MLFSI will refund the principal amount of the money transfer only. MLFSI will refund the charges upon written request of the sender, only if the money transfer is not available at the recipient within seven (7) days from the time it was sent. To the extent allowed by law, MLFSI may deduct a service fee of FIVE HUNDRED PESOS (Php500) per month from money transfer that are not picked up after one month from the time it was sent.\n\n8. Changes to the original entries of the sendout will be made only at any MLFSI branches.\n\n9. In case of delay, non-payment or underpayment of this money transfer whether by fault or negligence of the company or its employees, neither shall be liable for damages beyond the sum of FIVE THOUSAND PESOS (P5,000), in addition to the refund of the principal amount of the money transfer and the service fee. In no event will the company or it's employees be liable for any indirect, special, incidental or consequential damages.\n\n10. MLFSI reserves the right to deactivate customer account in cases of three times login failure, however, the customer may request activation by calling our Customer Care.\n\n11. MLFSI may not accept, process or pay any money transfer that any of them determines, in their sole discretion, to be in violation of any MLFSI policy or applicable law.\n\n12. All claims or suits regarding this transaction shall be filed in the courts of Cebu City only.\n"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Decline"
+                                                    otherButtonTitles:@"Accept", nil];
+            
+            [message show];
+
+            
+        }
+        else{
+        
+        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        
+        }
+        
+        
+        
+            }
     
 }
 -(void)userPin{
@@ -321,28 +357,6 @@ NSURLConnection *resendPin_connection;
 -(void)resendPin{
 
     NSLog(@"Resend Pin");
-//    HUD.labelText = @"Please wait";
-//    HUD.square = YES;
-//    [HUD show:YES];
-//    NSLog(@"Ang wallet Number -- %@",act_log_str_walletno);
-//    con = [ServiceConnection new];
-//    NSString *url = [NSString stringWithFormat:@"%@", [con NSGetCustomerIDService]];
-//    NSString *walletNum = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
-//    NSString *resendPinUrl = [NSString stringWithFormat:@"%@%@",url,walletNum];
-//    pinData = [[NSMutableData alloc]init];
-//    resendPin_url = [NSURL URLWithString:resendPinUrl];
-//    resendPin_request = [NSURLRequest requestWithURL:resendPin_url];
-//    resendPin_connection =[[NSURLConnection alloc]initWithRequest:resendPin_request delegate:self];
-//    NSLog(@"URL REQUEST PIN --- %@",resendPinUrl);
-    
-    
-    
-    
-   
-
-    
-    
-    
     
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -377,19 +391,10 @@ NSURLConnection *resendPin_connection;
     {
         NSLog(@"Register");
         [self createAccount];
-        
-        
-         //[self resendPin];
     }
     else if([title isEqualToString:@"Resend Pin"])
     {
-//        accountCreationSuccessAV
-//        accountCreationErrorAV
-//        pinResendSuccessAV
-//        pinResendErrorAV
-//        accountCreationSuccessAV.don
         [self resendPin];
-        
     }
     else if([title isEqualToString:@"Retry"])
     {
@@ -412,36 +417,12 @@ NSURLConnection *resendPin_connection;
     }
     else if([title isEqualToString:@"Login"])
     {
-        LoginViewController *loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        //self.navigationController.navigationBarHidden = YES;
-//        [self.navigationController setNavigationBarHidden:YES];
-         [self.navigationController popToViewController:loginController  animated:YES];
-
-    }
-    else if([title isEqualToString:@"AutoLogin"])
-    {
-NSLog(@"AutoLogin");
-        HUD.labelText = @"Please wait";
-        HUD.square = YES;
-        [HUD show:YES];
-        [self.view endEditing:YES];
+//        LoginViewController *logViewCont = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+//        NSLog(@"Ni agi sa login");
+//[self.navigationController pushViewController:logViewCont animated:YES];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController popToRootViewControllerAnimated:YES];
         
-        double latitude = [self Latitude];
-        double longtitude = [self Longtitude];
-        NSLog(@"Lat : %f and Lng : %f", [self Latitude], [self Longtitude]);
-        
-        //Get Location JSON
-        NSURLConnection *autoLogincon;
-        NSString *getReq = [NSString stringWithFormat:@"latlng=%f,%f&sensor=true", latitude, longtitude];
-        
-        
-        NSLog(@"viewdidload");
-        self.responseData = [NSMutableData data];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:[[[ServiceConnection alloc] NSgetLocationService] stringByAppendingString:getReq]]];
-        [request setHTTPMethod:@"GET"];
-        autoLogincon = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        self.idd = 1;
     }
 }
 
@@ -478,7 +459,7 @@ NSLog(@"AutoLogin");
     if([act_log_birthdate isEqualToString:@""]){
         act_log_birthdate = @"1985-11-23";
     }
-    
+    NSLog(@"Email ni --- %@",act_log_email);
     
     NSString *body =  [NSString stringWithFormat:@"{\"custid\":\"%@\",\"username\":\"%@\",\"password\":\"%@\",\"mobileno\":\"%@\",\"emailadd\":\"%@\",\"fname\":\"%@\",\"mname\":\"%@\",\"lname\":\"%@\",\"gender\":\"%@\",\"bdate\":\"%@\",\"nationality\":\"%@\",\"natureOfWork\":\"%@\",\"provinceCity\":\"%@\",\"permanentAdd\":\"%@\",\"country\":\"%@\",\"zipcode\":\"%@\",\"secquestion1\":\"%@\",\"secanswer1\":\"%@\",\"secquestion2\":\"%@\",\"secanswer2\":\"%@\",\"secquestion3\":\"%@\",\"secanswer3\":\"%@\",\"photo1\":\"%@\",\"photo2\":\"%@\",\"photo3\":\"%@\",\"photo4\":\"%@\",\"version\":\"%.2f\"}",strCustID,strUsername,strPassword,act_log_custIDphoneNumber,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,1.3];
     NSLog(@"Hala == %@",body);
@@ -534,57 +515,16 @@ NSLog(@"AutoLogin");
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
-    //    NSString *loadedContent = [[NSString alloc] initWithData:
-    //                               contentData encoding:NSUTF8StringEncoding];
-    //
-    //    NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
-    //    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data
-    //                                                                 options:kNilOptions
-    //                                                                   error:nil];
-    //
-    //    NSLog(@"%@", jsonResponse);
     
     NSLog(@"connectionDidFinishLoading");
     NSError *myError = nil;
     NSDictionary *res;
     res = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&myError];
-//    switch (self.idd) {
-//        case 1:
-//            NSLog(@"getting location");
-//            [self IDDLocation];
-//            [self Req_Login];
-//            break;
-//        case 2:
-//            [self login];
-//            break;
-//        case 3:
-//            
-//            
-//            break;
-//        case 4:
-//            
-//            break;
-//            
-//        default:
-//            break;
-//    }
     
     if (myError == nil) {
         
         
-        
-        if(self.idd==1)
-        {
-            NSLog(@"getting location");
-            [self IDDLocation];
-            [self Req_Login];
-           
-        }
-        else if(self.idd==2){
-            [self login];
-
-        }
-        else if(self.idd==3){
+        if(self.idd==3){
             NSDictionary *jsonResult = [res objectForKey:@"insertMobileAccountsResult"];
             NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
             NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
@@ -599,8 +539,6 @@ NSLog(@"AutoLogin");
                                                          otherButtonTitles:@"Resend Pin",@"Login", nil];
                 
                 [accountCreationSuccessAV show];
-
-              //  [self resendPin];
             }
             
             else if(value==2){
@@ -697,161 +635,8 @@ NSLog(@"AutoLogin");
 }
 // -------------------ByPass ssl ends
 
-#pragma mark --Location
-//get Longtitude
-- (double) Longtitude
-{
-    return locationManager.location.coordinate.longitude;
-}
-- (double) Latitude
-{
-    return locationManager.location.coordinate.latitude;
-}
-#pragma mark --END Location
-
-#pragma mark GetLocation Address
-- (void) IDDLocation
-{
-    // convert to JSON
-    NSError *myError = nil;
-    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    
-    // show all values
-    for(id key in res) {
-        
-        id value = [res objectForKey:key];
-        
-        NSString *keyAsString = (NSString *)key;
-        NSString *valueAsString = (NSString *)value;
-        
-        NSLog(@"key: %@", keyAsString);
-        NSLog(@"value: %@", valueAsString);
-    }
-    
-    // extract specific value...
-    NSArray *results = [res objectForKey:@"results"];
-    
-    int i = 0;
-    for (NSDictionary *result in results) {
-        if (i==0)
-        {
-            self.location =[result objectForKey:@"formatted_address"];
-            self.location = [result objectForKey:@"formatted_address"];
-            NSLog(@"formatted_address: %@", self.location);
-            return;
-        }
-        i++;
-    }
-    
-}
-
-#pragma mark POST Login
-- (void) login
-{
-    // convert to JSON
-    NSError *myError = nil;
-    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
-    
-    if (myError == nil){
-        NSArray *result = [res valueForKey:@"logInResult"];
-        
-        NSNumber *respCode = [result valueForKey:@"respcode"];
-        NSString *respMesg = [result valueForKey:@"respmessage"];
-        
-        //Hide Loader
-        [HUD hide:YES];
-        [HUD show:NO];
-        
-        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
-        {
-            
-            walletno    = [result valueForKeyPath:@"walletno"];
-            fname       = [result valueForKeyPath:@"fname"];
-            lname       = [result valueForKeyPath:@"lname"];
-            photo       = [result valueForKeyPath:@"photo"];
-            balance     = [result valueForKeyPath:@"balance"];
-            mname       = [result valueForKeyPath:@"mname"];
-            
-            NSString *bal = [NSString stringWithFormat:@"%@", balance];
-            
-            //Saving Data Plist
-            SaveWalletData *saveData = [SaveWalletData new];
-            [saveData initSaveData:walletno forKey:@"walletno"];
-            [saveData initSaveData:lname forKey:@"lname"];
-            [saveData initSaveData:fname forKey:@"fname"];
-            [saveData initSaveData:photo forKey:@"photo"];
-            [saveData initSaveData:bal forKey:@"balance"];
-            [saveData initSaveData:mname forKey:@"mname"];
-            [saveData initSaveData:pass forKey:@"password"];
-            [saveData initSaveData:user forKey:@"username"];
-            if ([self.location isEqualToString:@""] || self.location.length == 0 || self.location == nil) {
-                self.location = @"";
-            }
-            [saveData initSaveData:self.location forKey:@"address"];
-            
-            //GOTO Menu
-            MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-            [self.navigationController pushViewController:menuPage animated:YES];
-            return;
-        }
-        else
-        {
-            NSRange strRange = [respMesg
-                                rangeOfString:@"MySql.Data.MySqlClient.MySqlException"
-                                options:NSCaseInsensitiveSearch];
-            
-            if (strRange.length > 1)
-            {
-                respMesg = @"Service is temporary unavailable";
-            }
-            
-            //Show Error
-            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
-
-            return;
-        }
-        
-        
-    } else {
-        //Show if Error
-        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
-    }
-}
 
 
-- (void) Req_Login
-{
-    
-    
-    //if all OK... then procced
-    NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
-    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    
-    
-    NSString *post = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",
-                      userNameTF.text,
-                      passwordTF.text,
-                      version,
-                      [self Latitude],
-                      [self Longtitude],
-                      deviceID,
-                      self.location];
-    
-    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"login"];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
-    
-    [request setHTTPMethod:@"PUT"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-    [request setHTTPBody:requestData];
-    [NSURLConnection connectionWithRequest:request delegate:self];
-    NSLog(@"Login POST ---- %@",post);
-    
-    self.idd = 2;
-    
-}
 
 
 
