@@ -74,4 +74,8 @@
 @property (nonatomic, retain) NSString *act_log_str_secquestion2;
 @property (nonatomic, retain) NSString *act_log_str_secquestion3;
 @property (nonatomic, retain) NSString *act_log_str_walletno;
+
+@property (strong, nonatomic) NSString *location;
+@property (strong, nonatomic) NSMutableData *responseData;
+@property (assign, nonatomic) NSUInteger idd;
 @end

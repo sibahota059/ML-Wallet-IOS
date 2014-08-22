@@ -34,6 +34,7 @@ CGFloat screenHeight;
 ProfileTextField *firstNumberTF, *secondNumberTF, *thirdNumberTF, *phoneNumberTF;
 UIScrollView *scrollView;
 UITextfieldAnimate *textAnimate;
+UITextField *flagTextField;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -213,14 +214,56 @@ UITextfieldAnimate *textAnimate;
     
     
 }
+- (IBAction)doneClicked:(id)sender
+{
+    NSLog(@"Done Clicked.");
 
+    if (flagTextField == firstNumberTF)
+    {
+        [self performSelector:@selector(setNextResponder:) withObject:secondNumberTF afterDelay:0.0];
+
+    }
+    
+    else if(flagTextField == secondNumberTF){
+        [self performSelector:@selector(setNextResponder:) withObject:thirdNumberTF afterDelay:0.0];
+
+        
+    }
+    else if(flagTextField == thirdNumberTF){
+        [self performSelector:@selector(setNextResponder:) withObject:phoneNumberTF afterDelay:0.0];
+
+        
+    }
+    else if(flagTextField == phoneNumberTF){
+[self.view endEditing:YES];
+        
+    }
+
+
+
+}
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    flagTextField = textField;
     CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
     [scrollView setContentOffset:scrollPoint animated:YES];
+    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleBordered target:self
+                                                                  action:@selector(doneClicked:)];
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
     firstNumberTF.keyboardType = UIKeyboardTypeNumberPad;
     secondNumberTF.keyboardType = UIKeyboardTypeNumberPad;
     thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    if ( IDIOM != IPAD ) {
+        firstNumberTF.inputAccessoryView = keyboardDoneButtonView;
+        secondNumberTF.inputAccessoryView = keyboardDoneButtonView;
+        thirdNumberTF.inputAccessoryView = keyboardDoneButtonView;
+        phoneNumberTF.inputAccessoryView = keyboardDoneButtonView;
+    }
+    
+    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -265,8 +308,13 @@ UITextfieldAnimate *textAnimate;
     
 }
 -(void) gotoNextView{
-    if(firstNumberTF.text.length>=1&&secondNumberTF.text.length>=1&&phoneNumberTF.text.length>=1)
+    if(firstNumberTF.text.length>=1&&phoneNumberTF.text.length==11&&[[phoneNumberTF.text substringToIndex:2] isEqualToString:@"09"])
     {
+        
+        
+        
+
+        
         NSLog(@"Next ni Bai!");
         if([firstNumberTF resignFirstResponder]==YES||
            [secondNumberTF resignFirstResponder]==YES||
@@ -280,16 +328,21 @@ UITextfieldAnimate *textAnimate;
         }
         [self customerIDService];
     }
-    else{
+    else if(phoneNumberTF.text.length!=11&&firstNumberTF.text.length>=1){
         NSLog(@"Empty man Bai!!");
-        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        
-        
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Phone Number Incorrect Length" delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
-//    RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
-//    
-//    [self.navigationController pushViewController:regInfo animated:YES];
+    else if(firstNumberTF.text.length==0||phoneNumberTF.text.length==0){
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please Fill All Fields" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    else if(![[phoneNumberTF.text substringToIndex:2] isEqualToString:@"09"]&&firstNumberTF.text.length>=1) {
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Phone Number must start with '09'" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+
 }
+
+
 
 -(void) backPressed{
     
@@ -570,6 +623,8 @@ UITextfieldAnimate *textAnimate;
             regInfo.reg_info_str_secquestion2 = strsecquestion2;
             regInfo.reg_info_str_secquestion3 = strsecquestion3;
             regInfo.reg_info_str_walletno = strwalletno;
+            
+            NSLog(@"Ang Wallet Number ----- %@",strwalletno);
             
             [self.navigationController pushViewController:regInfo animated:YES];
             

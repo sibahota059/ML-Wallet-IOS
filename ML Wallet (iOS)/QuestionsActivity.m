@@ -501,7 +501,7 @@ SelectQuestionDialog *questionDialog;
         accLog.act_log_str_photo2 = quest_act_str_photo2;
         accLog.act_log_str_photo3 = quest_act_str_photo3;
         accLog.act_log_str_photo4 = quest_act_str_photo4;
-        
+        NSLog(@"Ang Wallet Number ----- %@",quest_act_str_walletno);
         [self.navigationController pushViewController:accLog animated:YES];
 
     }

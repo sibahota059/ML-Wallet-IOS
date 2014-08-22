@@ -18,6 +18,10 @@
 #import "ServiceConnection.h"
 #define ACCEPTABLE_CHARECTERS @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 #import "LoginViewController.h"
+#import <CoreLocation/CoreLocation.h>
+#import "SaveWalletData.h"
+#import "MenuViewController.h"
+#import "DeviceID.h"
 @interface AccountLogin ()
 
 @end
@@ -30,7 +34,23 @@
     NSURLConnection *conn;
     NSURLConnection *pinconn;
     ServiceConnection *con;
+    CLLocationManager *locationManager;
     
+    NSString *user;
+    NSString *pass;
+    
+    NSString *walletno;
+    NSString *fname;
+    NSString *lname;
+    NSString *photo;
+    NSString *balance;
+    NSString *mname;
+    NSMutableData *responseData;
+    UIAlertView *accountCreationSuccessAV;
+    UIAlertView *accountCreationErrorAV;
+    UIAlertView *pinResendSuccessAV;
+    UIAlertView *pinResendErrorAV;
+    NSString *alertViewMessage;
     
 }
 
@@ -65,6 +85,9 @@
 @synthesize act_log_str_secquestion2;
 @synthesize act_log_str_secquestion3;
 @synthesize act_log_str_walletno;
+
+@synthesize responseData;
+@synthesize idd;
 
 ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
 CGRect screenRect;
@@ -105,6 +128,13 @@ NSURLConnection *resendPin_connection;
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
+    
+    NSLog(@"Ang Wallet Number ----- %@",act_log_str_walletno);
+    //Set UP Location
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+    [locationManager startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -278,24 +308,66 @@ NSURLConnection *resendPin_connection;
     [message show];
     
 }
+-(void)userPinSuccess{
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Pin."
+                                                      message:@""
+                                                     delegate:self
+                                            cancelButtonTitle:nil
+                                            otherButtonTitles:@"Auto Login",@"Login", nil];
+    
+    [message show];
+}
 
 -(void)resendPin{
 
     NSLog(@"Resend Pin");
+//    HUD.labelText = @"Please wait";
+//    HUD.square = YES;
+//    [HUD show:YES];
+//    NSLog(@"Ang wallet Number -- %@",act_log_str_walletno);
+//    con = [ServiceConnection new];
+//    NSString *url = [NSString stringWithFormat:@"%@", [con NSGetCustomerIDService]];
+//    NSString *walletNum = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
+//    NSString *resendPinUrl = [NSString stringWithFormat:@"%@%@",url,walletNum];
+//    pinData = [[NSMutableData alloc]init];
+//    resendPin_url = [NSURL URLWithString:resendPinUrl];
+//    resendPin_request = [NSURLRequest requestWithURL:resendPin_url];
+//    resendPin_connection =[[NSURLConnection alloc]initWithRequest:resendPin_request delegate:self];
+//    NSLog(@"URL REQUEST PIN --- %@",resendPinUrl);
+    
+    
+    
+    
+   
+
+    
+    
+    
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];
+    [self.view endEditing:YES];
+    //Get Branch Coordinate
+    self.responseData = [NSMutableData data];
+    NSString *custID = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
+    NSString *url = [NSString stringWithFormat:@"%@%@", [con NSGetCustomerIDService],custID];
     
-    con = [ServiceConnection new];
-    NSString *url = [NSString stringWithFormat:@"%@", [con NSGetCustomerIDService]];
-    NSString *walletNum = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
-    NSString *resendPinUrl = [NSString stringWithFormat:@"%@%@",url,walletNum];
-    pinData = [[NSMutableData alloc]init];
-    resendPin_url = [NSURL URLWithString:resendPinUrl];
-    resendPin_request = [NSURLRequest requestWithURL:resendPin_url];
-    resendPin_connection =[[NSURLConnection alloc]initWithRequest:resendPin_request delegate:self];
-    NSLog(@"URL REQUEST PIN --- %@",resendPinUrl);
-
+    NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    
+    NSLog(@"URL - %@", url);              // Checking the url
+    
+    NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
+                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                         timeoutInterval:10.0];
+    
+    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
+    [theConnection start];
+    
+     self.idd = 4;
 }
 #pragma mark - Custom alert
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -304,12 +376,18 @@ NSURLConnection *resendPin_connection;
     if([title isEqualToString:@"Accept"])
     {
         NSLog(@"Register");
-        //[self createAccount];
-         [self resendPin];
+        [self createAccount];
+        
+        
+         //[self resendPin];
     }
     else if([title isEqualToString:@"Resend Pin"])
     {
-       
+//        accountCreationSuccessAV
+//        accountCreationErrorAV
+//        pinResendSuccessAV
+//        pinResendErrorAV
+//        accountCreationSuccessAV.don
         [self resendPin];
         
     }
@@ -323,11 +401,47 @@ NSURLConnection *resendPin_connection;
         NSLog(@"Retry_");
         [self resendPin];
     }
+    else if([title isEqualToString:@"OK"]){
+        NSLog(@"OK------");
+        accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
+                                                              message:alertViewMessage
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                                    otherButtonTitles:@"Resend Pin",@"Login", nil];
+        [accountCreationSuccessAV show];
+    }
     else if([title isEqualToString:@"Login"])
     {
         LoginViewController *loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        //self.navigationController.navigationBarHidden = YES;
+//        [self.navigationController setNavigationBarHidden:YES];
+         [self.navigationController popToViewController:loginController  animated:YES];
+
+    }
+    else if([title isEqualToString:@"AutoLogin"])
+    {
+NSLog(@"AutoLogin");
+        HUD.labelText = @"Please wait";
+        HUD.square = YES;
+        [HUD show:YES];
+        [self.view endEditing:YES];
         
-         [self.navigationController pushViewController:loginController  animated:YES];
+        double latitude = [self Latitude];
+        double longtitude = [self Longtitude];
+        NSLog(@"Lat : %f and Lng : %f", [self Latitude], [self Longtitude]);
+        
+        //Get Location JSON
+        NSURLConnection *autoLogincon;
+        NSString *getReq = [NSString stringWithFormat:@"latlng=%f,%f&sensor=true", latitude, longtitude];
+        
+        
+        NSLog(@"viewdidload");
+        self.responseData = [NSMutableData data];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:[[[ServiceConnection alloc] NSgetLocationService] stringByAppendingString:getReq]]];
+        [request setHTTPMethod:@"GET"];
+        autoLogincon = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        self.idd = 1;
     }
 }
 
@@ -382,32 +496,25 @@ NSURLConnection *resendPin_connection;
     [request setHTTPBody: requestData];
     
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    self.idd = 3;
 }
+
+
 
 
 -(void)connection: (NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSLog(@"Did Receive Response");
-    if(connection==resendPin_connection){
-        pinData = [[NSMutableData alloc]init];
-        NSLog(@"Did Receive Response Pin Data");
-    }
-    else{
-        NSLog(@"Did Receive Response Content Data");
-        contentData = [[NSMutableData alloc]init];
-    }
+    responseData = [[NSMutableData alloc]init];
+
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if(connection==resendPin_connection){
-        NSLog(@"Did Receive Data Pin Data");
-        [pinData appendData:data];
-    }
-    else{
-        NSLog(@"Did Receive Data Content Data");
-        [contentData appendData:data];
-    }
-    //[contentData appendData:data];
+
+        [responseData appendData:data];
+
     NSLog(@"didReceiveData");
 }
 
@@ -440,100 +547,131 @@ NSURLConnection *resendPin_connection;
     NSLog(@"connectionDidFinishLoading");
     NSError *myError = nil;
     NSDictionary *res;
-    
+    res = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&myError];
+//    switch (self.idd) {
+//        case 1:
+//            NSLog(@"getting location");
+//            [self IDDLocation];
+//            [self Req_Login];
+//            break;
+//        case 2:
+//            [self login];
+//            break;
+//        case 3:
+//            
+//            
+//            break;
+//        case 4:
+//            
+//            break;
+//            
+//        default:
+//            break;
+//    }
     
     if (myError == nil) {
         
         
         
-        if(connection==resendPin_connection)
+        if(self.idd==1)
         {
-            res = [NSJSONSerialization JSONObjectWithData:pinData options:NSJSONReadingMutableLeaves error:&myError];
-            NSLog(@"Response sa PIN = %@",res);\
-            
-            NSDictionary *jsonResult = [res objectForKey:@"ResendPINResult"];
-            NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
-            NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
-//            NSString *strNoofAttempt = [jsonResult objectForKey:@"noofattempt"];
-//            NSString *strWalletNo = [jsonResult objectForKey:@"walletno"];
-            NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
-            int value = [strResponseCode intValue];
-            
-            if(value==1){
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Resend Pin"
-                                                         otherButtonTitles:@"Login", nil];
-                
-                [errorMsg show];
-                
-            }
-            else if(value==2){
-                
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Retry ", nil];
-                
-                [errorMsg show];
-                
-                
-            }//end if lse if(value==2)
-            else if (value==0){
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Retry ", nil];
-                
-                [errorMsg show];
-            }//end else if (value==0)
+            NSLog(@"getting location");
+            [self IDDLocation];
+            [self Req_Login];
+           
+        }
+        else if(self.idd==2){
+            [self login];
 
         }
-        else{
-            res = [NSJSONSerialization JSONObjectWithData:contentData options:NSJSONReadingMutableLeaves error:&myError];
+        else if(self.idd==3){
             NSDictionary *jsonResult = [res objectForKey:@"insertMobileAccountsResult"];
             NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
             NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
             NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
             int value = [strResponseCode intValue];
-            
+            alertViewMessage = strResponseMessage;
             if(value==1){
-                [UIAlertView myCostumeAlert:@"Success!" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+                accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
+                                                                   message:strResponseMessage
+                                                                  delegate:self
+                                                         cancelButtonTitle:nil
+                                                         otherButtonTitles:@"Resend Pin",@"Login", nil];
                 
+                [accountCreationSuccessAV show];
+
+              //  [self resendPin];
             }
+            
             else if(value==2){
                 
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
-                                                                  message:strResponseMessage
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                        otherButtonTitles:@"Retry", nil];
-                
-                [errorMsg show];
-
-                
-            }//end if lse if(value==2)
-            else if (value==0){
-                UIAlertView *errorMsg = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
                                                                    message:strResponseMessage
                                                                   delegate:self
                                                          cancelButtonTitle:@"Cancel"
                                                          otherButtonTitles:@"Retry", nil];
                 
-                [errorMsg show];
+                [accountCreationErrorAV show];
+                
+                
+            }//end if lse if(value==2)
+            
+            else if (value==0){
+                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+                                                                   message:strResponseMessage
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"Cancel"
+                                                         otherButtonTitles:@"Retry", nil];
+                
+                [accountCreationErrorAV show];
             }//end else if (value==0)
-        }
-        
-        
-        
-        
-        
-        
-        
-        
+        }//end self idd3
+        else if(self.idd==4){
+            NSLog(@"Response sa PIN = %@",res);
+            
+            NSDictionary *jsonResult = [res objectForKey:@"ResendPINResult"];
+            NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
+            NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
+            //            NSString *strNoofAttempt = [jsonResult objectForKey:@"noofattempt"];
+            //            NSString *strWalletNo = [jsonResult objectForKey:@"walletno"];
+            NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
+            int value = [strResponseCode intValue];
+            
+            if(value==1){
+                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Success."
+                                                                   message:strResponseMessage
+                                                                  delegate:self
+                                                         cancelButtonTitle:nil
+                                                         otherButtonTitles:@"OK",nil];
+                
+                [pinResendSuccessAV show];
+                
+            }
+            else if(value==2){
+                
+                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+                                                                   message:strResponseMessage
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                                    otherButtonTitles:@"OK",nil];
+                
+                [pinResendErrorAV show];
+                
+                
+            }//end if lse if(value==2)
+            else if (value==0){
+                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+                                                                   message:strResponseMessage
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                                    otherButtonTitles:@"OK",nil];
+                
+                [pinResendErrorAV show];
+            }//end else if (value==0)
+
+        }//self idd 4
+
+    
     }//end if(myError == nil)
     else{
         [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
@@ -558,6 +696,163 @@ NSURLConnection *resendPin_connection;
     [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 }
 // -------------------ByPass ssl ends
+
+#pragma mark --Location
+//get Longtitude
+- (double) Longtitude
+{
+    return locationManager.location.coordinate.longitude;
+}
+- (double) Latitude
+{
+    return locationManager.location.coordinate.latitude;
+}
+#pragma mark --END Location
+
+#pragma mark GetLocation Address
+- (void) IDDLocation
+{
+    // convert to JSON
+    NSError *myError = nil;
+    NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    // show all values
+    for(id key in res) {
+        
+        id value = [res objectForKey:key];
+        
+        NSString *keyAsString = (NSString *)key;
+        NSString *valueAsString = (NSString *)value;
+        
+        NSLog(@"key: %@", keyAsString);
+        NSLog(@"value: %@", valueAsString);
+    }
+    
+    // extract specific value...
+    NSArray *results = [res objectForKey:@"results"];
+    
+    int i = 0;
+    for (NSDictionary *result in results) {
+        if (i==0)
+        {
+            self.location =[result objectForKey:@"formatted_address"];
+            self.location = [result objectForKey:@"formatted_address"];
+            NSLog(@"formatted_address: %@", self.location);
+            return;
+        }
+        i++;
+    }
+    
+}
+
+#pragma mark POST Login
+- (void) login
+{
+    // convert to JSON
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    if (myError == nil){
+        NSArray *result = [res valueForKey:@"logInResult"];
+        
+        NSNumber *respCode = [result valueForKey:@"respcode"];
+        NSString *respMesg = [result valueForKey:@"respmessage"];
+        
+        //Hide Loader
+        [HUD hide:YES];
+        [HUD show:NO];
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
+        {
+            
+            walletno    = [result valueForKeyPath:@"walletno"];
+            fname       = [result valueForKeyPath:@"fname"];
+            lname       = [result valueForKeyPath:@"lname"];
+            photo       = [result valueForKeyPath:@"photo"];
+            balance     = [result valueForKeyPath:@"balance"];
+            mname       = [result valueForKeyPath:@"mname"];
+            
+            NSString *bal = [NSString stringWithFormat:@"%@", balance];
+            
+            //Saving Data Plist
+            SaveWalletData *saveData = [SaveWalletData new];
+            [saveData initSaveData:walletno forKey:@"walletno"];
+            [saveData initSaveData:lname forKey:@"lname"];
+            [saveData initSaveData:fname forKey:@"fname"];
+            [saveData initSaveData:photo forKey:@"photo"];
+            [saveData initSaveData:bal forKey:@"balance"];
+            [saveData initSaveData:mname forKey:@"mname"];
+            [saveData initSaveData:pass forKey:@"password"];
+            [saveData initSaveData:user forKey:@"username"];
+            if ([self.location isEqualToString:@""] || self.location.length == 0 || self.location == nil) {
+                self.location = @"";
+            }
+            [saveData initSaveData:self.location forKey:@"address"];
+            
+            //GOTO Menu
+            MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+            [self.navigationController pushViewController:menuPage animated:YES];
+            return;
+        }
+        else
+        {
+            NSRange strRange = [respMesg
+                                rangeOfString:@"MySql.Data.MySqlClient.MySqlException"
+                                options:NSCaseInsensitiveSearch];
+            
+            if (strRange.length > 1)
+            {
+                respMesg = @"Service is temporary unavailable";
+            }
+            
+            //Show Error
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+
+            return;
+        }
+        
+        
+    } else {
+        //Show if Error
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+}
+
+
+- (void) Req_Login
+{
+    
+    
+    //if all OK... then procced
+    NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
+    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    
+    
+    NSString *post = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",
+                      userNameTF.text,
+                      passwordTF.text,
+                      version,
+                      [self Latitude],
+                      [self Longtitude],
+                      deviceID,
+                      self.location];
+    
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"login"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+    
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:requestData];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    NSLog(@"Login POST ---- %@",post);
+    
+    self.idd = 2;
+    
+}
+
 
 
 - (BOOL)prefersStatusBarHidden{
