@@ -65,23 +65,23 @@
 // -------------------ByPass ssl ends
 
 
--(void)wallet:(NSString *)walletNo country:(NSString *)countryPar province:(NSString *)provincePar address:(NSString *)addressPar zipcode:(NSString *)zipcodePar gender:(NSString *)genderPar mnumber:(NSString *)mnumberPar work:(NSString *)workPar nationality:(NSString *)nationalityPar photo1:(UIImage *)photo1Par photo2:(UIImage *)photo2Par photo3:(UIImage *)photo3Par photo4:(UIImage *)photo4Par
+-(void)wallet:(NSString *)walletNo country:(NSString *)countryPar province:(NSString *)provincePar address:(NSString *)addressPar zipcode:(NSString *)zipcodePar gender:(NSString *)genderPar mnumber:(NSString *)mnumberPar work:(NSString *)workPar nationality:(NSString *)nationalityPar photo1:(NSString *)photo1Par photo2:(NSString *)photo2Par photo3:(NSString *)photo3Par photo4:(NSString *)photo4Par
 {
     
     contentData = [NSMutableData data];
     con         = [ServiceConnection new];
     
-    NSString *strImage1 = [self encodeToBase64String:photo1Par];
-    NSArray *photoArray1 = [NSArray arrayWithObject:strImage1];
+//    NSString *strImage1 = [self encodeToBase64String:photo1Par];
+    NSArray *photoArray1 = [NSArray arrayWithObject:photo1Par];
     
-    NSString *strImage2 = [self encodeToBase64String:photo2Par];
-    NSArray *photoArray2 = [NSArray arrayWithObject:strImage2];
+//    NSString *strImage2 = [self encodeToBase64String:photo2Par];
+    NSArray *photoArray2 = [NSArray arrayWithObject:photo2Par];
     
-    NSString *strImage3 = [self encodeToBase64String:photo3Par];
-    NSArray *photoArray3 = [NSArray arrayWithObject:strImage3];
+//    NSString *strImage3 = [self encodeToBase64String:photo3Par];
+    NSArray *photoArray3 = [NSArray arrayWithObject:photo3Par];
    
-    NSString *strImage4 = [self encodeToBase64String:photo4Par];
-    NSArray *photoArray4 = [NSArray arrayWithObject:strImage4];
+//    NSString *strImage4 = [self encodeToBase64String:photo4Par];
+    NSArray *photoArray4 = [NSArray arrayWithObject:photo4Par];
    
     
     NSArray *keys ;
@@ -103,7 +103,7 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:kNilOptions error:&error];
     
     [request setHTTPMethod:@"POST"];
-    [request setValue:[NSString stringWithFormat:@"%d",[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:jsonData];

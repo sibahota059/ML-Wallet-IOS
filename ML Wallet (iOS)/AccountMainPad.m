@@ -12,11 +12,9 @@
 #import "MenuViewController.h"
 #import "ProfileInformationPad.h"
 #import "SaveWalletData.h"
+#import "NSDictionary+LoadWalletData.h"
 
 @interface AccountMainPad ()
-{
-    AccountMobilePad *account;
-}
 
 
 
@@ -37,144 +35,28 @@ UIImageView *profileImageView;
 //USER BDAY USE IN GETTING AGE
 NSDate *date;
 
+
+NSDictionary *loadData;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    loadData = [NSDictionary initRead_LoadWallet_Data];
+    
+    photo1 = [loadData objectForKey:@"photo1"];
+    firstName = [loadData objectForKey:@"fname"];
+    middleName = [loadData objectForKey:@"mname"];
+    lastName = [loadData objectForKey:@"lname"];
+    bdate = [loadData objectForKey:@"bdate"];
+    country = [loadData objectForKey:@"country"];
+
     [self createUI];
-    
-    account = [AccountMobilePad new];
-    account.delegate = self;
-    [account loadAccount];
-  
+   
     
 }
 
-
-
-
-#pragma mark - Retrieve Retrieve User Information Webservice
-- (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
-    
-    
-    //Store the NSDictionary rates data into static array
-    NSArray *accountArray       = [account.getAccount objectForKey:@"retrieveMobileAccountResult"];
-    
-    firstName = [accountArray valueForKey:@"fname"];
-    middleName = [accountArray valueForKey:@"mname"];
-    lastName = [accountArray valueForKey:@"lname"];
-    country = [accountArray valueForKey:@"country"];
-    province = [accountArray valueForKey:@"provinceCity"];
-    address = [accountArray valueForKey:@"permanentAdd"];
-    zipcode = [accountArray valueForKey:@"zipcode"];
-    gender = [accountArray valueForKey:@"gender"];
-    bdate = [accountArray valueForKey:@"bdate"];
-    mobileno = [accountArray valueForKey:@"mobileno"];
-    emailadd = [accountArray valueForKey:@"emailadd"];
-    nationality = [accountArray valueForKey:@"nationality"];
-    work = [accountArray valueForKey:@"natureOfWork"];
-    
-    
-    
-    answer1 = [accountArray valueForKey:@"secanswer1"];
-    answer2 = [accountArray valueForKey:@"secanswer2"];
-    answer3 = [accountArray valueForKey:@"secanswer3"];
-    question1 = [accountArray valueForKey:@"secquestion1"];
-    question2 = [accountArray valueForKey:@"secquestion2"];
-    question3 = [accountArray valueForKey:@"secquestion3"];
-    
-    walletNo = [accountArray valueForKey:@"walletno"];
-    
-    respMessage = [accountArray valueForKey:@"respmessage"];
-    resCode = [accountArray valueForKey:@"respcode"];
-    
-    photo1 = [accountArray valueForKey:@"photo1"];
-    photo2 = [accountArray valueForKey:@"photo2"];
-    photo3 = [accountArray valueForKey:@"photo3"];
-    photo4 = [accountArray valueForKey:@"photo4"];
-    
-    
-    
-    //Format date====================================================
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    date = [dateFormatter dateFromString:bdate];
-    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
-    NSString *finalDateString = [dateFormatter stringFromDate:date];
-    //End Format Date===============================================
-  
-    
-    
-    [self saveToPaylist];
-    
-    
-    
-    //CONVERT STRING TO IMAGE===========================================
-    imageFrameView = [[UIView alloc] initWithFrame:CGRectMake(264, 164, 240, 240)];
-    [imageFrameView setBackgroundColor:[UIColor redColor]];
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1 options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    
-    [profileImageView setImage:[UIImage imageWithData:data]];
-    //==================================================================
-    
-    
-    
-    
-    //DISPLAY ACCOUNT INFORMATION LABEL===============================
-    [nameLabel setText:[NSString stringWithFormat:@"%@ %@. %@", firstName, middleName, lastName]];
-    [bdayLabel setText:[NSString stringWithFormat:@"%@", finalDateString]];
-    [countryLabel setText:[NSString stringWithFormat:@"%@", country]];
-    //================================================================
-    
-
-    
-
-}
-
-
-
--(void) saveToPaylist{
-
-    SaveWalletData *saveData = [SaveWalletData new];
-    
-    int userAge = [self userAge:date];
-    
-    [saveData initSaveData:firstName forKey:@"fname"];
-    [saveData initSaveData:middleName forKey:@"mname"];
-    [saveData initSaveData:lastName forKey:@"lname"];
-    [saveData initSaveData:country forKey:@"country"];
-    [saveData initSaveData:province forKey:@"provinceCity"];
-    [saveData initSaveData:address forKey:@"permanentAdd"];
-    [saveData initSaveData:zipcode forKey:@"zipcode"];
-    [saveData initSaveData:gender forKey:@"gender"];
-    [saveData initSaveData:bdate forKey:@"bdate"];
-    
-    [saveData initSaveData:[NSString stringWithFormat:@"%i", userAge] forKey:@"age"];
-    [saveData initSaveData:mobileno forKey:@"mobileno"];
-    [saveData initSaveData:emailadd forKey:@"emailadd"];
-    [saveData initSaveData:nationality forKey:@"nationality"];
-    [saveData initSaveData:work forKey:@"natureOfWork"];
-
-    
-    [saveData initSaveData:answer1 forKey:@"secanswer1"];
-    [saveData initSaveData:answer2 forKey:@"secanswer2"];
-    [saveData initSaveData:answer3 forKey:@"secanswer3"];
-    [saveData initSaveData:question1 forKey:@"secquestion1"];
-    [saveData initSaveData:question2 forKey:@"secquestion2"];
-    [saveData initSaveData:question3 forKey:@"secquestion3"];
-
-    
-    [saveData initSaveData:walletNo forKey:@"walletno"];
-    
-
-    [saveData initSaveData:photo1 forKey:@"photo1"];
-    [saveData initSaveData:photo2 forKey:@"photo2"];
-    [saveData initSaveData:photo3 forKey:@"photo3"];
-    [saveData initSaveData:photo4 forKey:@"photo4"];
-    
-
-}
 
 
 
@@ -264,17 +146,35 @@ NSDate *date;
 
     profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(266, 166, 236, 236)];
     
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    [profileImageView setImage:[UIImage imageWithData:data]];
+
+    UIImage *userImage = [UIImage imageWithData:data];
+    if (userImage == nil)
+    {
+        [profileImageView setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImageView setImage:userImage];
+    }
+    
     nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 424, 600, 40)];
     [nameLabel setFont:[UIFont fontWithName:nil size:31.0f]];
     nameLabel.textAlignment = NSTextAlignmentCenter;
+    nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@", firstName, middleName, lastName];
+    
+
     
     bdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 464, 600, 30)];
     [bdayLabel setFont:[UIFont fontWithName:nil size:28.0f]];
     bdayLabel.textAlignment = NSTextAlignmentCenter;
+     bdayLabel.text = bdate;
     
     countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 500, 600, 30)];
     [countryLabel setFont:[UIFont fontWithName:nil size:28.0f]];
     countryLabel.textAlignment = NSTextAlignmentCenter;
+    countryLabel.text = country;
     
     UIButton *accountButton = [[UIButton alloc] initWithFrame:CGRectMake(138, 680, 240, 72)];
     [accountButton setBackgroundColor:[UIColor redColor]];

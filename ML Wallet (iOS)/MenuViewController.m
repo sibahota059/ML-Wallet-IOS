@@ -26,6 +26,8 @@
 #import "UIImage+DecodeStringToImage.h"
 #import "AccountMainPad.h"
 
+#import "SaveWalletData.h"
+
 
 #define  VIEW_HIDDEN -320
 #define  VIEW_HIDDEN_IPAD -580
@@ -46,6 +48,14 @@
 @synthesize topLayer = _topLayer;
 @synthesize layerPosition = _layerPosition;
 @synthesize responseData;
+
+
+AccountMobilePad *account;
+NSDate *date;
+MBProgressHUD *HUD;
+
+NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zipcode, *gender, *bdate, *age, *mobileno, *emailadd, *nationality, *work, *answer1, *answer2, *answer3, *question1, *question2, *question3,
+*walletNo, *respMessage, *resCode, *photo1, *photo2, *photo3, *photo4, *finalDateString;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,6 +78,8 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
     [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    
     
     NSLog(@"On resume");
     
@@ -165,6 +177,15 @@
     self.layerPosition              = self.topLayer.frame.origin.x;
     
     getUI = [MLUI new];
+    
+    account = [AccountMobilePad new];
+    account.delegate = self;
+    
+    
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
     
 //    [self.scrollView setScrollEnabled:YES];
 //    [self.scrollView setContentSize:CGSizeMake(320, 600)];
@@ -292,8 +313,7 @@
 }
 
 #pragma mark - #Animate Swipe
--(void) animateLayerToPoint:(CGFloat)x
-{
+-(void) animateLayerToPoint:(CGFloat)x{
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -310,8 +330,7 @@
 }
 
 #pragma Start #HIDE POPUP
-- (void) hidePopUP
-{
+- (void) hidePopUP{
     [self.imgPopup setHidden:YES];
     [self.pop_btnInfo setHidden:YES];
     [self.pop_btnLocator setHidden:YES];
@@ -320,16 +339,14 @@
 }
 
 #pragma Start #SHOW POPUP
--(void) showPopUP
-{
+-(void) showPopUP{
         [self.imgPopup setHidden:NO];
         [self.pop_btnInfo setHidden:NO];
         [self.pop_btnLocator setHidden:NO];
         [self.pop_btnRate setHidden:NO];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -523,22 +540,164 @@
 
 -(void)checkDevice{
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
-        [self.navigationController pushViewController:accountMain animated:YES];
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        AccountMainPad *accountMainPad = [[AccountMainPad alloc] initWithNibName:@"AccountMainPad" bundle:nil];
-        [self.navigationController pushViewController:accountMainPad animated:YES];
-        
-    }
+    [account loadAccount];
+    
+    
     
 }
 
 
 
+- (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
+    
+    
+   
+    [self retrieveData];
+    [self saveToPaylist];
+    
+    
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        {
+            AccountMain *accountMain = [[AccountMain alloc] initWithNibName:@"AccountMain" bundle:nil];
+            [self.navigationController pushViewController:accountMain animated:YES];
+        }
+        else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            AccountMainPad *accountMainPad = [[AccountMainPad alloc] initWithNibName:@"AccountMainPad" bundle:nil];
+            [self.navigationController pushViewController:accountMainPad animated:YES];
+        }
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+}
+
+-(void)retrieveData{
+    //Store the NSDictionary rates data into static array
+    NSArray *accountArray       = [account.getAccount objectForKey:@"retrieveMobileAccountResult"];
+    
+    firstName = [accountArray valueForKey:@"fname"];
+    middleName = [accountArray valueForKey:@"mname"];
+    lastName = [accountArray valueForKey:@"lname"];
+    country = [accountArray valueForKey:@"country"];
+    province = [accountArray valueForKey:@"provinceCity"];
+    address = [accountArray valueForKey:@"permanentAdd"];
+    zipcode = [accountArray valueForKey:@"zipcode"];
+    gender = [accountArray valueForKey:@"gender"];
+    bdate = [accountArray valueForKey:@"bdate"];
+    mobileno = [accountArray valueForKey:@"mobileno"];
+    emailadd = [accountArray valueForKey:@"emailadd"];
+    nationality = [accountArray valueForKey:@"nationality"];
+    work = [accountArray valueForKey:@"natureOfWork"];
+    
+    
+    
+    answer1 = [accountArray valueForKey:@"secanswer1"];
+    answer2 = [accountArray valueForKey:@"secanswer2"];
+    answer3 = [accountArray valueForKey:@"secanswer3"];
+    question1 = [accountArray valueForKey:@"secquestion1"];
+    question2 = [accountArray valueForKey:@"secquestion2"];
+    question3 = [accountArray valueForKey:@"secquestion3"];
+    
+    walletNo = [accountArray valueForKey:@"walletno"];
+    
+    respMessage = [accountArray valueForKey:@"respmessage"];
+    resCode = [accountArray valueForKey:@"respcode"];
+    
+    photo1 = [accountArray valueForKey:@"photo1"];
+    photo2 = [accountArray valueForKey:@"photo2"];
+    photo3 = [accountArray valueForKey:@"photo3"];
+    photo4 = [accountArray valueForKey:@"photo4"];
+    
+    
+    
+    //Format date====================================================
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    date = [dateFormatter dateFromString:bdate];
+    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
+    finalDateString = [dateFormatter stringFromDate:date];
+    //End Format Date===============================================
+
+}
+
+
+-(int) userAge:(NSDate *)birthDay{
+    
+    NSDate* currentDate = [NSDate date];
+    NSTimeInterval secondsBetween = [currentDate timeIntervalSinceDate:birthDay];
+    int days = secondsBetween / 86400;
+    int  age = days/ 364 ;
+    return age;
+}
+
+
+-(void) saveToPaylist{
+    
+    SaveWalletData *saveData = [SaveWalletData new];
+    
+    int userAge = [self userAge:date];
+    
+    [saveData initSaveData:firstName forKey:@"fname"];
+    [saveData initSaveData:middleName forKey:@"mname"];
+    [saveData initSaveData:lastName forKey:@"lname"];
+    [saveData initSaveData:country forKey:@"country"];
+    [saveData initSaveData:province forKey:@"provinceCity"];
+    [saveData initSaveData:address forKey:@"permanentAdd"];
+    [saveData initSaveData:zipcode forKey:@"zipcode"];
+    [saveData initSaveData:gender forKey:@"gender"];
+    [saveData initSaveData:finalDateString forKey:@"bdate"];
+    
+    [saveData initSaveData:[NSString stringWithFormat:@"%i", userAge] forKey:@"age"];
+    [saveData initSaveData:mobileno forKey:@"mobileno"];
+    [saveData initSaveData:emailadd forKey:@"emailadd"];
+    [saveData initSaveData:nationality forKey:@"nationality"];
+    [saveData initSaveData:work forKey:@"natureOfWork"];
+    
+    
+    [saveData initSaveData:answer1 forKey:@"secanswer1"];
+    [saveData initSaveData:answer2 forKey:@"secanswer2"];
+    [saveData initSaveData:answer3 forKey:@"secanswer3"];
+    [saveData initSaveData:question1 forKey:@"secquestion1"];
+    [saveData initSaveData:question2 forKey:@"secquestion2"];
+    [saveData initSaveData:question3 forKey:@"secquestion3"];
+    
+    
+    [saveData initSaveData:walletNo forKey:@"walletno"];
+    
+    
+    [saveData initSaveData:photo1 forKey:@"photo1"];
+    [saveData initSaveData:photo2 forKey:@"photo2"];
+    [saveData initSaveData:photo3 forKey:@"photo3"];
+    [saveData initSaveData:photo4 forKey:@"photo4"];
+    
+    
+}
+
+- (void)displayProgressBar{
+    
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+}
+
+- (void)dismissProgressBar{
+    
+    [HUD hide:YES];
+    [HUD show:NO];
+    
+}
 
 
 @end

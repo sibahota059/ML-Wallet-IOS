@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountMobilePad.h"
+#import "MBProgressHUD.h"
 
-@interface MenuViewController : UIViewController <UIAlertViewDelegate>
+
+@interface MenuViewController : UIViewController <UIAlertViewDelegate, AccountMobilePadDelegate, MBProgressHUDDelegate>
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) NSMutableData *responseData;

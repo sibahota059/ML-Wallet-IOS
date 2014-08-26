@@ -93,39 +93,51 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     
     
     //Old Password
-    UIView *oldPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 45, 280, 30)];
-    [oldPasswordOutline setBackgroundColor:[UIColor redColor]];
-    oldPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginOldPassword = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    oldPassword = [[UITextField alloc] initWithFrame:CGRectMake(22, 47, 276, 26)];
+    oldPassword.layer.cornerRadius = 8.0f;
+    oldPassword.layer.masksToBounds = YES;
+    oldPassword.layer.borderColor=[[UIColor redColor]CGColor];
+    oldPassword.layer.borderWidth = 1.0f;
+    oldPassword.leftView = leftMarginOldPassword;
+    oldPassword.leftViewMode = UITextFieldViewModeAlways;
     oldPassword.secureTextEntry = YES;
     [oldPassword setBackgroundColor:[UIColor whiteColor]];
     [oldPassword setPlaceholder:@" Old Password"];
-    [oldPasswordOutline addSubview:oldPassword];
     
     
     
     //New Password
-    UIView *newPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 105, 280, 30)];
-    [newPasswordOutline setBackgroundColor:[UIColor redColor]];
-    newPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginNewPassword = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    newPassword = [[UITextField alloc] initWithFrame:CGRectMake(22, 107, 276, 26)];
+    newPassword.layer.cornerRadius = 8.0f;
+    newPassword.layer.masksToBounds = YES;
+    newPassword.layer.borderColor=[[UIColor redColor]CGColor];
+    newPassword.layer.borderWidth = 1.0f;
+    newPassword.leftView = leftMarginNewPassword;
+    newPassword.leftViewMode = UITextFieldViewModeAlways;
     newPassword.secureTextEntry = YES;
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setPlaceholder:@" New Password"];
-    [newPasswordOutline addSubview:newPassword];
     
     
     //Address
-    UIView *confirmPasswordOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 165, 280, 30)];
-    [confirmPasswordOutline setBackgroundColor:[UIColor redColor]];
-    confirmPassword = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginConfirmPassword = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    confirmPassword = [[UITextField alloc] initWithFrame:CGRectMake(22, 167, 276, 26)];
+    confirmPassword.layer.cornerRadius = 8.0f;
+    confirmPassword.layer.masksToBounds = YES;
+    confirmPassword.layer.borderColor=[[UIColor redColor]CGColor];
+    confirmPassword.layer.borderWidth = 1.0f;
+    confirmPassword.leftView = leftMarginConfirmPassword;
+    confirmPassword.leftViewMode = UITextFieldViewModeAlways;
     confirmPassword.secureTextEntry = YES;
     [confirmPassword setBackgroundColor:[UIColor whiteColor]];
     [confirmPassword setPlaceholder:@" Confirm Password"];
-    [confirmPasswordOutline addSubview:confirmPassword];
     
 
-    [profileScroll addSubview:oldPasswordOutline];
-    [profileScroll addSubview:newPasswordOutline];
-    [profileScroll addSubview:confirmPasswordOutline];
+    [profileScroll addSubview:oldPassword];
+    [profileScroll addSubview:newPassword];
+    [profileScroll addSubview:confirmPassword];
     
     
 }

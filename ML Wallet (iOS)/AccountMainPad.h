@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "AccountMobilePad.h"
 
-@interface AccountMainPad : UIViewController <AccountMobilePadDelegate>
-
+@interface AccountMainPad : UIViewController 
 @end

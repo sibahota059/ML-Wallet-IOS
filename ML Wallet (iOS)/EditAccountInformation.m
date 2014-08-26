@@ -25,8 +25,9 @@ MBProgressHUD *HUD;
 UIImageView *profileImage;
 UIImageView *userImage;
 
-UIImage *image1, *image2, *image3, *image4;
+UIImage *image1, *image2, *image3, *image4, *mainImage;
 UIImageView *imageView1, *imageView2, *imageView3, *imageView4;
+UIImage *userProfileImage;
 UIScrollView *profileScroll;
 NSDictionary *loadData;
 
@@ -41,8 +42,7 @@ UITextField *firstName, *middleName, *lastName, *country, *province, *address, *
  UILabel *profileName, *profilePhone, *profileEmail;
 
 int whichImage1, whichImage2, whichImage3, whichImage4;
-
-
+int hasSelected = 0;
 
 NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
@@ -78,8 +78,6 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [self addNavigationBarButton];
     editAccountInfoWS.delegate = self;
 }
-
-
 
 -(void) createImageInfo{
     
@@ -235,75 +233,106 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
 -(void) createAccountValue{
     
-    
-    
+   
     //Country
-    UIView *countryOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 290, 280, 30)];
-    [countryOutline setBackgroundColor:[UIColor redColor]];
-    country = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginCountry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    country = [[UITextField alloc] initWithFrame:CGRectMake(22, 292, 276, 26)];
+    country.layer.cornerRadius = 8.0f;
+    country.layer.masksToBounds = YES;
+    country.layer.borderColor=[[UIColor redColor]CGColor];
+    country.layer.borderWidth = 1.0f;
+    country.leftView = leftMarginCountry;
+    country.leftViewMode = UITextFieldViewModeAlways;
     [country setBackgroundColor:[UIColor whiteColor]];
-    [countryOutline addSubview:country];
     
     
     
     //Province
-    UIView *provinceOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 350, 280, 30)];
-    [provinceOutline setBackgroundColor:[UIColor redColor]];
-    province = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginProvince = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    province = [[UITextField alloc] initWithFrame:CGRectMake(22, 352, 276, 26)];
+    province.layer.cornerRadius = 8.0f;
+    province.layer.masksToBounds = YES;
+    province.layer.borderColor=[[UIColor redColor]CGColor];
+    province.layer.borderWidth = 1.0f;
+    province.leftView = leftMarginProvince;
+    province.leftViewMode = UITextFieldViewModeAlways;
     [province setBackgroundColor:[UIColor whiteColor]];
-    [provinceOutline addSubview:province];
     
     
     //Address
-    UIView *addressOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 410, 280, 30)];
-    [addressOutline setBackgroundColor:[UIColor redColor]];
-    address = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginAddress = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    address = [[UITextField alloc] initWithFrame:CGRectMake(22, 412, 276, 26)];
+    address.layer.cornerRadius = 8.0f;
+    address.layer.masksToBounds = YES;
+    address.layer.borderColor=[[UIColor redColor]CGColor];
+    address.layer.borderWidth = 1.0f;
+    address.leftView = leftMarginAddress;
+    address.leftViewMode = UITextFieldViewModeAlways;
     [address setBackgroundColor:[UIColor whiteColor]];
-    [addressOutline addSubview:address];
     
     
     
     //ZipCode
-    UIView *zipcodeOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 470, 280, 30)];
-    [zipcodeOutline setBackgroundColor:[UIColor redColor]];
-    zipcode = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginZipCode = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    zipcode = [[UITextField alloc] initWithFrame:CGRectMake(22, 472, 276, 26)];
+    zipcode.layer.cornerRadius = 8.0f;
+    zipcode.layer.masksToBounds = YES;
+    zipcode.layer.borderColor=[[UIColor redColor]CGColor];
+    zipcode.layer.borderWidth = 1.0f;
+    zipcode.leftView = leftMarginZipCode;
+    zipcode.leftViewMode = UITextFieldViewModeAlways;
     [zipcode setBackgroundColor:[UIColor whiteColor]];
-    [zipcodeOutline addSubview:zipcode];
     
     
     
     //Gender
-    UIView *genderOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 530, 280, 30)];
-    [genderOutline setBackgroundColor:[UIColor redColor]];
-    gender = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginGender = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    gender = [[UITextField alloc] initWithFrame:CGRectMake(23, 532, 276, 26)];
+    gender.layer.cornerRadius = 8.0f;
+    gender.layer.masksToBounds = YES;
+    gender.layer.borderColor=[[UIColor redColor]CGColor];
+    gender.layer.borderWidth = 1.0f;
+    gender.leftView = leftMarginGender;
+    gender.leftViewMode = UITextFieldViewModeAlways;
     [gender setBackgroundColor:[UIColor whiteColor]];
-    [genderOutline addSubview:gender];
     
     
     
     //Mobile Number
-    UIView *numberOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 590, 280, 30)];
-    [numberOutline setBackgroundColor:[UIColor redColor]];
-    mobileNumber = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginNumber = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    mobileNumber = [[UITextField alloc] initWithFrame:CGRectMake(22, 592, 276, 26)];
+    mobileNumber.layer.cornerRadius = 8.0f;
+    mobileNumber.layer.masksToBounds = YES;
+    mobileNumber.layer.borderColor=[[UIColor redColor]CGColor];
+    mobileNumber.layer.borderWidth = 1.0f;
+    mobileNumber.leftView = leftMarginNumber;
+    mobileNumber.leftViewMode = UITextFieldViewModeAlways;
     [mobileNumber setBackgroundColor:[UIColor whiteColor]];
-    [numberOutline addSubview:mobileNumber];
     
     
     //Work
-    UIView *workOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 650, 280, 30)];
-    [workOutline setBackgroundColor:[UIColor redColor]];
-    work = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginWork = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    work = [[UITextField alloc] initWithFrame:CGRectMake(22, 652, 276, 26)];
+    work.layer.cornerRadius = 8.0f;
+    work.layer.masksToBounds = YES;
+    work.layer.borderColor=[[UIColor redColor]CGColor];
+    work.layer.borderWidth = 1.0f;
+    work.leftView = leftMarginWork;
+    work.leftViewMode = UITextFieldViewModeAlways;
     [work setBackgroundColor:[UIColor whiteColor]];
-    [workOutline addSubview:work];
     
     
     
     //Nationality
-    UIView *nationalityOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 710, 280, 30)];
-    [nationalityOutline setBackgroundColor:[UIColor redColor]];
-    nationality = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginNationality= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    nationality = [[UITextField alloc] initWithFrame:CGRectMake(22, 712, 276, 26)];
+    nationality.layer.cornerRadius = 8.0f;
+    nationality.layer.masksToBounds = YES;
+    nationality.layer.borderColor=[[UIColor redColor]CGColor];
+    nationality.layer.borderWidth = 1.0f;
+    nationality.leftView = leftMarginNationality;
+    nationality.leftViewMode = UITextFieldViewModeAlways;
     [nationality setBackgroundColor:[UIColor whiteColor]];
-    [nationalityOutline addSubview:nationality];
     
     country.delegate = self;
     province.delegate = self;
@@ -314,47 +343,119 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     work.delegate = self;
     nationality.delegate = self;
     
-    [profileScroll addSubview:countryOutline];
-    [profileScroll addSubview:provinceOutline];
-    [profileScroll addSubview:addressOutline];
-    [profileScroll addSubview:zipcodeOutline];
-    [profileScroll addSubview:genderOutline];
-    [profileScroll addSubview:numberOutline];
-    [profileScroll addSubview:workOutline];
-    [profileScroll addSubview:nationalityOutline];
+    [profileScroll addSubview:country];
+    [profileScroll addSubview:province];
+    [profileScroll addSubview:address];
+    [profileScroll addSubview:zipcode];
+    [profileScroll addSubview:gender];
+    [profileScroll addSubview:mobileNumber];
+    [profileScroll addSubview:work];
+    [profileScroll addSubview:nationality];
     
 }
 
 
-
-
-
-
+-(void) selectPicture:(id)sender{
+    
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    if (([UIImage imageWithData:data1] == nil) &&(whichImage2 == 1))
+    {
+        [alert setMessage:@"Your first picture slot has no picture, please select a picture there first."];
+        
+        [alert show];
+    }
+    else if(([UIImage imageWithData:data2] == nil) &&(whichImage3 == 1))
+    {
+        [alert setMessage:@"Your second picture slot has no picture, please select a picture there first."];
+        
+        [alert show];
+    }
+    else if(([UIImage imageWithData:data3] == nil) &&(whichImage4 == 1))
+    {
+        [alert setMessage:@"Your third picture slot has no picture, please select a picture there first."];
+        
+        [alert show];
+    }
+    else
+    {
+        
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.delegate         = self;
+        picker.allowsEditing    = YES;
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self.navigationController presentViewController:picker animated:YES completion:nil];
+    }
+}
 
 -(void)imageClicked1:(id)sender{
     
-    [profileImage setImage:[UIImage imageWithData:data1]];
+    UIImage *userImage1 = [UIImage imageWithData:data1];
+    if (userImage1 == nil)
+    {
+         [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userImage1];
+        mainImage = userImage1;
+    }
+    
+    userProfileImage = userImage1;
     [self initializeImageIndicator];
     whichImage1 = 1;
 }
 
 -(void)imageClicked2:(id)sender{
     
-    [profileImage setImage:[UIImage imageWithData:data2]];
+    UIImage *userImage2 = [UIImage imageWithData:data2];
+    if (userImage2 == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userImage2];
+        mainImage = userImage2;
+    }
+    userProfileImage = userImage2;
     [self initializeImageIndicator];
     whichImage2 = 1;
 }
 
 -(void)imageClicked3:(id)sender{
-    
-    [profileImage setImage:[UIImage imageWithData:data3]];
+    UIImage *userImage3 = [UIImage imageWithData:data3];
+    if (userImage3 == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userImage3];
+        mainImage = userImage3;
+    }
+    userProfileImage = userImage3;
     [self initializeImageIndicator];
     whichImage3 = 1;
 }
 
 -(void)imageClicked4:(id)sender{
     
-    [profileImage setImage:[UIImage imageWithData:data4]];
+    UIImage *userImage4 = [UIImage imageWithData:data4];
+    if (userImage4 == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userImage4];
+        mainImage = userImage4;
+    }
+    userProfileImage = userImage4;
     [self initializeImageIndicator];
     whichImage4 = 1;
 }
@@ -383,36 +484,109 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     nationalityValue =[loadData objectForKey:@"nationality"];
     
     photo1Value =[loadData objectForKey:@"photo1"];
+    NSLog(@"photo1Value: %@", photo1Value);
     photo2Value =[loadData objectForKey:@"photo2"];
     photo3Value =[loadData objectForKey:@"photo3"];
     photo4Value =[loadData objectForKey:@"photo4"];
+    
     
 }
 
 -(void) setInfo{
     
+    UIImage *noImage = [UIImage imageNamed:@"noImage.png"];
     
     //CONVERTING STRING INTO IMAGE=================================================
     NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [profileImage setImage:[UIImage imageWithData:data]];
+    
+    userProfileImage = [UIImage imageWithData:data];
+    if (userProfileImage == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+         [profileImage setImage:[UIImage imageWithData:data]];
+        
+    }
+    
+   
     
     data1 = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    image1 = [[UIImage alloc] initWithData:data1];
-    imageView1.image = image1;
+    
+    UIImage *userImage1 = [UIImage imageWithData:data1];
+    if (userImage1 == nil)
+    {
+        image1 = nil;
+        imageView1.image = noImage;
+    }
+    else
+    {
+        image1 = [[UIImage alloc] initWithData:data1];
+        imageView1.image = image1;
+        hasSelected = 1;
+        
+    }
+    
+    
+    
+    
+    
     
     
     data2 = [[NSData alloc]initWithBase64EncodedString:photo2Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    image2 = [[UIImage alloc] initWithData:data2];
-    imageView2.image = image2;
+    
+    UIImage *userImage2 = [UIImage imageWithData:data2];
+   
+    if (userImage2 == nil)
+    {
+        image2 = nil;
+        imageView2.image = noImage;
+    }
+    else
+    {
+        image2 = [[UIImage alloc] initWithData:data2];
+        imageView2.image = image2;
+        hasSelected = 1;
+        
+    }
+    
     
     data3 = [[NSData alloc]initWithBase64EncodedString:photo3Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    image3 = [[UIImage alloc] initWithData:data3];
-    imageView3.image = image3;
+   
+    UIImage *userImage3 = [UIImage imageWithData:data3];
+    if (userImage3 == nil)
+    {
+        image3 = nil;
+        imageView3.image = noImage;
+    }
+    else
+    {
+        image3 = [[UIImage alloc] initWithData:data3];
+        imageView3.image = image3;
+        hasSelected = 1;
+        
+        
+    }
     
     
     data4 = [[NSData alloc]initWithBase64EncodedString:photo4Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    image4 = [[UIImage alloc] initWithData:data4];
-    imageView4.image = image4;
+    
+    UIImage *userImage4 = [UIImage imageWithData:data4];
+    if (userImage4 == nil)
+    {
+        image4 = nil;
+        imageView4.image = noImage;
+
+        
+    }
+    else
+    {
+        image4 = [[UIImage alloc] initWithData:data4];
+        imageView4.image = image4;
+        hasSelected = 1;
+        
+    }
     
     //================================================================================
     
@@ -449,23 +623,15 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
 }
 
--(void) selectPicture:(id)sender{
-    
-    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
-	picker.delegate         = self;
-    picker.allowsEditing    = YES;
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-	[self.navigationController presentViewController:picker animated:YES completion:nil];
-}
-
 #pragma mark - UIImagePicker Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     CGSize size = CGSizeMake(150, 150);
     
     UIImage *resultImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    
+    hasSelected = 1;
     
     resultImage = [self imageWithImage:resultImage scaledToSize:size];
     
@@ -476,6 +642,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         data1 = imgData;
         image1 = [[UIImage alloc] initWithData:data1];
         imageView1.image = image1;
+        
 
     }
     else if(whichImage2 == 1)
@@ -584,6 +751,8 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     finalWork = work.text;
     finalNationality = nationality.text;
     
+    
+    
     if([finalGender isEqualToString:@"Female"])
     {
         finalGender = @"F";
@@ -591,17 +760,26 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     else if([finalGender isEqualToString:@"Male"])
     {
         finalGender = @"M";
-
     }
     else
     {
         finalGender = @"X";
-
     }
     
-
     
-    if([finalCountry isEqualToString:@""] || [finalProvince isEqualToString:@""] || [finalAddress isEqualToString:@""] || [finalZipcode isEqualToString:@""] || [finalGender isEqualToString:@""] || [finalNumber isEqualToString:@""] || [finalWork isEqualToString:@""] || [finalNationality isEqualToString:@""])
+ 
+    if (hasSelected == 0)
+    {
+        [saveAlert setMessage:@"Please select atleast 1 picture."];
+        [saveAlert show];
+        
+    }
+    else if(userProfileImage == nil)
+    {
+        [saveAlert setMessage:@"Please select your profile picture."];
+        [saveAlert show];
+    }
+    else if([finalCountry isEqualToString:@""] || [finalProvince isEqualToString:@""] || [finalAddress isEqualToString:@""] || [finalZipcode isEqualToString:@""] || [finalGender isEqualToString:@""] || [finalNumber isEqualToString:@""] || [finalWork isEqualToString:@""] || [finalNationality isEqualToString:@""])
     {
         [saveAlert setMessage:@"Input all fields."];
         [saveAlert show];
@@ -623,7 +801,53 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     }
     else
     {
-        [editAccountInfoWS wallet:wallet country:finalCountry province:finalProvince address:finalAddress zipcode:finalZipcode gender:finalGender mnumber:finalNumber work:finalWork nationality:finalNationality photo1:image1 photo2:image2 photo3:image3 photo4:image4];
+        
+            
+       
+        
+        NSString *strImage1 = [self encodeToBase64String:mainImage];
+        
+        if(strImage1 == nil)
+        {
+            strImage1 = @"";
+        }
+        
+        NSString *strImage2 = [self encodeToBase64String:image2];
+        if(strImage2 == nil)
+        {
+            strImage2 = @"";
+        }
+        
+        NSString *strImage3 = [self encodeToBase64String:image3];
+        if(strImage3 == nil)
+        {
+            strImage3 = @"";
+        }
+        
+        NSString *strImage4 = [self encodeToBase64String:image4];
+        if(strImage4 == nil)
+        {
+            strImage4 = @"";
+        }
+        
+        
+        if(whichImage4 == 1)
+        {
+            strImage4 = [self encodeToBase64String:image1];
+        }
+        else if(whichImage3 == 1)
+        {
+            strImage3 = [self encodeToBase64String:image1];
+        }
+        else if(whichImage2 == 1)
+        {
+            strImage2 = [self encodeToBase64String:image1];
+        }
+        
+        
+        
+        [editAccountInfoWS wallet:wallet country:finalCountry province:finalProvince address:finalAddress zipcode:finalZipcode gender:finalGender mnumber:finalNumber work:finalWork nationality:finalNationality photo1:strImage1 photo2:strImage2 photo3:strImage3 photo4:strImage4];
+        
         	[self displayProgressBar];
 
     }
@@ -739,5 +963,8 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
 }
 
+- (NSString *)encodeToBase64String:(UIImage *)image {
+    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
 
 @end

@@ -347,6 +347,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
 }
 
+
 -(void) setInfo{
     [firstName setText:firstNameValue];
     [middleName setText:middleNameValue];
@@ -358,62 +359,108 @@ UILabel *profileEmail, *profileName, *profilePhone;
     [gender setText:genderValue];
     
     //FORMAT DATE====================================================
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *date = [dateFormatter dateFromString:birthdateValue];
-    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
-    NSString *finalDateString = [dateFormatter stringFromDate:date];
+    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //    NSDate *date = [dateFormatter dateFromString:birthdateValue];
+    //    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
+    //    NSString *finalDateString = [dateFormatter stringFromDate:date];
     //End Format Date===============================================
     
-    [birthdate setText:finalDateString];
+    [birthdate setText:birthdateValue];
     [age setText:ageValue];
     [mobileNumber setText:mobileNumberValue];
-    [email setText:emailValue];
     [work setText:workValue];
     [nationality setText:nationalityValue];
     
-
+    
     
     
     //CONVERTING STRING INTO IMAGE=================================================
     NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [profileImage setImage:[UIImage imageWithData:data]];
+    
+    
+    UIImage *userProfileImage = [UIImage imageWithData:data];
+    if (userProfileImage == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userProfileImage];
+    }
+    
+    
     
     NSData *data1 = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image1 setImage:[UIImage imageWithData:data1]];
-
+    
+    
+    UIImage *userImage1 = [UIImage imageWithData:data1];
+    if (userImage1 == nil)
+    {
+        [image1 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [image1 setImage:userImage1];
+        
+    }
+    
+    
+    
     
     NSData *data2 = [[NSData alloc]initWithBase64EncodedString:photo2Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image2 setImage:[UIImage imageWithData:data2]];
-
+    
+    UIImage *userImage2 = [UIImage imageWithData:data2];
+    if (userImage2 == nil)
+    {
+        [image2 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [image2 setImage:userImage2];
+        
+    }
+    
     
     NSData *data3 = [[NSData alloc]initWithBase64EncodedString:photo3Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image3 setImage:[UIImage imageWithData:data3]];
-
+    
+    UIImage *userImage3 = [UIImage imageWithData:data3];
+    if (userImage3 == nil)
+    {
+        [image3 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [image3 setImage:userImage3];
+        
+    }
+    
     
     NSData *data4 = [[NSData alloc]initWithBase64EncodedString:photo4Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image4 setImage:[UIImage imageWithData:data4]];
-
+    
+    UIImage *userImage4 = [UIImage imageWithData:data4];
+    if (userImage4 == nil)
+    {
+        [image4 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [image4 setImage:userImage4];
+        
+    }
+    
     //================================================================================
-    
-    
     
     dialog = [[QuestionVerificationDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
     
-    
     [dialog setHidden:YES];
-    
-    
-    
-    
     
     [profileName setText:[NSString stringWithFormat:@"%@ %@. %@",firstNameValue, middleNameValue, lastNameValue]];
     [profilePhone setText:mobileNumberValue];
     [profileEmail setText:emailValue];
     
- 
-    
- }
+}
+
 
 
 -(void) viewWillAppear:(BOOL)animated{

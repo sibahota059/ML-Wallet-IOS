@@ -160,36 +160,48 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
     
     //QUESTION 1
-    UIView *firstAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 70, 280, 30)];
-    [firstAnswerOutline setBackgroundColor:[UIColor redColor]];
-    
-    firstAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginQuestion1= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    firstAnswer = [[UITextField alloc] initWithFrame:CGRectMake(22, 72, 276, 26)];
+    firstAnswer.layer.cornerRadius = 8.0f;
+    firstAnswer.layer.masksToBounds = YES;
+    firstAnswer.layer.borderColor=[[UIColor redColor]CGColor];
+    firstAnswer.layer.borderWidth = 1.0f;
+    firstAnswer.leftView = leftMarginQuestion1;
+    firstAnswer.leftViewMode = UITextFieldViewModeAlways;
+
     [firstAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [firstAnswer setBackgroundColor:[UIColor whiteColor]];
     [firstAnswer setText:answer1];
-    [firstAnswerOutline addSubview:firstAnswer];
     
     
     //QUESTION 2
-    UIView *secondAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 160, 280, 30)];
-    [secondAnswerOutline setBackgroundColor:[UIColor redColor]];
-    
-    secondAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginQuestion2= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    secondAnswer = [[UITextField alloc] initWithFrame:CGRectMake(22, 162, 276, 26)];
+    secondAnswer.layer.cornerRadius = 8.0f;
+    secondAnswer.layer.masksToBounds = YES;
+    secondAnswer.layer.borderColor=[[UIColor redColor]CGColor];
+    secondAnswer.layer.borderWidth = 1.0f;
+    secondAnswer.leftView = leftMarginQuestion2;
+    secondAnswer.leftViewMode = UITextFieldViewModeAlways;
+
     [secondAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [secondAnswer setBackgroundColor:[UIColor whiteColor]];
     [secondAnswer setText:answer2];
-    [secondAnswerOutline addSubview:secondAnswer];
     
     
     //QUESITON 3
-    UIView *thirdAnswerOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 250, 280, 30)];
-    [thirdAnswerOutline setBackgroundColor:[UIColor redColor]];
-    
-    thirdAnswer = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginQuestion3= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    thirdAnswer = [[UITextField alloc] initWithFrame:CGRectMake(22, 252, 276, 26)];
+    thirdAnswer.layer.cornerRadius = 8.0f;
+    thirdAnswer.layer.masksToBounds = YES;
+    thirdAnswer.layer.borderColor=[[UIColor redColor]CGColor];
+    thirdAnswer.layer.borderWidth = 1.0f;
+    thirdAnswer.leftView = leftMarginQuestion3;
+    thirdAnswer.leftViewMode = UITextFieldViewModeAlways;
+
     [thirdAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [thirdAnswer setBackgroundColor:[UIColor whiteColor]];
     [thirdAnswer setText:answer3];
-    [thirdAnswerOutline addSubview:thirdAnswer];
     
     
     
@@ -199,9 +211,9 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
     //ADDING THE COMPONENTS
     
-    [scrollView addSubview: firstAnswerOutline];
-    [scrollView addSubview:secondAnswerOutline];
-    [scrollView addSubview:thirdAnswerOutline];
+    [scrollView addSubview: firstAnswer];
+    [scrollView addSubview:secondAnswer];
+    [scrollView addSubview:thirdAnswer];
     
 }
 
