@@ -426,11 +426,11 @@ UIAlertView *ahw;
         textLength = 5;
         
     }
-    else if(newLength >= 4&&textField == thirdNumberTF){
-        [self performSelector:@selector(setNextResponder:) withObject:phoneNumberTF afterDelay:0.0];
-        textLength = 25;
-        
-    }
+//    else if(newLength >= 4&&textField == thirdNumberTF){
+//        [self performSelector:@selector(setNextResponder:) withObject:phoneNumberTF afterDelay:0.0];
+//        textLength = 25;
+//        
+//    }
     
     //this goes to previous field as you backspace through them, so you don't have to tap into them individually
     else if (oldLength > 0 && newLength == 0) {
