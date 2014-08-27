@@ -36,6 +36,7 @@ ProfileTextField *firstNumberTF, *secondNumberTF, *thirdNumberTF, *phoneNumberTF
 UIScrollView *scrollView;
 UITextfieldAnimate *textAnimate;
 UITextField *flagTextField;
+UIAlertView *ahw;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -64,6 +65,22 @@ UITextField *flagTextField;
     [self createCustomerID];
     [self.view addSubview:scrollView];
     
+   
+    
+}
+
+//-(void)viewDidDisappear:(BOOL)animated{
+//    [self dismiss:ahw];
+//    NSLog(@"View did disappear");
+//
+//}
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+-(void)dismiss:(UIAlertView*)alert
+{
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -349,6 +366,7 @@ UITextField *flagTextField;
     }
     else if(firstNumberTF.text.length==0||phoneNumberTF.text.length==0){
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please Fill All Fields" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+// [ahw show];
     }
     else if(![[phoneNumberTF.text substringToIndex:2] isEqualToString:@"09"]&&firstNumberTF.text.length>=1) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Phone Number must start with '09'" delegate:nil cancelButton:@"Ok" otherButtons:nil];
