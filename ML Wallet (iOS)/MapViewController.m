@@ -37,6 +37,7 @@
     NSString *distancetoBranch;
     NSString *timetraveledtoBranch;
     NSUInteger circleRad;
+    UIAlertView *message;
 }
 
 @synthesize responseData = _responseData;
@@ -91,6 +92,20 @@
     
     
 }
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [self dismiss:message];
+    NSLog(@"View did disappear");
+
+}
+
+
+-(void)dismiss:(UIAlertView*)alert
+{
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+//message
 
 #pragma mark - Map Delegate
 - (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)infoWindowmarker {
@@ -531,7 +546,7 @@
 #pragma mark - Goto branch
 -(void)gotoBranch{
     
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Select Radius."
+    message = [[UIAlertView alloc] initWithTitle:@"Select Radius."
                                                       message:@""
                                                      delegate:self
                                             cancelButtonTitle:@"Cancel"
@@ -722,9 +737,6 @@
     
 }//end connectionDidFinishLoading
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
 
 
 

@@ -143,6 +143,11 @@ NSURLConnection *resendPin_connection;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+
 
 //User Interface creation
 -(void) createLoginAccount{
@@ -538,25 +543,27 @@ NSURLConnection *resendPin_connection;
             
             else if(value==2){
                 
-                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Retry", nil];
-                
-                [accountCreationErrorAV show];
-                
+//                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+//                                                                   message:strResponseMessage
+//                                                                  delegate:self
+//                                                         cancelButtonTitle:@"Cancel"
+//                                                         otherButtonTitles:@"Retry", nil];
+//                
+//                [accountCreationErrorAV show];
+[UIAlertView myCostumeAlert:@"Account Creation Error." alertMessage:strResponseMessage delegate:nil cancelButton:@"Cancel" otherButtons:@"Retry"];
                 
             }//end if lse if(value==2)
             
             else if (value==0){
-                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Retry", nil];
+//                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+//                                                                   message:strResponseMessage
+//                                                                  delegate:self
+//                                                         cancelButtonTitle:@"Cancel"
+//                                                         otherButtonTitles:@"Retry", nil];
+//                
+//                [accountCreationErrorAV show];
                 
-                [accountCreationErrorAV show];
+                [UIAlertView myCostumeAlert:@"Account Creation Error." alertMessage:strResponseMessage delegate:nil cancelButton:@"Cancel" otherButtons:@"Retry"];
             }//end else if (value==0)
         }//end self idd3
         else if(self.idd==4){
@@ -571,35 +578,42 @@ NSURLConnection *resendPin_connection;
             int value = [strResponseCode intValue];
             
             if(value==1){
-                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Success."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:nil
-                                                         otherButtonTitles:@"OK",nil];
+//                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Success."
+//                                                                   message:strResponseMessage
+//                                                                  delegate:self
+//                                                         cancelButtonTitle:nil
+//                                                         otherButtonTitles:@"OK",nil];
+//                
+//                [pinResendSuccessAV show];
                 
-                [pinResendSuccessAV show];
+                [UIAlertView myCostumeAlert:@"Pin Resend Success." alertMessage:strResponseMessage delegate:nil cancelButton:nil otherButtons:@"OK"];
                 
             }
             else if(value==2){
                 
-                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
-                                                                   message:strResponseMessage
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                                    otherButtonTitles:@"OK",nil];
+//                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+//                                                                   message:strResponseMessage
+//                                                             delegate:self
+//                                                    cancelButtonTitle:nil
+//                                                    otherButtonTitles:@"OK",nil];
+//                
+//                [pinResendErrorAV show];
                 
-                [pinResendErrorAV show];
+                [UIAlertView myCostumeAlert:@"Pin Resend Error." alertMessage:strResponseMessage delegate:nil cancelButton:nil otherButtons:@"OK"];
                 
                 
             }//end if lse if(value==2)
             else if (value==0){
-                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
-                                                                   message:strResponseMessage
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                                    otherButtonTitles:@"OK",nil];
-                
-                [pinResendErrorAV show];
+//                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+//                                                                   message:strResponseMessage
+//                                                             delegate:self
+//                                                    cancelButtonTitle:nil
+//                                                    otherButtonTitles:@"OK",nil];
+//                
+//                [pinResendErrorAV show];
+[UIAlertView myCostumeAlert:@"Pin Resend Error." alertMessage:strResponseMessage delegate:nil cancelButton:nil otherButtons:@"OK"];
+            
+            
             }//end else if (value==0)
 
         }//self idd 4
@@ -607,7 +621,7 @@ NSURLConnection *resendPin_connection;
     
     }//end if(myError == nil)
     else{
-        [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Account Creation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:nil otherButtons:@"OK"];
         NSLog(@"Error");
     }//end else
     

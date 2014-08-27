@@ -133,6 +133,11 @@ NSString *str_email_add;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+
 
 
 
