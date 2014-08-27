@@ -636,6 +636,7 @@ NSURLConnection *resendPin_connection;
 (NSURLAuthenticationChallenge *)challenge {
     [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
 }
+
 // -------------------ByPass ssl ends
 
 
