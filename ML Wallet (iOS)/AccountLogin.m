@@ -277,23 +277,23 @@ NSURLConnection *resendPin_connection;
     
     if ([[str_username stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:str_username]
         &&![[str_username stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:str_username]) {
-        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF.text.length==0){
         NSLog(@"Failed'");
-        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Please fill all fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please fill all fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(userNameTF.text.length<=5&&userNameTF.text.length>=1){
         NSLog(@"Failed'");
-        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username Length must be greater than 6." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Username Length must be greater than 6." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(str_password.length<=5&&str_password.length>=1){
         NSLog(@"Failed'");
-        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Password Length must be greater than 6." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Password Length must be greater than 6." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(![str_password isEqualToString:str_reTypePassword]){
         NSLog(@"Failed'");
-        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(userNameTF.text.length>=6&&passwordTF.text.length>=6&&retypePasswordTF.text.length>=6){
         if([str_password isEqualToString:str_reTypePassword]){
@@ -313,7 +313,7 @@ NSURLConnection *resendPin_connection;
         }
         else{
             
-            [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             
         }
         
@@ -378,7 +378,7 @@ NSURLConnection *resendPin_connection;
     }
     else if([title isEqualToString:@"OK"]){
         NSLog(@"OK------");
-        accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
+        accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Transaction Successfully Saved"
                                                               message:alertViewMessage
                                                              delegate:self
                                                     cancelButtonTitle:nil
@@ -473,7 +473,7 @@ NSURLConnection *resendPin_connection;
     [HUD hide:YES];
     [HUD show:NO];
     NSLog(@"Bad: %@", [error description]);
-    accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+    accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                         message:[error localizedDescription]
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
@@ -522,7 +522,7 @@ NSURLConnection *resendPin_connection;
             
             else if(value==2){
                 
-                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                                     message:strResponseMessage
                                                                    delegate:self
                                                           cancelButtonTitle:@"Cancel"
@@ -534,7 +534,7 @@ NSURLConnection *resendPin_connection;
             }//end if lse if(value==2)
             
             else if (value==0){
-                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+                accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                                     message:strResponseMessage
                                                                    delegate:self
                                                           cancelButtonTitle:@"Cancel"
@@ -555,7 +555,7 @@ NSURLConnection *resendPin_connection;
             int value = [strResponseCode intValue];
             
             if(value==1){
-                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Success."
+                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Transaction Successfully Saved"
                                                                 message:strResponseMessage
                                                                delegate:self
                                                       cancelButtonTitle:nil
@@ -566,7 +566,7 @@ NSURLConnection *resendPin_connection;
             }
             else if(value==2){
                 
-                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                               message:strResponseMessage
                                                              delegate:self
                                                     cancelButtonTitle:nil
@@ -577,7 +577,7 @@ NSURLConnection *resendPin_connection;
                 
             }//end if lse if(value==2)
             else if (value==0){
-                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
+                pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                               message:strResponseMessage
                                                              delegate:self
                                                     cancelButtonTitle:nil
@@ -591,7 +591,7 @@ NSURLConnection *resendPin_connection;
         
     }//end if(myError == nil)
     else{
-        accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
+        accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                             message:[myError localizedDescription]
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel"

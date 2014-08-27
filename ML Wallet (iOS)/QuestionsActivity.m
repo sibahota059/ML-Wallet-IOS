@@ -308,9 +308,10 @@ SelectQuestionDialog *questionDialog;
 -(void)show:(id)sender{
     if ( IDIOM == IPAD ) {
         float dialogCO = (self.view.frame.size.width - 320)/2;
+        float dialogY = (self.view.frame.size.height - 500)/2;
         if(sender == button1)
         {
-            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, -30, 320, 500) stringArray:questions1];
+            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, dialogY, 320, 500) stringArray:questions1];
             
             [disableBackground setHidden:NO];
             [self.view addSubview:questionDialog];
@@ -320,7 +321,7 @@ SelectQuestionDialog *questionDialog;
         }
         else if(sender == button2)
         {
-            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, -30, 320, 500) stringArray:questions2];
+            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, dialogY, 320, 500) stringArray:questions2];
             [disableBackground setHidden:NO];
             [self.view addSubview:questionDialog];
             [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion2:) forControlEvents:UIControlEventTouchUpInside];
@@ -328,7 +329,7 @@ SelectQuestionDialog *questionDialog;
         }
         else
         {
-            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, -30, 320, 500) stringArray:questions3];
+            questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, dialogY, 320, 500) stringArray:questions3];
             [disableBackground setHidden:NO];
             [self.view addSubview:questionDialog];
             [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion3:) forControlEvents:UIControlEventTouchUpInside];
@@ -383,21 +384,20 @@ SelectQuestionDialog *questionDialog;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+      if ( IDIOM != IPAD ) {
     CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
     [scrollView setContentOffset:scrollPoint animated:YES];
+      }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ( IDIOM != IPAD ) {
     [scrollView setContentOffset:CGPointZero animated:YES];
+    }
+    
     
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    //    [UIView animateWithDuration:0.5
-    //                          delay:0.0
-    //                        options:UIViewAnimationOptionCurveEaseIn
-    //                     animations:^{self.view.frame = CGRectMake(0, 20, 320, 1000); }
-    //                     completion:^(BOOL finished){}];
     [answerTF1 resignFirstResponder];
     [answerTF2 resignFirstResponder];
     [answerTF3 resignFirstResponder];

@@ -415,49 +415,49 @@ UIAlertView *emailAlertview ;
         
         //ProfileInformationLabel
         
-        UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 50, 180, 40)];
+        UILabel *firstName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 50, 450, 40)];
         [firstName setFont:[UIFont fontWithName:nil size:24.0f]];
         [firstName setText:[NSString stringWithFormat:@"%@",reg_info_str_firstName]];
         
-        UILabel *middleName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 90, 180, 40)];
+        UILabel *middleName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 90, 450, 40)];
         [middleName setFont:[UIFont fontWithName:nil size:24.0f]];
         [middleName setText:[NSString stringWithFormat:@"%@",reg_info_str_middleName]];
         
-        UILabel *lastName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 130, 180, 40)];
+        UILabel *lastName = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 130, 450, 40)];
         [lastName setFont:[UIFont fontWithName:nil size:24.0f]];
         [lastName setText:[NSString stringWithFormat:@"%@",reg_info_str_lastName]];
         
-        UILabel *gender = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 170, 180, 40)];
+        UILabel *gender = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 170, 450, 40)];
         [gender setFont:[UIFont fontWithName:nil size:24.0f]];
         [gender setText:[NSString stringWithFormat:@"%@",reg_info_str_gender]];
         
-        UILabel *birthdate = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 210, 180, 40)];
+        UILabel *birthdate = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 210, 450, 40)];
         [birthdate setFont:[UIFont fontWithName:nil size:24.0f]];
         [birthdate setText:[NSString stringWithFormat:@"%@",reg_info_str_birthdate]];
         
-        UILabel *nationality = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 250, 180, 40)];
+        UILabel *nationality = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 250, 450, 40)];
         [nationality setFont:[UIFont fontWithName:nil size:24.0f]];
         [nationality setText:[NSString stringWithFormat:@"%@",reg_info_str_nationality]];
         
-        UILabel *work = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 290, 180, 40)];
+        UILabel *work = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 290, 450, 40)];
         [work setFont:[UIFont fontWithName:nil size:24.0f]];
         [work setText:[NSString stringWithFormat:@"%@",reg_info_str_work]];
         
         
         //Location Information
-        UILabel *country = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 370, 180, 40)];
+        UILabel *country = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 370, 450, 40)];
         [country setFont:[UIFont fontWithName:nil size:24.0f]];
         [country setText:[NSString stringWithFormat:@"%@",reg_info_str_country]];
         
-        UILabel *province = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 410, 180, 40)];
+        UILabel *province = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 410, 450, 40)];
         [province setFont:[UIFont fontWithName:nil size:24.0f]];
         [province setText:[NSString stringWithFormat:@"%@",reg_info_str_province]];
         
-        UILabel *address = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 450, 180, 40)];
+        UILabel *address = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 450, 450, 40)];
         [address setFont:[UIFont fontWithName:nil size:24.0f]];
         [address setText:[NSString stringWithFormat:@"%@",reg_info_str_address]];
         
-        UILabel *zipcode = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 490, 180, 40)];
+        UILabel *zipcode = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 490, 450, 40)];
         [zipcode setFont:[UIFont fontWithName:nil size:24.0f]];
         [zipcode setText:[NSString stringWithFormat:@"%@",reg_info_str_zipcode]];
         
@@ -468,7 +468,7 @@ UIAlertView *emailAlertview ;
         [email setText:[NSString stringWithFormat:@"%@",reg_info_str_email]];
         
         
-        UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 610, 180, 40)];
+        UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake((screenWidth*.3)+180, 610, 450, 40)];
         [number setFont:[UIFont fontWithName:nil size:24.0f]];
         [number setText:[NSString stringWithFormat:@"%@",reg_info_custIDphoneNumber]];
         
@@ -673,7 +673,7 @@ UIAlertView *emailAlertview ;
         [email setText:[NSString stringWithFormat:@"%@",[alertView textFieldAtIndex:0].text]];
     }
     else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Validation Error"
                                                         message:@"Invalid Email."
                                                        delegate:self
                                               cancelButtonTitle:@"Done"

@@ -286,12 +286,12 @@ UIAlertView *ahw;
     secondNumberTF.keyboardType = UIKeyboardTypeNumberPad;
     thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
     phoneNumberTF.keyboardType = UIKeyboardTypeNumberPad;
-    if(IDIOM != IPAD){
+   // if(IDIOM != IPAD){
         firstNumberTF.inputAccessoryView = numberToolbar;
         secondNumberTF.inputAccessoryView = numberToolbar;
         thirdNumberTF.inputAccessoryView = numberToolbar;
         phoneNumberTF.inputAccessoryView = numberToolbar;
-    }
+   // }
     
     
 }
@@ -371,6 +371,13 @@ UIAlertView *ahw;
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
     
+}
+
+-(void)clearTextFields{
+    firstNumberTF.text = nil;
+    secondNumberTF.text = nil;
+    thirdNumberTF.text = nil;
+    phoneNumberTF.text = nil;
 }
 
 
@@ -501,7 +508,8 @@ UIAlertView *ahw;
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError : %@",error);
-    [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    [self clearTextFields];
     [HUD hide:YES];
     [HUD show:NO];
     
@@ -652,8 +660,8 @@ UIAlertView *ahw;
         
         
         if(value==0){
-            
-            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Customer ID not found." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [self clearTextFields];
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Customer ID not found." delegate:nil cancelButton:@"Ok" otherButtons:nil];
             
             
             
@@ -702,7 +710,8 @@ UIAlertView *ahw;
         }//end else if [strResponseCode isEqualToString:@"1"]
         
         else{
-            [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [self clearTextFields];
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
         }
         
         [HUD hide:YES];
@@ -711,7 +720,8 @@ UIAlertView *ahw;
     
     else {
         NSLog(@"Error : %@",myError.localizedDescription);
-        [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [self clearTextFields];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [HUD hide:YES];
         [HUD show:NO];
     }//end else
