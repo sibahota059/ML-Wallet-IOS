@@ -76,6 +76,7 @@ CGFloat screenWidth;
 CGFloat screenHeight;
 UILabel *email;
 NSString *str_email_add;
+UIAlertView *emailAlertview ;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -133,11 +134,20 @@ NSString *str_email_add;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
+//- (void)viewDidUnload
+//{
+//    [super viewDidUnload];
+//}
+-(void)viewDidDisappear:(BOOL)animated{
+    [self dismiss:emailAlertview];
+    NSLog(@"View did disappear");
+
 }
 
+-(void)dismiss:(UIAlertView*)alert
+{
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+}
 
 
 
@@ -650,13 +660,13 @@ NSString *str_email_add;
         //        [UIAlertView myCostumeAlert:@"Update" alertMessage:@"Your account has currently no email. Please enter your email below." delegate:nil cancelButton:@"Ok" otherButtons:nil];
         
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update"
+        emailAlertview = [[UIAlertView alloc] initWithTitle:@"Update"
                                                         message:@"Your account has currently no email. Please enter your email below."
                                                        delegate:self
                                               cancelButtonTitle:@"Done"
                                               otherButtonTitles:nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [alert show];
+        emailAlertview.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [emailAlertview show];
         
     }
     

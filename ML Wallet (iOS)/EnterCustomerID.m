@@ -69,15 +69,17 @@ UIAlertView *ahw;
     
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+}
+
 //-(void)viewDidDisappear:(BOOL)animated{
 //    [self dismiss:ahw];
 //    NSLog(@"View did disappear");
 //
 //}
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
+
 -(void)dismiss:(UIAlertView*)alert
 {
     [alert dismissWithClickedButtonIndex:0 animated:YES];
@@ -514,6 +516,7 @@ UIAlertView *ahw;
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError : %@",error);
+    [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:[error localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     [HUD hide:YES];
     [HUD show:NO];
     
