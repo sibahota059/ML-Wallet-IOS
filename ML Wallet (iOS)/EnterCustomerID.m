@@ -65,7 +65,7 @@ UIAlertView *ahw;
     [self createCustomerID];
     [self.view addSubview:scrollView];
     
-   
+    
     
 }
 
@@ -267,8 +267,8 @@ UIAlertView *ahw;
 
 //iphone numeric keypad done button function
 -(void)doneClick{
-     NSLog(@"Done Clicked.");
-[self.view endEditing:YES];
+    NSLog(@"Done Clicked.");
+    [self.view endEditing:YES];
 }//end of iphone numeric keypad done button function
 
 
@@ -282,10 +282,10 @@ UIAlertView *ahw;
                            [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneClick)],
                            nil];
     [numberToolbar sizeToFit];
-        firstNumberTF.keyboardType = UIKeyboardTypeNumberPad;
-        secondNumberTF.keyboardType = UIKeyboardTypeNumberPad;
-        thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
-        phoneNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    firstNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    secondNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    thirdNumberTF.keyboardType = UIKeyboardTypeNumberPad;
+    phoneNumberTF.keyboardType = UIKeyboardTypeNumberPad;
     if(IDIOM != IPAD){
         firstNumberTF.inputAccessoryView = numberToolbar;
         secondNumberTF.inputAccessoryView = numberToolbar;
@@ -318,23 +318,8 @@ UIAlertView *ahw;
                                                                target:self
                                                                action:@selector(gotoNextView)];
     self.navigationItem.rightBarButtonItem = btnNext;
-    //Set Background
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        
-        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
-        }
-        else //4 inc below
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
-        }
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground5.png"]]];
-    }
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
 }
 
@@ -370,7 +355,7 @@ UIAlertView *ahw;
     }
     else if(firstNumberTF.text.length==0||phoneNumberTF.text.length==0){
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please Fill All Fields" delegate:nil cancelButton:@"Ok" otherButtons:nil];
-// [ahw show];
+        // [ahw show];
     }
     else if(![[phoneNumberTF.text substringToIndex:2] isEqualToString:@"09"]&&firstNumberTF.text.length>=1) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Phone Number must start with '09'" delegate:nil cancelButton:@"Ok" otherButtons:nil];
@@ -665,7 +650,7 @@ UIAlertView *ahw;
         
         int value = [strResponseCode intValue];
         
-         
+        
         if(value==0){
             
             [UIAlertView myCostumeAlert:@"Connection Error" alertMessage:@"Customer ID not found." delegate:nil cancelButton:@"Ok" otherButtons:nil];

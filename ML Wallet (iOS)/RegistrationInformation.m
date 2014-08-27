@@ -141,7 +141,7 @@ UIAlertView *emailAlertview ;
 -(void)viewDidDisappear:(BOOL)animated{
     [self dismiss:emailAlertview];
     NSLog(@"View did disappear");
-
+    
 }
 
 -(void)dismiss:(UIAlertView*)alert
@@ -589,23 +589,7 @@ UIAlertView *emailAlertview ;
                                                                action:@selector(gotoNextView)];
     self.navigationItem.rightBarButtonItem = btnNext;
     
-    //Set Background
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        
-        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
-        }
-        else //4 inc below
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
-        }
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground5.png"]]];
-    }
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
 }
 -(void) backPressed{
@@ -661,10 +645,10 @@ UIAlertView *emailAlertview ;
         
         
         emailAlertview = [[UIAlertView alloc] initWithTitle:@"Update"
-                                                        message:@"Your account has currently no email. Please enter your email below."
-                                                       delegate:self
-                                              cancelButtonTitle:@"Done"
-                                              otherButtonTitles:nil];
+                                                    message:@"Your account has currently no email. Please enter your email below."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Done"
+                                          otherButtonTitles:nil];
         emailAlertview.alertViewStyle = UIAlertViewStylePlainTextInput;
         [emailAlertview show];
         

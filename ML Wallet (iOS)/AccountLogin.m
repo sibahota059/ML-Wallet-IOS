@@ -151,7 +151,7 @@ NSURLConnection *resendPin_connection;
     [self dismiss:accountCreationSuccessAV];
     [self dismiss:message];
     NSLog(@"View did disappear");
-
+    
 }
 
 -(void)dismiss:(UIAlertView*)alert
@@ -266,25 +266,7 @@ NSURLConnection *resendPin_connection;
                                                                target:self
                                                                action:@selector(nextPressed)];
     self.navigationItem.rightBarButtonItem = btnNext;
-    
-    //Set Background
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        
-        if ([UIScreen mainScreen].bounds.size.height == 568) //4 inch
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground1.png"]]];
-        }
-        else //4 inc below
-        {
-            [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground2.png"]]];
-        }
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"MLBackground5.png"]]];
-    }
-    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
 //Create Account method
@@ -295,7 +277,7 @@ NSURLConnection *resendPin_connection;
     
     if ([[str_username stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:str_username]
         &&![[str_username stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:str_username]) {
-[UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Account Creation Error!" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF.text.length==0){
         NSLog(@"Failed'");
@@ -320,30 +302,30 @@ NSURLConnection *resendPin_connection;
             //[self createAccount];
             
             message = [[UIAlertView alloc] initWithTitle:@"Terms and Conditions."
-                                                              message:@"1. Sender must comply with the Know Your Customer (KYC) form, present valid identification, and must subscribe to the AMLC rules and regulations and other applicable laws in making the transaction.\n\n2. The Sender must register the fullname of the receiver inclucing full middle name. Should the Sender fail to give the full middle name of the receiver, it shall be considered a waiver on this part to include his information in verifying the transaction, MLI shall not be held liable for any paid transactions to a receiver whose full middle name information was waived by the Sender. Incorrect spelling of the receiver's name(s) may cause delay in paying out the transaction.\n\n3. The Sender hereby agrees that the transaction shall be released to the claimant receiver if the latter can present the correct Kwarta Padala Transaction Number (KPTN) and comply with the valid ID, KYC and all other requirements as may be required by law.\n\n4. The sender must relay to the receiver the complete and correct KPTN and must advise the receiver to bring a valid ID for additional verification purposes.\n\n5. The Sender may waive the age requirement of the receiver. However, a minor receiver can only claim the money provided said minor is a relative of the sender to the 4th civil degree or godchild/ward/beneficiary of the sender or whose relationship with the sender is such that it does not violate the Child Trafficking Law. The said minor receiver must comply with the identification requirements mentioned herein. Minors below 12 years old must be accompanied by his/her guardian. Tha said guardian must comply with the requirements in Item No. 3 herein.\n\n6. The money is available for pickup in any MLFSI subject to hours of operation of the selected payout branch including closures without prior notice, its communications facility, its connectivity to the ML Wallet and MLKP Systems, and other conditions, including but not limited to power and telecommunications failure, computer or gadget failure, inclement weather and the like.\n\n7. Should the sender decides to cancel sendout, he/she must submit a written request to MLFSI for the cancellation of the said transaction. MLFSI will refund the principal amount of the money transfer only. MLFSI will refund the charges upon written request of the sender, only if the money transfer is not available at the recipient within seven (7) days from the time it was sent. To the extent allowed by law, MLFSI may deduct a service fee of FIVE HUNDRED PESOS (Php500) per month from money transfer that are not picked up after one month from the time it was sent.\n\n8. Changes to the original entries of the sendout will be made only at any MLFSI branches.\n\n9. In case of delay, non-payment or underpayment of this money transfer whether by fault or negligence of the company or its employees, neither shall be liable for damages beyond the sum of FIVE THOUSAND PESOS (P5,000), in addition to the refund of the principal amount of the money transfer and the service fee. In no event will the company or it's employees be liable for any indirect, special, incidental or consequential damages.\n\n10. MLFSI reserves the right to deactivate customer account in cases of three times login failure, however, the customer may request activation by calling our Customer Care.\n\n11. MLFSI may not accept, process or pay any money transfer that any of them determines, in their sole discretion, to be in violation of any MLFSI policy or applicable law.\n\n12. All claims or suits regarding this transaction shall be filed in the courts of Cebu City only.\n"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Decline"
-                                                    otherButtonTitles:@"Accept", nil];
+                                                 message:@"1. Sender must comply with the Know Your Customer (KYC) form, present valid identification, and must subscribe to the AMLC rules and regulations and other applicable laws in making the transaction.\n\n2. The Sender must register the fullname of the receiver inclucing full middle name. Should the Sender fail to give the full middle name of the receiver, it shall be considered a waiver on this part to include his information in verifying the transaction, MLI shall not be held liable for any paid transactions to a receiver whose full middle name information was waived by the Sender. Incorrect spelling of the receiver's name(s) may cause delay in paying out the transaction.\n\n3. The Sender hereby agrees that the transaction shall be released to the claimant receiver if the latter can present the correct Kwarta Padala Transaction Number (KPTN) and comply with the valid ID, KYC and all other requirements as may be required by law.\n\n4. The sender must relay to the receiver the complete and correct KPTN and must advise the receiver to bring a valid ID for additional verification purposes.\n\n5. The Sender may waive the age requirement of the receiver. However, a minor receiver can only claim the money provided said minor is a relative of the sender to the 4th civil degree or godchild/ward/beneficiary of the sender or whose relationship with the sender is such that it does not violate the Child Trafficking Law. The said minor receiver must comply with the identification requirements mentioned herein. Minors below 12 years old must be accompanied by his/her guardian. Tha said guardian must comply with the requirements in Item No. 3 herein.\n\n6. The money is available for pickup in any MLFSI subject to hours of operation of the selected payout branch including closures without prior notice, its communications facility, its connectivity to the ML Wallet and MLKP Systems, and other conditions, including but not limited to power and telecommunications failure, computer or gadget failure, inclement weather and the like.\n\n7. Should the sender decides to cancel sendout, he/she must submit a written request to MLFSI for the cancellation of the said transaction. MLFSI will refund the principal amount of the money transfer only. MLFSI will refund the charges upon written request of the sender, only if the money transfer is not available at the recipient within seven (7) days from the time it was sent. To the extent allowed by law, MLFSI may deduct a service fee of FIVE HUNDRED PESOS (Php500) per month from money transfer that are not picked up after one month from the time it was sent.\n\n8. Changes to the original entries of the sendout will be made only at any MLFSI branches.\n\n9. In case of delay, non-payment or underpayment of this money transfer whether by fault or negligence of the company or its employees, neither shall be liable for damages beyond the sum of FIVE THOUSAND PESOS (P5,000), in addition to the refund of the principal amount of the money transfer and the service fee. In no event will the company or it's employees be liable for any indirect, special, incidental or consequential damages.\n\n10. MLFSI reserves the right to deactivate customer account in cases of three times login failure, however, the customer may request activation by calling our Customer Care.\n\n11. MLFSI may not accept, process or pay any money transfer that any of them determines, in their sole discretion, to be in violation of any MLFSI policy or applicable law.\n\n12. All claims or suits regarding this transaction shall be filed in the courts of Cebu City only.\n"
+                                                delegate:self
+                                       cancelButtonTitle:@"Decline"
+                                       otherButtonTitles:@"Accept", nil];
             
             [message show];
-
+            
             
         }
         else{
-        
-        [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        
+            
+            [UIAlertView myCostumeAlert:@"Error!" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            
         }
         
         
         
-            }
+    }
     
 }//end of create Account method
 
 //resendPin Method
 -(void)resendPin{
-
+    
     NSLog(@"Resend Pin");
     
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -368,7 +350,7 @@ NSURLConnection *resendPin_connection;
     NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
     [theConnection start];
     
-     self.idd = 4;
+    self.idd = 4;
 }
 
 #pragma mark - Custom alert
@@ -387,7 +369,7 @@ NSURLConnection *resendPin_connection;
     else if([title isEqualToString:@"Retry"])
     {
         NSLog(@"Retry");
-       [self createAccount];
+        [self createAccount];
     }
     else if([title isEqualToString:@"Retry "])
     {
@@ -476,14 +458,14 @@ NSURLConnection *resendPin_connection;
 {
     NSLog(@"Did Receive Response");
     responseData = [[NSMutableData alloc]init];
-
-
+    
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-
-        [responseData appendData:data];
-
+    
+    [responseData appendData:data];
+    
     NSLog(@"didReceiveData");
 }
 
@@ -530,10 +512,10 @@ NSURLConnection *resendPin_connection;
             alertViewMessage = strResponseMessage;
             if(value==1){
                 accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:nil
-                                                         otherButtonTitles:@"Resend Pin",@"Login", nil];
+                                                                      message:strResponseMessage
+                                                                     delegate:self
+                                                            cancelButtonTitle:nil
+                                                            otherButtonTitles:@"Resend Pin",@"Login", nil];
                 
                 [accountCreationSuccessAV show];
             }
@@ -541,10 +523,10 @@ NSURLConnection *resendPin_connection;
             else if(value==2){
                 
                 accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Retry", nil];
+                                                                    message:strResponseMessage
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Cancel"
+                                                          otherButtonTitles:@"Retry", nil];
                 
                 [accountCreationErrorAV show];
                 
@@ -553,10 +535,10 @@ NSURLConnection *resendPin_connection;
             
             else if (value==0){
                 accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"Cancel"
-                                                         otherButtonTitles:@"Retry", nil];
+                                                                    message:strResponseMessage
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Cancel"
+                                                          otherButtonTitles:@"Retry", nil];
                 
                 [accountCreationErrorAV show];
             }//end else if (value==0)
@@ -574,10 +556,10 @@ NSURLConnection *resendPin_connection;
             
             if(value==1){
                 pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Success."
-                                                                   message:strResponseMessage
-                                                                  delegate:self
-                                                         cancelButtonTitle:nil
-                                                         otherButtonTitles:@"OK",nil];
+                                                                message:strResponseMessage
+                                                               delegate:self
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"OK",nil];
                 
                 [pinResendSuccessAV show];
                 
@@ -585,7 +567,7 @@ NSURLConnection *resendPin_connection;
             else if(value==2){
                 
                 pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
-                                                                   message:strResponseMessage
+                                                              message:strResponseMessage
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                     otherButtonTitles:@"OK",nil];
@@ -596,17 +578,17 @@ NSURLConnection *resendPin_connection;
             }//end if lse if(value==2)
             else if (value==0){
                 pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Pin Resend Error."
-                                                                   message:strResponseMessage
+                                                              message:strResponseMessage
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                     otherButtonTitles:@"OK",nil];
                 
                 [pinResendErrorAV show];
             }//end else if (value==0)
-
+            
         }//self idd 4
-
-    
+        
+        
     }//end if(myError == nil)
     else{
         accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Error."
