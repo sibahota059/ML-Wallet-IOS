@@ -29,6 +29,7 @@
     MBProgressHUD *HUD;
 }
 @synthesize customer;
+@synthesize phoneNumbertextFieldStatus;
 CGRect screenRect;
 CGFloat screenWidth;
 CGFloat screenHeight;
@@ -292,12 +293,34 @@ UIAlertView *ahw;
         thirdNumberTF.inputAccessoryView = numberToolbar;
         phoneNumberTF.inputAccessoryView = numberToolbar;
    // }
-    
+    if(IDIOM != IPAD&&[phoneNumberTF isFirstResponder]){
+        [self animateTextField:textField up:YES];
+        self.phoneNumbertextFieldStatus = 1;
+        }
     
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    [scrollView setContentOffset:CGPointZero animated:YES];
+   // [scrollView setContentOffset:CGPointZero animated:YES];
+    
+    if(self.phoneNumbertextFieldStatus==1){
+    [self animateTextField:textField up:NO];
+        self.phoneNumbertextFieldStatus=0;
+    }
+}
+
+-(void)animateTextField:(UITextField*)textField up:(BOOL)up
+{
+    const int movementDistance = -50; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+    
+    int movement = (up ? movementDistance : -movementDistance);
+    
+    [UIView beginAnimations: @"animateTextField" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
 }
 
 -(void) addNavigationBar{

@@ -14,4 +14,5 @@
 
 
 @property (strong, nonatomic) Customer *customer;
+@property (assign, nonatomic) NSUInteger phoneNumbertextFieldStatus;
 @end

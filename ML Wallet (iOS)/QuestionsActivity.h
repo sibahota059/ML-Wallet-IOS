@@ -78,4 +78,5 @@
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (assign, nonatomic) NSUInteger idd;
+@property (assign, nonatomic) NSUInteger questionstextFieldStatus;
 @end
