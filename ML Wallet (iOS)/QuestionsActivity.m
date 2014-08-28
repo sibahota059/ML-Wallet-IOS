@@ -255,9 +255,9 @@ SelectQuestionDialog *questionDialog;
 //        questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:45 y:30 myColor:[UIColor blackColor] width:260];
 //        [questionLbl1 setFrame:CGRectMake(questionLbl1_Co, 30, 260, 30)];
         
-        float questionLbl1_Co = ((self.view.frame.size.width)/2)-110;
+        //float questionLbl1_Co = ((self.view.frame.size.width)/2)-110;
         question1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        question1.frame = CGRectMake(questionLbl1_Co, 30, 260, 30);
+        question1.frame = CGRectMake(45, 30, 260, 30);
         //question1.titleLabel.font = [UIFont systemFontOfSize:24.0f];
         question1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [question1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -502,8 +502,7 @@ SelectQuestionDialog *questionDialog;
 
 -(void)animateTextField:(UITextField*)textField up:(BOOL)up num:(int)num
 {
-    const int movementDistance = -150; // tweak as needed
-    const float movementDuration = 0.3f; // tweak as needed
+    const float movementDuration = 0.3f;
     
     int movement = (up ? num : -num);
     

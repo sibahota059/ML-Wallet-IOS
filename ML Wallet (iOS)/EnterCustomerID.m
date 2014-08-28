@@ -311,9 +311,8 @@ UIAlertView *ahw;
 
 -(void)animateTextField:(UITextField*)textField up:(BOOL)up
 {
-    const int movementDistance = -50; // tweak as needed
-    const float movementDuration = 0.3f; // tweak as needed
-    
+    const int movementDistance = -50;
+    const float movementDuration = 0.3f;     
     int movement = (up ? movementDistance : -movementDistance);
     
     [UIView beginAnimations: @"animateTextField" context: nil];
