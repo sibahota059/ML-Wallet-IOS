@@ -71,6 +71,7 @@ CGFloat screenWidth;
 CGFloat screenHeight;
 UITextfieldAnimate *textAnimate;
 SelectQuestionDialog *questionDialog;
+UIBarButtonItem *btnNextAccLog;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -149,7 +150,7 @@ SelectQuestionDialog *questionDialog;
 //        questionLbl1.font = [UIFont systemFontOfSize:24.0f];
 //        [questionLbl1 setFrame:CGRectMake(screenWidth/4.5,50, 500, 40)];
         
-        question1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        question1 = [UIButton buttonWithType:UIButtonTypeCustom];
         question1.frame = CGRectMake(screenWidth/4.5,50, 500, 40);
         question1.titleLabel.font = [UIFont systemFontOfSize:24.0f];
         question1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -179,7 +180,7 @@ SelectQuestionDialog *questionDialog;
 //        questionLbl2.font = [UIFont systemFontOfSize:24.0f];
 //        [questionLbl2 setFrame:CGRectMake(screenWidth/4.5,150, 500, 40)];
         
-        question2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        question2 = [UIButton buttonWithType:UIButtonTypeCustom];
         question2.frame = CGRectMake(screenWidth/4.5,150, 500, 40);
         question2.titleLabel.font = [UIFont systemFontOfSize:24.0f];
         question2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -207,7 +208,7 @@ SelectQuestionDialog *questionDialog;
 //        questionLbl3.font = [UIFont systemFontOfSize:24.0f];
 //        [questionLbl3 setFrame:CGRectMake(screenWidth/4.5,250, 500, 40)];
         
-        question3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        question3 = [UIButton buttonWithType:UIButtonTypeCustom];
         question3.frame = CGRectMake(screenWidth/4.5,250, 500, 40);
         question3.titleLabel.font = [UIFont systemFontOfSize:24.0f];
         question3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -256,9 +257,9 @@ SelectQuestionDialog *questionDialog;
 //        [questionLbl1 setFrame:CGRectMake(questionLbl1_Co, 30, 260, 30)];
         
         //float questionLbl1_Co = ((self.view.frame.size.width)/2)-110;
-        question1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        question1 = [UIButton buttonWithType:UIButtonTypeCustom];
         question1.frame = CGRectMake(45, 30, 260, 30);
-        //question1.titleLabel.font = [UIFont systemFontOfSize:24.0f];
+        question1.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         question1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [question1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [question1 setTitle:@"Question 1" forState:UIControlStateNormal];
@@ -291,9 +292,9 @@ SelectQuestionDialog *questionDialog;
         
       //  questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:45 y:120 myColor:[UIColor blackColor] width:260];
         
-        question2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        question2 = [UIButton buttonWithType:UIButtonTypeCustom];
         question2.frame = CGRectMake(45, 120, 260, 30);
-        //question2.titleLabel.font = [UIFont systemFontOfSize:24.0f];
+        question2.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         question2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [question2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [question2 setTitle:@"Question 2" forState:UIControlStateNormal];
@@ -318,9 +319,9 @@ SelectQuestionDialog *questionDialog;
         //questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:45 y:210 myColor:[UIColor blackColor] width:260];
         
         
-        question3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        question3 = [UIButton buttonWithType:UIButtonTypeCustom];
         question3.frame = CGRectMake(45, 210, 260, 30);
-        //question3.titleLabel.font = [UIFont systemFontOfSize:24.0f];
+        question3.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         question3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [question3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [question3 setTitle:@"Question 3" forState:UIControlStateNormal];
@@ -374,11 +375,15 @@ SelectQuestionDialog *questionDialog;
 
 
 -(void)show:(id)sender{
+    [self.view endEditing:YES];
     if ( IDIOM == IPAD ) {
+        
+        [self disableNavigationItems];
         float dialogCO = (self.view.frame.size.width - 320)/2;
         float dialogY = (self.view.frame.size.height - 500)/2;
         if(sender == button1||sender == question1)
         {
+            
             questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, dialogY, 320, 500) stringArray:questions1];
             
             [disableBackground setHidden:NO];
@@ -389,6 +394,7 @@ SelectQuestionDialog *questionDialog;
         }
         else if(sender == button2||sender == question2)
         {
+            
             questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, dialogY, 320, 500) stringArray:questions2];
             [disableBackground setHidden:NO];
             [self.view addSubview:questionDialog];
@@ -397,6 +403,7 @@ SelectQuestionDialog *questionDialog;
         }
         else
         {
+            
             questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(dialogCO, dialogY, 320, 500) stringArray:questions3];
             [disableBackground setHidden:NO];
             [self.view addSubview:questionDialog];
@@ -407,7 +414,7 @@ SelectQuestionDialog *questionDialog;
         
     }
     else{
-        
+        [self disableNavigationItems];
         if(sender == button1||sender == question1)
         {
             questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, -30, 320, 500) stringArray:questions1];
@@ -448,10 +455,24 @@ SelectQuestionDialog *questionDialog;
     [disableBackground setHidden:YES];
 //    [questionLbl3 setText:[questionDialog getSelectedQuestion]];
     [question3 setTitle:[questionDialog getSelectedQuestion] forState:UIControlStateNormal];
+    [self enableNavigationItems];
     [questionDialog removeFromSuperview];
     
 }
 
+-(void)disableNavigationItems{
+    NSLog(@"Disable Buttons");
+//    btnNextAccLog.enabled = NO;
+//    self.navigationItem.hidesBackButton = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
+    
+}
+-(void)enableNavigationItems{
+    NSLog(@"Enable Buttons");
+//    btnNextAccLog.enabled = YES;
+//    self.navigationItem.hidesBackButton = NO;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+}
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
 //      if ( IDIOM != IPAD ) {
 //    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
@@ -462,12 +483,10 @@ SelectQuestionDialog *questionDialog;
     if([answerTF2 isFirstResponder]){
         [self animateTextField:textField up:YES num:-100];
         self.questionstextFieldStatus = 1;
-        NSLog(@"ni agi sa one");
     }
     else if([answerTF3 isFirstResponder]){
         [self animateTextField:textField up:YES num:-150];
         self.questionstextFieldStatus = 2;
-        NSLog(@"ni agi sa two");
     }
         
     }
@@ -520,6 +539,7 @@ SelectQuestionDialog *questionDialog;
     //[question1 setEnabled:NO];
     [question1 setTitle:[questionDialog getSelectedQuestion] forState:UIControlStateNormal];
     [questionDialog removeFromSuperview];
+    [self enableNavigationItems];
     
 }
 
@@ -529,7 +549,7 @@ SelectQuestionDialog *questionDialog;
 //    [questionLbl2 setText:[questionDialog getSelectedQuestion]];
     [question2 setTitle:[questionDialog getSelectedQuestion] forState:UIControlStateNormal];
     [questionDialog removeFromSuperview];
-    
+    [self enableNavigationItems];
 }
 
 
@@ -539,7 +559,7 @@ SelectQuestionDialog *questionDialog;
     self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
                                                                          initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     //next navigation button
-    UIBarButtonItem *btnNextAccLog = [[UIBarButtonItem alloc] initWithTitle:
+    btnNextAccLog = [[UIBarButtonItem alloc] initWithTitle:
                                       @"Next"
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:self
@@ -557,35 +577,52 @@ SelectQuestionDialog *questionDialog;
 
 //goto Next view method
 -(void) gotoNextView{
+    if([answerTF1 resignFirstResponder]==YES||[answerTF2 resignFirstResponder]==YES||
+       [answerTF3 resignFirstResponder]==YES){
+        NSLog(@"Keyboard Visible");
+        [scrollView setContentOffset:CGPointZero animated:YES];
+    }
+    else{
+        NSLog(@"Keyboard not Visible");
+    }
+    
     NSString *str_sec_Answer1 = answerTF1.text;
     NSString *str_sec_Answer2 = answerTF2.text;
     NSString *str_sec_Answer3 = answerTF3.text;
-    if(str_sec_Answer1.length<=3&&str_sec_Answer1.length>=1){
-        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 1 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    if(answerTF1.text.length==0||answerTF2.text.length==0||answerTF3.text.length==0||[[question1 titleLabel] text].length==0||[[question2 titleLabel] text].length==0||[[question3 titleLabel] text].length==0||[[question1 titleLabel] text].length<=3||[[question2 titleLabel] text].length<=3||[[question3 titleLabel] text].length<=3){
+        NSLog(@"Error ni Bai!");
+        
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
-    else if([[[question1 titleLabel] text] isEqualToString:@"Question 1"]||[[question1 titleLabel] text].length<=3){
-        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Please select a question in Question 1." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    
+    
+    else if(str_sec_Answer1.length<=3&&str_sec_Answer1.length>=1){
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Your answer in Question 1 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
-    else if([[[question2 titleLabel] text] isEqualToString:@"Question 2"]||[[question2 titleLabel] text].length<=3){
-        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Please select a question in Question 2." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    else if([[[question1 titleLabel] text] isEqualToString:@"Question 1"]||[[question1 titleLabel] text].length<=3||[[[question1 titleLabel] text] isEqualToString:@"Please select a question."]){
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"The first question is invalid. \n Select another question." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
-    else if([[[question3 titleLabel] text] isEqualToString:@"Question 3"]||[[question3 titleLabel] text].length<=3){
-        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Please select a question in Question 3." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    else if([[[question2 titleLabel] text] isEqualToString:@"Question 2"]||[[question2 titleLabel] text].length<=3||[[[question2 titleLabel] text] isEqualToString:@"Please select a question."]){
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"The second question is invalid. \n Select another question." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }
+    
+    else if([[[question3 titleLabel] text] isEqualToString:@"Question 3"]||[[question3 titleLabel] text].length<=3||[[[question3 titleLabel] text] isEqualToString:@"Please select a question."]){
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"The third question is invalid. \n Select another question." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     else if(str_sec_Answer2.length<=3&&str_sec_Answer2.length>=1){
-        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 2 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Your answer in Question 2 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     else if(str_sec_Answer3.length<=3&&str_sec_Answer3.length>=1){
-        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Your answer in Question 3 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Your answer in Question 3 must have 4 letter's or more." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     else if([str_sec_Answer1 isEqualToString:str_sec_Answer2]||[str_sec_Answer1 isEqualToString:str_sec_Answer3]||[str_sec_Answer2 isEqualToString:str_sec_Answer1]||[str_sec_Answer2 isEqualToString:str_sec_Answer3]||[str_sec_Answer3 isEqualToString:str_sec_Answer1]||[str_sec_Answer3 isEqualToString:str_sec_Answer2]){
-        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Answer's must not be the same." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Answer's must not be the same." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     
     else if(answerTF1.text.length>=4&&answerTF2.text.length>=4&&answerTF3.text.length>=4&&[[question1 titleLabel] text].length>=4&&[[question2 titleLabel] text].length>=4&&[[question3 titleLabel] text].length>=4&&![[[question1 titleLabel] text] isEqualToString:@"Question 1"]&&![[[question2 titleLabel] text] isEqualToString:@"Question 2"]&&![[[question3 titleLabel] text] isEqualToString:@"Question 3"])
@@ -636,11 +673,7 @@ SelectQuestionDialog *questionDialog;
         
     }
     
-    else if(answerTF1.text.length==0||answerTF2.text.length==0||answerTF3.text.length==0||[[question1 titleLabel] text].length==0||[[question2 titleLabel] text].length==0||[[question3 titleLabel] text].length==0||[[question1 titleLabel] text].length<=3||[[question2 titleLabel] text].length<=3||[[question3 titleLabel] text].length<=3){
-        NSLog(@"Error ni Bai!");
-        
-        [UIAlertView myCostumeAlert:@"Security Questions Error." alertMessage:@"Fill All Fields." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-    }
+    
     
     
 }

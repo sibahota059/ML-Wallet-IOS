@@ -51,7 +51,6 @@
     UIAlertView *pinResendSuccessAV;
     UIAlertView *pinResendErrorAV;
     UIAlertView *message;
-    NSString *alertViewMessage;
     
 }
 
@@ -89,6 +88,9 @@
 
 @synthesize responseData;
 @synthesize idd;
+@synthesize accountCreationtextFieldStatus;
+@synthesize alertViewMessage;
+@synthesize accountLoginWalletNumber;
 
 ProfileTextField *userNameTF, *passwordTF, *retypePasswordTF;
 CGRect screenRect;
@@ -99,6 +101,7 @@ MBProgressHUD *HUD;
 NSURL *resendPin_url;
 NSURLRequest *resendPin_request;
 NSURLConnection *resendPin_connection;
+NSString *wallNum;
 
 
 
@@ -129,8 +132,6 @@ NSURLConnection *resendPin_connection;
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
-    
-    NSLog(@"Ang Wallet Number ----- %@",act_log_str_walletno);
     //Set UP Location
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
@@ -335,8 +336,7 @@ NSURLConnection *resendPin_connection;
     HUD.square = YES;
     [HUD show:YES];
     [self.view endEditing:YES];
-    self.responseData = [NSMutableData data];
-    NSString *custID = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",act_log_str_walletno];
+    NSString *custID = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",self.accountLoginWalletNumber];
     NSString *url = [NSString stringWithFormat:@"%@%@", [con NSGetCustomerIDService],custID];
     
     NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
@@ -379,7 +379,7 @@ NSURLConnection *resendPin_connection;
     else if([title isEqualToString:@"OK"]){
         NSLog(@"OK------");
         accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Transaction Successfully Saved"
-                                                              message:alertViewMessage
+                                                              message:self.alertViewMessage
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                     otherButtonTitles:@"Resend Pin",@"Login", nil];
@@ -393,14 +393,35 @@ NSURLConnection *resendPin_connection;
     }
 }
 
-//textField Listeners
+//textField Listeners accountCreationtextFieldStatus
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
-    [scrollView setContentOffset:scrollPoint animated:YES];
+//    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
+//    [scrollView setContentOffset:scrollPoint animated:YES];
+
+    if ( IDIOM != IPAD ) {
+        
+        if([passwordTF isFirstResponder]){
+            [self animateTextField:textField up:YES num:-50];
+            self.accountCreationtextFieldStatus = 1;
+        }
+        else if([retypePasswordTF isFirstResponder]){
+            [self animateTextField:textField up:YES num:-60];
+            self.accountCreationtextFieldStatus = 2;
+        }
+        
+    }
+
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    [scrollView setContentOffset:CGPointZero animated:YES];
+    if(self.accountCreationtextFieldStatus==1){
+        [self animateTextField:textField up:NO num:-50];
+        self.accountCreationtextFieldStatus=0;
+    }
+    else if(self.accountCreationtextFieldStatus==2){
+        [self animateTextField:textField up:NO num:-60];
+        self.accountCreationtextFieldStatus=0;
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -412,6 +433,18 @@ NSURLConnection *resendPin_connection;
 }
 //end of textField Listeners
 
+-(void)animateTextField:(UITextField*)textField up:(BOOL)up num:(int)num
+{
+    const float movementDuration = 0.3f;
+    
+    int movement = (up ? num : -num);
+    
+    [UIView beginAnimations: @"animateTextField" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
+}
 
 //account Creation method
 -(void)createAccount{
@@ -473,13 +506,25 @@ NSURLConnection *resendPin_connection;
     [HUD hide:YES];
     [HUD show:NO];
     NSLog(@"Bad: %@", [error description]);
-    accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
-                                                        message:[error localizedDescription]
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Retry", nil];
+    if(self.idd==3){
+        accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Retry", nil];
+        
+        [accountCreationErrorAV show];
+    }
+    else if(self.idd==4){
+        pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
+                                                      message:[error localizedDescription]
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                            otherButtonTitles:@"Retry ", nil];
+        
+        [pinResendErrorAV show];
+    }
     
-    [accountCreationErrorAV show];
     
 }
 
@@ -507,12 +552,16 @@ NSURLConnection *resendPin_connection;
             NSDictionary *jsonResult = [res objectForKey:@"insertMobileAccountsResult"];
             NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
             NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
+            NSString *strWalletNo = [jsonResult objectForKey:@"walletno"];
+            self.accountLoginWalletNumber = strWalletNo;
+            wallNum = strWalletNo;
             NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
+            NSLog(@"%@",self.accountLoginWalletNumber);
             int value = [strResponseCode intValue];
-            alertViewMessage = strResponseMessage;
+            self.alertViewMessage = [NSString stringWithFormat:@"You have successfully created ML Wallet account with Wallet ID no. %@. \n Pls. check your email for PIN verification.",self.accountLoginWalletNumber];
             if(value==1){
-                accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Account Creation Success."
-                                                                      message:strResponseMessage
+                accountCreationSuccessAV = [[UIAlertView alloc] initWithTitle:@"Congratulations!"
+                                                                      message:self.alertViewMessage
                                                                      delegate:self
                                                             cancelButtonTitle:nil
                                                             otherButtonTitles:@"Resend Pin",@"Login", nil];
@@ -553,10 +602,10 @@ NSURLConnection *resendPin_connection;
             //            NSString *strWalletNo = [jsonResult objectForKey:@"walletno"];
             NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
             int value = [strResponseCode intValue];
-            
+            NSString *resendPinResponse = [NSString stringWithFormat:@"Pin %@",strResponseMessage];
             if(value==1){
-                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Transaction Successfully Saved"
-                                                                message:strResponseMessage
+                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                message:resendPinResponse
                                                                delegate:self
                                                       cancelButtonTitle:nil
                                                       otherButtonTitles:@"OK",nil];
@@ -569,8 +618,8 @@ NSURLConnection *resendPin_connection;
                 pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                               message:strResponseMessage
                                                              delegate:self
-                                                    cancelButtonTitle:nil
-                                                    otherButtonTitles:@"OK",nil];
+                                                    cancelButtonTitle:@"Cancel"
+                                                    otherButtonTitles:@"Retry ", nil];
                 
                 [pinResendErrorAV show];
                 
@@ -580,8 +629,8 @@ NSURLConnection *resendPin_connection;
                 pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                               message:strResponseMessage
                                                              delegate:self
-                                                    cancelButtonTitle:nil
-                                                    otherButtonTitles:@"OK",nil];
+                                                    cancelButtonTitle:@"Cancel"
+                                                    otherButtonTitles:@"Retry ", nil];
                 
                 [pinResendErrorAV show];
             }//end else if (value==0)
@@ -591,14 +640,27 @@ NSURLConnection *resendPin_connection;
         
     }//end if(myError == nil)
     else{
-        accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
-                                                            message:[myError localizedDescription]
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Retry", nil];
+        if(self.idd==3){
+            accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
+                                                                message:[myError localizedDescription]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:@"Retry", nil];
+            
+            [accountCreationErrorAV show];
+            NSLog(@"Error Account");
+        }
+        else if(self.idd==4){
+            pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
+                                                          message:[myError localizedDescription]
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Retry ", nil];
+            
+            [pinResendErrorAV show];
+            NSLog(@"Error Pin");
+        }
         
-        [accountCreationErrorAV show];
-        NSLog(@"Error");
     }//end else
     
     

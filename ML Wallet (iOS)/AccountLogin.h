@@ -78,4 +78,7 @@
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (assign, nonatomic) NSUInteger idd;
+@property (assign, nonatomic) NSUInteger accountCreationtextFieldStatus;
+@property (assign, nonatomic) NSString *alertViewMessage;
+@property (assign, nonatomic) NSString *accountLoginWalletNumber;
 @end
