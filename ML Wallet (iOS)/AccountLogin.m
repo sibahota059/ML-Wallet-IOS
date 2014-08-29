@@ -393,7 +393,7 @@ NSString *wallNum;
     }
 }
 
-//textField Listeners accountCreationtextFieldStatus
+//textField Listeners
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
 //    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
 //    [scrollView setContentOffset:scrollPoint animated:YES];
@@ -458,18 +458,20 @@ NSString *wallNum;
     NSString *strCustID = [NSString stringWithFormat:@"%@%@%@", act_log_custIDfirstNumber, act_log_custIDsecondNumber,act_log_custIDthirdNumber];
     NSString *strUsername = userNameTF.text;
     NSString *strPassword = passwordTF.text;
+    //NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
+    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     NSLog(@"Ang account %@ %@",strUsername,strPassword);
     if([act_log_birthdate isEqualToString:@""]){
         act_log_birthdate = @"1985-11-23";
     }
     NSLog(@"Email ni --- %@",act_log_email);
     
-    NSString *body =  [NSString stringWithFormat:@"{\"custid\":\"%@\",\"username\":\"%@\",\"password\":\"%@\",\"mobileno\":\"%@\",\"emailadd\":\"%@\",\"fname\":\"%@\",\"mname\":\"%@\",\"lname\":\"%@\",\"gender\":\"%@\",\"bdate\":\"%@\",\"nationality\":\"%@\",\"natureOfWork\":\"%@\",\"provinceCity\":\"%@\",\"permanentAdd\":\"%@\",\"country\":\"%@\",\"zipcode\":\"%@\",\"secquestion1\":\"%@\",\"secanswer1\":\"%@\",\"secquestion2\":\"%@\",\"secanswer2\":\"%@\",\"secquestion3\":\"%@\",\"secanswer3\":\"%@\",\"photo1\":\"%@\",\"photo2\":\"%@\",\"photo3\":\"%@\",\"photo4\":\"%@\",\"version\":\"%.2f\"}",strCustID,strUsername,strPassword,act_log_custIDphoneNumber,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,1.3];
-    NSLog(@"Hala == %@",body);
+    NSString *body =  [NSString stringWithFormat:@"{\"custid\":\"%@\",\"username\":\"%@\",\"password\":\"%@\",\"mobileno\":\"%@\",\"emailadd\":\"%@\",\"fname\":\"%@\",\"mname\":\"%@\",\"lname\":\"%@\",\"gender\":\"%@\",\"bdate\":\"%@\",\"nationality\":\"%@\",\"natureOfWork\":\"%@\",\"provinceCity\":\"%@\",\"permanentAdd\":\"%@\",\"country\":\"%@\",\"zipcode\":\"%@\",\"secquestion1\":\"%@\",\"secanswer1\":\"%@\",\"secquestion2\":\"%@\",\"secanswer2\":\"%@\",\"secquestion3\":\"%@\",\"secanswer3\":\"%@\",\"photo1\":\"%@\",\"photo2\":\"%@\",\"photo3\":\"%@\",\"photo4\":\"%@\",\"version\":\"%@\"}",strCustID,strUsername,strPassword,act_log_custIDphoneNumber,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,version];
+    
     
     NSString *serviceMethods = @"insertMobileAccounts";
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods]];
-    
+    NSLog(@"Account Login Web Service URL ----a %@%@",url,body);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSData *requestData = [NSData dataWithBytes:[body UTF8String] length:[body length]];
     
