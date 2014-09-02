@@ -13,7 +13,7 @@
 @property (strong, nonatomic) UIBarButtonItem *nextNavButton;
 @property (strong, nonatomic) MLViewController *nextViewController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil  viewController:(MLViewController *) viewController;
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil  viewController:(MLViewController *) viewController;
 
 -(void) setNextViewController:(MLViewController *)nextViewControllerParameter myImage:(UIImage *)myImage;
 

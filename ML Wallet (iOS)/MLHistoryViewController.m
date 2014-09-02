@@ -107,7 +107,6 @@
     
     self.view_keyboard.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
     self.view_pinInput.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"view_bg"]];
-    
 }
 
 #pragma mark - Done loading transaction

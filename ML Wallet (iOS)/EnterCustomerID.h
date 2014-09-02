@@ -6,11 +6,13 @@
 //  Copyright (c) 2014 mm20-18. All rights reserved.
 //
 
-#import "MLViewController.h"
+//#import "MLViewController.h"
+//@interface EnterCustomerID : MLViewController <UITextFieldDelegate>
 #import "Customer.h"
-
-@interface EnterCustomerID : MLViewController <UITextFieldDelegate>
+#import "MBProgressHUD.h"
+@interface EnterCustomerID : UIViewController <UITextFieldDelegate,MBProgressHUDDelegate,UIAlertViewDelegate>
 
 
 @property (strong, nonatomic) Customer *customer;
+@property (assign, nonatomic) NSUInteger phoneNumbertextFieldStatus;
 @end

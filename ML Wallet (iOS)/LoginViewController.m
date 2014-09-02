@@ -20,6 +20,7 @@
 #import "MapViewController.h"
 #import "MLRatesTableViewController.h"
 #import "ResetPassViewController.h"
+#import "UIView+MenuAnimationUIVIew.h"
 
 #import "SaveWalletData.h"
 
@@ -38,6 +39,7 @@
     NSString *user;
     NSString *pass;
     
+    NSNumber *isnewuser;
     NSString *walletno;
     NSString *fname;
     NSString *lname;
@@ -90,8 +92,10 @@
     
     
     [self.loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_img.png"]]];
+    
     [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize:CGSizeMake(320, 600)];
+    self.scrollView.pagingEnabled = YES;
+    [self.scrollView setContentSize:CGSizeMake(320, 568)];
     
     
     //Set UP Location
@@ -103,6 +107,10 @@
     //Handle TxtField
     self.txtUser.delegate = self;
     self.txtPass.delegate = self;
+    self.NewPIN.delegate  = self;
+    self.OldPIN.delegate  = self;
+    self.ReNewPIN.delegate= self;
+    
     textAnimate = [UITextfieldAnimate new];
 
 }
@@ -119,13 +127,36 @@
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    //Login textfield
     if (textField == self.txtUser) {
         [self.txtPass becomeFirstResponder];
         [self.txtUser resignFirstResponder];
     } else {
         [self.txtPass resignFirstResponder];
     }
+    
+    //Reset PIN new User
+    
+    if ([isnewuser isEqualToNumber:[NSNumber numberWithInt:1]]) {
+    if (textField == self.OldPIN) {
+        [self.NewPIN becomeFirstResponder];
+        [self.OldPIN resignFirstResponder];
+    } else if (textField == self.NewPIN) {
+        [self.ReNewPIN becomeFirstResponder];
+        [self.NewPIN resignFirstResponder];
+    } else {
+        [self.ReNewPIN resignFirstResponder];
+    }
+    }
     return NO;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    BOOL isTrueOrNot = YES;
+    if (textField == self.OldPIN ||  textField == self.ReNewPIN ||  textField == self.NewPIN) {
+        NSUInteger newLength = [textField.text length] + [string length] - range.length;
+        isTrueOrNot = (newLength > 4) ? NO : YES;
+    }
+    return isTrueOrNot;
 }
 
 #pragma mark - Shake Animation
@@ -154,14 +185,14 @@
 }
 
 - (IBAction)btnRegister:(id)sender {
-    [UIAlertView myCostumeAlert:@"Todo" alertMessage:@"Under development" delegate:nil cancelButton:@"Ok" otherButtons:nil];
-    /*
+    
+    
     EnterCustomerID *enterCustomer = [[EnterCustomerID alloc] initWithNibName:@"EnterCustomerID" bundle:nil];
     
     
     [self.navigationController pushViewController:enterCustomer animated:YES];
     self.navigationController.navigationBarHidden = NO;
-*/
+
 
 }
 
@@ -290,6 +321,7 @@
     /*
      1 == get Location
      2 == get Login Post Method
+     3 == Resend Email
      */
     switch (self.idd) {
         case 1:
@@ -300,14 +332,135 @@
         case 2:
             [self login];
             break;
-            
+        case 3:
+            [self resendEmaildidFinish];
+            break;
+        case 4:
+            [self checkPindidfinish];
+            break;
+        case 5:
+            [self updatePINdidfinish];
+            break;
         default:
             break;
     }
 }
 #pragma mark --END Delegate
 
-#pragma mark POST Login
+#pragma mark - CheckPINdidfinish
+- (void) checkPindidfinish
+{
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    if (myError == nil){
+        NSArray *result = [res valueForKey:@"checkPinResult"];
+        
+        NSNumber *respCode = [result valueForKey:@"respcode"];
+        NSString *respMesg = [result valueForKey:@"respmessage"];
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
+        {
+            [self updatePIN];
+        }
+        else
+        {
+            NSRange rangeValue = [respMesg rangeOfString:@"attempt" options:NSCaseInsensitiveSearch];
+            
+            if (rangeValue.length <= 0) //false
+            {
+                [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            }
+            else //True
+            {
+                respMesg = [NSString stringWithFormat:@"%@ \n %@", @"Incorrect PIN" , respMesg];
+                NSLog(@"Message %@", respMesg);
+                [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            }
+            
+            
+            //Hide Loader
+            [HUD hide:YES];
+            [HUD show:NO];
+        }
+    }
+    
+}
+
+#pragma mark -Update PIN Didfinish
+- (void) updatePINdidfinish
+{
+    //TODo
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    if (myError == nil){
+        NSArray *result = [res valueForKey:@"UpdatePINResult"];
+        
+        NSNumber *respCode = [result valueForKey:@"respcode"];
+        NSString *respMesg = [result valueForKey:@"respmessage"];
+        
+        //Hide Loader
+        [HUD hide:YES];
+        [HUD show:NO];
+        
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
+        {
+            [UIAlertView myCostumeAlert:@"Update PIN" alertMessage:respMesg delegate:self cancelButton:@"Ok" otherButtons:nil];
+        }
+        else
+        {
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+
+    }
+}
+
+#pragma mark -UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self btnNotNow:self];
+    
+    
+    //GOTO Menu
+        MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+        [self.navigationController pushViewController:menuPage animated:YES];
+        return;
+}
+
+#pragma mark -Resend Email didfinish
+- (void) resendEmaildidFinish
+{
+    // convert to JSON
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    if (myError == nil){
+        NSArray *result = [res valueForKey:@"ResendPINResult"];
+        
+        NSNumber *respCode = [result valueForKey:@"respcode"];
+        NSString *respMesg = [result valueForKey:@"respmessage"];
+        
+        //Hide Loader
+        [HUD hide:YES];
+        [HUD show:NO];
+        
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
+        {
+            [UIAlertView myCostumeAlert:@"Resend Email" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+        else
+        {
+            [UIAlertView myCostumeAlert:@"Resend Email" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+    }
+    
+}
+
+
+#pragma mark -POST Login
 - (void) login
 {
     // convert to JSON
@@ -333,6 +486,7 @@
             photo       = [result valueForKeyPath:@"photo"];
             balance     = [result valueForKeyPath:@"balance"];
             mname       = [result valueForKeyPath:@"mname"];
+            isnewuser   = [result valueForKeyPath:@"isnewuser"];
             
             NSString *bal = [NSString stringWithFormat:@"%@", balance];
             
@@ -350,6 +504,11 @@
                 self.location = @"";
             }
             [saveData initSaveData:self.location forKey:@"address"];
+            
+            //Check for new USER
+            if ([isnewuser isEqualToNumber:[NSNumber numberWithInt:1]]) {
+                [self ifUserisNew];return;
+            }
             
             //GOTO Menu
             MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
@@ -381,6 +540,21 @@
         //Show if Error
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
+}
+
+- (void) ifUserisNew
+{
+    self.btnInfo.enabled = NO;
+    self.btnLocation.enabled = NO;
+    self.btnRate.enabled = NO;
+    [UIView popView:self.NewPINView];
+    self.NewPINView.hidden = NO;
+    
+    self.NewPINView.layer.masksToBounds    = NO;
+    self.NewPINView.layer.cornerRadius     = 8;
+    self.NewPINView.layer.shadowOffset     = CGSizeMake(-15, 20);
+    self.NewPINView.layer.shadowRadius     = 5;
+    self.NewPINView.layer.shadowOpacity    = 0.5;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -429,7 +603,7 @@
     
     //if all OK... then procced
     NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
-    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
     
     NSString *post = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",
@@ -457,5 +631,103 @@
 
 }
 
+#pragma mark -PUT Update PIn
+- (void) updatePIN
+{
+    NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"newPIN\" : \"%@\"}",
+                      walletno,
+                      self.ReNewPIN.text];
+    
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"/UpdatePIN"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+    
+    [request setHTTPMethod:@"PUT"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:requestData];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+  
+    self.idd = 5;
+}
 
+- (void)onTouch
+{
+    self.btnRate.enabled = YES;
+    self.btnLocation.enabled =YES;
+    self.btnInfo.enabled =YES;
+    
+    self.NewPINView.hidden =YES;
+}
+
+- (IBAction)btnNotNow:(id)sender {
+    [self onTouch];
+}
+
+//TODO
+- (IBAction)btnRePIN:(id)sender {
+    //ResendPIN/?walletno={walletno}"
+    //Show Animated
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    
+    responseData = [[NSMutableData alloc] init];
+    
+    
+    //Update PIN
+    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"ResendPIN/?walletno="];
+    NSString *srvcURL = [NSString stringWithFormat:@"%@%@", srvcURL1, walletno];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    self.idd = 3;
+}
+
+- (void) checkPIN
+{
+    
+    if ([self.OldPIN.text isEqualToString:@""])
+    {
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Type Activition PIN" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        return;
+    }
+    else if ([self.NewPIN.text isEqualToString:@""]) {
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Type your new PIN" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        return;
+    }
+    else
+        if (![self.ReNewPIN.text isEqualToString:self.NewPIN.text]) {
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"PIN not match" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            
+            self.ReNewPIN.text  = @"";
+            self.NewPIN.text    = @"";
+            return;
+        }
+
+    //Show Animated
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
+    responseData = [[NSMutableData alloc] init];
+    
+    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"checkPin/?"];
+    NSString *srvcURL = [NSString stringWithFormat:@"%@walletno=%@&pin=%@", srvcURL1, walletno, self.OldPIN.text];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    self.idd = 4;
+}
+
+- (IBAction)btnSubmit:(id)sender {
+    [self checkPIN];
+}
 @end

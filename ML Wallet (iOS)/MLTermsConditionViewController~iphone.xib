@@ -22,11 +22,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXl-6B-4X0">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXl-6B-4X0">
                     <rect key="frame" x="6" y="9" width="308" height="489"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-7Q-okR">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-7Q-okR">
                             <rect key="frame" x="3" y="7" width="302" height="462"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -36,20 +36,13 @@
                         </textView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="a7k-7Q-okR" secondAttribute="bottom" constant="20" id="GzG-RX-Qtc"/>
-                        <constraint firstAttribute="trailing" secondItem="a7k-7Q-okR" secondAttribute="trailing" constant="3" id="bU0-d7-wBG"/>
-                        <constraint firstAttribute="width" constant="308" id="c3a-Q9-xvH"/>
-                        <constraint firstItem="a7k-7Q-okR" firstAttribute="top" secondItem="WXl-6B-4X0" secondAttribute="top" constant="7" id="n3d-iG-qAK"/>
-                        <constraint firstItem="a7k-7Q-okR" firstAttribute="leading" secondItem="WXl-6B-4X0" secondAttribute="leading" constant="3" id="n7Q-2u-m6g"/>
-                    </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n57-eJ-mWf">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-bA-Age">
+                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AhG-bA-Age">
                     <rect key="frame" x="20" y="150" width="280" height="200"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -110,18 +103,10 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="280" id="3u0-Jp-2Dh"/>
-                        <constraint firstAttribute="height" constant="200" id="i8d-el-HQh"/>
-                    </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chT-Ot-srK">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chT-Ot-srK">
                     <rect key="frame" x="132" y="510" width="80" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="38" id="eeg-cs-f2C"/>
-                        <constraint firstAttribute="width" constant="80" id="yJ1-Fr-CxA"/>
-                    </constraints>
                     <state key="normal" title="I Decline" backgroundImage="navbar_bg.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -130,13 +115,9 @@
                         <action selector="btnDecline:" destination="-1" eventType="touchUpInside" id="k2e-yn-u0n"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NE-DG-d7F">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NE-DG-d7F">
                     <rect key="frame" x="220" y="510" width="80" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="38" id="bdA-Yg-5mO"/>
-                        <constraint firstAttribute="width" constant="80" id="mg9-k7-OUA"/>
-                    </constraints>
                     <state key="normal" title="I Agree" backgroundImage="navbar_bg.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -147,18 +128,6 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="WXl-6B-4X0" secondAttribute="bottom" constant="70" id="4lH-sG-rfs"/>
-                <constraint firstAttribute="trailing" secondItem="WXl-6B-4X0" secondAttribute="trailing" constant="6" id="59j-hy-3hK"/>
-                <constraint firstAttribute="bottom" secondItem="2NE-DG-d7F" secondAttribute="bottom" constant="20" id="BQX-Lz-Lqr"/>
-                <constraint firstItem="WXl-6B-4X0" firstAttribute="top" secondItem="1" secondAttribute="top" constant="9" id="ZFG-cK-Dhj"/>
-                <constraint firstItem="WXl-6B-4X0" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="6" id="eyZ-j3-irY"/>
-                <constraint firstItem="2NE-DG-d7F" firstAttribute="leading" secondItem="chT-Ot-srK" secondAttribute="trailing" constant="8" id="flj-1U-Kvi"/>
-                <constraint firstAttribute="trailing" secondItem="2NE-DG-d7F" secondAttribute="trailing" constant="20" id="jrO-lE-F62"/>
-                <constraint firstAttribute="bottom" secondItem="chT-Ot-srK" secondAttribute="bottom" constant="20" id="jy3-z4-OdH"/>
-                <constraint firstItem="AhG-bA-Age" firstAttribute="centerY" secondItem="WXl-6B-4X0" secondAttribute="centerY" constant="-3.5" id="l2g-3g-NJp"/>
-                <constraint firstItem="AhG-bA-Age" firstAttribute="centerX" secondItem="WXl-6B-4X0" secondAttribute="centerX" id="yvh-8w-azx"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

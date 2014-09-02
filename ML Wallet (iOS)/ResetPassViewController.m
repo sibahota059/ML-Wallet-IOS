@@ -64,26 +64,13 @@
     [self define];
     
     //Add Navigator Button
-    UIBarButtonItem *buttonForgotPass = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
-                                                                         style:UIBarButtonItemStylePlain
-                                                                        target:self action:@selector(ForgotPass)];
+    UIBarButtonItem *buttonForgotPass = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"next.png"]
+                                                                          style:UIBarButtonItemStylePlain
+                                                                         target:self
+                                                                         action:@selector(ForgotPass)];
     
 
     self.navigationItem.rightBarButtonItem = buttonForgotPass;
-    
-    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"]
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:@selector(gotoHome)];
-    
-    self.navigationItem.leftBarButtonItem = btnHome;
-}
-
-- (void)gotoHome
-{
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 - (void)ForgotPass

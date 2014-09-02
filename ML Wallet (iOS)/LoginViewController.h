@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 
-@interface LoginViewController : UIViewController <NSURLConnectionDelegate, MBProgressHUDDelegate, UITextFieldDelegate>
+@interface LoginViewController : UIViewController <NSURLConnectionDelegate, MBProgressHUDDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 {
     MBProgressHUD *HUD;
 }
@@ -18,6 +18,18 @@
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (assign, nonatomic) NSUInteger idd;
 @property (nonatomic, assign) BOOL navigationBar;
+
+//NEW PIN
+@property (strong, nonatomic) IBOutlet UIView *NewPINView;
+@property (strong, nonatomic) IBOutlet UITextField *OldPIN;
+@property (strong, nonatomic) IBOutlet UITextField *NewPIN;
+@property (strong, nonatomic) IBOutlet UITextField *ReNewPIN;
+@property (strong, nonatomic) IBOutlet UIButton *btnRate;
+@property (strong, nonatomic) IBOutlet UIButton *btnLocation;
+@property (strong, nonatomic) IBOutlet UIButton *btnInfo;
+- (IBAction)btnNotNow:(id)sender;
+- (IBAction)btnRePIN:(id)sender;
+- (IBAction)btnSubmit:(id)sender;
 
 
 @property (strong, nonatomic) IBOutlet UIView *loginView;
