@@ -78,7 +78,6 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
     [self setInfo];
     
     [self.view addSubview:profileScroll];
-    [self.view addSubview:dialog];
     
     [self addNavigationBarButton];
     
@@ -436,11 +435,7 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
         
     }
     
-    //================================================================================
-    
-    dialog = [[QuestionVerificationDialog alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
-    
-    [dialog setHidden:YES];
+
 
     [profileName setText:[NSString stringWithFormat:@"%@ %@. %@",firstNameValue, middleNameValue, lastNameValue]];
     [profilePhone setText:mobileNumberValue];
@@ -470,16 +465,23 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
     [profileScroll addSubview:email];
     [profileScroll addSubview:profileEmail];
     
-    if(![dialog isHidden])
-    {
-        [dialog setHidden:YES];
-    }
+    dialog = [[QuestionVerificationDialog alloc] initWithFrame:CGRectMake(0, 0, 320, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
+    
+    
+    [self.view addSubview:dialog];
+    [dialog setHidden:YES];
+//
+//    if(![dialog isHidden])
+//    {
+//        [dialog setHidden:YES];
+//    }
 
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
     [email removeFromSuperview];
     [profileEmail removeFromSuperview];
+    [dialog removeFromSuperview];
 }
 
 

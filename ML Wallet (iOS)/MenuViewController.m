@@ -540,6 +540,7 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 
 -(void)checkDevice{
     
+    [self displayProgressBar];
     [account loadAccount];
     
     
@@ -551,11 +552,13 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 - (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
     
     
-   
+    [self dismissProgressBar];
     [self retrieveData];
     [self saveToPaylist];
+
     
-    
+    if([@"1" isEqualToString:[[NSString alloc] initWithFormat:@"%@", resCode]])
+    {
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         {
@@ -567,6 +570,18 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
             AccountMainPad *accountMainPad = [[AccountMainPad alloc] initWithNibName:@"AccountMainPad" bundle:nil];
             [self.navigationController pushViewController:accountMainPad animated:YES];
         }
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:respMessage delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        
+        [alertView show];
+
+
+    }
+    
+        
+    
     
     
     

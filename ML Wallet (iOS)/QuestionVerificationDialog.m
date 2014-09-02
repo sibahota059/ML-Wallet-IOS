@@ -105,7 +105,9 @@ UIView *dimLight;
 
     // CGRectMake(20, 30, 280, 300)
     
-    dialogBackground = [[UIView alloc] initWithFrame:CGRectMake(18, 28, 284, 304)];
+//    dialogBackground = [[UIView alloc] initWithFrame:CGRectMake(18, 28, 284, 304)];
+    dialogBackground = [[UIView alloc] initWithFrame:frame];
+
     [dialogBackground setBackgroundColor:[UIColor whiteColor]];
     
     dialog = [[UIView alloc] initWithFrame:CGRectMake(2, 2, 280, 300)];
@@ -200,6 +202,8 @@ UIView *dimLight;
     UIControl *mask3 = [[UIControl alloc] initWithFrame:radioButtonImage3.frame];
     [mask3 addTarget:self action:@selector(someMethod3:) forControlEvents:UIControlEventTouchUpInside];
     
+//    [dialog setFrame:CGMakeRect(2, 2, 280, 300)];
+    
     [dialog setBackgroundColor:[UIColor blackColor]];
     [dialog addSubview:headerBackground];
     [dialog addSubview:mask1];
@@ -217,7 +221,7 @@ UIView *dimLight;
     [dialog addSubview:answer];
     [dialog addSubview:updateButton];
 
-    answer.delegate = self;
+//    answer.delegate = self;
     [dialogBackground addSubview:dialog];
     
     
@@ -385,18 +389,7 @@ UIView *dimLight;
                      animations:^{dialogBackground.frame = CGRectMake(18, -148, 284, 304); }
                      completion:^(BOOL finished){}];
     
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{dialog.frame = CGRectMake(20, -146, 280, 300); }
-                     completion:^(BOOL finished){}];
-    
-    
-    
-    
-    [self addSubview:dialog];
-    
+
     return YES;
 }
 
@@ -408,12 +401,7 @@ UIView *dimLight;
                      animations:^{dialogBackground.frame = CGRectMake(18, 28, 284, 304); }
                      completion:^(BOOL finished){}];
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{dialog.frame = CGRectMake(20, 30, 280, 300); }
-                     completion:^(BOOL finished){}];
-    
+      
     
     [textField resignFirstResponder];
     
