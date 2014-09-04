@@ -47,6 +47,11 @@ UIView *genderUI;
 
 NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
+UIView *backgroundSelectionView;
+
+UIView *imageSelectionView;
+
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -393,7 +398,13 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     
-    if (([UIImage imageWithData:data1] == nil) &&(whichImage2 == 1))
+    if ( (whichImage1 == 0) && (whichImage2 == 0) && (whichImage3 == 0) && (whichImage4 == 0))
+    {
+        [alert setMessage:@"Please select which image to edit."];
+        
+        [alert show];
+    }
+    else if (([UIImage imageWithData:data1] == nil) &&(whichImage2 == 1))
     {
         [alert setMessage:@"Your first picture slot has no picture, please select a picture there first."];
         
@@ -414,15 +425,15 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     else
     {
         
-        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
-        picker.delegate         = self;
-        picker.allowsEditing    = YES;
-        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-        
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+//        picker.delegate         = self;
+//        picker.allowsEditing    = YES;
+//        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+//        
+//        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 //        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self.navigationController presentViewController:picker animated:YES completion:nil];
-//        [self openImageSelection];
+//        [self.navigationController presentViewController:picker animated:YES completion:nil];
+        [self openImageSelection];
     }
 }
 
@@ -677,6 +688,8 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         image1 = [[UIImage alloc] initWithData:data1];
         imageView1.image = image1;
         [profileImage setImage:image1];
+        userProfileImage = image1 ;
+
         
 
     }
@@ -686,6 +699,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         image2 = [[UIImage alloc] initWithData:data2];
         imageView2.image = image2;
         [profileImage setImage:image2];
+          userProfileImage = image2 ;
 
     }
     else if(whichImage3 == 1)
@@ -694,6 +708,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         image3 = [[UIImage alloc] initWithData:data3];
         imageView3.image = image3;
         [profileImage setImage:image3];
+          userProfileImage = image3 ;
 
     }
     else if(whichImage4 == 1)
@@ -702,8 +717,14 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         image4 = [[UIImage alloc] initWithData:data4];
         imageView4.image = image4;
         [profileImage setImage:image4];
+          userProfileImage = image4 ;
 
     }
+    
+    [backgroundSelectionView removeFromSuperview];
+    
+    [imageSelectionView removeFromSuperview];
+
     
     
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -775,6 +796,13 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 }
 
 -(void)savePressed:(id)sender{
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 750); }
+                     completion:^(BOOL finished){}];
+    
     
      UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:EDITACCOUNT_VAL_ERROR message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
@@ -882,7 +910,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
             strImage2 = [self encodeToBase64String:image1];
         }
         
-        
+        [nationality resignFirstResponder];
         
         [editAccountInfoWS wallet:wallet country:finalCountry province:finalProvince address:finalAddress zipcode:finalZipcode gender:finalGender mnumber:finalNumber work:finalWork nationality:finalNationality photo1:strImage1 photo2:strImage2 photo3:strImage3 photo4:strImage4];
         
@@ -971,13 +999,11 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
-    int height = 0;
-
     
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, height, 320, 568); }
+                     animations:^{self.view.frame = CGRectMake(0, -50, 320, 568); }
                      completion:^(BOOL finished){}];
     
     
@@ -1088,89 +1114,107 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
 
 
-//-(void) openImageSelection{
-//    
-//    CGRect screen = [[UIScreen mainScreen] bounds];
-//    CGFloat width = CGRectGetWidth(screen);
-//    //Bonus height.
-//    CGFloat height = CGRectGetHeight(screen);
-//    
-//    
-//    UIView *backgroundSelectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-//    [backgroundSelectionView setBackgroundColor:[UIColor blackColor]];
-//    [backgroundSelectionView setOpaque:YES];
-//    [backgroundSelectionView setAlpha:0.5f];
-//    
-//    
-//    UIView *imageSelectionView = [[UIView alloc] initWithFrame:CGRectMake(55, 150, 215, 70)];
-//    [imageSelectionView setBackgroundColor:[UIColor whiteColor]];
-//    
-//    //CAMERA
-//    UIImageView *cameraBackground = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 100, 60)];
-//    [cameraBackground setImage:[UIImage imageNamed:@"headerbackground.png"]];
-//    
-//    UIImageView *cameraImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 5, 30, 30)];
-//    [cameraImage setImage:[UIImage imageNamed:@"account_camera.png"]];
-//    
-//    UILabel *cameraLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 100, 25)];
-//    [cameraLabel setFont:[UIFont fontWithName:nil size:13.0f]];
-//    [cameraLabel setTextAlignment:NSTextAlignmentCenter];
-//    [cameraLabel setTextColor:[UIColor whiteColor]];
-//    [cameraLabel setText:@"Camera"];
-//    
-//    
-//    //GALLERY
-//    UIImageView *galleryBackground = [[UIImageView alloc] initWithFrame:CGRectMake(110, 5, 100, 60)];
-//    [galleryBackground setImage:[UIImage imageNamed:@"headerbackground.png"]];
-//    
-//    UIImageView *galleryImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 5, 30, 30)];
-//    [galleryImage setImage:[UIImage imageNamed:@"account_sdcard.png"]];
-//    
-//    UILabel *galleryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 100, 25)];
-//    [galleryLabel setFont:[UIFont fontWithName:nil size:13.0f]];
-//     [galleryLabel setTextAlignment:NSTextAlignmentCenter];
-//    [galleryLabel setTextColor:[UIColor whiteColor]];
-//    [galleryLabel setText:@"SD Card"];
-//    
-//    
-//    
-//    UIControl *cameraMask1 = [[UIControl alloc] initWithFrame:cameraBackground.frame];
-//    [mask1 addTarget:self action:@selector(someMethod1:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    
-//    UIControl *galleryMask1 = [[UIControl alloc] initWithFrame:galleryBackground.frame];
-//    [mask1 addTarget:self action:@selector(someMethod1:) forControlEvents:UIControlEventTouchUpInside];
-//
-//
-//
-//    
-//    
-//    
-//    
-//    
-//    [cameraBackground addSubview:cameraImage];
-//    [cameraBackground addSubview:cameraLabel];
-//    
-//    [galleryBackground addSubview:galleryImage];
-//    [galleryBackground addSubview:galleryLabel];
-//
-//
-//    
-//    [imageSelectionView addSubview:cameraBackground];
-//    
-//    [imageSelectionView addSubview:galleryBackground];
-//    
-//    
-//    
-//    [profileScroll addSubview:backgroundSelectionView];
-//
-//    [profileScroll addSubview:imageSelectionView];
-//    
-//}
+-(void) openImageSelection{
+    
+    CGRect screen = [[UIScreen mainScreen] bounds];
+    CGFloat width = CGRectGetWidth(screen);
+    //Bonus height.
+    CGFloat height = CGRectGetHeight(screen);
+    
+    
+    backgroundSelectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    [backgroundSelectionView setBackgroundColor:[UIColor blackColor]];
+    [backgroundSelectionView setOpaque:YES];
+    [backgroundSelectionView setAlpha:0.5f];
+    
+    
+    imageSelectionView = [[UIView alloc] initWithFrame:CGRectMake(55, 150, 215, 70)];
+    [imageSelectionView setBackgroundColor:[UIColor whiteColor]];
+    
+    //CAMERA
+    UIImageView *cameraBackground = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 100, 60)];
+    [cameraBackground setImage:[UIImage imageNamed:@"headerbackground.png"]];
+    
+    UIImageView *cameraImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 5, 30, 30)];
+    [cameraImage setImage:[UIImage imageNamed:@"account_camera.png"]];
+    
+    UILabel *cameraLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 100, 25)];
+    [cameraLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+    [cameraLabel setTextAlignment:NSTextAlignmentCenter];
+    [cameraLabel setTextColor:[UIColor whiteColor]];
+    [cameraLabel setText:@"Camera"];
+    
+    
+    //GALLERY
+    UIImageView *galleryBackground = [[UIImageView alloc] initWithFrame:CGRectMake(110, 5, 100, 60)];
+    [galleryBackground setImage:[UIImage imageNamed:@"headerbackground.png"]];
+    
+    UIImageView *galleryImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 5, 30, 30)];
+    [galleryImage setImage:[UIImage imageNamed:@"account_sdcard.png"]];
+    
+    UILabel *galleryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 100, 25)];
+    [galleryLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+     [galleryLabel setTextAlignment:NSTextAlignmentCenter];
+    [galleryLabel setTextColor:[UIColor whiteColor]];
+    [galleryLabel setText:@"SD Card"];
+    
+    
+    
+    UIControl *cameraMask1 = [[UIControl alloc] initWithFrame:cameraBackground.frame];
+    [cameraMask1 addTarget:self action:@selector(cameraSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIControl *galleryMask1 = [[UIControl alloc] initWithFrame:galleryBackground.frame];
+    [galleryMask1 addTarget:self action:@selector(gallerySelected:) forControlEvents:UIControlEventTouchUpInside];
+
+
+   
+    
+    [cameraBackground addSubview:cameraImage];
+    [cameraBackground addSubview:cameraLabel];
+    
+    [galleryBackground addSubview:galleryImage];
+    [galleryBackground addSubview:galleryLabel];
+
+
+    
+    [imageSelectionView addSubview:cameraBackground];
+    
+    [imageSelectionView addSubview:galleryBackground];
+    
+    [imageSelectionView addSubview:cameraMask1];
+    
+    [imageSelectionView addSubview:galleryMask1];
+    
+    
+    [profileScroll addSubview:backgroundSelectionView];
+
+    [profileScroll addSubview:imageSelectionView];
 
 
 
+}
+-(void)cameraSelected:(id)sender{
 
+    
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate         = self;
+    picker.allowsEditing    = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self.navigationController presentViewController:picker animated:YES completion:nil];
+    
+}
+-(void)gallerySelected:(id)sender{
+    
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate         = self;
+    picker.allowsEditing    = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self.navigationController presentViewController:picker animated:YES completion:nil];
+}
 
 
 
