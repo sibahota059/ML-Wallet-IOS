@@ -37,7 +37,9 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(320, 400)];
+
     
+       
     //create object of MBProgressHUD class, set delegate, and add loader view
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -104,6 +106,8 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     oldPassword.secureTextEntry = YES;
     [oldPassword setBackgroundColor:[UIColor whiteColor]];
     [oldPassword setPlaceholder:@" Old Password"];
+    [oldPassword setReturnKeyType:UIReturnKeyDone];
+    oldPassword.delegate = self;
     
     
     
@@ -119,6 +123,8 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     newPassword.secureTextEntry = YES;
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setPlaceholder:@" New Password"];
+    [newPassword setReturnKeyType:UIReturnKeyDone];
+    newPassword.delegate = self;
     
     
     //Address
@@ -133,6 +139,8 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     confirmPassword.secureTextEntry = YES;
     [confirmPassword setBackgroundColor:[UIColor whiteColor]];
     [confirmPassword setPlaceholder:@" Confirm Password"];
+    [confirmPassword setReturnKeyType:UIReturnKeyDone];
+    confirmPassword.delegate = self;
     
 
     [profileScroll addSubview:oldPassword];
@@ -316,6 +324,42 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     
 }
 
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    Boolean isLatest = [ [ UIScreen mainScreen ] bounds ].size.height == 568;
+    
+    if (!isLatest)
+    {
+        if(textField == confirmPassword)
+        {
+            
+            [UIView animateWithDuration:0.5
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{self.view.frame = CGRectMake(0, 50, 320,     568); }
+                             completion:^(BOOL finished){}];
+        }
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
+                     completion:^(BOOL finished){}];
+    
+    [textField resignFirstResponder];
+    
+    
+    return YES;
+    
+}
 
 
 @end

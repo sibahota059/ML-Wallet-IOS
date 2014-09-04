@@ -254,6 +254,7 @@ int hasSelectedPad = 0;
     country.leftView = leftMarginCountry;
     country.leftViewMode = UITextFieldViewModeAlways;
     [country setBackgroundColor:[UIColor whiteColor]];
+    [country setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -267,6 +268,7 @@ int hasSelectedPad = 0;
     province.leftView = leftMarginProvince;
     province.leftViewMode = UITextFieldViewModeAlways;
     [province setBackgroundColor:[UIColor whiteColor]];
+    [province setReturnKeyType:UIReturnKeyNext];
     
     
     //Address
@@ -279,6 +281,7 @@ int hasSelectedPad = 0;
     address.leftView = leftMarginAddress;
     address.leftViewMode = UITextFieldViewModeAlways;
     [address setBackgroundColor:[UIColor whiteColor]];
+    [address setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -292,6 +295,8 @@ int hasSelectedPad = 0;
     zipcode.leftView = leftMarginZipCode;
     zipcode.leftViewMode = UITextFieldViewModeAlways;
     [zipcode setBackgroundColor:[UIColor whiteColor]];
+    [zipcode setReturnKeyType:UIReturnKeyNext];
+    [zipcode setKeyboardType:UIKeyboardTypeNumberPad];
     
     
     
@@ -305,6 +310,7 @@ int hasSelectedPad = 0;
     gender.leftView = leftMarginGender;
     gender.leftViewMode = UITextFieldViewModeAlways;
     [gender setBackgroundColor:[UIColor whiteColor]];
+    [gender setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -318,6 +324,8 @@ int hasSelectedPad = 0;
     mobileNumber.leftView = leftMarginNumber;
     mobileNumber.leftViewMode = UITextFieldViewModeAlways;
     [mobileNumber setBackgroundColor:[UIColor whiteColor]];
+    [mobileNumber setReturnKeyType:UIReturnKeyNext];
+    [mobileNumber setKeyboardType:UIKeyboardTypeNumberPad];
     
     
     //Work
@@ -330,6 +338,7 @@ int hasSelectedPad = 0;
     work.leftView = leftMarginWork;
     work.leftViewMode = UITextFieldViewModeAlways;
     [work setBackgroundColor:[UIColor whiteColor]];
+    [work setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -343,6 +352,7 @@ int hasSelectedPad = 0;
     nationality.leftView = leftMarginNationality;
     nationality.leftViewMode = UITextFieldViewModeAlways;
     [nationality setBackgroundColor:[UIColor whiteColor]];
+    [nationality setReturnKeyType:UIReturnKeyDone];
     
     country.delegate = self;
     province.delegate = self;
@@ -659,6 +669,7 @@ int hasSelectedPad = 0;
         data1 = imgData;
         image1 = [[UIImage alloc] initWithData:data1];
         imageView1.image = image1;
+        [profileImage setImage:image1];
         
         
     }
@@ -667,6 +678,7 @@ int hasSelectedPad = 0;
         data2 = imgData;
         image2 = [[UIImage alloc] initWithData:data2];
         imageView2.image = image2;
+         [profileImage setImage:image2];
         
     }
     else if(whichImage3 == 1)
@@ -674,6 +686,7 @@ int hasSelectedPad = 0;
         data3 = imgData;
         image3 = [[UIImage alloc] initWithData:data3];
         imageView3.image = image3;
+         [profileImage setImage:image3];
         
     }
     else if(whichImage4 == 1)
@@ -681,6 +694,7 @@ int hasSelectedPad = 0;
         data4 = imgData;
         image4 = [[UIImage alloc] initWithData:data4];
         imageView4.image = image4;
+         [profileImage setImage:image4];
         
     }
     

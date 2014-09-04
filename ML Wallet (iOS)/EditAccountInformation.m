@@ -43,6 +43,7 @@ UITextField *firstName, *middleName, *lastName, *country, *province, *address, *
 
 int whichImage1, whichImage2, whichImage3, whichImage4;
 int hasSelected = 0;
+UIView *genderUI;
 
 NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
@@ -52,7 +53,17 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
     [profileScroll setScrollEnabled:YES];
-    [profileScroll setContentSize:CGSizeMake(320, 850)];
+    
+    
+    if(!([ [ UIScreen mainScreen ] bounds ].size.height == 568))
+    {
+        [profileScroll setContentSize:CGSizeMake(320, 900)];
+    }
+    else{
+        
+        [profileScroll setContentSize:CGSizeMake(320, 850)];
+    }
+    
     
     editAccountInfoWS = [EditAccountInfoWebService new];
     loadData = [NSDictionary initRead_LoadWallet_Data];
@@ -72,7 +83,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [self createAccountLabel];
     [self createAccountValue];
     [self setInfo];
-
+    [self selectGender];
     
     [self.view addSubview:profileScroll];
     [self addNavigationBarButton];
@@ -245,6 +256,8 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     country.leftViewMode = UITextFieldViewModeAlways;
     [country setBackgroundColor:[UIColor whiteColor]];
     
+    [country setReturnKeyType:UIReturnKeyNext];
+    
     
     
     //Province
@@ -257,6 +270,8 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     province.leftView = leftMarginProvince;
     province.leftViewMode = UITextFieldViewModeAlways;
     [province setBackgroundColor:[UIColor whiteColor]];
+    [province setReturnKeyType:UIReturnKeyNext];
+    
     
     
     //Address
@@ -269,6 +284,13 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     address.leftView = leftMarginAddress;
     address.leftViewMode = UITextFieldViewModeAlways;
     [address setBackgroundColor:[UIColor whiteColor]];
+    [address setReturnKeyType:UIReturnKeyNext];
+    
+    
+  
+    
+    
+    
     
     
     
@@ -282,6 +304,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     zipcode.leftView = leftMarginZipCode;
     zipcode.leftViewMode = UITextFieldViewModeAlways;
     [zipcode setBackgroundColor:[UIColor whiteColor]];
+    [zipcode setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -295,7 +318,11 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     gender.leftView = leftMarginGender;
     gender.leftViewMode = UITextFieldViewModeAlways;
     [gender setBackgroundColor:[UIColor whiteColor]];
+    [gender setReturnKeyType:UIReturnKeyNext];
+    gender.enabled = NO;
     
+    UIControl *genderSelection = [[UIControl alloc] initWithFrame:gender.frame];
+    [genderSelection addTarget:self action:@selector(showGenderSelection:) forControlEvents:UIControlEventTouchUpInside];
     
     
     //Mobile Number
@@ -308,6 +335,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     mobileNumber.leftView = leftMarginNumber;
     mobileNumber.leftViewMode = UITextFieldViewModeAlways;
     [mobileNumber setBackgroundColor:[UIColor whiteColor]];
+    [mobileNumber setReturnKeyType:UIReturnKeyNext];
     
     
     //Work
@@ -320,6 +348,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     work.leftView = leftMarginWork;
     work.leftViewMode = UITextFieldViewModeAlways;
     [work setBackgroundColor:[UIColor whiteColor]];
+    [work setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -333,6 +362,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     nationality.leftView = leftMarginNationality;
     nationality.leftViewMode = UITextFieldViewModeAlways;
     [nationality setBackgroundColor:[UIColor whiteColor]];
+    [nationality setReturnKeyType:UIReturnKeyDone];
     
     country.delegate = self;
     province.delegate = self;
@@ -351,6 +381,8 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
     [profileScroll addSubview:mobileNumber];
     [profileScroll addSubview:work];
     [profileScroll addSubview:nationality];
+    [profileScroll addSubview:genderSelection];
+    
     
 }
 
@@ -388,7 +420,9 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
         
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self.navigationController presentViewController:picker animated:YES completion:nil];
+//        [self openImageSelection];
     }
 }
 
@@ -642,6 +676,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         data1 = imgData;
         image1 = [[UIImage alloc] initWithData:data1];
         imageView1.image = image1;
+        [profileImage setImage:image1];
         
 
     }
@@ -650,6 +685,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         data2 = imgData;
         image2 = [[UIImage alloc] initWithData:data2];
         imageView2.image = image2;
+        [profileImage setImage:image2];
 
     }
     else if(whichImage3 == 1)
@@ -657,6 +693,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         data3 = imgData;
         image3 = [[UIImage alloc] initWithData:data3];
         imageView3.image = image3;
+        [profileImage setImage:image3];
 
     }
     else if(whichImage4 == 1)
@@ -664,6 +701,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
         data4 = imgData;
         image4 = [[UIImage alloc] initWithData:data4];
         imageView4.image = image4;
+        [profileImage setImage:image4];
 
     }
     
@@ -915,8 +953,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 }
 
 - (UIImage*)imageWithImage:(UIImage*)image
-              scaledToSize:(CGSize)newSize
-{
+              scaledToSize:(CGSize)newSize{
     UIGraphicsBeginImageContext( newSize );
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -934,12 +971,13 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
-    
+    int height = 0;
+
     
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, -100, 320, 568); }
+                     animations:^{self.view.frame = CGRectMake(0, height, 320, 568); }
                      completion:^(BOOL finished){}];
     
     
@@ -947,6 +985,7 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
     
     [UIView animateWithDuration:0.5
                           delay:0.0
@@ -966,5 +1005,174 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 - (NSString *)encodeToBase64String:(UIImage *)image {
     return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
+
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if((textField == zipcode) || (textField == mobileNumber))
+    {
+    // Check for non-numeric characters
+    NSUInteger lengthOfString = string.length;
+    for (NSInteger index = 0; index < lengthOfString; index++) {
+        unichar character = [string characterAtIndex:index];
+        if (character < 48) return NO; // 48 unichar for 0
+        if (character > 57) return NO; // 57 unichar for 9
+    }
+    // Check for total length
+    NSUInteger proposedNewLength = textField.text.length - range.length + string.length;
+    if (proposedNewLength > 6)
+        return YES;
+    }
+    return YES;
+}
+
+
+//FOR GENDER================================================>
+
+-(void)selectGender{
+
+   
+    genderUI = [[UIView alloc] initWithFrame:CGRectMake(21, 532, 278, 58)];
+    [genderUI setBackgroundColor:[UIColor blackColor]];
+    
+    
+    UILabel *male = [[UILabel alloc] initWithFrame:CGRectMake(2, 2, 274, 26)];
+    [male setFont:[UIFont fontWithName:nil size:20.0f]];
+    [male setBackgroundColor:[UIColor whiteColor]];
+    [male setTextAlignment:NSTextAlignmentCenter];
+    [male setText:@"Male"];
+    
+    UIControl *maleLabel = [[UIControl alloc] initWithFrame:male.frame];
+    [maleLabel addTarget:self action:@selector(maleSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *female = [[UILabel alloc] initWithFrame:CGRectMake(2, 30, 274, 26)];
+    [female setFont:[UIFont fontWithName:nil size:20.0f]];
+    [female setBackgroundColor:[UIColor whiteColor]];
+    [female setTextAlignment:NSTextAlignmentCenter];
+    [female setText:@"Female"];
+    
+    UIControl *femaleLabel = [[UIControl alloc] initWithFrame:female.frame];
+    [femaleLabel addTarget:self action:@selector(femaleSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    [genderUI addSubview:male];
+    [genderUI addSubview:female];
+    [genderUI addSubview:maleLabel];
+    [genderUI addSubview:femaleLabel];
+
+    
+    
+    [profileScroll addSubview:genderUI];
+    [genderUI setHidden:YES];
+
+}
+
+-(void) maleSelected:(id)sender{
+    gender.text = @"Male";
+    [genderUI setHidden:YES];
+    
+}
+
+-(void) femaleSelected:(id)sender{
+    gender.text = @"Female";
+    [genderUI setHidden:YES];
+}
+
+-(void) showGenderSelection:(id)sender{
+    [genderUI setHidden:NO];
+}
+
+//END GENDER================================================>
+
+
+
+//-(void) openImageSelection{
+//    
+//    CGRect screen = [[UIScreen mainScreen] bounds];
+//    CGFloat width = CGRectGetWidth(screen);
+//    //Bonus height.
+//    CGFloat height = CGRectGetHeight(screen);
+//    
+//    
+//    UIView *backgroundSelectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+//    [backgroundSelectionView setBackgroundColor:[UIColor blackColor]];
+//    [backgroundSelectionView setOpaque:YES];
+//    [backgroundSelectionView setAlpha:0.5f];
+//    
+//    
+//    UIView *imageSelectionView = [[UIView alloc] initWithFrame:CGRectMake(55, 150, 215, 70)];
+//    [imageSelectionView setBackgroundColor:[UIColor whiteColor]];
+//    
+//    //CAMERA
+//    UIImageView *cameraBackground = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 100, 60)];
+//    [cameraBackground setImage:[UIImage imageNamed:@"headerbackground.png"]];
+//    
+//    UIImageView *cameraImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 5, 30, 30)];
+//    [cameraImage setImage:[UIImage imageNamed:@"account_camera.png"]];
+//    
+//    UILabel *cameraLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 100, 25)];
+//    [cameraLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+//    [cameraLabel setTextAlignment:NSTextAlignmentCenter];
+//    [cameraLabel setTextColor:[UIColor whiteColor]];
+//    [cameraLabel setText:@"Camera"];
+//    
+//    
+//    //GALLERY
+//    UIImageView *galleryBackground = [[UIImageView alloc] initWithFrame:CGRectMake(110, 5, 100, 60)];
+//    [galleryBackground setImage:[UIImage imageNamed:@"headerbackground.png"]];
+//    
+//    UIImageView *galleryImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 5, 30, 30)];
+//    [galleryImage setImage:[UIImage imageNamed:@"account_sdcard.png"]];
+//    
+//    UILabel *galleryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 100, 25)];
+//    [galleryLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+//     [galleryLabel setTextAlignment:NSTextAlignmentCenter];
+//    [galleryLabel setTextColor:[UIColor whiteColor]];
+//    [galleryLabel setText:@"SD Card"];
+//    
+//    
+//    
+//    UIControl *cameraMask1 = [[UIControl alloc] initWithFrame:cameraBackground.frame];
+//    [mask1 addTarget:self action:@selector(someMethod1:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    
+//    UIControl *galleryMask1 = [[UIControl alloc] initWithFrame:galleryBackground.frame];
+//    [mask1 addTarget:self action:@selector(someMethod1:) forControlEvents:UIControlEventTouchUpInside];
+//
+//
+//
+//    
+//    
+//    
+//    
+//    
+//    [cameraBackground addSubview:cameraImage];
+//    [cameraBackground addSubview:cameraLabel];
+//    
+//    [galleryBackground addSubview:galleryImage];
+//    [galleryBackground addSubview:galleryLabel];
+//
+//
+//    
+//    [imageSelectionView addSubview:cameraBackground];
+//    
+//    [imageSelectionView addSubview:galleryBackground];
+//    
+//    
+//    
+//    [profileScroll addSubview:backgroundSelectionView];
+//
+//    [profileScroll addSubview:imageSelectionView];
+//    
+//}
+
+
+
+
+
+
+
 
 @end

@@ -98,12 +98,15 @@ UILabel *nameLabel, *bdayLabel, *countryLabel;
     countryLabel.text = country;
     
     UIButton *accountButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 325, 100, 30)];
-    [accountButton setBackgroundColor:[UIColor redColor]];
+    [accountButton setBackgroundImage:[UIImage imageNamed:@"headerbackground.png"]
+                        forState:UIControlStateNormal];
+    
     [accountButton setTitle:@"Account" forState:UIControlStateNormal];
     [accountButton addTarget:self action:@selector(accountButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *profileButton = [[UIButton alloc] initWithFrame:CGRectMake(170, 325, 100, 30)];
-    [profileButton setBackgroundColor:[UIColor redColor]];
+    [profileButton setBackgroundImage:[UIImage imageNamed:@"headerbackground.png"]
+                             forState:UIControlStateNormal];
     [profileButton setTitle:@"Profile" forState:UIControlStateNormal];
     [profileButton addTarget:self action:@selector(profileButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     

@@ -106,6 +106,8 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [oldUsername setBackgroundColor:[UIColor whiteColor]];
     [oldUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldUsername setPlaceholder:@" Old username"];
+    [oldUsername setReturnKeyType:UIReturnKeyDone];
+    oldUsername.delegate = self;
     
     
     
@@ -121,6 +123,9 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [newUsername setBackgroundColor:[UIColor whiteColor]];
     [newUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newUsername setPlaceholder:@" New username"];
+    [newUsername setReturnKeyType:UIReturnKeyDone];
+    newUsername.delegate = self;
+    
     
     
     //Username
@@ -135,6 +140,8 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [confirmUsername setBackgroundColor:[UIColor whiteColor]];
     [confirmUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmUsername setPlaceholder:@" Confirm username"];
+    [confirmUsername setReturnKeyType:UIReturnKeyDone];
+    confirmUsername.delegate = self;
     
     
     [profileScroll addSubview:oldUsername];
@@ -355,6 +362,42 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     
     [HUD hide:YES];
     [HUD show:NO];
+    
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    Boolean isLatest = [ [ UIScreen mainScreen ] bounds ].size.height == 568;
+    
+    if (!isLatest)
+    {
+        if(textField == confirmUsername)
+        {
+            
+            [UIView animateWithDuration:0.5
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{self.view.frame = CGRectMake(0, 50, 320,     568); }
+                             completion:^(BOOL finished){}];
+        }
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
+                     completion:^(BOOL finished){}];
+    
+    [textField resignFirstResponder];
+    
+    
+    return YES;
     
 }
 

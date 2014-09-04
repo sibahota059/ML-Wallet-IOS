@@ -66,7 +66,21 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
 
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
     [profileScroll setScrollEnabled:YES];
-    [profileScroll setContentSize:CGSizeMake(320, 600)];
+    
+    
+   
+    
+    if(!([ [ UIScreen mainScreen ] bounds ].size.height == 568))
+    {
+         [profileScroll setContentSize:CGSizeMake(320, 700)];
+    }
+    else{
+        
+         [profileScroll setContentSize:CGSizeMake(320, 600)];
+    }
+
+    
+    
     
     loadData = [NSDictionary initRead_LoadWallet_Data];
     [self loadFromPlaylist];

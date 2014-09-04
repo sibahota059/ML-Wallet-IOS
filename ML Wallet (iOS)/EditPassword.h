@@ -10,6 +10,6 @@
 #import "EditPasswordWebService.h"
 #import "MBProgressHUD.h"
 
-@interface EditPassword : UIViewController <EditPasswordDelegate, MBProgressHUDDelegate>
+@interface EditPassword : UIViewController <UITextFieldDelegate, EditPasswordDelegate, MBProgressHUDDelegate>
 
 @end

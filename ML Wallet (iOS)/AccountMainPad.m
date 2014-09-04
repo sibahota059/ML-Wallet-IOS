@@ -177,13 +177,15 @@ NSDictionary *loadData;
     countryLabel.text = country;
     
     UIButton *accountButton = [[UIButton alloc] initWithFrame:CGRectMake(138, 680, 240, 72)];
-    [accountButton setBackgroundColor:[UIColor redColor]];
+    [accountButton setBackgroundImage:[UIImage imageNamed:@"headerbackground.png"]
+                            forState:UIControlStateNormal];
     accountButton.titleLabel.font = [UIFont systemFontOfSize:31.0f];
     [accountButton setTitle:@"Account" forState:UIControlStateNormal];
     [accountButton addTarget:self action:@selector(accountButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *profileButton = [[UIButton alloc] initWithFrame:CGRectMake(398, 680, 240, 72)];
-    [profileButton setBackgroundColor:[UIColor redColor]];
+    [profileButton setBackgroundImage:[UIImage imageNamed:@"headerbackground.png"]
+                            forState:UIControlStateNormal];
     profileButton.titleLabel.font = [UIFont systemFontOfSize:31.0f];
     [profileButton setTitle:@"Profile" forState:UIControlStateNormal];
     [profileButton addTarget:self action:@selector(profileButtonClicked:) forControlEvents:UIControlEventTouchUpInside];

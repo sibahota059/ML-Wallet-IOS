@@ -332,7 +332,8 @@ UIView *dimLight;
     //CONFIRM BUTTON
     updateButton = [[UIButton alloc] initWithFrame:CGRectMake(80, 245, 120, 40)];
     
-    [updateButton setBackgroundColor:[UIColor redColor]];
+    [updateButton setBackgroundImage:[UIImage imageNamed:@"headerbackground.png"]
+                             forState:UIControlStateNormal];
     [updateButton setTitle:@"Confirm" forState:UIControlStateNormal];
     [updateButton setTintColor:[UIColor whiteColor]];
     [updateButton addTarget:target action:selector forControlEvents:events];
@@ -342,17 +343,36 @@ UIView *dimLight;
     UIControl *mask1 = [[UIControl alloc] initWithFrame:radioButtonImage1.frame];
     [mask1 addTarget:self action:@selector(someMethod1:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIControl *labelMask1 = [[UIControl alloc] initWithFrame:questionLabel1.frame];
+    [labelMask1 addTarget:self action:@selector(someMethod1:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
     UIControl *mask2 = [[UIControl alloc] initWithFrame:radioButtonImage2.frame];
     [mask2 addTarget:self action:@selector(someMethod2:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIControl *labelMask2 = [[UIControl alloc] initWithFrame:questionLabel2.frame];
+    [labelMask2 addTarget:self action:@selector(someMethod2:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
     
     UIControl *mask3 = [[UIControl alloc] initWithFrame:radioButtonImage3.frame];
     [mask3 addTarget:self action:@selector(someMethod3:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIControl *labelMask3 = [[UIControl alloc] initWithFrame:questionLabel3.frame];
+    [labelMask3 addTarget:self action:@selector(someMethod3:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
     [dialog setBackgroundColor:[UIColor blackColor]];
     [dialog addSubview:headerBackground];
     [dialog addSubview:mask1];
+    [dialog addSubview:labelMask1];
     [dialog addSubview:mask2];
+    [dialog addSubview:labelMask2];
     [dialog addSubview:mask3];
+    [dialog addSubview:labelMask3];
     
     [dialog addSubview:radioButtonImage1];
     [dialog addSubview:questionLabel1];
@@ -380,6 +400,8 @@ UIView *dimLight;
     
     
 }
+
+
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
