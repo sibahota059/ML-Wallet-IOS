@@ -50,6 +50,11 @@ int whichImage1, whichImage2, whichImage3, whichImage4;
 
 int hasSelectedPad = 0;
 
+UIView *genderUI;
+UIView *imageSelectionView;
+UIView *backgroundSelectionView;
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -75,7 +80,7 @@ int hasSelectedPad = 0;
     [self createAccountLabel];
     [self createAccountValue];
     [self setInfo];
-    
+    [self selectGender];
     
     [self.view addSubview:profileScroll];
     [self addNavigationBarButton];
@@ -311,6 +316,10 @@ int hasSelectedPad = 0;
     gender.leftViewMode = UITextFieldViewModeAlways;
     [gender setBackgroundColor:[UIColor whiteColor]];
     [gender setReturnKeyType:UIReturnKeyNext];
+    gender.enabled = NO;
+    
+    UIControl *genderSelection = [[UIControl alloc] initWithFrame:gender.frame];
+    [genderSelection addTarget:self action:@selector(showGenderSelection:) forControlEvents:UIControlEventTouchUpInside];
     
     
     
@@ -371,6 +380,7 @@ int hasSelectedPad = 0;
     [profileScroll addSubview:mobileNumber];
     [profileScroll addSubview:work];
     [profileScroll addSubview:nationality];
+    [profileScroll addSubview:genderSelection];
     
 }
 
@@ -386,7 +396,13 @@ int hasSelectedPad = 0;
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     
-    if (([UIImage imageWithData:data1] == nil) &&(whichImage2 == 1))
+    if ( (whichImage1 == 0) && (whichImage2 == 0) && (whichImage3 == 0) && (whichImage4 == 0))
+    {
+        [alert setMessage:@"Please select which image to edit."];
+        
+        [alert show];
+    }
+    else if (([UIImage imageWithData:data1] == nil) &&(whichImage2 == 1))
     {
         [alert setMessage:@"Your first picture slot has no picture, please select a picture there first."];
         
@@ -407,13 +423,15 @@ int hasSelectedPad = 0;
     else
     {
         
-        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
-        picker.delegate         = self;
-        picker.allowsEditing    = YES;
-        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-        
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self.navigationController presentViewController:picker animated:YES completion:nil];
+        //        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        //        picker.delegate         = self;
+        //        picker.allowsEditing    = YES;
+        //        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        //
+        //        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        //        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        //        [self.navigationController presentViewController:picker animated:YES completion:nil];
+        [self openImageSelection];
     }
 }
 
@@ -996,12 +1014,200 @@ int hasSelectedPad = 0;
     
 }
 
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if((textField == zipcode) || (textField == mobileNumber))
+    {
+        // Check for non-numeric characters
+        NSUInteger lengthOfString = string.length;
+        for (NSInteger index = 0; index < lengthOfString; index++) {
+            unichar character = [string characterAtIndex:index];
+            if (character < 48) return NO; // 48 unichar for 0
+            if (character > 57) return NO; // 57 unichar for 9
+        }
+        // Check for total length
+        NSUInteger proposedNewLength = textField.text.length - range.length + string.length;
+        if (proposedNewLength > 6)
+            return YES;
+    }
+    return YES;
+}
+
+
 - (NSString *)encodeToBase64String:(UIImage *)image {
     return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
 
 
 
+
+
+
+
+
+
+//FOR GENDER================================================>
+
+-(void)selectGender{
+    
+    genderUI = [[UIView alloc] initWithFrame:CGRectMake(169, 707, 434, 58)];
+    [genderUI setBackgroundColor:[UIColor blackColor]];
+    
+    
+    UILabel *male = [[UILabel alloc] initWithFrame:CGRectMake(2, 2, 430, 26)];
+    [male setFont:[UIFont fontWithName:nil size:20.0f]];
+    [male setBackgroundColor:[UIColor whiteColor]];
+    [male setTextAlignment:NSTextAlignmentCenter];
+    [male setText:@"Male"];
+    
+    UIControl *maleLabel = [[UIControl alloc] initWithFrame:male.frame];
+    [maleLabel addTarget:self action:@selector(maleSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *female = [[UILabel alloc] initWithFrame:CGRectMake(2, 30, 430, 26)];
+    [female setFont:[UIFont fontWithName:nil size:20.0f]];
+    [female setBackgroundColor:[UIColor whiteColor]];
+    [female setTextAlignment:NSTextAlignmentCenter];
+    [female setText:@"Female"];
+    
+    UIControl *femaleLabel = [[UIControl alloc] initWithFrame:female.frame];
+    [femaleLabel addTarget:self action:@selector(femaleSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    [genderUI addSubview:male];
+    [genderUI addSubview:female];
+    [genderUI addSubview:maleLabel];
+    [genderUI addSubview:femaleLabel];
+    
+    
+    
+    [profileScroll addSubview:genderUI];
+    [genderUI setHidden:YES];
+    
+}
+
+-(void) maleSelected:(id)sender{
+    gender.text = @"Male";
+    [genderUI setHidden:YES];
+    
+}
+
+-(void) femaleSelected:(id)sender{
+    gender.text = @"Female";
+    [genderUI setHidden:YES];
+}
+
+-(void) showGenderSelection:(id)sender{
+    [genderUI setHidden:NO];
+}
+
+//END GENDER================================================>
+
+
+
+-(void) openImageSelection{
+    
+    CGRect screen = [[UIScreen mainScreen] bounds];
+    CGFloat width = CGRectGetWidth(screen);
+    //Bonus height.
+    CGFloat height = CGRectGetHeight(screen);
+    
+    
+    backgroundSelectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    [backgroundSelectionView setBackgroundColor:[UIColor blackColor]];
+    [backgroundSelectionView setOpaque:YES];
+    [backgroundSelectionView setAlpha:0.5f];
+    
+    
+    imageSelectionView = [[UIView alloc] initWithFrame:CGRectMake((width/2 - 107), (width/2 - 35), 215, 70)];
+    [imageSelectionView setBackgroundColor:[UIColor whiteColor]];
+    
+    //CAMERA
+    UIImageView *cameraBackground = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 100, 60)];
+    [cameraBackground setImage:[UIImage imageNamed:@"headerbackground.png"]];
+    
+    UIImageView *cameraImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 5, 30, 30)];
+    [cameraImage setImage:[UIImage imageNamed:@"account_camera.png"]];
+    
+    UILabel *cameraLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 100, 25)];
+    [cameraLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+    [cameraLabel setTextAlignment:NSTextAlignmentCenter];
+    [cameraLabel setTextColor:[UIColor whiteColor]];
+    [cameraLabel setText:@"Camera"];
+    
+    
+    //GALLERY
+    UIImageView *galleryBackground = [[UIImageView alloc] initWithFrame:CGRectMake(110, 5, 100, 60)];
+    [galleryBackground setImage:[UIImage imageNamed:@"headerbackground.png"]];
+    
+    UIImageView *galleryImage = [[UIImageView alloc] initWithFrame:CGRectMake(35, 5, 30, 30)];
+    [galleryImage setImage:[UIImage imageNamed:@"account_sdcard.png"]];
+    
+    UILabel *galleryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 100, 25)];
+    [galleryLabel setFont:[UIFont fontWithName:nil size:13.0f]];
+    [galleryLabel setTextAlignment:NSTextAlignmentCenter];
+    [galleryLabel setTextColor:[UIColor whiteColor]];
+    [galleryLabel setText:@"SD Card"];
+    
+    
+    
+    UIControl *cameraMask1 = [[UIControl alloc] initWithFrame:cameraBackground.frame];
+    [cameraMask1 addTarget:self action:@selector(cameraSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIControl *galleryMask1 = [[UIControl alloc] initWithFrame:galleryBackground.frame];
+    [galleryMask1 addTarget:self action:@selector(gallerySelected:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    [cameraBackground addSubview:cameraImage];
+    [cameraBackground addSubview:cameraLabel];
+    
+    [galleryBackground addSubview:galleryImage];
+    [galleryBackground addSubview:galleryLabel];
+    
+    
+    
+    [imageSelectionView addSubview:cameraBackground];
+    
+    [imageSelectionView addSubview:galleryBackground];
+    
+    [imageSelectionView addSubview:cameraMask1];
+    
+    [imageSelectionView addSubview:galleryMask1];
+    
+    
+    [profileScroll addSubview:backgroundSelectionView];
+    
+    [profileScroll addSubview:imageSelectionView];
+    
+    
+    
+}
+-(void)cameraSelected:(id)sender{
+    
+    
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate         = self;
+    picker.allowsEditing    = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self.navigationController presentViewController:picker animated:YES completion:nil];
+    
+}
+-(void)gallerySelected:(id)sender{
+    
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate         = self;
+    picker.allowsEditing    = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self.navigationController presentViewController:picker animated:YES completion:nil];
+}
 
 
 

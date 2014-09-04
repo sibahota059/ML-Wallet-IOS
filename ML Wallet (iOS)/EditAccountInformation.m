@@ -730,6 +730,8 @@ UIView *imageSelectionView;
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -989,12 +991,6 @@ UIView *imageSelectionView;
     
     return newImage;
 }
-
-
-
-
-
-
 
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
