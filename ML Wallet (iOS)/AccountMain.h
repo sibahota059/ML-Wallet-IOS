@@ -8,5 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AccountMain : UIViewController
+@interface AccountMain : UIViewController 
+
+
+@property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) UILabel *bdayLabel;
+@property (strong, nonatomic) UILabel *countryLabel;
+@property (strong, nonatomic) UIImageView *profileImageView;
+
 @end

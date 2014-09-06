@@ -43,6 +43,8 @@
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.getAccount = jsonResponse;
     [self.delegate didFinishLoadingRates:@"1" andError:@""];
+    
+    
 }
 
 

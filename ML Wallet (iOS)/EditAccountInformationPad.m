@@ -11,6 +11,7 @@
 #import "ProfileOutline.h"
 #import "ProfileTextField.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "SaveWalletData.h"
 
 
 
@@ -54,9 +55,8 @@ UIView *genderUI;
 UIView *imageSelectionView;
 UIView *backgroundSelectionView;
 
-
-- (void)viewDidLoad
-{
+NSString *strImage1, *strImage2, *strImage3, *strImage4;
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
@@ -119,9 +119,44 @@ UIView *backgroundSelectionView;
 
     
     imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 106, 106)];
+    
+    
+    UILabel *idFrontLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 106, 20)];
+    [idFrontLabel1 setFont:[UIFont fontWithName:nil size:19.0f]];
+    [idFrontLabel1 setTextAlignment: NSTextAlignmentCenter];
+    [idFrontLabel1 setText:@"ID1: Front"];
+    [imageView1 addSubview:idFrontLabel1];
+
+    
     imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(110, 2, 106, 106)];
+    
+    UILabel *idBackLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 106, 20)];
+    [idBackLabel1 setFont:[UIFont fontWithName:nil size:19.0f]];
+    [idBackLabel1 setTextAlignment: NSTextAlignmentCenter];
+    [idBackLabel1 setText:@"ID1: Back"];
+    [imageView2 addSubview:idBackLabel1];
+    
+    
+    
+    
     imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(218, 2, 106, 106)];
+    
+    UILabel *idFrontLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 106, 20)];
+    [idFrontLabel2 setFont:[UIFont fontWithName:nil size:19.0f]];
+    [idFrontLabel2 setTextAlignment: NSTextAlignmentCenter];
+    [idFrontLabel2 setText:@"ID2: Front"];
+    [imageView3 addSubview:idFrontLabel2];
+
+    
+    
+    
     imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(326, 2, 106, 106)];
+    
+    UILabel *idBackLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 106, 20)];
+    [idBackLabel2 setFont:[UIFont fontWithName:nil size:19.0f]];
+    [idBackLabel2 setTextAlignment: NSTextAlignmentCenter];
+    [idBackLabel2 setText:@"ID2: Back"];
+    [imageView4 addSubview:idBackLabel2];
     
     
     [imageCollectionView addSubview:imageView1];
@@ -243,8 +278,6 @@ UIView *backgroundSelectionView;
     [profileScroll addSubview:profileNationality];
     
 }
-
-
 
 -(void) createAccountValue{
     
@@ -550,7 +583,7 @@ UIView *backgroundSelectionView;
     else
     {
         [profileImage setImage:[UIImage imageWithData:data]];
-        
+        mainImage = userProfileImage;
     }
     
     
@@ -688,6 +721,8 @@ UIView *backgroundSelectionView;
         image1 = [[UIImage alloc] initWithData:data1];
         imageView1.image = image1;
         [profileImage setImage:image1];
+        userProfileImage = image1;
+        mainImage = image1;
         
         
     }
@@ -696,7 +731,9 @@ UIView *backgroundSelectionView;
         data2 = imgData;
         image2 = [[UIImage alloc] initWithData:data2];
         imageView2.image = image2;
-         [profileImage setImage:image2];
+        [profileImage setImage:image2];
+        userProfileImage = image2;
+        mainImage = image2;
         
     }
     else if(whichImage3 == 1)
@@ -704,7 +741,9 @@ UIView *backgroundSelectionView;
         data3 = imgData;
         image3 = [[UIImage alloc] initWithData:data3];
         imageView3.image = image3;
-         [profileImage setImage:image3];
+        [profileImage setImage:image3];
+        userProfileImage = image3;
+        mainImage = image3;
         
     }
     else if(whichImage4 == 1)
@@ -712,11 +751,16 @@ UIView *backgroundSelectionView;
         data4 = imgData;
         image4 = [[UIImage alloc] initWithData:data4];
         imageView4.image = image4;
-         [profileImage setImage:image4];
+        [profileImage setImage:image4];
+        userProfileImage = image4;
+        mainImage = image4;
         
     }
     
     
+    [backgroundSelectionView removeFromSuperview];
+    [imageSelectionView removeFromSuperview];
+
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -786,6 +830,12 @@ UIView *backgroundSelectionView;
 
 -(void)savePressed:(id)sender{
     
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130); }
+                     completion:^(BOOL finished){}];
+    
     UIAlertView *saveAlert = [[UIAlertView alloc] initWithTitle:@"Validation Error" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     
     
@@ -853,7 +903,7 @@ UIView *backgroundSelectionView;
         
         
         
-        NSString *strImage1 = [self encodeToBase64String:mainImage];
+        strImage1 = [self encodeToBase64String:mainImage];
         
         if(strImage1 == nil)
         {
@@ -861,19 +911,19 @@ UIView *backgroundSelectionView;
             
         }
         
-        NSString *strImage2 = [self encodeToBase64String:image2];
+        strImage2 = [self encodeToBase64String:image2];
         if(strImage2 == nil)
         {
             strImage2 = @"";
         }
         
-        NSString *strImage3 = [self encodeToBase64String:image3];
+        strImage3 = [self encodeToBase64String:image3];
         if(strImage3 == nil)
         {
             strImage3 = @"";
         }
         
-        NSString *strImage4 = [self encodeToBase64String:image4];
+        strImage4 = [self encodeToBase64String:image4];
         if(strImage4 == nil)
         {
             strImage4 = @"";
@@ -918,7 +968,7 @@ UIView *backgroundSelectionView;
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editAccountInfoWS.respcode]isEqualToString:@"1"]){
         
         [resultAlertView setMessage:editAccountInfoWS.respmessage];
-        
+        [self saveToPaylist];
     }
     else if ([[NSString stringWithFormat:@"%@", editAccountInfoWS.respcode] isEqualToString:@"0"])
         
@@ -1212,6 +1262,32 @@ UIView *backgroundSelectionView;
 
 
 
+// SAVING DATA TO PAYLIST====================================>
+-(void) saveToPaylist{
+    
+    SaveWalletData *saveData = [SaveWalletData new];
+    
+    
+    [saveData initSaveData:finalCountry forKey:@"country"];
+    [saveData initSaveData:finalProvince forKey:@"provinceCity"];
+    [saveData initSaveData:finalAddress forKey:@"permanentAdd"];
+    [saveData initSaveData:finalZipcode forKey:@"zipcode"];
+    [saveData initSaveData:finalGender forKey:@"gender"];
+    
+    [saveData initSaveData:finalNumber forKey:@"mobileno"];
+    [saveData initSaveData:finalNationality forKey:@"nationality"];
+    [saveData initSaveData:finalWork forKey:@"natureOfWork"];
+    
+    [saveData initSaveData:strImage1 forKey:@"photo1"];
+    [saveData initSaveData:strImage2 forKey:@"photo2"];
+    [saveData initSaveData:strImage3 forKey:@"photo3"];
+    [saveData initSaveData:strImage4 forKey:@"photo4"];
+    
+    
+    
+}
+
+// END SAVING DATA TO PAYLIST====================================>
 
 
 

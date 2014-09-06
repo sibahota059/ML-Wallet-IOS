@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 //
 //  EditAccountInformation.m
 //  ML Wallet
@@ -11,6 +18,7 @@
 #import "ProfileOutline.h"
 #import "ProfileTextField.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "SaveWalletData.h"
 
 @interface EditAccountInformation ()
 
@@ -50,6 +58,8 @@ NSString *EDITACCOUNT_VAL_ERROR = @"Validation Error";
 UIView *backgroundSelectionView;
 
 UIView *imageSelectionView;
+
+NSString *strImage1, *strImage2, *strImage3, *strImage4;
 
 
 - (void)viewDidLoad{
@@ -123,12 +133,37 @@ UIView *imageSelectionView;
     
     imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 70, 70)];
     
+    UILabel *idFrontLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 15)];
+    [idFrontLabel1 setFont:[UIFont fontWithName:nil size:13.0f]];
+    [idFrontLabel1 setTextAlignment: NSTextAlignmentCenter];
+    [idFrontLabel1 setText:@"ID1: Front"];
+    [imageView1 addSubview:idFrontLabel1];
+    
+    
     imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(74, 2, 70, 70)];
+    
+    UILabel *idBackLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 15)];
+    [idBackLabel1 setFont:[UIFont fontWithName:nil size:13.0f]];
+    [idBackLabel1 setTextAlignment: NSTextAlignmentCenter];
+    [idBackLabel1 setText:@"ID1: Back"];
+    [imageView2 addSubview:idBackLabel1];
     
     imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(146, 2, 70, 70)];
     
-    imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(218, 2, 70, 70)];
+    UILabel *idFrontLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 15)];
+    [idFrontLabel2 setFont:[UIFont fontWithName:nil size:13.0f]];
+    [idFrontLabel2 setTextAlignment: NSTextAlignmentCenter];
+    [idFrontLabel2 setText:@"ID2: Front"];
+    [imageView3 addSubview:idFrontLabel2];
+
     
+    imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(218, 2, 70, 70)];
+   
+    UILabel *idBackLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 15)];
+    [idBackLabel2 setFont:[UIFont fontWithName:nil size:13.0f]];
+    [idBackLabel2 setTextAlignment: NSTextAlignmentCenter];
+    [idBackLabel2 setText:@"ID2: Back"];
+    [imageView4 addSubview:idBackLabel2];
     
     [imageCollectionView addSubview:imageView1];
     [imageCollectionView addSubview:imageView2];
@@ -552,7 +587,8 @@ UIView *imageSelectionView;
     else
     {
          [profileImage setImage:[UIImage imageWithData:data]];
-        
+
+        mainImage = userProfileImage;
     }
     
    
@@ -689,6 +725,7 @@ UIView *imageSelectionView;
         imageView1.image = image1;
         [profileImage setImage:image1];
         userProfileImage = image1 ;
+        mainImage = image1;
 
         
 
@@ -699,7 +736,8 @@ UIView *imageSelectionView;
         image2 = [[UIImage alloc] initWithData:data2];
         imageView2.image = image2;
         [profileImage setImage:image2];
-          userProfileImage = image2 ;
+        userProfileImage = image2 ;
+        mainImage = image2;
 
     }
     else if(whichImage3 == 1)
@@ -709,6 +747,7 @@ UIView *imageSelectionView;
         imageView3.image = image3;
         [profileImage setImage:image3];
           userProfileImage = image3 ;
+        mainImage = image3;
 
     }
     else if(whichImage4 == 1)
@@ -717,7 +756,8 @@ UIView *imageSelectionView;
         image4 = [[UIImage alloc] initWithData:data4];
         imageView4.image = image4;
         [profileImage setImage:image4];
-          userProfileImage = image4 ;
+        userProfileImage = image4 ;
+        mainImage = image4;
 
     }
     
@@ -729,7 +769,6 @@ UIView *imageSelectionView;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -873,26 +912,26 @@ UIView *imageSelectionView;
             
        
         
-        NSString *strImage1 = [self encodeToBase64String:mainImage];
+        strImage1 = [self encodeToBase64String:mainImage];
         
         if(strImage1 == nil)
         {
             strImage1 = @"";
         }
         
-        NSString *strImage2 = [self encodeToBase64String:image2];
+        strImage2 = [self encodeToBase64String:image2];
         if(strImage2 == nil)
         {
             strImage2 = @"";
         }
         
-        NSString *strImage3 = [self encodeToBase64String:image3];
+        strImage3 = [self encodeToBase64String:image3];
         if(strImage3 == nil)
         {
             strImage3 = @"";
         }
         
-        NSString *strImage4 = [self encodeToBase64String:image4];
+        strImage4 = [self encodeToBase64String:image4];
         if(strImage4 == nil)
         {
             strImage4 = @"";
@@ -935,6 +974,7 @@ UIView *imageSelectionView;
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", editAccountInfoWS.respcode]isEqualToString:@"1"]){
         
         [resultAlertView setMessage:editAccountInfoWS.respmessage];
+         [self saveToPaylist];
         
     }
     else if ([[NSString stringWithFormat:@"%@", editAccountInfoWS.respcode] isEqualToString:@"0"])
@@ -1211,6 +1251,37 @@ UIView *imageSelectionView;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self.navigationController presentViewController:picker animated:YES completion:nil];
 }
+
+
+
+// SAVING DATA TO PAYLIST====================================>
+-(void) saveToPaylist{
+    
+    SaveWalletData *saveData = [SaveWalletData new];
+    
+    
+    [saveData initSaveData:finalCountry forKey:@"country"];
+    [saveData initSaveData:finalProvince forKey:@"provinceCity"];
+    [saveData initSaveData:finalAddress forKey:@"permanentAdd"];
+    [saveData initSaveData:finalZipcode forKey:@"zipcode"];
+    [saveData initSaveData:finalGender forKey:@"gender"];
+    
+    [saveData initSaveData:finalNumber forKey:@"mobileno"];
+    [saveData initSaveData:finalNationality forKey:@"nationality"];
+    [saveData initSaveData:finalWork forKey:@"natureOfWork"];
+    
+    [saveData initSaveData:strImage1 forKey:@"photo1"];
+    [saveData initSaveData:strImage2 forKey:@"photo2"];
+    [saveData initSaveData:strImage3 forKey:@"photo3"];
+    [saveData initSaveData:strImage4 forKey:@"photo4"];
+    
+    
+    
+}
+
+// END SAVING DATA TO PAYLIST====================================>
+
+
 
 
 
