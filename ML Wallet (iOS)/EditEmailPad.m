@@ -92,47 +92,59 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     
 }
 
+
 -(void) createEmailValue{
     
     
+    //Old Username
     
-    //Old Email
-    UIView *oldEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 230, 434, 35)];
-    [oldEmailOutline setBackgroundColor:[UIColor redColor]];
-    oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    UIView *leftMarginOldEmail= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(169, 232, 434, 35)];
+    oldEmail.layer.cornerRadius = 8.0f;
+    oldEmail.layer.masksToBounds = YES;
+    oldEmail.layer.borderColor=[[UIColor redColor]CGColor];
+    oldEmail.layer.borderWidth = 1.0f;
+    oldEmail.leftView = leftMarginOldEmail;
+    oldEmail.leftViewMode = UITextFieldViewModeAlways;
     [oldEmail setBackgroundColor:[UIColor whiteColor]];
-    [oldEmail setFont:[UIFont systemFontOfSize:19.0f]];
     [oldEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldEmail setPlaceholder:@" Old e-mail"];
-    [oldEmailOutline addSubview:oldEmail];
     
     
     
     //New Username
-    UIView *newEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 300, 434, 35)];
-    [newEmailOutline setBackgroundColor:[UIColor redColor]];
-    newEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    
+    UIView *leftMarginNewEmail= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    newEmail = [[UITextField alloc] initWithFrame:CGRectMake(169, 302, 434, 35)];
+    newEmail.layer.cornerRadius = 8.0f;
+    newEmail.layer.masksToBounds = YES;
+    newEmail.layer.borderColor=[[UIColor redColor]CGColor];
+    newEmail.layer.borderWidth = 1.0f;
+    newEmail.leftView = leftMarginNewEmail;
+    newEmail.leftViewMode = UITextFieldViewModeAlways;
     [newEmail setBackgroundColor:[UIColor whiteColor]];
-    [newEmail setFont:[UIFont systemFontOfSize:19.0f]];
     [newEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newEmail setPlaceholder:@" New e-mail"];
-    [newEmailOutline addSubview:newEmail];
     
     
     //Username
-    UIView *confirmEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 370, 434, 35)];
-    [confirmEmailOutline setBackgroundColor:[UIColor redColor]];
-    confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    
+    UIView *leftMarginConfirmEmail= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(169, 372, 434, 35)];
+    confirmEmail.layer.cornerRadius = 8.0f;
+    confirmEmail.layer.masksToBounds = YES;
+    confirmEmail.layer.borderColor=[[UIColor redColor]CGColor];
+    confirmEmail.layer.borderWidth = 1.0f;
+    confirmEmail.leftView = leftMarginConfirmEmail;
+    confirmEmail.leftViewMode = UITextFieldViewModeAlways;
     [confirmEmail setBackgroundColor:[UIColor whiteColor]];
-    [confirmEmail setFont:[UIFont systemFontOfSize:19.0f]];
     [confirmEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmEmail setPlaceholder:@" Confirm e-mail"];
-    [confirmEmailOutline addSubview:confirmEmail];
     
     
-    [profileScroll addSubview:oldEmailOutline];
-    [profileScroll addSubview:newEmailOutline];
-    [profileScroll addSubview:confirmEmailOutline];
+    [profileScroll addSubview:oldEmail];
+    [profileScroll addSubview:newEmail];
+    [profileScroll addSubview:confirmEmail];
     
     
 }

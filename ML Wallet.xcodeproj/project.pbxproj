@@ -133,6 +133,8 @@
 		3BF0B261197A508C00AC2C76 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BF0B260197A508C00AC2C76 /* data.plist */; };
 		3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0B266197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m */; };
 		3BF0B26D197A616400AC2C76 /* SaveWalletData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0B26C197A616400AC2C76 /* SaveWalletData.m */; };
+		7003CECA19B7025A0020F76F /* account_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 7003CEC819B7025A0020F76F /* account_camera.png */; };
+		7003CECB19B7025A0020F76F /* account_sdcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 7003CEC919B7025A0020F76F /* account_sdcard.png */; };
 		700661B818DA74CF00A0F05C /* AccountMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 700661B718DA74CF00A0F05C /* AccountMain.xib */; };
 		700661BB18DA74DD00A0F05C /* AccountMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 700661BA18DA74DD00A0F05C /* AccountMain.m */; };
 		700661E618DA766800A0F05C /* design_buttom_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 700661C118DA766800A0F05C /* design_buttom_left.png */; };
@@ -210,6 +212,8 @@
 		70CA1907198F7FFF00515FF1 /* ProfileInformationPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CA1905198F7FFF00515FF1 /* ProfileInformationPad.xib */; };
 		70CBA8F8198A37D4005D845E /* EditInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CBA8F6198A37D4005D845E /* EditInformation.m */; };
 		70CBA8F9198A37D4005D845E /* EditInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CBA8F7198A37D4005D845E /* EditInformation.xib */; };
+		70E3EC5D19B5AD23000522EA /* donedown.png in Resources */ = {isa = PBXBuildFile; fileRef = 70E3EC5B19B5AD23000522EA /* donedown.png */; };
+		70E3EC5E19B5AD23000522EA /* doneup.png in Resources */ = {isa = PBXBuildFile; fileRef = 70E3EC5C19B5AD23000522EA /* doneup.png */; };
 		70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */; };
 		70EEA17118D9C44200719BF7 /* AccountLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70EEA17018D9C44200719BF7 /* AccountLogin.xib */; };
 		70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EEA17318D9C46000719BF7 /* AccountLogin.m */; };
@@ -439,6 +443,8 @@
 		3BF0B266197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LoadWalletData.m"; sourceTree = "<group>"; };
 		3BF0B26B197A616400AC2C76 /* SaveWalletData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveWalletData.h; sourceTree = "<group>"; };
 		3BF0B26C197A616400AC2C76 /* SaveWalletData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveWalletData.m; sourceTree = "<group>"; };
+		7003CEC819B7025A0020F76F /* account_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account_camera.png; sourceTree = "<group>"; };
+		7003CEC919B7025A0020F76F /* account_sdcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account_sdcard.png; sourceTree = "<group>"; };
 		700661B718DA74CF00A0F05C /* AccountMain.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountMain.xib; sourceTree = "<group>"; };
 		700661B918DA74DD00A0F05C /* AccountMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountMain.h; sourceTree = "<group>"; };
 		700661BA18DA74DD00A0F05C /* AccountMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountMain.m; sourceTree = "<group>"; };
@@ -550,6 +556,8 @@
 		70CBA8F5198A37D4005D845E /* EditInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformation.h; sourceTree = "<group>"; };
 		70CBA8F6198A37D4005D845E /* EditInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformation.m; sourceTree = "<group>"; };
 		70CBA8F7198A37D4005D845E /* EditInformation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformation.xib; sourceTree = "<group>"; };
+		70E3EC5B19B5AD23000522EA /* donedown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donedown.png; sourceTree = "<group>"; };
+		70E3EC5C19B5AD23000522EA /* doneup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doneup.png; sourceTree = "<group>"; };
 		70EEA16E18D9C42800719BF7 /* QuestionsActivity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionsActivity.xib; sourceTree = "<group>"; };
 		70EEA17018D9C44200719BF7 /* AccountLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountLogin.xib; sourceTree = "<group>"; };
 		70EEA17218D9C46000719BF7 /* AccountLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountLogin.h; sourceTree = "<group>"; };
@@ -1089,6 +1097,10 @@
 		3BB42DE618D6B6C60011792E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7003CEC819B7025A0020F76F /* account_camera.png */,
+				7003CEC919B7025A0020F76F /* account_sdcard.png */,
+				70E3EC5B19B5AD23000522EA /* donedown.png */,
+				70E3EC5C19B5AD23000522EA /* doneup.png */,
 				3B5439B119A4809500B076D8 /* login_img.png */,
 				3B5439AB19A47BFF00B076D8 /* ml_logo_ipad.png */,
 				3B5439AC19A47BFF00B076D8 /* ml_logo_iphone.png */,
@@ -1546,6 +1558,7 @@
 				F081A05C19776F89004568EF /* MLHistoryTableViewCell~iphone.xib in Resources */,
 				F081A05119776E55004568EF /* MLReceiverTableViewController.xib in Resources */,
 				707C03BF18D9D40F00EC1B12 /* back_profile.png in Resources */,
+				70E3EC5E19B5AD23000522EA /* doneup.png in Resources */,
 				F081A03A19776D64004568EF /* preview_bg_ipad.png in Resources */,
 				3BB42E0E18D6B6C60011792E /* sendmoney_selected.png in Resources */,
 				3BB924F0196FF864007E76A5 /* CreateNewReceiverViewController~ipad.xib in Resources */,
@@ -1572,6 +1585,7 @@
 				F081A05219776E55004568EF /* MLTermsConditionViewController~iphone.xib in Resources */,
 				3BA7CCFB18B213BE00B9FC4B /* line.png in Resources */,
 				F00D64101991CE7B00A1BD67 /* payment_bg_ipad.png in Resources */,
+				70E3EC5D19B5AD23000522EA /* donedown.png in Resources */,
 				30D693DB197DFC4900F6AA1D /* MapViewController~ipad.xib in Resources */,
 				F081A05019776E55004568EF /* MLRatesTableViewCell~iphone.xib in Resources */,
 				70EEA19C18D9CA7800719BF7 /* question_profile.png in Resources */,
@@ -1609,6 +1623,7 @@
 				70EEA16F18D9C42800719BF7 /* QuestionsActivity.xib in Resources */,
 				3B1B36C018B445C3006DA5BB /* btn2.png in Resources */,
 				707C03B918D9CFD500EC1B12 /* profile_profile.png in Resources */,
+				7003CECB19B7025A0020F76F /* account_sdcard.png in Resources */,
 				3B17584718B2EC6B005A7805 /* btn1.png in Resources */,
 				F05C5F4418E12C70002F2EE1 /* ic_home.png in Resources */,
 				3BA7CCDD18B1DF6000B9FC4B /* new_key.png in Resources */,
@@ -1659,6 +1674,7 @@
 				3B1B36C718B4ADA1006DA5BB /* icon_my_receiver_press.jpg in Resources */,
 				3B5F848518BC6934001C1B29 /* ReceiverCell.xib in Resources */,
 				7006620318DA766800A0F05C /* rene.jpg in Resources */,
+				7003CECA19B7025A0020F76F /* account_camera.png in Resources */,
 				3BB42E0818D6B6C60011792E /* preview_bg.png in Resources */,
 				F0E3C73A197FCCDD004F44F9 /* GoogleMaps.bundle in Resources */,
 				3BA7CCAD18B1D6B900B9FC4B /* Images.xcassets in Resources */,

@@ -10,6 +10,6 @@
 #import "EditUserNameWebService.h"
 #import "MBProgressHUD.h"
 
-@interface EditUsername : UIViewController <EditUserNameDelegate, MBProgressHUDDelegate>
+@interface EditUsername : UIViewController <UITextFieldDelegate, EditUserNameDelegate, MBProgressHUDDelegate>
 
 @end

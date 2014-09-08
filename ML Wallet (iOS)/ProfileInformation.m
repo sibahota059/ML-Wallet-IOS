@@ -25,8 +25,39 @@
 
 @implementation ProfileInformation
 
+@synthesize profileImage;
+
+@synthesize imageView1;
+@synthesize imageView2;
+@synthesize imageView3;
+@synthesize imageView4;
+
+
+@synthesize profileName;
+@synthesize profilePhone;
+@synthesize profileEmail;
+
 @synthesize profileScroll;
 @synthesize editDialog;
+@synthesize country;
+@synthesize firstName;
+@synthesize middleName;
+@synthesize lastName;
+@synthesize province;
+@synthesize address;
+@synthesize zipcode;
+@synthesize gender;
+@synthesize birthdate;
+@synthesize age;
+@synthesize mobileNumber;
+@synthesize work;
+@synthesize nationality;
+
+
+
+
+
+
 UIImageView *radioButtonImage1;
 UIImageView *radioButtonImage2;
 UIImageView *radioButtonImage3;
@@ -35,17 +66,15 @@ NSString *question_1, *question_2, *question_3;
 
 UILabel *selectedQuestion;
 
-UIImageView *profileImage;
 
-NSDictionary *loadData;
+
 
 QuestionVerificationDialog *dialog;
 
 NSString *correctAnswer;
 
-UIImageView *userImage, *image1, *image2, *image3, *image4;
 
-UILabel *profileEmail, *profileName, *profilePhone;
+
 
 //DECLARE VARIABLES
 
@@ -53,11 +82,11 @@ UIScrollView *profileScroll;
 
 
 
-ProfileOutline *firstNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *addressO, *zipcodeO, *genderO, *birthdateO, *ageO, *mobileNumberO, *emailO, *workO, *nationalityO;
+
 
 NSString *firstNameValue, *middleNameValue, *lastNameValue, *countryValue, *provinceValue, *addressValue, *zipcodeValue, *genderValue, *birthdateValue, *ageValue, *mobileNumberValue, *emailValue, *workValue, *nationalityValue, *photo1Value, *photo2Value, *photo3Value, *photo4Value, *answer1, *answer2, *answer3, *question1, *question2, *question3;
 
-UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *email, *work, *nationality;
+UILabel *firstName, *middleName, *lastName, *province, *address, *zipcode, *gender, *birthdate, *age, *mobileNumber, *work, *nationality;
 
 
 - (void)viewDidLoad
@@ -66,19 +95,28 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
 
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
     [profileScroll setScrollEnabled:YES];
-    [profileScroll setContentSize:CGSizeMake(320, 600)];
     
-    loadData = [NSDictionary initRead_LoadWallet_Data];
-    [self loadFromPlaylist];
     
+
+   
+    if(!([ [ UIScreen mainScreen ] bounds ].size.height == 568))
+    {
+         [profileScroll setContentSize:CGSizeMake(320, 700)];
+    }
+    else{
+        
+         [profileScroll setContentSize:CGSizeMake(320, 600)];
+    }
+
     [self createImageInfo];
+    
+    
     [self createPersonalLabel];
+    
     [self createPersonalValue];
     
-    [self setInfo];
     
     [self.view addSubview:profileScroll];
-    [self.view addSubview:dialog];
     
     [self addNavigationBarButton];
     
@@ -88,7 +126,10 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
 
 -(void) loadFromPlaylist{
     
+    NSDictionary *loadData = [NSDictionary initRead_LoadWallet_Data];
+    
     firstNameValue = [loadData objectForKey:@"fname"];
+    
     middleNameValue = [loadData objectForKey:@"mname"];
     lastNameValue = [loadData objectForKey:@"lname"];
     countryValue =[loadData objectForKey:@"country"];
@@ -116,9 +157,7 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
     answer1 =[loadData objectForKey:@"secanswer1"];
     answer2 =[loadData objectForKey:@"secanswer2"];
     answer3 =[loadData objectForKey:@"secanswer3"];
-    
-    
-    
+
     
 }
 
@@ -132,35 +171,62 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
     profileName = [[UILabel alloc] initWithFrame:CGRectMake(130, 40, 300, 25)];
     [profileName setFont:[UIFont fontWithName:nil size:15.0f]];
     
+    
+    profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(130, 76, 300, 25)];
+    [profileEmail setFont:[UIFont fontWithName:nil size:13.0f]];
+
+    
     profilePhone = [[UILabel alloc] initWithFrame:CGRectMake(130, 60, 300, 25)];
     [profilePhone setFont:[UIFont fontWithName:nil size:13.0f]];
     
-    
-    
-    
-    
-    
+
     
     
     
     ProfileOutline *imageCollectionView = [[ProfileOutline alloc] initWithFrame:CGRectMake(15, 150, 290, 74)];
     
-    image1 = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 70, 70)];
+    imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 70, 70)];
     
-    image2 = [[UIImageView alloc] initWithFrame:CGRectMake(74, 2, 70, 70)];
+    UILabel *idFrontLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 15)];
+    [idFrontLabel1 setFont:[UIFont fontWithName:nil size:13.0f]];
+    [idFrontLabel1 setTextAlignment: NSTextAlignmentCenter];
+    [idFrontLabel1 setText:@"ID1: Front"];
+    [imageView1 addSubview:idFrontLabel1];
     
-    image3 = [[UIImageView alloc] initWithFrame:CGRectMake(146, 2, 70, 70)];
+    imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(74, 2, 70, 70)];
     
-    image4 = [[UIImageView alloc] initWithFrame:CGRectMake(218, 2, 70, 70)];
+    UILabel *idBackLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 15)];
+    [idBackLabel1 setFont:[UIFont fontWithName:nil size:13.0f]];
+    [idBackLabel1 setTextAlignment: NSTextAlignmentCenter];
+    [idBackLabel1 setText:@"ID1: Back"];
+    [imageView2 addSubview:idBackLabel1];
+    
+    imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(146, 2, 70, 70)];
+    
+    UILabel *idFrontLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 15)];
+    [idFrontLabel2 setFont:[UIFont fontWithName:nil size:13.0f]];
+    [idFrontLabel2 setTextAlignment: NSTextAlignmentCenter];
+    [idFrontLabel2 setText:@"ID2: Front"];
+    [imageView3 addSubview:idFrontLabel2];
     
     
-    [imageCollectionView addSubview:image1];
-    [imageCollectionView addSubview:image2];
-    [imageCollectionView addSubview:image3];
-    [imageCollectionView addSubview:image4];
+    imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(218, 2, 70, 70)];
+    
+    UILabel *idBackLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 70, 15)];
+    [idBackLabel2 setFont:[UIFont fontWithName:nil size:13.0f]];
+    [idBackLabel2 setTextAlignment: NSTextAlignmentCenter];
+    [idBackLabel2 setText:@"ID2: Back"];
+    [imageView4 addSubview:idBackLabel2];
+    
+    
+    [imageCollectionView addSubview:imageView1];
+    [imageCollectionView addSubview:imageView2];
+    [imageCollectionView addSubview:imageView3];
+    [imageCollectionView addSubview:imageView4];
 
     [profileScroll addSubview:profileImage];
     [profileScroll addSubview:profileName];
+    [profileScroll addSubview:profileEmail];
     [profileScroll addSubview:profilePhone];
     
     
@@ -236,17 +302,12 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
     [profileNumber setTextColor:[UIColor grayColor]];
     [profileNumber setText:@"Mobile Number: "];
     
-    UILabel *profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(20, 485, 100, 25)];
-    [profileEmail setFont:[UIFont fontWithName:nil size:13.0f]];
-    [profileEmail setTextColor:[UIColor grayColor]];
-    [profileEmail setText:@"Email Address: "];
-    
-    UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(20, 505, 100, 25)];
+    UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(20, 485, 100, 25)];
     [profileWork setFont:[UIFont fontWithName:nil size:13.0f]];
     [profileWork setTextColor:[UIColor grayColor]];
     [profileWork setText:@"Nature of Work: "];
     
-    UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(20, 525, 100, 25)];
+    UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(20, 505, 100, 25)];
     [profileNationality setFont:[UIFont fontWithName:nil size:13.0f]];
     [profileNationality setTextColor:[UIColor grayColor]];
     [profileNationality setText:@"Nationality: "];
@@ -280,44 +341,60 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
     
     firstName = [[UILabel alloc] initWithFrame:CGRectMake(130, 265, 180, 25)];
     [firstName setFont:[UIFont fontWithName:nil size:13.0f]];
+    firstName.text = @"";
     
     middleName = [[UILabel alloc] initWithFrame:CGRectMake(130, 285, 180, 25)];
     [middleName setFont:[UIFont fontWithName:nil size:13.0f]];
+    middleName.text = @"";
     
     lastName = [[UILabel alloc] initWithFrame:CGRectMake(130, 305, 180, 25)];
     [lastName setFont:[UIFont fontWithName:nil size:13.0f]];
+    lastName.text = @"";
     
     country = [[UILabel alloc] initWithFrame:CGRectMake(130, 325, 180, 25)];
     [country setFont:[UIFont fontWithName:nil size:13.0f]];
+    country.text = @"";
     
     province = [[UILabel alloc] initWithFrame:CGRectMake(130, 345, 180, 25)];
     [province setFont:[UIFont fontWithName:nil size:13.0f]];
+    province.text = @"";
     
     address = [[UILabel alloc] initWithFrame:CGRectMake(130, 365, 180, 25)];
     [address setFont:[UIFont fontWithName:nil size:13.0f]];
+    address.text = @"";
     
     zipcode = [[UILabel alloc] initWithFrame:CGRectMake(130, 385, 180, 25)];
     [zipcode setFont:[UIFont fontWithName:nil size:13.0f]];
+    address.text = @"";
     
     gender = [[UILabel alloc] initWithFrame:CGRectMake(130, 405, 180, 25)];
     [gender setFont:[UIFont fontWithName:nil size:13.0f]];
+    gender.text = @"";
     
     birthdate = [[UILabel alloc] initWithFrame:CGRectMake(130, 425, 180, 25)];
     [birthdate setFont:[UIFont fontWithName:nil size:13.0f]];
+    birthdate.text = @"";
+
     
     age = [[UILabel alloc] initWithFrame:CGRectMake(130, 445, 180, 25)];
     [age setFont:[UIFont fontWithName:nil size:13.0f]];
+    age.text = @"";
+
     
     mobileNumber = [[UILabel alloc] initWithFrame:CGRectMake(130, 465, 180, 25)];
     [mobileNumber setFont:[UIFont fontWithName:nil size:13.0f]];
-    
-   
-    
-    work = [[UILabel alloc] initWithFrame:CGRectMake(130, 505, 180, 25)];
+    mobileNumber.text = @"";
+
+
+    work = [[UILabel alloc] initWithFrame:CGRectMake (130, 485, 180, 25)];
     [work setFont:[UIFont fontWithName:nil size:13.0f]];
+    work.text = @"";
+
     
-    nationality = [[UILabel alloc] initWithFrame:CGRectMake(130, 525, 180, 25)];
+    nationality = [[UILabel alloc] initWithFrame:CGRectMake(130, 505, 180, 25)];
     [nationality setFont:[UIFont fontWithName:nil size:13.0f]];
+    nationality.text = @"";
+
     
     [profileScroll addSubview:firstName];
     [profileScroll addSubview:middleName];
@@ -338,6 +415,7 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
 }
 
 -(void) setInfo{
+    
     [firstName setText:firstNameValue];
     [middleName setText:middleNameValue];
     [lastName setText:lastNameValue];
@@ -346,89 +424,114 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
     [address setText:addressValue];
     [zipcode setText:zipcodeValue];
     [gender setText:genderValue];
-    
-    //FORMAT DATE====================================================
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *date = [dateFormatter dateFromString:birthdateValue];
-    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
-    NSString *finalDateString = [dateFormatter stringFromDate:date];
-    //End Format Date===============================================
-    
-    [birthdate setText:finalDateString];
+    [birthdate setText:birthdateValue];
     [age setText:ageValue];
     [mobileNumber setText:mobileNumberValue];
     [work setText:workValue];
     [nationality setText:nationalityValue];
     
-    
-    
-    
     //CONVERTING STRING INTO IMAGE=================================================
     NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [profileImage setImage:[UIImage imageWithData:data]];
+    
+    
+    UIImage *userProfileImage = [UIImage imageWithData:data];
+    if (userProfileImage == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userProfileImage];
+    }
+    
+    
     
     NSData *data1 = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image1 setImage:[UIImage imageWithData:data1]];
+    
+    
+    UIImage *userImage1 = [UIImage imageWithData:data1];
+    if (userImage1 == nil)
+    {
+        [imageView1 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [imageView1 setImage:userImage1];
+
+    }
+
+    
     
     
     NSData *data2 = [[NSData alloc]initWithBase64EncodedString:photo2Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image2 setImage:[UIImage imageWithData:data2]];
+    
+    UIImage *userImage2 = [UIImage imageWithData:data2];
+    if (userImage2 == nil)
+    {
+        [imageView2 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [imageView2 setImage:userImage2];
+        
+    }
     
     
     NSData *data3 = [[NSData alloc]initWithBase64EncodedString:photo3Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image3 setImage:[UIImage imageWithData:data3]];
+   
+    UIImage *userImage3 = [UIImage imageWithData:data3];
+    if (userImage3 == nil)
+    {
+        [imageView3 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [imageView3 setImage:userImage3];
+        
+    }
     
     
     NSData *data4 = [[NSData alloc]initWithBase64EncodedString:photo4Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image4 setImage:[UIImage imageWithData:data4]];
+   
+    UIImage *userImage4 = [UIImage imageWithData:data4];
+    if (userImage4 == nil)
+    {
+        [imageView4 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [imageView4 setImage:userImage4];
+        
+    }
     
-    //================================================================================
-    
-    dialog = [[QuestionVerificationDialog alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
-    
-    [dialog setHidden:YES];
+
 
     [profileName setText:[NSString stringWithFormat:@"%@ %@. %@",firstNameValue, middleNameValue, lastNameValue]];
     [profilePhone setText:mobileNumberValue];
     [profileEmail setText:emailValue];
     
-    
-    
 }
-
-
 
 
 -(void) viewWillAppear:(BOOL)animated{
- 
-    NSDictionary *loadEmail = [NSDictionary initRead_LoadWallet_Data];
-    
-    NSString *emailAgain = [loadEmail objectForKey:@"emailadd"];
-    
-    email = [[UILabel alloc] initWithFrame:CGRectMake(130, 485, 180, 25)];
-    [email setFont:[UIFont fontWithName:nil size:13.0f]];
-    
-    profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(130, 76, 300, 25)];
-    [profileEmail setFont:[UIFont fontWithName:nil size:13.0f]];
-    
-    [email setText:emailAgain];
-    [profileEmail setText:emailAgain];
     
     
-    [profileScroll addSubview:email];
-    [profileScroll addSubview:profileEmail];
+    [self loadFromPlaylist];
+    [self setInfo];
     
-    if(![dialog isHidden])
-    {
-        [dialog setHidden:YES];
-    }
+    
+    dialog = [[QuestionVerificationDialog alloc] initWithFrame:CGRectMake(0, 0, 320, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
+    
+    
+    [self.view addSubview:dialog];
+    [dialog setHidden:YES];
 
 }
 
+
 -(void) viewDidDisappear:(BOOL)animated{
-    [email removeFromSuperview];
-    [profileEmail removeFromSuperview];
+    [dialog removeFromSuperview];
+  
 }
 
 
@@ -592,8 +695,6 @@ UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipc
     transition.delegate = self;
     [aView.layer addAnimation:transition forKey:nil];
 }
-
-
 
 
 - (BOOL)prefersStatusBarHidden{

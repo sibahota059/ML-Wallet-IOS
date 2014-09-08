@@ -26,17 +26,41 @@
 
 @synthesize profileScroll;
 @synthesize editDialog;
+
+@synthesize profileImage;
+
+@synthesize imageView1;
+@synthesize imageView2;
+@synthesize imageView3;
+@synthesize imageView4;
+
+
+@synthesize profileName;
+@synthesize profilePhone;
+@synthesize profileEmail;
+
+@synthesize country;
+@synthesize firstName;
+@synthesize middleName;
+@synthesize lastName;
+@synthesize province;
+@synthesize address;
+@synthesize zipcode;
+@synthesize gender;
+@synthesize birthdate;
+@synthesize age;
+@synthesize mobileNumber;
+@synthesize work;
+@synthesize nationality;
+
 UIImageView *radioButtonImage1;
 UIImageView *radioButtonImage2;
 UIImageView *radioButtonImage3;
 
 UILabel *selectedQuestion;
 
-UIImageView *profileImage;
 
 QuestionVerificationDialogPad *dialog;
-
-UIImageView *userImage, *image1, *image2, *image3, *image4;
 
 NSDictionary *loadData;
 
@@ -46,14 +70,11 @@ NSString *correctAnswer;
 
 UIScrollView *profileScroll;
 
-UILabel *firstName, *middleName, *lastName, *country, *province, *address, *zipcode, *gender, *birthdate, *age, *email, *mobileNumber, *work, *nationality;
-
 NSString *firstNameValue, *middleNameValue, *lastNameValue, *countryValue, *provinceValue, *addressValue, *zipcodeValue, *genderValue, *birthdateValue, *ageValue, *mobileNumberValue, *emailValue, *workValue, *nationalityValue, *photo1Value, *photo2Value, *photo3Value, *photo4Value, *answer1, *answer2, *answer3, *question1, *question2, *question3;
 
 ProfileOutline *firstNameO, *middleNameO, *lastNameO, *countryO, *provinceO, *addressO, *zipcodeO, *genderO, *birthdateO, *ageO, *mobileNumberO, *emailO, *workO, *nationalityO;
 
 
-UILabel *profileEmail, *profileName, *profilePhone;
 
 
 
@@ -65,14 +86,12 @@ UILabel *profileEmail, *profileName, *profilePhone;
     [profileScroll setScrollEnabled:YES];
     [profileScroll setContentSize:CGSizeMake(768, 1000)];
     
-    loadData = [NSDictionary initRead_LoadWallet_Data];
-    [self loadFromPlaylist];
-    
-    [self createImageInfo];
-    [self createPersonalLabel];
-    [self createPersonalValue];
+   
   
-    [self setInfo];
+    [self createPersonalLabel];
+    [self createImageInfo];
+    [self createPersonalValue];
+
 
     [self.view addSubview:profileScroll];
     [self.view addSubview:dialog];
@@ -83,9 +102,38 @@ UILabel *profileEmail, *profileName, *profilePhone;
 }
 
 
+
+-(void) viewWillAppear:(BOOL)animated{
+    
+    [self loadFromPlaylist];
+    [self setInfo];
+    
+    
+    dialog = [[QuestionVerificationDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
+    
+
+    
+    [self.view addSubview:dialog];
+    [dialog setHidden:YES];
+    
+    
+
+    
+    
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    [dialog removeFromSuperview];
+}
+
+
+
 -(void) loadFromPlaylist{
     
+    NSDictionary *loadData = [NSDictionary initRead_LoadWallet_Data];
+    
     firstNameValue = [loadData objectForKey:@"fname"];
+    
     middleNameValue = [loadData objectForKey:@"mname"];
     lastNameValue = [loadData objectForKey:@"lname"];
     countryValue =[loadData objectForKey:@"country"];
@@ -96,7 +144,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     birthdateValue =[loadData objectForKey:@"bdate"];
     ageValue =[loadData objectForKey:@"age"];
     mobileNumberValue =[loadData objectForKey:@"mobileno"];
-
+    
     emailValue =[loadData objectForKey:@"emailadd"];
     workValue =[loadData objectForKey:@"natureOfWork"];
     nationalityValue =[loadData objectForKey:@"nationality"];
@@ -105,7 +153,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     photo2Value =[loadData objectForKey:@"photo2"];
     photo3Value =[loadData objectForKey:@"photo3"];
     photo4Value =[loadData objectForKey:@"photo4"];
-
+    
     
     question1 =[loadData objectForKey:@"secquestion1"];
     question2 =[loadData objectForKey:@"secquestion2"];
@@ -113,11 +161,10 @@ UILabel *profileEmail, *profileName, *profilePhone;
     answer1 =[loadData objectForKey:@"secanswer1"];
     answer2 =[loadData objectForKey:@"secanswer2"];
     answer3 =[loadData objectForKey:@"secanswer3"];
-
-
     
     
 }
+
 
 -(void) createImageInfo{
     
@@ -127,7 +174,8 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
     profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 146, 146)];
     
-    
+    profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(327, 136, 400, 25)];
+    [profileEmail setFont:[UIFont fontWithName:nil size:19.0f]];
     
     profileName = [[UILabel alloc] initWithFrame:CGRectMake(327, 90, 400, 30)];
     [profileName setFont:[UIFont fontWithName:nil size:22.0f]];
@@ -141,16 +189,45 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
     [imageCollectionView setBackgroundColor:[UIColor redColor]];
     
-    image1 = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 106, 106)];
-    image2 = [[UIImageView alloc] initWithFrame:CGRectMake(110, 2, 106, 106)];
-    image3 = [[UIImageView alloc] initWithFrame:CGRectMake(218, 2, 106, 106)];
-    image4 = [[UIImageView alloc] initWithFrame:CGRectMake(326, 2, 106, 106)];
+    imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 106, 106)];
+    
+    UILabel *idFrontLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 106, 20)];
+    [idFrontLabel1 setFont:[UIFont fontWithName:nil size:19.0f]];
+    [idFrontLabel1 setTextAlignment: NSTextAlignmentCenter];
+    [idFrontLabel1 setText:@"ID1: Front"];
+    [imageView1 addSubview:idFrontLabel1];
+
+
+    imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(110, 2, 106, 106)];
+    
+    UILabel *idBackLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 106, 20)];
+    [idBackLabel1 setFont:[UIFont fontWithName:nil size:19.0f]];
+    [idBackLabel1 setTextAlignment: NSTextAlignmentCenter];
+    [idBackLabel1 setText:@"ID1: Back"];
+    [imageView2 addSubview:idBackLabel1];
+
+    imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(218, 2, 106, 106)];
+    
+    UILabel *idFrontLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 106, 20)];
+    [idFrontLabel2 setFont:[UIFont fontWithName:nil size:19.0f]];
+    [idFrontLabel2 setTextAlignment: NSTextAlignmentCenter];
+    [idFrontLabel2 setText:@"ID2: Front"];
+    [imageView3 addSubview:idFrontLabel2];
+    
+    imageView4 = [[UIImageView alloc] initWithFrame:CGRectMake(326, 2, 106, 106)];
+    
+    UILabel *idBackLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 106, 20)];
+    [idBackLabel2 setFont:[UIFont fontWithName:nil size:19.0f]];
+    [idBackLabel2 setTextAlignment: NSTextAlignmentCenter];
+    [idBackLabel2 setText:@"ID2: Back"];
+    [imageView4 addSubview:idBackLabel2];
+
     
     
-    [imageCollectionView addSubview:image1];
-    [imageCollectionView addSubview:image2];
-    [imageCollectionView addSubview:image3];
-    [imageCollectionView addSubview:image4];
+    [imageCollectionView addSubview:imageView1];
+    [imageCollectionView addSubview:imageView2];
+    [imageCollectionView addSubview:imageView3];
+    [imageCollectionView addSubview:imageView4];
     
     
     
@@ -162,6 +239,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
     [profileScroll addSubview:imageFrameView];
     [profileScroll addSubview:profileName];
+      [profileScroll addSubview:profileEmail];
     [profileScroll addSubview:profilePhone];
     
     
@@ -236,18 +314,14 @@ UILabel *profileEmail, *profileName, *profilePhone;
     [profileNumber setFont:[UIFont fontWithName:nil size:19.0f]];
     [profileNumber setTextColor:[UIColor grayColor]];
     [profileNumber setText:@"Mobile Number: "];
+
     
-    UILabel *profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(167, 745, 150, 30)];
-    [profileEmail setFont:[UIFont fontWithName:nil size:19.0f]];
-    [profileEmail setTextColor:[UIColor grayColor]];
-    [profileEmail setText:@"Email Address: "];
-    
-    UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(167, 775, 150, 30)];
+    UILabel *profileWork = [[UILabel alloc] initWithFrame:CGRectMake(167, 745, 150, 30)];
     [profileWork setFont:[UIFont fontWithName:nil size:19.0f]];
     [profileWork setTextColor:[UIColor grayColor]];
     [profileWork setText:@"Nature of Work: "];
     
-    UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(167, 805, 150, 30)];
+    UILabel *profileNationality = [[UILabel alloc] initWithFrame:CGRectMake(167, 775, 150, 30)];
     [profileNationality setFont:[UIFont fontWithName:nil size:19.0f]];
     [profileNationality setTextColor:[UIColor grayColor]];
     [profileNationality setText:@"Nationality: "];
@@ -316,12 +390,11 @@ UILabel *profileEmail, *profileName, *profilePhone;
     [mobileNumber setFont:[UIFont fontWithName:nil size:19.0f]];
     
    
-    
-    work = [[UILabel alloc] initWithFrame:CGRectMake(317, 775, 300, 25)];
+    work = [[UILabel alloc] initWithFrame:CGRectMake(317, 745, 300, 25)];
     [work setFont:[UIFont fontWithName:nil size:19.0f]];
     
     
-    nationality = [[UILabel alloc] initWithFrame:CGRectMake(317, 805, 300, 25)];
+    nationality = [[UILabel alloc] initWithFrame:CGRectMake(317, 775, 300, 25)];
     [nationality setFont:[UIFont fontWithName:nil size:19.0f]];
     
     
@@ -347,6 +420,7 @@ UILabel *profileEmail, *profileName, *profilePhone;
     
 }
 
+
 -(void) setInfo{
     [firstName setText:firstNameValue];
     [middleName setText:middleNameValue];
@@ -356,54 +430,90 @@ UILabel *profileEmail, *profileName, *profilePhone;
     [address setText:addressValue];
     [zipcode setText:zipcodeValue];
     [gender setText:genderValue];
-    
-    //FORMAT DATE====================================================
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *date = [dateFormatter dateFromString:birthdateValue];
-    [dateFormatter setDateFormat:@"MMM. dd, yyyy"];
-    NSString *finalDateString = [dateFormatter stringFromDate:date];
-    //End Format Date===============================================
-    
-    [birthdate setText:finalDateString];
+    [birthdate setText:birthdateValue];
     [age setText:ageValue];
     [mobileNumber setText:mobileNumberValue];
-    [email setText:emailValue];
     [work setText:workValue];
     [nationality setText:nationalityValue];
     
-
+    
     
     
     //CONVERTING STRING INTO IMAGE=================================================
     NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [profileImage setImage:[UIImage imageWithData:data]];
+    
+    
+    UIImage *userProfileImage = [UIImage imageWithData:data];
+    if (userProfileImage == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userProfileImage];
+    }
+    
+    
     
     NSData *data1 = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image1 setImage:[UIImage imageWithData:data1]];
-
+    
+    
+    UIImage *userImage1 = [UIImage imageWithData:data1];
+    if (userImage1 == nil)
+    {
+        [imageView1 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [imageView1 setImage:userImage1];
+        
+    }
+    
+    
+    
     
     NSData *data2 = [[NSData alloc]initWithBase64EncodedString:photo2Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image2 setImage:[UIImage imageWithData:data2]];
-
+    
+    UIImage *userImage2 = [UIImage imageWithData:data2];
+    if (userImage2 == nil)
+    {
+        [imageView2 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [imageView2 setImage:userImage2];
+        
+    }
+    
     
     NSData *data3 = [[NSData alloc]initWithBase64EncodedString:photo3Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image3 setImage:[UIImage imageWithData:data3]];
-
+    
+    UIImage *userImage3 = [UIImage imageWithData:data3];
+    if (userImage3 == nil)
+    {
+        [imageView3 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [imageView3 setImage:userImage3];
+        
+    }
+    
     
     NSData *data4 = [[NSData alloc]initWithBase64EncodedString:photo4Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [image4 setImage:[UIImage imageWithData:data4]];
-
+    
+    UIImage *userImage4 = [UIImage imageWithData:data4];
+    if (userImage4 == nil)
+    {
+        [imageView4 setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [imageView4 setImage:userImage4];
+        
+    }
+    
     //================================================================================
-    
-    
-    
-    dialog = [[QuestionVerificationDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) addTarget:self action:@selector(goToEdit:) forControlEvents:UIControlEventTouchUpInside addQuestion1:question1 addQuestion2:question2 addQuestion3:question3];
-    
-    
-    [dialog setHidden:YES];
-    
-    
     
     
     
@@ -411,40 +521,13 @@ UILabel *profileEmail, *profileName, *profilePhone;
     [profilePhone setText:mobileNumberValue];
     [profileEmail setText:emailValue];
     
- 
-    
- }
-
-
--(void) viewWillAppear:(BOOL)animated{
-    
-    NSDictionary *loadEmail = [NSDictionary initRead_LoadWallet_Data];
-    
-    NSString *emailAgain = [loadEmail objectForKey:@"emailadd"];
-    
-    email = [[UILabel alloc] initWithFrame:CGRectMake(317, 745, 300, 25)];
-    [email setFont:[UIFont fontWithName:nil size:19.0f]];
-
-    profileEmail = [[UILabel alloc] initWithFrame:CGRectMake(327, 136, 400, 25)];
-    [profileEmail setFont:[UIFont fontWithName:nil size:19.0f]];
-    
-    [email setText:emailAgain];
-    [profileEmail setText:emailAgain];
-   
-    [profileScroll addSubview:email];
-    [profileScroll addSubview:profileEmail];
-    
-    if(![dialog isHidden])
-    {
-        [dialog setHidden:YES];
-    }
-    
 }
 
--(void) viewDidDisappear:(BOOL)animated{
-    [email removeFromSuperview];
-    [profileEmail removeFromSuperview];
-}
+
+
+
+
+
 
 
 

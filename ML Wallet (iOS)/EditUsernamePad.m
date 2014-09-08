@@ -99,51 +99,57 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     
 }
 
--(void) createUsernameValue{
-    
- 
 
-    
-    
+
+-(void) createUsernameValue{
     
     
     //Old Username
-    UIView *oldUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 230, 434, 35)];
-    [oldUsernameOutline setBackgroundColor:[UIColor redColor]];
-    oldUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    UIView *leftMarginOldUsername = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    oldUsername = [[UITextField alloc] initWithFrame:CGRectMake(169, 232, 434, 35)];
+    oldUsername.layer.cornerRadius = 8.0f;
+    oldUsername.layer.masksToBounds = YES;
+    oldUsername.layer.borderColor=[[UIColor redColor]CGColor];
+    oldUsername.layer.borderWidth = 1.0f;
+    oldUsername.leftView = leftMarginOldUsername;
+    oldUsername.leftViewMode = UITextFieldViewModeAlways;
     [oldUsername setBackgroundColor:[UIColor whiteColor]];
-    [oldUsername setFont:[UIFont systemFontOfSize:19.0f]];
-    [oldUsername setPlaceholder:@" Old username"];
     [oldUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    [oldUsernameOutline addSubview:oldUsername];
+    [oldUsername setPlaceholder:@" Old username"];
     
     
     
     //New Username
-    UIView *newUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 300, 434, 35)];
-    [newUsernameOutline setBackgroundColor:[UIColor redColor]];
-    newUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    UIView *leftMarginNewUsername = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    newUsername = [[UITextField alloc] initWithFrame:CGRectMake(169, 302, 434, 35)];
+    newUsername.layer.cornerRadius = 8.0f;
+    newUsername.layer.masksToBounds = YES;
+    newUsername.layer.borderColor=[[UIColor redColor]CGColor];
+    newUsername.layer.borderWidth = 1.0f;
+    newUsername.leftView = leftMarginNewUsername;
+    newUsername.leftViewMode = UITextFieldViewModeAlways;
     [newUsername setBackgroundColor:[UIColor whiteColor]];
-    [newUsername setFont:[UIFont systemFontOfSize:19.0f]];
-    [newUsername setPlaceholder:@" New username"];
     [newUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    [newUsernameOutline addSubview:newUsername];
+    [newUsername setPlaceholder:@" New username"];
     
     
     //Username
-    UIView *confirmUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(167, 370, 434, 35)];
-    [confirmUsernameOutline setBackgroundColor:[UIColor redColor]];
-    confirmUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 430, 31)];
+    UIView *leftMarginConfirmUsername= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    confirmUsername = [[UITextField alloc] initWithFrame:CGRectMake(169, 372, 434, 35)];
+    confirmUsername.layer.cornerRadius = 8.0f;
+    confirmUsername.layer.masksToBounds = YES;
+    confirmUsername.layer.borderColor=[[UIColor redColor]CGColor];
+    confirmUsername.layer.borderWidth = 1.0f;
+    confirmUsername.leftView = leftMarginConfirmUsername;
+    confirmUsername.leftViewMode = UITextFieldViewModeAlways;
     [confirmUsername setBackgroundColor:[UIColor whiteColor]];
-    [confirmUsername setFont:[UIFont systemFontOfSize:19.0f]];
-    [confirmUsername setPlaceholder:@" Confirm username"];
     [confirmUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    [confirmUsernameOutline addSubview:confirmUsername];
+    [confirmUsername setPlaceholder:@" Confirm username"];
     
     
-    [profileScroll addSubview:oldUsernameOutline];
-    [profileScroll addSubview:newUsernameOutline];
-    [profileScroll addSubview:confirmUsernameOutline];
+    [profileScroll addSubview:oldUsername];
+    [profileScroll addSubview:newUsername];
+    [profileScroll addSubview:confirmUsername];
     
     
 }

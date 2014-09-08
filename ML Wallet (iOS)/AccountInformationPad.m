@@ -83,8 +83,16 @@ UILabel *wallet, *balance, *address, *email;
     
     //CONVERTING STRING INTO IMAGE=================================================
     NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [profileImage setImage:[UIImage imageWithData:data]];
     
+    UIImage *userImage = [UIImage imageWithData:data];
+    if (userImage == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userImage];
+    }
     //================================================================================
     
     
@@ -109,6 +117,7 @@ UILabel *wallet, *balance, *address, *email;
     [profileImageView setBackgroundColor:[UIColor redColor]];
     
     profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 146, 146)];
+    
     
     profileName = [[UILabel alloc] initWithFrame:CGRectMake(327, 90, 400, 30)];
     [profileName setFont:[UIFont fontWithName:nil size:22.0f]];

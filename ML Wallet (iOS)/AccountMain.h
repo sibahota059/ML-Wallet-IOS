@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AccountMobilePad.h"
 
-@interface AccountMain : UIViewController <AccountMobilePadDelegate>
+@interface AccountMain : UIViewController 
+
+
+@property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) UILabel *bdayLabel;
+@property (strong, nonatomic) UILabel *countryLabel;
+@property (strong, nonatomic) UIImageView *profileImageView;
 
 @end

@@ -157,10 +157,20 @@ UILabel *wallet, *balance, *address, *email;
     
     //CONVERTING STRING INTO IMAGE=================================================
     NSData *data = [[NSData alloc]initWithBase64EncodedString:photo1Value options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    [profileImage setImage:[UIImage imageWithData:data]];
+    
+    
     
     //================================================================================
-    
+    UIImage *userImage = [UIImage imageWithData:data];
+    if (userImage == nil)
+    {
+        [profileImage setImage:[UIImage imageNamed:@"noImage.png"]];
+    }
+    else
+    {
+        [profileImage setImage:userImage];
+    }
+
     
     [profileName setText:[NSString stringWithFormat:@"%@ %@. %@",firstNameValue, middleNameValue, lastNameValue]];
     [profilePhone setText:mobileNumberValue];

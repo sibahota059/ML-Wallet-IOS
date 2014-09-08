@@ -10,6 +10,8 @@
 #import "ServiceConnection.h"
 #import "AccountMainPad.h"
 
+#import "NSDictionary+LoadWalletData.h"
+
 
 @implementation AccountMobilePad
 
@@ -19,6 +21,7 @@
     NSMutableData *contentData;
     NSURLConnection *conn;
     ServiceConnection *con;
+    NSDictionary *loadData;
     
 }
 
@@ -40,6 +43,8 @@
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.getAccount = jsonResponse;
     [self.delegate didFinishLoadingRates:@"1" andError:@""];
+    
+    
 }
 
 
@@ -66,9 +71,12 @@
     
     NSString *serviceMethods = @"retrieveMobileAccount";
     
+    loadData = [NSDictionary initRead_LoadWallet_Data];
+    
+    
     
     NSString *walletNo = @"?walletno=";
-    NSString *walletNoValue =@"14030000000123";
+    NSString *walletNoValue =[loadData objectForKey:@"walletno"];
     
     
     NSString *contentURL = [NSString stringWithFormat:@"%@%@%@%@", con.NSgetURLService, serviceMethods, walletNo, walletNoValue];

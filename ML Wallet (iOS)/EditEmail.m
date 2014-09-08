@@ -97,39 +97,60 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     
     
     //Old Username
-    UIView *oldEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 45, 280, 30)];
-    [oldEmailOutline setBackgroundColor:[UIColor redColor]];
-    oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    
+    UIView *leftMarginOldEmail= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    oldEmail = [[UITextField alloc] initWithFrame:CGRectMake(22, 47, 276, 26)];
+    oldEmail.layer.cornerRadius = 8.0f;
+    oldEmail.layer.masksToBounds = YES;
+    oldEmail.layer.borderColor=[[UIColor redColor]CGColor];
+    oldEmail.layer.borderWidth = 1.0f;
+    oldEmail.leftView = leftMarginOldEmail;
+    oldEmail.leftViewMode = UITextFieldViewModeAlways;
     [oldEmail setBackgroundColor:[UIColor whiteColor]];
     [oldEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldEmail setPlaceholder:@" Old e-mail"];
-    [oldEmailOutline addSubview:oldEmail];
+    [oldEmail setReturnKeyType:UIReturnKeyDone];
+    oldEmail.delegate = self;
     
     
     
     //New Username
-    UIView *newEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 105, 280, 30)];
-    [newEmailOutline setBackgroundColor:[UIColor redColor]];
-    newEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    
+    UIView *leftMarginNewEmail= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    newEmail = [[UITextField alloc] initWithFrame:CGRectMake(22, 107, 276, 26)];
+    newEmail.layer.cornerRadius = 8.0f;
+    newEmail.layer.masksToBounds = YES;
+    newEmail.layer.borderColor=[[UIColor redColor]CGColor];
+    newEmail.layer.borderWidth = 1.0f;
+    newEmail.leftView = leftMarginNewEmail;
+    newEmail.leftViewMode = UITextFieldViewModeAlways;
     [newEmail setBackgroundColor:[UIColor whiteColor]];
     [newEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newEmail setPlaceholder:@" New e-mail"];
-    [newEmailOutline addSubview:newEmail];
+    [newEmail setReturnKeyType:UIReturnKeyDone];
+    newEmail.delegate = self;
     
     
     //Username
-    UIView *confirmEmailOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 165, 280, 30)];
-    [confirmEmailOutline setBackgroundColor:[UIColor redColor]];
-    confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    
+    UIView *leftMarginConfirmEmail= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    confirmEmail = [[UITextField alloc] initWithFrame:CGRectMake(22, 167, 276, 26)];
+    confirmEmail.layer.cornerRadius = 8.0f;
+    confirmEmail.layer.masksToBounds = YES;
+    confirmEmail.layer.borderColor=[[UIColor redColor]CGColor];
+    confirmEmail.layer.borderWidth = 1.0f;
+    confirmEmail.leftView = leftMarginConfirmEmail;
+    confirmEmail.leftViewMode = UITextFieldViewModeAlways;
     [confirmEmail setBackgroundColor:[UIColor whiteColor]];
     [confirmEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmEmail setPlaceholder:@" Confirm e-mail"];
-    [confirmEmailOutline addSubview:confirmEmail];
+    [confirmEmail setReturnKeyType:UIReturnKeyDone];
+    confirmEmail.delegate = self;
     
     
-    [profileScroll addSubview:oldEmailOutline];
-    [profileScroll addSubview:newEmailOutline];
-    [profileScroll addSubview:confirmEmailOutline];
+    [profileScroll addSubview:oldEmail];
+    [profileScroll addSubview:newEmail];
+    [profileScroll addSubview:confirmEmail];
     
     
 }
@@ -323,5 +344,40 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    Boolean isLatest = [ [ UIScreen mainScreen ] bounds ].size.height == 568;
+    
+    if (!isLatest)
+    {
+        if(textField == confirmEmail)
+        {
+        
+            [UIView animateWithDuration:0.5
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{self.view.frame = CGRectMake(0, 50, 320,     568); }
+                             completion:^(BOOL finished){}];
+        }
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
+                     completion:^(BOOL finished){}];
+    
+    [textField resignFirstResponder];
+    
+    
+    return YES;
+    
+}
 
 @end

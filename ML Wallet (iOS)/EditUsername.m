@@ -95,39 +95,58 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     
     
     //Old Username
-    UIView *oldUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 45, 280, 30)];
-    [oldUsernameOutline setBackgroundColor:[UIColor redColor]];
-    oldUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginOldUsername = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    oldUsername = [[UITextField alloc] initWithFrame:CGRectMake(22, 47, 276, 26)];
+    oldUsername.layer.cornerRadius = 8.0f;
+    oldUsername.layer.masksToBounds = YES;
+    oldUsername.layer.borderColor=[[UIColor redColor]CGColor];
+    oldUsername.layer.borderWidth = 1.0f;
+    oldUsername.leftView = leftMarginOldUsername;
+    oldUsername.leftViewMode = UITextFieldViewModeAlways;
     [oldUsername setBackgroundColor:[UIColor whiteColor]];
     [oldUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldUsername setPlaceholder:@" Old username"];
-    [oldUsernameOutline addSubview:oldUsername];
+    [oldUsername setReturnKeyType:UIReturnKeyDone];
+    oldUsername.delegate = self;
     
     
     
     //New Username
-    UIView *newUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 105, 280, 30)];
-    [newUsernameOutline setBackgroundColor:[UIColor redColor]];
-    newUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginNewUsername = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    newUsername = [[UITextField alloc] initWithFrame:CGRectMake(22, 107, 276, 26)];
+    newUsername.layer.cornerRadius = 8.0f;
+    newUsername.layer.masksToBounds = YES;
+    newUsername.layer.borderColor=[[UIColor redColor]CGColor];
+    newUsername.layer.borderWidth = 1.0f;
+    newUsername.leftView = leftMarginNewUsername;
+    newUsername.leftViewMode = UITextFieldViewModeAlways;
     [newUsername setBackgroundColor:[UIColor whiteColor]];
     [newUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newUsername setPlaceholder:@" New username"];
-    [newUsernameOutline addSubview:newUsername];
+    [newUsername setReturnKeyType:UIReturnKeyDone];
+    newUsername.delegate = self;
+    
     
     
     //Username
-    UIView *confirmUsernameOutline = [[UIView alloc] initWithFrame:CGRectMake(20, 165, 280, 30)];
-    [confirmUsernameOutline setBackgroundColor:[UIColor redColor]];
-    confirmUsername = [[UITextField alloc] initWithFrame:CGRectMake(2, 2, 276, 26)];
+    UIView *leftMarginConfirmUsername= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    confirmUsername = [[UITextField alloc] initWithFrame:CGRectMake(22, 167, 276, 26)];
+    confirmUsername.layer.cornerRadius = 8.0f;
+    confirmUsername.layer.masksToBounds = YES;
+    confirmUsername.layer.borderColor=[[UIColor redColor]CGColor];
+    confirmUsername.layer.borderWidth = 1.0f;
+    confirmUsername.leftView = leftMarginConfirmUsername;
+    confirmUsername.leftViewMode = UITextFieldViewModeAlways;
     [confirmUsername setBackgroundColor:[UIColor whiteColor]];
     [confirmUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmUsername setPlaceholder:@" Confirm username"];
-    [confirmUsernameOutline addSubview:confirmUsername];
+    [confirmUsername setReturnKeyType:UIReturnKeyDone];
+    confirmUsername.delegate = self;
     
     
-    [profileScroll addSubview:oldUsernameOutline];
-    [profileScroll addSubview:newUsernameOutline];
-    [profileScroll addSubview:confirmUsernameOutline];
+    [profileScroll addSubview:oldUsername];
+    [profileScroll addSubview:newUsername];
+    [profileScroll addSubview:confirmUsername];
     
     
 }
@@ -343,6 +362,42 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     
     [HUD hide:YES];
     [HUD show:NO];
+    
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    Boolean isLatest = [ [ UIScreen mainScreen ] bounds ].size.height == 568;
+    
+    if (!isLatest)
+    {
+        if(textField == confirmUsername)
+        {
+            
+            [UIView animateWithDuration:0.5
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{self.view.frame = CGRectMake(0, 50, 320,     568); }
+                             completion:^(BOOL finished){}];
+        }
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
+                     completion:^(BOOL finished){}];
+    
+    [textField resignFirstResponder];
+    
+    
+    return YES;
     
 }
 

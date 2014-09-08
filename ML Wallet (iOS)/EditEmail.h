@@ -10,6 +10,6 @@
 #import "EditEmailWebService.h"
 #import "MBProgressHUD.h"
 
-@interface EditEmail : UIViewController <EditEmailDelegate, MBProgressHUDDelegate>
+@interface EditEmail : UIViewController <UITextFieldDelegate, EditEmailDelegate, MBProgressHUDDelegate>
 
 @end
