@@ -604,9 +604,9 @@ NSString *wallNum;
             //            NSString *strWalletNo = [jsonResult objectForKey:@"walletno"];
             NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
             int value = [strResponseCode intValue];
-            NSString *resendPinResponse = [NSString stringWithFormat:@"Pin %@",strResponseMessage];
+            NSString *resendPinResponse = [NSString stringWithFormat:@"%@",strResponseMessage];
             if(value==1){
-                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Success"
+                pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Resend Pin"
                                                                 message:resendPinResponse
                                                                delegate:self
                                                       cancelButtonTitle:nil
