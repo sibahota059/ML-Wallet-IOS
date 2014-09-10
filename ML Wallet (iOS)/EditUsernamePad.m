@@ -117,8 +117,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [oldUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldUsername setPlaceholder:@" Old username"];
     
-    
-    
+
     //New Username
     UIView *leftMarginNewUsername = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
     newUsername = [[UITextField alloc] initWithFrame:CGRectMake(169, 302, 434, 35)];

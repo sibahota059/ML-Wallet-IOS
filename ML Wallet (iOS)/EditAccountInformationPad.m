@@ -900,9 +900,6 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     else
     {
         
-        
-        
-        
         strImage1 = [self encodeToBase64String:mainImage];
         
         if(strImage1 == nil)
@@ -1046,7 +1043,6 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     
     return YES;
 }
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [UIView animateWithDuration:0.5
@@ -1063,8 +1059,6 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     return YES;
     
 }
-
-
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     if((textField == zipcode) || (textField == mobileNumber))
@@ -1083,8 +1077,6 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     }
     return YES;
 }
-
-
 - (NSString *)encodeToBase64String:(UIImage *)image {
     return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
