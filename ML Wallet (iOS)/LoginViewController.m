@@ -22,6 +22,7 @@
 #import "ResetPassViewController.h"
 #import "UIView+MenuAnimationUIVIew.h"
 #import "EditPassword.h"
+#import "EditPasswordPad.h"
 
 #import "SaveWalletData.h"
 
@@ -515,11 +516,25 @@
             //Check if USER Reset password
             if ([isResetpassword isEqualToNumber:[NSNumber numberWithInt:1]]) {
                 //TODO
-                EditPassword *editpassPage = [[EditPassword alloc] initWithNibName:@"EditPassword" bundle:nil];
-                [saveData initSaveData:@"1" forKey:@"isPassReset"];
-                self.navigationController.navigationBarHidden = NO;
-                [self.navigationController pushViewController:editpassPage animated:YES];
-                return;
+                
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                {
+                    EditPassword *editpassPage = [[EditPassword alloc] initWithNibName:@"EditPassword" bundle:nil];
+                    [saveData initSaveData:@"1" forKey:@"isPassReset"];
+                    self.navigationController.navigationBarHidden = NO;
+                    [self.navigationController pushViewController:editpassPage animated:YES];
+                    return;
+                }
+                else
+                {
+                    EditPasswordPad *editpassPage = [[EditPasswordPad alloc] initWithNibName:@"EditPasswordPad" bundle:nil];
+                    [saveData initSaveData:@"1" forKey:@"isPassReset"];
+                    self.navigationController.navigationBarHidden = NO;
+                    [self.navigationController pushViewController:editpassPage animated:YES];
+                    return;
+   
+                }
+                
             }
             
             //GOTO Menu
