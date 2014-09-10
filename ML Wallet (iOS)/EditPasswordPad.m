@@ -8,6 +8,7 @@
 
 #import "EditPasswordPad.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "MenuViewController.h"
 #import "SaveWalletData.h"
 
 @interface EditPasswordPad ()
@@ -29,7 +30,7 @@ NSString *VAL_ERROR = @"Validation Error";
 
 UITextField *oldPassword, *newPassword, *confirmPassword;
 
-NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
+NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswordChanged;
 
 - (void)viewDidLoad
 {
@@ -50,6 +51,8 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     
     loadData = [NSDictionary initRead_LoadWallet_Data];
     password = [loadData objectForKey:@"password"];
+    isPasswordChanged = [loadData objectForKey:@"isPassReset"];
+
     
     wallet = [loadData objectForKey:@"walletno"];
     
@@ -127,6 +130,11 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setPlaceholder:@" New Password"];
     
+    if([isPasswordChanged isEqualToString:@"1"])
+    {
+        oldPassword.text = password;
+        oldPassword.enabled = false;
+    }
     
     //Address
     UIView *leftMarginConfirmPassword = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
@@ -176,6 +184,13 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
         confirmPassword.text = @"";
         [self dismissProgressBar];
         [self saveToPaylist];
+        if([isPasswordChanged isEqualToString:@"1"])
+        {
+            MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+            [self.navigationController pushViewController:menuPage animated:YES];
+            
+        }
+
         
         
         
@@ -302,6 +317,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     SaveWalletData *saveData = [SaveWalletData new];
     
     [saveData initSaveData:finalNewPassword forKey:@"password"];
+    [saveData initSaveData:@"0" forKey:@"isPassReset"];
     
     
 }

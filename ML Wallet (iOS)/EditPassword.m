@@ -8,6 +8,7 @@
 
 #import "EditPassword.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "MenuViewController.h"
 #import "SaveWalletData.h"
 
 @interface EditPassword ()
@@ -24,11 +25,12 @@ UIScrollView *profileScroll;
 NSDictionary *loadData;
 NSString *password, *wallet;
 
+
 NSString *PASSWORD_VAL_ERROR = @"Validation Error";
 
 UITextField *oldPassword, *newPassword, *confirmPassword;
 
-NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
+NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswordChanged;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -49,7 +51,9 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     editPasswordWS = [EditPasswordWebService new];
     
     loadData = [NSDictionary initRead_LoadWallet_Data];
+    
     password = [loadData objectForKey:@"password"];
+    isPasswordChanged = [loadData objectForKey:@"isPassReset"];
     
     wallet = [loadData objectForKey:@"walletno"];
     
@@ -108,6 +112,13 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     [oldPassword setPlaceholder:@" Old Password"];
     [oldPassword setReturnKeyType:UIReturnKeyDone];
     oldPassword.delegate = self;
+    
+    if([isPasswordChanged isEqualToString:@"1"])
+    {
+        oldPassword.text = password;
+        oldPassword.enabled = false;
+    }
+   
     
     
     
@@ -174,6 +185,12 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
         confirmPassword.text = @"";
         [self dismissProgressBar];
         [self saveToPaylist];
+        if([isPasswordChanged isEqualToString:@"1"])
+        {
+            MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+            [self.navigationController pushViewController:menuPage animated:YES];
+
+        }
         
 
         
@@ -300,6 +317,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     SaveWalletData *saveData = [SaveWalletData new];
     
     [saveData initSaveData:finalNewPassword forKey:@"password"];
+    [saveData initSaveData:@"0" forKey:@"isPassReset"];
     
     
 }
