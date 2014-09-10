@@ -21,6 +21,7 @@
 #import "MLRatesTableViewController.h"
 #import "ResetPassViewController.h"
 #import "UIView+MenuAnimationUIVIew.h"
+#import "EditPassword.h"
 
 #import "SaveWalletData.h"
 
@@ -489,6 +490,7 @@
             isnewuser   = [result valueForKeyPath:@"isnewuser"];
             
             NSString *bal = [NSString stringWithFormat:@"%@", balance];
+            NSNumber *isResetpassword = [result valueForKey:@"isresetpass"];
             
             //Saving Data Plist
             SaveWalletData *saveData = [SaveWalletData new];
@@ -508,6 +510,16 @@
             //Check for new USER
             if ([isnewuser isEqualToNumber:[NSNumber numberWithInt:1]]) {
                 [self ifUserisNew];return;
+            }
+            
+            //Check if USER Reset password
+            if ([isResetpassword isEqualToNumber:[NSNumber numberWithInt:1]]) {
+                //TODO
+                EditPassword *editpassPage = [[EditPassword alloc] initWithNibName:@"EditPassword" bundle:nil];
+                [saveData initSaveData:@"1" forKey:@"isPassReset"];
+                self.navigationController.navigationBarHidden = NO;
+                [self.navigationController pushViewController:editpassPage animated:YES];
+                return;
             }
             
             //GOTO Menu
