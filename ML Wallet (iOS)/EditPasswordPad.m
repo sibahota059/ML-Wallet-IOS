@@ -32,6 +32,8 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
 
 NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswordChanged;
 
+SaveWalletData *saveData;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,7 +58,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
 
     
     wallet = [loadData objectForKey:@"walletno"];
-    
+    saveData = [SaveWalletData new];
     editPasswordWS.delegate = self;
     [self.view addSubview:profileScroll];
     
@@ -272,8 +274,18 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
 
 
 -(void)backPressed:(id)sender{
-    
-    [self.navigationController  popViewControllerAnimated:YES];
+    if([isPasswordChanged isEqualToString:@"1"])
+    {
+        
+        [saveData initSaveData:@"0" forKey:@"isPassReset"];
+        MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+        [self.navigationController pushViewController:menuPage animated:YES];
+        
+    }
+    else
+    {
+        [self.navigationController  popViewControllerAnimated:YES];
+    }
     
 }
 
@@ -322,7 +334,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
 
 -(void) saveToPaylist{
     
-    SaveWalletData *saveData = [SaveWalletData new];
+    
     
     [saveData initSaveData:finalNewPassword forKey:@"password"];
     [saveData initSaveData:@"0" forKey:@"isPassReset"];

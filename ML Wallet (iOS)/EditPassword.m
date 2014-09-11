@@ -32,6 +32,8 @@ UITextField *oldPassword, *newPassword, *confirmPassword;
 
 NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswordChanged;
 
+
+SaveWalletData *saveData;
 - (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -51,6 +53,8 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
     editPasswordWS = [EditPasswordWebService new];
     
     loadData = [NSDictionary initRead_LoadWallet_Data];
+    
+    saveData = [SaveWalletData new];
     
     password = [loadData objectForKey:@"password"];
     isPasswordChanged = [loadData objectForKey:@"isPassReset"];
@@ -266,8 +270,18 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
 
 
 -(void)backPressed:(id)sender{
-    
-    [self.navigationController  popViewControllerAnimated:YES];
+    if([isPasswordChanged isEqualToString:@"1"])
+    {
+        
+        [saveData initSaveData:@"0" forKey:@"isPassReset"];
+        MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+        [self.navigationController pushViewController:menuPage animated:YES];
+        
+    }
+    else
+    {
+        [self.navigationController  popViewControllerAnimated:YES];
+    }
     
 }
 
@@ -316,7 +330,6 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
 
 -(void) saveToPaylist{
     
-    SaveWalletData *saveData = [SaveWalletData new];
     
     [saveData initSaveData:finalNewPassword forKey:@"password"];
     [saveData initSaveData:@"0" forKey:@"isPassReset"];
