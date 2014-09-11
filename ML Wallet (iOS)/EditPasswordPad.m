@@ -276,10 +276,9 @@ SaveWalletData *saveData;
 -(void)backPressed:(id)sender{
     if([isPasswordChanged isEqualToString:@"1"])
     {
+        [self.navigationController setNavigationBarHidden:YES];
         
-        [saveData initSaveData:@"0" forKey:@"isPassReset"];
-        MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-        [self.navigationController pushViewController:menuPage animated:YES];
+        [self.navigationController  popViewControllerAnimated:YES];
         
     }
     else
