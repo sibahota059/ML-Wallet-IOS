@@ -53,6 +53,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
     password = [loadData objectForKey:@"password"];
     isPasswordChanged = [loadData objectForKey:@"isPassReset"];
 
+
     
     wallet = [loadData objectForKey:@"walletno"];
     
@@ -64,6 +65,10 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
     [self createPasswordValue];
     
     [self addNavigationBarButton];
+    
+    
+    
+    
 }
 
 
@@ -114,6 +119,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
     oldPassword.secureTextEntry = YES;
     [oldPassword setBackgroundColor:[UIColor whiteColor]];
     [oldPassword setPlaceholder:@" Old Password"];
+    oldPassword.delegate = self;
     
     
     
@@ -129,6 +135,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
     newPassword.secureTextEntry = YES;
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setPlaceholder:@" New Password"];
+    newPassword.delegate = self;
     
     if([isPasswordChanged isEqualToString:@"1"])
     {
@@ -148,6 +155,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
     confirmPassword.secureTextEntry = YES;
     [confirmPassword setBackgroundColor:[UIColor whiteColor]];
     [confirmPassword setPlaceholder:@" Confirm Password"];
+    confirmPassword.delegate = self;
     
     
     [profileScroll addSubview:oldPassword];
@@ -341,6 +349,16 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
     [HUD show:NO];
     
 }
+
+
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 
 

@@ -55,6 +55,8 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswor
     password = [loadData objectForKey:@"password"];
     isPasswordChanged = [loadData objectForKey:@"isPassReset"];
     
+    NSLog(@"%@", isPasswordChanged);
+    
     wallet = [loadData objectForKey:@"walletno"];
     
     editPasswordWS.delegate = self;

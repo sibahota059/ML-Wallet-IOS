@@ -109,6 +109,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [oldEmail setBackgroundColor:[UIColor whiteColor]];
     [oldEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldEmail setPlaceholder:@" Old e-mail"];
+    oldEmail.delegate = self;
     
     
     
@@ -125,6 +126,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [newEmail setBackgroundColor:[UIColor whiteColor]];
     [newEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newEmail setPlaceholder:@" New e-mail"];
+    newEmail.delegate = self;
     
     
     //Username
@@ -140,6 +142,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [confirmEmail setBackgroundColor:[UIColor whiteColor]];
     [confirmEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmEmail setPlaceholder:@" Confirm e-mail"];
+    confirmEmail.delegate = self;
     
     
     [profileScroll addSubview:oldEmail];
@@ -329,4 +332,8 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 @end
