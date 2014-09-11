@@ -95,9 +95,19 @@
     
     [self.loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_img.png"]]];
     
+    
+    
     [self.scrollView setScrollEnabled:YES];
     self.scrollView.pagingEnabled = YES;
-    [self.scrollView setContentSize:CGSizeMake(320, 568)];
+    //Set Background
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        
+        if ([UIScreen mainScreen].bounds.size.height != 568) //4 inch
+        {
+            [self.scrollView setContentSize:CGSizeMake(320, 600)];
+        }
+    }
     
     
     //Set UP Location
