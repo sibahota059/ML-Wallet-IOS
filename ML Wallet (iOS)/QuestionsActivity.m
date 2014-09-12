@@ -478,6 +478,12 @@ UIBarButtonItem *btnNextAccLog;
 //    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
 //    [scrollView setContentOffset:scrollPoint animated:YES];
 //      }
+    answerTF1.autocorrectionType = FALSE;
+    answerTF2.autocorrectionType = FALSE;
+    answerTF3.autocorrectionType = FALSE;
+    answerTF1.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    answerTF2.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    answerTF3.autocapitalizationType = UITextAutocapitalizationTypeNone;
     if ( IDIOM != IPAD ) {
         
     if([answerTF2 isFirstResponder]){
