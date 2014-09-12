@@ -60,5 +60,7 @@
 	<string></string>
 	<key>photo4</key>
 	<string></string>
+	<key>isPassReset</key>
+	<string>0</string>
 </dict>
 </plist>

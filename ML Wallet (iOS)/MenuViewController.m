@@ -432,6 +432,7 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 //        [self.navigationController pushViewController:loginPage animated:YES];
         [self.navigationController removeFromParentViewController];
         [self.navigationController popToRootViewControllerAnimated:YES];
+        
 //        LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
         
         //LoginViewController *loginPage = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil navigationHidden:YES ];

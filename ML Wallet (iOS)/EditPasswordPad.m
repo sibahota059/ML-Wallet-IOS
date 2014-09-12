@@ -8,6 +8,7 @@
 
 #import "EditPasswordPad.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "MenuViewController.h"
 #import "SaveWalletData.h"
 
 @interface EditPasswordPad ()
@@ -29,7 +30,9 @@ NSString *VAL_ERROR = @"Validation Error";
 
 UITextField *oldPassword, *newPassword, *confirmPassword;
 
-NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
+NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword, *isPasswordChanged;
+
+SaveWalletData *saveData;
 
 - (void)viewDidLoad
 {
@@ -50,9 +53,12 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     
     loadData = [NSDictionary initRead_LoadWallet_Data];
     password = [loadData objectForKey:@"password"];
+    isPasswordChanged = [loadData objectForKey:@"isPassReset"];
+
+
     
     wallet = [loadData objectForKey:@"walletno"];
-    
+    saveData = [SaveWalletData new];
     editPasswordWS.delegate = self;
     [self.view addSubview:profileScroll];
     
@@ -61,6 +67,10 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     [self createPasswordValue];
     
     [self addNavigationBarButton];
+    
+    
+    
+    
 }
 
 
@@ -111,6 +121,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     oldPassword.secureTextEntry = YES;
     [oldPassword setBackgroundColor:[UIColor whiteColor]];
     [oldPassword setPlaceholder:@" Old Password"];
+    oldPassword.delegate = self;
     
     
     
@@ -126,7 +137,13 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     newPassword.secureTextEntry = YES;
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setPlaceholder:@" New Password"];
+    newPassword.delegate = self;
     
+    if([isPasswordChanged isEqualToString:@"1"])
+    {
+        oldPassword.text = password;
+        oldPassword.enabled = false;
+    }
     
     //Address
     UIView *leftMarginConfirmPassword = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
@@ -140,6 +157,7 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     confirmPassword.secureTextEntry = YES;
     [confirmPassword setBackgroundColor:[UIColor whiteColor]];
     [confirmPassword setPlaceholder:@" Confirm Password"];
+    confirmPassword.delegate = self;
     
     
     [profileScroll addSubview:oldPassword];
@@ -176,6 +194,13 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
         confirmPassword.text = @"";
         [self dismissProgressBar];
         [self saveToPaylist];
+        if([isPasswordChanged isEqualToString:@"1"])
+        {
+            MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+            [self.navigationController pushViewController:menuPage animated:YES];
+            
+        }
+
         
         
         
@@ -249,8 +274,17 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
 
 
 -(void)backPressed:(id)sender{
-    
-    [self.navigationController  popViewControllerAnimated:YES];
+    if([isPasswordChanged isEqualToString:@"1"])
+    {
+        [self.navigationController setNavigationBarHidden:YES];
+        
+        [self.navigationController  popViewControllerAnimated:YES];
+        
+    }
+    else
+    {
+        [self.navigationController  popViewControllerAnimated:YES];
+    }
     
 }
 
@@ -299,9 +333,10 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
 
 -(void) saveToPaylist{
     
-    SaveWalletData *saveData = [SaveWalletData new];
+    
     
     [saveData initSaveData:finalNewPassword forKey:@"password"];
+    [saveData initSaveData:@"0" forKey:@"isPassReset"];
     
     
 }
@@ -325,6 +360,16 @@ NSString *finalOldPassword, *finalNewPassword, *finalConfirmPassword;
     [HUD show:NO];
     
 }
+
+
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 
 

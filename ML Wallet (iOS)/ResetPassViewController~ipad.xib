@@ -9,6 +9,7 @@
                 <outlet property="SecQuestion" destination="lCu-EV-fOO" id="i6o-O1-m9E"/>
                 <outlet property="lblAnswer" destination="WqD-JY-jGu" id="l2a-ok-Q43"/>
                 <outlet property="lblEmail" destination="POo-Au-Rpk" id="X5D-yn-5E8"/>
+                <outlet property="lblSecQuestion" destination="lCu-EV-fOO" id="Ptz-aW-cB9"/>
                 <outlet property="lblUsername" destination="kWz-Ny-ekA" id="wkw-kT-WZK"/>
                 <outlet property="lblViewIpad" destination="WGr-1u-tvE" id="UNZ-o2-EQq"/>
                 <outlet property="view" destination="iN0-l3-epB" id="DX5-CB-moK"/>

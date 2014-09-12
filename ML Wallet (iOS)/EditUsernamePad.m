@@ -116,9 +116,9 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [oldUsername setBackgroundColor:[UIColor whiteColor]];
     [oldUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldUsername setPlaceholder:@" Old username"];
+    oldUsername.delegate = self;
     
-    
-    
+
     //New Username
     UIView *leftMarginNewUsername = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
     newUsername = [[UITextField alloc] initWithFrame:CGRectMake(169, 302, 434, 35)];
@@ -131,6 +131,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [newUsername setBackgroundColor:[UIColor whiteColor]];
     [newUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newUsername setPlaceholder:@" New username"];
+    newUsername.delegate = self;
     
     
     //Username
@@ -145,6 +146,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [confirmUsername setBackgroundColor:[UIColor whiteColor]];
     [confirmUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmUsername setPlaceholder:@" Confirm username"];
+    confirmUsername.delegate = self;
     
     
     [profileScroll addSubview:oldUsername];
@@ -360,4 +362,11 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     
     
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+    [textField resignFirstResponder];
+    return YES;
+}
+
 @end

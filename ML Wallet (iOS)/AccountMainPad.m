@@ -150,8 +150,9 @@ UIButton *accountButton, *profileButton;
 -(void)backPressed:(id)sender{
     
     self.navigationController.navigationBarHidden = YES;
-    MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-    [self.navigationController pushViewController:menuPage animated:YES];
+//    MenuViewController *menuPage = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+//    [self.navigationController pushViewController:menuPage animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 //=================================================

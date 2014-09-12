@@ -100,7 +100,7 @@
     //Show Animated
     HUD.labelText = @"Please wait";
     HUD.square = YES;
-    [HUD show:YES];
+    [HUD show:YES navigatorItem:self.navigationItem];
 
     [self SendReq_ForgotPass];
 }
@@ -327,6 +327,9 @@
         NSNumber *respCode = [result valueForKey:@"respcode"];
         NSString *respMesg = [result valueForKey:@"respmessage"];
         
+        
+        NSString *str = [NSString stringWithFormat:@"%@\n%@", respMesg, @"You may check your email"];
+        
         //Hide Loader
         [HUD hide:YES];
         [HUD show:NO];
@@ -335,7 +338,7 @@
         
         if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]]) //success
         {
-            [UIAlertView myCostumeAlert:@"Successful" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [UIAlertView myCostumeAlert:@"Successful" alertMessage:str delegate:nil cancelButton:@"Ok" otherButtons:nil];
             
             self.lblAnswer.text = @"";
             self.lblEmail.text  = @"";

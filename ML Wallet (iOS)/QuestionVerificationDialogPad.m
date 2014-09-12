@@ -432,23 +432,6 @@ UIView *dimLight;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{dialogBackground.frame = CGRectMake(18, 28, 284, 304); }
-                     completion:^(BOOL finished){}];
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{dialog.frame = CGRectMake(20, 30, 280, 300); }
-                     completion:^(BOOL finished){}];
-    
-    
-    
-    
-    
-    
     [textField resignFirstResponder];
     
     return YES;

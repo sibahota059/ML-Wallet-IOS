@@ -21,6 +21,8 @@
 #import "MLRatesTableViewController.h"
 #import "ResetPassViewController.h"
 #import "UIView+MenuAnimationUIVIew.h"
+#import "EditPassword.h"
+#import "EditPasswordPad.h"
 
 #import "SaveWalletData.h"
 
@@ -93,9 +95,19 @@
     
     [self.loginView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_img.png"]]];
     
+    
+    
     [self.scrollView setScrollEnabled:YES];
     self.scrollView.pagingEnabled = YES;
-    [self.scrollView setContentSize:CGSizeMake(320, 568)];
+    //Set Background
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        
+        if ([UIScreen mainScreen].bounds.size.height != 568) //4 inch
+        {
+            [self.scrollView setContentSize:CGSizeMake(320, 600)];
+        }
+    }
     
     
     //Set UP Location
@@ -489,6 +501,7 @@
             isnewuser   = [result valueForKeyPath:@"isnewuser"];
             
             NSString *bal = [NSString stringWithFormat:@"%@", balance];
+            NSNumber *isResetpassword = [result valueForKey:@"isresetpass"];
             
             //Saving Data Plist
             SaveWalletData *saveData = [SaveWalletData new];
@@ -508,6 +521,30 @@
             //Check for new USER
             if ([isnewuser isEqualToNumber:[NSNumber numberWithInt:1]]) {
                 [self ifUserisNew];return;
+            }
+            
+            //Check if USER Reset password
+            if ([isResetpassword isEqualToNumber:[NSNumber numberWithInt:1]]) {
+                //TODO
+                
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                {
+                    EditPassword *editpassPage = [[EditPassword alloc] initWithNibName:@"EditPassword" bundle:nil];
+                    [saveData initSaveData:@"1" forKey:@"isPassReset"];
+                    self.navigationController.navigationBarHidden = NO;
+                    [self.navigationController pushViewController:editpassPage animated:YES];
+                    return;
+                }
+                else
+                {
+                    EditPasswordPad *editpassPage = [[EditPasswordPad alloc] initWithNibName:@"EditPasswordPad" bundle:nil];
+                    [saveData initSaveData:@"1" forKey:@"isPassReset"];
+                    self.navigationController.navigationBarHidden = NO;
+                    [self.navigationController pushViewController:editpassPage animated:YES];
+                    return;
+   
+                }
+                
             }
             
             //GOTO Menu
