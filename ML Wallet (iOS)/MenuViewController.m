@@ -445,8 +445,29 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 
 #pragma Start #Click Button Others
 - (IBAction)btnOthers:(id)sender {
-    [self onClickOthers];
-    [self.kycLayer setHidden:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        //IPHONE 3.5 inch
+        if ([UIScreen mainScreen].bounds.size.height != 568) //4 inch
+        {
+            
+            self.view_Others.frame = CGRectMake(0, 370, 161, 82);
+            [self onClickOthers];
+            [self.kycLayer setHidden:YES];
+        }
+        //IPHONE 4 inch
+        else
+        {
+            [self onClickOthers];
+            [self.kycLayer setHidden:YES];
+        }
+        
+    } else {
+        //TAB
+        [self onClickOthers];
+        [self.kycLayer setHidden:YES];
+    }
+    
 }
 
 #pragma Start #Reload Button
