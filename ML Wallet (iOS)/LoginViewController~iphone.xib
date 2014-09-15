@@ -43,7 +43,7 @@
                             </connections>
                         </view>
                         <view contentMode="scaleToFill" id="WY1-31-SoR">
-                            <rect key="frame" x="0.0" y="115" width="320" height="366"/>
+                            <rect key="frame" x="0.0" y="102" width="320" height="392"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" id="Jqi-aw-9Ry">
@@ -89,7 +89,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="btnResetPIN:" destination="-1" eventType="touchUpInside" id="VsV-DV-TjJ"/>
+                                        <action selector="btnResetPIN:" destination="-1" eventType="touchUpInside" id="THb-gh-FRP"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="e8B-mf-z2a">
