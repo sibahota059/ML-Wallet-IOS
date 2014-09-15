@@ -223,7 +223,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
             endingLineNumber = "176"
-            landmarkName = "-didFinishLoadingEmail:andError:"
+            landmarkName = "-didFinishLoadingHistory:andError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
