@@ -1078,26 +1078,21 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
         animateUp = 100;
         
     }
-    
-    NSLog(@"SHOULDBEGINEDITING:mobileCliked: %hhu", mobileClicked);
-     NSLog(@"SHOULDBEGINEDITING:workCliked: %hhu", workClicked);
+
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                      animations:^{self.view.frame = CGRectMake(0, animateUp, 780, 1530); }
                      completion:^(BOOL finished){}];
     
     return YES;
 
-//    [UIView animateWithDuration:0.5
-//                          delay:0.0
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{self.view.frame = CGRectMake(0, -100, 780, 1130); }
-//                     completion:^(BOOL finished){}];
+
     
     
     return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+    NSLog(@"SHOULD_RETURN");
     if (textField == country)
     {
         [province becomeFirstResponder];
@@ -1138,9 +1133,6 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     }
     
     
-    NSLog(@"TEXTSHOULDRETURN: mobileCliked: %hhu", mobileClicked);
-    NSLog(@"TEXTSHOULDRETURN: workedClicked: %hhu", workClicked);
-    
 
     
     return YES;
@@ -1150,6 +1142,7 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
 
 - (void) textFieldDidEndEditing:(UITextField *)textField
 {
+    NSLog(@"END_EDITING");
     if(textField == mobileNumber)
     {
         
@@ -1173,12 +1166,16 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     {
         if(workClicked == YES)
         {
-            profileScroll.frame = CGRectMake(0, 0, 780, 1130);
-            [work resignFirstResponder];
-            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-                             animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
-                             }
-                             completion:^(BOOL finished){}];
+            if([mobileNumber isFirstResponder])
+            {
+                profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+                [work resignFirstResponder];
+                [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                                 animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
+                                 }
+                                 completion:^(BOOL finished){}];
+            }
+           
             
             
         }
@@ -1193,13 +1190,16 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
         }
         else
         {
-        profileScroll.frame = CGRectMake(0, 0, 780, 1130);
-        [textField resignFirstResponder];
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
-                             
-                         }
-                         completion:^(BOOL finished){}];
+            
+            if([mobileNumber isFirstResponder])
+            {
+                profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+                [work resignFirstResponder];
+                [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                                 animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
+                                 }
+                                 completion:^(BOOL finished){}];
+            }
             
         }
 
