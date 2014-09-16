@@ -60,6 +60,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *logout;
 @property (strong, nonatomic) IBOutlet UIButton *mlSite;
 @property (strong, nonatomic) IBOutlet UIButton *others;
+@property (strong, nonatomic) IBOutlet UIView *view_Others;
 
 //Assign From LoginviewController
 @property (assign, nonatomic) NSString *fullname;
