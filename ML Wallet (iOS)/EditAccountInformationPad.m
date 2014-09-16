@@ -51,6 +51,8 @@ int whichImage1, whichImage2, whichImage3, whichImage4;
 
 int hasSelectedPad = 0;
 
+Boolean genderClicked, mobileClicked, workClicked, nationalityClicked;
+
 UIView *genderUI;
 UIView *imageSelectionView;
 UIView *backgroundSelectionView;
@@ -60,9 +62,9 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 768, 1500)];
+    profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 768, 1100)];
     [profileScroll setScrollEnabled:YES];
-    [profileScroll setContentSize:CGSizeMake(768, 1700)];
+    [profileScroll setContentSize:CGSizeMake(768, 1300)];
     
     editAccountInfoWS = [EditAccountInfoWebService new];
     loadData = [NSDictionary initRead_LoadWallet_Data];
@@ -81,6 +83,11 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     [self createAccountValue];
     [self setInfo];
     [self selectGender];
+    
+    mobileClicked = NO;
+    workClicked = NO;
+    nationalityClicked = NO;
+    genderClicked = YES;
     
     [self.view addSubview:profileScroll];
     [self addNavigationBarButton];
@@ -940,8 +947,6 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
             strImage2 = [self encodeToBase64String:image1];
         }
         
-        
-        
         [editAccountInfoWS wallet:wallet country:finalCountry province:finalProvince address:finalAddress zipcode:finalZipcode gender:finalGender mnumber:finalNumber work:finalWork nationality:finalNationality photo1:strImage1 photo2:strImage2 photo3:strImage3 photo4:strImage4];
         
         [self displayProgressBar];
@@ -1033,32 +1038,186 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
     
+    int animateUp = 0;
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, -100, 780, 1130); }
+    if (textField == country)
+    {
+        profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+    }
+    else if(textField == province)
+    {
+        profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+    }
+    else if(textField == address)
+    {        profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+    }
+    else if(textField == zipcode)
+    {
+        profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+    }
+    else if(textField == mobileNumber)
+    {
+        mobileClicked = YES;
+        animateUp = -210;
+        profileScroll.frame = CGRectMake(0, 0, 780, 1330);
+    }
+    else if(textField == work)
+    {
+        workClicked = YES;
+        animateUp = -270;
+        profileScroll.frame = CGRectMake(0, 0, 780, 1330);
+    }
+    else if(textField == nationality)
+    {
+        animateUp = -330;
+        profileScroll.frame = CGRectMake(0, 0, 780, 1530);
+        
+    }
+    else
+    {
+        animateUp = 100;
+        
+    }
+    
+    NSLog(@"SHOULDBEGINEDITING:mobileCliked: %hhu", mobileClicked);
+     NSLog(@"SHOULDBEGINEDITING:workCliked: %hhu", workClicked);
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, animateUp, 780, 1530); }
                      completion:^(BOOL finished){}];
+    
+    return YES;
+
+//    [UIView animateWithDuration:0.5
+//                          delay:0.0
+//                        options:UIViewAnimationOptionCurveEaseIn
+//                     animations:^{self.view.frame = CGRectMake(0, -100, 780, 1130); }
+//                     completion:^(BOOL finished){}];
     
     
     return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130); }
-                     completion:^(BOOL finished){}];
+    if (textField == country)
+    {
+        [province becomeFirstResponder];
+    }
+    else if(textField == province)
+    {
+        [address becomeFirstResponder];
+    }
+    else if(textField == address)
+    {
+        [zipcode becomeFirstResponder];
+    }
+    else if(textField == zipcode)
+    {
+        [genderUI setHidden:NO];
+        [zipcode resignFirstResponder];
+    }
+    
+    else if(textField == mobileNumber)
+    {
+        mobileClicked = NO;
+        [work becomeFirstResponder];
+        
+    }
+    else if(textField == work)
+    {
+        workClicked = NO;
+        [nationality becomeFirstResponder];
+       
+    }
+    else if(textField == nationality)
+    {
+        profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+        [textField resignFirstResponder];
+        
+        
+        
+    }
     
     
+    NSLog(@"TEXTSHOULDRETURN: mobileCliked: %hhu", mobileClicked);
+    NSLog(@"TEXTSHOULDRETURN: workedClicked: %hhu", workClicked);
     
-    
-    [textField resignFirstResponder];
+
     
     return YES;
     
 }
+
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == mobileNumber)
+    {
+        
+        
+            if(mobileClicked == YES)
+            {
+                profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+                [mobileNumber resignFirstResponder];
+                [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                                 animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
+                                 }
+                                 completion:^(BOOL finished){}];
+                
+                
+            }
+            mobileClicked = NO;
+      
+
+    }
+    else if(textField == work)
+    {
+        if(workClicked == YES)
+        {
+            profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+            [work resignFirstResponder];
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
+                             }
+                             completion:^(BOOL finished){}];
+            
+            
+        }
+        workClicked = NO;
+        
+    }
+    else if(textField == nationality)
+    {
+        if(workClicked)
+        {
+            // Do nothing
+        }
+        else
+        {
+        profileScroll.frame = CGRectMake(0, 0, 780, 1130);
+        [textField resignFirstResponder];
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
+                             
+                         }
+                         completion:^(BOOL finished){}];
+            
+        }
+
+    }
+    
+    
+
+    
+
+}
+
+
+
+
+
+
+
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     if((textField == zipcode) || (textField == mobileNumber))
@@ -1132,13 +1291,27 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
 
 -(void) maleSelected:(id)sender{
     gender.text = @"Male";
+    [mobileNumber becomeFirstResponder];
     [genderUI setHidden:YES];
-    
+    genderClicked = YES;
+    NSLog(@"%hhu", genderClicked);
+//    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+//                     animations:^{self.view.frame = CGRectMake(0, -150, 780, 1130); }
+//                     completion:^(BOOL finished){}];
+
+
 }
 
 -(void) femaleSelected:(id)sender{
     gender.text = @"Female";
+    [mobileNumber becomeFirstResponder];
     [genderUI setHidden:YES];
+    genderClicked = YES;
+    NSLog(@"%hhu", genderClicked);
+//    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+//                     animations:^{self.view.frame = CGRectMake(0, -150, 780, 1130); }
+//                     completion:^(BOOL finished){}];
+
 }
 
 -(void) showGenderSelection:(id)sender{

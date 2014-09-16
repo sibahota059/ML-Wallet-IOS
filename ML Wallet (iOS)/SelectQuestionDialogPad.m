@@ -10,12 +10,17 @@
 
 @implementation SelectQuestionDialogPad
 @synthesize button;
-@synthesize questions;
+
+@synthesize qButtonPad1;
+@synthesize qButtonPad2;
+@synthesize qButtonPad3;
+@synthesize qButtonPad4;
+@synthesize qButtonPad5;
 
 UIImageView *qImage1, *qImage2, *qImage3, *qImage4, *qImage5;
-UILabel *qLabel1, *qLabel2, *qLabel3, *qLabel4, *qLabel5;
-NSString *winnerQuestion;
 
+NSString *winnerQuestion;
+NSArray *questions;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -34,9 +39,7 @@ NSString *winnerQuestion;
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        
-        
-        
+
         UIView *questionView = [[UIView alloc] initWithFrame:CGRectMake(244, 135, 280, 350)];
         [questionView setBackgroundColor:[UIColor whiteColor]];
         
@@ -53,10 +56,17 @@ NSString *winnerQuestion;
         UIControl *mask1 = [[UIControl alloc] initWithFrame:qImage1.frame];
         [mask1 addTarget:self action:@selector(radioButtonSelected1:) forControlEvents:UIControlEventTouchUpInside];
         
-        qLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(40, 50, 220, 30)];
-        [qLabel1 setFont:[UIFont fontWithName:@"Helvetica" size:14]];
-        [qLabel1 setText:questions[0]];
+//        qLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(40, 50, 220, 30)];
+//        [qLabel1 setFont:[UIFont fontWithName:@"Helvetica" size:14]];
+//        [qLabel1 setText:questions[0]];
         
+        qButtonPad1 = [UIButton buttonWithType:UIButtonTypeCustom];
+        qButtonPad1.frame = CGRectMake(40, 50, 230, 30);
+        qButtonPad1.titleLabel.font = [UIFont fontWithName: @"Helvetica" size:14];
+        qButtonPad1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [qButtonPad1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [qButtonPad1 setTitle:questions[0] forState:UIControlStateNormal];
+        [qButtonPad1 addTarget:self action:@selector(radioButtonSelected1:) forControlEvents:UIControlEventTouchUpInside];
         
         //QUESTION 2
         qImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 100, 30, 30)];
@@ -65,10 +75,13 @@ NSString *winnerQuestion;
         UIControl *mask2 = [[UIControl alloc] initWithFrame:qImage2.frame];
         [mask2 addTarget:self action:@selector(radioButtonSelected2:) forControlEvents:UIControlEventTouchUpInside];
         
-        
-        qLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(40, 100, 220, 30)];
-        [qLabel2 setFont:[UIFont fontWithName:@"Helvetica" size:14]];
-        [qLabel2 setText:questions[1]];
+        qButtonPad2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        qButtonPad2.frame = CGRectMake(40, 100, 230, 30);
+        qButtonPad2.titleLabel.font = [UIFont fontWithName: @"Helvetica" size:14];
+        qButtonPad2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [qButtonPad2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [qButtonPad2 setTitle:questions[1] forState:UIControlStateNormal];
+        [qButtonPad2 addTarget:self action:@selector(radioButtonSelected2:) forControlEvents:UIControlEventTouchUpInside];
         
         //QUESTION 3
         qImage3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 150, 30, 30)];
@@ -77,9 +90,13 @@ NSString *winnerQuestion;
         UIControl *mask3 = [[UIControl alloc] initWithFrame:qImage3.frame];
         [mask3 addTarget:self action:@selector(radioButtonSelected3:) forControlEvents:UIControlEventTouchUpInside];
         
-        qLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(40, 150, 220, 30)];
-        [qLabel3 setFont:[UIFont fontWithName:@"Helvetica" size:14]];
-        [qLabel3 setText:questions[2]];
+        qButtonPad3 = [UIButton buttonWithType:UIButtonTypeCustom];
+        qButtonPad3.frame = CGRectMake(40, 150, 230, 30);
+        qButtonPad3.titleLabel.font = [UIFont fontWithName: @"Helvetica" size:14];
+        qButtonPad3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [qButtonPad3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [qButtonPad3 setTitle:questions[2] forState:UIControlStateNormal];
+        [qButtonPad3 addTarget:self action:@selector(radioButtonSelected3:) forControlEvents:UIControlEventTouchUpInside];
         
         //QUESTION 4
         qImage4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 200, 30, 30)];
@@ -88,9 +105,13 @@ NSString *winnerQuestion;
         UIControl *mask4 = [[UIControl alloc] initWithFrame:qImage4.frame];
         [mask4 addTarget:self action:@selector(radioButtonSelected4:) forControlEvents:UIControlEventTouchUpInside];
         
-        qLabel4 = [[UILabel alloc] initWithFrame:CGRectMake(40, 200, 220, 30)];
-        [qLabel4 setFont:[UIFont fontWithName:@"Helvetica" size:14]];
-        [qLabel4 setText:questions[3]];
+        qButtonPad4 = [UIButton buttonWithType:UIButtonTypeCustom];
+        qButtonPad4.frame = CGRectMake(40, 200, 230, 30);
+        qButtonPad4.titleLabel.font = [UIFont fontWithName: @"Helvetica" size:14];
+        qButtonPad4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [qButtonPad4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [qButtonPad4 setTitle:questions[3] forState:UIControlStateNormal];
+        [qButtonPad4 addTarget:self action:@selector(radioButtonSelected4:) forControlEvents:UIControlEventTouchUpInside];
         
         //QUESTION 5
         qImage5 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 250, 30, 30)];
@@ -99,43 +120,45 @@ NSString *winnerQuestion;
         UIControl *mask5 = [[UIControl alloc] initWithFrame:qImage5.frame];
         [mask5 addTarget:self action:@selector(radioButtonSelected5:) forControlEvents:UIControlEventTouchUpInside];
         
-        
-        qLabel5 = [[UILabel alloc] initWithFrame:CGRectMake(40, 250, 220, 30)];
-        [qLabel5 setFont:[UIFont fontWithName:@"Helvetica" size:14]];
-        [qLabel5 setText:questions[4]];
-        
+        qButtonPad5 = [UIButton buttonWithType:UIButtonTypeCustom];
+        qButtonPad5.frame = CGRectMake(40, 250, 230, 30);
+        qButtonPad5.titleLabel.font = [UIFont fontWithName: @"Helvetica" size:14];
+        qButtonPad5.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [qButtonPad5 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [qButtonPad5 setTitle:questions[4] forState:UIControlStateNormal];
+        [qButtonPad5 addTarget:self action:@selector(radioButtonSelected5:) forControlEvents:UIControlEventTouchUpInside];
         
         button = [[UIButton alloc] initWithFrame:CGRectMake(80, 300, 100, 30)];
-        [button addTarget:self action:@selector(buttonfunction:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:@"Ok" forState:UIControlStateNormal];
         [button setBackgroundColor:[UIColor redColor]];
-        
-        
+   
         [questionView addSubview:questionHeader];
         
-        
         [questionView addSubview:qImage1];
-        [questionView addSubview:qLabel1];
+        [questionView addSubview:qButtonPad1];
         [questionView addSubview:mask1];
         
         [questionView addSubview:qImage2];
-        [questionView addSubview:qLabel2];
+        [questionView addSubview:qButtonPad2];
         [questionView addSubview:mask2];
         
         [questionView addSubview:qImage3];
-        [questionView addSubview:qLabel3];
+        [questionView addSubview:qButtonPad3];
         [questionView addSubview:mask3];
         
         [questionView addSubview:qImage4];
-        [questionView addSubview:qLabel4];
+        [questionView addSubview:qButtonPad4];
         [questionView addSubview:mask4];
         
         [questionView addSubview:qImage5];
-        [questionView addSubview:qLabel5];
-        
-        [questionView addSubview:button];
+        [questionView addSubview:qButtonPad5];
         [questionView addSubview:mask5];
         
+        [questionView addSubview:button];
+        
+        
+        
+
         [self addSubview:questionView];
         
     }
@@ -145,10 +168,6 @@ NSString *winnerQuestion;
 }
 
 
--(void) setQuestions:(NSArray *)stringArray{
-
-    questions = stringArray;
-}
 
 -(void) radioButtonSelected1:(id)sender{
     
@@ -189,60 +208,37 @@ NSString *winnerQuestion;
     if (image == qImage1)
     {
         [qImage1 setImage:[UIImage imageNamed:@"radio_button_selected.png"]];
-        winnerQuestion = qLabel1.text;
-        
+        winnerQuestion = [[qButtonPad1 titleLabel] text];
         
     }
     else if(image == qImage2)
     {
         [qImage2 setImage:[UIImage imageNamed:@"radio_button_selected.png"]];
-        winnerQuestion = qLabel2.text;
+        winnerQuestion = [[qButtonPad2 titleLabel] text];
     }
     else if(image == qImage3)
     {
         [qImage3 setImage:[UIImage imageNamed:@"radio_button_selected.png"]];
-        winnerQuestion = qLabel3.text;
+        winnerQuestion = [[qButtonPad3 titleLabel] text];
     }
     else if(image == qImage4)
     {
         [qImage4 setImage:[UIImage imageNamed:@"radio_button_selected.png"]];
-        winnerQuestion = qLabel4.text;
+        winnerQuestion = [[qButtonPad4 titleLabel] text];
     }
-    else
+    else if (image == qImage5)
     {
         [qImage5 setImage:[UIImage imageNamed:@"radio_button_selected.png"]];
-        winnerQuestion = qLabel5.text;
+        winnerQuestion = [[qButtonPad5 titleLabel] text];
     }
     
 }
 
 -(NSString *) getSelectedQuestion{
-    return winnerQuestion;
-}
-
--(void)buttonfunction:(id)sender{
-
-    [self removeFromSuperview];
-    [self fadeInAnimation:self];
-}
-
--(void)fadeInAnimation:(UIView *) aView{
-    CATransition *transition = [CATransition animation];
-    transition.type = kCAAnimationRotateAuto;
-    transition.duration = 0.5f;
-    transition.delegate = self;
-    [aView.layer addAnimation:transition forKey:nil];
     
+       return winnerQuestion;
 }
 
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 @end

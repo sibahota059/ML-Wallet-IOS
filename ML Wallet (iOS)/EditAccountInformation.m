@@ -65,19 +65,22 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
 - (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     profileScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
     [profileScroll setScrollEnabled:YES];
     
+    int uiHeight = 0;
     
     if(!([ [ UIScreen mainScreen ] bounds ].size.height == 568))
     {
-        [profileScroll setContentSize:CGSizeMake(320, 900)];
+        uiHeight = 880;
     }
     else{
-        
-        [profileScroll setContentSize:CGSizeMake(320, 850)];
+        uiHeight = 800;
     }
+    [profileScroll setContentSize:CGSizeMake(320, uiHeight)];
+    
+    
+
     
     
     editAccountInfoWS = [EditAccountInfoWebService new];
@@ -295,7 +298,6 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     country.leftView = leftMarginCountry;
     country.leftViewMode = UITextFieldViewModeAlways;
     [country setBackgroundColor:[UIColor whiteColor]];
-    
     [country setReturnKeyType:UIReturnKeyNext];
     
     
@@ -1034,13 +1036,54 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
 
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    int animateUp = 0;
     
+    if (textField == country)
+    {
+        animateUp = -110;
+        profileScroll.frame = CGRectMake(0, 0, 320, 900);
+    }
+    else if(textField == province)
+    {
+        animateUp = -170;
+        profileScroll.frame = CGRectMake(0, 0, 320, 900);
+    }
+    else if(textField == address)
+    {
+        animateUp = -230;
+        profileScroll.frame = CGRectMake(0, 0, 320, 900);
+    }
+    else if(textField == zipcode)
+    {
+        animateUp = -290;
+        profileScroll.frame = CGRectMake(0, 0, 320, 900);
+    }
+    else if(textField == mobileNumber)
+    {
+        animateUp = -410;
+        profileScroll.frame = CGRectMake(0, 0, 320, 900);
+    }
+    else if(textField == work)
+    {
+        animateUp = -470;
+        profileScroll.frame = CGRectMake(0, 0, 320, 900);
+    }
+    else if(textField == nationality)
+    {
+        animateUp = -530;
+        profileScroll.frame = CGRectMake(0, 0, 320, 900);
+
+    }
+    else
+    {
+        animateUp = 100;
+        
+    }
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, -50, 320, 568); }
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, animateUp, 320, 900); }
                      completion:^(BOOL finished){}];
+    
     
     
     return YES;
@@ -1048,17 +1091,51 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+
+    if (textField == country)
+    {
+        [province becomeFirstResponder];
+    }
+    else if(textField == province)
+    {
+        [address becomeFirstResponder];
+    }
+    else if(textField == address)
+    {
+        [zipcode becomeFirstResponder];
+    }
+    else if(textField == zipcode)
+    {
+        [genderUI setHidden:NO];
+        [zipcode resignFirstResponder];
+    }
+
+    else if(textField == mobileNumber)
+    {
+        [work becomeFirstResponder];
+    }
+    else if(textField == work)
+    {
+        [nationality becomeFirstResponder];
+    }
+    else if(textField == nationality)
+    {
+        profileScroll.frame = CGRectMake(0, 0, 320, 500);
+        [textField resignFirstResponder];
+        
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{self.view.frame = CGRectMake(0, 100, 320, 900); }
+                         completion:^(BOOL finished){}];
+ 
+        
+    }
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 750); }
-                     completion:^(BOOL finished){}];
+    
+
+
     
     
-    
-    
-    [textField resignFirstResponder];
+//    [textField resignFirstResponder];
     
     return YES;
     
@@ -1133,13 +1210,21 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
 
 -(void) maleSelected:(id)sender{
     gender.text = @"Male";
+    [mobileNumber becomeFirstResponder];
     [genderUI setHidden:YES];
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, -350, 320, 750); }
+                     completion:^(BOOL finished){}];
     
 }
 
 -(void) femaleSelected:(id)sender{
     gender.text = @"Female";
+    [mobileNumber becomeFirstResponder];
     [genderUI setHidden:YES];
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{self.view.frame = CGRectMake(0, -350, 320, 750); }
+                     completion:^(BOOL finished){}];
 }
 
 -(void) showGenderSelection:(id)sender{

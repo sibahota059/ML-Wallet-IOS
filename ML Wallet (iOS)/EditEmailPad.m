@@ -110,7 +110,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [oldEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldEmail setPlaceholder:@" Old e-mail"];
     oldEmail.delegate = self;
-    
+    [oldEmail setReturnKeyType:UIReturnKeyNext];
     
     
     //New Username
@@ -127,7 +127,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [newEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newEmail setPlaceholder:@" New e-mail"];
     newEmail.delegate = self;
-    
+    [newEmail setReturnKeyType:UIReturnKeyNext];
     
     //Username
     
@@ -143,6 +143,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [confirmEmail setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmEmail setPlaceholder:@" Confirm e-mail"];
     confirmEmail.delegate = self;
+    [confirmEmail setReturnKeyType:UIReturnKeyDone];
     
     
     [profileScroll addSubview:oldEmail];
@@ -333,7 +334,19 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    
+    if( textField == oldEmail)
+    {
+        [newEmail becomeFirstResponder];
+    }
+    else if(textField == newEmail)
+    {
+        [confirmEmail becomeFirstResponder];
+    }
+    else
+    {
+         [textField resignFirstResponder];
+    }
     return YES;
 }
 @end

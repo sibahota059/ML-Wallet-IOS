@@ -122,7 +122,7 @@ SaveWalletData *saveData;
     [oldPassword setBackgroundColor:[UIColor whiteColor]];
     [oldPassword setPlaceholder:@" Old Password"];
     oldPassword.delegate = self;
-    
+    [oldPassword setReturnKeyType:UIReturnKeyNext];
     
     
     //New Password
@@ -138,7 +138,8 @@ SaveWalletData *saveData;
     [newPassword setBackgroundColor:[UIColor whiteColor]];
     [newPassword setPlaceholder:@" New Password"];
     newPassword.delegate = self;
-    
+    [newPassword setReturnKeyType:UIReturnKeyNext];
+
     if([isPasswordChanged isEqualToString:@"1"])
     {
         oldPassword.text = password;
@@ -158,7 +159,9 @@ SaveWalletData *saveData;
     [confirmPassword setBackgroundColor:[UIColor whiteColor]];
     [confirmPassword setPlaceholder:@" Confirm Password"];
     confirmPassword.delegate = self;
+    [confirmPassword setReturnKeyType:UIReturnKeyDone];
     
+
     
     [profileScroll addSubview:oldPassword];
     [profileScroll addSubview:newPassword];
@@ -366,7 +369,18 @@ SaveWalletData *saveData;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    if(textField == oldPassword)
+    {
+        [newPassword becomeFirstResponder];
+    }
+    else if(textField == newPassword)
+    {
+        [confirmPassword becomeFirstResponder];
+    }
+    else{
+    
     [textField resignFirstResponder];
+    }
     return YES;
 }
 

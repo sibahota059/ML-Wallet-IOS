@@ -99,8 +99,6 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     
 }
 
-
-
 -(void) createUsernameValue{
     
     
@@ -117,6 +115,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [oldUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [oldUsername setPlaceholder:@" Old username"];
     oldUsername.delegate = self;
+    [oldUsername setReturnKeyType:UIReturnKeyNext];
     
 
     //New Username
@@ -132,6 +131,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [newUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [newUsername setPlaceholder:@" New username"];
     newUsername.delegate = self;
+    [newUsername setReturnKeyType:UIReturnKeyNext];
     
     
     //Username
@@ -147,6 +147,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [confirmUsername setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [confirmUsername setPlaceholder:@" Confirm username"];
     confirmUsername.delegate = self;
+    [confirmUsername setReturnKeyType:UIReturnKeyDone];
     
     
     [profileScroll addSubview:oldUsername];
@@ -155,10 +156,6 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     
     
 }
-
-
-
-
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -364,8 +361,20 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if(textField == oldUsername)
+    {
+        [newUsername becomeFirstResponder];
+    }
+    else if(textField == newUsername)
+    {
+        [confirmUsername becomeFirstResponder];
+    }
+    else
+    {
+        [textField resignFirstResponder];
 
-    [textField resignFirstResponder];
+    }
     return YES;
 }
 
