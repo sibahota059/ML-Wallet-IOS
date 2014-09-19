@@ -111,6 +111,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [oldEmail setPlaceholder:@" Old e-mail"];
     [oldEmail setReturnKeyType:UIReturnKeyDone];
     oldEmail.delegate = self;
+    [oldEmail setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -129,6 +130,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [newEmail setPlaceholder:@" New e-mail"];
     [newEmail setReturnKeyType:UIReturnKeyDone];
     newEmail.delegate = self;
+    [newEmail setReturnKeyType:UIReturnKeyNext];
     
     
     //Username
@@ -146,6 +148,7 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
     [confirmEmail setPlaceholder:@" Confirm e-mail"];
     [confirmEmail setReturnKeyType:UIReturnKeyDone];
     confirmEmail.delegate = self;
+    [confirmEmail setReturnKeyType:UIReturnKeyDone];
     
     
     [profileScroll addSubview:oldEmail];
@@ -366,14 +369,27 @@ NSString *finalOldEmail, *finalNewEmail, *finalConfirmEmail;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+    if(textField == oldEmail)
+    {
+        [newEmail becomeFirstResponder];
+    }
+    else if(textField == newEmail)
+    {
+        [confirmEmail becomeFirstResponder];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
+                         completion:^(BOOL finished){}];
+        
+        [textField resignFirstResponder];
 
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
-                     completion:^(BOOL finished){}];
+    }
     
-    [textField resignFirstResponder];
+
     
     
     return YES;

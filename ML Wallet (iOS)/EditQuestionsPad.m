@@ -153,9 +153,7 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
 
 
 -(void) createAnswer{
-    
-    
-    
+
     //QUESTION 1
     UIView *leftMarginQuestion1= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
     firstAnswer = [[UITextField alloc] initWithFrame:CGRectMake(169, 232, 434, 35)];
@@ -165,10 +163,10 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     firstAnswer.layer.borderWidth = 1.0f;
     firstAnswer.leftView = leftMarginQuestion1;
     firstAnswer.leftViewMode = UITextFieldViewModeAlways;
-    
     [firstAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [firstAnswer setBackgroundColor:[UIColor whiteColor]];
     [firstAnswer setText:answer1];
+    [firstAnswer setReturnKeyType:UIReturnKeyNext];
     
     
     //QUESTION 2
@@ -180,10 +178,10 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     secondAnswer.layer.borderWidth = 1.0f;
     secondAnswer.leftView = leftMarginQuestion2;
     secondAnswer.leftViewMode = UITextFieldViewModeAlways;
-    
     [secondAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [secondAnswer setBackgroundColor:[UIColor whiteColor]];
     [secondAnswer setText:answer2];
+    [secondAnswer setReturnKeyType:UIReturnKeyNext];
     
     
     //QUESITON 3
@@ -195,10 +193,10 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     thirdAnswer.layer.borderWidth = 1.0f;
     thirdAnswer.leftView = leftMarginQuestion3;
     thirdAnswer.leftViewMode = UITextFieldViewModeAlways;
-    
     [thirdAnswer setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [thirdAnswer setBackgroundColor:[UIColor whiteColor]];
     [thirdAnswer setText:answer3];
+    [thirdAnswer setReturnKeyType:UIReturnKeyDone];
     
     
     
@@ -221,7 +219,7 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
 
     if(sender == button1)
     {
-        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions1];
+        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) stringArray:questions1];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion1:) forControlEvents:UIControlEventTouchUpInside];
@@ -230,7 +228,7 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     }
     else if(sender == button2)
     {
-        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions2];
+        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) stringArray:questions2];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion2:) forControlEvents:UIControlEventTouchUpInside];
@@ -238,7 +236,7 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     }
     else
     {
-        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 10, 320, 500) stringArray:questions3];
+        questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) stringArray:questions3];
         [disableBackground setHidden:NO];
         [self.view addSubview:questionDialog];
         [questionDialog.button addTarget:self action:@selector(finishSelectingQuestion3:) forControlEvents:UIControlEventTouchUpInside];
@@ -252,9 +250,10 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
 -(void) finishSelectingQuestion1:(id)sender{
     
     NSString *selectedQuestion = [questionDialog getSelectedQuestion];
+    NSLog(@"%@", selectedQuestion);
     if([selectedQuestion isEqualToString:@""])
     {
-        UIAlertView *pleaseSelect = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Please select 1 question." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        UIAlertView *pleaseSelect = [[UIAlertView alloc] initWithTitle:@"Message!" message:@"Please select 1 question." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [pleaseSelect show];
     }
     else
@@ -271,7 +270,7 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     NSString *selectedQuestion = [questionDialog getSelectedQuestion];
     if([selectedQuestion isEqualToString:@""])
     {
-        UIAlertView *pleaseSelect = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Please select 1 question." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        UIAlertView *pleaseSelect = [[UIAlertView alloc] initWithTitle:@"Message!" message:@"Please select 1 question." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [pleaseSelect show];
     }
     else
@@ -288,7 +287,7 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     NSString *selectedQuestion = [questionDialog getSelectedQuestion];
     if([selectedQuestion isEqualToString:@""])
     {
-        UIAlertView *pleaseSelect = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Please select 1 question." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        UIAlertView *pleaseSelect = [[UIAlertView alloc] initWithTitle:@"Message!" message:@"Please select 1 question." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [pleaseSelect show];
     }
     else
@@ -487,10 +486,19 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+    if(textField == firstAnswer)
+    {
+        [secondAnswer becomeFirstResponder];
+    }
+    else if(textField == secondAnswer)
+    {
+        [thirdAnswer becomeFirstResponder];
+    }
+    else
+    {
+        [textField resignFirstResponder];
+    }
     
-    [firstAnswer resignFirstResponder];
-    [secondAnswer resignFirstResponder];
-    [thirdAnswer resignFirstResponder];
     
     return YES;
 }

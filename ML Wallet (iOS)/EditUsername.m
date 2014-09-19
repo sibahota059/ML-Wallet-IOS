@@ -108,6 +108,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [oldUsername setPlaceholder:@" Old username"];
     [oldUsername setReturnKeyType:UIReturnKeyDone];
     oldUsername.delegate = self;
+    [oldUsername setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -125,6 +126,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [newUsername setPlaceholder:@" New username"];
     [newUsername setReturnKeyType:UIReturnKeyDone];
     newUsername.delegate = self;
+    [newUsername setReturnKeyType:UIReturnKeyNext];
     
     
     
@@ -142,6 +144,7 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
     [confirmUsername setPlaceholder:@" Confirm username"];
     [confirmUsername setReturnKeyType:UIReturnKeyDone];
     confirmUsername.delegate = self;
+    [confirmUsername setReturnKeyType:UIReturnKeyDone];
     
     
     [profileScroll addSubview:oldUsername];
@@ -387,14 +390,26 @@ NSString *finalOldUserName, *finalNewUserName, *finalConfirmUserName;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
-                     completion:^(BOOL finished){}];
-    
-    [textField resignFirstResponder];
+    if(textField == oldUsername)
+    {
+        [newUsername becomeFirstResponder];
+    }
+    else if(textField == newUsername)
+    {
+        [confirmUsername becomeFirstResponder];
+    }
+    else
+    {
+        [textField resignFirstResponder];
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
+                         completion:^(BOOL finished){}];
+        
+        [textField resignFirstResponder];
+
+    }
     
     
     return YES;

@@ -118,6 +118,7 @@ SaveWalletData *saveData;
     [oldPassword setPlaceholder:@" Old Password"];
     [oldPassword setReturnKeyType:UIReturnKeyDone];
     oldPassword.delegate = self;
+    [oldPassword setReturnKeyType:UIReturnKeyNext];
     
     if([isPasswordChanged isEqualToString:@"1"])
     {
@@ -142,6 +143,7 @@ SaveWalletData *saveData;
     [newPassword setPlaceholder:@" New Password"];
     [newPassword setReturnKeyType:UIReturnKeyDone];
     newPassword.delegate = self;
+    [newPassword setReturnKeyType:UIReturnKeyNext];
     
     
     //Address
@@ -158,6 +160,7 @@ SaveWalletData *saveData;
     [confirmPassword setPlaceholder:@" Confirm Password"];
     [confirmPassword setReturnKeyType:UIReturnKeyDone];
     confirmPassword.delegate = self;
+    [confirmPassword setReturnKeyType:UIReturnKeyDone];
     
 
     [profileScroll addSubview:oldPassword];
@@ -375,16 +378,30 @@ SaveWalletData *saveData;
     return YES;
 }
 
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
+    if(textField == oldPassword)
+    {
+        [newPassword becomeFirstResponder];
+    }
+    else if(textField == newPassword)
+    {
+        [confirmPassword becomeFirstResponder];
+    }
+    else
+    {
+        [textField resignFirstResponder];
+        [UIView animateWithDuration:0.5
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
+                         completion:^(BOOL finished){}];
+
+    }
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{self.view.frame = CGRectMake(0, 100, 320, 700); }
-                     completion:^(BOOL finished){}];
     
-    [textField resignFirstResponder];
     
     
     return YES;

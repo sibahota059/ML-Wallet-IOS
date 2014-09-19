@@ -11,7 +11,12 @@
 @interface SelectQuestionDialogPad : UIView
 
 @property (strong, nonatomic) UIButton *button;
-@property (strong, nonatomic) NSArray *questions;
+
+@property (strong, nonatomic) UIButton *qButtonPad1;
+@property (strong, nonatomic) UIButton *qButtonPad2;
+@property (strong, nonatomic) UIButton *qButtonPad3;
+@property (strong, nonatomic) UIButton *qButtonPad4;
+@property (strong, nonatomic) UIButton *qButtonPad5;
 
 - (id)initWithFrame:(CGRect)frame stringArray:(NSArray *)stringArray;
 

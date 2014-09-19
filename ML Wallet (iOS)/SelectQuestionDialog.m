@@ -34,9 +34,6 @@ NSString *winnerQuestion;
     questions = stringArray;
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        
-        
         
         UIView *questionView = [[UIView alloc] initWithFrame:CGRectMake(20, 40, 280, 350)];
         [questionView setBackgroundColor:[UIColor whiteColor]];
@@ -174,9 +171,9 @@ NSString *winnerQuestion;
         
         [questionView addSubview:qImage5];
         [questionView addSubview:qButton5];
+        [questionView addSubview:mask5];
         
         [questionView addSubview:button];
-        [questionView addSubview:mask5];
         
         [self addSubview:questionView];
         
@@ -255,9 +252,6 @@ NSString *winnerQuestion;
 
 -(NSString *) getSelectedQuestion{
     
-    if([winnerQuestion isEqualToString:@""]){
-    winnerQuestion = @"Please select a question.";
-    }
     return winnerQuestion;
 }
 
