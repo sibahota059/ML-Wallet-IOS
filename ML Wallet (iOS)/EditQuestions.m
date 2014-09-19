@@ -47,6 +47,7 @@ NSString *question1, *question2, *question3, *answer1, *answer2, *answer3;
 
 NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *finalAnswer2, *finalAnswer3;
 
+UIControl *questionMask1, *questionMask2, *questionMask3;
 
 - (void)viewDidLoad
 {
@@ -108,6 +109,10 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     [questionLbl1 setFont:[UIFont fontWithName:nil size:13.0f]];
     [questionLbl1 setText:question1];
     
+    questionMask1 = [[UIControl alloc] initWithFrame:questionLbl1.frame];
+    [questionMask1 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     
     //QUESTION 2
@@ -117,8 +122,11 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
     questionLbl2 = [[UILabel alloc] initWithFrame:CGRectMake(53, 120, 260, 30)];
     [questionLbl2 setFont:[UIFont fontWithName:nil size:13.0f]];
-    
     [questionLbl2 setText:question2];
+    
+    questionMask2 = [[UIControl alloc] initWithFrame:questionLbl2.frame];
+    [questionMask2 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     //QUESITON 3
     
@@ -127,20 +135,26 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
     questionLbl3 = [[UILabel alloc] initWithFrame:CGRectMake(53, 210, 260, 30)];
     [questionLbl3 setFont:[UIFont fontWithName:nil size:13.0f]];
-    
     [questionLbl3 setText:question3];
+    
+    questionMask3 = [[UIControl alloc] initWithFrame:questionLbl3.frame];
+    [questionMask3 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
+    
    
     
     //ADDING THE COMPONENTS
     
     [scrollView addSubview:button1];
     [scrollView addSubview:questionLbl1];
+    [scrollView addSubview:questionMask1];
     
     [scrollView addSubview:button2];
     [scrollView addSubview:questionLbl2];
+    [scrollView addSubview:questionMask2];
     
     [scrollView addSubview:button3];
     [scrollView addSubview:questionLbl3];
+    [scrollView addSubview:questionMask3];
 }
 
 -(void) createAnswer{
@@ -230,7 +244,7 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
     
     
     
-    if(sender == button1)
+    if((sender == button1) || (sender == questionMask1))
     {
         questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, questionUI, 320, 500) stringArray:questions1];
         [disableBackground setHidden:NO];
@@ -239,7 +253,7 @@ NSString *finalQuestion1, *finalQuestion2, *finalQuestion3, *finalAnswer1, *fina
         
         
     }
-    else if(sender == button2)
+    else if((sender == button2) || (sender == questionMask2))
     {
         questionDialog = [[SelectQuestionDialog alloc] initWithFrame:CGRectMake(0, questionUI, 320, 500) stringArray:questions2];
         [disableBackground setHidden:NO];

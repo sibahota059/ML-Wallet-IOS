@@ -1166,42 +1166,31 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     {
         if(workClicked == YES)
         {
-            if([mobileNumber isFirstResponder])
-            {
+
                 profileScroll.frame = CGRectMake(0, 0, 780, 1130);
                 [work resignFirstResponder];
                 [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                                  animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
                                  }
                                  completion:^(BOOL finished){}];
-            }
-           
-            
-            
+ 
         }
         workClicked = NO;
         
     }
     else if(textField == nationality)
     {
-        if(workClicked)
-        {
-            // Do nothing
-        }
-        else
-        {
-            
-            if([mobileNumber isFirstResponder])
-            {
+       
+    
                 profileScroll.frame = CGRectMake(0, 0, 780, 1130);
                 [work resignFirstResponder];
                 [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                                  animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
                                  }
                                  completion:^(BOOL finished){}];
-            }
+        
             
-        }
+        
 
     }
     

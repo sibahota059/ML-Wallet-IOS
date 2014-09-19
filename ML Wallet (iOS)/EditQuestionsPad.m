@@ -47,6 +47,8 @@ NSDictionary *loadData;
 
 NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
 
+UIControl *questionMask1, *questionMask2, *questionMask3;
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     
@@ -109,23 +111,34 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     questionLbl1 =[[ProfileLabel alloc] initWithStatus:@"Question 1" x:205 y:190 myColor:[UIColor blackColor] width:260];
     [questionLbl1 setText:question1];
     
+    questionMask1 = [[UIControl alloc] initWithFrame:questionLbl1.frame];
+    [questionMask1 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     
     //QUESTION 2
     
     button2 = [[ProfileButton alloc] initWithString:@"?" x:167 y:285];
     [button2 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
+    
     questionLbl2 = [[ProfileLabel alloc] initWithStatus:@"Question 2" x:205 y:285 myColor:[UIColor blackColor] width:260];
      [questionLbl2 setText:question2];
+    
+    questionMask2 = [[UIControl alloc] initWithFrame:questionLbl2.frame];
+    [questionMask2 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
     
     
     //QUESITON 3
     
     button3 = [[ProfileButton alloc] initWithString:@"?" x:167 y:380];
     [button3 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
-    questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:205 y:380 myColor:[UIColor blackColor] width:260];
     
-     [questionLbl3 setText:question3];
+    questionLbl3 = [[ProfileLabel alloc] initWithStatus:@"Question 3" x:205 y:380 myColor:[UIColor blackColor] width:260];
+    [questionLbl3 setText:question3];
+    
+    questionMask3 = [[UIControl alloc] initWithFrame:questionLbl3.frame];
+    [questionMask3 addTarget:self action:@selector(show:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     
     
@@ -138,12 +151,15 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
     
     [scrollView addSubview:button1];
     [scrollView addSubview:questionLbl1];
+    [scrollView addSubview:questionMask1];
     
     [scrollView addSubview:button2];
     [scrollView addSubview:questionLbl2];
+    [scrollView addSubview:questionMask2];
     
     [scrollView addSubview:button3];
     [scrollView addSubview:questionLbl3];
+    [scrollView addSubview:questionMask3];
     
     
     
@@ -217,7 +233,7 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
 
 -(void)show:(id)sender{
 
-    if(sender == button1)
+    if((sender == button1) || (sender == questionMask1))
     {
         questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) stringArray:questions1];
         [disableBackground setHidden:NO];
@@ -226,7 +242,7 @@ NSString *userInputFirstAnswer, *userInputSecondAnswer, *userInputThirdAnswer;
         
         
     }
-    else if(sender == button2)
+    else if((sender == button2) || (sender == questionMask2))
     {
         questionDialog = [[SelectQuestionDialogPad alloc] initWithFrame:CGRectMake(0, 0, 768, 1120) stringArray:questions2];
         [disableBackground setHidden:NO];

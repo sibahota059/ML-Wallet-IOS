@@ -54,7 +54,7 @@ SaveWalletData *saveData;
     loadData = [NSDictionary initRead_LoadWallet_Data];
     password = [loadData objectForKey:@"password"];
     isPasswordChanged = [loadData objectForKey:@"isPassReset"];
-
+    isPasswordChanged = @"0";
 
     
     wallet = [loadData objectForKey:@"walletno"];

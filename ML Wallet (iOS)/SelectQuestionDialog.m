@@ -145,7 +145,7 @@ NSString *winnerQuestion;
         [qButton5 addTarget:self action:@selector(radioButtonSelected5:) forControlEvents:UIControlEventTouchUpInside];
         
         
-        button = [[UIButton alloc] initWithFrame:CGRectMake(80, 300, 100, 30)];
+        button = [[UIButton alloc] initWithFrame:CGRectMake(90, 300, 100, 30)];
         [button setTitle:@"Ok" forState:UIControlStateNormal];
         [button setBackgroundColor:[UIColor redColor]];
        
