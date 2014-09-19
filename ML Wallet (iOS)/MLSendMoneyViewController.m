@@ -619,6 +619,11 @@
     return YES;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 #pragma mark - Check Valid Input
 - (void)display:(double) input charge:(NSString *) charge{
     string2 = [NSString stringWithFormat:@"%0.2f", inputPrint];
