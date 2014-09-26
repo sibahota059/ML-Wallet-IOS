@@ -683,13 +683,13 @@ UIAlertView *ahw;
         
         if(value==0){
             [self clearTextFields];
-            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Customer ID not found." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
             
             
             
         }//end if [strResponseCode isEqualToString:@"0"]
         
-        else if(value==1){
+        else if(value==1&&[strResponseMessage isEqualToString:@"Success."]){
             
             RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
             regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
