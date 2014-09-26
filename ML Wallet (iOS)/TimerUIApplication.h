@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kApplicationTimeoutInMinutes 1
+#define kApplicationTimeoutInMinutes 5
 
 #define kApplicationDidTimeoutNotification @"AppTimeOut"
 
