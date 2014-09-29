@@ -1188,15 +1188,8 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
                                  animations:^{self.view.frame = CGRectMake(0, 100, 780, 1130);
                                  }
                                  completion:^(BOOL finished){}];
-        
-            
-        
 
     }
-    
-    
-
-    
 
 }
 
@@ -1213,18 +1206,69 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     {
         // Check for non-numeric characters
         NSUInteger lengthOfString = string.length;
-        for (NSInteger index = 0; index < lengthOfString; index++) {
+        for (NSInteger index = 0; index < lengthOfString; index++)
+        {
             unichar character = [string characterAtIndex:index];
             if (character < 48) return NO; // 48 unichar for 0
             if (character > 57) return NO; // 57 unichar for 9
         }
         // Check for total length
         NSUInteger proposedNewLength = textField.text.length - range.length + string.length;
-        if (proposedNewLength > 6)
-            return YES;
+        int maxSize = 0;
+        if(textField == zipcode)
+            maxSize = 4;
+        else if(textField == mobileNumber)
+            maxSize = 11;
+        
+        if(textField.text.length > maxSize - 1)
+        {
+            if([string isEqualToString:@""] && range.length == 1)
+            {
+                return YES;
+            }
+            else
+            {
+                return NO;
+            }
+        }else
+        {
+            if (proposedNewLength > 6)
+                return YES;
+        }
+        
+        
     }
+    
+    
+    
+    
+    
+    if (textField == nationality)
+    {
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+        
+        if ([string rangeOfCharacterFromSet:set].location != NSNotFound)
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
+    }
+    else {
+        return YES;
+    }
+    
+    
+    
     return YES;
 }
+
+
+
+
+
 - (NSString *)encodeToBase64String:(UIImage *)image {
     return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
