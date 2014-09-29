@@ -166,14 +166,14 @@
                 
             }
             
-            [getDate addObject:dates];
-            [getType addObject:types];
-            [getAmmount addObject:ammount];
-            [getBalance addObject:bal];
-            [getReceiverName addObject:receiverName];
-            [getKptn addObject:kptn];
-            [getStatus addObject:status];
-
+                [getDate addObject:dates];
+                [getType addObject:types];
+                [getAmmount addObject:ammount];
+                [getBalance addObject:bal];
+                [getReceiverName addObject:receiverName];
+                [getKptn addObject:kptn];
+                [getStatus addObject:status];
+           
             
         }
         
@@ -385,15 +385,24 @@
         }else if ([[getStatus objectAtIndex:indexPath.row] isEqualToString:@"CLAIMED"]){
             _labelType.text = [getType objectAtIndex:indexPath.row];
             _btn_cancel.hidden = YES;
+        }else if ([[getStatus objectAtIndex:indexPath.row] isEqualToString:@"LOADING"]){
+//            NSString* cleanedString = [[[[getReceiverName objectAtIndex:indexPath.row]uppercaseString] stringByReplacingOccurrencesOfString:@"," withString:@""]
+//                                       stringByTrimmingCharactersInSet: [NSCharacterSet symbolCharacterSet]];
+//            _labelName.text = cleanedString;
+            _labelType.text = [getType objectAtIndex:indexPath.row];
+            _btn_cancel.hidden = YES;
         }else{
             _labelType.text = [getType objectAtIndex:indexPath.row];
             _btn_cancel.hidden = NO;
         }
 
+        NSString *getRStatus = [getStatus objectAtIndex:indexPath.row];
         
-        if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"PENDING"]) {
+        if ([[NSString stringWithFormat:@"%@", getRStatus] isEqualToString:@"PENDING"]) {
             _img_status.image = [UIImage imageNamed:@"ic_seal_pending.png"];
         }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"]){
+            _img_status.image = [UIImage imageNamed:@"ic_seal_claimed.png"];
+        }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"LOADING"]){
             _img_status.image = [UIImage imageNamed:@"ic_seal_claimed.png"];
         }else{
             _img_status.image = [UIImage imageNamed:@"ic_seal_cancelled.png"];
