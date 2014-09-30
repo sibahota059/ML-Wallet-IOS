@@ -16,7 +16,7 @@
 #define IPAD     UIUserInterfaceIdiomPad
 #import "UIAlertView+alertMe.h"
 #import "ServiceConnection.h"
-#define ACCEPTABLE_CHARECTERS @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
+#define ACCEPTABLE_CHARECTERS @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_@&$"
 #import "LoginViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SaveWalletData.h"
@@ -269,6 +269,13 @@ NSString *wallNum;
     self.navigationItem.rightBarButtonItem = btnNext;
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }
+-(BOOL) NSStringIsValid:(NSString *)checkString
+{
+    NSString *stricterFilterString = @"^(?:[0-9]+[a-zA-Z_]|[a-zA-Z_]+[0-9])[a-z0-9#$@!_]*$";
+    
+    NSPredicate *stringTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", stricterFilterString];
+    return [stringTest evaluateWithObject:checkString];
+}
 
 //Create Account method
 -(void) nextPressed{
@@ -276,10 +283,7 @@ NSString *wallNum;
     NSString *str_password = passwordTF.text;
     NSString *str_reTypePassword = retypePasswordTF.text;
     
-   
-    
-    if ([[str_username stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:str_username]
-        &&![[str_username stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]] isEqualToString:str_username]) {
+    if (![self NSStringIsValid:str_username]) {
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Username must be a combination of letters and numbers." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }
     else if(userNameTF.text.length==0||passwordTF.text.length==0||retypePasswordTF.text.length==0){
@@ -323,14 +327,14 @@ NSString *wallNum;
                 
                 [message show];
             }
-           
+        
             
             
         }
         else{
             
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-            
+
         }
         
         
