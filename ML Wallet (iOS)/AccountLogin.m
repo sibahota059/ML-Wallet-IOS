@@ -16,7 +16,7 @@
 #define IPAD     UIUserInterfaceIdiomPad
 #import "UIAlertView+alertMe.h"
 #import "ServiceConnection.h"
-#define ACCEPTABLE_CHARECTERS @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+#define ACCEPTABLE_CHARECTERS @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
 #import "LoginViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SaveWalletData.h"
