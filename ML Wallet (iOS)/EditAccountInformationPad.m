@@ -1247,7 +1247,10 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     {
         NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
         
-        if ([string rangeOfCharacterFromSet:set].location != NSNotFound)
+        if([string isEqualToString:@""] && range.length == 1)
+        {
+            return YES;
+        }else if ([string rangeOfCharacterFromSet:set].location != NSNotFound)
         {
             return YES;
         }
