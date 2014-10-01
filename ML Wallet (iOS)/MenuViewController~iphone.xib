@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -47,7 +47,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" id="yvg-Nq-DZE">
-                                    <rect key="frame" x="0.0" y="131" width="640" height="343"/>
+                                    <rect key="frame" x="0.0" y="131" width="1280" height="343"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NHp-he-4JP">
@@ -123,19 +123,6 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="rES-If-Hf3">
-                                            <rect key="frame" x="488" y="287" width="84" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                            <state key="normal" title="TOP UP" backgroundImage="btn2.png">
-                                                <color key="titleColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
-                                            </state>
-                                            <state key="selected" title="TOP UP" image="btn2.png"/>
-                                            <state key="highlighted" title="TOP UP" backgroundImage="btn2.png"/>
-                                            <connections>
-                                                <action selector="btnTopup_2nd_view:" destination="-1" eventType="touchUpInside" id="Wyf-Ca-BFH"/>
-                                            </connections>
-                                        </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="bHa-F0-UpT">
                                             <rect key="frame" x="418" y="29" width="123" height="106"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -199,17 +186,6 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Qsg-W6-m2q">
-                                            <rect key="frame" x="397" y="287" width="84" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                            <state key="normal" title="SEND MONEY" backgroundImage="btn2.png"/>
-                                            <state key="selected" title="SEND MONEY" backgroundImage="btn1.png"/>
-                                            <state key="highlighted" backgroundImage="btn2.png"/>
-                                            <connections>
-                                                <action selector="btn_SendMoney:" destination="-1" eventType="touchUpInside" id="3bB-2D-FSN"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No. Attempts:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KkA-8p-r0e">
                                             <rect key="frame" x="411" y="247" width="73" height="12"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -223,6 +199,30 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="rES-If-Hf3">
+                                            <rect key="frame" x="480" y="300" width="96" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <state key="normal" title="TOP UP" backgroundImage="btn2.png">
+                                                <color key="titleColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                                            </state>
+                                            <state key="selected" title="TOP UP" image="btn2.png"/>
+                                            <state key="highlighted" title="TOP UP" backgroundImage="btn2.png"/>
+                                            <connections>
+                                                <action selector="btnTopup_2nd_view:" destination="-1" eventType="touchUpInside" id="Wyf-Ca-BFH"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="7Dx-89-tdI">
+                                            <rect key="frame" x="386" y="300" width="96" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <state key="normal" title="SEND MONEY" backgroundImage="btn2.png"/>
+                                            <state key="selected" title="SEND MONEY" backgroundImage="btn1.png"/>
+                                            <state key="highlighted" backgroundImage="btn2.png"/>
+                                            <connections>
+                                                <action selector="btn_SendMoney:" destination="-1" eventType="touchUpInside" id="6Vy-RC-5yA"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <gestureRecognizers/>
                                 </view>
@@ -333,7 +333,7 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" id="obD-Sx-T9e">
+                                <view hidden="YES" contentMode="scaleToFill" id="obD-Sx-T9e">
                                     <rect key="frame" x="50" y="416" width="161" height="82"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
