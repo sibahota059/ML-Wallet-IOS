@@ -171,8 +171,11 @@
     _receiverImage.image = [UIImage imageNamed:@"noImage.png"];
 
     //Get the total ammount of transaction and deduct to the balance
-    double getTotal = [_label_balance.text doubleValue] - [_totalValue.text doubleValue];
-    _label_balance.text = [NSString stringWithFormat:@"%0.2f", getTotal];
+    NSString* cleanedString = [[_label_balance.text stringByReplacingOccurrencesOfString:@"," withString:@""]
+                               stringByTrimmingCharactersInSet: [NSCharacterSet symbolCharacterSet]];
+    double getTotal = [cleanedString doubleValue] - [_totalValue.text doubleValue];
+    //_label_balance.text = [NSString stringWithFormat:@"%0.2f", getTotal];
+    _label_balance.text = [NSString stringWithFormat:@"%@", [self convertDecimal:getTotal]];
     _totalValue.text = @"0.00";
     
     //Get the user balance

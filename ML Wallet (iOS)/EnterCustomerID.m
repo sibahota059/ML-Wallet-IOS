@@ -453,6 +453,11 @@ UIAlertView *ahw;
 //        textLength = 25;
 //        
 //    }
+    else if(newLength >= 12&&textField == phoneNumberTF){
+        //[self.view endEditing:YES];
+            return NO;
+
+    }
     
     //this goes to previous field as you backspace through them, so you don't have to tap into them individually
     else if (oldLength > 0 && newLength == 0) {
