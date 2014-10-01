@@ -132,6 +132,32 @@
     return NO;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ((self.txtFirstName == textField) ||
+         (self.txtLastName == textField) ||
+         (self.txtMiddleName == textField) ||
+         (self.txtAddress  == textField))
+    {
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+        
+        if([string isEqualToString:@""] && range.length == 1)
+        {
+            return YES;
+        }
+        else if ([string rangeOfCharacterFromSet:set].location != NSNotFound)
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
+    }
+    else {
+        return YES;
+    }
+
+}
 
 
 #pragma Start #Navigator
