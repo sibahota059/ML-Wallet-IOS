@@ -1245,7 +1245,7 @@ NSString *strImage1, *strImage2, *strImage3, *strImage4;
     
     if (textField == nationality)
     {
-        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "];
         
         if([string isEqualToString:@""] && range.length == 1)
         {
