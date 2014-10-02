@@ -138,7 +138,21 @@
          (self.txtMiddleName == textField) ||
          (self.txtAddress  == textField))
     {
-        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+        
+        if (self.txtMiddleName == textField)
+        {
+            NSUInteger newLength = [textField.text length] + [string length] - range.length;
+            return (newLength > 1) ? NO : YES;
+        }
+        if ((self.txtFirstName == textField) ||
+            (self.txtLastName == textField) ||
+            (self.txtAddress  == textField))
+        {
+            NSUInteger newLength = [textField.text length] + [string length] - range.length;
+            return (newLength > 25) ? NO : YES;
+        }
+        
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
         
         if([string isEqualToString:@""] && range.length == 1)
         {
@@ -152,6 +166,8 @@
         {
             return NO;
         }
+        
+       
     }
     else {
         return YES;

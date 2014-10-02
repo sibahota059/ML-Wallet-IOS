@@ -331,6 +331,7 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 
 #pragma Start #HIDE POPUP
 - (void) hidePopUP{
+    [self.view_Others setHidden:YES];
     [self.imgPopup setHidden:YES];
     [self.pop_btnInfo setHidden:YES];
     [self.pop_btnLocator setHidden:YES];
@@ -340,10 +341,11 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 
 #pragma Start #SHOW POPUP
 -(void) showPopUP{
-        [self.imgPopup setHidden:NO];
-        [self.pop_btnInfo setHidden:NO];
-        [self.pop_btnLocator setHidden:NO];
-        [self.pop_btnRate setHidden:NO];
+    [self.view_Others setHidden:NO];
+    [self.imgPopup setHidden:NO];
+    [self.pop_btnInfo setHidden:NO];
+    [self.pop_btnLocator setHidden:NO];
+    [self.pop_btnRate setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning{
