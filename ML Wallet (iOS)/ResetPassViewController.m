@@ -350,7 +350,7 @@
             
             if ([respMesg isEqualToString:@"Failed in resetting customer password."])
             {
-                respMesg = [NSString stringWithFormat:@"%@\n%@", respMesg, @"Make sure all fields must the same from your account info."];
+                respMesg = [NSString stringWithFormat:@"%@\n%@", respMesg, @"Make sure all fields must be the same from your account info."];
             }
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
         }
