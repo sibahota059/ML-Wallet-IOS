@@ -99,13 +99,27 @@ UILabel *wallet, *balance, *address, *email;
     [profileName setText:[NSString stringWithFormat:@"%@ %@. %@",firstNameValue, middleNameValue, lastNameValue]];
     [profilePhone setText:mobileNumberValue];
 
+    
+    double balanceValueDouble = [balanceValue doubleValue];
+    
+    
+    
     [wallet setText:walletValue];
-    [balance setText:[NSString stringWithFormat:@"%@", balanceValue]];
+    [balance setText:[NSString stringWithFormat:@"%@", [self convertDecimal:balanceValueDouble]]];
     [address setText:addressValue];
     [email setText:emailValue];
     
     
     
+}
+
+#pragma mark - Convert to Decimal
+- (NSString *)convertDecimal:(double)doubleValue{
+    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
+    [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *bals = [currencyFormatter stringFromNumber:[NSNumber numberWithDouble:doubleValue]];
+    NSString *newStr = [bals substringFromIndex:1];
+    return newStr;
 }
 
 
