@@ -23,10 +23,14 @@
 #import "UIView+MenuAnimationUIVIew.h"
 #import "EditPassword.h"
 #import "EditPasswordPad.h"
-
 #import "SaveWalletData.h"
 
+#import "CryptLib.h"
+#import "NSData+Base64.h"
+
 #import <CoreLocation/CoreLocation.h>
+
+#define _key @"mlwallet"
 
 @interface LoginViewController ()
 
@@ -234,22 +238,31 @@
     [HUD show:YES];
     [self.view endEditing:YES];
     
-    double latitude = [self Latitude];
-    double longtitude = [self Longtitude];
-    NSLog(@"Lat : %f and Lng : %f", [self Latitude], [self Longtitude]);
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"/testaes"];
     
-    //Get Location JSON
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+//    
+//    [request setHTTPMethod:@"GET"];
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+//    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+//    double latitude = [self Latitude];
+//    double longtitude = [self Longtitude];
+//    NSLog(@"Lat : %f and Lng : %f", [self Latitude], [self Longtitude]);
+//    
+//    //Get Location JSON
     NSURLConnection *con;
-    NSString *getReq = [NSString stringWithFormat:@"latlng=%f,%f&sensor=true", latitude, longtitude];
-    
-    
-    NSLog(@"viewdidload");
+//    NSString *getReq = [NSString stringWithFormat:@"latlng=%f,%f&sensor=true", latitude, longtitude];
+//    
+//    
+//    NSLog(@"viewdidload");
     self.responseData = [NSMutableData data];
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[[[ServiceConnection alloc] NSgetLocationService] stringByAppendingString:getReq]]];
+    [request setURL:[NSURL URLWithString:srvcURL]];
     [request setHTTPMethod:@"GET"];
     con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.idd = 1;
+    self.idd = 2;
 
 }
 
@@ -357,6 +370,7 @@
     }
 }
 #pragma mark --END Delegate
+
 
 #pragma mark - CheckPINdidfinish
 - (void) checkPindidfinish
@@ -501,10 +515,15 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"logInResult"];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        result          = [[StringEncryption alloc] decrypt:result]; //Decrypt AES result
+        NSString * decryptedText = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding]; //Convert to String
         
-        NSNumber *respCode = [result valueForKey:@"respcode"];
-        NSString *respMesg = [result valueForKey:@"respmessage"];
+        
+        NSLog(@"decrypted data:: %@", decryptedText); //print the decrypted text
+        
+        NSNumber *respCode = [decryptedText valueForKey:@"respcode"];
+        NSString *respMesg = [decryptedText valueForKey:@"respmessage"];
         
         //Hide Loader
         [HUD hide:YES];
@@ -648,16 +667,41 @@
     NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
     NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
+    /* \"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\
+     
+     user,
+     pass,
+     version,
+     [self Latitude],
+     [self Longtitude],
+     deviceID,
+     self.location];
+     */
     
-    NSString *post = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",
-                      user,
-                      pass,
-                      version,
-                      [self Latitude],
-                      [self Longtitude],
-                      deviceID,
-                      self.location];
-
+    NSString *encrptedData = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%@\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",
+                              user,
+                              pass,
+                              version,
+                              [self Latitude],
+                              [self location],
+                              deviceID,
+                              self.location];
+    
+    NSString * _secret = @"This the sample text has to be encrypted"; // this is the text that you want to encrypt.
+    
+    NSData * encryptedData = [[StringEncryption alloc] encrypt:[_secret dataUsingEncoding:NSUTF8StringEncoding]]; //iv:iv];
+    NSLog(@"encrypted data:: %@", [encryptedData  base64EncodingWithLineLength:0]); //print the encrypted text
+    
+    
+    encryptedData = [[StringEncryption alloc] decrypt:encryptedData]; //iv:iv];
+    NSString * decryptedText = [[NSString alloc] initWithData:encryptedData encoding:NSUTF8StringEncoding];
+    NSLog(@"decrypted data:: %@", decryptedText); //print the decrypted text
+    
+    
+    
+     
+    NSString *post = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\"}", encrptedData];
+    
     NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"login"];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];

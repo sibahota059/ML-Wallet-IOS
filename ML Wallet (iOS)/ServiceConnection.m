@@ -8,10 +8,10 @@
 
 #import "ServiceConnection.h"
 
-#define URLHttps_IP @"https://192.168.12.204:4443"
+#define URLHttps_IP @"https://192.168.16.120"
 
 
-#define URLService @"/mobile/client/mobilekp_wcf/service.svc/"
+#define URLService @"/MobileService/mobileKP_WCF/Service.svc" ///mobile/client/test/mobilekp_wcf/service.svc/
 #define URLMapService @"/mobile/Client/MapService/MapService.svc/getCoordinates/"
 //MAP Service
 #define URLLocationService @"Http://maps.google.com/maps/api/geocode/json?"
