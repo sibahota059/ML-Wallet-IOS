@@ -119,6 +119,7 @@
 		3BB924EC196FDCE9007E76A5 /* ReceiverAvatarViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB924EB196FDCE9007E76A5 /* ReceiverAvatarViewController~ipad.xib */; };
 		3BB924EE196FEBE7007E76A5 /* ReceiverMenuListViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB924ED196FEBE7007E76A5 /* ReceiverMenuListViewController~ipad.xib */; };
 		3BB924F0196FF864007E76A5 /* CreateNewReceiverViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BB924EF196FF864007E76A5 /* CreateNewReceiverViewController~ipad.xib */; };
+		3BBA4E551A1F32470003347E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBA4E541A1F32470003347E /* Security.framework */; };
 		3BC3827B18C02C6C00270567 /* TopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3827918C02C6C00270567 /* TopupViewController.m */; };
 		3BC3827C18C02C6C00270567 /* TopupViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3827A18C02C6C00270567 /* TopupViewController~iphone.xib */; };
 		3BC3828118C0330A00270567 /* mlcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828018C0330900270567 /* mlcard.png */; };
@@ -129,6 +130,8 @@
 		3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828F18C095BB00270567 /* ic_contact.9.png */; };
 		3BC3829218C095D200270567 /* ic_about.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3829118C095D200270567 /* ic_about.9.png */; };
 		3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCFE2D719580A8A008C4E6F /* UIAlertView+WaitAlertView.m */; };
+		3BF00B6F1A22EDE800397BBE /* CryptLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF00B6E1A22EDE800397BBE /* CryptLib.m */; };
+		3BF00B721A22EECD00397BBE /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF00B711A22EECD00397BBE /* NSData+Base64.m */; };
 		3BF04C7319764DF4002C2FCC /* TopupViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF04C7219764DF4002C2FCC /* TopupViewController~ipad.xib */; };
 		3BF0B261197A508C00AC2C76 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BF0B260197A508C00AC2C76 /* data.plist */; };
 		3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0B266197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m */; };
@@ -424,6 +427,7 @@
 		3BB924EB196FDCE9007E76A5 /* ReceiverAvatarViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReceiverAvatarViewController~ipad.xib"; sourceTree = "<group>"; };
 		3BB924ED196FEBE7007E76A5 /* ReceiverMenuListViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReceiverMenuListViewController~ipad.xib"; sourceTree = "<group>"; };
 		3BB924EF196FF864007E76A5 /* CreateNewReceiverViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CreateNewReceiverViewController~ipad.xib"; sourceTree = "<group>"; };
+		3BBA4E541A1F32470003347E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3BC3827818C02C6C00270567 /* TopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopupViewController.h; sourceTree = "<group>"; };
 		3BC3827918C02C6C00270567 /* TopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopupViewController.m; sourceTree = "<group>"; };
 		3BC3827A18C02C6C00270567 /* TopupViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TopupViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -437,6 +441,10 @@
 		3BC3829118C095D200270567 /* ic_about.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_about.9.png; sourceTree = "<group>"; };
 		3BCFE2D619580A8A008C4E6F /* UIAlertView+WaitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+WaitAlertView.h"; sourceTree = "<group>"; };
 		3BCFE2D719580A8A008C4E6F /* UIAlertView+WaitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+WaitAlertView.m"; sourceTree = "<group>"; };
+		3BF00B6D1A22EDE800397BBE /* CryptLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptLib.h; sourceTree = "<group>"; };
+		3BF00B6E1A22EDE800397BBE /* CryptLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptLib.m; sourceTree = "<group>"; };
+		3BF00B701A22EECD00397BBE /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		3BF00B711A22EECD00397BBE /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		3BF04C7219764DF4002C2FCC /* TopupViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TopupViewController~ipad.xib"; sourceTree = "<group>"; };
 		3BF0B260197A508C00AC2C76 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		3BF0B265197A58BD00AC2C76 /* NSDictionary+LoadWalletData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LoadWalletData.h"; sourceTree = "<group>"; };
@@ -663,6 +671,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BBA4E551A1F32470003347E /* Security.framework in Frameworks */,
 				F00DD40F198CF13A003D82B5 /* MessageUI.framework in Frameworks */,
 				3012DC52197DF63500AA5F6F /* SystemConfiguration.framework in Frameworks */,
 				3012DC50197DF62F00AA5F6F /* QuartzCore.framework in Frameworks */,
@@ -810,6 +819,7 @@
 		3BA7CC9918B1D6B900B9FC4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BBA4E541A1F32470003347E /* Security.framework */,
 				F00DD40E198CF13A003D82B5 /* MessageUI.framework */,
 				F0E3C739197FCCDD004F44F9 /* GoogleMaps.bundle */,
 				F0E3C737197FCCD4004F44F9 /* GoogleMaps.framework */,
@@ -836,6 +846,7 @@
 		3BA7CCA018B1D6B900B9FC4B /* ML Wallet (iOS) */ = {
 			isa = PBXGroup;
 			children = (
+				3BBA4E411A1EE11D0003347E /* com.mlwallet.security */,
 				3012DC2F197DF34000AA5F6F /* com.mlkpwallet.location */,
 				3BCFE2CC19580956008C4E6F /* Objects */,
 				3B38F7721952CDDC00EC3948 /* NSURLConnection */,
@@ -1158,6 +1169,17 @@
 				3BB42DFC18D6B6C60011792E /* wrong.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		3BBA4E411A1EE11D0003347E /* com.mlwallet.security */ = {
+			isa = PBXGroup;
+			children = (
+				3BF00B6D1A22EDE800397BBE /* CryptLib.h */,
+				3BF00B6E1A22EDE800397BBE /* CryptLib.m */,
+				3BF00B701A22EECD00397BBE /* NSData+Base64.h */,
+				3BF00B711A22EECD00397BBE /* NSData+Base64.m */,
+			);
+			name = com.mlwallet.security;
 			sourceTree = "<group>";
 		};
 		3BC3827718C02C3D00270567 /* com.mlkpwallet.topup */ = {
@@ -1738,6 +1760,7 @@
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
 				70ADA90C1990A52500075CB7 /* SelectQuestionDialogPad.m in Sources */,
 				F0BE7CA4198336C300D0946B /* LoadHistory.m in Sources */,
+				3BF00B721A22EECD00397BBE /* NSData+Base64.m in Sources */,
 				700ECB71199B4CA3006EC6D7 /* EditEmailWebService.m in Sources */,
 				3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
@@ -1792,6 +1815,7 @@
 				F008272B1987634800C80571 /* SoCancel.m in Sources */,
 				3011287719838585007EC190 /* MLhuillierWebViewController.m in Sources */,
 				3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */,
+				3BF00B6F1A22EDE800397BBE /* CryptLib.m in Sources */,
 				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
 				70CBA8F8198A37D4005D845E /* EditInformation.m in Sources */,
 				70AC235B199C478C008B2F74 /* EditSecretQuestionsWebService.m in Sources */,
