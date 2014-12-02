@@ -8,6 +8,8 @@
 
 #import "ServiceConnection.h"
 
+#define _key @"mlhuillier_philippines"
+
 #define URLHttps_IP @"https://192.168.12.204:4443"
 
 
@@ -50,4 +52,10 @@
 -(NSString *) NSCreateAccountService{
     return [NSString stringWithFormat:@"%@%@",URLHttps_IP,URLService];
 }
+
+- (NSString *) NSGetKey
+{
+    return _key;
+}
+
 @end
