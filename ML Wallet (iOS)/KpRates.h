@@ -21,5 +21,5 @@
 @property (weak, nonatomic) id<KpRatesDelegate>delegate;
 @property(weak, nonatomic) NSDictionary *getRates;
 
--(void)loadRates;
+-(void)loadRates:(NSString *)parameterMethods;
 @end

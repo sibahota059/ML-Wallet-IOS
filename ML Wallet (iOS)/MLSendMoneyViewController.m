@@ -15,6 +15,9 @@
 #import "DeviceID.h"
 #import "SaveWalletData.h"
 #import "UIAlertView+alertMe.h"
+#import "RadioButton.h"
+#import "MLRatesSwipeViewController.h"
+#import "PartnersTableViewController.h"
 
 @interface MLSendMoneyViewController (){
     
@@ -30,12 +33,15 @@
     NSMutableData *contentData;
     NSURLConnection *conn;
     KpRates *rates;
+    KpRatesOwn *ratesOwn;
     GetReceiver *getReceiver;
-    NSMutableArray *getValueRates, *getValueReceiver;
-    NSDictionary *getCharges, *getReceivers, *dic;
+    NSMutableArray *getValueRatesReceiver, *getValueRatesOwn, *chooseReceiverType, *getValueReceiver, *getPartNers, *allPartNers, *storeAccount;
+    NSDictionary *getChargesReceiver, *getChargesOwn, *getReceivers, *dic;
     MBProgressHUD *HUD;
     CLLocationManager *locationManager;
     DeviceID *di;
+    BOOL isChecked, isReceiver;
+    int getPartnersPosition;
 
 }
 
@@ -69,16 +75,21 @@
     //Create object of MLUI, KpRates, GetReceiver, and DeviceID class
     getUI          =  [MLUI new];
     rates          =  [KpRates new];
+    ratesOwn       =  [KpRatesOwn new];
     getReceiver    =  [GetReceiver new];
     di             =  [DeviceID new];
     
     //Setting GetReceiver & KpRates delegate to this class
     getReceiver.delegate = self;
     rates.delegate = self;
+    ratesOwn.delegate = self;
     
     //Create object on UIImage and set image on it
     wrong = [UIImage imageNamed:@"wrong.png"];
     right = [UIImage imageNamed:@"right.png"];
+    
+    _view_partners.hidden = YES;
+    _view_accountno.hidden = YES;
     
     //Create a NavigationBar Left & Right Button and add link
     //next = [getUI navBarButton:self navLink:@selector(btn_preview:) imageNamed:@"next.png"];
@@ -118,6 +129,8 @@
     self.view_charge.backgroundColor = [UIColor colorWithPatternImage:payment];
     self.view_total.backgroundColor = [UIColor colorWithPatternImage:payment];
     
+    
+    
     //Create a swipe Gesture Recognizer for swiping right
     [self swipe];
     
@@ -125,7 +138,7 @@
     [self keyboardNotification];
     
     //Call the loadRates methods in KpRates Class
-    [rates loadRates];
+    [rates loadRates:@"getChargeValues"];
     
     //Create object of CLLocationManager to get the location, latitude, longitude
     locationManager = [[CLLocationManager alloc] init];
@@ -141,6 +154,11 @@
     
     //Setup data about senderInfo and balance
     [self aboutSender];
+    
+    isReceiver = YES;
+    
+    getPartNers = [NSMutableArray new];
+    allPartNers = [NSMutableArray new];
     
     //Register a notification to check  if Transaction is finished
     [[NSNotificationCenter defaultCenter]
@@ -240,7 +258,8 @@
     NSArray *ratess = [rates.getRates objectForKey:@"getChargeValuesResult"];
     
     //Parse the data of <chargeList>k__BackingField and stored in mutable array
-    getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    getValueRatesReceiver = [ratess valueForKey:@"<chargeList>k__BackingField"];
+
     
     //Get the value of respcode and respmessage
     NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
@@ -249,8 +268,8 @@
     //Check if response is successful or not
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
         
-        //store the NSDicationary rates data to mutable array
-        getCharges = rates.getRates;
+        [ratesOwn loadRates:@"GetWithdrawalCharges"];
+        
         //Call Webservice to get the list of receiver
         [getReceiver getReceiverWalletNo:walletno];
         
@@ -270,6 +289,44 @@
     
     
 
+}
+
+#pragma mark - Retrieving Rates Done
+- (void)didFinishLoadingRatesOwn:(NSString *)indicator andError:(NSString *)getError{
+    
+    //Store the rates data return from webservice into static array
+    NSArray *ratess = [ratesOwn.getRates objectForKey:@"GetWithdrawalChargesResult"];
+    
+    //Parse the data of <chargeList>k__BackingField and stored in mutable array
+    getValueRatesOwn = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    
+    
+    //Get the value of respcode and respmessage
+    NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
+    NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
+    
+    //Check if response is successful or not
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
+
+        //Call Webservice to get the list of receiver
+        //[getReceiver getReceiverWalletNo:walletno];
+        
+    }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }else if([indicator isEqualToString:@"error"]){
+        
+        confirmInd = @"rates";
+        [self dismissProgressBar];
+        [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
+        
+    }else{
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    
+    
 }
 
 #pragma Retrieving Receivers Done
@@ -300,12 +357,12 @@
         [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
     }else{
         [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
-        self.navigationController.navigationBarHidden = YES;
-        [self.navigationController popViewControllerAnimated:YES];
+        //self.navigationController.navigationBarHidden = YES;
+        //[self.navigationController popViewControllerAnimated:YES];
     }
     
     //Set the number of receiver in a label
-    _countReceiver.text =[NSString stringWithFormat:@"You have %@ receivers.", rcounter];
+    //_countReceiver.text =[NSString stringWithFormat:@"You have %@ receivers.", rcounter];
     
     //If user has no receiver, disable the button to select receiver
     if ([[NSString stringWithFormat:@"%@", rcounter] isEqualToString:@"0"]) {
@@ -355,9 +412,14 @@
 #pragma mark - Display Rates View
 - (void)right{
     
+//    self.tabBarController.selectedIndex = 1;
+//    [self.navigationController.tabBarController.navigationController popViewControllerAnimated:YES];
+//    MLRatesTableViewController *ratess = [MLRatesTableViewController new];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckView" object:ratess];
+    
     self.tabBarController.selectedIndex = 1;
     [self.navigationController.tabBarController.navigationController popViewControllerAnimated:YES];
-    MLRatesTableViewController *ratess = [MLRatesTableViewController new];
+    MLRatesSwipeViewController *ratess = [MLRatesSwipeViewController new];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CheckView" object:ratess];
     
 }
@@ -483,6 +545,129 @@
     [self.navigationController pushViewController:view_receiver animated:YES];
 }
 
+- (IBAction)onRadioButton:(RadioButton *)sender {
+    
+    
+    if ([sender.titleLabel.text isEqualToString:@"  Remittance"] && !isChecked) {
+        _view_partners.hidden = YES;
+        _view_accountno.hidden = YES;
+        _view_receiver.hidden = NO;
+        _ch_sendOwn.hidden = NO;
+        _view_charge.hidden = NO;
+        _view_total.hidden = NO;
+        _tf_amount.text = @"";
+        _chargeValue.text = @"0.00";
+        _totalValue.text = @"0.00";
+        _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
+        
+        
+    }else if ([sender.titleLabel.text isEqualToString:@"  Remittance"] && isChecked){
+        _view_partners.hidden = YES;
+        _view_accountno.hidden = YES;
+        _view_receiver.hidden = YES;
+        _ch_sendOwn.hidden = NO;
+        _view_charge.hidden = NO;
+        _view_total.hidden = NO;
+    }else {
+        _view_partners.hidden = NO;
+        _view_accountno.hidden = NO;
+        _view_receiver.hidden = YES;
+        _ch_sendOwn.hidden = YES;
+        _view_charge.hidden = YES;
+        _view_total.hidden = YES;
+        _tf_amount.text = @"";
+        _chargeValue.text = @"0.00";
+        _totalValue.text = @"0.00";
+        _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
+        _lbl_partners.text = @"Select Partners";
+        _lbl_account.text = @"Select Account";
+        
+        
+        self.ch_sendOwn.frame = CGRectMake(2, 285, 160, 24);
+        self.tf_amount.frame = CGRectMake(5, 320, 309, 41);
+        self.view_charge.frame = CGRectMake(7, 370, 148, 73);
+        self.view_total.frame = CGRectMake(165, 370, 148, 73);
+        [_ch_sendOwn setImage:[UIImage imageNamed:@"chunchecked.png"] forState:UIControlStateNormal];
+        isChecked = NO;
+        
+        
+        
+        
+        for (int x=1; x<=5; x++) {
+            
+            storeAccount = [NSMutableArray new];
+            for (int y=1; y<=3; y++) {
+                
+                [storeAccount addObject:[NSString stringWithFormat:@"account%d%d", x, y]];
+            }
+            getPartNers = [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"partnersName%d", x], [NSString stringWithFormat:@"partnersId%d", x], storeAccount, nil];
+            
+            [allPartNers addObject:getPartNers];
+        }
+ 
+
+    }
+    
+}
+
+- (IBAction)ch_sendOwn:(id)sender {
+    
+    _tf_amount.text = @"";
+    _chargeValue.text = @"0.00";
+    _totalValue.text = @"0.00";
+    _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
+    
+    if (!isChecked) {
+        [_ch_sendOwn setImage:[UIImage imageNamed:@"chchecked.png"] forState:UIControlStateNormal];
+        isChecked = YES;
+        isReceiver = NO;
+        
+        self.view_receiver.hidden = YES;
+        
+        self.ch_sendOwn.frame = CGRectMake(2, 190, 160, 24);
+        self.tf_amount.frame = CGRectMake(5, 221, 309, 41);
+        self.view_charge.frame = CGRectMake(7, 270, 148, 73);
+        self.view_total.frame = CGRectMake(165, 270, 148, 73);
+        
+        
+    }
+    
+    else if (isChecked) {
+        [_ch_sendOwn setImage:[UIImage imageNamed:@"chunchecked.png"] forState:UIControlStateNormal];
+        isChecked = NO;
+        isReceiver = YES;
+        
+        self.view_receiver.hidden = NO;
+        
+        self.ch_sendOwn.frame = CGRectMake(2, 285, 160, 24);
+        self.tf_amount.frame = CGRectMake(5, 320, 309, 41);
+        self.view_charge.frame = CGRectMake(7, 370, 148, 73);
+        self.view_total.frame = CGRectMake(165, 370, 148, 73);
+
+    }
+}
+
+- (IBAction)btnPartners:(id)sender {
+    PartnersTableViewController *view_partners = [[PartnersTableViewController alloc]initWithNibName:@"PartnersTableViewController" bundle:nil];
+    
+    view_partners.displayType      = @"partners";
+    view_partners.getPartners      = allPartNers;
+    view_partners.delegate = self;
+    view_partners.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:view_partners animated:YES];
+}
+
+- (IBAction)btnAccount:(id)sender {
+    PartnersTableViewController *view_account = [[PartnersTableViewController alloc]initWithNibName:@"PartnersTableViewController" bundle:nil];
+    
+    view_account.displayType      = @"account";
+    view_account.getAccount      = [[allPartNers objectAtIndex:getPartnersPosition] objectAtIndex:2];
+    view_account.delegate = self;
+    view_account.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:view_account animated:YES];
+}
+
+
 #pragma mark - didSelectReceiver Delegate Called
 - (void)didSelectReceiver:(MLReceiverTableViewController *)controller receiverFname:(NSString *)rfname receiverMname:(NSString *)rmname receiverLname:(NSString *)rlname receiverImage:(NSString *)rimage receiverAddress:(NSString *)raddress receiverRelation:(NSString *)rrelation rnumber:(NSString *)rnumber{
     
@@ -523,21 +708,42 @@
     _receiverName.text = [NSString stringWithFormat:@"%@, %@ %@", [self capitalizeFirstChar:rlname], [self capitalizeFirstChar:rfname], rmname];
     _receiverAddress.text = raddress;
     
-    //setup receivers view
+    //setup receivers view
     [self setUpReceivers];
+}
+
+-(void)didSelectPartners:(PartnersTableViewController *)controller andPartnersName:(NSString *)partnersName andDisplayType:(NSString *)displayType andPosition:(int)getPosition{
+    
+    getPartnersPosition = getPosition;
+    _lbl_account.text = @"Select Account";
+    
+    if ([displayType isEqualToString:@"partners"]) {
+        _lbl_partners.text = partnersName;
+    }else{
+        _lbl_account.text = partnersName;
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - getting the charge & total
 -(void)setAmount:(double)input{
     
     //Store rates NSDictionarry data to static array
-    NSArray *ratess = [getCharges objectForKey:@"getChargeValuesResult"];
+    //NSArray *ratess = [getCharges objectForKey:@"getChargeValuesResult"];
     
     //Store the value of array into NSMutable array
-    getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    //getValueRates = [ratess valueForKey:@"<chargeList>k__BackingField"];
     
     //Looping value of rates in corresponding amount input
-    for (NSDictionary *items in getValueRates) {
+    
+    if (isReceiver) {
+        chooseReceiverType = getValueRatesReceiver;
+    }else{
+        chooseReceiverType = getValueRatesOwn;
+    }
+    
+    for (NSDictionary *items in chooseReceiverType) {
         
         //Getting the minimum, maximum, charge data
         NSString *minAmount  = [items valueForKey:@"minAmount"];
@@ -550,14 +756,14 @@
         NSInteger max = [maxAmount integerValue];
         
         //User sending to it's own
-        if ([[NSString stringWithFormat:@"%@", [getRlname uppercaseString]] isEqualToString:[[dic objectForKey:@"lname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRfname uppercaseString]] isEqualToString:[[dic objectForKey:@"fname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRmname uppercaseString]] isEqualToString:[[dic objectForKey:@"mname"]uppercaseString]]) {
-            
-            string1 = [NSString stringWithFormat:@"%@", @"0.00"];
-            inputPrint = input;
-            [self display:inputPrint charge:string1];
-            
-            break;
-        }
+//        if ([[NSString stringWithFormat:@"%@", [getRlname uppercaseString]] isEqualToString:[[dic objectForKey:@"lname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRfname uppercaseString]] isEqualToString:[[dic objectForKey:@"fname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRmname uppercaseString]] isEqualToString:[[dic objectForKey:@"mname"]uppercaseString]]) {
+//            
+//            string1 = [NSString stringWithFormat:@"%@", @"0.00"];
+//            inputPrint = input;
+//            [self display:inputPrint charge:string1];
+//            
+//            break;
+//        }
         
         //User sending to another
         if(input > min && input <= max){
@@ -704,7 +910,7 @@
     if (buttonIndex == 0) {
         if ([confirmInd isEqualToString:@"rates"]) {
             [self displayProgressBar];
-            [rates loadRates];
+            [rates loadRates:@"getChargeValues"];
         }else if ([confirmInd isEqualToString:@"receiver"]){
             [self displayProgressBar];
             [getReceiver getReceiverWalletNo:walletno];
