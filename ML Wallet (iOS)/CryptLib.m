@@ -44,16 +44,10 @@
 #import "CryptLib.h"
 #import "NSData+Base64.h"
 
-#define _scrtKey @"mlhuillier_philippines"
-#define _scrtIV @"mlwallet"
 
 @implementation StringEncryption
 
-- (NSData *)encrypt:(NSData *)plainText
-{
-    NSString *key = [self sha256_length:32];
-    NSString *iv  = _scrtIV;
-    
+- (NSData *)encrypt:(NSData *)plainText key:(NSString *)key  iv:(NSString *)iv {
     char keyPointer[kCCKeySizeAES256+2],// room for terminator (unused) ref: https://devforums.apple.com/message/876053#876053
     ivPointer[kCCBlockSizeAES128+2];
     BOOL patchNeeded;
@@ -102,11 +96,7 @@
 }
 
 
--(NSData *)decrypt:(NSData *)encryptedText
-{
-    NSString *key = [self sha256_length:32];
-    NSString *iv  = _scrtIV;
-    
+-(NSData *)decrypt:(NSData *)encryptedText key:(NSString *)key iv:(NSString *)iv {
     char keyPointer[kCCKeySizeAES256+2],// room for terminator (unused) ref: https://devforums.apple.com/message/876053#876053
     ivPointer[kCCBlockSizeAES128+2];
     BOOL patchNeeded;
@@ -140,15 +130,11 @@
     CCCryptorStatus status = CCCrypt(kCCDecrypt,/* kCCEncrypt, etc. */
                                      kCCAlgorithmAES128, /* kCCAlgorithmAES128, etc. */
                                      kCCOptionPKCS7Padding, /* kCCOptionPKCS7Padding, etc. */
-                                     keyPointer,
-                                     kCCKeySizeAES256,/* key and its length */
-                                     ivPointer, /*  ivPointer initialization vector - use same IV which was used for decryption */
-                                     [encryptedText bytes],
-                                     [encryptedText length], //input
-                                     buff,
-                                     buffSize,//output
+                                     keyPointer, kCCKeySizeAES256,/* key and its length */
+                                     ivPointer, /* initialization vector - use same IV which was used for decryption */
+                                     [encryptedText bytes], [encryptedText length], //input
+                                     buff, buffSize,//output
                                      &numBytesEncrypted);
-    
     if (status == kCCSuccess) {
         return [NSData dataWithBytesNoCopy:buff length:numBytesEncrypted];
     }
@@ -194,10 +180,7 @@
 	 * @param length length of the text to be returned
 	 * @return returns SHA256 hash of input text 
 	 */
-- (NSString*) sha256_length:(NSInteger) length
-{
-    NSString *key = _scrtKey;
-    
+- (NSString*) sha256:(NSString *)key length:(NSInteger) length{
     const char *s=[key cStringUsingEncoding:NSASCIIStringEncoding];
     NSData *keyData=[NSData dataWithBytes:s length:strlen(s)];
     

@@ -36,6 +36,8 @@
 		3B19519718B7213A0061969F /* CreateNewReceiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B19519518B7213A0061969F /* CreateNewReceiverViewController.m */; };
 		3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B19519618B7213A0061969F /* CreateNewReceiverViewController~iphone.xib */; };
 		3B19519E18B732030061969F /* textbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B19519D18B732030061969F /* textbox.png */; };
+		3B1A92C21A26EC1F00623E74 /* CryptLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A92C11A26EC1F00623E74 /* CryptLib.m */; };
+		3B1A92C51A26EDA100623E74 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A92C41A26EDA100623E74 /* NSData+Base64.m */; };
 		3B1B36BE18B43181006DA5BB /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B36BD18B43181006DA5BB /* transparent.png */; };
 		3B1B36C018B445C3006DA5BB /* btn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B36BF18B445C3006DA5BB /* btn2.png */; };
 		3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B36C118B4AD70006DA5BB /* icon_my_account_press.jpg */; };
@@ -130,8 +132,6 @@
 		3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3828F18C095BB00270567 /* ic_contact.9.png */; };
 		3BC3829218C095D200270567 /* ic_about.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BC3829118C095D200270567 /* ic_about.9.png */; };
 		3BCFE2D819580A8A008C4E6F /* UIAlertView+WaitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCFE2D719580A8A008C4E6F /* UIAlertView+WaitAlertView.m */; };
-		3BF00B6F1A22EDE800397BBE /* CryptLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF00B6E1A22EDE800397BBE /* CryptLib.m */; };
-		3BF00B721A22EECD00397BBE /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF00B711A22EECD00397BBE /* NSData+Base64.m */; };
 		3BF04C7319764DF4002C2FCC /* TopupViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF04C7219764DF4002C2FCC /* TopupViewController~ipad.xib */; };
 		3BF0B261197A508C00AC2C76 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BF0B260197A508C00AC2C76 /* data.plist */; };
 		3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0B266197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m */; };
@@ -323,6 +323,11 @@
 		3B19519518B7213A0061969F /* CreateNewReceiverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewReceiverViewController.m; sourceTree = "<group>"; };
 		3B19519618B7213A0061969F /* CreateNewReceiverViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CreateNewReceiverViewController~iphone.xib"; sourceTree = "<group>"; };
 		3B19519D18B732030061969F /* textbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbox.png; sourceTree = "<group>"; };
+		3B1A92C01A26EC1F00623E74 /* CryptLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptLib.h; sourceTree = "<group>"; };
+		3B1A92C11A26EC1F00623E74 /* CryptLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptLib.m; sourceTree = "<group>"; };
+		3B1A92C31A26EDA100623E74 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		3B1A92C41A26EDA100623E74 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		3B1A92C61A26EDF600623E74 /* MGTwitterEngineGlobalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTwitterEngineGlobalHeader.h; sourceTree = "<group>"; };
 		3B1B36BD18B43181006DA5BB /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
 		3B1B36BF18B445C3006DA5BB /* btn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn2.png; sourceTree = "<group>"; };
 		3B1B36C118B4AD70006DA5BB /* icon_my_account_press.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_my_account_press.jpg; sourceTree = "<group>"; };
@@ -441,10 +446,6 @@
 		3BC3829118C095D200270567 /* ic_about.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_about.9.png; sourceTree = "<group>"; };
 		3BCFE2D619580A8A008C4E6F /* UIAlertView+WaitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+WaitAlertView.h"; sourceTree = "<group>"; };
 		3BCFE2D719580A8A008C4E6F /* UIAlertView+WaitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+WaitAlertView.m"; sourceTree = "<group>"; };
-		3BF00B6D1A22EDE800397BBE /* CryptLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptLib.h; sourceTree = "<group>"; };
-		3BF00B6E1A22EDE800397BBE /* CryptLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptLib.m; sourceTree = "<group>"; };
-		3BF00B701A22EECD00397BBE /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		3BF00B711A22EECD00397BBE /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		3BF04C7219764DF4002C2FCC /* TopupViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TopupViewController~ipad.xib"; sourceTree = "<group>"; };
 		3BF0B260197A508C00AC2C76 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		3BF0B265197A58BD00AC2C76 /* NSDictionary+LoadWalletData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LoadWalletData.h"; sourceTree = "<group>"; };
@@ -1174,10 +1175,11 @@
 		3BBA4E411A1EE11D0003347E /* com.mlwallet.security */ = {
 			isa = PBXGroup;
 			children = (
-				3BF00B6D1A22EDE800397BBE /* CryptLib.h */,
-				3BF00B6E1A22EDE800397BBE /* CryptLib.m */,
-				3BF00B701A22EECD00397BBE /* NSData+Base64.h */,
-				3BF00B711A22EECD00397BBE /* NSData+Base64.m */,
+				3B1A92C61A26EDF600623E74 /* MGTwitterEngineGlobalHeader.h */,
+				3B1A92C31A26EDA100623E74 /* NSData+Base64.h */,
+				3B1A92C41A26EDA100623E74 /* NSData+Base64.m */,
+				3B1A92C01A26EC1F00623E74 /* CryptLib.h */,
+				3B1A92C11A26EC1F00623E74 /* CryptLib.m */,
 			);
 			name = com.mlwallet.security;
 			sourceTree = "<group>";
@@ -1760,7 +1762,7 @@
 				70AD602018DBC6EA00E392BF /* QuestionVerificationDialog.m in Sources */,
 				70ADA90C1990A52500075CB7 /* SelectQuestionDialogPad.m in Sources */,
 				F0BE7CA4198336C300D0946B /* LoadHistory.m in Sources */,
-				3BF00B721A22EECD00397BBE /* NSData+Base64.m in Sources */,
+				3B1A92C51A26EDA100623E74 /* NSData+Base64.m in Sources */,
 				700ECB71199B4CA3006EC6D7 /* EditEmailWebService.m in Sources */,
 				3BF0B267197A58BD00AC2C76 /* NSDictionary+LoadWalletData.m in Sources */,
 				3BB5268518BCB66100D0A5EA /* ReceiverAvatarViewController.m in Sources */,
@@ -1815,7 +1817,6 @@
 				F008272B1987634800C80571 /* SoCancel.m in Sources */,
 				3011287719838585007EC190 /* MLhuillierWebViewController.m in Sources */,
 				3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */,
-				3BF00B6F1A22EDE800397BBE /* CryptLib.m in Sources */,
 				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
 				70CBA8F8198A37D4005D845E /* EditInformation.m in Sources */,
 				70AC235B199C478C008B2F74 /* EditSecretQuestionsWebService.m in Sources */,
@@ -1827,6 +1828,7 @@
 				7006621D18DA817900A0F05C /* ProfileImage.m in Sources */,
 				70AC235E199C67B5008B2F74 /* EditAccountInfoWebService.m in Sources */,
 				70AE8CBA198FBE4C002F570D /* EditInformationPad.m in Sources */,
+				3B1A92C21A26EC1F00623E74 /* CryptLib.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

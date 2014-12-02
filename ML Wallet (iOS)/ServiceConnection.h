@@ -18,4 +18,5 @@
 
 -(NSString *) NSGetCustomerIDService;
 -(NSString *) NSCreateAccountService;
+- (NSString *) NSGetKey;
 @end
