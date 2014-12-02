@@ -173,6 +173,10 @@
     
     return data;
 }
+- (NSString *)generateIV
+{
+    return [[[[StringEncryption alloc] generateRandomIV:11]  base64EncodingWithLineLength:0] substringToIndex:16];
+}
 
     /**
 	 * This function computes the SHA256 hash of input string

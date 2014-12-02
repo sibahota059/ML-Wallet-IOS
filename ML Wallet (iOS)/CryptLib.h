@@ -13,5 +13,5 @@
 -  (NSData *)generateRandomIV:(size_t)length;
 -  (NSString *) md5:(NSString *) input;
 -  (NSString*) sha256:(NSString *)key length:(NSInteger) length;
-
+-  (NSString *)generateIV;
 @end

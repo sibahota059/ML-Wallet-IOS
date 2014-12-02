@@ -507,7 +507,6 @@
     
     if (myError == nil){
         NSString* _key = [[ServiceConnection alloc] NSGetKey];
-        _key = [[StringEncryption alloc] sha256:_key length:32];
         NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
         NSString *_iv  = [res valueForKey:@"Iv"];
         
@@ -682,9 +681,10 @@
     
     //enc
     NSString* _key = [[ServiceConnection alloc] NSGetKey];
-    _key = [[StringEncryption alloc] sha256:_key length:32];
-    NSString* _iv = [[[[StringEncryption alloc] generateRandomIV:11]  base64EncodingWithLineLength:0] substringToIndex:16];
-    NSData* encryptedData = [[StringEncryption alloc] encrypt:[encrptedString dataUsingEncoding:NSUTF8StringEncoding] key:_key iv:_iv];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[encrptedString dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
     NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
     
 //    //dec
@@ -761,13 +761,27 @@
     responseData = [[NSMutableData alloc] init];
     
     
+    NSString *postStr = [NSString stringWithFormat:@"{\"walletno\" : \"%@\"}", walletno];
+    
+    //AES encryption
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[postStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+    postStr = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}", postStr, _iv];
+    
     //Update PIN
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"ResendPIN/?walletno="];
+    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"ResendPIN"];
     NSString *srvcURL = [NSString stringWithFormat:@"%@%@", srvcURL1, walletno];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[postStr UTF8String] length:[postStr length]];
     
-    [request setHTTPMethod:@"GET"];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+     [request setHTTPBody:requestData];
     [NSURLConnection connectionWithRequest:request delegate:self];
     self.idd = 3;
 }

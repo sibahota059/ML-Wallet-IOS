@@ -7,6 +7,7 @@
 //
 
 #import "ServiceConnection.h"
+#import "CryptLib.h"
 
 #define _key @"mlhuillier_philippines"
 
@@ -54,8 +55,8 @@
 }
 
 - (NSString *) NSGetKey
-{
-    return _key;
+{    
+    return [[StringEncryption alloc] sha256:_key length:32];;
 }
 
 @end
