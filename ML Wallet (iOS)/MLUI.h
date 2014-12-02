@@ -13,7 +13,7 @@
 @class MLPreviewViewController;
 @class MLTermsConditionViewController;
 @class MLHistoryViewController;
-@class MLRatesTableViewController;
+@class MLRatesAllChildViewController;
 
 @interface MLUI : NSObject
 
@@ -25,7 +25,7 @@
 - (UIBarButtonItem *)navBarButtonPreview:(MLPreviewViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
 - (UIBarButtonItem *)navBarButtonTc:(MLTermsConditionViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
 - (UIBarButtonItem *)navBarButtonHistory:(MLHistoryViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
-- (UIBarButtonItem *)navBarButtonRates:(MLRatesTableViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
+- (UIBarButtonItem *)navBarButtonRates:(MLRatesAllChildViewController *)controller navLink:(SEL)link imageNamed:(NSString *)imagename;
 - (NSString *)termsConditions;
 - (UIView *)shadowView:(UIView*)viewContent;
 @end

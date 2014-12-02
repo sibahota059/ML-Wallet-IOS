@@ -241,6 +241,22 @@
 		F00D640F1991CE7B00A1BD67 /* payment_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D640D1991CE7B00A1BD67 /* payment_bg.png */; };
 		F00D64101991CE7B00A1BD67 /* payment_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D640E1991CE7B00A1BD67 /* payment_bg_ipad.png */; };
 		F00DD40F198CF13A003D82B5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00DD40E198CF13A003D82B5 /* MessageUI.framework */; };
+		F01014AE1A2408ED00F4BA76 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AA1A2408ED00F4BA76 /* checked.png */; };
+		F01014AF1A2408ED00F4BA76 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AB1A2408ED00F4BA76 /* checked@2x.png */; };
+		F01014B01A2408ED00F4BA76 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AC1A2408ED00F4BA76 /* unchecked.png */; };
+		F01014B11A2408ED00F4BA76 /* unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AD1A2408ED00F4BA76 /* unchecked@2x.png */; };
+		F01014B41A240CA100F4BA76 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F01014B31A240CA100F4BA76 /* RadioButton.m */; };
+		F013D7131A26FE9B0095A154 /* KpRatesOwn.m in Sources */ = {isa = PBXBuildFile; fileRef = F013D7121A26FE9B0095A154 /* KpRatesOwn.m */; };
+		F018931C1A259F5C00409FC1 /* chchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01893181A259F5C00409FC1 /* chchecked.png */; };
+		F018931D1A259F5C00409FC1 /* chunchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F01893191A259F5C00409FC1 /* chunchecked@2x.png */; };
+		F018931E1A259F5C00409FC1 /* chchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F018931A1A259F5C00409FC1 /* chchecked@2x.png */; };
+		F018931F1A259F5C00409FC1 /* chunchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = F018931B1A259F5C00409FC1 /* chunchecked.png */; };
+		F01893691A25B87700409FC1 /* MLRatesAllChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01893671A25B87700409FC1 /* MLRatesAllChildViewController.m */; };
+		F018936A1A25B87700409FC1 /* MLRatesAllChildViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F01893681A25B87700409FC1 /* MLRatesAllChildViewController~iphone.xib */; };
+		F01893741A25C03100409FC1 /* MLRatesSwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F01893721A25C03100409FC1 /* MLRatesSwipeViewController.m */; };
+		F01893751A25C03100409FC1 /* MLRatesSwipeViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F01893731A25C03100409FC1 /* MLRatesSwipeViewController~iphone.xib */; };
+		F0242B451A2809D100B8DA44 /* PartnersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0242B431A2809D100B8DA44 /* PartnersTableViewController.m */; };
+		F0242B461A2809D100B8DA44 /* PartnersTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0242B441A2809D100B8DA44 /* PartnersTableViewController.xib */; };
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
 		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
 		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
@@ -605,6 +621,27 @@
 		F00D640D1991CE7B00A1BD67 /* payment_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg.png; sourceTree = "<group>"; };
 		F00D640E1991CE7B00A1BD67 /* payment_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg_ipad.png; sourceTree = "<group>"; };
 		F00DD40E198CF13A003D82B5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		F01014AA1A2408ED00F4BA76 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
+		F01014AB1A2408ED00F4BA76 /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
+		F01014AC1A2408ED00F4BA76 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
+		F01014AD1A2408ED00F4BA76 /* unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked@2x.png"; sourceTree = "<group>"; };
+		F01014B21A240CA100F4BA76 /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
+		F01014B31A240CA100F4BA76 /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
+		F013D7111A26FE9B0095A154 /* KpRatesOwn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KpRatesOwn.h; sourceTree = "<group>"; };
+		F013D7121A26FE9B0095A154 /* KpRatesOwn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KpRatesOwn.m; sourceTree = "<group>"; };
+		F01893181A259F5C00409FC1 /* chchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chchecked.png; sourceTree = "<group>"; };
+		F01893191A259F5C00409FC1 /* chunchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chunchecked@2x.png"; sourceTree = "<group>"; };
+		F018931A1A259F5C00409FC1 /* chchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chchecked@2x.png"; sourceTree = "<group>"; };
+		F018931B1A259F5C00409FC1 /* chunchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chunchecked.png; sourceTree = "<group>"; };
+		F01893661A25B87700409FC1 /* MLRatesAllChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRatesAllChildViewController.h; sourceTree = "<group>"; };
+		F01893671A25B87700409FC1 /* MLRatesAllChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRatesAllChildViewController.m; sourceTree = "<group>"; };
+		F01893681A25B87700409FC1 /* MLRatesAllChildViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesAllChildViewController~iphone.xib"; sourceTree = "<group>"; };
+		F01893711A25C03100409FC1 /* MLRatesSwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRatesSwipeViewController.h; sourceTree = "<group>"; };
+		F01893721A25C03100409FC1 /* MLRatesSwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRatesSwipeViewController.m; sourceTree = "<group>"; };
+		F01893731A25C03100409FC1 /* MLRatesSwipeViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesSwipeViewController~iphone.xib"; sourceTree = "<group>"; };
+		F0242B421A2809D100B8DA44 /* PartnersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartnersTableViewController.h; sourceTree = "<group>"; };
+		F0242B431A2809D100B8DA44 /* PartnersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartnersTableViewController.m; sourceTree = "<group>"; };
+		F0242B441A2809D100B8DA44 /* PartnersTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PartnersTableViewController.xib; sourceTree = "<group>"; };
 		F05C5F0718E12BAA002F2EE1 /* MLHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryViewController.h; sourceTree = "<group>"; };
 		F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryViewController.m; sourceTree = "<group>"; };
 		F05C5F0918E12BAA002F2EE1 /* MLHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLHistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -1015,6 +1052,9 @@
 				F081A04319776E55004568EF /* MLReceiverTableViewCell.xib */,
 				F081A04419776E55004568EF /* MLRatesTableViewCell~iphone.xib */,
 				F081A04819776E55004568EF /* MLMenuViewController.xib */,
+				F01893731A25C03100409FC1 /* MLRatesSwipeViewController~iphone.xib */,
+				F01893681A25B87700409FC1 /* MLRatesAllChildViewController~iphone.xib */,
+				F0242B441A2809D100B8DA44 /* PartnersTableViewController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1036,6 +1076,12 @@
 				F05C5F2818E12C0D002F2EE1 /* MLReceiverTableViewController.m */,
 				F05C5F2918E12C0D002F2EE1 /* MLTermsConditionViewController.h */,
 				F05C5F2A18E12C0D002F2EE1 /* MLTermsConditionViewController.m */,
+				F01893661A25B87700409FC1 /* MLRatesAllChildViewController.h */,
+				F01893671A25B87700409FC1 /* MLRatesAllChildViewController.m */,
+				F01893711A25C03100409FC1 /* MLRatesSwipeViewController.h */,
+				F01893721A25C03100409FC1 /* MLRatesSwipeViewController.m */,
+				F0242B421A2809D100B8DA44 /* PartnersTableViewController.h */,
+				F0242B431A2809D100B8DA44 /* PartnersTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1043,6 +1089,8 @@
 		3BB42D7818D6AFF60011792E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F01014B21A240CA100F4BA76 /* RadioButton.h */,
+				F01014B31A240CA100F4BA76 /* RadioButton.m */,
 				F081A03419776CEA004568EF /* GetReceiver.h */,
 				F081A03519776CEA004568EF /* GetReceiver.m */,
 				F081A03119776CDF004568EF /* KpRates.h */,
@@ -1057,6 +1105,8 @@
 				F081A0621977A6C7004568EF /* CheckPin.m */,
 				F00D4B4B197F8ABE00E47198 /* SendEmail.h */,
 				F00D4B4C197F8ABE00E47198 /* SendEmail.m */,
+				F013D7111A26FE9B0095A154 /* KpRatesOwn.h */,
+				F013D7121A26FE9B0095A154 /* KpRatesOwn.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1109,6 +1159,14 @@
 		3BB42DE618D6B6C60011792E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F01893181A259F5C00409FC1 /* chchecked.png */,
+				F01893191A259F5C00409FC1 /* chunchecked@2x.png */,
+				F018931A1A259F5C00409FC1 /* chchecked@2x.png */,
+				F018931B1A259F5C00409FC1 /* chunchecked.png */,
+				F01014AA1A2408ED00F4BA76 /* checked.png */,
+				F01014AB1A2408ED00F4BA76 /* checked@2x.png */,
+				F01014AC1A2408ED00F4BA76 /* unchecked.png */,
+				F01014AD1A2408ED00F4BA76 /* unchecked@2x.png */,
 				7003CEC819B7025A0020F76F /* account_camera.png */,
 				7003CEC919B7025A0020F76F /* account_sdcard.png */,
 				70E3EC5B19B5AD23000522EA /* donedown.png */,
@@ -1574,10 +1632,12 @@
 				3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */,
 				70AA059A198B316600B0C52A /* EditAccountInformation.xib in Resources */,
 				3BB924EE196FEBE7007E76A5 /* ReceiverMenuListViewController~ipad.xib in Resources */,
+				F01014AE1A2408ED00F4BA76 /* checked.png in Resources */,
 				3B17585718B35CDB005A7805 /* peso_signr.png in Resources */,
 				3B1B36BE18B43181006DA5BB /* transparent.png in Resources */,
 				3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */,
 				3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */,
+				F01014AF1A2408ED00F4BA76 /* checked@2x.png in Resources */,
 				3B8090C018B6106F00A11CB8 /* navigation_image.png in Resources */,
 				F081A05C19776F89004568EF /* MLHistoryTableViewCell~iphone.xib in Resources */,
 				F081A05119776E55004568EF /* MLReceiverTableViewController.xib in Resources */,
@@ -1603,6 +1663,7 @@
 				3BB42E0F18D6B6C60011792E /* tabbar_bg.png in Resources */,
 				70CBA8F9198A37D4005D845E /* EditInformation.xib in Resources */,
 				3B30285E1981E8FE007825CE /* ResetPassViewController~ipad.xib in Resources */,
+				F0242B461A2809D100B8DA44 /* PartnersTableViewController.xib in Resources */,
 				70ADA8FA19908BAE00075CB7 /* EditPasswordPad.xib in Resources */,
 				F081A05B19776F89004568EF /* MLHistoryViewController~iphone.xib in Resources */,
 				7006620A18DA78EF00A0F05C /* AccountInformation.xib in Resources */,
@@ -1640,6 +1701,7 @@
 				70ADA8F51990740400075CB7 /* EditAccountInformationPad.xib in Resources */,
 				F007CC391985D7D20022FFF2 /* ic_pending.png in Resources */,
 				70ADA8FF199092CC00075CB7 /* EditUsernamePad.xib in Resources */,
+				F018931D1A259F5C00409FC1 /* chunchecked@2x.png in Resources */,
 				3011287A19838600007EC190 /* MLhuillierWebViewController~ipad.xib in Resources */,
 				F081A05419776E55004568EF /* MLMenuViewController.xib in Resources */,
 				707C03BB18D9CFE100EC1B12 /* account_profile.png in Resources */,
@@ -1665,9 +1727,13 @@
 				3B71BBB518BD8B5C0094543C /* edit_image.png in Resources */,
 				3BB42E0218D6B6C60011792E /* navibar_bg.png in Resources */,
 				3BB42E0A18D6B6C60011792E /* rates_default.png in Resources */,
+				F01893751A25C03100409FC1 /* MLRatesSwipeViewController~iphone.xib in Resources */,
 				3BB42DE518D6B2CD0011792E /* home.png in Resources */,
 				3BB42E1018D6B6C60011792E /* tabbar_item.png in Resources */,
+				F018931E1A259F5C00409FC1 /* chchecked@2x.png in Resources */,
+				F01014B01A2408ED00F4BA76 /* unchecked.png in Resources */,
 				7006621318DA797C00A0F05C /* UpdateInformation.xib in Resources */,
+				F018936A1A25B87700409FC1 /* MLRatesAllChildViewController~iphone.xib in Resources */,
 				3BA7CD1318B23A7000B9FC4B /* reload.9.png in Resources */,
 				F081A04E19776E55004568EF /* MLPreviewViewController~ipad.xib in Resources */,
 				7006621418DA797C00A0F05C /* AccountQuestion.xib in Resources */,
@@ -1688,6 +1754,7 @@
 				3BC3829218C095D200270567 /* ic_about.9.png in Resources */,
 				F081A04C19776E55004568EF /* MLRatesTableViewController~iphone.xib in Resources */,
 				F081A04B19776E55004568EF /* MLSendMoneyViewController~ipad.xib in Resources */,
+				F018931C1A259F5C00409FC1 /* chchecked.png in Resources */,
 				F05C5F5218E13CA1002F2EE1 /* send_selected.png in Resources */,
 				3B17585318B34EE3005A7805 /* bg_header.png in Resources */,
 				3BA7CCE718B1E29100B9FC4B /* new_info.png in Resources */,
@@ -1716,6 +1783,7 @@
 				3B1D2A1A1985E282004A70FC /* InfoViewController~ipad.xib in Resources */,
 				3BC3828E18C095B500270567 /* ic_faq.9.png in Resources */,
 				3BA7CD0618B22C2000B9FC4B /* MenuViewController~iphone.xib in Resources */,
+				F018931F1A259F5C00409FC1 /* chunchecked.png in Resources */,
 				3B1B36C418B4AD70006DA5BB /* icon_my_account.jpg in Resources */,
 				3B9FC06D196D40750035446F /* LoginViewController~iphone.xib in Resources */,
 				700661B818DA74CF00A0F05C /* AccountMain.xib in Resources */,
@@ -1726,6 +1794,7 @@
 				3BA7CCE518B1E28400B9FC4B /* new_locator.png in Resources */,
 				70AE8CBB198FBE4C002F570D /* EditInformationPad.xib in Resources */,
 				3BB42E0118D6B6C60011792E /* navbar_bg.png in Resources */,
+				F01014B11A2408ED00F4BA76 /* unchecked@2x.png in Resources */,
 				3BB42DFF18D6B6C60011792E /* btnReceiver_bg.png in Resources */,
 				3B8B9EF518BC341400639142 /* textbox2.png in Resources */,
 			);
@@ -1743,12 +1812,14 @@
 				70EEA17A18D9C46000719BF7 /* RegistrationInformation.m in Sources */,
 				7006620F18DA791600A0F05C /* ProfileInformation.m in Sources */,
 				3BA7CCAB18B1D6B900B9FC4B /* AppDelegate.m in Sources */,
+				F01014B41A240CA100F4BA76 /* RadioButton.m in Sources */,
 				70EEA18618D9C53200719BF7 /* ProfileHeader.m in Sources */,
 				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
 				70ADA9151990DD3600075CB7 /* AccountInformationPad.m in Sources */,
 				70AA059E198B385F00B0C52A /* EditPassword.m in Sources */,
 				70AE8CB1198FB154002F570D /* QuestionVerificationDialogPad.m in Sources */,
 				3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */,
+				F013D7131A26FE9B0095A154 /* KpRatesOwn.m in Sources */,
 				3B15D2A519869C5700AD69AE /* TimerUIApplication.m in Sources */,
 				70EEA17818D9C46000719BF7 /* AccountLogin.m in Sources */,
 				F081A0631977A6C7004568EF /* CheckPin.m in Sources */,
@@ -1779,6 +1850,7 @@
 				3BC3828B18C0958900270567 /* InfoViewController.m in Sources */,
 				70ADA8FE199092CC00075CB7 /* EditUsernamePad.m in Sources */,
 				3BC3827B18C02C6C00270567 /* TopupViewController.m in Sources */,
+				F01893741A25C03100409FC1 /* MLRatesSwipeViewController.m in Sources */,
 				3B1B36CB18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m in Sources */,
 				70AA05A8198B3AF600B0C52A /* EditEmail.m in Sources */,
 				F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */,
@@ -1788,11 +1860,13 @@
 				70EEA18318D9C48A00719BF7 /* MLViewController.m in Sources */,
 				70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */,
 				3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */,
+				F01893691A25B87700409FC1 /* MLRatesAllChildViewController.m in Sources */,
 				F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */,
 				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
 				70ADA8F919908BAE00075CB7 /* EditPasswordPad.m in Sources */,
 				3BF0B26D197A616400AC2C76 /* SaveWalletData.m in Sources */,
 				70AA05A3198B3ADD00B0C52A /* EditUsername.m in Sources */,
+				F0242B451A2809D100B8DA44 /* PartnersTableViewController.m in Sources */,
 				700ECB77199B749D006EC6D7 /* EditUserNameWebService.m in Sources */,
 				70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */,
 				3BA8A22E197516580052FA2F /* UIImage+DecodeStringToImage.m in Sources */,

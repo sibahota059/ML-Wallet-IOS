@@ -25,7 +25,7 @@
 #import "MLhuillierWebViewController.h"
 #import "UIImage+DecodeStringToImage.h"
 #import "AccountMainPad.h"
-
+#import "MLRatesSwipeViewController.h"
 #import "SaveWalletData.h"
 
 
@@ -517,7 +517,8 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 #pragma mark - Send mOney MENU
 - (IBAction)btn_SendMoney:(id)sender {
     UIViewController *viewController1 = [[MLSendMoneyViewController alloc] initWithNibName:@"MLSendMoneyViewController" bundle:nil];
-    UITableViewController *viewController2 = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
+//    UITableViewController *viewController2 = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
+    UIViewController *viewController2 = [[MLRatesSwipeViewController alloc] initWithNibName:@"MLRatesSwipeViewController" bundle:nil];
     
     [getUI navigationAppearance];
     

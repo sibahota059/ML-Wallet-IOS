@@ -14,7 +14,7 @@
 #define URLHttps_IP @"https://192.168.12.204:4443"
 
 
-#define URLService @"/Mobile/Client/AES_IOS_ANDROID/mobileKP_WCF/Service.svc/" ///mobile/client/test/mobilekp_wcf/service.svc/
+#define URLService @"/mobile/client/new/mobilekp_wcf/service.svc/"
 #define URLMapService @"/mobile/Client/MapService/MapService.svc/getCoordinates/"
 //MAP Service
 #define URLLocationService @"Http://maps.google.com/maps/api/geocode/json?"

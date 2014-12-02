@@ -10,14 +10,20 @@
 #import "MLReceiverTableViewController.h"
 #import "SendoutMobile.h"
 #import "KpRates.h"
+#import "KpRatesOwn.h"
 #import "GetReceiver.h"
 #import "MBProgressHUD.h"
+#import "PartnersTableViewController.h"
 
-@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, GetReceiverDelegate, MBProgressHUDDelegate>
+@class RadioButton;
+
+@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, KpRatesDelegateOwn, GetReceiverDelegate, MBProgressHUDDelegate, PartnersTableViewControllerDelegate>
 
 //@property (weak, nonatomic) id<GetKptnDelegate>delegate;
 
 //outlet
+
+@property (weak, nonatomic) IBOutlet RadioButton *radioButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll_main;
 @property (weak, nonatomic) IBOutlet UIView *view_main;
@@ -42,8 +48,25 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblNoReceiver;
 @property (weak, nonatomic) IBOutlet UIButton *btn_receiver;
 @property (strong, nonatomic) NSString *chTotal;
+@property (weak, nonatomic) IBOutlet UIView *view_partners;
+@property (weak, nonatomic) IBOutlet UIView *view_accountno;
+@property (weak, nonatomic) IBOutlet UIButton *ch_sendOwn;
+@property (weak, nonatomic) IBOutlet UIButton *btnPartners;
+@property (weak, nonatomic) IBOutlet UIButton *btnAccount;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_partners;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_account;
 
 //action
 - (IBAction)btn_receiver:(id)sender;
+- (IBAction)onRadioButton:(RadioButton *)sender;
+- (IBAction)ch_sendOwn:(id)sender;
+- (IBAction)btnPartners:(id)sender;
+- (IBAction)btnAccount:(id)sender;
+
+
+
+
+
+
 
 @end
