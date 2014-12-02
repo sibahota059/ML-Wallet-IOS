@@ -7,11 +7,14 @@
 //
 
 #import "ServiceConnection.h"
+#import "CryptLib.h"
 
-#define URLHttps_IP @"https://192.168.16.120"
+#define _key @"mlhuillier_philippines"
+
+#define URLHttps_IP @"https://192.168.12.204:4443"
 
 
-#define URLService @"/MobileService/mobileKP_WCF/Service.svc" ///mobile/client/test/mobilekp_wcf/service.svc/
+#define URLService @"/mobile/client/new/mobilekp_wcf/service.svc/"
 #define URLMapService @"/mobile/Client/MapService/MapService.svc/getCoordinates/"
 //MAP Service
 #define URLLocationService @"Http://maps.google.com/maps/api/geocode/json?"
@@ -50,4 +53,10 @@
 -(NSString *) NSCreateAccountService{
     return [NSString stringWithFormat:@"%@%@",URLHttps_IP,URLService];
 }
+
+- (NSString *) NSGetKey
+{    
+    return [[StringEncryption alloc] sha256:_key length:32];;
+}
+
 @end

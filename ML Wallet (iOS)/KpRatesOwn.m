@@ -1,16 +1,16 @@
 //
-//  KpRates.m
+//  KpRatesOwn.m
 //  ML Wallet
 //
-//  Created by mm20 on 7/16/14.
+//  Created by ml on 11/27/14.
 //  Copyright (c) 2014 ML Lhuillier. All rights reserved.
 //
 
-#import "KpRates.h"
+#import "KpRatesOwn.h"
 #import "MLRatesTableViewController.h"
 #import "ServiceConnection.h"
 
-@implementation KpRates
+@implementation KpRatesOwn
 {
     
     NSMutableData *contentData;
@@ -25,7 +25,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     conn = nil;
-    [self.delegate didFinishLoadingRates:@"error" andError:error.localizedDescription];
+    [self.delegate didFinishLoadingRatesOwn:@"error" andError:error.localizedDescription];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -37,7 +37,7 @@
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     self.getRates = jsonResponse;
     
-    [self.delegate didFinishLoadingRates:@"1" andError:@""];
+    [self.delegate didFinishLoadingRatesOwn:@"1" andError:@""];
 }
 
 
@@ -59,15 +59,13 @@
 {
     contentData = [NSMutableData data];
     con         = [ServiceConnection new];
-
+    
+    
     NSString *contentURL = [NSString stringWithFormat:@"%@%@", con.NSgetURLService, parameterMethods];
     
     conn = [[NSURLConnection alloc] initWithRequest:
             [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];
-
+    
 }
-
-
-
 
 @end

@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MLSendMoneyViewController">
             <connections>
+                <outlet property="btnAccount" destination="cd2-KT-liR" id="O9j-rD-lkg"/>
+                <outlet property="btnPartners" destination="4ew-YW-hKw" id="hxF-hw-Rwj"/>
                 <outlet property="btn_receiver" destination="Spo-n0-xhq" id="z6k-3S-UVI"/>
+                <outlet property="ch_sendOwn" destination="azg-bx-aFQ" id="oya-3S-9Mc"/>
                 <outlet property="chargeValue" destination="b9c-2I-LsM" id="Yg6-D3-xr6"/>
                 <outlet property="countReceiver" destination="RJn-eC-771" id="UnP-od-BKZ"/>
                 <outlet property="label_balance" destination="znp-YM-Apv" id="yVg-UF-8lZ"/>
                 <outlet property="lblNoReceiver" destination="Kmt-PE-lFz" id="LkS-uM-n1F"/>
+                <outlet property="lbl_account" destination="qfg-MV-LH1" id="0FV-jC-FV2"/>
+                <outlet property="lbl_partners" destination="hhB-Nn-4eK" id="rsq-DF-6YR"/>
+                <outlet property="radioButton" destination="Y1v-gF-dbY" id="Tfd-hJ-Clw"/>
                 <outlet property="receiverAddress" destination="hRM-VB-IcY" id="eyg-FW-6ir"/>
                 <outlet property="receiverImage" destination="mji-jg-qQz" id="F5F-LV-czX"/>
                 <outlet property="receiverName" destination="q7I-j3-R6y" id="BBK-kK-2wA"/>
@@ -21,8 +27,10 @@
                 <outlet property="tf_amount" destination="df6-5G-nEs" id="FFd-f9-NJU"/>
                 <outlet property="totalValue" destination="KIo-KB-kr0" id="WaG-cl-3oX"/>
                 <outlet property="view" destination="1" id="3"/>
+                <outlet property="view_accountno" destination="EJe-I0-a3p" id="eZC-94-cRd"/>
                 <outlet property="view_charge" destination="UXE-Wg-sdJ" id="C2W-Fh-boD"/>
                 <outlet property="view_main" destination="g5s-sv-6Kr" id="hoC-wW-B4I"/>
+                <outlet property="view_partners" destination="Ud1-hd-dsK" id="GHh-0M-R8x"/>
                 <outlet property="view_receiver" destination="EYi-Rl-T9l" id="7KK-Ux-qDZ"/>
                 <outlet property="view_sender" destination="yxc-Zu-XlS" id="qwJ-bX-Edz"/>
                 <outlet property="view_total" destination="Pna-ua-NDg" id="eCT-qm-hhr"/>
@@ -104,7 +112,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EYi-Rl-T9l">
-                                    <rect key="frame" x="6" y="160" width="309" height="100"/>
+                                    <rect key="frame" x="6" y="180" width="309" height="100"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yqt-sS-VzC">
@@ -144,7 +152,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <state key="normal" title="Change" backgroundImage="btnReceiver_bg.png">
+                                            <state key="normal" title="Change" backgroundImage="navbar_bg.png">
                                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -169,8 +177,65 @@
                                         <constraint firstItem="q7I-j3-R6y" firstAttribute="leading" secondItem="EYi-Rl-T9l" secondAttribute="leading" constant="8" id="sb1-U9-g7o"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ud1-hd-dsK">
+                                    <rect key="frame" x="5" y="181" width="309" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Partners" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="178" translatesAutoresizingMaskIntoConstraints="NO" id="hhB-Nn-4eK">
+                                            <rect key="frame" x="9" y="5" width="178" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ew-YW-hKw">
+                                            <rect key="frame" x="193" y="10" width="113" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Select Partners" backgroundImage="navbar_bg.png">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnPartners:" destination="-1" eventType="touchUpInside" id="91O-aF-NNa"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="Sjq-hO-6n0"/>
+                                        <constraint firstAttribute="width" constant="309" id="W0p-hR-5IB"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJe-I0-a3p">
+                                    <rect key="frame" x="5" y="235" width="309" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfg-MV-LH1">
+                                            <rect key="frame" x="6" y="15" width="171" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cd2-KT-liR">
+                                            <rect key="frame" x="193" y="11" width="113" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Select Account" backgroundImage="navbar_bg.png">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnAccount:" destination="-1" eventType="touchUpInside" id="ygz-hl-ZVO"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="AhC-ZV-tJE"/>
+                                        <constraint firstAttribute="width" constant="309" id="qDj-Ut-Ajw"/>
+                                    </constraints>
+                                </view>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Amount To Send" textAlignment="center" minimumFontSize="17" background="content_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="df6-5G-nEs">
-                                    <rect key="frame" x="8" y="268" width="309" height="41"/>
+                                    <rect key="frame" x="6" y="315" width="309" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -178,7 +243,7 @@
                                         <outlet property="delegate" destination="-1" id="GYO-Ir-5v4"/>
                                     </connections>
                                 </textField>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have 0 receivers. " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJn-eC-771">
+                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You have 0 receivers. " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJn-eC-771">
                                     <rect key="frame" x="11" y="137" width="303" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -186,7 +251,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXE-Wg-sdJ">
-                                    <rect key="frame" x="9" y="324" width="148" height="73"/>
+                                    <rect key="frame" x="9" y="371" width="148" height="73"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Charge:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emj-26-Sby">
@@ -197,7 +262,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9c-2I-LsM">
-                                            <rect key="frame" x="49" y="39" width="87" height="24"/>
+                                            <rect key="frame" x="49" y="35" width="87" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -207,7 +272,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pna-ua-NDg">
-                                    <rect key="frame" x="166" y="324" width="148" height="73"/>
+                                    <rect key="frame" x="166" y="371" width="148" height="73"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-zb-ePT">
@@ -227,14 +292,70 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfF-uZ-nG2" customClass="RadioButton">
+                                    <rect key="frame" x="158" y="148" width="142" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="9NE-gY-5EM"/>
+                                        <constraint firstAttribute="width" constant="142" id="rns-38-4bx"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <state key="normal" title="  Bills Pay" image="unchecked.png">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="checked.png"/>
+                                    <connections>
+                                        <action selector="onRadioButton:" destination="-1" eventType="touchUpInside" id="h6R-fV-Zeh"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1v-gF-dbY" customClass="RadioButton">
+                                    <rect key="frame" x="11" y="148" width="130" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="130" id="YIe-96-fgv"/>
+                                        <constraint firstAttribute="height" constant="24" id="brd-7W-UAw"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <state key="normal" title="  Remittance" image="unchecked.png">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="checked.png"/>
+                                    <connections>
+                                        <action selector="onRadioButton:" destination="-1" eventType="touchUpInside" id="dUt-hu-tdM"/>
+                                        <outletCollection property="groupButtons" destination="YfF-uZ-nG2" id="mbR-gi-iMi"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azg-bx-aFQ">
+                                    <rect key="frame" x="5" y="288" width="160" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <state key="normal" title="  Send to Own" image="chunchecked.png">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="chchecked.png"/>
+                                    <connections>
+                                        <action selector="ch_sendOwn:" destination="-1" eventType="touchUpInside" id="4Nq-ab-fWK"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="yxc-Zu-XlS" firstAttribute="leading" secondItem="g5s-sv-6Kr" secondAttribute="leading" constant="6" id="0Zf-4X-9vj"/>
                                 <constraint firstItem="yxc-Zu-XlS" firstAttribute="top" secondItem="g5s-sv-6Kr" secondAttribute="top" constant="37" id="2Bw-hn-tOd"/>
-                                <constraint firstItem="EYi-Rl-T9l" firstAttribute="top" secondItem="yxc-Zu-XlS" secondAttribute="bottom" constant="23" id="ROb-C3-pC6"/>
+                                <constraint firstItem="Y1v-gF-dbY" firstAttribute="leading" secondItem="g5s-sv-6Kr" secondAttribute="leading" constant="11" id="5cg-kn-Ea7"/>
+                                <constraint firstItem="Ud1-hd-dsK" firstAttribute="top" secondItem="Y1v-gF-dbY" secondAttribute="bottom" constant="9" id="IUp-j7-L6K"/>
+                                <constraint firstItem="YfF-uZ-nG2" firstAttribute="leading" secondItem="Y1v-gF-dbY" secondAttribute="trailing" constant="17" id="Pk8-yP-81Y"/>
+                                <constraint firstItem="EYi-Rl-T9l" firstAttribute="top" secondItem="yxc-Zu-XlS" secondAttribute="bottom" constant="43" id="ROb-C3-pC6"/>
                                 <constraint firstAttribute="centerX" secondItem="yxc-Zu-XlS" secondAttribute="centerX" constant="-0.5" id="SDH-lR-B0Z"/>
                                 <constraint firstAttribute="height" constant="432" id="WNJ-NJ-wsI"/>
+                                <constraint firstItem="Y1v-gF-dbY" firstAttribute="top" secondItem="fyy-lK-tzQ" secondAttribute="bottom" constant="17" id="aBp-8C-Ai4"/>
+                                <constraint firstAttribute="centerX" secondItem="Ud1-hd-dsK" secondAttribute="centerX" constant="0.5" id="f9d-jv-U48"/>
+                                <constraint firstItem="YfF-uZ-nG2" firstAttribute="top" secondItem="fyy-lK-tzQ" secondAttribute="bottom" constant="17" id="iWz-Vn-nfp"/>
+                                <constraint firstItem="EJe-I0-a3p" firstAttribute="top" secondItem="Ud1-hd-dsK" secondAttribute="bottom" constant="4" id="jTm-97-Muv"/>
+                                <constraint firstAttribute="centerX" secondItem="EJe-I0-a3p" secondAttribute="centerX" constant="0.5" id="oYn-ge-OHo"/>
                                 <constraint firstAttribute="trailing" secondItem="yxc-Zu-XlS" secondAttribute="trailing" constant="5" id="xh4-Vl-WUO"/>
                                 <constraint firstAttribute="centerX" secondItem="EYi-Rl-T9l" secondAttribute="centerX" constant="-0.5" id="y5t-XX-8LZ"/>
                             </constraints>
@@ -262,8 +383,12 @@
     </objects>
     <resources>
         <image name="bradpit.jpg" width="259" height="194"/>
-        <image name="btnReceiver_bg.png" width="80" height="30"/>
+        <image name="chchecked.png" width="24" height="24"/>
+        <image name="checked.png" width="24" height="24"/>
+        <image name="chunchecked.png" width="24" height="24"/>
         <image name="content_bg.png" width="309" height="100"/>
+        <image name="navbar_bg.png" width="320" height="44"/>
         <image name="noImage.png" width="75" height="69"/>
+        <image name="unchecked.png" width="24" height="24"/>
     </resources>
 </document>

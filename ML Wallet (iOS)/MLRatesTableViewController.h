@@ -10,7 +10,7 @@
 #import "KpRates.h"
 #import "MBProgressHUD.h"
 
-@interface MLRatesTableViewController : UITableViewController<KpRatesDelegate, MBProgressHUDDelegate>
+@interface MLRatesTableViewController : UITableViewController<MBProgressHUDDelegate>
 
 @property (strong, nonatomic) NSDictionary *getRates;
 @property (strong, nonatomic) NSString *indicator;

@@ -30,7 +30,6 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-#define _key @"mlwallet"
 
 @interface LoginViewController ()
 
@@ -238,31 +237,23 @@
     [HUD show:YES];
     [self.view endEditing:YES];
     
-    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"/testaes"];
     
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-//    
-//    [request setHTTPMethod:@"GET"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-//    [NSURLConnection connectionWithRequest:request delegate:self];
+    double latitude = [self Latitude];
+    double longtitude = [self Longtitude];
+    NSLog(@"Lat : %f and Lng : %f", [self Latitude], [self Longtitude]);
     
-//    double latitude = [self Latitude];
-//    double longtitude = [self Longtitude];
-//    NSLog(@"Lat : %f and Lng : %f", [self Latitude], [self Longtitude]);
-//    
-//    //Get Location JSON
+    //Get Location JSON
     NSURLConnection *con;
-//    NSString *getReq = [NSString stringWithFormat:@"latlng=%f,%f&sensor=true", latitude, longtitude];
-//    
-//    
-//    NSLog(@"viewdidload");
+    NSString *getReq = [NSString stringWithFormat:@"latlng=%f,%f&sensor=true", latitude, longtitude];
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetLocationService] stringByAppendingString:getReq];
+    
     self.responseData = [NSMutableData data];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:srvcURL]];
     [request setHTTPMethod:@"GET"];
     con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.idd = 2;
+    self.idd = 1;
 
 }
 
@@ -515,15 +506,17 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
         NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
-        result          = [[StringEncryption alloc] decrypt:result]; //Decrypt AES result
-        NSString * decryptedText = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding]; //Convert to String
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
         
-        NSLog(@"decrypted data:: %@", decryptedText); //print the decrypted text
-        
-        NSNumber *respCode = [decryptedText valueForKey:@"respcode"];
-        NSString *respMesg = [decryptedText valueForKey:@"respmessage"];
+        NSNumber *respCode = [result valueForKeyPath:@"respcode"];
+        NSString *respMesg = [result valueForKeyPath:@"respmessage"];
         
         //Hide Loader
         [HUD hide:YES];
@@ -667,40 +660,44 @@
     NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
     NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
-    /* \"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\
-     
-     user,
-     pass,
-     version,
-     [self Latitude],
-     [self Longtitude],
-     deviceID,
-     self.location];
-     */
+    double lat = [self Latitude];
+    double lng = [self Longtitude];
+    NSString *location = [self location];
     
-    NSString *encrptedData = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%@\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",
+    if ([location isEqualToString:@""] || [location isEqualToString:@"nil"]) {
+        location = @"";
+    }
+    
+    NSString *encrptedString = [NSString stringWithFormat:@"{\"username\" : \"%@\",\"password\" : \"%@\",\"version\" : \"%@\",\"latitude\" : \"%f\",\"longitude\" : \"%f\",\"deviceid\" : \"%@\",\"location\" : \"%@\"}",
                               user,
                               pass,
                               version,
-                              [self Latitude],
-                              [self location],
+                              lat,
+                              lng,
                               deviceID,
-                              self.location];
+                              location];
     
-    NSString * _secret = @"This the sample text has to be encrypted"; // this is the text that you want to encrypt.
+   
     
-    NSData * encryptedData = [[StringEncryption alloc] encrypt:[_secret dataUsingEncoding:NSUTF8StringEncoding]]; //iv:iv];
-    NSLog(@"encrypted data:: %@", [encryptedData  base64EncodingWithLineLength:0]); //print the encrypted text
+    //enc
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[encrptedString dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
     
+//    //dec
+//    encryptedData = [[StringEncryption alloc] decrypt:encryptedData  key:_key iv:_iv];
+//    NSString * decryptedText = [[NSString alloc] initWithData:encryptedData encoding:NSUTF8StringEncoding];
+//    NSLog(@"decrypted data:: %@", decryptedText); //print the decrypted text
+
     
-    encryptedData = [[StringEncryption alloc] decrypt:encryptedData]; //iv:iv];
-    NSString * decryptedText = [[NSString alloc] initWithData:encryptedData encoding:NSUTF8StringEncoding];
-    NSLog(@"decrypted data:: %@", decryptedText); //print the decrypted text
+    //Data to POST
+    NSString *post = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\", \"iv\" : \"%@\"}",
+                      [encryptedData base64EncodingWithLineLength:0],
+                      _iv];
     
-    
-    
-     
-    NSString *post = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\"}", encrptedData];
     
     NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"login"];
     
@@ -764,13 +761,27 @@
     responseData = [[NSMutableData alloc] init];
     
     
+    NSString *postStr = [NSString stringWithFormat:@"{\"walletno\" : \"%@\"}", walletno];
+    
+    //AES encryption
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[postStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+    postStr = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}", postStr, _iv];
+    
     //Update PIN
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"ResendPIN/?walletno="];
+    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"ResendPIN"];
     NSString *srvcURL = [NSString stringWithFormat:@"%@%@", srvcURL1, walletno];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[postStr UTF8String] length:[postStr length]];
     
-    [request setHTTPMethod:@"GET"];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+     [request setHTTPBody:requestData];
     [NSURLConnection connectionWithRequest:request delegate:self];
     self.idd = 3;
 }
