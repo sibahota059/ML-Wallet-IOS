@@ -475,9 +475,16 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"ResendPINResult"];
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
         
-        NSNumber *respCode = [result valueForKey:@"respcode"];
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
+        
+        
+        NSNumber *respCode = [result valueForKeyPath:@"respcode"];
         NSString *respMesg = [result valueForKey:@"respmessage"];
         
         //Hide Loader
@@ -770,11 +777,12 @@
                                                           key:_key
                                                            iv:_iv];
     NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
-    postStr = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}", postStr, _iv];
+    postStr = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}",
+               [encryptedData base64EncodingWithLineLength:0],
+               _iv];
     
     //Update PIN
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"ResendPIN"];
-    NSString *srvcURL = [NSString stringWithFormat:@"%@%@", srvcURL1, walletno];
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"ResendPIN"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
     NSData *requestData = [NSData dataWithBytes:[postStr UTF8String] length:[postStr length]];
     
