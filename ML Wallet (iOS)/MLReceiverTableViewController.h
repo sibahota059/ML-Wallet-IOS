@@ -21,6 +21,6 @@
 @interface MLReceiverTableViewController : UITableViewController<MBProgressHUDDelegate, GetReceiverDelegate>
 
 @property (weak, nonatomic) id<MLReceiverTableViewControllerDelegate>delegate;
-@property (strong, nonatomic) NSDictionary *ds;
+@property (strong, nonatomic) NSMutableArray *ds;
 
 @end
