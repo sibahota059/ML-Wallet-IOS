@@ -22,6 +22,8 @@
 #import "SaveWalletData.h"
 #import "MenuViewController.h"
 #import "DeviceID.h"
+#import "NSData+Base64.h"
+#import "CryptLib.h"
 @interface AccountLogin ()
 
 @end
@@ -327,14 +329,14 @@ NSString *wallNum;
                 
                 [message show];
             }
-        
+            
             
             
         }
         else{
             
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Password did not match." delegate:nil cancelButton:@"Ok" otherButtons:nil];
-
+            
         }
         
         
@@ -347,7 +349,6 @@ NSString *wallNum;
 -(void)resendPin{
     
     NSLog(@"Resend Pin");
-    
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
@@ -355,20 +356,31 @@ NSString *wallNum;
     HUD.square = YES;
     [HUD show:YES];
     [self.view endEditing:YES];
-    NSString *custID = [NSString stringWithFormat:@"ResendPIN/?walletno=%@",self.accountLoginWalletNumber];
-    NSString *url = [NSString stringWithFormat:@"%@%@", [con NSGetCustomerIDService],custID];
+    contentData = [NSMutableData data];
+    con         = [ServiceConnection new];
     
-    NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    NSString *body =  [NSString stringWithFormat:@"{\"walletno\":\"%@\"}",self.accountLoginWalletNumber];
+    NSString *strIV = [[StringEncryption alloc]generateIV];
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSData * reqData =[body dataUsingEncoding:NSUTF8StringEncoding]; //Data
+    NSString *serviceMethods = @"ResendPIN";
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods]];
+    //NSLog(@"Account Login Web Service URL ----a %@%@",url,body);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    NSData *encryptedData = [[StringEncryption alloc] encrypt:reqData key:_key iv:strIV];
+    NSString * encryptedString = [encryptedData base64EncodedStringWithOptions:0];
+    NSString *encryptedRequest = [NSString stringWithFormat:@"{\"encrypted\":\"%@\",\"iv\":\"%@\"}",encryptedString,strIV];
+    NSData *jsonEncryptedRequestData = [NSData dataWithBytes:[encryptedRequest UTF8String] length:[encryptedRequest length]];
     
-    NSLog(@"URL - %@", url);              // Checking the url
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[jsonEncryptedRequestData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: jsonEncryptedRequestData];
     
-    NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
-                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                         timeoutInterval:10.0];
     
-    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
-    [theConnection start];
     
+    [NSURLConnection connectionWithRequest:request delegate:self];
     self.idd = 4;
 }
 
@@ -414,8 +426,8 @@ NSString *wallNum;
 
 //textField Listeners
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-//    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
-//    [scrollView setContentOffset:scrollPoint animated:YES];
+    //    CGPoint scrollPoint = CGPointMake(0, textField.frame.origin.y);
+    //    [scrollView setContentOffset:scrollPoint animated:YES];
     passwordTF.autocorrectionType = FALSE;
     retypePasswordTF.autocorrectionType = FALSE;
     userNameTF.autocorrectionType = FALSE;
@@ -434,7 +446,7 @@ NSString *wallNum;
         }
         
     }
-
+    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -475,36 +487,51 @@ NSString *wallNum;
     HUD.labelText = @"Please wait";
     HUD.square = YES;
     [HUD show:YES];
+    [self.view endEditing:YES];
     
     contentData = [NSMutableData data];
     con         = [ServiceConnection new];
     
+    
     NSString *strCustID = [NSString stringWithFormat:@"%@%@%@", act_log_custIDfirstNumber, act_log_custIDsecondNumber,act_log_custIDthirdNumber];
     NSString *strUsername = userNameTF.text;
     NSString *strPassword = passwordTF.text;
-    //NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
+    NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
     NSString *version =[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    NSLog(@"Ang account %@ %@",strUsername,strPassword);
+    
+    // NSLog(@"Ang account %@ %@",strUsername,strPassword);
+    
     if([act_log_birthdate isEqualToString:@""]){
+        
         act_log_birthdate = @"1985-11-23";
+        
     }
-    NSLog(@"Email ni --- %@",act_log_email);
     
-    NSString *body =  [NSString stringWithFormat:@"{\"custid\":\"%@\",\"username\":\"%@\",\"password\":\"%@\",\"mobileno\":\"%@\",\"emailadd\":\"%@\",\"fname\":\"%@\",\"mname\":\"%@\",\"lname\":\"%@\",\"gender\":\"%@\",\"bdate\":\"%@\",\"nationality\":\"%@\",\"natureOfWork\":\"%@\",\"provinceCity\":\"%@\",\"permanentAdd\":\"%@\",\"country\":\"%@\",\"zipcode\":\"%@\",\"secquestion1\":\"%@\",\"secanswer1\":\"%@\",\"secquestion2\":\"%@\",\"secanswer2\":\"%@\",\"secquestion3\":\"%@\",\"secanswer3\":\"%@\",\"photo1\":\"%@\",\"photo2\":\"%@\",\"photo3\":\"%@\",\"photo4\":\"%@\",\"version\":\"%@\"}",strCustID,strUsername,strPassword,act_log_custIDphoneNumber,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,version];
+    // NSLog(@"Email ni --- %@",act_log_email);
     
     
+    
+    NSString *body =  [NSString stringWithFormat:@"{\"custid\":\"%@\",\"username\":\"%@\",\"password\":\"%@\",\"mobileno\":\"%@\",\"emailadd\":\"%@\",\"fname\":\"%@\",\"mname\":\"%@\",\"lname\":\"%@\",\"gender\":\"%@\",\"bdate\":\"%@\",\"nationality\":\"%@\",\"natureOfWork\":\"%@\",\"provinceCity\":\"%@\",\"permanentAdd\":\"%@\",\"country\":\"%@\",\"zipcode\":\"%@\",\"secquestion1\":\"%@\",\"secanswer1\":\"%@\",\"secquestion2\":\"%@\",\"secanswer2\":\"%@\",\"secquestion3\":\"%@\",\"secanswer3\":\"%@\",\"photo1\":\"%@\",\"photo2\":\"%@\",\"photo3\":\"%@\",\"photo4\":\"%@\",\"version\":\"%@\",\"deviceid\":\"%@\"}",strCustID,strUsername,strPassword,act_log_custIDphoneNumber,act_log_email,act_log_firstName,act_log_middleName,act_log_lastName,act_log_gender,act_log_birthdate,act_log_nationality,act_log_work,act_log_province,act_log_address,act_log_country,act_log_zipcode,act_log_str_secquestion1,act_log_str_secanswer1,act_log_str_secquestion2,act_log_str_secanswer2,act_log_str_secquestion3,act_log_str_secanswer3,act_log_str_photo1,act_log_str_photo2,act_log_str_photo3,act_log_str_photo4,version,deviceID];
+    
+    
+    
+    NSString *strIV = [[StringEncryption alloc]generateIV];
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSData * reqData =[body dataUsingEncoding:NSUTF8StringEncoding]; //Data
     NSString *serviceMethods = @"insertMobileAccounts";
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods]];
-    NSLog(@"Account Login Web Service URL ----a %@%@",url,body);
+    //  NSLog(@"Account Login Web Service URL ----a %@%@",url,body);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    NSData *requestData = [NSData dataWithBytes:[body UTF8String] length:[body length]];
+    NSData *encryptedData = [[StringEncryption alloc] encrypt:reqData key:_key iv:strIV];
+    NSString * encryptedString = [encryptedData base64EncodedStringWithOptions:0];
+    NSString *encryptedRequest = [NSString stringWithFormat:@"{\"encrypted\":\"%@\",\"iv\":\"%@\"}",encryptedString,strIV];
+    NSData *jsonEncryptedRequestData = [NSData dataWithBytes:[encryptedRequest UTF8String] length:[encryptedRequest length]];
     
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[requestData length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody: requestData];
-    
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[jsonEncryptedRequestData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody: jsonEncryptedRequestData];
     [NSURLConnection connectionWithRequest:request delegate:self];
     
     self.idd = 3;
@@ -564,25 +591,32 @@ NSString *wallNum;
 }//remove special Characters
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
-    
     NSLog(@"connectionDidFinishLoading");
     NSError *myError = nil;
     NSDictionary *res;
     res = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableLeaves error:&myError];
     
+    
     if (myError == nil) {
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSString *jsonIV = [res objectForKey:@"Iv"];
+        NSData *encryptedJsonResponse  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSData *decryptedJsonResponse = [[StringEncryption alloc] decrypt:encryptedJsonResponse key:_key iv:jsonIV];
+        NSString * converted = [[NSString alloc] initWithData:decryptedJsonResponse encoding:NSUTF8StringEncoding];
+        NSDictionary *jsonResult = [NSJSONSerialization JSONObjectWithData:decryptedJsonResponse options:NSJSONReadingMutableLeaves error:&myError];
+        
+        //  NSLog(@"Json Service Response IV %@",converted);
+        //  NSLog(@"Json Service Response %@",jsonIV);
         
         
         if(self.idd==3){
-            NSDictionary *jsonResult = [res objectForKey:@"insertMobileAccountsResult"];
             NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
             NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
             NSString *strWalletNo = [jsonResult objectForKey:@"walletno"];
             self.accountLoginWalletNumber = strWalletNo;
             wallNum = strWalletNo;
-            NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
-            NSLog(@"%@",self.accountLoginWalletNumber);
+            //  NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
+            //   NSLog(@"%@",self.accountLoginWalletNumber);
             int value = [strResponseCode intValue];
             self.alertViewMessage = [NSString stringWithFormat:@"You have successfully created ML Wallet account with Wallet ID no. %@. \n Pls. check your email for PIN verification.",self.accountLoginWalletNumber];
             if(value==1){
@@ -593,10 +627,12 @@ NSString *wallNum;
                                                             otherButtonTitles:@"Resend Pin",@"Login", nil];
                 
                 [accountCreationSuccessAV show];
+                
             }
             
+            
+            
             else if(value==2){
-                
                 accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                                     message:strResponseMessage
                                                                    delegate:self
@@ -604,7 +640,6 @@ NSString *wallNum;
                                                           otherButtonTitles:@"Retry", nil];
                 
                 [accountCreationErrorAV show];
-                
                 
             }//end if lse if(value==2)
             
@@ -616,20 +651,30 @@ NSString *wallNum;
                                                           otherButtonTitles:@"Retry", nil];
                 
                 [accountCreationErrorAV show];
+                
             }//end else if (value==0)
-        }//end self idd3
-        else if(self.idd==4){
-            NSLog(@"Response sa PIN = %@",res);
             
-            NSDictionary *jsonResult = [res objectForKey:@"ResendPINResult"];
+        }//end self idd3
+        
+        else if(self.idd==4){
+            
+            //  NSLog(@"Response sa PIN = %@",res);
+            //NSDictionary *jsonResult = [res objectForKey:@"ResendPINResult"];
+            
             NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
             NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
+            
             //            NSString *strNoofAttempt = [jsonResult objectForKey:@"noofattempt"];
+            
             //            NSString *strWalletNo = [jsonResult objectForKey:@"walletno"];
-            NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
+            
+            // NSLog(@"Response %@ || Response Message %@",strResponseCode,strResponseMessage);
+            
             int value = [strResponseCode intValue];
             NSString *resendPinResponse = [NSString stringWithFormat:@"%@",strResponseMessage];
+            
             if(value==1){
+                
                 pinResendSuccessAV = [[UIAlertView alloc] initWithTitle:@"Resend Pin"
                                                                 message:resendPinResponse
                                                                delegate:self
@@ -638,7 +683,10 @@ NSString *wallNum;
                 
                 [pinResendSuccessAV show];
                 
+                
+                
             }
+            
             else if(value==2){
                 
                 pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
@@ -647,10 +695,12 @@ NSString *wallNum;
                                                     cancelButtonTitle:@"Cancel"
                                                     otherButtonTitles:@"Retry ", nil];
                 
+                
+                
                 [pinResendErrorAV show];
                 
-                
             }//end if lse if(value==2)
+            
             else if (value==0){
                 pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                               message:strResponseMessage
@@ -658,15 +708,21 @@ NSString *wallNum;
                                                     cancelButtonTitle:@"Cancel"
                                                     otherButtonTitles:@"Retry ", nil];
                 
+                
                 [pinResendErrorAV show];
+                
             }//end else if (value==0)
             
         }//self idd 4
         
         
+        
     }//end if(myError == nil)
+    
     else{
+        
         if(self.idd==3){
+            
             accountCreationErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                                 message:[myError localizedDescription]
                                                                delegate:self
@@ -675,7 +731,9 @@ NSString *wallNum;
             
             [accountCreationErrorAV show];
             NSLog(@"Error Account");
+            
         }
+        
         else if(self.idd==4){
             pinResendErrorAV = [[UIAlertView alloc] initWithTitle:@"Exception Error"
                                                           message:[myError localizedDescription]
@@ -683,12 +741,16 @@ NSString *wallNum;
                                                 cancelButtonTitle:@"Cancel"
                                                 otherButtonTitles:@"Retry ", nil];
             
+            
             [pinResendErrorAV show];
+            
             NSLog(@"Error Pin");
+            
         }
         
+        
+        
     }//end else
-    
     
     [HUD hide:YES];
     [HUD show:NO];

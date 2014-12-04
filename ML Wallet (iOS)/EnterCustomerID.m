@@ -20,6 +20,8 @@
 #import "UIAlertView+alertMe.h"
 #import "ServiceConnection.h"
 #import "AccountLogin.h"
+#import "NSData+Base64.h"
+#import "CryptLib.h"
 @interface EnterCustomerID ()
 @property (nonatomic, strong) NSMutableData *responseData;
 @end
@@ -369,7 +371,7 @@ UIAlertView *ahw;
         else{
             NSLog(@"Keyboard not Visible");
         }
-        [self customerIDService];
+        [self searchCustomerID];
     }
     else if(phoneNumberTF.text.length!=11&&firstNumberTF.text.length>=1){
         NSLog(@"Empty man Bai!!");
@@ -487,7 +489,7 @@ UIAlertView *ahw;
     return YES;
 }
 
--(void) customerIDService{
+-(void)searchCustomerID{
     
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -496,26 +498,39 @@ UIAlertView *ahw;
     HUD.square = YES;
     [HUD show:YES];
     [self.view endEditing:YES];
-    //Get Branch Coordinate
     self.responseData = [NSMutableData data];
-    ServiceConnection *str = [ServiceConnection new];
-    //#define URLCustomerIDService @"SearchCustId/?custid={%@}&mobileno={%@}"
-    NSString *custID = [NSString stringWithFormat:@"SearchCustId/?custid=%@%@%@&mobileno=%@", firstNumberTF.text,secondNumberTF.text,thirdNumberTF.text,phoneNumberTF.text];
-    NSString *url = [NSString stringWithFormat:@"%@%@", [str NSGetCustomerIDService],custID];
     
-    NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
     
-    NSLog(@"URL - %@", url);              // Checking the url
+    NSString *jsonRequest = [NSString stringWithFormat:@"{\"custid\":\"%@%@%@\",\"mobileno\":\"%@\"}",firstNumberTF.text,secondNumberTF.text,thirdNumberTF.text, phoneNumberTF.text];
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"SearchCustId"];
+    NSData * data =[jsonRequest dataUsingEncoding:NSUTF8StringEncoding]; //Data
+    NSString *strIV = [[StringEncryption alloc]generateIV];
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
     
-    NSMutableURLRequest *theRequest= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:encodedUrl]
-                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                         timeoutInterval:10.0];
     
-    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self startImmediately:YES];
-    [theConnection start];
+    
+    NSData *encryptedData = [[StringEncryption alloc] encrypt:data key:_key iv:strIV];
+    NSData *decryptedData = [[StringEncryption alloc] decrypt:encryptedData key:_key iv:strIV];
+    NSString * encryptedString = [encryptedData base64EncodedStringWithOptions:0];
+    NSString * decryptedString =[[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
+    NSString *jsonRequest2 = [NSString stringWithFormat:@"{\"encrypted\":\"%@\",\"iv\":\"%@\"}",encryptedString,strIV];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[jsonRequest2 UTF8String] length:[jsonRequest2 length]];
+    
+    // NSLog(@"ang url - %@",srvcURL);
+    // NSLog(@"ang json = %@",jsonRequest);
+    // NSLog(@"encrypted data:: %@",jsonRequest2);
+    // NSLog(@"ang naka decrypt = %@",decryptedString);
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:requestData];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    
     
 }
-
 
 
 
@@ -544,149 +559,196 @@ UIAlertView *ahw;
     
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
     NSLog(@"connectionDidFinishLoading");
+    
     // convert to JSON
+    
     NSError *myError = nil;
+    
     NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
     if (myError == nil) {
         
-        NSDictionary *jsonResult = [res objectForKey:@"SearchCustIdMobileResult"];
-        NSString *strResponseCode = [jsonResult objectForKey:@"respcode"];
-        NSString *strResponseMessage = [jsonResult objectForKey:@"respmessage"];
-        NSString *strbdate = [jsonResult objectForKey:@"bdate"];
-        NSString *strcountry = [jsonResult objectForKey:@"country"];
-        NSString *stremailadd = [jsonResult objectForKey:@"emailadd"];
-        NSString *strfname = [jsonResult objectForKey:@"fname"];
-        NSString *strgender = [jsonResult objectForKey:@"gender"];
-        NSString *strlname = [jsonResult objectForKey:@"lname"];
-        NSString *strmname = [jsonResult objectForKey:@"mname"];
-        NSString *strmobileno = [jsonResult objectForKey:@"mobileno"];
-        NSString *strnationality = [jsonResult objectForKey:@"nationality"];
-        NSString *strnatureOfWork = [jsonResult objectForKey:@"natureOfWork"];
-        NSString *strpermanentAdd = [jsonResult objectForKey:@"permanentAdd"];
-        NSString *strprovinceCity = [jsonResult objectForKey:@"provinceCity"];
-        NSString *strzipcode = [jsonResult objectForKey:@"zipcode"];
-        NSString *strphoto1 = [jsonResult objectForKey:@"photo1"];
-        NSString *strphoto2 = [jsonResult objectForKey:@"photo2"];
-        NSString *strphoto3 = [jsonResult objectForKey:@"photo3"];
-        NSString *strphoto4 = [jsonResult objectForKey:@"photo4"];
-        NSString *strbalance = [jsonResult objectForKey:@"balance"];
-        NSString *strsecanswer1 = [jsonResult objectForKey:@"secanswer1"];
-        NSString *strsecanswer2 = [jsonResult objectForKey:@"secanswer2"];
-        NSString *strsecanswer3 = [jsonResult objectForKey:@"secanswer3"];
-        NSString *strsecquestion1 = [jsonResult objectForKey:@"secquestion1"];
-        NSString *strsecquestion2 = [jsonResult objectForKey:@"secquestion2"];
-        NSString *strsecquestion3 = [jsonResult objectForKey:@"secquestion3"];
-        NSString *strwalletno = [jsonResult objectForKey:@"walletno"];
+        //   NSLog(@"ahw %@",res);
+        
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *encryptedJsonResponse  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *jsonIV = [res objectForKey:@"Iv"];
+        
+        //  NSLog(@"iv %@",jsonIV);
+        
+        NSData *decryptedJsonResponse = [[StringEncryption alloc] decrypt:encryptedJsonResponse key:_key iv:jsonIV];
+        NSData *jsonResult = [NSJSONSerialization JSONObjectWithData:decryptedJsonResponse options:NSJSONReadingMutableLeaves error:&myError];
+        NSString *strResponseCode = [jsonResult valueForKeyPath:@"respcode"];
+        
+        //   NSLog(@"response code %@",strResponseCode);
+        
+        NSString *strResponseMessage = [jsonResult valueForKeyPath:@"respmessage"];
+        NSString *strbdate = [jsonResult valueForKeyPath:@"bdate"];
+        NSString *strcountry = [jsonResult valueForKeyPath:@"country"];
+        NSString *stremailadd = [jsonResult valueForKeyPath:@"emailadd"];
+        NSString *strfname = [jsonResult valueForKeyPath:@"fname"];
+        NSString *strgender = [jsonResult valueForKeyPath:@"gender"];
+        NSString *strlname = [jsonResult valueForKeyPath:@"lname"];
+        NSString *strmname = [jsonResult valueForKeyPath:@"mname"];
+        NSString *strmobileno = [jsonResult valueForKeyPath:@"mobileno"];
+        NSString *strnationality = [jsonResult valueForKeyPath:@"nationality"];
+        NSString *strnatureOfWork = [jsonResult valueForKeyPath:@"natureOfWork"];
+        NSString *strpermanentAdd = [jsonResult valueForKeyPath:@"permanentAdd"];
+        NSString *strprovinceCity = [jsonResult valueForKeyPath:@"provinceCity"];
+        NSString *strzipcode = [jsonResult valueForKeyPath:@"zipcode"];
+        NSString *strphoto1 = [jsonResult valueForKeyPath:@"photo1"];
+        NSString *strphoto2 = [jsonResult valueForKeyPath:@"photo2"];
+        NSString *strphoto3 = [jsonResult valueForKeyPath:@"photo3"];
+        NSString *strphoto4 = [jsonResult valueForKeyPath:@"photo4"];
+        NSString *strbalance = [jsonResult valueForKeyPath:@"balance"];
+        NSString *strsecanswer1 = [jsonResult valueForKeyPath:@"secanswer1"];
+        NSString *strsecanswer2 = [jsonResult valueForKeyPath:@"secanswer2"];
+        NSString *strsecanswer3 = [jsonResult valueForKeyPath:@"secanswer3"];
+        NSString *strsecquestion1 = [jsonResult valueForKeyPath:@"secquestion1"];
+        NSString *strsecquestion2 = [jsonResult valueForKeyPath:@"secquestion2"];
+        NSString *strsecquestion3 = [jsonResult valueForKeyPath:@"secquestion3"];
+        NSString *strwalletno = [jsonResult valueForKeyPath:@"walletno"];
         
         
-        
-        NSLog(@"Response Code : %@",strResponseCode);
-        NSLog(@"Response Message : %@",strResponseMessage);
-        
-        NSLog(@"Ang response ni!! = %@",jsonResult);
-        
-        
+        //  NSLog(@"Response Code : %@",strResponseCode);
+        //  NSLog(@"Response Message : %@",strResponseMessage);
+        //  NSLog(@"Ang response ni!! = %@",jsonResult);
         // if string is null do something
+        
         if([strzipcode isKindOfClass:[NSNull class]]){
             strzipcode = @"";
         }
+        
         if([strpermanentAdd isKindOfClass:[NSNull class]]){
             strpermanentAdd = @"";
         }
+        
         if([strbdate isKindOfClass:[NSNull class]]){
             strbdate = @"";
         }
+        
         if([strcountry isKindOfClass:[NSNull class]]){
             strcountry = @"";
         }
+        
         if([stremailadd isKindOfClass:[NSNull class]]){
             stremailadd = @"";
         }
+        
         if([strfname isKindOfClass:[NSNull class]]){
             strfname = @"";
         }
+        
         if([strgender isKindOfClass:[NSNull class]]){
             strgender = @"";
         }
+        
         if([strlname isKindOfClass:[NSNull class]]){
             strlname = @"";
         }
+        
         if([strmname isKindOfClass:[NSNull class]]){
             strmname = @"";
         }
+        
         if([strnationality isKindOfClass:[NSNull class]]){
             strnationality = @"";
         }
+        
         if([strmobileno isKindOfClass:[NSNull class]]){
             strmobileno = @"";
         }
+        
         if([strprovinceCity isKindOfClass:[NSNull class]]){
             strprovinceCity = @"";
         }
+        
         if([strnatureOfWork isKindOfClass:[NSNull class]]){
             strnatureOfWork = @"";
         }
+        
         if([strphoto1 isKindOfClass:[NSNull class]]){
             strphoto1 = @"";
         }
+        
         if([strphoto2 isKindOfClass:[NSNull class]]){
             strphoto2 = @"";
         }
+        
         if([strphoto3 isKindOfClass:[NSNull class]]){
             strphoto3 = @"";
         }
+        
         if([strphoto4 isKindOfClass:[NSNull class]]){
             strphoto4 = @"";
         }
+        
         if([strfname isKindOfClass:[NSNull class]]){
             strfname = @"";
         }
+        
         if([strlname isKindOfClass:[NSNull class]]){
             strlname = @"";
         }
+        
         if([strmname isKindOfClass:[NSNull class]]){
             strmname = @"";
         }
+        
         if([strbalance isKindOfClass:[NSNull class]]){
             strbalance = @"";
         }
+        
         if([strsecquestion1 isKindOfClass:[NSNull class]]){
             strsecquestion1 = @"";
         }
+        
         if([strsecquestion2 isKindOfClass:[NSNull class]]){
             strsecquestion2 = @"";
         }
+        
         if([strsecquestion3 isKindOfClass:[NSNull class]]){
             strsecquestion3 = @"";
         }
+        
         if([strwalletno isKindOfClass:[NSNull class]]){
             strwalletno = @"";
         }
+        
         if([stremailadd isKindOfClass:[NSNull class]]){
             stremailadd = @"";
         }
+        
         if([strnationality isKindOfClass:[NSNull class]]){
             strnationality = @"";
         }
+        
         if([strnatureOfWork isKindOfClass:[NSNull class]]){
             strnatureOfWork = @"";
         }//end of if string is null do something
         
         
-        
         //gender validation
+        
         if([strgender isEqualToString:@"1"]){
             strgender = @"F";
         }
+        
         else if([strgender isEqualToString:@"2"]){
             strgender = @"M";
         }
         
+        
+        
         int value = [strResponseCode intValue];
         
         
+        
+        
         if(value==0){
+            
             [self clearTextFields];
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
             
@@ -694,14 +756,16 @@ UIAlertView *ahw;
             
         }//end if [strResponseCode isEqualToString:@"0"]
         
+        
+        
         else if(value==1&&[strResponseMessage isEqualToString:@"Success."]){
+            
             
             RegistrationInformation *regInfo = [[RegistrationInformation alloc] initWithNibName:@"RegistrationInformation" bundle:nil];
             regInfo.reg_info_custIDfirstNumber = firstNumberTF.text;
             regInfo.reg_info_custIDsecondNumber = secondNumberTF.text;
             regInfo.reg_info_custIDthirdNumber = thirdNumberTF.text;
             regInfo.reg_info_custIDphoneNumber = strmobileno;
-            
             regInfo.reg_info_str_address = strpermanentAdd;
             regInfo.reg_info_str_birthdate = strbdate;
             regInfo.reg_info_str_country = strcountry;
@@ -715,7 +779,6 @@ UIAlertView *ahw;
             regInfo.reg_info_str_province = strprovinceCity;
             regInfo.reg_info_str_work = strnatureOfWork;
             regInfo.reg_info_str_zipcode = strzipcode;
-            
             regInfo.reg_info_str_photo1 = strphoto1;
             regInfo.reg_info_str_photo2 = strphoto2;
             regInfo.reg_info_str_photo3 = strphoto3;
@@ -729,29 +792,44 @@ UIAlertView *ahw;
             regInfo.reg_info_str_secquestion3 = strsecquestion3;
             regInfo.reg_info_str_walletno = strwalletno;
             
-            NSLog(@"Ang Wallet Number ----- %@",strwalletno);
+            
+            
+            //     NSLog(@"Ang Wallet Number ----- %@",strwalletno);
+            
             
             [self.navigationController pushViewController:regInfo animated:YES];
             
-            
         }//end else if [strResponseCode isEqualToString:@"1"]
+        
         
         else{
             [self clearTextFields];
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:strResponseMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            
         }
         
         [HUD hide:YES];
         [HUD show:NO];
+        
     }//end if
     
+    
+    
     else {
+        
         NSLog(@"Error : %@",myError.localizedDescription);
         [self clearTextFields];
         [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:[myError localizedDescription] delegate:nil cancelButton:@"Ok" otherButtons:nil];
         [HUD hide:YES];
         [HUD show:NO];
+        
     }//end else
+    
+    
+    
+    
+    
+    
     
     
     

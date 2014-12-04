@@ -116,7 +116,7 @@ UIBarButtonItem *btnNextAccLog;
     [self createQuestion];
     [self.view addSubview:scrollView];
     [self.view addSubview: disableBackground];
-    NSLog(@"Sa Questions Controller ==== Customer ID = %@ %@ %@ = Phone Number: %@ Birthdate = %@",quest_act_custIDfirstNumber,quest_act_custIDsecondNumber,quest_act_custIDthirdNumber,quest_act_custIDphoneNumber,quest_act_birthdate);
+    //NSLog(@"Sa Questions Controller ==== Customer ID = %@ %@ %@ = Phone Number: %@ Birthdate = %@",quest_act_custIDfirstNumber,quest_act_custIDsecondNumber,quest_act_custIDthirdNumber,quest_act_custIDphoneNumber,quest_act_birthdate);
 }
 -(void)viewDidAppear:(BOOL)animated{
     
@@ -229,7 +229,7 @@ UIBarButtonItem *btnNextAccLog;
         answerTF3.delegate = self;
         
         
-        NSLog(@"%f-------%f",screenWidth,screenHeight);
+       // NSLog(@"%f-------%f",screenWidth,screenHeight);
         
         
         
@@ -347,7 +347,7 @@ UIBarButtonItem *btnNextAccLog;
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
         CGFloat screenHeight = screenRect.size.height;
-        NSLog(@"%f-------%f",screenWidth,screenHeight);
+       // NSLog(@"%f-------%f",screenWidth,screenHeight);
         
         
         
@@ -673,8 +673,8 @@ UIBarButtonItem *btnNextAccLog;
         accLog.act_log_str_photo2 = quest_act_str_photo2;
         accLog.act_log_str_photo3 = quest_act_str_photo3;
         accLog.act_log_str_photo4 = quest_act_str_photo4;
-        NSLog(@"Ang Wallet Number ----- %@",quest_act_str_walletno);
-        NSLog(@"first question %@ , second question %@ , third question %@",[[question1 titleLabel] text],[[question2 titleLabel] text],[[question3 titleLabel] text]);
+      //  NSLog(@"Ang Wallet Number ----- %@",quest_act_str_walletno);
+       // NSLog(@"first question %@ , second question %@ , third question %@",[[question1 titleLabel] text],[[question2 titleLabel] text],[[question3 titleLabel] text]);
         [self.navigationController pushViewController:accLog animated:YES];
         
     }
