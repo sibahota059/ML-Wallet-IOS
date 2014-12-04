@@ -139,14 +139,21 @@
 - (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
     
     //Store the NSDictionary rates data into static array
-    NSArray *ratess = [rate.getRates objectForKey:@"getChargeValuesResult"];
+    //NSArray *ratess = [rate.getRates objectForKey:@"getChargeValuesResult"];
     
     //Store the value of ratess array into mutable array
-    getValueRates         = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    //getValueRates         = [ratess valueForKey:@"<chargeList>k__BackingField"];
     
     //Get the value of respcode & respmessage in retrieving rates
-    NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
-    NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
+    //NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
+    //NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
+    
+    getValueRates = [rate.getRates valueForKey:@"chargeList"];
+    
+    
+    //Get the value of respcode and respmessage
+    NSString *respcode    = [rate.getRates valueForKey:@"respcode"];
+    NSString *respmessage = [rate.getRates valueForKey:@"respmessage"];
     
     //Check if retrieving rates is successful or not and if successful, stored in charges and amount mutable array
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
@@ -189,16 +196,12 @@
 
 #pragma mark - Retrieve Rates Data from Webservice
 - (void)didFinishLoadingRatesOwn:(NSString *)indicator andError:(NSString *)getError{
-    
-    //Store the NSDictionary rates data into static array
-    NSArray *ratess = [rateOwn.getRates objectForKey:@"GetWithdrawalChargesResult"];
 
-    //Store the value of ratess array into mutable array
-    getValueRates         = [ratess valueForKey:@"<chargeList>k__BackingField"];
+    getValueRates = [rateOwn.getRates valueForKey:@"chargeList"];
     
-    //Get the value of respcode & respmessage in retrieving rates
-    NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
-    NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
+    //Get the value of respcode and respmessage
+    NSString *respcode    = [rateOwn.getRates valueForKey:@"respcode"];
+    NSString *respmessage = [rateOwn.getRates valueForKey:@"respmessage"];
     
     //Check if retrieving rates is successful or not and if successful, stored in charges and amount mutable array
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){

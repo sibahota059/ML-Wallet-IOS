@@ -62,8 +62,8 @@
     //Get the value of walletno in Property List
     walletno = [dic objectForKey:@"walletno"];
     
-    NSArray *receiver = [_ds objectForKey:@"retrieveReceiversResult"];
-    getValueReceiver = [receiver valueForKey:@"<receiverList>k__BackingField"];
+    //NSArray *receiver = [_ds objectForKey:@"retrieveReceiversResult"];
+    getValueReceiver = _ds;
 
     
         receiverImage = [NSMutableArray new];

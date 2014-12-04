@@ -35,8 +35,8 @@
     KpRates *rates;
     KpRatesOwn *ratesOwn;
     GetReceiver *getReceiver;
-    NSMutableArray *getValueRatesReceiver, *getValueRatesOwn, *chooseReceiverType, *getValueReceiver, *getPartNers, *allPartNers, *storeAccount;
-    NSDictionary *getChargesReceiver, *getChargesOwn, *getReceivers, *dic;
+    NSMutableArray *getValueRatesReceiver, *getValueRatesOwn, *chooseReceiverType, *getValueReceiver, *getPartNers, *allPartNers, *storeAccount, *getReceivers;
+    NSDictionary *getChargesReceiver, *getChargesOwn, *dic;
     MBProgressHUD *HUD;
     CLLocationManager *locationManager;
     DeviceID *di;
@@ -137,9 +137,6 @@
     //Add observer of a keyboard show/hide
     [self keyboardNotification];
     
-    //Call the loadRates methods in KpRates Class
-    [rates loadRates:@"getChargeValues"];
-    
     //Create object of CLLocationManager to get the location, latitude, longitude
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -151,6 +148,9 @@
     
     //Get the value of walletno in Property List
     walletno = [dic objectForKey:@"walletno"];
+    
+    //Call Webservice to get the list of receiver
+    [getReceiver getReceiverWalletNo:walletno];
     
     //Setup data about senderInfo and balance
     [self aboutSender];
@@ -254,16 +254,13 @@
 #pragma mark - Retrieving Rates Done
 - (void)didFinishLoadingRates:(NSString *)indicator andError:(NSString *)getError{
     
-    //Store the rates data return from webservice into static array
-    NSArray *ratess = [rates.getRates objectForKey:@"getChargeValuesResult"];
-    
-    //Parse the data of <chargeList>k__BackingField and stored in mutable array
-    getValueRatesReceiver = [ratess valueForKey:@"<chargeList>k__BackingField"];
+
+    getValueRatesReceiver = [rates.getRates valueForKey:@"chargeList"];
 
     
     //Get the value of respcode and respmessage
-    NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
-    NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
+    NSString *respcode    = [rates.getRates valueForKey:@"respcode"];
+    NSString *respmessage = [rates.getRates valueForKey:@"respmessage"];
     
     //Check if response is successful or not
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
@@ -271,7 +268,7 @@
         [ratesOwn loadRates:@"GetWithdrawalCharges"];
         
         //Call Webservice to get the list of receiver
-        [getReceiver getReceiverWalletNo:walletno];
+        //[getReceiver getReceiverWalletNo:walletno];
         
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
@@ -294,16 +291,12 @@
 #pragma mark - Retrieving Rates Done
 - (void)didFinishLoadingRatesOwn:(NSString *)indicator andError:(NSString *)getError{
     
-    //Store the rates data return from webservice into static array
-    NSArray *ratess = [ratesOwn.getRates objectForKey:@"GetWithdrawalChargesResult"];
-    
-    //Parse the data of <chargeList>k__BackingField and stored in mutable array
-    getValueRatesOwn = [ratess valueForKey:@"<chargeList>k__BackingField"];
-    
-    
+    getValueRatesOwn = [ratesOwn.getRates valueForKey:@"chargeList"];
+
     //Get the value of respcode and respmessage
-    NSString *respcode    = [ratess valueForKey:@"<respcode>k__BackingField"];
-    NSString *respmessage = [ratess valueForKey:@"<respmessage>k__BackingField"];
+    NSString *respcode    = [ratesOwn.getRates valueForKey:@"respcode"];
+    NSString *respmessage = [ratesOwn.getRates valueForKey:@"respmessage"];
+    
     
     //Check if response is successful or not
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
@@ -333,21 +326,25 @@
 - (void)didFinishLoadingReceiver:(NSString *)indicator andError:(NSString *)getError{
     
     //Store the NSDicationary receivers data to static array
-    NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
+    //NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
     
     //Store the value of <receiverList>k__BackingField arry to mutable array
-    getValueReceiver = [receiver valueForKey:@"<receiverList>k__BackingField"];
+    getValueReceiver = [getReceiver.getReceiver valueForKey:@"receiverList"];
     
     //Get the repscode, respmessage, and number of receiver
-    NSString *respcode    = [receiver valueForKey:@"<respcode>k__BackingField"];
-    NSString *respmessage = [receiver valueForKey:@"<respmessage>k__BackingField"];
-    NSString *rcounter = [receiver valueForKey:@"<counter>k__BackingField"];
+    NSString *respcode    = [getReceiver.getReceiver valueForKey:@"respcode"];
+    NSString *respmessage = [getReceiver.getReceiver valueForKey:@"respmessage"];
+    NSString *rcounter = [getReceiver.getReceiver valueForKey:@"counter"];
+    
     
     //Check if getting the receiver is successful or not
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
         
         //Store the NSDicationary receivers data to NSDicatonary for MLGetReceiverClass usage
-        getReceivers = getReceiver.getReceiver;
+        getReceivers = getValueReceiver;
+        
+        //Call the loadRates methods in KpRates Class
+        [rates loadRates:@"getChargeValues"];
     
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
@@ -755,15 +752,6 @@
         NSInteger min = [minAmount integerValue];
         NSInteger max = [maxAmount integerValue];
         
-        //User sending to it's own
-//        if ([[NSString stringWithFormat:@"%@", [getRlname uppercaseString]] isEqualToString:[[dic objectForKey:@"lname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRfname uppercaseString]] isEqualToString:[[dic objectForKey:@"fname"]uppercaseString]] && [[NSString stringWithFormat:@"%@", [getRmname uppercaseString]] isEqualToString:[[dic objectForKey:@"mname"]uppercaseString]]) {
-//            
-//            string1 = [NSString stringWithFormat:@"%@", @"0.00"];
-//            inputPrint = input;
-//            [self display:inputPrint charge:string1];
-//            
-//            break;
-//        }
         
         //User sending to another
         if(input > min && input <= max){

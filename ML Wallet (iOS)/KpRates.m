@@ -9,6 +9,8 @@
 #import "KpRates.h"
 #import "MLRatesTableViewController.h"
 #import "ServiceConnection.h"
+#import "NSData+Base64.h"
+#import "CryptLib.h"
 
 @implementation KpRates
 {
@@ -30,14 +32,32 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
+    
     NSString *loadedContent = [[NSString alloc] initWithData:
                                contentData encoding:NSUTF8StringEncoding];
     
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    self.getRates = jsonResponse;
     
-    [self.delegate didFinishLoadingRates:@"1" andError:@""];
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&myError];
+    
+    
+    if (myError == nil){
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        NSDictionary *getResponse = [NSJSONSerialization JSONObjectWithData:encryptedData options:kNilOptions error:&myError];
+        
+        self.getRates = getResponse;
+        [self.delegate didFinishLoadingRates:@"1" andError:@""];
+        
+    }else{
+        
+        [self.delegate didFinishLoadingRates:@"1" andError:myError.localizedDescription];
+        
+    }
 }
 
 
@@ -64,6 +84,8 @@
     
     conn = [[NSURLConnection alloc] initWithRequest:
             [NSURLRequest requestWithURL:[NSURL URLWithString:contentURL]] delegate:self startImmediately:YES];
+    
+    
 
 }
 
