@@ -8,6 +8,8 @@
 
 #import "SoCancel.h"
 #import "ServiceConnection.h"
+#import "NSData+Base64.h"
+#import "CryptLib.h"
 
 @implementation SoCancel
 {
@@ -32,22 +34,34 @@
                                contentData encoding:NSUTF8StringEncoding];
     
     NSData *data = [loadedContent dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data
-                                                                 options:kNilOptions
-                                                                   error:nil];
     
-    //NSLog(@"%@", jsonResponse);
-    NSDictionary* email = [jsonResponse objectForKey:@"SOCancelResult"];
-    
-    NSString* repscode = [email objectForKey:@"respcode"];
-    NSString* repsmessage = [email objectForKey:@"respmessage"];
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&myError];
     
     
-    
-    self.respcode    = repscode;
-    self.respmessage = repsmessage;
-    
-    [self.delegate didFinishLoadingCancellation:@"1" andError:@""];
+    if (myError == nil){
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        NSDictionary *getResponse = [NSJSONSerialization JSONObjectWithData:encryptedData options:kNilOptions error:&myError];
+        
+        NSString* repscode = [getResponse objectForKey:@"respcode"];
+        NSString* repsmessage = [getResponse objectForKey:@"respmessage"];
+        
+        self.respcode    = repscode;
+        self.respmessage = repsmessage;
+        
+        [self.delegate didFinishLoadingCancellation:@"1" andError:@""];
+
+        
+    }else{
+        
+        [self.delegate didFinishLoadingCancellation:@"1" andError:myError.localizedDescription];
+        
+    }
+
     
 }
 
@@ -69,23 +83,30 @@
 {
     
     contentData = [NSMutableData data];
-    con         = [ServiceConnection new];
     
-    NSString *jsonRequest = [NSString stringWithFormat:@"{\"walletno\":\"%@\",\"kptn\":\"%@\",\"latitude\":\"%@\",\"longitude\":\"%@\",\"deviceid\":\"%@\",\"location\":\"%@\"}", walletNo, kptn, lat, lon, deviceId, location];
+    NSString *contentURL = [NSString stringWithFormat:@"{\"walletno\":\"%@\",\"kptn\":\"%@\",\"latitude\":\"%@\",\"longitude\":\"%@\",\"deviceid\":\"%@\",\"location\":\"%@\"}", walletNo, kptn, lat, lon, deviceId, location];
     
-    NSString *serviceMethods = @"SOCancel";
-
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", con.NSgetURLService, serviceMethods]];
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[contentURL dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    NSData *requestData = [NSData dataWithBytes:[jsonRequest UTF8String] length:[jsonRequest length]];
+    //Data to POST
+    NSString *post = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\", \"iv\" : \"%@\"}",
+                      [encryptedData base64EncodingWithLineLength:0],
+                      _iv];
+    
+    
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"SOCancel"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
     
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[requestData length]] forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody: requestData];
-    
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:requestData];
     [NSURLConnection connectionWithRequest:request delegate:self];
     
 }
