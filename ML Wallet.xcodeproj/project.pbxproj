@@ -241,6 +241,7 @@
 		F00D640F1991CE7B00A1BD67 /* payment_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D640D1991CE7B00A1BD67 /* payment_bg.png */; };
 		F00D64101991CE7B00A1BD67 /* payment_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D640E1991CE7B00A1BD67 /* payment_bg_ipad.png */; };
 		F00DD40F198CF13A003D82B5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00DD40E198CF13A003D82B5 /* MessageUI.framework */; };
+		F00F96971A2FFA06007DE4E7 /* RetrievePartnersAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F00F96961A2FFA06007DE4E7 /* RetrievePartnersAccount.m */; };
 		F01014AE1A2408ED00F4BA76 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AA1A2408ED00F4BA76 /* checked.png */; };
 		F01014AF1A2408ED00F4BA76 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AB1A2408ED00F4BA76 /* checked@2x.png */; };
 		F01014B01A2408ED00F4BA76 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AC1A2408ED00F4BA76 /* unchecked.png */; };
@@ -621,6 +622,8 @@
 		F00D640D1991CE7B00A1BD67 /* payment_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg.png; sourceTree = "<group>"; };
 		F00D640E1991CE7B00A1BD67 /* payment_bg_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_bg_ipad.png; sourceTree = "<group>"; };
 		F00DD40E198CF13A003D82B5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		F00F96951A2FFA06007DE4E7 /* RetrievePartnersAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievePartnersAccount.h; sourceTree = "<group>"; };
+		F00F96961A2FFA06007DE4E7 /* RetrievePartnersAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievePartnersAccount.m; sourceTree = "<group>"; };
 		F01014AA1A2408ED00F4BA76 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
 		F01014AB1A2408ED00F4BA76 /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
 		F01014AC1A2408ED00F4BA76 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
@@ -1107,6 +1110,8 @@
 				F00D4B4C197F8ABE00E47198 /* SendEmail.m */,
 				F013D7111A26FE9B0095A154 /* KpRatesOwn.h */,
 				F013D7121A26FE9B0095A154 /* KpRatesOwn.m */,
+				F00F96951A2FFA06007DE4E7 /* RetrievePartnersAccount.h */,
+				F00F96961A2FFA06007DE4E7 /* RetrievePartnersAccount.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1873,6 +1878,7 @@
 				70AA0599198B316600B0C52A /* EditAccountInformation.m in Sources */,
 				700ECB74199B69D8006EC6D7 /* EditPasswordWebService.m in Sources */,
 				F05C5F3318E12C0D002F2EE1 /* MLTermsConditionViewController.m in Sources */,
+				F00F96971A2FFA06007DE4E7 /* RetrievePartnersAccount.m in Sources */,
 				3BB5268918BCB8F600D0A5EA /* ReceiverObject.m in Sources */,
 				70ADA90819909DC200075CB7 /* EditQuestionsPad.m in Sources */,
 				70ADA8F41990740400075CB7 /* EditAccountInformationPad.m in Sources */,
