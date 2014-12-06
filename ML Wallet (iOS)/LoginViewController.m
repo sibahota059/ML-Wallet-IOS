@@ -370,7 +370,13 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"checkPinResult"];
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
         NSNumber *respCode = [result valueForKey:@"respcode"];
         NSString *respMesg = [result valueForKey:@"respmessage"];
@@ -411,10 +417,17 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"UpdatePINResult"];
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
         NSNumber *respCode = [result valueForKey:@"respcode"];
         NSString *respMesg = [result valueForKey:@"respmessage"];
+        
         
         //Hide Loader
         [HUD hide:YES];
@@ -694,12 +707,6 @@
                                                            iv:_iv];
     NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
     
-//    //dec
-//    encryptedData = [[StringEncryption alloc] decrypt:encryptedData  key:_key iv:_iv];
-//    NSString * decryptedText = [[NSString alloc] initWithData:encryptedData encoding:NSUTF8StringEncoding];
-//    NSLog(@"decrypted data:: %@", decryptedText); //print the decrypted text
-
-    
     //Data to POST
     NSString *post = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\", \"iv\" : \"%@\"}",
                       [encryptedData base64EncodingWithLineLength:0],
@@ -725,14 +732,25 @@
 #pragma mark -PUT Update PIn
 - (void) updatePIN
 {
-    NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"newPIN\" : \"%@\"}",
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSString *encrptedString = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"newPIN\" : \"%@\"}",
                       walletno,
                       self.ReNewPIN.text];
     
-    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"/UpdatePIN"];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[encrptedString dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+    
+    encrptedString = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}",
+            [encryptedData base64EncodingWithLineLength:0],
+            _iv];
+    
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"UpdatePIN"];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+    NSData *requestData = [NSData dataWithBytes:[encrptedString UTF8String] length:[encrptedString length]];
     
     [request setHTTPMethod:@"PUT"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -822,13 +840,30 @@
     [self.view endEditing:YES];
     responseData = [[NSMutableData alloc] init];
     
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"checkPin/?"];
-    NSString *srvcURL = [NSString stringWithFormat:@"%@walletno=%@&pin=%@", srvcURL1, walletno, self.OldPIN.text];
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"checkPin"];
+    NSString *encrptedString = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"pin\" : \"%@\"}",
+                          walletno,
+                          self.OldPIN.text];
+    
+    //enc
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[encrptedString dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+
+    encrptedString = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}",
+                     [encryptedData base64EncodingWithLineLength:0],
+                     _iv];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[encrptedString UTF8String] length:[encrptedString length]];
     
-    [request setHTTPMethod:@"GET"];
+    [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPBody:requestData];
     [NSURLConnection connectionWithRequest:request delegate:self];
     self.idd = 4;
 }

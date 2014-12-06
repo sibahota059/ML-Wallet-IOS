@@ -27,7 +27,8 @@
 #import "AccountMainPad.h"
 #import "MLRatesSwipeViewController.h"
 #import "SaveWalletData.h"
-
+#import "CryptLib.h"
+#import "NSData+Base64.h"
 
 #define  VIEW_HIDDEN -320
 #define  VIEW_HIDDEN_IPAD -580
@@ -69,19 +70,35 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 - (void)viewDidAppear:(BOOL)animated
 {
     //Refresh user
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
     self.responseData = [NSMutableData data];
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"RefreshUser/?walletno"];
-    NSString *srvcURL = [NSString stringWithFormat:@"%@=%@",srvcURL1, walletno];
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"RefreshUser"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
     
-    [request setHTTPMethod:@"GET"];
+    NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\"}",
+                      walletno];
+    
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[post dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+    
+    //Data to POST
+    post = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\", \"iv\" : \"%@\"}",
+                      [encryptedData base64EncodingWithLineLength:0],
+                      _iv];
+    
+    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+    
+    
+    [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:requestData];
     [NSURLConnection connectionWithRequest:request delegate:self];
     
-    
-    
-    NSLog(@"On resume");
+     NSLog(@"On resume");
     
 }
 
@@ -114,14 +131,24 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"RefreshUserResult"];
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
         
-        NSNumber *respCode  = [result valueForKey:@"respcode"];
-        NSString *respMesg  = [result valueForKey:@"respmessage"];
-        NSLog(@"Respmessage %@",respMesg);
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
-        NSString *bal          = [result valueForKey:@"walletno"] ; //Itz Balance not wallet
-        int attemps           = (int)[[result valueForKey:@"noofattempt"] integerValue] ;
+        if (myError == nil) {
+            return;
+        }
+        
+        NSNumber *respCode = [result valueForKeyPath:@"respcode"];
+        NSString *respMesg = [result valueForKeyPath:@"respmessage"];
+        NSLog(@"MSG %@", respMesg);
+        
+        NSString *bal   = [result valueForKey:@"walletno"] ; //Itz Balance not wallet
+        int attemps     = (int)[[result valueForKey:@"noofattempt"] integerValue] ;
         
         if ([respCode isEqualToNumber:[NSNumber numberWithInt:0]]) //Success
         {
@@ -604,18 +631,6 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 
 
     }
-    
-        
-    
-    
-    
-    
-    
-    
-    
-
-    
-
     
     
     
