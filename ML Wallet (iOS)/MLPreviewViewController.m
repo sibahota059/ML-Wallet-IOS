@@ -162,12 +162,10 @@
     tc._location       = __location;
     tc._receiverNo     = __receiverNo;
     
-    //get the results of pin request
-    NSDictionary* _getPin = [chk.getPin objectForKey:@"checkPinResult"];
-    
+
     //extract dictionary and get value for repscode & respmessage
-    NSString* repscode = [_getPin objectForKey:@"respcode"];
-    NSString* respmessage = [_getPin objectForKey:@"respmessage"];
+    NSString* repscode = [chk.getPin objectForKey:@"respcode"];
+    NSString* respmessage = [chk.getPin objectForKey:@"respmessage"];
     
     //if requesting pin is successful go to next page, else display error message
     if ([[NSString stringWithFormat:@"%@", repscode] isEqualToString:@"1"]) {

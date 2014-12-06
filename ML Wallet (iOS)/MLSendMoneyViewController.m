@@ -35,7 +35,8 @@
     KpRates *rates;
     KpRatesOwn *ratesOwn;
     GetReceiver *getReceiver;
-    NSMutableArray *getValueRatesReceiver, *getValueRatesOwn, *chooseReceiverType, *getValueReceiver, *getPartNers, *allPartNers, *storeAccount, *getReceivers;
+    RetrievePartnersAccount *getPartnersObject;
+    NSMutableArray *getValueRatesReceiver, *getValueRatesOwn, *chooseReceiverType, *getValueReceiver, *getPartNers, *allPartNers, *getReceivers;
     NSDictionary *getChargesReceiver, *getChargesOwn, *dic;
     MBProgressHUD *HUD;
     CLLocationManager *locationManager;
@@ -78,11 +79,13 @@
     ratesOwn       =  [KpRatesOwn new];
     getReceiver    =  [GetReceiver new];
     di             =  [DeviceID new];
+    getPartnersObject    =  [RetrievePartnersAccount new];
     
     //Setting GetReceiver & KpRates delegate to this class
     getReceiver.delegate = self;
-    rates.delegate = self;
-    ratesOwn.delegate = self;
+    rates.delegate       = self;
+    ratesOwn.delegate    = self;
+    getPartnersObject.delegate = self;
     
     //Create object on UIImage and set image on it
     wrong = [UIImage imageNamed:@"wrong.png"];
@@ -589,22 +592,46 @@
         
         
         
+        [getPartnersObject getUserWalletNo:walletno];
         
-        for (int x=1; x<=5; x++) {
-            
-            storeAccount = [NSMutableArray new];
-            for (int y=1; y<=3; y++) {
-                
-                [storeAccount addObject:[NSString stringWithFormat:@"account%d%d", x, y]];
-            }
-            getPartNers = [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"partnersName%d", x], [NSString stringWithFormat:@"partnersId%d", x], storeAccount, nil];
-            
-            [allPartNers addObject:getPartNers];
-        }
- 
 
     }
     
+}
+
+- (void) didFinishLoadingPartners:(NSString *)indicator andError:(NSString *)getError{
+    
+    getPartNers = [getPartnersObject.getUserPartners objectForKey:@"ListBillsPayPartners"];
+    
+    NSUInteger countPartners = [getPartNers count];
+    
+    
+    for (int x=0; x<=countPartners - 1; x++) {
+        
+        NSUInteger countAccount = [[[getPartNers objectAtIndex:x] valueForKey:@"ListAccountNo"] count];
+        
+        NSMutableArray *storeAccount = [NSMutableArray new];
+        
+        for (int y=0; y<=countAccount - 1; y++) {
+            
+            NSString *account = [[[[getPartNers objectAtIndex:x] valueForKey:@"ListAccountNo"] objectAtIndex:y] valueForKey:@"AccountNo"];
+            
+            if ([account isEqualToString:@""]) {
+                account = @"No Account Number";
+            }
+            
+            [storeAccount addObject:account];
+        }
+        
+        NSMutableArray *storePartners;
+        NSString *getPartnersName = [[getPartNers objectAtIndex:x] valueForKey:@"PartnersName"];
+        NSString *getPartnersId = [[getPartNers objectAtIndex:x] valueForKey:@"PartnersId"];
+        
+        storePartners = [NSMutableArray arrayWithObjects:getPartnersName, getPartnersId, storeAccount, nil];
+        
+        [allPartNers addObject:storePartners];
+    }
+
 }
 
 - (IBAction)ch_sendOwn:(id)sender {
