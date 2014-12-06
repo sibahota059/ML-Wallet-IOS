@@ -23,7 +23,7 @@
     
     UITapGestureRecognizer *tapRecognizer;
     double inputPrint, conv, bal, total, amountValue;
-    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smname, *confirmInd;
+    NSString *string1, *string2, *newString, *getRlname, *getRfname, *getRmname, *getRimage, *getRnumber, *walletno, *smnameDisplay, *smnamePass, *confirmInd, *requestPartnersId, *deductTotal;
     NSArray *checkdot;
     UIImage *right, *wrong;
     MLUI *getUI;
@@ -36,12 +36,13 @@
     KpRatesOwn *ratesOwn;
     GetReceiver *getReceiver;
     RetrievePartnersAccount *getPartnersObject;
+    SendoutPartnersBill *getBillObject;
     NSMutableArray *getValueRatesReceiver, *getValueRatesOwn, *chooseReceiverType, *getValueReceiver, *getPartNers, *allPartNers, *getReceivers;
     NSDictionary *getChargesReceiver, *getChargesOwn, *dic;
     MBProgressHUD *HUD;
     CLLocationManager *locationManager;
     DeviceID *di;
-    BOOL isChecked, isReceiver;
+    BOOL isChecked, isReceiver, isRemittance, isBillsPay;
     int getPartnersPosition;
 
 }
@@ -80,12 +81,14 @@
     getReceiver    =  [GetReceiver new];
     di             =  [DeviceID new];
     getPartnersObject    =  [RetrievePartnersAccount new];
+    getBillObject        =  [SendoutPartnersBill new];
     
     //Setting GetReceiver & KpRates delegate to this class
     getReceiver.delegate = self;
     rates.delegate       = self;
     ratesOwn.delegate    = self;
     getPartnersObject.delegate = self;
+    getBillObject.delegate     = self;
     
     //Create object on UIImage and set image on it
     wrong = [UIImage imageNamed:@"wrong.png"];
@@ -159,6 +162,7 @@
     [self aboutSender];
     
     isReceiver = YES;
+    isRemittance = YES;
     
     getPartNers = [NSMutableArray new];
     allPartNers = [NSMutableArray new];
@@ -194,7 +198,7 @@
     //Get the total ammount of transaction and deduct to the balance
     NSString* cleanedString = [[_label_balance.text stringByReplacingOccurrencesOfString:@"," withString:@""]
                                stringByTrimmingCharactersInSet: [NSCharacterSet symbolCharacterSet]];
-    double getTotal = [cleanedString doubleValue] - [_totalValue.text doubleValue];
+    double getTotal = [cleanedString doubleValue] - [deductTotal doubleValue];
     //_label_balance.text = [NSString stringWithFormat:@"%0.2f", getTotal];
     _label_balance.text = [NSString stringWithFormat:@"%@", [self convertDecimal:getTotal]];
     _totalValue.text = @"0.00";
@@ -213,13 +217,15 @@
 
     //Check if user middlename is empty and if not get the first character of a middlename and add dot and display
     if ([[NSString stringWithFormat:@"%@", [dic objectForKey:@"mname"]] isEqualToString:@""]) {
-        smname = @"";
+        smnameDisplay = @"";
+        smnamePass    = @"";
     }else{
-        smname = [NSString stringWithFormat:@"%@.", [self capitalizeFirstChar:[[[dic objectForKey:@"mname"] substringToIndex:1] lowercaseString]]];
+        smnameDisplay = [NSString stringWithFormat:@"%@.", [self capitalizeFirstChar:[[[dic objectForKey:@"mname"] substringToIndex:1] lowercaseString]]];
+        smnamePass = [self capitalizeFirstChar:[dic objectForKey:@"mname"]];
     }
     
     //Get the user info and balance then capitalize each first character
-    _senderName.text = [NSString stringWithFormat:@"%@, %@ %@", [self capitalizeFirstChar:[[dic objectForKey:@"lname"] lowercaseString]], [self capitalizeFirstChar:[[dic objectForKey:@"fname"] lowercaseString]], smname];
+    _senderName.text = [NSString stringWithFormat:@"%@, %@ %@", [self capitalizeFirstChar:[[dic objectForKey:@"lname"] lowercaseString]], [self capitalizeFirstChar:[[dic objectForKey:@"fname"] lowercaseString]], smnameDisplay];
     _senderAddress.text = [dic objectForKey:@"address"];
     _label_balance.text = [NSString stringWithFormat:@"%@", [self convertDecimal:[[dic objectForKey:@"balance"] doubleValue]]];
 
@@ -486,47 +492,76 @@
     //Hide the keyboard
     [_tf_amount resignFirstResponder];
     
-    //Validating user input
-    if (getRlname == nil && getRfname == nil) {
-        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please provide a receiver!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
-    }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] isEqualToString:@""]){
-        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please enter an amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
-    }else if ([[_tf_amount.text componentsSeparatedByString:@"."] count]>2) {
-        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Invalid Amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
-    }else if (total > bal) {
-        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Insuficient Balance!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
-    }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] doubleValue] < 0.01){
-        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Amount must be greater than zero!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    if (isRemittance) {
+        //Validating user input
+        if (getRlname == nil && getRfname == nil && isChecked == NO) {
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please provide a receiver!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] isEqualToString:@""]){
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please enter an amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if ([[_tf_amount.text componentsSeparatedByString:@"."] count]>2) {
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Invalid Amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if (total > bal) {
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Insuficient Balance!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if([[NSString stringWithFormat:@"%@", _tf_amount.text] doubleValue] < 0.01){
+            [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Amount must be greater than zero!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+        else{
+            
+            //Create object of MLPreviewViewController and pass data to it
+            MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
+            preview._senderLname    =  [self capitalizeFirstChar:[dic objectForKey:@"lname"]];
+            preview._senderFname    =  [self capitalizeFirstChar:[dic objectForKey:@"fname"]];
+            preview._senderMname    =  [self capitalizeFirstChar:smnamePass];
+            preview._senderImage    =  [dic objectForKey:@"photo"];
+            preview._transType      =  @"remittance";
+            preview._receiver_image =  getRimage;
+            
+            if (isReceiver) {
+                preview._receiverLname  =  [self capitalizeFirstChar:getRlname];
+                preview._receiverFname  =  [self capitalizeFirstChar:getRfname];
+                preview._receiverMname  =  getRmname;
+                preview._receiverNo     =  getRnumber;
+            }else{
+                preview._transType      =  @"own";
+                preview._receiverLname  =  [self capitalizeFirstChar:[dic objectForKey:@"lname"]];
+                preview._receiverFname  =  [self capitalizeFirstChar:[dic objectForKey:@"fname"]];
+                preview._receiverMname  =  [self capitalizeFirstChar:smnamePass];
+                preview._receiver_image =  [dic objectForKey:@"photo"];
+                preview._receiverNo     =  @"0";
+                
+            }
+
+            preview._amount         = _tf_amount.text;
+            preview._charge         = _chargeValue.text;
+            preview._total          = _totalValue.text;
+            preview._walletNo       = walletno;
+            preview._latitude       = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
+            preview._longitude      = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
+            preview._divice         = di.NSGetDeviceID;
+            preview._location       = [dic objectForKey:@"address"];
+            
+            //hide tabBar
+            preview.hidesBottomBarWhenPushed = YES;
+            
+            deductTotal = _totalValue.text;
+            
+            //Pushing to MLPreviewViewController
+            [self.navigationController pushViewController:preview animated:YES];
+            
+        }
+    }else{
+        if ([_lbl_partners.text isEqualToString:@"Select Partners"]) {
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"You haven't select partners yet!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if ([_lbl_account.text isEqualToString:@"Select Account"]){
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"You haven't select account number yet!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if ([_tf_amount.text isEqualToString:@""]){
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please enter an amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else{
+            [getBillObject getUserWalletNo:walletno andPartnersId:requestPartnersId andAccountNo:_lbl_account.text andAmount:_tf_amount.text];
+        }
     }
-    else{
-        
-        //Create object of MLPreviewViewController and pass data to it
-        MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
-        preview._senderLname    =  [[dic objectForKey:@"lname"] uppercaseString];
-        preview._senderFname    =  [[dic objectForKey:@"fname"] uppercaseString];
-        preview._senderMname    =  [smname uppercaseString];
-        preview._senderImage    =  [dic objectForKey:@"photo"];
-        preview._receiverLname  =  [self capitalizeFirstChar:getRlname];
-        preview._receiverFname  =  [self capitalizeFirstChar:getRfname];
-        preview._receiverMname  =  getRmname;
-        preview._receiver_image =  getRimage;
-        preview._amount         = _tf_amount.text;
-        preview._charge         = _chargeValue.text;
-        preview._total          = _totalValue.text;
-        preview._walletNo       = walletno;
-        preview._latitude       = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
-        preview._longitude      = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
-        preview._divice         = di.NSGetDeviceID;
-        preview._location       = [dic objectForKey:@"address"];
-        preview._receiverNo     = getRnumber;
+
     
-    //hide tabBar
-    preview.hidesBottomBarWhenPushed = YES;
-        
-    //Pushing to MLPreviewViewController
-    [self.navigationController pushViewController:preview animated:YES];
-        
-    }
 }
 
 #pragma mark - Pressed Back Button
@@ -559,6 +594,17 @@
         _chargeValue.text = @"0.00";
         _totalValue.text = @"0.00";
         _tf_amount.rightView = [[UIImageView alloc] initWithImage:nil];
+        getRlname   = nil;
+        getRfname   = nil;
+        _lblNoReceiver.hidden = NO;
+        _lblNoReceiver.text = @"You haven't select a receiver yet.";
+        _receiverName.text = @"";
+        _receiverAddress.text = @"";
+        
+        [allPartNers removeAllObjects];
+        isRemittance = YES;
+        isReceiver   = YES;
+        isBillsPay = NO;
         
         
     }else if ([sender.titleLabel.text isEqualToString:@"  Remittance"] && isChecked){
@@ -568,6 +614,9 @@
         _ch_sendOwn.hidden = NO;
         _view_charge.hidden = NO;
         _view_total.hidden = NO;
+        
+        isRemittance = YES;
+        isBillsPay = NO;
     }else {
         _view_partners.hidden = NO;
         _view_accountno.hidden = NO;
@@ -589,6 +638,8 @@
         self.view_total.frame = CGRectMake(165, 370, 148, 73);
         [_ch_sendOwn setImage:[UIImage imageNamed:@"chunchecked.png"] forState:UIControlStateNormal];
         isChecked = NO;
+        isBillsPay = YES;
+        isRemittance = NO;
         
         
         
@@ -634,8 +685,74 @@
 
 }
 
+- (void)didFinishLoadingBills:(NSString *)indicator andError:(NSString *)getError{
+    
+    NSString *getOperatorId = [getBillObject.getBillsPartners objectForKey:@"OperatorId"];
+    NSString *getBarCode = [getBillObject.getBillsPartners objectForKey:@"Bcode"];
+    NSString *getZoneCode = [getBillObject.getBillsPartners objectForKey:@"Zcode"];
+    NSString *getRepscode = [getBillObject.getBillsPartners objectForKey:@"RespCode"];
+    NSString *getRepsMessage = [getBillObject.getBillsPartners objectForKey:@"RespMsg"];
+    NSString *getBillKptn = [getBillObject.getBillsPartners objectForKey:@"Kptn"];
+    NSString *getBillCharge = [getBillObject.getBillsPartners objectForKey:@"CustomerCharge"];
+    NSString *getPartnersCharge = [getBillObject.getBillsPartners objectForKey:@"PartnersCharge"];
+    
+    if ([getRepscode integerValue] == 1) {
+        //Create object of MLPreviewViewController and pass data to it
+        MLPreviewViewController *preview = [[MLPreviewViewController alloc] initWithNibName:@"MLPreviewViewController" bundle:nil];
+        preview._senderLname    =  [self capitalizeFirstChar:[dic objectForKey:@"lname"]];
+        preview._senderFname    =  [self capitalizeFirstChar:[dic objectForKey:@"fname"]];
+        preview._senderMname    =  [self capitalizeFirstChar:smnamePass];
+        preview._senderImage    =  [dic objectForKey:@"photo"];
+        preview._receiverLname  =  @"";
+        preview._receiverFname  =  _lbl_partners.text;
+        preview._receiverMname  =  @"";
+        preview._receiver_image =  @"";
+        preview._transType      =  @"billsPay";
+        preview._operatorId     =  getOperatorId;
+        preview._bcode          =  getBarCode;
+        preview._zcode          =  getZoneCode;
+        preview._kptn           =  getBillKptn;
+        preview._amount         = _tf_amount.text;
+        preview._accountNo      = _lbl_account.text;
+        preview._customerCharge = getBillCharge;
+        preview._partnersCharge = getPartnersCharge;
+        
+        if ([getRepsMessage isEqualToString:@"Free of charge."]) {
+            preview._charge         = @"Free";
+        }else{
+            preview._charge         = getBillCharge;
+        }
+        
+        int transTotal = [_tf_amount.text doubleValue] + [getBillCharge doubleValue];
+        
+        preview._total          = [NSString stringWithFormat:@"%d", transTotal];
+        preview._walletNo       = walletno;
+        preview._latitude       = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
+        preview._longitude      = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
+        preview._divice         = di.NSGetDeviceID;
+        preview._location       = [dic objectForKey:@"address"];
+        preview._partnersId     = requestPartnersId;
+        
+        //hide tabBar
+        preview.hidesBottomBarWhenPushed = YES;
+        
+        deductTotal = [NSString stringWithFormat:@"%d", transTotal];
+        
+        //Pushing to MLPreviewViewController
+        [self.navigationController pushViewController:preview animated:YES];
+    }
+    
+    
+}
+
 - (IBAction)ch_sendOwn:(id)sender {
     
+    getRlname   = nil;
+    getRfname   = nil;
+    _lblNoReceiver.hidden = NO;
+    _lblNoReceiver.text = @"You haven't select a receiver yet.";
+    _receiverName.text = @"";
+    _receiverAddress.text = @"";
     _tf_amount.text = @"";
     _chargeValue.text = @"0.00";
     _totalValue.text = @"0.00";
@@ -672,6 +789,8 @@
 }
 
 - (IBAction)btnPartners:(id)sender {
+    
+    
     PartnersTableViewController *view_partners = [[PartnersTableViewController alloc]initWithNibName:@"PartnersTableViewController" bundle:nil];
     
     view_partners.displayType      = @"partners";
@@ -682,6 +801,7 @@
 }
 
 - (IBAction)btnAccount:(id)sender {
+    
     PartnersTableViewController *view_account = [[PartnersTableViewController alloc]initWithNibName:@"PartnersTableViewController" bundle:nil];
     
     view_account.displayType      = @"account";
@@ -739,6 +859,12 @@
 -(void)didSelectPartners:(PartnersTableViewController *)controller andPartnersName:(NSString *)partnersName andDisplayType:(NSString *)displayType andPosition:(int)getPosition{
     
     getPartnersPosition = getPosition;
+    
+    if ([displayType isEqualToString:@"partners"]) {
+        requestPartnersId = [[allPartNers objectAtIndex:getPartnersPosition] objectAtIndex:1];
+        NSLog(@"%@", requestPartnersId);
+    }
+    
     _lbl_account.text = @"Select Account";
     
     if ([displayType isEqualToString:@"partners"]) {

@@ -358,6 +358,7 @@
                                 <constraint firstAttribute="centerX" secondItem="EJe-I0-a3p" secondAttribute="centerX" constant="0.5" id="oYn-ge-OHo"/>
                                 <constraint firstAttribute="trailing" secondItem="yxc-Zu-XlS" secondAttribute="trailing" constant="5" id="xh4-Vl-WUO"/>
                                 <constraint firstAttribute="centerX" secondItem="EYi-Rl-T9l" secondAttribute="centerX" constant="-0.5" id="y5t-XX-8LZ"/>
+                                <constraint firstItem="Y1v-gF-dbY" firstAttribute="top" secondItem="yxc-Zu-XlS" secondAttribute="bottom" constant="11" id="yRw-DM-wsU"/>
                             </constraints>
                         </view>
                     </subviews>

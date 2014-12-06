@@ -12,6 +12,7 @@
 #import "SendEmail.h"
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMessageComposeViewController.h>
+#import "SavePartnersBill.h"
 
 @protocol MLTermsConditionViewControllerDelegate <NSObject>
 
@@ -19,7 +20,7 @@
 
 @end
 
-@interface MLTermsConditionViewController : UIViewController<SendoutMobileDelegate, MBProgressHUDDelegate, SendKptnDelegate, MFMessageComposeViewControllerDelegate>
+@interface MLTermsConditionViewController : UIViewController<SendoutMobileDelegate, MBProgressHUDDelegate, SendKptnDelegate, MFMessageComposeViewControllerDelegate, SavePartnersDelegate>
 
 @property (weak, nonatomic) id<MLTermsConditionViewControllerDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UITextView *tv_termsCondition;
@@ -35,12 +36,21 @@
 @property (strong, nonatomic) NSString *_receiverFname;
 @property (strong, nonatomic) NSString *_receiverMname;
 @property (strong, nonatomic) NSString *_senderImage;
-@property (strong, nonatomic) NSString *_total;
 @property (strong, nonatomic) NSString *_latitude;
 @property (strong, nonatomic) NSString *_longitude;
 @property (strong, nonatomic) NSString *_divice;
 @property (strong, nonatomic) NSString *_location;
 @property (strong, nonatomic) NSString *_receiverNo;
+@property (strong, nonatomic) NSString *_operatorId;
+@property (strong, nonatomic) NSString *_bcode;
+@property (strong, nonatomic) NSString *_zcode;
+@property (strong, nonatomic) NSString *_kptn;
+@property (strong, nonatomic) NSString *_partnersId;
+@property (strong, nonatomic) NSString *_accountNo;
+@property (strong, nonatomic) NSString *_transType;
+@property (strong, nonatomic) NSString *_amount;
+@property (strong, nonatomic) NSString *_customerCharge;
+@property (strong, nonatomic) NSString *_partnersCharge;
 
 - (IBAction)btnDecline:(id)sender;
 - (IBAction)btnAgree:(id)sender;
