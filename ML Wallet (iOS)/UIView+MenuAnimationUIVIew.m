@@ -39,7 +39,7 @@
     [animation setValues:frameValues];
     
     NSNumber *time1 = [NSNumber numberWithFloat:0.0f];
-    NSNumber *time2 = [NSNumber numberWithFloat:0.9f];
+    NSNumber *time2 = [NSNumber numberWithFloat:0.7f];
     NSNumber *time3 = [NSNumber numberWithFloat:1.0f];
     NSNumber *time4 = [NSNumber numberWithFloat:1.2f];
     NSArray *frameTimes = [NSArray arrayWithObjects:time1, time2, time3, time4, nil];

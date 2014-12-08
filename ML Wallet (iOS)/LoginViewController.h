@@ -30,7 +30,11 @@
 - (IBAction)btnNotNow:(id)sender;
 - (IBAction)btnRePIN:(id)sender;
 - (IBAction)btnSubmit:(id)sender;
+- (IBAction)btnInsuffi_submit:(id)sender;
+- (IBAction)btnInsuffi_notnow:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *txtInsuffi_kptn;
 
+@property (strong, nonatomic) IBOutlet UIView *InsufficientView;
 
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
