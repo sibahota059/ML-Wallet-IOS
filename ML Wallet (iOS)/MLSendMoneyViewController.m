@@ -556,6 +556,8 @@
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"You haven't select account number yet!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
         }else if ([_tf_amount.text isEqualToString:@""]){
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please enter an amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if([_tf_amount.text doubleValue] == 0.00){
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Amount must be greater than 0!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
         }else{
             [getBillObject getUserWalletNo:walletno andPartnersId:requestPartnersId andAccountNo:_lbl_account.text andAmount:_tf_amount.text];
         }
@@ -723,9 +725,9 @@
             preview._charge         = getBillCharge;
         }
         
-        int transTotal = [_tf_amount.text doubleValue] + [getBillCharge doubleValue];
+        double transTotal = [_tf_amount.text doubleValue] + [getBillCharge doubleValue];
         
-        preview._total          = [NSString stringWithFormat:@"%d", transTotal];
+        preview._total          = [NSString stringWithFormat:@"%0.2f", transTotal];
         preview._walletNo       = walletno;
         preview._latitude       = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
         preview._longitude      = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
@@ -736,7 +738,7 @@
         //hide tabBar
         preview.hidesBottomBarWhenPushed = YES;
         
-        deductTotal = [NSString stringWithFormat:@"%d", transTotal];
+        deductTotal = [NSString stringWithFormat:@"%0.2f", transTotal];
         
         //Pushing to MLPreviewViewController
         [self.navigationController pushViewController:preview animated:YES];

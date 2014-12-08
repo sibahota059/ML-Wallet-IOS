@@ -139,10 +139,6 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
         NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
         result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
-        if (myError == nil) {
-            return;
-        }
-        
         NSNumber *respCode = [result valueForKeyPath:@"respcode"];
         NSString *respMesg = [result valueForKeyPath:@"respmessage"];
         NSLog(@"MSG %@", respMesg);
