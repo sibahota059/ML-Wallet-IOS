@@ -15,10 +15,11 @@
 #import "MBProgressHUD.h"
 #import "PartnersTableViewController.h"
 #import "RetrievePartnersAccount.h"
+#import "SendoutPartnersBill.h"
 
 @class RadioButton;
 
-@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, KpRatesDelegateOwn, GetReceiverDelegate, MBProgressHUDDelegate, PartnersTableViewControllerDelegate, GetPartnersDelegate>
+@interface MLSendMoneyViewController : UIViewController<UITextFieldDelegate, MLReceiverTableViewControllerDelegate, NSURLConnectionDelegate, KpRatesDelegate, KpRatesDelegateOwn, GetReceiverDelegate, MBProgressHUDDelegate, PartnersTableViewControllerDelegate, GetPartnersDelegate, SendoutPartnersBillDelegate>
 
 //@property (weak, nonatomic) id<GetKptnDelegate>delegate;
 

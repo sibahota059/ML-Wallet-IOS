@@ -242,6 +242,8 @@
 		F00D64101991CE7B00A1BD67 /* payment_bg_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F00D640E1991CE7B00A1BD67 /* payment_bg_ipad.png */; };
 		F00DD40F198CF13A003D82B5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F00DD40E198CF13A003D82B5 /* MessageUI.framework */; };
 		F00F96971A2FFA06007DE4E7 /* RetrievePartnersAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F00F96961A2FFA06007DE4E7 /* RetrievePartnersAccount.m */; };
+		F00F969A1A307EAF007DE4E7 /* SendoutPartnersBill.m in Sources */ = {isa = PBXBuildFile; fileRef = F00F96991A307EAF007DE4E7 /* SendoutPartnersBill.m */; };
+		F00F969D1A32D8A8007DE4E7 /* SavePartnersBill.m in Sources */ = {isa = PBXBuildFile; fileRef = F00F969C1A32D8A8007DE4E7 /* SavePartnersBill.m */; };
 		F01014AE1A2408ED00F4BA76 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AA1A2408ED00F4BA76 /* checked.png */; };
 		F01014AF1A2408ED00F4BA76 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AB1A2408ED00F4BA76 /* checked@2x.png */; };
 		F01014B01A2408ED00F4BA76 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AC1A2408ED00F4BA76 /* unchecked.png */; };
@@ -624,6 +626,10 @@
 		F00DD40E198CF13A003D82B5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		F00F96951A2FFA06007DE4E7 /* RetrievePartnersAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievePartnersAccount.h; sourceTree = "<group>"; };
 		F00F96961A2FFA06007DE4E7 /* RetrievePartnersAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievePartnersAccount.m; sourceTree = "<group>"; };
+		F00F96981A307EAF007DE4E7 /* SendoutPartnersBill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendoutPartnersBill.h; sourceTree = "<group>"; };
+		F00F96991A307EAF007DE4E7 /* SendoutPartnersBill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendoutPartnersBill.m; sourceTree = "<group>"; };
+		F00F969B1A32D8A8007DE4E7 /* SavePartnersBill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePartnersBill.h; sourceTree = "<group>"; };
+		F00F969C1A32D8A8007DE4E7 /* SavePartnersBill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePartnersBill.m; sourceTree = "<group>"; };
 		F01014AA1A2408ED00F4BA76 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
 		F01014AB1A2408ED00F4BA76 /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
 		F01014AC1A2408ED00F4BA76 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
@@ -1112,6 +1118,10 @@
 				F013D7121A26FE9B0095A154 /* KpRatesOwn.m */,
 				F00F96951A2FFA06007DE4E7 /* RetrievePartnersAccount.h */,
 				F00F96961A2FFA06007DE4E7 /* RetrievePartnersAccount.m */,
+				F00F96981A307EAF007DE4E7 /* SendoutPartnersBill.h */,
+				F00F96991A307EAF007DE4E7 /* SendoutPartnersBill.m */,
+				F00F969B1A32D8A8007DE4E7 /* SavePartnersBill.h */,
+				F00F969C1A32D8A8007DE4E7 /* SavePartnersBill.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1818,6 +1828,7 @@
 				7006620F18DA791600A0F05C /* ProfileInformation.m in Sources */,
 				3BA7CCAB18B1D6B900B9FC4B /* AppDelegate.m in Sources */,
 				F01014B41A240CA100F4BA76 /* RadioButton.m in Sources */,
+				F00F969A1A307EAF007DE4E7 /* SendoutPartnersBill.m in Sources */,
 				70EEA18618D9C53200719BF7 /* ProfileHeader.m in Sources */,
 				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
 				70ADA9151990DD3600075CB7 /* AccountInformationPad.m in Sources */,
@@ -1868,6 +1879,7 @@
 				F01893691A25B87700409FC1 /* MLRatesAllChildViewController.m in Sources */,
 				F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */,
 				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
+				F00F969D1A32D8A8007DE4E7 /* SavePartnersBill.m in Sources */,
 				70ADA8F919908BAE00075CB7 /* EditPasswordPad.m in Sources */,
 				3BF0B26D197A616400AC2C76 /* SaveWalletData.m in Sources */,
 				70AA05A3198B3ADD00B0C52A /* EditUsername.m in Sources */,

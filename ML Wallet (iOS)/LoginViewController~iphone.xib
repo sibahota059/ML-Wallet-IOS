@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="InsufficientView" destination="6mg-wG-g9L" id="xcQ-Ri-OeL"/>
                 <outlet property="NewPIN" destination="gYO-iu-41f" id="kJh-wJ-m5c"/>
                 <outlet property="NewPINView" destination="8SS-s6-I27" id="BhV-xD-M0r"/>
                 <outlet property="OldPIN" destination="tIi-Po-F3N" id="r96-nY-3LO"/>
@@ -15,6 +16,7 @@
                 <outlet property="btnRate" destination="04D-WM-3JN" id="c2y-1Z-FfQ"/>
                 <outlet property="loginView" destination="Jqi-aw-9Ry" id="7Qo-Sk-Ahr"/>
                 <outlet property="scrollView" destination="24N-TH-F8N" id="mRm-Vi-Nzr"/>
+                <outlet property="txtInsuffi_kptn" destination="2FA-je-h2x" id="5A6-dT-E3v"/>
                 <outlet property="txtPass" destination="L0h-if-pmb" id="M4l-P9-MVM"/>
                 <outlet property="txtUser" destination="1j2-kQ-AOM" id="ADo-gm-g2p"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -299,6 +301,72 @@
                     </subviews>
                     <gestureRecognizers/>
                 </scrollView>
+                <view hidden="YES" contentMode="scaleToFill" id="6mg-wG-g9L">
+                    <rect key="frame" x="0.0" y="134" width="320" height="300"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insufficient balance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vmp-s3-T0b">
+                            <rect key="frame" x="20" y="26" width="156" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To continue please load your mobile account." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UKx-83-P8W">
+                            <rect key="frame" x="20" y="66" width="295" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2FA-je-h2x">
+                            <rect key="frame" x="20" y="153" width="280" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
+                        </textField>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type your KPTN No:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oML-RB-2bA">
+                            <rect key="frame" x="20" y="129" width="149" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="N9j-Tx-Wo4">
+                            <rect key="frame" x="65" y="191" width="91" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="SUBMIT" backgroundImage="headerbackground.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnInsuffi_submit:" destination="-1" eventType="touchUpInside" id="g0b-dl-NQS"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ban.png" id="sdP-jc-E49">
+                            <rect key="frame" x="20" y="240" width="103" height="54"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter the correct KPTN. 3 Error attemps may block your account for 1 day." id="7nR-fo-ZYW">
+                            <rect key="frame" x="131" y="240" width="184" height="54"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LkU-ls-CrN">
+                            <rect key="frame" x="165" y="191" width="91" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="NOT NOW" backgroundImage="headerbackground.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnInsuffi_notnow:" destination="-1" eventType="touchUpInside" id="jpe-3c-vhT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -312,6 +380,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="ban.png" width="200" height="180"/>
         <image name="headerbackground.png" width="320" height="50"/>
         <image name="line.png" width="320" height="2"/>
         <image name="ml_logo_iphone.png" width="320" height="100"/>

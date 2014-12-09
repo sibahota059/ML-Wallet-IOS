@@ -124,6 +124,7 @@
     self.NewPIN.delegate  = self;
     self.OldPIN.delegate  = self;
     self.ReNewPIN.delegate= self;
+    self.txtInsuffi_kptn.delegate = self;
     
     textAnimate = [UITextfieldAnimate new];
 
@@ -161,6 +162,11 @@
     } else {
         [self.ReNewPIN resignFirstResponder];
     }
+    }
+    
+    //Insufficient balance
+    if (textField == self.txtInsuffi_kptn) {
+        [textField resignFirstResponder];
     }
     return NO;
 }
@@ -337,6 +343,7 @@
      1 == get Location
      2 == get Login Post Method
      3 == Resend Email
+     6 == SearchKPTN
      */
     switch (self.idd) {
         case 1:
@@ -356,12 +363,65 @@
         case 5:
             [self updatePINdidfinish];
             break;
+        case 6:
+            //TODO
+            [self checkKPTNdidfinish];
+            break;
         default:
             break;
     }
 }
 #pragma mark --END Delegate
 
+
+#pragma mark - SearchKPTNdidFinish
+- (void) checkKPTNdidfinish
+{
+    NSError *myError = nil;
+    NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    if (myError == nil){
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
+        
+        NSNumber *respCode = [result valueForKey:@"respcode"];
+        NSString *respMesg = [result valueForKey:@"respmessage"];
+        
+        if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
+        {
+            //TODO
+            [self checkReceiver_Result:result];
+        }
+        else
+        {
+            [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+    }
+}
+- (void) checkReceiver_Result:(NSData *)data
+{
+    //Check if Receiver is Correct.
+    NSString *rfname = [data valueForKey:@"rcvrfname"];
+    NSString *rlname = [data valueForKey:@"rcvrlname"];
+    rfname = [rfname uppercaseString];
+    rlname = [rlname uppercaseString];
+    if ([[fname uppercaseString] isEqualToString:rfname]
+        || [[lname uppercaseString] isEqualToString:rlname]) {
+        NSLog(@"TRUE");
+        
+    }
+    else
+    {
+        [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Invalid Receiver. It must be your account name." delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        [self.txtInsuffi_kptn resignFirstResponder];
+        self.txtInsuffi_kptn.text = @"";
+    }
+}
 
 #pragma mark - CheckPINdidfinish
 - (void) checkPindidfinish
@@ -370,7 +430,13 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"checkPinResult"];
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
         NSNumber *respCode = [result valueForKey:@"respcode"];
         NSString *respMesg = [result valueForKey:@"respmessage"];
@@ -411,10 +477,17 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"UpdatePINResult"];
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
         NSNumber *respCode = [result valueForKey:@"respcode"];
         NSString *respMesg = [result valueForKey:@"respmessage"];
+        
         
         //Hide Loader
         [HUD hide:YES];
@@ -558,6 +631,13 @@
             }
             [saveData initSaveData:self.location forKey:@"address"];
             
+            //Check if Insufficient balance
+            if ([isnewuser isEqualToNumber:[NSNumber numberWithInt:1]]){
+                if ([bal isEqualToString:@"0"]) {                    
+                    [self ifInsufficientBalance];return;
+                }
+            }
+            
             //Check for new USER
             if ([isnewuser isEqualToNumber:[NSNumber numberWithInt:1]]) {
                 [self ifUserisNew];return;
@@ -617,6 +697,21 @@
     self.NewPINView.layer.shadowOffset     = CGSizeMake(-15, 20);
     self.NewPINView.layer.shadowRadius     = 5;
     self.NewPINView.layer.shadowOpacity    = 0.5;
+}
+
+- (void) ifInsufficientBalance
+{
+    self.btnInfo.enabled = NO;
+    self.btnLocation.enabled = NO;
+    self.btnRate.enabled = NO;
+    [UIView popView:self.InsufficientView];
+    self.InsufficientView.hidden = NO;
+    
+    self.InsufficientView.layer.masksToBounds    = NO;
+    self.InsufficientView.layer.cornerRadius     = 8;
+    self.InsufficientView.layer.shadowOffset     = CGSizeMake(-15, 20);
+    self.InsufficientView.layer.shadowRadius     = 5;
+    self.InsufficientView.layer.shadowOpacity    = 0.5;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -694,12 +789,6 @@
                                                            iv:_iv];
     NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
     
-//    //dec
-//    encryptedData = [[StringEncryption alloc] decrypt:encryptedData  key:_key iv:_iv];
-//    NSString * decryptedText = [[NSString alloc] initWithData:encryptedData encoding:NSUTF8StringEncoding];
-//    NSLog(@"decrypted data:: %@", decryptedText); //print the decrypted text
-
-    
     //Data to POST
     NSString *post = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\", \"iv\" : \"%@\"}",
                       [encryptedData base64EncodingWithLineLength:0],
@@ -725,14 +814,25 @@
 #pragma mark -PUT Update PIn
 - (void) updatePIN
 {
-    NSString *post = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"newPIN\" : \"%@\"}",
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSString *encrptedString = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"newPIN\" : \"%@\"}",
                       walletno,
                       self.ReNewPIN.text];
     
-    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"/UpdatePIN"];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[encrptedString dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+    
+    encrptedString = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}",
+            [encryptedData base64EncodingWithLineLength:0],
+            _iv];
+    
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"UpdatePIN"];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-    NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+    NSData *requestData = [NSData dataWithBytes:[encrptedString UTF8String] length:[encrptedString length]];
     
     [request setHTTPMethod:@"PUT"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -750,13 +850,13 @@
     self.btnInfo.enabled =YES;
     
     self.NewPINView.hidden =YES;
+    self.InsufficientView.hidden = YES;
 }
 
 - (IBAction)btnNotNow:(id)sender {
     [self onTouch];
 }
 
-//TODO
 - (IBAction)btnRePIN:(id)sender {
     //ResendPIN/?walletno={walletno}"
     //Show Animated
@@ -822,13 +922,30 @@
     [self.view endEditing:YES];
     responseData = [[NSMutableData alloc] init];
     
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"checkPin/?"];
-    NSString *srvcURL = [NSString stringWithFormat:@"%@walletno=%@&pin=%@", srvcURL1, walletno, self.OldPIN.text];
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"checkPin"];
+    NSString *encrptedString = [NSString stringWithFormat:@"{\"walletno\" : \"%@\",\"pin\" : \"%@\"}",
+                          walletno,
+                          self.OldPIN.text];
+    
+    //enc
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[encrptedString dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+
+    encrptedString = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}",
+                     [encryptedData base64EncodingWithLineLength:0],
+                     _iv];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[encrptedString UTF8String] length:[encrptedString length]];
     
-    [request setHTTPMethod:@"GET"];
+    [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPBody:requestData];
     [NSURLConnection connectionWithRequest:request delegate:self];
     self.idd = 4;
 }
@@ -836,4 +953,47 @@
 - (IBAction)btnSubmit:(id)sender {
     [self checkPIN];
 }
+- (IBAction)btnInsuffi_submit:(id)sender {
+    
+    [self searchKPTN];
+}
+
+#pragma mark - Search KPTN
+- (void) searchKPTN
+{
+     responseData = [[NSMutableData alloc] init];
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"searchKPTN"];
+    NSString *encrptedString = [NSString stringWithFormat:@"{\"kptn\" : \"%@\",\"walletno\" : \"%@\"}",
+                                self.txtInsuffi_kptn.text,
+                                walletno];
+    
+    //enc
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[encrptedString dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+    
+    encrptedString = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}",
+                      [encryptedData base64EncodingWithLineLength:0],
+                      _iv];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
+    NSData *requestData = [NSData dataWithBytes:[encrptedString UTF8String] length:[encrptedString length]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPBody:requestData];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    self.idd = 6;
+
+}
+
+- (IBAction)btnInsuffi_notnow:(id)sender {
+    [self onTouch];
+    [self.txtInsuffi_kptn resignFirstResponder];
+}
+
 @end

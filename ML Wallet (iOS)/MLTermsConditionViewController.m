@@ -21,9 +21,9 @@
     SendoutMobile *sendout;
     MBProgressHUD *HUD;
     SendEmail *se;
-    
+    SavePartnersBill *savePartners;
     MLSendMoneyViewController *sm;
-    NSString *confirmInd;
+    NSString *confirmInd, *emailKptn;
 }
 
 @end
@@ -44,9 +44,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    getUI   = [MLUI new];
-    sendout = [SendoutMobile new];
-    se      = [SendEmail new];
+    getUI        = [MLUI new];
+    sendout      = [SendoutMobile new];
+    se           = [SendEmail new];
+    savePartners = [SavePartnersBill new];
     
     //self.navigationItem.titleView = [getUI navTitle:@"Terms & Conditions"];
     self.title = @"TERMS & CONDITIONS";
@@ -64,13 +65,16 @@
     self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
                                                                          initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    sendout = [[SendoutMobile alloc]initWithWalletNo:__walletNo senderFname:__senderFname senderMname:__senderMname senderLname:__senderLname receiverFname:__receiverFname receiverMname:__receiverMname receiverLname:__receiverLname receiverNo:__receiverNo principal:__total latitude:__latitude longitude:__longitude location:__location deviceId:__divice];
+    if ([__transType isEqualToString:@"remittance"] || [__transType isEqualToString:@"own"]) {
+        sendout = [[SendoutMobile alloc]initWithWalletNo:__walletNo senderFname:__senderFname senderMname:__senderMname senderLname:__senderLname receiverFname:__receiverFname receiverMname:__receiverMname receiverLname:__receiverLname receiverNo:__receiverNo principal:__amount latitude:__latitude longitude:__longitude location:__location deviceId:__divice];
+    }
     
     se.delegate = self;
     sendout.delegate = self;
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
+    savePartners.delegate = self;
     
     
 }
@@ -96,6 +100,8 @@
     
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", sendout.getRespcode]isEqualToString:@"1"]){
 
+        emailKptn = [self formatKptn:sendout.getKptn];
+        
         _lbl_kptn.text = [NSString stringWithFormat:@"Money Successfully Sent\nKPTN:\n%@",[self formatKptn:sendout.getKptn]];
         _view_success.hidden = NO;
         _view_success.alpha = 0.2f;
@@ -142,11 +148,64 @@
 - (IBAction)btnAgree:(id)sender {
     [self displayProgressBar];
     [self.navigationItem setHidesBackButton:YES];
-    [sendout postDataToUrl];
+    
+    if ([__transType isEqualToString:@"billsPay"]) {
+        [savePartners getReceiverWalletNo:__walletNo andOperatorId:__operatorId andBarcode:__bcode andZoneCode:__zcode andKptn:__kptn andPartnersId:__partnersId andAccountNo:__accountNo andAmountPaid:__amount andCustomerCharge:__customerCharge andPartnersCharge:__partnersCharge andLatitude:__latitude andLongitude:__longitude andDeviceId:__divice andLocation:__location];
+    }else{
+        [sendout postDataToUrl];
+    }
 }
+
+
+- (void)didFinishLoadingPartnersSendout:(NSString *)indicator andError:(NSString *)getError{
+    
+    [self dismissProgressBar];
+    NSString *getRepscode = [savePartners.partnersSendout valueForKey:@"RespCode"];
+    NSString *getRepsMessage = [savePartners.partnersSendout valueForKey:@"RespMsg"];
+    
+    if ([getRepscode integerValue] == 1) {
+        
+        emailKptn = __kptn;
+        
+        _lbl_kptn.text = [NSString stringWithFormat:@"Money Successfully Sent\nKPTN:\n%@",__kptn];
+        _view_success.hidden = NO;
+        _view_success.alpha = 0.2f;
+        _view_successOption.hidden = NO;
+        _btnDecline.enabled = NO;
+        _btnAgree.enabled = NO;
+        [getUI shadowView:_view_successOption];
+        self.title = @"TRANSACTION SUCCESS";
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.leftBarButtonItem = nil;
+        
+        }else if ([[NSString stringWithFormat:@"%@", sendout.getRespcode] isEqualToString:@"0"]){
+            [UIAlertView myCostumeAlert:@"Message" alertMessage:getRepsMessage delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if ([indicator isEqualToString:@"error"]){
+            confirmInd = @"bills";
+            [self dismissProgressBar];
+            [self confirmDialog:@"Message" andMessage:getError andButtonNameOK:@"Retry" andButtonNameCancel:@"No, Thanks"];
+        }else{
+            [UIAlertView myCostumeAlert:@"Message" alertMessage:@"Service is temporarily unavailable. Please try again or contact us at (032) 232-1036 or 0947-999-1948" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }
+}
+
 - (IBAction)btnClose:(id)sender {
     
-    [self dismissView];
+    //This for loop iterates through all the view controllers in navigation stack.
+    for (UIViewController* viewController in self.navigationController.viewControllers) {
+        
+        //This if condition checks whether the viewController's class is MyGroupViewController
+        // if true that means its the MyGroupViewController (which has been pushed at some point)
+        if ([viewController isKindOfClass:[MenuViewController class]] ) {
+            
+            // Here viewController is a reference of UIViewController base class of MyGroupViewController
+            // but viewController holds MyGroupViewController  object so we can type cast it here
+            self.navigationController.navigationBarHidden = YES;
+            MenuViewController *groupViewController = (MenuViewController*)viewController;
+            [self.navigationController popToViewController:groupViewController animated:YES];
+            
+        }
+    }
     
 }
 
@@ -262,8 +321,14 @@
     
     [self displayProgressBar];
  
-    [se sendEmail:__walletNo andKptn:[self formatKptn:sendout.getKptn]];
+    [se sendEmail:__walletNo andKptn:emailKptn];
     
+}
+
+- (IBAction)btnContinue:(id)sender {
+    
+    _view_successOption.hidden = YES;
+    _viewConfirm.hidden = NO;
 }
 
 - (void)displayProgressBar{
@@ -304,6 +369,9 @@
         if ([confirmInd isEqualToString:@"sendout"]) {
             [self displayProgressBar];
             [sendout postDataToUrl];
+        }else if ([confirmInd isEqualToString:@"bills"]) {
+            [self displayProgressBar];
+            [savePartners getReceiverWalletNo:__walletNo andOperatorId:__operatorId andBarcode:__bcode andZoneCode:__zcode andKptn:__kptn andPartnersId:__partnersId andAccountNo:__accountNo andAmountPaid:__amount andCustomerCharge:__customerCharge andPartnersCharge:__partnersCharge andLatitude:__latitude andLongitude:__longitude andDeviceId:__divice andLocation:__location];
         }else{
             [self displayProgressBar];
             [se sendEmail:__walletNo andKptn:[self formatKptn:sendout.getKptn]];
@@ -319,4 +387,25 @@
 
 
 
+- (IBAction)btnOnother:(id)sender {
+    [self dismissView];
+}
+
+- (IBAction)btnDone:(id)sender {
+    //This for loop iterates through all the view controllers in navigation stack.
+    for (UIViewController* viewController in self.navigationController.viewControllers) {
+        
+        //This if condition checks whether the viewController's class is MyGroupViewController
+        // if true that means its the MyGroupViewController (which has been pushed at some point)
+        if ([viewController isKindOfClass:[MenuViewController class]] ) {
+            
+            // Here viewController is a reference of UIViewController base class of MyGroupViewController
+            // but viewController holds MyGroupViewController  object so we can type cast it here
+            self.navigationController.navigationBarHidden = YES;
+            MenuViewController *groupViewController = (MenuViewController*)viewController;
+            [self.navigationController popToViewController:groupViewController animated:YES];
+            
+        }
+    }
+}
 @end

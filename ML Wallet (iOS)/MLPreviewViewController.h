@@ -59,6 +59,15 @@
 @property (strong, nonatomic) NSString *_divice;
 @property (strong, nonatomic) NSString *_location;
 @property (strong, nonatomic) NSString *_receiverNo;
+@property (strong, nonatomic) NSString *_transType;
+@property (strong, nonatomic) NSString *_operatorId;
+@property (strong, nonatomic) NSString *_bcode;
+@property (strong, nonatomic) NSString *_zcode;
+@property (strong, nonatomic) NSString *_kptn;
+@property (strong, nonatomic) NSString *_partnersId;
+@property (strong, nonatomic) NSString *_accountNo;
+@property (strong, nonatomic) NSString *_customerCharge;
+@property (strong, nonatomic) NSString *_partnersCharge;
 
 - (IBAction)tapPreview:(UITapGestureRecognizer *)sender;
 - (IBAction)btn_pin:(id)sender;

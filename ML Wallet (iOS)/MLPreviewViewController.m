@@ -91,11 +91,19 @@
     [self setText:_tf_pin1];
     
     //setting sender and receiver information on it's label
-    _lbl_sname.text   = [NSString stringWithFormat:@"%@, %@ %@", __senderLname, __senderFname, __senderMname];
-    _lbl_rname.text   = [[NSString stringWithFormat:@"%@, %@ %@", __receiverLname, __receiverFname, __receiverMname] uppercaseString];
+    _lbl_sname.text   = [[NSString stringWithFormat:@"%@, %@ %@", __senderLname, __senderFname, [__senderMname substringFromIndex:1]] uppercaseString];
+    
+    if ([__transType isEqualToString:@"remittance"]) {
+        _lbl_rname.text   = [[NSString stringWithFormat:@"%@, %@ %@", __receiverLname, __receiverFname, __receiverMname] uppercaseString];
+    }else if ([__transType isEqualToString:@"own"]){
+        _lbl_rname.text = @"SEND TO OWN";
+    }else{
+        _lbl_rname.text   = [[NSString stringWithFormat:@"%@", __receiverFname] uppercaseString];
+    }
+    
     _lbl_amount.text  = [NSString stringWithFormat:@"%0.2f", [__amount doubleValue]];
     _lbl_charge.text  = __charge;
-    _lbl_total.text   = __total;
+    _lbl_total.text   = [NSString stringWithFormat:@"%0.2f", [__total doubleValue]];
     
     //convert base64string of sender and receiver image into data
     NSData *dataSenderImage = [[NSData alloc] initWithBase64EncodedString:__senderImage options: NSDataBase64DecodingIgnoreUnknownCharacters];
@@ -154,14 +162,27 @@
     tc._receiverLname  =  __receiverLname;
     tc._receiverFname  =  __receiverFname;
     tc._receiverMname  =  __receiverMname;
-    tc._total          = __amount;
+    tc._transType      =  __transType;
+    tc._amount         =  __amount;
+    
+    if ([__transType isEqualToString:@"billsPay"]) {
+        tc._operatorId     = __operatorId;
+        tc._bcode          = __bcode;
+        tc._zcode          = __zcode;
+        tc._kptn           = __kptn;
+        tc._partnersId     = __partnersId;
+        tc._accountNo      = __accountNo;
+        tc._customerCharge = __customerCharge;
+        tc._partnersCharge = __partnersCharge;
+    }else{
+        tc._receiverNo = __receiverNo;
+    }
+
     tc._walletNo       = __walletNo;
     tc._latitude       = __latitude;
     tc._longitude      = __longitude;
     tc._divice         = __divice;
     tc._location       = __location;
-    tc._receiverNo     = __receiverNo;
-    
 
     //extract dictionary and get value for repscode & respmessage
     NSString* repscode = [chk.getPin objectForKey:@"respcode"];
