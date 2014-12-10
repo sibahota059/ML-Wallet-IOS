@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
-            timestampString = "439821820.057554"
+            timestampString = "439872840.41161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "541"
-            endingLineNumber = "541"
+            startingLineNumber = "577"
+            endingLineNumber = "577"
             landmarkName = "-didFinishLoadingCancellation:andError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
-            timestampString = "439821820.057554"
+            timestampString = "439872840.41161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "595"
-            endingLineNumber = "595"
+            startingLineNumber = "631"
+            endingLineNumber = "631"
             landmarkName = "-didFinishLoadingCancellation:andError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
-            timestampString = "439821820.057554"
+            timestampString = "439872840.41161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "-didFinishLoadingCancellation:andError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
-            timestampString = "439821820.057554"
+            timestampString = "439872840.41161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "813"
-            endingLineNumber = "813"
+            startingLineNumber = "849"
+            endingLineNumber = "849"
             landmarkName = "-alertView:didDismissWithButtonIndex:"
             landmarkType = "5">
             <Locations>
@@ -233,11 +233,11 @@
                   symbolName = "-[MLHistoryViewController alertView:didDismissWithButtonIndex:]"
                   moduleName = "ML Wallet (iOS)"
                   urlString = "file:///Users/mm20/Desktop/ML-Wallet-IOS/ML%20Wallet%20(iOS)/MLHistoryViewController.m"
-                  timestampString = "439821996.502982"
+                  timestampString = "439876844.710406"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "813"
-                  endingLineNumber = "813"
+                  startingLineNumber = "849"
+                  endingLineNumber = "849"
                   offsetFromSymbolStart = "1222">
                </Location>
                <Location
@@ -247,11 +247,11 @@
                   symbolName = "-[MLHistoryViewController alertView:didDismissWithButtonIndex:]"
                   moduleName = "ML Wallet (iOS)"
                   urlString = "file:///Users/mm20/Desktop/ML-Wallet-IOS/ML%20Wallet%20(iOS)/MLHistoryViewController.m"
-                  timestampString = "439821996.503192"
+                  timestampString = "439876844.710598"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "813"
-                  endingLineNumber = "813"
+                  startingLineNumber = "849"
+                  endingLineNumber = "849"
                   offsetFromSymbolStart = "1294">
                </Location>
             </Locations>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
-            timestampString = "439821820.057554"
+            timestampString = "439872840.41161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "816"
-            endingLineNumber = "816"
+            startingLineNumber = "852"
+            endingLineNumber = "852"
             landmarkName = "-alertView:didDismissWithButtonIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -392,11 +392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
-            timestampString = "439819776.149218"
+            timestampString = "439872840.41161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "393"
+            endingLineNumber = "393"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -408,28 +408,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
-            timestampString = "439821820.057554"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
-            timestampString = "439821806.81707"
+            timestampString = "439872840.41161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "405"
             endingLineNumber = "405"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ML Wallet (iOS)/MLHistoryViewController.m"
+            timestampString = "439872840.41161"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
+            landmarkName = "-btnClose:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

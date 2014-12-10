@@ -145,13 +145,30 @@
         //Looping rates value and add to charges & amount array
         for (NSDictionary *items in getLoadHistory) {
             
-            NSString *name  = [NSString stringWithFormat:@"%@, %@ %@", [items valueForKey:@"lname"], [items valueForKey:@"fname"], [items valueForKey:@"mname"]];
+            NSString *kptn  = [items valueForKey:@"kptn"];
+            
+            BOOL isCommaRemoved;
+            NSString *name;
+            
+            if ([kptn rangeOfString:@"BPW"].location == NSNotFound) {
+                isCommaRemoved = NO;
+            } else {
+                isCommaRemoved = YES;
+            }
+            
+            if (isCommaRemoved) {
+                name = [NSString stringWithFormat:@"%@", [items valueForKey:@"fname"]];
+                kptn = [NSString stringWithFormat:@"KPTN: %@", kptn];
+            }else{
+                name = [NSString stringWithFormat:@"%@, %@ %@", [items valueForKey:@"lname"], [items valueForKey:@"fname"], [items valueForKey:@"mname"]];
+            }
+            
             NSString *dates  = [items valueForKey:@"txndate"];
             NSString *types  = [items valueForKey:@"transtype"];
             NSString *ammount  = [items valueForKey:@"principal"];
             NSString *bal  = [items valueForKey:@"runningbalance"];
             NSString *receiverName  = name;
-            NSString *kptn  = [items valueForKey:@"kptn"];
+            
             NSString *status  = [items valueForKey:@"status"];
             
             if ([[NSString stringWithFormat:@"%@", status] isEqualToString:@"PENDING"]) {
@@ -364,13 +381,20 @@
             _btn_cancel.hidden = NO;
         }
         
-        NSString *getKptnType = [NSString stringWithFormat:@"%@", [getKptnP objectAtIndex:indexPath.row]];
+        NSString *getKptnTypeP = [NSString stringWithFormat:@"%@", [getKptnP objectAtIndex:indexPath.row]];
+        
+        BOOL isPartnerP;
+        if ([getKptnTypeP rangeOfString:@"BPW"].location == NSNotFound) {
+            isPartnerP = NO;
+        } else {
+            isPartnerP = YES;
+        }
                           
         if ([[NSString stringWithFormat:@"%@", [getStatusP objectAtIndex:indexPath.row]] isEqualToString:@"PENDING"]) {
             _img_status.image = [UIImage imageNamed:@"ic_seal_pending.png"];
-        }else if ([[NSString stringWithFormat:@"%@", [getStatusP objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"] && ![getKptnType rangeOfString:@"BPW"].location == NSNotFound){
+        }else if([[NSString stringWithFormat:@"%@", [getStatusP objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"] && isPartnerP == NO){
             _img_status.image = [UIImage imageNamed:@"ic_seal_claimed.png"];
-        }else if ([getKptnType rangeOfString:@"BPW"].location == NSNotFound){
+        }else if ([[NSString stringWithFormat:@"%@", [getStatusP objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"] && isPartnerP){
             _img_status.hidden = YES;
         }else{
             _img_status.image = [UIImage imageNamed:@"ic_seal_cancelled.png"];
@@ -380,6 +404,14 @@
         
         NSString *getKptnType = [NSString stringWithFormat:@"%@", [getKptn objectAtIndex:indexPath.row]];
         
+        BOOL isPartner;
+        if ([getKptnType rangeOfString:@"BPW"].location == NSNotFound) {
+            isPartner = NO;
+        } else {
+            isPartner = YES;
+        }
+        
+        
         _labelName.text = [[getReceiverName objectAtIndex:indexPath.row]uppercaseString];
         _labelKptn.text = [getKptn objectAtIndex:indexPath.row];
         _labelReceiverId.text = walletno;
@@ -388,11 +420,13 @@
         if ([[getStatus objectAtIndex:indexPath.row] isEqualToString:@"CANCEL"]) {
             _labelType.text = @"CANCELLED";
             _btn_cancel.hidden = YES;
-        }else if ([[getStatus objectAtIndex:indexPath.row] isEqualToString:@"CLAIMED"]){
+        }else if ([[getStatus objectAtIndex:indexPath.row] isEqualToString:@"CLAIMED"] && !isPartner){
             _labelType.text = [getType objectAtIndex:indexPath.row];
             _btn_cancel.hidden = YES;
+        }else if(isPartner){
+            _labelType.text = @"BILLS PAY SENDOUT";
+            _btn_cancel.hidden = YES;
         }else if ([[getStatus objectAtIndex:indexPath.row] isEqualToString:@"LOADING"]){
-
             _labelType.text = [getType objectAtIndex:indexPath.row];
             _btn_cancel.hidden = YES;
         }else{
@@ -400,16 +434,17 @@
             _btn_cancel.hidden = NO;
         }
 
+
         NSString *getRStatus = [getStatus objectAtIndex:indexPath.row];
         
         if ([[NSString stringWithFormat:@"%@", getRStatus] isEqualToString:@"PENDING"]) {
             _img_status.image = [UIImage imageNamed:@"ic_seal_pending.png"];
-        }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"] && ![getKptnType rangeOfString:@"BPW"].location == NSNotFound){
+        }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"] && isPartner){
+            _img_status.hidden = YES;
+        }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"]){
             _img_status.image = [UIImage imageNamed:@"ic_seal_claimed.png"];
         }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"LOADING"]){
             _img_status.image = [UIImage imageNamed:@"ic_seal_claimed.png"];
-        }else if (![getKptnType rangeOfString:@"BPW"].location == NSNotFound){
-            _img_status.hidden = YES;
         }else{
             _img_status.image = [UIImage imageNamed:@"ic_seal_cancelled.png"];
         }
@@ -462,6 +497,7 @@
     _view_transform.hidden = YES;
     self.view_keyboard.hidden = YES;
     self.view_pinInput.hidden = YES;
+    _img_status.hidden = NO;
     
     self.navigationItem.leftBarButtonItem.enabled = YES;
     for(UIBarButtonItem *button in self.navigationItem.rightBarButtonItems) {
