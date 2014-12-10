@@ -24,6 +24,7 @@
 #import "EditPassword.h"
 #import "EditPasswordPad.h"
 #import "SaveWalletData.h"
+#import "NSMutableArray+PayoutMobile.h"
 
 #import "CryptLib.h"
 #import "NSData+Base64.h"
@@ -343,7 +344,7 @@
      1 == get Location
      2 == get Login Post Method
      3 == Resend Email
-     6 == SearchKPTN
+     6 == Payout search
      */
     switch (self.idd) {
         case 1:
@@ -364,7 +365,7 @@
             [self updatePINdidfinish];
             break;
         case 6:
-            //TODO
+            //Payout search
             [self checkKPTNdidfinish];
             break;
         default:
@@ -394,12 +395,18 @@
         
         if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]])
         {
-            //TODO
-            [self checkReceiver_Result:result];
+            if ([respMesg isEqualToString:@"Payout Successfully. Thank you."]) {
+                [UIAlertView myCostumeAlert:@"Payout Success" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            } else {
+                //Check and searchKPTN
+                [self checkReceiver_Result:result];
+            }
         }
         else
         {
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:respMesg delegate:nil cancelButton:@"Ok" otherButtons:nil];
+            [self.txtInsuffi_kptn resignFirstResponder];
+            self.txtInsuffi_kptn.text = @"";
         }
     }
 }
@@ -408,12 +415,14 @@
     //Check if Receiver is Correct.
     NSString *rfname = [data valueForKey:@"rcvrfname"];
     NSString *rlname = [data valueForKey:@"rcvrlname"];
+    NSString *prncipal = [data valueForKeyPath:@"principal"];
+    NSString *custID = [data valueForKeyPath:@"custId"];
     rfname = [rfname uppercaseString];
     rlname = [rlname uppercaseString];
     if ([[fname uppercaseString] isEqualToString:rfname]
         || [[lname uppercaseString] isEqualToString:rlname]) {
         NSLog(@"TRUE");
-        
+        [self payoutMobile_principal:prncipal CustID:custID];
     }
     else
     {
@@ -422,6 +431,22 @@
         self.txtInsuffi_kptn.text = @"";
     }
 }
+- (void) payoutMobile_principal:(NSString*)principal CustID:(NSString*)custid
+{
+    NSString* kptnNo = self.txtInsuffi_kptn.text;
+    NSString* wallet = walletno;
+    NSString* princpal = principal;
+    NSString* cusID = custid;
+    double lng = [self Longtitude];
+    double lat = [self Latitude];
+    NSString *deviceID = [[DeviceID alloc] NSGetDeviceID];
+    NSString* location = [self location];
+    
+    responseData = [NSMutableData new];
+    [[NSMutableData alloc] mobilePayout_kptn:kptnNo WalletNo:wallet Principal:princpal CustID:cusID lng:lng lat:lat DeviceID:deviceID Location:location Delegate:self];
+    self.idd = 6;
+}
+
 
 #pragma mark - CheckPINdidfinish
 - (void) checkPindidfinish
