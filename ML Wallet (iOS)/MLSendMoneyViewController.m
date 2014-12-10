@@ -558,6 +558,10 @@
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Please enter an amount!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
         }else if([_tf_amount.text doubleValue] == 0.00){
             [UIAlertView myCostumeAlert:@"Validation Error" alertMessage:@"Amount must be greater than 0!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+        }else if(![_lbl_partners.text isEqualToString:@"Select Partners"] && [_lbl_account.text isEqualToString:@"No Account Number"]){
+            _viewNoAccount.hidden = NO;
+            _viewShade.hidden = NO;
+            _viewShade.alpha = 0.2f;
         }else{
             [getBillObject getUserWalletNo:walletno andPartnersId:requestPartnersId andAccountNo:_lbl_account.text andAmount:_tf_amount.text];
         }
@@ -812,6 +816,18 @@
     view_account.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:view_account animated:YES];
 }
+
+- (IBAction)btnProceed:(id)sender {
+    _viewShade.hidden = YES;
+    _viewNoAccount.hidden = YES;
+    [getBillObject getUserWalletNo:walletno andPartnersId:requestPartnersId andAccountNo:_lbl_account.text andAmount:_tf_amount.text];
+}
+
+- (IBAction)btnCancel:(id)sender {
+    _viewShade.hidden = YES;
+    _viewNoAccount.hidden = YES;
+}
+
 
 
 #pragma mark - didSelectReceiver Delegate Called

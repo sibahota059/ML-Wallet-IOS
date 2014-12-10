@@ -364,15 +364,21 @@
             _btn_cancel.hidden = NO;
         }
         
+        NSString *getKptnType = [NSString stringWithFormat:@"%@", [getKptnP objectAtIndex:indexPath.row]];
+                          
         if ([[NSString stringWithFormat:@"%@", [getStatusP objectAtIndex:indexPath.row]] isEqualToString:@"PENDING"]) {
             _img_status.image = [UIImage imageNamed:@"ic_seal_pending.png"];
-        }else if ([[NSString stringWithFormat:@"%@", [getStatusP objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"]){
+        }else if ([[NSString stringWithFormat:@"%@", [getStatusP objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"] && ![getKptnType rangeOfString:@"BPW"].location == NSNotFound){
             _img_status.image = [UIImage imageNamed:@"ic_seal_claimed.png"];
+        }else if ([getKptnType rangeOfString:@"BPW"].location == NSNotFound){
+            _img_status.hidden = YES;
         }else{
             _img_status.image = [UIImage imageNamed:@"ic_seal_cancelled.png"];
         }
         
     }else{
+        
+        NSString *getKptnType = [NSString stringWithFormat:@"%@", [getKptn objectAtIndex:indexPath.row]];
         
         _labelName.text = [[getReceiverName objectAtIndex:indexPath.row]uppercaseString];
         _labelKptn.text = [getKptn objectAtIndex:indexPath.row];
@@ -386,9 +392,7 @@
             _labelType.text = [getType objectAtIndex:indexPath.row];
             _btn_cancel.hidden = YES;
         }else if ([[getStatus objectAtIndex:indexPath.row] isEqualToString:@"LOADING"]){
-//            NSString* cleanedString = [[[[getReceiverName objectAtIndex:indexPath.row]uppercaseString] stringByReplacingOccurrencesOfString:@"," withString:@""]
-//                                       stringByTrimmingCharactersInSet: [NSCharacterSet symbolCharacterSet]];
-//            _labelName.text = cleanedString;
+
             _labelType.text = [getType objectAtIndex:indexPath.row];
             _btn_cancel.hidden = YES;
         }else{
@@ -400,10 +404,12 @@
         
         if ([[NSString stringWithFormat:@"%@", getRStatus] isEqualToString:@"PENDING"]) {
             _img_status.image = [UIImage imageNamed:@"ic_seal_pending.png"];
-        }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"]){
+        }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"CLAIMED"] && ![getKptnType rangeOfString:@"BPW"].location == NSNotFound){
             _img_status.image = [UIImage imageNamed:@"ic_seal_claimed.png"];
         }else if ([[NSString stringWithFormat:@"%@", [getStatus objectAtIndex:indexPath.row]] isEqualToString:@"LOADING"]){
             _img_status.image = [UIImage imageNamed:@"ic_seal_claimed.png"];
+        }else if (![getKptnType rangeOfString:@"BPW"].location == NSNotFound){
+            _img_status.hidden = YES;
         }else{
             _img_status.image = [UIImage imageNamed:@"ic_seal_cancelled.png"];
         }
