@@ -100,6 +100,7 @@
     }else{
         _lbl_rname.text   = [[NSString stringWithFormat:@"%@", __receiverFname] uppercaseString];
     }
+    
     _lbl_amount.text  = [NSString stringWithFormat:@"%0.2f", [__amount doubleValue]];
     _lbl_charge.text  = __charge;
     _lbl_total.text   = [NSString stringWithFormat:@"%0.2f", [__total doubleValue]];

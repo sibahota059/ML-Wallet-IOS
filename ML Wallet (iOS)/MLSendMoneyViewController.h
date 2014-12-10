@@ -57,6 +57,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnAccount;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_partners;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_account;
+@property (weak, nonatomic) IBOutlet UIView *viewNoAccount;
+@property (weak, nonatomic) IBOutlet UIView *viewShade;
 
 //action
 - (IBAction)btn_receiver:(id)sender;
@@ -64,6 +66,8 @@
 - (IBAction)ch_sendOwn:(id)sender;
 - (IBAction)btnPartners:(id)sender;
 - (IBAction)btnAccount:(id)sender;
+- (IBAction)btnProceed:(id)sender;
+- (IBAction)btnCancel:(id)sender;
 
 
 

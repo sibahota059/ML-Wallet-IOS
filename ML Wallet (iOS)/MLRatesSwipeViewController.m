@@ -34,6 +34,10 @@
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
     
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,6 +57,7 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    
     
     NSUInteger index = [(MLRatesAllChildViewController *)viewController index];
     

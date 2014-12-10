@@ -191,7 +191,21 @@
 
 - (IBAction)btnClose:(id)sender {
     
-    [self dismissView];
+    //This for loop iterates through all the view controllers in navigation stack.
+    for (UIViewController* viewController in self.navigationController.viewControllers) {
+        
+        //This if condition checks whether the viewController's class is MyGroupViewController
+        // if true that means its the MyGroupViewController (which has been pushed at some point)
+        if ([viewController isKindOfClass:[MenuViewController class]] ) {
+            
+            // Here viewController is a reference of UIViewController base class of MyGroupViewController
+            // but viewController holds MyGroupViewController  object so we can type cast it here
+            self.navigationController.navigationBarHidden = YES;
+            MenuViewController *groupViewController = (MenuViewController*)viewController;
+            [self.navigationController popToViewController:groupViewController animated:YES];
+            
+        }
+    }
     
 }
 
@@ -311,6 +325,12 @@
     
 }
 
+- (IBAction)btnContinue:(id)sender {
+    
+    _view_successOption.hidden = YES;
+    _viewConfirm.hidden = NO;
+}
+
 - (void)displayProgressBar{
     
     HUD.labelText = @"Please wait";
@@ -367,4 +387,25 @@
 
 
 
+- (IBAction)btnOnother:(id)sender {
+    [self dismissView];
+}
+
+- (IBAction)btnDone:(id)sender {
+    //This for loop iterates through all the view controllers in navigation stack.
+    for (UIViewController* viewController in self.navigationController.viewControllers) {
+        
+        //This if condition checks whether the viewController's class is MyGroupViewController
+        // if true that means its the MyGroupViewController (which has been pushed at some point)
+        if ([viewController isKindOfClass:[MenuViewController class]] ) {
+            
+            // Here viewController is a reference of UIViewController base class of MyGroupViewController
+            // but viewController holds MyGroupViewController  object so we can type cast it here
+            self.navigationController.navigationBarHidden = YES;
+            MenuViewController *groupViewController = (MenuViewController*)viewController;
+            [self.navigationController popToViewController:groupViewController animated:YES];
+            
+        }
+    }
+}
 @end

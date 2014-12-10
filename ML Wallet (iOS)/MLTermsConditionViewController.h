@@ -61,6 +61,10 @@
 - (IBAction)btnClose:(id)sender;
 - (IBAction)btnSms:(id)sender;
 - (IBAction)btnEmail:(id)sender;
+- (IBAction)btnContinue:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *viewConfirm;
+- (IBAction)btnOnother:(id)sender;
+- (IBAction)btnDone:(id)sender;
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @end
