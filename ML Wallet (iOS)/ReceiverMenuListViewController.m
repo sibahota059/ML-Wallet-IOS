@@ -18,6 +18,8 @@
 #import "UIAlertView+alertMe.h"
 #import "UIImage+DecodeStringToImage.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "CryptLib.h"
+#import "NSData+Base64.h"
 
 @interface ReceiverMenuListViewController ()
 
@@ -117,17 +119,22 @@
         [HUD show:NO];
         return;
     }
-    
+    //TODo
     NSError *myError = nil;
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
-    
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"retrieveReceiversResult"];
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
         
-        NSNumber *respCode = [result valueForKey:@"<respcode>k__BackingField"];
-        NSString *respMesg = [result valueForKey:@"<respmessage>k__BackingField"];
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
+        NSNumber *respCode = [result valueForKey:@"respcode"];
+        NSString *respMesg = [result valueForKey:@"respmessage"];
+   
         //Hide Loader
         [HUD hide:YES];
         [HUD show:NO];
@@ -136,9 +143,9 @@
         
         if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]]) //Success
         {
-            if ([result valueForKey:@"<receiverList>k__BackingField"] != [NSNull null])
+            if ([result valueForKey:@"receiverList"] != [NSNull null])
             {
-                NSArray *itemArray = [result valueForKey:@"<receiverList>k__BackingField"]; // check null if need
+                NSArray *itemArray = [result valueForKey:@"receiverList"]; // check null if need
                 for (NSDictionary *itemDic in itemArray){
                     NSString *address = [itemDic valueForKey:@"address"];
                     NSString *fname = [itemDic valueForKey:@"fname"];
@@ -196,15 +203,33 @@
     HUD.square = YES;
     [HUD show:YES navigatorItem:self.navigationItem];
     
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"retrieveReceivers/?"];
-    NSString *srvcURL = [NSString stringWithFormat:@"%@walletno=%@", srvcURL1, walletno];
     
-    self.responseData = [NSMutableData data];
+    responseData = [[NSMutableData alloc] init];
+    
+    
+    NSString *postStr = [NSString stringWithFormat:@"{\"walletno\" : \"%@\"}", walletno];
+    
+    //AES encryption
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[postStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    postStr = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}",
+               [encryptedData base64EncodingWithLineLength:0],
+               _iv];
+    
+    //Update PIN
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"retrieveReceivers"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-    [request setHTTPMethod:@"GET"];
+    NSData *requestData = [NSData dataWithBytes:[postStr UTF8String] length:[postStr length]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [con start];
+    [request setHTTPBody:requestData];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+
 }
 
 
