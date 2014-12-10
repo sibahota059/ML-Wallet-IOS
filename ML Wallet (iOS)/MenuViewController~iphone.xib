@@ -295,13 +295,14 @@
                                     <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </label>
                                 <view hidden="YES" contentMode="scaleToFill" id="VKF-Ad-29a">
-                                    <rect key="frame" x="21" y="190" width="277" height="189"/>
+                                    <rect key="frame" x="21" y="190" width="277" height="188"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KdR-dT-XLe">
-                                            <rect key="frame" x="15" y="43" width="120" height="100"/>
+                                            <rect key="frame" x="40" y="22" width="197" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button" image="icon_my_account.jpg">
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="My Account" backgroundImage="headerbackground.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" image="icon_my_account_press.jpg"/>
@@ -311,15 +312,29 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="of5-IR-xdz">
-                                            <rect key="frame" x="143" y="43" width="120" height="100"/>
+                                            <rect key="frame" x="40" y="74" width="197" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button" image="icon_my_receiver.jpg">
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="My Receiver" backgroundImage="headerbackground.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" image="icon_my_receiver_press.jpg"/>
                                             <state key="highlighted" image="icon_my_receiver_press.jpg"/>
                                             <connections>
                                                 <action selector="btnReceiver:" destination="-1" eventType="touchUpInside" id="HJc-Yp-4No"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0EE-0x-KgZ">
+                                            <rect key="frame" x="40" y="125" width="197" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="My Bills Pay" backgroundImage="headerbackground.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="icon_my_receiver_press.jpg"/>
+                                            <state key="highlighted" image="icon_my_receiver_press.jpg"/>
+                                            <connections>
+                                                <action selector="btnBillsPay:" destination="-1" eventType="touchUpInside" id="TL9-8Q-56f"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -402,9 +417,8 @@
         <image name="bg_header.png" width="530" height="32"/>
         <image name="btn1.png" width="195" height="45"/>
         <image name="btn2.png" width="300" height="77"/>
-        <image name="icon_my_account.jpg" width="307" height="209"/>
+        <image name="headerbackground.png" width="320" height="50"/>
         <image name="icon_my_account_press.jpg" width="307" height="209"/>
-        <image name="icon_my_receiver.jpg" width="307" height="209"/>
         <image name="icon_my_receiver_press.jpg" width="307" height="209"/>
         <image name="kyc.9.png" width="395" height="395"/>
         <image name="ml_logo_iphone.png" width="320" height="100"/>
