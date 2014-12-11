@@ -163,6 +163,10 @@
 		700ECB71199B4CA3006EC6D7 /* EditEmailWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 700ECB70199B4CA3006EC6D7 /* EditEmailWebService.m */; };
 		700ECB74199B69D8006EC6D7 /* EditPasswordWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 700ECB73199B69D8006EC6D7 /* EditPasswordWebService.m */; };
 		700ECB77199B749D006EC6D7 /* EditUserNameWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 700ECB76199B749D006EC6D7 /* EditUserNameWebService.m */; };
+		704C016B1A39A9B400AAD764 /* RetrievePartners.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C01691A39A9B400AAD764 /* RetrievePartners.m */; };
+		704C016C1A39A9B400AAD764 /* RetrievePartners.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704C016A1A39A9B400AAD764 /* RetrievePartners.xib */; };
+		704C016F1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C016E1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.m */; };
+		704C01721A39B19800AAD764 /* PartnersAccountNoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C01711A39B19800AAD764 /* PartnersAccountNoList.m */; };
 		705654D51995F901002F81C7 /* my_save.png in Resources */ = {isa = PBXBuildFile; fileRef = 705654D41995F901002F81C7 /* my_save.png */; };
 		707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */; };
 		707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B618D9CD8100EC1B12 /* lock_profile.png */; };
@@ -208,6 +212,7 @@
 		70AE8CBB198FBE4C002F570D /* EditInformationPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AE8CB9198FBE4C002F570D /* EditInformationPad.xib */; };
 		70AE8CBD198FC067002F570D /* EditInformationPadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AE8CBC198FC067002F570D /* EditInformationPadCell.xib */; };
 		70AE8CC3198FC361002F570D /* EditInformationPadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE8CC2198FC361002F570D /* EditInformationPadCell.m */; };
+		70BD0CC81A39BC19008A86FF /* Partners.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD0CC71A39BC19008A86FF /* Partners.m */; };
 		70CA18F6198F26D200515FF1 /* ic_action_edit_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CA18F5198F26D200515FF1 /* ic_action_edit_press.png */; };
 		70CA18F8198F2C3F00515FF1 /* my_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CA18F7198F2C3F00515FF1 /* my_edit.png */; };
 		70CA1901198F49D800515FF1 /* AccountMainPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 70CA18FF198F49D800515FF1 /* AccountMainPad.m */; };
@@ -509,6 +514,13 @@
 		700ECB73199B69D8006EC6D7 /* EditPasswordWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPasswordWebService.m; sourceTree = "<group>"; };
 		700ECB75199B749D006EC6D7 /* EditUserNameWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserNameWebService.h; sourceTree = "<group>"; };
 		700ECB76199B749D006EC6D7 /* EditUserNameWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserNameWebService.m; sourceTree = "<group>"; };
+		704C01681A39A9B400AAD764 /* RetrievePartners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievePartners.h; sourceTree = "<group>"; };
+		704C01691A39A9B400AAD764 /* RetrievePartners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievePartners.m; sourceTree = "<group>"; };
+		704C016A1A39A9B400AAD764 /* RetrievePartners.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RetrievePartners.xib; sourceTree = "<group>"; };
+		704C016D1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievesOnlyUsersPartnerWS.h; sourceTree = "<group>"; };
+		704C016E1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievesOnlyUsersPartnerWS.m; sourceTree = "<group>"; };
+		704C01701A39B19800AAD764 /* PartnersAccountNoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartnersAccountNoList.h; sourceTree = "<group>"; };
+		704C01711A39B19800AAD764 /* PartnersAccountNoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartnersAccountNoList.m; sourceTree = "<group>"; };
 		705654D41995F901002F81C7 /* my_save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_save.png; sourceTree = "<group>"; };
 		707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationInformation.xib; sourceTree = "<group>"; };
 		707C03B618D9CD8100EC1B12 /* lock_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_profile.png; sourceTree = "<group>"; };
@@ -576,6 +588,8 @@
 		70AE8CBC198FC067002F570D /* EditInformationPadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformationPadCell.xib; sourceTree = "<group>"; };
 		70AE8CC1198FC361002F570D /* EditInformationPadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationPadCell.h; sourceTree = "<group>"; };
 		70AE8CC2198FC361002F570D /* EditInformationPadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationPadCell.m; sourceTree = "<group>"; };
+		70BD0CC61A39BC19008A86FF /* Partners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Partners.h; sourceTree = "<group>"; };
+		70BD0CC71A39BC19008A86FF /* Partners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Partners.m; sourceTree = "<group>"; };
 		70CA18F5198F26D200515FF1 /* ic_action_edit_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_edit_press.png; sourceTree = "<group>"; };
 		70CA18F7198F2C3F00515FF1 /* my_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_edit.png; sourceTree = "<group>"; };
 		70CA18FE198F49D800515FF1 /* AccountMainPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountMainPad.h; sourceTree = "<group>"; };
@@ -1335,6 +1349,8 @@
 		3BCFE2CC19580956008C4E6F /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				70BD0CC61A39BC19008A86FF /* Partners.h */,
+				70BD0CC71A39BC19008A86FF /* Partners.m */,
 				3B17584E18B301B8005A7805 /* UIAlertView+alertMe.h */,
 				3B17584F18B301B8005A7805 /* UIAlertView+alertMe.m */,
 				3B9FC060196CC2970035446F /* MBProgressHUD.h */,
@@ -1469,6 +1485,8 @@
 		708327F818D93B860033856C /* ProfileDialogs */ = {
 			isa = PBXGroup;
 			children = (
+				704C01701A39B19800AAD764 /* PartnersAccountNoList.h */,
+				704C01711A39B19800AAD764 /* PartnersAccountNoList.m */,
 				70AD602118DBC70500E392BF /* QuestionVerificationDialog.h */,
 				70AD601F18DBC6EA00E392BF /* QuestionVerificationDialog.m */,
 				70AE8CAF198FB154002F570D /* QuestionVerificationDialogPad.h */,
@@ -1531,6 +1549,9 @@
 				7006620C18DA791600A0F05C /* ProfileInformation.m */,
 				70AA0596198B316600B0C52A /* EditAccountInformation.h */,
 				70AA0597198B316600B0C52A /* EditAccountInformation.m */,
+				704C01681A39A9B400AAD764 /* RetrievePartners.h */,
+				704C01691A39A9B400AAD764 /* RetrievePartners.m */,
+				704C016A1A39A9B400AAD764 /* RetrievePartners.xib */,
 			);
 			name = iphone;
 			sourceTree = "<group>";
@@ -1565,6 +1586,8 @@
 		70E251231991C6C70091AB3D /* webservice */ = {
 			isa = PBXGroup;
 			children = (
+				704C016D1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.h */,
+				704C016E1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.m */,
 				7093EAA81991DFC9000F84D9 /* AccountMobilePad.h */,
 				7093EAA91991DFC9000F84D9 /* AccountMobilePad.m */,
 				700ECB75199B749D006EC6D7 /* EditUserNameWebService.h */,
@@ -1792,6 +1815,7 @@
 				3B8090BA18B5FB6700A11CB8 /* back2.png in Resources */,
 				3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */,
 				70CA1902198F49D800515FF1 /* AccountMainPad.xib in Resources */,
+				704C016C1A39A9B400AAD764 /* RetrievePartners.xib in Resources */,
 				3B5439AE19A47BFF00B076D8 /* ml_logo_iphone.png in Resources */,
 				3B1B36C818B4ADA1006DA5BB /* icon_my_receiver.jpg in Resources */,
 				3BB42E0918D6B6C60011792E /* profile.jpg in Resources */,
@@ -1879,10 +1903,12 @@
 				70EEA18218D9C48A00719BF7 /* Customer.m in Sources */,
 				7093EAAA1991DFC9000F84D9 /* AccountMobilePad.m in Sources */,
 				7006621018DA791600A0F05C /* AccountInformation.m in Sources */,
+				70BD0CC81A39BC19008A86FF /* Partners.m in Sources */,
 				70EEA18318D9C48A00719BF7 /* MLViewController.m in Sources */,
 				70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */,
 				3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */,
 				F01893691A25B87700409FC1 /* MLRatesAllChildViewController.m in Sources */,
+				704C016B1A39A9B400AAD764 /* RetrievePartners.m in Sources */,
 				F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */,
 				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
 				F00F969D1A32D8A8007DE4E7 /* SavePartnersBill.m in Sources */,
@@ -1915,6 +1941,7 @@
 				F008272B1987634800C80571 /* SoCancel.m in Sources */,
 				3011287719838585007EC190 /* MLhuillierWebViewController.m in Sources */,
 				3B3028591981E8C9007825CE /* ResetPassViewController.m in Sources */,
+				704C016F1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.m in Sources */,
 				F05C5F3918E12C30002F2EE1 /* MLUI.m in Sources */,
 				70CBA8F8198A37D4005D845E /* EditInformation.m in Sources */,
 				70AC235B199C478C008B2F74 /* EditSecretQuestionsWebService.m in Sources */,
@@ -1922,6 +1949,7 @@
 				F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */,
 				3BA7CD0518B22C2000B9FC4B /* MenuViewController.m in Sources */,
 				3012DC38197DF43300AA5F6F /* MapViewController.m in Sources */,
+				704C01721A39B19800AAD764 /* PartnersAccountNoList.m in Sources */,
 				3B38F7781952CE3700EC3948 /* DeviceID.m in Sources */,
 				7006621D18DA817900A0F05C /* ProfileImage.m in Sources */,
 				70AC235E199C67B5008B2F74 /* EditAccountInfoWebService.m in Sources */,
@@ -2034,6 +2062,22 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ML",
+					Wallet,
+					"(iOS)/",
+					"MyBackup/latest/ML-Wallet-IOS",
+					"$(PROJECT_DIR)/ML",
+					Wallet,
+					"(iOS)/",
+					"MyBackup/ML-Wallet-IOS",
+					"$(PROJECT_DIR)/ML",
+					Wallet,
+					"(iOS)/",
+					"MyBackup/Version8_26_14/ML-Wallet-IOS",
+					"$(PROJECT_DIR)/ML",
+					Wallet,
+					"(iOS)/",
+					"MyBackup/version_11_26_14/Version8_26_14/ML-Wallet-IOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
@@ -2057,6 +2101,22 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ML",
+					Wallet,
+					"(iOS)/",
+					"MyBackup/latest/ML-Wallet-IOS",
+					"$(PROJECT_DIR)/ML",
+					Wallet,
+					"(iOS)/",
+					"MyBackup/ML-Wallet-IOS",
+					"$(PROJECT_DIR)/ML",
+					Wallet,
+					"(iOS)/",
+					"MyBackup/Version8_26_14/ML-Wallet-IOS",
+					"$(PROJECT_DIR)/ML",
+					Wallet,
+					"(iOS)/",
+					"MyBackup/version_11_26_14/Version8_26_14/ML-Wallet-IOS",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ML Wallet (iOS)/ML Wallet (iOS)-Prefix.pch";
