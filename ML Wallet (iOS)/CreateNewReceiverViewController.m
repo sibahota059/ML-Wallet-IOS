@@ -13,6 +13,8 @@
 #import "ReceiverMenuListViewController.h"
 #import "UITextfieldAnimate.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "CryptLib.h"
+#import "NSData+Base64.h"
 
 @interface CreateNewReceiverViewController ()
 
@@ -277,6 +279,11 @@
     HUD.square = YES;
     [HUD show:YES navigatorItem:self.navigationItem];
     
+    
+    //enc
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    
     self.responseData = [NSMutableData data];
     if (self.isEdit)
     {
@@ -284,15 +291,28 @@
         objects = [NSArray arrayWithObjects:walletno,self.recNo,fname,mname,lname,relation,arrayString,address ,nil];
         jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         
-        NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"updateReceiver"];
+        NSData* data = [NSJSONSerialization dataWithJSONObject:jsonDictionary
+                                                       options:kNilOptions
+                                                         error:nil];
+        NSString* strData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* encryptedData = [[StringEncryption alloc] encrypt:[strData dataUsingEncoding:NSUTF8StringEncoding]
+                                                              key:_key
+                                                               iv:_iv];
         
+        keys = [NSArray arrayWithObjects:@"encrypted", @"iv", nil];
+        objects = [NSArray arrayWithObjects:[encryptedData base64EncodingWithLineLength:0], _iv, nil];
+        jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+        
+        NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+        
+        NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"updateReceiver"];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
         
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:kNilOptions error:&error];
         
         [request setHTTPMethod:@"PUT"];
-        [request setValue:[NSString stringWithFormat:@"%d",[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+        [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPBody:jsonData];
@@ -304,6 +324,20 @@
         objects = [NSArray arrayWithObjects:walletno,fname,mname,lname,relation,arrayString,address ,nil];
         jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         
+        NSData* data = [NSJSONSerialization dataWithJSONObject:jsonDictionary
+                                                       options:kNilOptions
+                                                         error:nil];
+        NSString* strData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* encryptedData = [[StringEncryption alloc] encrypt:[strData dataUsingEncoding:NSUTF8StringEncoding]
+                                                              key:_key
+                                                               iv:_iv];
+        
+        keys = [NSArray arrayWithObjects:@"encrypted", @"iv", nil];
+        objects = [NSArray arrayWithObjects:[encryptedData base64EncodingWithLineLength:0], _iv, nil];
+        jsonDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+        
+        NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+        
         NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"addReceiverList"];
     
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
@@ -313,7 +347,7 @@
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:kNilOptions error:&error];
         
         [request setHTTPMethod:@"POST"];
-        [request setValue:[NSString stringWithFormat:@"%d",[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+        [request setValue:[NSString stringWithFormat:@"%lu",(unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPBody:jsonData];
@@ -348,17 +382,27 @@
         return;
     }
     
+    // convert to JSON
     NSError *myError = nil;
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
-    if (myError == nil) {
+    if (myError == nil){
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
+        
+        
+        NSNumber *respCode = [result valueForKeyPath:@"respcode"];
+        NSString *respMesg = [result valueForKeyPath:@"respmessage"];
+        
         if (self.isEdit) {
-            res = [res valueForKey:@"updateReceiverResult"];
+            res = [result valueForKey:@"updateReceiverResult"];
         }
         
-        NSNumber *respCode = [res valueForKey:@"respcode"];
-        NSString *respMesg = [res valueForKey:@"respmessage"];
-    
         if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]]) {
             if(self.isEdit)
             {

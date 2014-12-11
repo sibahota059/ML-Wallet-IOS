@@ -53,6 +53,7 @@
 - (IBAction)btnReload:(id)sender;
 - (IBAction)btnHistory:(id)sender;
 - (IBAction)bntWebview:(id)sender;
+- (IBAction)btnBillsPay:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *lblBalance;
 @property (strong, nonatomic) IBOutlet UILabel *lblWalletno;

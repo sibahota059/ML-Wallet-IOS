@@ -66,6 +66,7 @@
 		3B8090C418B6152E00A11CB8 /* header_navi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8090C318B6152E00A11CB8 /* header_navi.png */; };
 		3B8B9EF518BC341400639142 /* textbox2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B9EF418BC341400639142 /* textbox2.png */; };
 		3B8B9EF718BC4B3300639142 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B9EF618BC4B3300639142 /* save.png */; };
+		3B97C13B1A37FC330060AD45 /* NSMutableArray+PayoutMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B97C13A1A37FC330060AD45 /* NSMutableArray+PayoutMobile.m */; };
 		3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9FC061196CC2970035446F /* MBProgressHUD.m */; };
 		3B9FC06D196D40750035446F /* LoginViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */; };
 		3B9FC06F196D446E0035446F /* LoginViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9FC06E196D446E0035446F /* LoginViewController~ipad.xib */; };
@@ -382,6 +383,8 @@
 		3B8090C318B6152E00A11CB8 /* header_navi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_navi.png; sourceTree = "<group>"; };
 		3B8B9EF418BC341400639142 /* textbox2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbox2.png; sourceTree = "<group>"; };
 		3B8B9EF618BC4B3300639142 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		3B97C1391A37FC330060AD45 /* NSMutableArray+PayoutMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+PayoutMobile.h"; sourceTree = "<group>"; };
+		3B97C13A1A37FC330060AD45 /* NSMutableArray+PayoutMobile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+PayoutMobile.m"; sourceTree = "<group>"; };
 		3B9FC060196CC2970035446F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		3B9FC061196CC2970035446F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		3B9FC06C196D40750035446F /* LoginViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginViewController~iphone.xib"; sourceTree = "<group>"; };
@@ -782,6 +785,8 @@
 			children = (
 				3B1B36C918B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.h */,
 				3B1B36CA18B4FB06006DA5BB /* UIView+MenuAnimationUIVIew.m */,
+				3B97C1391A37FC330060AD45 /* NSMutableArray+PayoutMobile.h */,
+				3B97C13A1A37FC330060AD45 /* NSMutableArray+PayoutMobile.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1833,6 +1838,7 @@
 				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
 				70ADA9151990DD3600075CB7 /* AccountInformationPad.m in Sources */,
 				70AA059E198B385F00B0C52A /* EditPassword.m in Sources */,
+				3B97C13B1A37FC330060AD45 /* NSMutableArray+PayoutMobile.m in Sources */,
 				70AE8CB1198FB154002F570D /* QuestionVerificationDialogPad.m in Sources */,
 				3B9FC062196CC2970035446F /* MBProgressHUD.m in Sources */,
 				F013D7131A26FE9B0095A154 /* KpRatesOwn.m in Sources */,

@@ -574,6 +574,10 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
+- (IBAction)btnBillsPay:(id)sender {
+    [UIAlertView myCostumeAlert:@"TODO" alertMessage:@"Billspay here" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+}
+
 
 - (IBAction)btn_Myprofile:(id)sender {
 

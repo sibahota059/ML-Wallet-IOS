@@ -12,6 +12,8 @@
 #import "ReceiverMenuListViewController.h"
 #import "CreateNewReceiverViewController.h"
 #import "NSDictionary+LoadWalletData.h"
+#import "CryptLib.h"
+#import "NSData+Base64.h"
 
 @interface ReceiverAvatarViewController ()
 
@@ -131,7 +133,6 @@
     
     //EDIT button
     if ([titleView isEqualToString:@"Edit Receiver"]) {
-        //TODO,.
         if ([titleButton isEqualToString:@"YES"]) {
             CreateNewReceiverViewController *gotoCreate = [[CreateNewReceiverViewController alloc]
                                                            initWithNibName:@"CreateNewReceiverViewController"
@@ -160,14 +161,29 @@
     
     
     //Rest Service
-    self.responseData = [NSMutableData data];
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"deleteReceiver/?"];
-    NSString *srvcURL = [NSString stringWithFormat: @"%@walletno=%@&receiverno=%@", srvcURL1, walletno, receiverno];
+    NSString *postStr = [NSString stringWithFormat:@"{\"walletno\" : \"%@\", \"receiverno\" : \"%@\"}",
+                         walletno,
+                         receiverno];
+    
+    //AES encryption
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[postStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    postStr = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\",\"iv\" : \"%@\"}",
+               [encryptedData base64EncodingWithLineLength:0],
+               _iv];
     
     self.responseData = [NSMutableData data];
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"deleteReceiver"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-    [request setHTTPMethod:@"DELETE"];
+    NSData *requestData = [NSData dataWithBytes:[postStr UTF8String] length:[postStr length]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    [request setHTTPBody:requestData];
     NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [con start];
 }
@@ -206,17 +222,22 @@
         [HUD show:NO];
         return;
     }
-    
+    // convert to JSON
     NSError *myError = nil;
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
-    if (myError == nil) {
+    if (myError == nil){
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
         
-        NSArray *result = [res valueForKey:@"deleteReceiverResult"];
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
-        NSNumber *respCode = [result valueForKey:@"respcode"];
-        NSString *respMesg = [result valueForKey:@"respmessage"];
-    
+        
+        NSNumber *respCode = [result valueForKeyPath:@"respcode"];
+        NSString *respMesg = [result valueForKeyPath:@"respmessage"];
         
         //hide  loAder..
         [HUD hide:YES];
