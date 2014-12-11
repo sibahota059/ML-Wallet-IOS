@@ -233,7 +233,7 @@
                   symbolName = "-[MLHistoryViewController alertView:didDismissWithButtonIndex:]"
                   moduleName = "ML Wallet (iOS)"
                   urlString = "file:///Users/mm20/Desktop/ML-Wallet-IOS/ML%20Wallet%20(iOS)/MLHistoryViewController.m"
-                  timestampString = "439876844.710406"
+                  timestampString = "439978800.532646"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "849"
@@ -247,7 +247,7 @@
                   symbolName = "-[MLHistoryViewController alertView:didDismissWithButtonIndex:]"
                   moduleName = "ML Wallet (iOS)"
                   urlString = "file:///Users/mm20/Desktop/ML-Wallet-IOS/ML%20Wallet%20(iOS)/MLHistoryViewController.m"
-                  timestampString = "439876844.710598"
+                  timestampString = "439978800.532833"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "849"
@@ -430,6 +430,38 @@
             startingLineNumber = "500"
             endingLineNumber = "500"
             landmarkName = "-btnClose:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ML Wallet (iOS)/MLSendMoneyViewController.m"
+            timestampString = "439978800.423684"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "788"
+            endingLineNumber = "788"
+            landmarkName = "-ch_sendOwn:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ML Wallet (iOS)/MLSendMoneyViewController.m"
+            timestampString = "439978802.7865"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "813"
+            endingLineNumber = "813"
+            landmarkName = "-ch_sendOwn:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
