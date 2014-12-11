@@ -26,6 +26,7 @@
                 <outlet property="tf_amount" destination="Ge1-7P-wnD" id="3Jy-I4-L6S"/>
                 <outlet property="totalValue" destination="N30-0M-ZAV" id="5rb-Nr-kpx"/>
                 <outlet property="view" destination="1" id="GFI-J6-ZHp"/>
+                <outlet property="viewShade" destination="6CW-QH-dqt" id="7Ts-38-Fy2"/>
                 <outlet property="view_accountno" destination="mOo-Z5-0ma" id="ZqO-nh-8sg"/>
                 <outlet property="view_charge" destination="45r-nT-sBL" id="Uj1-bQ-9cr"/>
                 <outlet property="view_main" destination="cED-Ju-xSH" id="Kg2-Jy-9vK"/>
@@ -115,7 +116,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eIF-Of-fdN">
                                     <rect key="frame" x="349" y="103" width="122" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" patternImage="EEBFEDA0-E43F-4F8E-9469-2C05B01C0BBB" colorSpace="pattern"/>
+                                    <color key="backgroundColor" patternImage="D91D3C8F-CE91-45AA-90A0-86E0754D1057" colorSpace="pattern"/>
                                     <state key="normal" title="Change" backgroundImage="navbar_bg.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -289,12 +290,17 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <view contentMode="scaleToFill" id="6CW-QH-dqt">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="EEBFEDA0-E43F-4F8E-9469-2C05B01C0BBB" width="256" height="256">
+        <image name="D91D3C8F-CE91-45AA-90A0-86E0754D1057" width="256" height="256">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
