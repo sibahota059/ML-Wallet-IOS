@@ -17,6 +17,7 @@
 #import "MLRatesTableViewController.h"
 #import "MLUI.h"
 #import "AccountMain.h"
+#import "RetrievePartners.h"
 #import "MLHistoryViewController.h"
 #import "NSDictionary+LoadWalletData.h"
 #import "MapViewController.h"
@@ -25,6 +26,7 @@
 #import "MLhuillierWebViewController.h"
 #import "UIImage+DecodeStringToImage.h"
 #import "AccountMainPad.h"
+#import "RetrievesOnlyUsersPartnerWS.h"
 #import "MLRatesSwipeViewController.h"
 #import "SaveWalletData.h"
 #import "CryptLib.h"
@@ -49,9 +51,13 @@
 @synthesize topLayer = _topLayer;
 @synthesize layerPosition = _layerPosition;
 @synthesize responseData;
+@synthesize partners;
 
 
 AccountMobilePad *account;
+RetrievesOnlyUsersPartnerWS *retrievePartnerWS;
+NSMutableArray *partnersData;
+
 NSDate *date;
 MBProgressHUD *HUD;
 
@@ -170,6 +176,8 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
     self.navigationController.navigationBarHidden = YES;
     [self.scrollView setScrollEnabled:YES];
     
+    
+    
     //Set Background
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
@@ -204,6 +212,11 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
     account = [AccountMobilePad new];
     account.delegate = self;
     
+    retrievePartnerWS = [RetrievesOnlyUsersPartnerWS new];
+    retrievePartnerWS.delegate = self;
+    
+    partnersData = [[NSMutableArray alloc] init];
+
     
     
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -575,29 +588,25 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 }
 
 - (IBAction)btnBillsPay:(id)sender {
-    [UIAlertView myCostumeAlert:@"TODO" alertMessage:@"Billspay here" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    
+    [self displayProgressBar];
+    [retrievePartnerWS retrievePartners];
+
 }
 
 
 - (IBAction)btn_Myprofile:(id)sender {
 
     
-    [self checkDevice];
-    
+    [self displayProgressBar];
+    [account loadAccount];
     
 //    [UIAlertView myCostumeAlert:@"My Profile" alertMessage:@"Todo." delegate:nil cancelButton:@"Ok" otherButtons:nil];
     
 }
 
 
--(void)checkDevice{
-    
-    [self displayProgressBar];
-    [account loadAccount];
-    
-    
-    
-}
+
 
 
 
@@ -635,6 +644,58 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
     
     
 }
+
+
+- (void) didFinishRetrievingPartners:(NSString *)indicator andError:(NSString *)getError{
+    
+    UIAlertView *resultAlertView = [[UIAlertView alloc] initWithTitle:@"Message" message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    
+    if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", retrievePartnerWS.respcode]isEqualToString:@"1"]){
+        
+        [self dismissProgressBar];
+        
+        RetrievePartners *retrievePartner = [[RetrievePartners alloc] initWithNibName:@"RetrievePartners" bundle:nil];
+        NSDictionary * test = retrievePartnerWS.partners;
+        self.partners = test;
+        retrievePartner.partners = self.partners;
+        
+        //
+        //        NSMutableArray *partner = retrievePartnerWS.partners;
+        //
+        //        int i = 0;
+        //
+        //        while(i < [partner count])
+        //        {
+        //            Partners *onePartner = [partner objectAtIndex:i];
+        //            NSString *name = onePartner.partnersName;
+        //            [partnersData addObject:name];
+        //            i++;
+        //        }
+        
+        [self.navigationController pushViewController:retrievePartner animated:YES];
+        
+    }
+    else if ([[NSString stringWithFormat:@"%@", retrievePartnerWS.respcode] isEqualToString:@"0"])
+        
+    {
+        [resultAlertView setMessage:retrievePartnerWS.respmessage];
+        [resultAlertView show];
+    }
+    else if ([indicator isEqualToString:@"error"])
+    {
+        [resultAlertView setMessage:@"Error in retrieving partners."];
+        [resultAlertView show];
+    }else{
+        
+        [resultAlertView setMessage:retrievePartnerWS.respmessage];
+        [resultAlertView show];
+    }
+    
+    
+    
+}
+
 
 -(void)retrieveData{
     //Store the NSDictionary rates data into static array
