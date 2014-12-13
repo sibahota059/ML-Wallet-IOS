@@ -257,10 +257,12 @@
 		F00F96971A2FFA06007DE4E7 /* RetrievePartnersAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = F00F96961A2FFA06007DE4E7 /* RetrievePartnersAccount.m */; };
 		F00F969A1A307EAF007DE4E7 /* SendoutPartnersBill.m in Sources */ = {isa = PBXBuildFile; fileRef = F00F96991A307EAF007DE4E7 /* SendoutPartnersBill.m */; };
 		F00F969D1A32D8A8007DE4E7 /* SavePartnersBill.m in Sources */ = {isa = PBXBuildFile; fileRef = F00F969C1A32D8A8007DE4E7 /* SavePartnersBill.m */; };
-		F01014AE1A2408ED00F4BA76 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AA1A2408ED00F4BA76 /* checked.png */; };
-		F01014AF1A2408ED00F4BA76 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AB1A2408ED00F4BA76 /* checked@2x.png */; };
+		F00FA7D11A3A7BC00063E1D1 /* MLRatesAllChildViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00FA7D01A3A7BC00063E1D1 /* MLRatesAllChildViewController~ipad.xib */; };
+		F00FA7D51A3A7F920063E1D1 /* MLRatesSwipeViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00FA7D41A3A7F920063E1D1 /* MLRatesSwipeViewController~ipad.xib */; };
+		F00FA7D91A3A8F9B0063E1D1 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = F00FA7D81A3A8F9B0063E1D1 /* checked.png */; };
+		F01014AF1A2408ED00F4BA76 /* checked_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AB1A2408ED00F4BA76 /* checked_ipad.png */; };
 		F01014B01A2408ED00F4BA76 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AC1A2408ED00F4BA76 /* unchecked.png */; };
-		F01014B11A2408ED00F4BA76 /* unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AD1A2408ED00F4BA76 /* unchecked@2x.png */; };
+		F01014B11A2408ED00F4BA76 /* unchecked_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F01014AD1A2408ED00F4BA76 /* unchecked_ipad.png */; };
 		F01014B41A240CA100F4BA76 /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F01014B31A240CA100F4BA76 /* RadioButton.m */; };
 		F013D7131A26FE9B0095A154 /* KpRatesOwn.m in Sources */ = {isa = PBXBuildFile; fileRef = F013D7121A26FE9B0095A154 /* KpRatesOwn.m */; };
 		F018931C1A259F5C00409FC1 /* chchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = F01893181A259F5C00409FC1 /* chchecked.png */; };
@@ -666,10 +668,12 @@
 		F00F96991A307EAF007DE4E7 /* SendoutPartnersBill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendoutPartnersBill.m; sourceTree = "<group>"; };
 		F00F969B1A32D8A8007DE4E7 /* SavePartnersBill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavePartnersBill.h; sourceTree = "<group>"; };
 		F00F969C1A32D8A8007DE4E7 /* SavePartnersBill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavePartnersBill.m; sourceTree = "<group>"; };
-		F01014AA1A2408ED00F4BA76 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
-		F01014AB1A2408ED00F4BA76 /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
+		F00FA7D01A3A7BC00063E1D1 /* MLRatesAllChildViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesAllChildViewController~ipad.xib"; sourceTree = "<group>"; };
+		F00FA7D41A3A7F920063E1D1 /* MLRatesSwipeViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MLRatesSwipeViewController~ipad.xib"; sourceTree = "<group>"; };
+		F00FA7D81A3A8F9B0063E1D1 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
+		F01014AB1A2408ED00F4BA76 /* checked_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked_ipad.png; sourceTree = "<group>"; };
 		F01014AC1A2408ED00F4BA76 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
-		F01014AD1A2408ED00F4BA76 /* unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked@2x.png"; sourceTree = "<group>"; };
+		F01014AD1A2408ED00F4BA76 /* unchecked_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked_ipad.png; sourceTree = "<group>"; };
 		F01014B21A240CA100F4BA76 /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
 		F01014B31A240CA100F4BA76 /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
 		F013D7111A26FE9B0095A154 /* KpRatesOwn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KpRatesOwn.h; sourceTree = "<group>"; };
@@ -1102,6 +1106,8 @@
 				F01893731A25C03100409FC1 /* MLRatesSwipeViewController~iphone.xib */,
 				F01893681A25B87700409FC1 /* MLRatesAllChildViewController~iphone.xib */,
 				F0242B441A2809D100B8DA44 /* PartnersTableViewController.xib */,
+				F00FA7D01A3A7BC00063E1D1 /* MLRatesAllChildViewController~ipad.xib */,
+				F00FA7D41A3A7F920063E1D1 /* MLRatesSwipeViewController~ipad.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1214,12 +1220,12 @@
 			children = (
 				F01893181A259F5C00409FC1 /* chchecked.png */,
 				F01893191A259F5C00409FC1 /* chunchecked@2x.png */,
+				F00FA7D81A3A8F9B0063E1D1 /* checked.png */,
 				F018931A1A259F5C00409FC1 /* chchecked@2x.png */,
 				F018931B1A259F5C00409FC1 /* chunchecked.png */,
-				F01014AA1A2408ED00F4BA76 /* checked.png */,
-				F01014AB1A2408ED00F4BA76 /* checked@2x.png */,
+				F01014AB1A2408ED00F4BA76 /* checked_ipad.png */,
 				F01014AC1A2408ED00F4BA76 /* unchecked.png */,
-				F01014AD1A2408ED00F4BA76 /* unchecked@2x.png */,
+				F01014AD1A2408ED00F4BA76 /* unchecked_ipad.png */,
 				7003CEC819B7025A0020F76F /* account_camera.png */,
 				7003CEC919B7025A0020F76F /* account_sdcard.png */,
 				70E3EC5B19B5AD23000522EA /* donedown.png */,
@@ -1706,12 +1712,11 @@
 				3BC3829018C095BB00270567 /* ic_contact.9.png in Resources */,
 				70AA059A198B316600B0C52A /* EditAccountInformation.xib in Resources */,
 				3BB924EE196FEBE7007E76A5 /* ReceiverMenuListViewController~ipad.xib in Resources */,
-				F01014AE1A2408ED00F4BA76 /* checked.png in Resources */,
 				3B17585718B35CDB005A7805 /* peso_signr.png in Resources */,
 				3B1B36BE18B43181006DA5BB /* transparent.png in Resources */,
 				3B1B36C318B4AD70006DA5BB /* icon_my_account_press.jpg in Resources */,
 				3BA7CD1618B23A9900B9FC4B /* trx.9.png in Resources */,
-				F01014AF1A2408ED00F4BA76 /* checked@2x.png in Resources */,
+				F01014AF1A2408ED00F4BA76 /* checked_ipad.png in Resources */,
 				3B8090C018B6106F00A11CB8 /* navigation_image.png in Resources */,
 				F081A05C19776F89004568EF /* MLHistoryTableViewCell~iphone.xib in Resources */,
 				F081A05119776E55004568EF /* MLReceiverTableViewController.xib in Resources */,
@@ -1722,6 +1727,7 @@
 				3BB924F0196FF864007E76A5 /* CreateNewReceiverViewController~ipad.xib in Resources */,
 				3B9FC104196E4D3E0035446F /* MenuViewController~ipad.xib in Resources */,
 				F081A05319776E55004568EF /* MLTermsConditionViewController~ipad.xib in Resources */,
+				F00FA7D51A3A7F920063E1D1 /* MLRatesSwipeViewController~ipad.xib in Resources */,
 				7006620618DA77E900A0F05C /* profile_frame.jpg in Resources */,
 				3B30285A1981E8C9007825CE /* ResetPassViewController~iphone.xib in Resources */,
 				70AA05A9198B3AF600B0C52A /* EditEmail.xib in Resources */,
@@ -1772,6 +1778,8 @@
 				70AA0589198B137A00B0C52A /* EditInformationCell.xib in Resources */,
 				3BA8A232197570DF0052FA2F /* down.png in Resources */,
 				7006622518DA823D00A0F05C /* black_credentials.png in Resources */,
+				F00FA7D11A3A7BC00063E1D1 /* MLRatesAllChildViewController~ipad.xib in Resources */,
+				F00FA7D91A3A8F9B0063E1D1 /* checked.png in Resources */,
 				70ADA9161990DD3600075CB7 /* AccountInformationPad.xib in Resources */,
 				70ADA8F51990740400075CB7 /* EditAccountInformationPad.xib in Resources */,
 				F007CC391985D7D20022FFF2 /* ic_pending.png in Resources */,
@@ -1871,7 +1879,7 @@
 				3BA7CCE518B1E28400B9FC4B /* new_locator.png in Resources */,
 				70AE8CBB198FBE4C002F570D /* EditInformationPad.xib in Resources */,
 				3BB42E0118D6B6C60011792E /* navbar_bg.png in Resources */,
-				F01014B11A2408ED00F4BA76 /* unchecked@2x.png in Resources */,
+				F01014B11A2408ED00F4BA76 /* unchecked_ipad.png in Resources */,
 				3BB42DFF18D6B6C60011792E /* btnReceiver_bg.png in Resources */,
 				3B8B9EF518BC341400639142 /* textbox2.png in Resources */,
 			);
