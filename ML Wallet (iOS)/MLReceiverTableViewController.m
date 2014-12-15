@@ -17,7 +17,7 @@
     
     int counter;
     GetReceiver *getReceiver;
-    NSMutableArray *receiverImage, *receiverFname, *receiverMname, *receiverLname, *receiverAddress, *receiverRelation, *receiverNo, *getValueReceiver;
+    NSMutableArray *receiverImage, *receiverFname, *receiverMname, *receiverLname, *receiverAddress, *receiverRelation, *receiverNo, *getValueReceiver, *getRefreshReceiver;
     UIImage *recImage;
     MBProgressHUD *HUD;
     MLUI *getUI;
@@ -120,11 +120,15 @@
 
 - (void)refresher{
     confirmInd = @"receiver";
+    
+    //Call Webservice to get the list of receiver
     [getReceiver getReceiverWalletNo:walletno];
 }
 
-- (void)didFinishLoadingReceiver:(NSString *)indicator andError:(NSString *)getError{
 
+#pragma Retrieving Receivers Done
+- (void)didFinishLoadingReceiver:(NSString *)indicator andError:(NSString *)getError{
+    
     // End the refreshing
     if (self.refreshControl) {
         
@@ -139,46 +143,45 @@
         [self.refreshControl endRefreshing];
     }
     
+    //Store the value of <receiverList>k__BackingField arry to mutable array
+    getValueReceiver = [getReceiver.getReceiver valueForKey:@"receiverList"];
     
-    NSArray *receiver = [getReceiver.getReceiver objectForKey:@"retrieveReceiversResult"];
-    getValueReceiver = [receiver valueForKey:@"<receiverList>k__BackingField"];
-    NSString *respcode    = [receiver valueForKey:@"<respcode>k__BackingField"];
-    NSString *respmessage = [receiver valueForKey:@"<respmessage>k__BackingField"];
+    //Get the repscode, respmessage, and number of receiver
+    NSString *respcode    = [getReceiver.getReceiver valueForKey:@"respcode"];
+    NSString *respmessage = [getReceiver.getReceiver valueForKey:@"respmessage"];
     
     if ([indicator isEqualToString:@"1"] && [[NSString stringWithFormat:@"%@", respcode]isEqualToString:@"1"]){
-        
-        receiverImage = [NSMutableArray new];
-        receiverFname = [NSMutableArray new];
-        receiverMname = [NSMutableArray new];
-        receiverLname = [NSMutableArray new];
-        receiverAddress = [NSMutableArray new];
-        receiverRelation = [NSMutableArray new];
-        receiverNo = [NSMutableArray new];
-        
-        for (NSDictionary *items in getValueReceiver) {
-            
-            NSString *rImage  = [items valueForKey:@"photo"];
-            NSString *fName  = [items valueForKey:@"fname"];
-            NSString *mName  = [items valueForKey:@"mname"];
-            NSString *lName  = [items valueForKey:@"lname"];
-            NSString *address  = [items valueForKey:@"address"];
-            NSString *rNumber  = [items valueForKey:@"receiverNo"];
-            NSString *relation  = [items valueForKey:@"relation"];
-            
-            
-            [receiverImage addObject:rImage];
-            [receiverFname addObject:fName];
-            [receiverMname addObject:mName];
-            [receiverLname addObject:lName];
-            [receiverAddress addObject:address];
-            [receiverNo addObject:rNumber];
-            [receiverRelation addObject:relation];
-        
-            [self.tableView reloadData];
 
-            
-        }
+    receiverImage = [NSMutableArray new];
+    receiverFname = [NSMutableArray new];
+    receiverMname = [NSMutableArray new];
+    receiverLname = [NSMutableArray new];
+    receiverAddress = [NSMutableArray new];
+    receiverRelation = [NSMutableArray new];
+    receiverNo = [NSMutableArray new];
+    
+    for (NSDictionary *items in getValueReceiver) {
         
+        NSString *rImage  = [items valueForKey:@"photo"];
+        NSString *fName  = [items valueForKey:@"fname"];
+        NSString *mName  = [items valueForKey:@"mname"];
+        NSString *lName  = [items valueForKey:@"lname"];
+        NSString *address  = [items valueForKey:@"address"];
+        NSString *rNumber  = [items valueForKey:@"receiverNo"];
+        NSString *relation  = [items valueForKey:@"relation"];
+        
+        
+        [receiverImage addObject:rImage];
+        [receiverFname addObject:fName];
+        [receiverMname addObject:mName];
+        [receiverLname addObject:lName];
+        [receiverAddress addObject:address];
+        [receiverNo addObject:rNumber];
+        [receiverRelation addObject:relation];
+        
+    }
+
+    
     }else if ([[NSString stringWithFormat:@"%@", respcode] isEqualToString:@"0"]){
         [UIAlertView myCostumeAlert:@"Message" alertMessage:[NSString stringWithFormat:@"%@", respmessage] delegate:nil cancelButton:@"Ok" otherButtons:nil];
     }else if ([indicator isEqualToString:@"error"]){
@@ -189,6 +192,10 @@
     }
 
 }
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

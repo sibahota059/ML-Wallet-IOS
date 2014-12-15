@@ -42,7 +42,7 @@
     MBProgressHUD *HUD;
     CLLocationManager *locationManager;
     DeviceID *di;
-    BOOL isChecked, isReceiver, isRemittance, isBillsPay;
+    BOOL isChecked, isReceiver, isRemittance, isBillsPay, isNoPartner;
     int getPartnersPosition;
 
 }
@@ -671,36 +671,47 @@
     
     NSUInteger countPartners = [getPartNers count];
     
-    
-    for (int x=0; x<=countPartners - 1; x++) {
+    if (countPartners != 0) {
         
-        NSUInteger countAccount = [[[getPartNers objectAtIndex:x] valueForKey:@"ListAccountNo"] count];
+        isNoPartner = YES;
         
-        NSMutableArray *storeAccount = [NSMutableArray new];
+        for (int x=0; x<=countPartners - 1; x++) {
         
-        for (int y=0; y<=countAccount - 1; y++) {
+            NSUInteger countAccount = [[[getPartNers objectAtIndex:x] valueForKey:@"ListAccountNo"] count];
+        
+            NSMutableArray *storeAccount = [NSMutableArray new];
+        
+            for (int y=0; y<=countAccount - 1; y++) {
             
-            NSString *account = [[[[getPartNers objectAtIndex:x] valueForKey:@"ListAccountNo"] objectAtIndex:y] valueForKey:@"AccountNo"];
+                NSString *account = [[[[getPartNers objectAtIndex:x] valueForKey:@"ListAccountNo"] objectAtIndex:y] valueForKey:@"AccountNo"];
             
-            if ([account isEqualToString:@""]) {
-                account = @"No Account Number";
+                if ([account isEqualToString:@""]) {
+                    account = @"No Account Number";
+                }
+            
+                [storeAccount addObject:account];
             }
             
-            [storeAccount addObject:account];
+        
+            NSMutableArray *storePartners;
+            NSString *getPartnersName = [[getPartNers objectAtIndex:x] valueForKey:@"PartnersName"];
+            NSString *getPartnersId = [[getPartNers objectAtIndex:x] valueForKey:@"PartnersId"];
+        
+            storePartners = [NSMutableArray arrayWithObjects:getPartnersName, getPartnersId, storeAccount, nil];
+        
+            [allPartNers addObject:storePartners];
         }
         
-        NSMutableArray *storePartners;
-        NSString *getPartnersName = [[getPartNers objectAtIndex:x] valueForKey:@"PartnersName"];
-        NSString *getPartnersId = [[getPartNers objectAtIndex:x] valueForKey:@"PartnersId"];
-        
-        storePartners = [NSMutableArray arrayWithObjects:getPartnersName, getPartnersId, storeAccount, nil];
-        
-        [allPartNers addObject:storePartners];
+    }else{
+        isNoPartner = NO;
     }
+    
 
 }
 
 - (void)didFinishLoadingBills:(NSString *)indicator andError:(NSString *)getError{
+    
+    [self dismissProgressBar];
     
     NSString *getOperatorId = [getBillObject.getBillsPartners objectForKey:@"OperatorId"];
     NSString *getBarCode = [getBillObject.getBillsPartners objectForKey:@"Bcode"];
@@ -826,31 +837,42 @@
 
 - (IBAction)btnPartners:(id)sender {
     
+    if (!isNoPartner) {
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"You dont have partners yet!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }else{
+        PartnersTableViewController *view_partners = [[PartnersTableViewController alloc]initWithNibName:@"PartnersTableViewController" bundle:nil];
     
-    PartnersTableViewController *view_partners = [[PartnersTableViewController alloc]initWithNibName:@"PartnersTableViewController" bundle:nil];
-    
-    view_partners.displayType      = @"partners";
-    view_partners.getPartners      = allPartNers;
-    view_partners.delegate = self;
-    view_partners.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:view_partners animated:YES];
+        view_partners.displayType      = @"partners";
+        view_partners.getPartners      = allPartNers;
+        view_partners.delegate = self;
+        view_partners.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:view_partners animated:YES];
+    }
 }
 
 - (IBAction)btnAccount:(id)sender {
     
-    PartnersTableViewController *view_account = [[PartnersTableViewController alloc]initWithNibName:@"PartnersTableViewController" bundle:nil];
+    if (!isNoPartner) {
+        [UIAlertView myCostumeAlert:@"Message" alertMessage:@"You dont have partners yet!" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    }else{
+        
+        PartnersTableViewController *view_account = [[PartnersTableViewController alloc]initWithNibName:@"PartnersTableViewController" bundle:nil];
     
-    view_account.displayType      = @"account";
-    view_account.getAccount      = [[allPartNers objectAtIndex:getPartnersPosition] objectAtIndex:2];
-    view_account.delegate = self;
-    view_account.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:view_account animated:YES];
+        view_account.displayType      = @"account";
+        view_account.getAccount      = [[allPartNers objectAtIndex:getPartnersPosition] objectAtIndex:2];
+        view_account.delegate = self;
+        view_account.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:view_account animated:YES];
+    }
 }
 
 - (IBAction)btnProceed:(id)sender {
     _viewShade.hidden = YES;
     _viewNoAccount.hidden = YES;
     [getBillObject getUserWalletNo:walletno andPartnersId:requestPartnersId andAccountNo:_lbl_account.text andAmount:_tf_amount.text];
+    
+    //Display the Progress Dialog
+    [self displayProgressBar];
 }
 
 - (IBAction)btnCancel:(id)sender {
