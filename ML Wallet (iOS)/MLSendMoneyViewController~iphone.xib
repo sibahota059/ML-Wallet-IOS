@@ -29,10 +29,10 @@
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="viewNoAccount" destination="MFs-IL-KgS" id="IDf-uw-OS2"/>
                 <outlet property="viewShade" destination="RNh-Fr-UkD" id="wf2-uG-c9I"/>
-                <outlet property="view_accountno" destination="EJe-I0-a3p" id="eZC-94-cRd"/>
+                <outlet property="view_accountno" destination="EJe-I0-a3p" id="9OD-zp-kgV"/>
                 <outlet property="view_charge" destination="UXE-Wg-sdJ" id="C2W-Fh-boD"/>
                 <outlet property="view_main" destination="g5s-sv-6Kr" id="hoC-wW-B4I"/>
-                <outlet property="view_partners" destination="Ud1-hd-dsK" id="GHh-0M-R8x"/>
+                <outlet property="view_partners" destination="Ud1-hd-dsK" id="DmV-db-Dh7"/>
                 <outlet property="view_receiver" destination="EYi-Rl-T9l" id="7KK-Ux-qDZ"/>
                 <outlet property="view_sender" destination="yxc-Zu-XlS" id="qwJ-bX-Edz"/>
                 <outlet property="view_total" destination="Pna-ua-NDg" id="eCT-qm-hhr"/>

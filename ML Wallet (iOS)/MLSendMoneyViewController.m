@@ -638,10 +638,19 @@
         _lbl_account.text = @"Select Account";
         
         
-        self.ch_sendOwn.frame = CGRectMake(2, 285, 160, 24);
-        self.tf_amount.frame = CGRectMake(5, 320, 309, 41);
-        self.view_charge.frame = CGRectMake(7, 370, 148, 73);
-        self.view_total.frame = CGRectMake(165, 370, 148, 73);
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        {
+            self.ch_sendOwn.frame = CGRectMake(2, 285, 160, 24);
+            self.tf_amount.frame = CGRectMake(5, 320, 309, 41);
+            self.view_charge.frame = CGRectMake(7, 370, 148, 73);
+            self.view_total.frame = CGRectMake(165, 370, 148, 73);
+        }else{
+            self.ch_sendOwn.frame = CGRectMake(30, 410, 160, 24);
+            self.tf_amount.frame = CGRectMake(20, 450, 500, 41);
+            self.view_charge.frame = CGRectMake(20, 520, 240, 90);
+            self.view_total.frame = CGRectMake(280, 520, 240, 90);
+        }
+        
         [_ch_sendOwn setImage:[UIImage imageNamed:@"chunchecked.png"] forState:UIControlStateNormal];
         isChecked = NO;
         isBillsPay = YES;
@@ -771,10 +780,20 @@
         
         self.view_receiver.hidden = YES;
         
-        self.ch_sendOwn.frame = CGRectMake(2, 190, 160, 24);
-        self.tf_amount.frame = CGRectMake(5, 221, 309, 41);
-        self.view_charge.frame = CGRectMake(7, 270, 148, 73);
-        self.view_total.frame = CGRectMake(165, 270, 148, 73);
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        {
+            self.ch_sendOwn.frame = CGRectMake(2, 190, 160, 24);
+            self.tf_amount.frame = CGRectMake(5, 221, 309, 41);
+            self.view_charge.frame = CGRectMake(7, 270, 148, 73);
+            self.view_total.frame = CGRectMake(165, 270, 148, 73);
+        }
+        else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            self.ch_sendOwn.frame = CGRectMake(30, 260, 160, 24);
+            self.tf_amount.frame = CGRectMake(20, 321, 500, 41);
+            self.view_charge.frame = CGRectMake(20, 400, 240, 90);
+            self.view_total.frame = CGRectMake(280, 400, 240, 90);
+        }
         
         
     }
@@ -786,10 +805,21 @@
         
         self.view_receiver.hidden = NO;
         
-        self.ch_sendOwn.frame = CGRectMake(2, 285, 160, 24);
-        self.tf_amount.frame = CGRectMake(5, 320, 309, 41);
-        self.view_charge.frame = CGRectMake(7, 370, 148, 73);
-        self.view_total.frame = CGRectMake(165, 370, 148, 73);
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        {
+            self.ch_sendOwn.frame = CGRectMake(2, 285, 160, 24);
+            self.tf_amount.frame = CGRectMake(5, 320, 309, 41);
+            self.view_charge.frame = CGRectMake(7, 370, 148, 73);
+            self.view_total.frame = CGRectMake(165, 370, 148, 73);
+        }
+        else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        {
+            self.ch_sendOwn.frame = CGRectMake(30, 410, 160, 24);
+            self.tf_amount.frame = CGRectMake(20, 450, 500, 41);
+            self.view_charge.frame = CGRectMake(20, 520, 240, 90);
+            self.view_total.frame = CGRectMake(280, 520, 240, 90);
+        }
+
 
     }
 }

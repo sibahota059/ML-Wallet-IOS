@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "AccountMobilePad.h"
 #import "MBProgressHUD.h"
+#import "RetrievesOnlyUsersPartnerWS.h"
 
 
-@interface MenuViewController : UIViewController <UIAlertViewDelegate, AccountMobilePadDelegate, MBProgressHUDDelegate>
-
+@interface MenuViewController : UIViewController <UIAlertViewDelegate, RetrievesOnlyUsersDelegate, AccountMobilePadDelegate, MBProgressHUDDelegate>
+{
+    NSDictionary *partners;
+}
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) NSMutableData *responseData;
 
@@ -65,4 +68,5 @@
 
 //Assign From LoginviewController
 @property (assign, nonatomic) NSString *fullname;
+@property(nonatomic,retain)NSDictionary *partners;
 @end

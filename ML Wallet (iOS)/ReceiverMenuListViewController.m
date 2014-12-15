@@ -281,6 +281,8 @@
     return cell;
 }
 
+
+
 #pragma mark - Table view delegate
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
@@ -347,7 +349,6 @@
     [self.navigationController pushViewController:menuPage animated:YES];
 //    [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 #pragma Start #Selector for Create New Receiver
 - (void)newReceiver
