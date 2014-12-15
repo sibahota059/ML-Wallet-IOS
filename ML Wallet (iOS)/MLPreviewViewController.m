@@ -93,16 +93,23 @@
     //setting sender and receiver information on it's label
     _lbl_sname.text   = [[NSString stringWithFormat:@"%@, %@ %@", __senderLname, __senderFname, [__senderMname substringFromIndex:1]] uppercaseString];
     
+    
     if ([__transType isEqualToString:@"remittance"]) {
         _lbl_rname.text   = [[NSString stringWithFormat:@"%@, %@ %@", __receiverLname, __receiverFname, __receiverMname] uppercaseString];
     }else if ([__transType isEqualToString:@"own"]){
         _lbl_rname.text = @"SEND TO OWN";
     }else{
         _lbl_rname.text   = [[NSString stringWithFormat:@"%@", __receiverFname] uppercaseString];
+        _image_receiver.hidden = YES;
+    }
+    
+    if ([[NSString stringWithFormat:@"%@", __charge] isEqualToString:@"Free"] || [[NSString stringWithFormat:@"%@", __charge] isEqualToString:@"0"]) {
+        _lbl_charge.text  = @"Free";
+    }else{
+        _lbl_charge.text  = [NSString stringWithFormat:@"%0.2f", [__charge doubleValue]];
     }
     
     _lbl_amount.text  = [NSString stringWithFormat:@"%0.2f", [__amount doubleValue]];
-    _lbl_charge.text  = __charge;
     _lbl_total.text   = [NSString stringWithFormat:@"%0.2f", [__total doubleValue]];
     
     //convert base64string of sender and receiver image into data
