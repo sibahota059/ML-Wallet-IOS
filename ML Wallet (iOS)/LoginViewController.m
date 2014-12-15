@@ -346,6 +346,7 @@
      3 == Resend Email
      6 == Payout search
      */
+    
     switch (self.idd) {
         case 1:
             NSLog(@"getting location");
@@ -380,6 +381,10 @@
 {
     NSError *myError = nil;
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
+    
+    //Hide Loader
+    [HUD hide:YES];
+    [HUD show:NO];
     
     if (myError == nil){
         NSString* _key = [[ServiceConnection alloc] NSGetKey];
@@ -658,8 +663,10 @@
             
             //Check if Insufficient balance
             if ([isnewuser isEqualToNumber:[NSNumber numberWithInt:1]]){
-                if ([bal isEqualToString:@"0"]) {                    
-                    [self ifInsufficientBalance];return;
+                if ([bal isEqualToString:@"0"])
+                {
+                    [self ifInsufficientBalance];
+                    return;
                 }
             }
             
@@ -979,6 +986,11 @@
     [self checkPIN];
 }
 - (IBAction)btnInsuffi_submit:(id)sender {
+    //Show Animated
+    HUD.labelText = @"Please wait";
+    HUD.square = YES;
+    [HUD show:YES];
+    [self.view endEditing:YES];
     
     [self searchKPTN];
 }
