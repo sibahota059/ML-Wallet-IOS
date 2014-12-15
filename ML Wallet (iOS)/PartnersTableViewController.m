@@ -23,15 +23,17 @@
     
     finalPartners = [NSMutableArray new];
     
-//    if ([_displayType isEqualToString:@"partners"]) {
-//        tableData = [NSArray arrayWithObjects:@"BPI", @"BDO", @"GLOBE PHILIPPINES", @"SMART PHILIPPINES", @"RED MOBILE", @"SUN CELLULAR", @"SM CITY CEBU", @"AYALA PARK", @"CLASH OF CLANS", @"WARCRAFT", @"MOBILETECH GLOBAL PHILIPPINES", @"SHADOW FIGHT", nil];
-//        
-//        getDisplayType = @"partners";
-//    }else{
-//        tableData = [NSArray arrayWithObjects:@"00000000", @"11111111", @"22222222", @"33333333", @"44444444", @"55555555", @"66666666", @"77777777", @"88888888", @"99999999", @"101010101", @"12312312", nil];
-//        getDisplayType = @"account";
-//    }
     
+    
+    if ([_displayType isEqualToString:@"partners"]) {
+        
+        self.title = @"LIST OF PARTNERS";
+        
+    }else{
+        
+        self.title = @"LIST OF ACCOUNTS";
+        
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -60,7 +62,7 @@
 
     // Return the number of rows in the section.
     
-    int x;
+    NSUInteger x;
     
     if ([_displayType isEqualToString:@"partners"]) {
         
