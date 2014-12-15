@@ -168,6 +168,12 @@
 		704C016F1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C016E1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.m */; };
 		704C01721A39B19800AAD764 /* PartnersAccountNoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 704C01711A39B19800AAD764 /* PartnersAccountNoList.m */; };
 		705654D51995F901002F81C7 /* my_save.png in Resources */ = {isa = PBXBuildFile; fileRef = 705654D41995F901002F81C7 /* my_save.png */; };
+		705CDBCE1A3A6E2F00775201 /* GetAllPartnerWS.m in Sources */ = {isa = PBXBuildFile; fileRef = 705CDBCD1A3A6E2F00775201 /* GetAllPartnerWS.m */; };
+		705CDBD21A3A6ECB00775201 /* SelectBillsPayPartners.m in Sources */ = {isa = PBXBuildFile; fileRef = 705CDBD01A3A6ECB00775201 /* SelectBillsPayPartners.m */; };
+		705CDBD31A3A6ECB00775201 /* SelectBillsPayPartners.xib in Resources */ = {isa = PBXBuildFile; fileRef = 705CDBD11A3A6ECB00775201 /* SelectBillsPayPartners.xib */; };
+		705CDBDC1A3A7F2800775201 /* SearchPartnerToAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 705CDBDA1A3A7F2800775201 /* SearchPartnerToAdd.m */; };
+		705CDBDD1A3A7F2800775201 /* SearchPartnerToAdd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 705CDBDB1A3A7F2800775201 /* SearchPartnerToAdd.xib */; };
+		705CDBE01A3AB4B900775201 /* MySearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 705CDBDF1A3AB4B900775201 /* MySearchDisplayController.m */; };
 		707C03B518D9CD4D00EC1B12 /* RegistrationInformation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */; };
 		707C03B718D9CD8100EC1B12 /* lock_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B618D9CD8100EC1B12 /* lock_profile.png */; };
 		707C03B918D9CFD500EC1B12 /* profile_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 707C03B818D9CFD500EC1B12 /* profile_profile.png */; };
@@ -212,6 +218,7 @@
 		70AE8CBB198FBE4C002F570D /* EditInformationPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AE8CB9198FBE4C002F570D /* EditInformationPad.xib */; };
 		70AE8CBD198FC067002F570D /* EditInformationPadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AE8CBC198FC067002F570D /* EditInformationPadCell.xib */; };
 		70AE8CC3198FC361002F570D /* EditInformationPadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AE8CC2198FC361002F570D /* EditInformationPadCell.m */; };
+		70B7FBA31A3BE1C100D23672 /* DimLightDialogBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B7FBA21A3BE1C100D23672 /* DimLightDialogBackground.m */; };
 		70BD0CC81A39BC19008A86FF /* Partners.m in Sources */ = {isa = PBXBuildFile; fileRef = 70BD0CC71A39BC19008A86FF /* Partners.m */; };
 		70CA18F6198F26D200515FF1 /* ic_action_edit_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CA18F5198F26D200515FF1 /* ic_action_edit_press.png */; };
 		70CA18F8198F2C3F00515FF1 /* my_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 70CA18F7198F2C3F00515FF1 /* my_edit.png */; };
@@ -524,6 +531,16 @@
 		704C01701A39B19800AAD764 /* PartnersAccountNoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartnersAccountNoList.h; sourceTree = "<group>"; };
 		704C01711A39B19800AAD764 /* PartnersAccountNoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartnersAccountNoList.m; sourceTree = "<group>"; };
 		705654D41995F901002F81C7 /* my_save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_save.png; sourceTree = "<group>"; };
+		705CDBCC1A3A6E2F00775201 /* GetAllPartnerWS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAllPartnerWS.h; sourceTree = "<group>"; };
+		705CDBCD1A3A6E2F00775201 /* GetAllPartnerWS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAllPartnerWS.m; sourceTree = "<group>"; };
+		705CDBCF1A3A6ECB00775201 /* SelectBillsPayPartners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBillsPayPartners.h; sourceTree = "<group>"; };
+		705CDBD01A3A6ECB00775201 /* SelectBillsPayPartners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBillsPayPartners.m; sourceTree = "<group>"; };
+		705CDBD11A3A6ECB00775201 /* SelectBillsPayPartners.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectBillsPayPartners.xib; sourceTree = "<group>"; };
+		705CDBD91A3A7F2800775201 /* SearchPartnerToAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPartnerToAdd.h; sourceTree = "<group>"; };
+		705CDBDA1A3A7F2800775201 /* SearchPartnerToAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPartnerToAdd.m; sourceTree = "<group>"; };
+		705CDBDB1A3A7F2800775201 /* SearchPartnerToAdd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchPartnerToAdd.xib; sourceTree = "<group>"; };
+		705CDBDE1A3AB4B900775201 /* MySearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchDisplayController.h; sourceTree = "<group>"; };
+		705CDBDF1A3AB4B900775201 /* MySearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchDisplayController.m; sourceTree = "<group>"; };
 		707C03B418D9CD4D00EC1B12 /* RegistrationInformation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationInformation.xib; sourceTree = "<group>"; };
 		707C03B618D9CD8100EC1B12 /* lock_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_profile.png; sourceTree = "<group>"; };
 		707C03B818D9CFD500EC1B12 /* profile_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_profile.png; sourceTree = "<group>"; };
@@ -590,6 +607,8 @@
 		70AE8CBC198FC067002F570D /* EditInformationPadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformationPadCell.xib; sourceTree = "<group>"; };
 		70AE8CC1198FC361002F570D /* EditInformationPadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationPadCell.h; sourceTree = "<group>"; };
 		70AE8CC2198FC361002F570D /* EditInformationPadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationPadCell.m; sourceTree = "<group>"; };
+		70B7FBA11A3BE1C100D23672 /* DimLightDialogBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DimLightDialogBackground.h; sourceTree = "<group>"; };
+		70B7FBA21A3BE1C100D23672 /* DimLightDialogBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DimLightDialogBackground.m; sourceTree = "<group>"; };
 		70BD0CC61A39BC19008A86FF /* Partners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Partners.h; sourceTree = "<group>"; };
 		70BD0CC71A39BC19008A86FF /* Partners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Partners.m; sourceTree = "<group>"; };
 		70CA18F5198F26D200515FF1 /* ic_action_edit_press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_edit_press.png; sourceTree = "<group>"; };
@@ -1373,6 +1392,10 @@
 				3B1D1670197CA4270006DF0D /* UITextfieldAnimate.m */,
 				3B15D2A319869C5700AD69AE /* TimerUIApplication.h */,
 				3B15D2A419869C5700AD69AE /* TimerUIApplication.m */,
+				705CDBDE1A3AB4B900775201 /* MySearchDisplayController.h */,
+				705CDBDF1A3AB4B900775201 /* MySearchDisplayController.m */,
+				70B7FBA11A3BE1C100D23672 /* DimLightDialogBackground.h */,
+				70B7FBA21A3BE1C100D23672 /* DimLightDialogBackground.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1531,6 +1554,9 @@
 		70CA18F9198F465900515FF1 /* iphone */ = {
 			isa = PBXGroup;
 			children = (
+				705CDBD91A3A7F2800775201 /* SearchPartnerToAdd.h */,
+				705CDBDA1A3A7F2800775201 /* SearchPartnerToAdd.m */,
+				705CDBDB1A3A7F2800775201 /* SearchPartnerToAdd.xib */,
 				70AA05A0198B3ADD00B0C52A /* EditUsername.h */,
 				70AA05A1198B3ADD00B0C52A /* EditUsername.m */,
 				70AA05A5198B3AF600B0C52A /* EditEmail.h */,
@@ -1558,6 +1584,9 @@
 				704C01681A39A9B400AAD764 /* RetrievePartners.h */,
 				704C01691A39A9B400AAD764 /* RetrievePartners.m */,
 				704C016A1A39A9B400AAD764 /* RetrievePartners.xib */,
+				705CDBCF1A3A6ECB00775201 /* SelectBillsPayPartners.h */,
+				705CDBD01A3A6ECB00775201 /* SelectBillsPayPartners.m */,
+				705CDBD11A3A6ECB00775201 /* SelectBillsPayPartners.xib */,
 			);
 			name = iphone;
 			sourceTree = "<group>";
@@ -1592,6 +1621,8 @@
 		70E251231991C6C70091AB3D /* webservice */ = {
 			isa = PBXGroup;
 			children = (
+				705CDBCC1A3A6E2F00775201 /* GetAllPartnerWS.h */,
+				705CDBCD1A3A6E2F00775201 /* GetAllPartnerWS.m */,
 				704C016D1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.h */,
 				704C016E1A39AEA700AAD764 /* RetrievesOnlyUsersPartnerWS.m */,
 				7093EAA81991DFC9000F84D9 /* AccountMobilePad.h */,
@@ -1726,6 +1757,7 @@
 				700661E618DA766800A0F05C /* design_buttom_left.png in Resources */,
 				70CA18F8198F2C3F00515FF1 /* my_edit.png in Resources */,
 				3BB42E1118D6B6C60011792E /* view_bg.png in Resources */,
+				705CDBDD1A3A7F2800775201 /* SearchPartnerToAdd.xib in Resources */,
 				707C03BD18D9D00900EC1B12 /* submit_profile.png in Resources */,
 				3BB42E0518D6B6C60011792E /* pad_bg.png in Resources */,
 				3BB42E0318D6B6C60011792E /* next.png in Resources */,
@@ -1822,6 +1854,7 @@
 				3BA7CCAD18B1D6B900B9FC4B /* Images.xcassets in Resources */,
 				3B8090BA18B5FB6700A11CB8 /* back2.png in Resources */,
 				3B19519818B7213A0061969F /* CreateNewReceiverViewController~iphone.xib in Resources */,
+				705CDBD31A3A6ECB00775201 /* SelectBillsPayPartners.xib in Resources */,
 				70CA1902198F49D800515FF1 /* AccountMainPad.xib in Resources */,
 				704C016C1A39A9B400AAD764 /* RetrievePartners.xib in Resources */,
 				3B5439AE19A47BFF00B076D8 /* ml_logo_iphone.png in Resources */,
@@ -1865,6 +1898,7 @@
 				7006620F18DA791600A0F05C /* ProfileInformation.m in Sources */,
 				3BA7CCAB18B1D6B900B9FC4B /* AppDelegate.m in Sources */,
 				F01014B41A240CA100F4BA76 /* RadioButton.m in Sources */,
+				705CDBD21A3A6ECB00775201 /* SelectBillsPayPartners.m in Sources */,
 				F00F969A1A307EAF007DE4E7 /* SendoutPartnersBill.m in Sources */,
 				70EEA18618D9C53200719BF7 /* ProfileHeader.m in Sources */,
 				F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */,
@@ -1913,10 +1947,12 @@
 				7006621018DA791600A0F05C /* AccountInformation.m in Sources */,
 				70BD0CC81A39BC19008A86FF /* Partners.m in Sources */,
 				70EEA18318D9C48A00719BF7 /* MLViewController.m in Sources */,
+				705CDBDC1A3A7F2800775201 /* SearchPartnerToAdd.m in Sources */,
 				70EEA19518D9C6E800719BF7 /* ProfileButton.m in Sources */,
 				3B17585018B301B8005A7805 /* UIAlertView+alertMe.m in Sources */,
 				F01893691A25B87700409FC1 /* MLRatesAllChildViewController.m in Sources */,
 				704C016B1A39A9B400AAD764 /* RetrievePartners.m in Sources */,
+				70B7FBA31A3BE1C100D23672 /* DimLightDialogBackground.m in Sources */,
 				F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */,
 				70EEA18C18D9C56300719BF7 /* ProfileLabel.m in Sources */,
 				F00F969D1A32D8A8007DE4E7 /* SavePartnersBill.m in Sources */,
@@ -1926,12 +1962,14 @@
 				F0242B451A2809D100B8DA44 /* PartnersTableViewController.m in Sources */,
 				700ECB77199B749D006EC6D7 /* EditUserNameWebService.m in Sources */,
 				70EEA18F18D9C64C00719BF7 /* ProfileTextField.m in Sources */,
+				705CDBCE1A3A6E2F00775201 /* GetAllPartnerWS.m in Sources */,
 				3BA8A22E197516580052FA2F /* UIImage+DecodeStringToImage.m in Sources */,
 				70AA0599198B316600B0C52A /* EditAccountInformation.m in Sources */,
 				700ECB74199B69D8006EC6D7 /* EditPasswordWebService.m in Sources */,
 				F05C5F3318E12C0D002F2EE1 /* MLTermsConditionViewController.m in Sources */,
 				F00F96971A2FFA06007DE4E7 /* RetrievePartnersAccount.m in Sources */,
 				3BB5268918BCB8F600D0A5EA /* ReceiverObject.m in Sources */,
+				705CDBE01A3AB4B900775201 /* MySearchDisplayController.m in Sources */,
 				70ADA90819909DC200075CB7 /* EditQuestionsPad.m in Sources */,
 				70ADA8F41990740400075CB7 /* EditAccountInformationPad.m in Sources */,
 				3B38F7751952CE0600EC3948 /* ServiceConnection.m in Sources */,

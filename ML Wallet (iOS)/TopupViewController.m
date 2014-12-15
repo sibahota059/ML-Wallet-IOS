@@ -15,6 +15,8 @@
 #import "UITextfieldAnimate.h"
 #import "NSDictionary+LoadWalletData.h"
 #import "SaveWalletData.h"
+#import "NSData+Base64.h"
+#import "CryptLib.h"
 
 #import <CoreLocation/CoreLocation.h>
 
@@ -179,16 +181,32 @@
     HUD.square = YES;
     [HUD show:YES navigatorItem:self.navigationItem];
     
-    //TODO : NO Wallet
-    NSString *srvcURL1 = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"searchKPTN/?"];
-    NSString *srvcURL = [NSString stringWithFormat: @"%@kptn=%@&walletno=%@", srvcURL1, strKPTN, walletno];
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSString *post = [NSString stringWithFormat:@"{\"kptn\" : \"%@\", \"walletno\" : \"%@\"}", strKPTN, walletno];
+    NSData* encryptedData = [[StringEncryption alloc]
+                             encrypt:[post dataUsingEncoding:NSUTF8StringEncoding]
+                             key:_key
+                             iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+    
+    //Data to POST
+    NSString *postData = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\", \"iv\" : \"%@\"}",
+                          [encryptedData base64EncodingWithLineLength:0],
+                          _iv];
+   
+    
+    NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"searchKPTN"];
     
     self.responseData = [NSMutableData data];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-    [request setHTTPMethod:@"GET"];
+    NSData *requestData = [NSData dataWithBytes:[postData UTF8String] length:[postData length]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
-    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [con start];
+    [request setHTTPBody:requestData];
+    [NSURLConnection connectionWithRequest:request delegate:self];
     self.idd = 1;
 }
 
@@ -227,20 +245,36 @@
         return;
     }
     
+    
+    
     NSError *myError = nil;
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
-    if (myError == nil) {
-        NSArray *result;
-        if (self.idd == 1)
-        {
-            result = [res valueForKey:@"searchKPTNResult"];
-        }else{
-            result = [res valueForKey:@"payoutMobileResult"];
-        }
+    if (myError == nil){
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
         
-        NSNumber *respCode = [result valueForKey:@"respcode"];
-        NSString *respMesg = [result valueForKey:@"respmessage"];
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
+        
+        
+        NSNumber *respCode = [result valueForKeyPath:@"respcode"];
+        NSString *respMesg = [result valueForKeyPath:@"respmessage"];
+        
+
+//    if (myError == nil) {
+//        NSArray *result;
+//        if (self.idd == 1)
+//        {
+//            result = [res valueForKey:@"searchKPTNResult"];
+//        }else{
+//            result = [res valueForKey:@"payoutMobileResult"];
+//        }
+//        
+//        NSNumber *respCode = [result valueForKey:@"respcode"];
+//        NSString *respMesg = [result valueForKey:@"respmessage"];
         
         if ([respCode isEqualToNumber:[NSNumber numberWithInt:1]]) {
             //Checking..
@@ -300,10 +334,10 @@
     self.txtKPTN.text = @"";
     
     
-    [UIAlertView myCostumeAlert:@"Payout" alertMessage:@"Successfully payout. You may check your balance now" delegate:nil cancelButton:@"Ok" otherButtons:nil];
+    [UIAlertView myCostumeAlert:@"Payout" alertMessage:@"Successfully payout. You may check your balance. Thank you." delegate:nil cancelButton:@"Ok" otherButtons:nil];
 }
 
-- (void) searchResponse_NSArray :(NSArray *) res {
+- (void) searchResponse_NSArray :(NSData *) res {
     NSString *rec_FName = [res valueForKeyPath:@"rcvrfname"];
     NSString *rec_LName = [res valueForKeyPath:@"rcvrlname"];
     NSString *principal = [res valueForKeyPath:@"principal"];
@@ -328,10 +362,24 @@
                           deviceID,
                           location];
         
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSString* _iv = [[StringEncryption alloc] generateIV];
+        NSData* encryptedData = [[StringEncryption alloc]
+                                 encrypt:[post dataUsingEncoding:NSUTF8StringEncoding]
+                                 key:_key
+                                 iv:_iv];
+        NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+        
+        //Data to POST
+        NSString *postData = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\", \"iv\" : \"%@\"}",
+                          [encryptedData base64EncodingWithLineLength:0],
+                          _iv];
+   
+        
         NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService] stringByAppendingString:@"payoutMobile"];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:srvcURL]];
-        NSData *requestData = [NSData dataWithBytes:[post UTF8String] length:[post length]];
+        NSData *requestData = [NSData dataWithBytes:[postData UTF8String] length:[postData length]];
         
         [request setHTTPMethod:@"POST"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];

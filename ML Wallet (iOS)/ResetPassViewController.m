@@ -11,6 +11,9 @@
 #import "ServiceConnection.h"
 #import "UIAlertView+alertMe.h"
 #import "MBProgressHUD.h"
+#import "NSData+Base64.h"
+#import "CryptLib.h"
+
 
 @interface ResetPassViewController ()
 
@@ -322,7 +325,13 @@
     NSArray *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingMutableLeaves error:&myError];
     
     if (myError == nil){
-        NSArray *result = [res valueForKey:@"ForgotPasswordResult"];
+        NSString* _key = [[ServiceConnection alloc] NSGetKey];
+        NSData *result  = [NSData dataWithBase64EncodedString:[res valueForKey:@"Encrypted"]];
+        NSString *_iv  = [res valueForKey:@"Iv"];
+        
+        //dec
+        NSData* encryptedData = [[StringEncryption alloc] decrypt:result  key:_key iv:_iv];
+        result = [NSJSONSerialization JSONObjectWithData:encryptedData options:NSJSONReadingMutableLeaves error:&myError];
         
         NSNumber *respCode = [result valueForKey:@"respcode"];
         NSString *respMesg = [result valueForKey:@"respmessage"];
@@ -372,6 +381,19 @@
                       emailadd,
                       question,
                       seanswer];
+    
+    NSString* _key = [[ServiceConnection alloc] NSGetKey];
+    NSString* _iv = [[StringEncryption alloc] generateIV];
+    NSData* encryptedData = [[StringEncryption alloc] encrypt:[post dataUsingEncoding:NSUTF8StringEncoding]
+                                                          key:_key
+                                                           iv:_iv];
+    NSLog(@"Encrypted Data : %@", [encryptedData base64EncodingWithLineLength:0]);
+    
+    //Data to POST
+    post = [NSString stringWithFormat:@"{\"encrypted\" : \"%@\", \"iv\" : \"%@\"}",
+                      [encryptedData base64EncodingWithLineLength:0],
+                      _iv];
+    
     
     NSString *srvcURL = [[[ServiceConnection alloc] NSgetURLService]
                          stringByAppendingString:@"ForgotPassword"];

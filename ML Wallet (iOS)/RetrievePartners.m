@@ -11,6 +11,8 @@
 #import "PartnersAccountNoList.h"
 #import "NSDictionary+LoadWalletData.h"
 #import "Partners.h"
+#import "SelectBillsPayPartners.h"
+#import "DimLightDialogBackground.h"
 
 
 @interface RetrievePartners ()
@@ -38,6 +40,8 @@ NSString *RETRIEVE_PARTNER_VAL_ERROR = @"Validation Error";
 NSString  *wallet;
 
 NSString *accountNo;
+
+DimLightDialogBackground *dialogBackground;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -149,10 +153,7 @@ NSString *accountNo;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    self.partners = [partnersArrayList objectAtIndex:indexPath];
-    backgroundDim = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [ [ UIScreen mainScreen ] bounds ].size.width, [ [ UIScreen mainScreen ] bounds ].size.height)];
-    [backgroundDim setBackgroundColor:[UIColor blackColor]];
-    [backgroundDim setAlpha:0.6f];
+    dialogBackground = [[DimLightDialogBackground alloc] init];
     
     Partners *part = [partnersData objectAtIndex:indexPath.row];
     NSMutableArray *testAccountList = part.accountNo;
@@ -170,7 +171,7 @@ NSString *accountNo;
     
     [partnersAccountNo.cancelButton addTarget:self action:@selector(cancelMethod:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:backgroundDim];
+    [self.view addSubview:dialogBackground];
     [self.view addSubview:partnersAccountNo];
     
 //    partnersAccountNo.hidden = NO;
@@ -204,8 +205,8 @@ NSString *accountNo;
 
 -(void)gotoSelectPartner:(id)sender
 {
-//    SelectBillsPayPartners *selectPartner = [[SelectBillsPayPartners alloc] initWithNibName:@"SelectBillsPayPartners" bundle:nil];
-//    [self.navigationController pushViewController:selectPartner animated:YES];
+    SelectBillsPayPartners *selectPartner = [[SelectBillsPayPartners alloc] initWithNibName:@"SelectBillsPayPartners" bundle:nil];
+    [self.navigationController pushViewController:selectPartner animated:YES];
 
 
 }
@@ -221,7 +222,7 @@ NSString *accountNo;
     
     accountNo = @"none";
     
-    [backgroundDim removeFromSuperview];
+    [dialogBackground removeFromSuperview];
     [partnersAccountNo removeFromSuperview];
 
     
