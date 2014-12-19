@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="imageUser" destination="FKn-Dk-3Bn" id="bxg-Ih-dTx"/>
                 <outlet property="imgPopup" destination="rgM-62-U8N" id="x0b-si-38D"/>
-                <outlet property="kycLayer" destination="joG-5R-CxZ" id="gw6-zs-dck"/>
+                <outlet property="kycLayer" destination="pyN-u6-M28" id="OnF-Zy-G7b"/>
                 <outlet property="lblAccount" destination="weU-yE-dBT" id="gDI-Fs-N2b"/>
                 <outlet property="lblBalance" destination="Xsm-ml-jC5" id="4xr-2Y-q36"/>
                 <outlet property="lblDate" destination="HNa-UJ-lTc" id="7EU-v1-Lap"/>
@@ -326,44 +326,59 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pyN-u6-M28">
+                                    <rect key="frame" x="158" y="278" width="370" height="308"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krg-Sw-9Bs">
+                                            <rect key="frame" x="69" y="51" width="232" height="63"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="My Account" backgroundImage="headerbackground.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="icon_my_account_press.jpg"/>
+                                            <state key="highlighted" image="icon_my_account_press.jpg"/>
+                                            <connections>
+                                                <action selector="btn_Myprofile:" destination="-1" eventType="touchUpInside" id="ZcG-tA-hpJ"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQT-0v-Mcv">
+                                            <rect key="frame" x="69" y="123" width="232" height="62"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="My Receiver" backgroundImage="headerbackground.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="icon_my_receiver_press.jpg"/>
+                                            <state key="highlighted" image="icon_my_receiver_press.jpg"/>
+                                            <connections>
+                                                <action selector="btnReceiver:" destination="-1" eventType="touchUpInside" id="b8P-q8-bAP"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YM-lk-VIK">
+                                            <rect key="frame" x="69" y="193" width="232" height="64"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <state key="normal" title="My Bills Pay" backgroundImage="headerbackground.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" image="icon_my_receiver_press.jpg"/>
+                                            <state key="highlighted" image="icon_my_receiver_press.jpg"/>
+                                            <connections>
+                                                <action selector="btnBillsPay:" destination="-1" eventType="touchUpInside" id="DYU-yj-d6o"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <gestureRecognizers/>
+                                </view>
                             </subviews>
                             <gestureRecognizers/>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="oq7-ZK-ij7" appends="YES" id="X9w-29-SGk"/>
                                 <outletCollection property="gestureRecognizers" destination="NhA-pu-v4v" appends="YES" id="wFe-fM-r6E"/>
                             </connections>
-                        </view>
-                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="joG-5R-CxZ">
-                            <rect key="frame" x="151" y="352" width="426" height="199"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zN9-WP-jqm">
-                                    <rect key="frame" x="20" y="23" width="180" height="150"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button" image="icon_my_account.jpg">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="selected" image="icon_my_account_press.jpg"/>
-                                    <state key="highlighted" image="icon_my_account_press.jpg"/>
-                                    <connections>
-                                        <action selector="btn_Myprofile:" destination="-1" eventType="touchUpInside" id="K6x-Jz-VDa"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m33-EI-kiF">
-                                    <rect key="frame" x="226" y="23" width="180" height="150"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button" image="icon_my_receiver.jpg">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="selected" image="icon_my_receiver_press.jpg"/>
-                                    <state key="highlighted" image="icon_my_receiver_press.jpg"/>
-                                    <connections>
-                                        <action selector="btnReceiver:" destination="-1" eventType="touchUpInside" id="GSk-bL-XG0"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            <gestureRecognizers/>
                         </view>
                     </subviews>
                 </scrollView>
@@ -390,9 +405,8 @@
         <image name="bg_header.png" width="530" height="32"/>
         <image name="btn1.png" width="195" height="45"/>
         <image name="btn2.png" width="300" height="77"/>
-        <image name="icon_my_account.jpg" width="307" height="209"/>
+        <image name="headerbackground.png" width="320" height="50"/>
         <image name="icon_my_account_press.jpg" width="307" height="209"/>
-        <image name="icon_my_receiver.jpg" width="307" height="209"/>
         <image name="icon_my_receiver_press.jpg" width="307" height="209"/>
         <image name="kyc.9.png" width="395" height="395"/>
         <image name="ml_logo_ipad.png" width="768" height="130"/>
