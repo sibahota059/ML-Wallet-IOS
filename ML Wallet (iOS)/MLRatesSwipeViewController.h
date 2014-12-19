@@ -11,6 +11,7 @@
 @interface MLRatesSwipeViewController : UIViewController <UIPageViewControllerDataSource>
 
 @property (strong, nonatomic) UIPageViewController *pageController;
+@property (strong, nonatomic) NSString *indicator;
 
 @end
 

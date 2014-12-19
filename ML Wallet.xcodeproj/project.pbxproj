@@ -278,7 +278,6 @@
 		F05C5F0B18E12BAA002F2EE1 /* MLHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0818E12BAA002F2EE1 /* MLHistoryViewController.m */; };
 		F05C5F0C18E12BAA002F2EE1 /* MLHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */; };
 		F05C5F2D18E12C0D002F2EE1 /* MLSendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */; };
-		F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2018E12C0D002F2EE1 /* MLRatesTableViewController.m */; };
 		F05C5F2F18E12C0D002F2EE1 /* MLPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2218E12C0D002F2EE1 /* MLPreviewViewController.m */; };
 		F05C5F3018E12C0D002F2EE1 /* MLReceiverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2418E12C0D002F2EE1 /* MLReceiverTableViewCell.m */; };
 		F05C5F3118E12C0D002F2EE1 /* MLRatesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F05C5F2618E12C0D002F2EE1 /* MLRatesTableViewCell.m */; };
@@ -697,8 +696,6 @@
 		F05C5F0A18E12BAA002F2EE1 /* MLHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLHistoryTableViewCell.m; sourceTree = "<group>"; };
 		F05C5F1D18E12C0D002F2EE1 /* MLSendMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSendMoneyViewController.h; sourceTree = "<group>"; };
 		F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSendMoneyViewController.m; sourceTree = "<group>"; };
-		F05C5F1F18E12C0D002F2EE1 /* MLRatesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRatesTableViewController.h; sourceTree = "<group>"; };
-		F05C5F2018E12C0D002F2EE1 /* MLRatesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRatesTableViewController.m; sourceTree = "<group>"; };
 		F05C5F2118E12C0D002F2EE1 /* MLPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPreviewViewController.h; sourceTree = "<group>"; };
 		F05C5F2218E12C0D002F2EE1 /* MLPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPreviewViewController.m; sourceTree = "<group>"; };
 		F05C5F2318E12C0D002F2EE1 /* MLReceiverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLReceiverTableViewCell.h; sourceTree = "<group>"; };
@@ -1117,8 +1114,6 @@
 			children = (
 				F05C5F1D18E12C0D002F2EE1 /* MLSendMoneyViewController.h */,
 				F05C5F1E18E12C0D002F2EE1 /* MLSendMoneyViewController.m */,
-				F05C5F1F18E12C0D002F2EE1 /* MLRatesTableViewController.h */,
-				F05C5F2018E12C0D002F2EE1 /* MLRatesTableViewController.m */,
 				F05C5F2118E12C0D002F2EE1 /* MLPreviewViewController.h */,
 				F05C5F2218E12C0D002F2EE1 /* MLPreviewViewController.m */,
 				F05C5F2318E12C0D002F2EE1 /* MLReceiverTableViewCell.h */,
@@ -1979,7 +1974,6 @@
 				70ADA9031990979700075CB7 /* EditEmailPad.m in Sources */,
 				700661BB18DA74DD00A0F05C /* AccountMain.m in Sources */,
 				3B1D1671197CA4270006DF0D /* UITextfieldAnimate.m in Sources */,
-				F05C5F2E18E12C0D002F2EE1 /* MLRatesTableViewController.m in Sources */,
 				F05C5F2F18E12C0D002F2EE1 /* MLPreviewViewController.m in Sources */,
 				F05C5F3A18E12C30002F2EE1 /* UINavigationBar+customNav.m in Sources */,
 				70EEA17D18D9C47800719BF7 /* SelectQuestionDialog.m in Sources */,

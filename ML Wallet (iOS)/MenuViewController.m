@@ -14,7 +14,6 @@
 #import "TopupViewController.h"
 #import "InfoViewController.h"
 #import "MLSendMoneyViewController.h"
-#import "MLRatesTableViewController.h"
 #import "MLUI.h"
 #import "AccountMain.h"
 #import "RetrievePartners.h"
@@ -31,6 +30,7 @@
 #import "SaveWalletData.h"
 #import "CryptLib.h"
 #import "NSData+Base64.h"
+#import "MLRatesSwipeViewController.h"
 
 #define  VIEW_HIDDEN -320
 #define  VIEW_HIDDEN_IPAD -580
@@ -393,7 +393,7 @@ NSString *firstName ,*middleName, *lastName , *country, *province, *address, *zi
 - (IBAction)pop_ActbtnRate:(id)sender {
 //    [UIAlertView myCostumeAlert:@"Button Rate" alertMessage:@"You click me" delegate:nil cancelButton:nil otherButtons:@"OK"];
     
-    MLRatesTableViewController *rates = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
+    MLRatesSwipeViewController *rates = [[MLRatesSwipeViewController alloc] initWithNibName:@"MLRatesSwipeViewController" bundle:nil];
     
     rates.indicator = @"menu";
     

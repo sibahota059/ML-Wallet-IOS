@@ -10,7 +10,6 @@
 #import "MLTermsConditionViewController.h"
 #import "MLUI.h"
 #import "MLSendMoneyViewController.h"
-#import "MLRatesTableViewController.h"
 #import "MenuViewController.h"
 #import "NSDictionary+LoadWalletData.h"
 #import "UIAlertView+alertMe.h"

@@ -8,16 +8,43 @@
 
 #import "MLRatesSwipeViewController.h"
 #import "MLRatesAllChildViewController.h"
+#import "MLUI.h"
+#import "MenuViewController.h"
 
 @interface MLRatesSwipeViewController ()
 
 @end
 
-@implementation MLRatesSwipeViewController
+@implementation MLRatesSwipeViewController{
+    UIBarButtonItem *home;
+    MLUI *getUI;
+}
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+   
+    getUI = [MLUI new];
+    //customize the icon for back button and call the btn_back method
+    home = [getUI navBarButtonRateAll:self navLink:@selector(btn_back:) imageNamed:@"home.png"];
+    
+    
+    
+    if ([_indicator isEqualToString:@"login"] || [_indicator isEqualToString:@"menu"])
+    {
+        
+        self.navigationItem.title = @"MLKP RATES";
+        [self.navigationItem setLeftBarButtonItem:home];
+        self.navigationItem.rightBarButtonItem = nil;
+        
+    }else{
+        
+        self.tabBarController.navigationItem.title = @"MLKP RATES";
+        [self.tabBarController.navigationItem setLeftBarButtonItem:home];
+        self.tabBarController.navigationItem.rightBarButtonItem = nil;
+        
+    }
+    
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
@@ -37,6 +64,26 @@
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor grayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+    
+}
+
+#pragma mark - Back Button
+- (IBAction)btn_back:(id)sender {
+    
+    NSLog(@"%@", _indicator);
+    if ([_indicator isEqualToString:@"login"])
+    {
+        self.navigationController.navigationBarHidden = YES;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else
+    {
+        self.navigationController.navigationBarHidden = YES;
+        MenuViewController *smv = (MenuViewController *)[self.navigationController.viewControllers objectAtIndex:1];
+        [self.navigationController popToViewController:smv animated:YES];
+    }
+    
+    
     
 }
 

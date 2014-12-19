@@ -18,7 +18,7 @@
 #import "UITextfieldAnimate.h"
 #import "MLUI.h"
 #import "MapViewController.h"
-#import "MLRatesTableViewController.h"
+#import "MLRatesSwipeViewController.h"
 #import "ResetPassViewController.h"
 #import "UIView+MenuAnimationUIVIew.h"
 #import "EditPassword.h"
@@ -275,7 +275,7 @@
 #pragma mark - Button Rates
 - (IBAction)btnRates:(id)sender {
     
-    MLRatesTableViewController *rates = [[MLRatesTableViewController alloc] initWithNibName:@"MLRatesTableViewController" bundle:nil];
+    MLRatesSwipeViewController *rates = [[MLRatesSwipeViewController alloc] initWithNibName:@"MLRatesSwipeViewController" bundle:nil];
     
     rates.indicator = @"login";
     

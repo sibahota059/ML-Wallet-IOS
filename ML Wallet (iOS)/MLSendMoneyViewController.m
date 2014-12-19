@@ -9,7 +9,6 @@
 #import "MLSendMoneyViewController.h"
 #import "MLPreviewViewController.h"
 #import "MLUI.h"
-#import "MLRatesTableViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "NSDictionary+LoadWalletData.h"
 #import "DeviceID.h"

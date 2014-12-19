@@ -24,6 +24,8 @@
     NSMutableArray *amount, *chargesReceiver, *chargesOwn, *finalGetCharges, *getValueRates;
     MBProgressHUD *HUD;
     NSString *confirmInd;
+    UIBarButtonItem *home;
+    
 }
 
 @end
@@ -69,7 +71,7 @@
     rateOwn.delegate = self;
     
     //customize the icon for back button and call the btn_back method
-    UIBarButtonItem *home = [getUI navBarButtonRates:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
+    home = [getUI navBarButtonRates:self navLink:@selector(btn_back:) imageNamed:@"back.png"];
     
     //set the bar button home to left
     [self.navigationItem setLeftBarButtonItem:home];
@@ -92,11 +94,6 @@
         isReceiver = NO;
     }
     
-    self.tabBarController.navigationItem.title = @"MLKP RATES";
-    self.tabBarController.navigationItem.hidesBackButton = YES;
-    self.tabBarController.navigationItem.leftBarButtonItem = nil;
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    
     
     //Register a notification to check  if Transaction is finished
     [[NSNotificationCenter defaultCenter]
@@ -107,10 +104,10 @@
 #pragma mark - Notification Called when Transaction is successful
 -(void) chooseTab:(NSNotification *) notification
 {
-    
+
     self.tabBarController.navigationItem.title = @"MLKP RATES";
-    self.tabBarController.navigationItem.hidesBackButton = YES;
-    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    //set the bar button home to left
+    [self.navigationItem setLeftBarButtonItem:home];
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
     
 }
@@ -333,17 +330,11 @@
 #pragma mark - Set Up Rates Navigation
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    if ([_indicator isEqualToString:@"login"] || [_indicator isEqualToString:@"menu"])
-    {
-        self.navigationItem.title = @"MLKP RATES";
-    }else
-    {
+
         self.tabBarController.navigationItem.title = @"MLKP RATES";
-        self.tabBarController.navigationItem.hidesBackButton = YES;
-        self.tabBarController.navigationItem.leftBarButtonItem = nil;
+        //set the bar button home to left
+        [self.navigationItem setLeftBarButtonItem:home];
         self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    }
     
 }
 

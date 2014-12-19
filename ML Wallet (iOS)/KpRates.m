@@ -7,7 +7,6 @@
 //
 
 #import "KpRates.h"
-#import "MLRatesTableViewController.h"
 #import "ServiceConnection.h"
 #import "NSData+Base64.h"
 #import "CryptLib.h"
